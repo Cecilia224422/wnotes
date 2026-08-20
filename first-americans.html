@@ -96,6 +96,9 @@ body:not(.zh-on) .modeline .zh{display:none}
 .bigidea{border-left:.35rem solid var(--accent);background:var(--accent-soft);border-radius:.6rem;padding:.9rem 1rem .9rem 1.1rem;margin:0 0 2.2rem;max-width:48rem;transition:background-color .3s,border-color .3s}
 .bigidea h3{margin:0 0 .35rem;font-size:1.1rem}
 .bigidea ol{margin:.5rem 0 0;padding-left:1.35rem}
+.bigidea .play{margin:.9rem 0 0}
+.bigidea .gate{animation:fadein .35s;margin:.9rem 0 0}
+.bigidea .gate>p{margin:0}
 .bigidea li{margin:.3rem 0}
 .bigidea li::marker{color:var(--accent-deep);font-weight:600}
 
@@ -399,12 +402,28 @@ body.zh-on[data-mode="reallife"] .pill.auto::before{content:"🍎 Real-life vers
 <!-- ================= BIG IDEA ================= -->
 <section class="bigidea" aria-label="The big idea">
   <h3>🔑 One habit behind all three fixes<span class="zh">三個訂正背後的同一個習慣</span></h3>
-  <p>Every one of your three mistakes happened in the same half-second: you wrote the answer <mark>before checking</mark>. Nothing here is a history problem — you know the history. Three checks, one for each spot:<span class="zh">三個錯誤都發生在同一個半秒：先寫了答案，才去查證。這裡沒有一題是歷史問題——歷史你都懂。三個檢查，一個對一個：</span></p>
+  <p>Your three spots, with nothing added — just what you wrote:<span class="zh">你要修的三個地方擺在一起，什麼都沒加——就是你寫下來的東西：</span></p>
   <ol>
-    <li>Before naming an artifact, ask: <b>did a person make or use it?</b><span class="zh">寫 artifact 之前先問：這是人做的或用過的嗎？</span></li>
-    <li>Before writing <b>F</b>, point at the exact word the text disagrees with.<span class="zh">寫 F 之前，指出課文不同意的到底是哪個字。</span></li>
-    <li>After rewriting, <b>read the whole sentence again</b> — is it true now?<span class="zh">改寫完，整句重讀一次——現在是真的了嗎？</span></li>
+    <li>p.1 Q2 — you wrote <b>"Fossils and pottery"</b>.<span class="zh">p.1 第 2 題——你寫了「Fossils and pottery」。</span></li>
+    <li>p.2 Settlement 1 — you wrote <b>F</b> and rewrote the food list.<span class="zh">p.2 Settlement 1——你判了 F，還改寫了食物清單。</span></li>
+    <li>p.2 Settlement 2 — you changed <b>"little impact"</b> to <b>"little change"</b>.<span class="zh">p.2 Settlement 2——你把「little impact」改成「little change」。</span></li>
   </ol>
+
+  <div class="play ask">
+    <span class="tag">🔎 You first</span>
+    <h4>The same thing went wrong all three times. What was it?<span class="zh">三次出錯的都是同一件事。是哪一件？</span></h4>
+    <p class="hint">Read those three lines again before you pick.<span class="zh">選之前，把上面那三行再讀一次。</span></p>
+    <div id="bigask"></div>
+  </div>
+
+  <div class="gate" id="bigexp" hidden>
+    <p>Three times, the same half-second — the answer went onto the paper <mark>before</mark> you looked back at the text. Nothing here is a history problem; you know the history. Three checks, one for each spot:<span class="zh">三次，同一個半秒——答案先落到紙上，你才回頭看課文。這裡沒有一題是歷史問題，歷史你都懂。三個檢查，一個對一個：</span></p>
+    <ol>
+      <li>Before naming an artifact, ask: <b>did a person make or use it?</b><span class="zh">寫 artifact 之前先問：這是人做的或用過的嗎？</span></li>
+      <li>Before writing <b>F</b>, point at the exact word the text disagrees with.<span class="zh">寫 F 之前，指出課文不同意的到底是哪個字。</span></li>
+      <li>After rewriting, <b>read the whole sentence again</b> — is it true now?<span class="zh">改寫完，整句重讀一次——現在是真的了嗎？</span></li>
+    </ol>
+  </div>
 </section>
 
 <!-- ================= SECTION 1 ================= -->
@@ -795,6 +814,28 @@ function choice(hostId, cfg){
   build();
   return { reset: build };
 }
+
+/* ================= BIG IDEA ================= */
+/* he names the habit before the page does — same rule as every other block */
+choice('bigask', {
+  opts: [
+    ['I forgot the history', '我把歷史內容忘了'],
+    ['I wrote the answer before I checked it', '我還沒查證，就先把答案寫下去了'],
+    ['The questions were too hard', '題目太難了']
+  ],
+  ans: 1,
+  good: ['That is it — and you found it yourself, which is the whole point. Here is what it costs you, and the three checks that stop it.', '就是這個——而且是你自己找出來的，這才是重點。下面是它讓你付出的代價，還有擋住它的三個檢查。'],
+  h1: ['Look at Q4 and Q7 — the two hardest questions on the page, and you got both right. So was it the history, or was it the hurry?', '看 Q4 和 Q7——整份最難的兩題，你兩題都對。所以問題出在歷史，還是出在急？'],
+  h2: ['All three times, the answer was already on the paper before you went back to the text. Which option says that?', '三次都一樣：答案已經寫在紙上了，你才回去看課文。哪個選項在講這件事？'],
+  tell: ['You wrote the answer before you checked it — three times, the same half-second.', '你在查證之前就把答案寫下去了——三次，同一個半秒。'],
+  retest: {
+    q: ['You finish a math problem, write 47, and move on without re-reading the question. Same habit, or a different one?', '你算完一題數學，寫下 47，沒重讀題目就跳下一題。這是同一個習慣，還是另一個？'],
+    opts: [['Same habit — answer first, check never', '同一個——先寫答案，永遠沒檢查'], ['A different one — math is not history', '另一個——數學又不是歷史']],
+    ans: 0,
+    why: ['Same habit. It follows you from subject to subject, which is exactly why it is worth fixing once.', '同一個。它會跟著你從一科跑到另一科，所以才值得一次修好。']
+  },
+  pass: () => openGate('bigexp')
+});
 
 /* ================= SECTION 1 ================= */
 choice('s1ask', {
