@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>William's Correction Notes — The First Americans</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Huninn&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html{font-size:clamp(16px, 0.6vw + 13.3px, 23px);-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:#E4E5E8;color:#2E3037;font-family:'Fredoka',system-ui,sans-serif;line-height:1.5;
+  --ink:#2E3037;--pencil:#6B6E76;--gray:#9C9EA5;--line:#E3E4E8;--line2:#D9DADF;--soft:#F4F4F6;--soft2:#F1F1F3;
+  --red:#E2463B;--green:#2FA36B;--hl:#FFF0A0;--paper:#FAFAFA;--rule:#D9DCE1;--margin:#F0A6B0;
+  --tb:#3E6FD9;--tb-soft:#E8EEFC;--tb-deep:#2B52AE;--rl:#F08A2C;--rl-soft:#FFF1E1;--rl-deep:#C4680F;
+  --accent:#3E6FD9;--accent-soft:#E8EEFC;--accent-deep:#2B52AE;
+  --ruleh:1.875rem;
+}
+body[data-mode="reallife"]{--accent:#F08A2C;--accent-soft:#FFF1E1;--accent-deep:#C4680F}
+
+/* ---------- notebook page ---------- */
+.notebook{
+  position:relative;width:100%;margin:0 auto;background-color:var(--paper);min-height:100vh;
+  box-shadow:0 0 0 1px #d6d7db,0 .6rem 2rem rgba(40,42,50,.14);
+  background-image:
+    linear-gradient(to right,transparent 2.875rem,var(--margin) 2.875rem,var(--margin) calc(2.875rem + 2px),transparent calc(2.875rem + 2px)),
+    repeating-linear-gradient(to bottom,transparent 0,transparent calc(var(--ruleh) - 1px),var(--rule) calc(var(--ruleh) - 1px),var(--rule) var(--ruleh));
+}
+@media(min-width:1200px){.notebook{max-width:80vw;margin:1.5rem auto}}
+.holes{position:absolute;top:0;bottom:0;left:0;width:2.2rem;pointer-events:none;
+  background:radial-gradient(circle at 1rem 50%,#E4E5E8 0 .36rem,#cfd0d5 .36rem .42rem,transparent .46rem) 0 1.2rem/2.2rem 3.75rem repeat-y}
+.page{padding:1.25rem 1rem 3rem 3.6rem}
+@media(min-width:760px){.page{padding:2rem 2.5rem 4rem 4.5rem}}
+
+/* ---------- text basics ---------- */
+.hand{font-family:'Caveat',cursive;color:var(--pencil)}
+.date{font-size:1.35rem;margin:0 0 .2rem;line-height:1.2}
+h1{font-size:2.1rem;line-height:1.15;margin:.15rem 0 .7rem;font-weight:700;letter-spacing:-.01em}
+h1 .zh{font-size:.5em;font-weight:400;margin-top:.25rem;letter-spacing:0}
+mark{background:linear-gradient(transparent 38%,var(--hl) 38%,var(--hl) 92%,transparent 92%);color:inherit;padding:0 .12em;border-radius:.15em}
+.lead{font-size:1.05rem;margin:0 0 1.1rem;max-width:46rem}
+p{margin:.4rem 0}
+b{font-weight:600}
+a{color:var(--accent-deep)}
+
+/* Chinese layer */
+.zh{display:none;font-family:'Huninn','Zen Maru Gothic','PingFang TC','Noto Sans TC',sans-serif;color:var(--pencil);font-size:.88em;line-height:1.55;font-weight:400}
+body.zh-on .zh{display:block}
+.zhi{display:none;font-family:'Huninn','Zen Maru Gothic','PingFang TC','Noto Sans TC',sans-serif;color:inherit;font-size:.92em;font-weight:400}
+body.zh-on .zhi{display:inline}
+.pill .zhi,.tag .zhi{color:#fff}
+
+/* vocab + scores */
+.vocab{display:grid;grid-template-columns:repeat(auto-fill,minmax(9.5rem,1fr));gap:.5rem;margin:0 0 1.2rem;max-width:60rem}
+.vcard{background:#fff;border:1px solid var(--line);border-radius:.75rem;padding:.45rem .7rem .5rem;font-size:.84rem;box-shadow:0 1px 0 var(--line2);line-height:1.4}
+.vcard b{display:block;font-size:.98rem;color:var(--ink)}
+.vcard .def{color:var(--pencil)}
+.scores{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;max-width:40rem;margin:0 0 1.4rem}
+.score{background:#fff;border:1px solid var(--line);border-radius:1rem;padding:.7rem .5rem .6rem;text-align:center;box-shadow:0 2px 0 var(--line2)}
+.score .n{font-size:1.85rem;font-weight:700;line-height:1.1}
+.score .l{font-size:.75rem;color:var(--gray);text-transform:uppercase;letter-spacing:.05em;margin-top:.15rem}
+.score .zh{font-size:.78rem}
+
+/* ---------- sticky toolbar ---------- */
+.toolbar{position:sticky;top:0;z-index:30;background:var(--paper);margin:0 -.5rem 1.2rem;padding:.6rem .5rem .5rem;border-bottom:1px solid var(--line2);box-shadow:0 6px 10px -8px rgba(0,0,0,.18)}
+.tools{display:flex;align-items:center;justify-content:space-between;gap:.6rem .9rem;flex-wrap:wrap}
+.seg{display:inline-flex;background:#fff;border:1px solid var(--line2);border-radius:2rem;padding:.2rem;gap:.2rem}
+.seg button{border:0;background:transparent;border-radius:2rem;padding:.42rem .85rem;font:inherit;font-size:.88rem;font-weight:600;color:var(--pencil);cursor:pointer;transition:background-color .25s,color .25s;white-space:nowrap}
+.seg button:hover{background:var(--soft)}
+.seg button.tb[aria-pressed="true"]{background:var(--tb);color:#fff}
+.seg button.rl[aria-pressed="true"]{background:var(--rl);color:#fff}
+.zhtoggle{display:inline-flex;align-items:center;gap:.45rem;border:0;background:transparent;font:inherit;cursor:pointer;padding:.25rem .35rem;border-radius:1rem}
+.zhtoggle .lbl{font-family:'Huninn','Zen Maru Gothic','PingFang TC','Noto Sans TC',sans-serif;font-size:.95rem;color:var(--pencil)}
+.sw{width:2.6rem;height:1.45rem;border-radius:1rem;background:#D9DADF;position:relative;transition:background-color .25s;flex:0 0 auto}
+.sw::after{content:'';position:absolute;top:.15rem;left:.15rem;width:1.15rem;height:1.15rem;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .25s}
+.zhtoggle[aria-pressed="true"] .sw{background:var(--accent)}
+.zhtoggle[aria-pressed="true"] .sw::after{transform:translateX(1.15rem)}
+.modeline{font-size:.8rem;color:var(--gray);margin:.45rem 0 0;line-height:1.4}
+.modeline .zh{display:inline;font-size:.8rem}
+@media(max-width:520px){.seg button{font-size:.8rem;padding:.4rem .5rem}.long{display:none}.tools{gap:.4rem}.zhtoggle{padding:.2rem .1rem}}
+body:not(.zh-on) .modeline .zh{display:none}
+
+/* jump chips */
+.jumps{display:flex;flex-wrap:wrap;gap:.45rem;margin:0 0 1.3rem;align-items:center}
+.jumps .lab{font-size:.8rem;color:var(--gray);margin-right:.15rem}
+.jumps a{display:inline-flex;align-items:center;justify-content:center;min-width:2rem;height:2rem;padding:0 .65rem;border-radius:1rem;background:var(--ink);color:#fff;text-decoration:none;font-weight:600;font-size:.9rem;transition:transform .1s}
+.jumps a:hover{transform:translateY(-1px)}
+.jumps a.q{background:#fff;color:var(--ink);border:1px solid var(--line2)}
+
+/* big idea */
+.bigidea{border-left:.35rem solid var(--accent);background:var(--accent-soft);border-radius:.6rem;padding:.9rem 1rem .9rem 1.1rem;margin:0 0 2.2rem;max-width:48rem;transition:background-color .3s,border-color .3s}
+.bigidea h3{margin:0 0 .35rem;font-size:1.1rem}
+.bigidea ol{margin:.5rem 0 0;padding-left:1.35rem}
+.bigidea li{margin:.3rem 0}
+.bigidea li::marker{color:var(--accent-deep);font-weight:600}
+
+/* ---------- sections ---------- */
+.sec{margin:0 0 2.8rem;scroll-margin-top:5.5rem}
+.sec h2{display:flex;align-items:flex-start;gap:.6rem;font-size:1.35rem;margin:0 0 1rem;line-height:1.25}
+.sec h2 .num{flex:0 0 auto;width:1.9rem;height:1.9rem;border-radius:50%;background:var(--ink);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:1rem;font-weight:700;margin-top:.05rem}
+.sec h2 .num.emoji{background:transparent;font-size:1.45rem;width:auto;min-width:1.9rem}
+.sec h2 .ttl{flex:1 1 12rem}
+.sec h2 .ttl .zh{font-size:.68em;margin-top:.2rem;font-weight:400}
+
+/* cutout (worksheet clipping) */
+.cutout{position:relative;background:#fff;border:1px solid var(--line);box-shadow:0 2px 6px rgba(0,0,0,.08),0 1px 0 var(--line2);padding:1.15rem 1rem 1.7rem;margin:1rem 0 1.3rem;transform:rotate(-.6deg);max-width:46rem;font-size:.95rem;line-height:1.55;color:#333}
+.cutout::before{content:'';position:absolute;top:-.65rem;left:50%;width:6rem;height:1.3rem;background:rgba(255,236,150,.55);transform:translateX(-50%) rotate(-2deg);border-left:1px dashed rgba(0,0,0,.07);border-right:1px dashed rgba(0,0,0,.07)}
+.cutout .qno{display:inline-flex;width:1.45rem;height:1.45rem;border-radius:50%;background:var(--soft2);color:var(--pencil);align-items:center;justify-content:center;font-size:.8rem;margin-right:.45rem;vertical-align:.05rem;border:1px solid var(--line);font-weight:600}
+.cutout .qtext{margin:0;display:inline}
+.cutout .opts{display:flex;flex-wrap:wrap;gap:.5rem 1.8rem;margin:.75rem 0 0 1.9rem}
+.cutout .opts span{position:relative;padding:0 .25rem}
+.cutout .blank{display:inline-block;min-width:5.5rem;border-bottom:1.5px solid #444;vertical-align:-.15rem;height:1.15em;position:relative}
+.redu{text-decoration:none;border-bottom:2px solid var(--red);padding-bottom:.02em}
+.circ{position:relative}
+.circ::after{content:'';position:absolute;inset:-.3rem -.5rem;border:2px solid var(--red);border-radius:50%;transform:rotate(-5deg);pointer-events:none}
+.redpen{font-family:'Caveat',cursive;color:var(--red);font-size:1.3rem;line-height:1.2;margin:.7rem 0 0 1.9rem;font-weight:600}
+.pageref{position:absolute;right:.7rem;bottom:.35rem;font-size:.72rem;color:var(--gray)}
+
+/* explain box */
+.explain{position:relative;border-left:.35rem solid var(--accent);background:var(--accent-soft);border-radius:.6rem;padding:1rem 1rem .8rem 1.1rem;margin:0 0 1.2rem;max-width:48rem;transition:background-color .3s,border-color .3s;animation:fadein .35s}
+.explain .pill{position:absolute;top:-.75rem;right:.8rem;background:var(--accent);color:#fff;border-radius:1rem;padding:.15rem .7rem;font-size:.72rem;font-weight:600;letter-spacing:.02em;transition:background-color .3s;white-space:nowrap}
+.explain ul{margin:.2rem 0 0;padding-left:1.15rem}
+.explain.tb ul{list-style:square}
+.explain.rl ul{list-style:disc}
+.explain li{margin:.45rem 0}
+.explain li::marker{color:var(--accent)}
+body[data-mode="textbook"] .explain.rl{display:none}
+body[data-mode="reallife"] .explain.tb{display:none}
+
+/* try-it box */
+.play{position:relative;background:#fff;border:2px dashed var(--line2);border-radius:.9rem;padding:1.15rem 1rem 1rem;margin:0 0 1.1rem;max-width:48rem}
+.play .tag{position:absolute;top:-.75rem;left:.9rem;background:var(--accent);color:#fff;border-radius:1rem;padding:.15rem .65rem;font-size:.72rem;font-weight:700;letter-spacing:.03em;transition:background-color .3s}
+.play h4{margin:0 0 .25rem;font-size:1.05rem}
+.play .hint{margin:0 0 .6rem;color:var(--pencil);font-size:.9rem}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.55rem 0}
+.out{font-size:1rem;font-weight:600;min-height:1.4rem}
+.faint{color:var(--gray);font-weight:400}
+.steplbl{font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--gray);font-weight:600;margin:.8rem 0 .1rem}
+.steplbl:first-of-type{margin-top:.2rem}
+
+/* buttons */
+.btn{font:inherit;font-weight:600;font-size:.92rem;color:#fff;background:var(--accent);border:0;border-radius:.7rem;padding:.55rem .95rem;cursor:pointer;box-shadow:0 3px 0 var(--accent-deep);transition:transform .08s,box-shadow .08s,background-color .3s,filter .15s;touch-action:manipulation;line-height:1.25}
+.btn:hover{filter:brightness(1.06)}
+.btn:active{transform:translateY(3px);box-shadow:0 0 0 var(--accent-deep)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:0 3px 0 var(--accent-deep);filter:none}
+.btn.ghost{background:#fff;color:var(--pencil);border:1px solid var(--line2);box-shadow:0 3px 0 var(--line2)}
+.btn.ghost:active{box-shadow:0 0 0 var(--line2)}
+.btn.ghost:disabled{box-shadow:0 3px 0 var(--line2)}
+.btn.sm{font-size:.82rem;padding:.4rem .7rem;border-radius:.6rem}
+.btn.dial[aria-pressed="false"]{background:#fff;color:var(--pencil);border:1px solid var(--line2);box-shadow:0 3px 0 var(--line2)}
+.btn.dial[aria-pressed="false"]:active{box-shadow:0 0 0 var(--line2)}
+.btn[aria-pressed="true"]:not(.dial){box-shadow:0 3px 0 var(--accent-deep),0 0 0 .2rem #fff,0 0 0 .32rem var(--accent)}
+
+/* messages */
+.msg{margin:.75rem 0 0;padding:.65rem .85rem;border-radius:.6rem;background:var(--soft);color:var(--ink);font-size:.93rem;line-height:1.45;border:1px solid var(--line);animation:fadein .25s}
+.msg.good{background:#E6F5EC;border-color:#BFE4CD}
+.msg.bad{background:#FDEAE8;border-color:#F5C2BC}
+.msg.warn{background:#FFF7D6;border-color:#F0E0A0}
+.msg[hidden]{display:none}
+
+/* choice buttons */
+.choices{display:grid;gap:.45rem;margin:.5rem 0}
+.choice{font:inherit;text-align:left;background:#fff;border:2px solid var(--line2);border-radius:.7rem;padding:.55rem .8rem;cursor:pointer;font-size:.95rem;color:var(--ink);transition:border-color .15s,background-color .15s;line-height:1.35}
+.choice:hover{border-color:var(--accent)}
+.choice.ok{border-color:var(--green);background:#E6F5EC}
+.choice.no{border-color:var(--red);background:#FDEAE8}
+.choice.dim{opacity:.55}
+.choice:disabled{cursor:default}
+.choice:disabled:hover{border-color:var(--line2)}
+.choice.ok:disabled:hover{border-color:var(--green)}
+.choice.no:disabled:hover{border-color:var(--red)}
+
+/* model answer */
+.model{background:#fff;border:2px dashed var(--line2);border-radius:.7rem;padding:.7rem .9rem;margin:0 0 .6rem;max-width:48rem;font-size:.95rem}
+.model .lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--gray);display:block;margin-bottom:.25rem;font-weight:600}
+.model .line{font-weight:600;font-size:1.02rem;line-height:1.5;display:flex;flex-wrap:wrap;gap:.1rem 1.1rem}
+.model .line span{white-space:nowrap}
+.model .line .ans{color:var(--accent-deep)}
+
+/* section 1: schools */
+.bar{position:relative;height:1.3rem;background:var(--soft2);border:1px solid var(--line);border-radius:1rem;overflow:hidden;margin:.5rem 0 .3rem;max-width:34rem}
+.bar-fill{height:100%;width:0;background:var(--accent);transition:width .35s,background-color .3s}
+.barlbl{font-size:.82rem;color:var(--pencil);margin:0 0 .4rem}
+.schools{display:flex;flex-wrap:wrap;gap:.3rem;max-width:34rem;min-height:1.9rem}
+.school{display:inline-flex;align-items:center;gap:.15rem;background:var(--soft);border:1px solid var(--line);border-radius:.5rem;padding:.15rem .45rem;font-size:.8rem;animation:pop .3s}
+.school.last{background:#E6F5EC;border-color:#BFE4CD;font-weight:600}
+
+/* section 2: stickers */
+.dots{display:flex;flex-wrap:wrap;gap:.3rem;max-width:30rem;margin:.4rem 0 .35rem}
+.dot{width:clamp(.9rem,3.4vw,1.25rem);height:clamp(.9rem,3.4vw,1.25rem);border-radius:50%;background:var(--line2);transition:background-color .3s,transform .3s}
+.dot.boy{background:#7FA7E8}
+.dot.girl{background:#F4A6B8;transform:scale(1.12)}
+.legend{display:flex;gap:1rem;font-size:.85rem;color:var(--pencil);flex-wrap:wrap}
+.legend i{display:inline-block;width:.8rem;height:.8rem;border-radius:50%;vertical-align:-.05rem;margin-right:.3rem}
+.packs{display:flex;flex-wrap:wrap;gap:.2rem;max-width:30rem;margin:.3rem 0}
+.pack{width:clamp(.55rem,2.2vw,.8rem);height:clamp(.75rem,3vw,1.05rem);border-radius:.15rem;background:var(--accent);opacity:.85;animation:pop .3s backwards}
+.pack.extra{background:var(--line2);opacity:1}
+
+/* section 3: dial */
+.cards2{display:grid;grid-template-columns:1fr auto 1fr;gap:.5rem;align-items:center;max-width:30rem;margin:.6rem 0 .3rem}
+.ncard{background:var(--soft);border:1px solid var(--line);border-radius:.8rem;padding:.55rem .4rem;text-align:center}
+.ncard .orig{font-size:.75rem;color:var(--gray)}
+.ncard .val{font-size:clamp(1.05rem,4.5vw,1.6rem);font-weight:700;line-height:1.15;transition:color .2s}
+.op{font-size:1.6rem;font-weight:700;color:var(--pencil);text-align:center}
+.res{font-size:clamp(1.05rem,4.5vw,1.4rem);font-weight:700;margin:.2rem 0 0}
+.nlines{max-width:30rem;margin:.4rem 0 0}
+.nline{position:relative;height:3.1rem;margin:.5rem 0 0}
+.nline .track{position:absolute;left:0;right:0;top:1.55rem;height:2px;background:var(--pencil)}
+.nline .tick{position:absolute;top:1.2rem;width:2px;height:.75rem;background:var(--pencil)}
+.nline .tick.mid{background:var(--gray);height:.5rem;top:1.3rem}
+.nline .lab{position:absolute;top:1.95rem;font-size:.72rem;color:var(--pencil);white-space:nowrap}
+.nline .lab.l{left:0}.nline .lab.r{right:0}.nline .lab.m{left:50%;transform:translateX(-50%);color:var(--gray)}
+.nline .pt{position:absolute;top:1.2rem;width:.75rem;height:.75rem;border-radius:50%;background:var(--red);transform:translateX(-50%);box-shadow:0 0 0 3px #fff}
+.nline .ptl{position:absolute;top:0;font-size:.74rem;font-weight:600;color:var(--red);transform:translateX(-50%);white-space:nowrap}
+
+/* section 4: sorter */
+.sorter{display:grid;gap:.4rem;max-width:34rem;margin:.4rem 0}
+.srow{display:flex;align-items:center;justify-content:space-between;gap:.5rem;background:var(--soft);border:1px solid var(--line);border-radius:.7rem;padding:.4rem .65rem;flex-wrap:wrap}
+.srow .ph{font-weight:600;font-size:.95rem;flex:1 1 7rem}
+.srow .ops{flex:0 0 auto}
+.srow .ops{display:inline-flex;gap:.3rem}
+.opb{font:inherit;font-weight:700;min-width:2.3rem;height:2rem;padding:0 .45rem;border-radius:.5rem;border:2px solid var(--line2);background:#fff;cursor:pointer;color:var(--ink);font-size:1rem;transition:border-color .15s,background-color .15s}
+.opb:hover{border-color:var(--accent)}
+.opb.ok{background:#E6F5EC;border-color:var(--green)}
+.opb.no{background:#FDEAE8;border-color:var(--red)}
+.opb:disabled{cursor:default}
+.srow .why{flex-basis:100%;font-size:.82rem;color:var(--pencil);display:none;line-height:1.35}
+.srow.done .why{display:block}
+.counter{font-size:.85rem;color:var(--pencil);margin:.3rem 0 0}
+
+/* section 5: half */
+.bignum{font-size:clamp(1.7rem,7vw,2.5rem);font-weight:700;line-height:1.1;letter-spacing:.01em;margin:.2rem 0}
+.bignum .tail{transition:color .5s}
+.bignum.r .tail{color:var(--gray)}
+.halves{display:flex;gap:.3rem;height:2.3rem;max-width:30rem;margin:.5rem 0}
+.half{flex:1;background:var(--line2);border-radius:.5rem;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.95rem;transition:background-color .4s,color .4s;color:var(--pencil)}
+.half.a{background:#7FA7E8;color:#fff}
+.half.b{background:#F4A6B8;color:#fff}
+.half.full{flex:1 1 100%}
+
+/* quiz */
+.quizbox{background:#fff;border:2px dashed var(--line2);border-radius:.9rem;padding:1rem;max-width:48rem}
+.qdots{display:flex;gap:.35rem;margin:0 0 .7rem;flex-wrap:wrap}
+.qdots i{width:.6rem;height:.6rem;border-radius:50%;background:var(--line2);display:block}
+.qdots i.cur{background:var(--accent);transform:scale(1.25)}
+.qdots i.ok{background:var(--green)}
+.qdots i.no{background:var(--red)}
+.qq{font-size:1.05rem;font-weight:600;margin:0 0 .6rem;line-height:1.4}
+.qq .zh{font-weight:400}
+.qresult{text-align:center;padding:1rem 0 .3rem}
+.qresult .stars{font-size:2.3rem;letter-spacing:.1em;animation:pop .5s}
+.qresult .sc{font-size:1.5rem;font-weight:700;margin:.2rem 0}
+
+/* tips */
+.tips{display:grid;gap:.6rem;max-width:48rem}
+.tipcard{background:#fff;border:1px solid var(--line);border-left:.35rem solid var(--hl);border-radius:.6rem;padding:.7rem .9rem;font-size:.95rem}
+.tipcard b.t{display:block;margin-bottom:.15rem}
+
+/* correction list */
+.fixlist{list-style:none;padding:0;margin:0;max-width:48rem;display:grid;gap:.45rem}
+.fixlist label{display:flex;gap:.7rem;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:.7rem;padding:.6rem .75rem;cursor:pointer;transition:background-color .2s}
+.fixlist input{appearance:none;-webkit-appearance:none;width:1.35rem;height:1.35rem;border:2px solid var(--line2);border-radius:.4rem;flex:0 0 auto;margin:.15rem 0 0;position:relative;cursor:pointer;background:#fff;transition:background-color .15s,border-color .15s}
+.fixlist input:checked{background:var(--green);border-color:var(--green)}
+.fixlist input:checked::after{content:'';position:absolute;left:.36rem;top:.08rem;width:.35rem;height:.72rem;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg)}
+.fixlist label.done{background:var(--soft)}
+.fixlist label.done .txt{text-decoration:line-through;color:var(--gray)}
+.fixlist .txt{font-size:.95rem;line-height:1.4}
+.fixlist .txt b{font-weight:600}
+.fixlist .txt .w{display:block;font-size:.86rem;color:var(--pencil)}
+.fixlist label.done .txt .w{color:var(--gray)}
+
+.foot{font-size:1.5rem;margin:2.5rem 0 0;line-height:1.25}
+.foot .zh{font-size:.65em;margin-top:.2rem}
+
+/* motion + a11y */
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.pop{animation:pop .35s}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* ===== page-specific additions (built from the base vocabulary) ===== */
+
+/* handwriting inside a cutout — borrowed from factors-multiples.html */
+.tape{position:absolute;top:-.7rem;left:1.375rem;width:4.9rem;height:1.375rem;background:rgba(255,224,130,.75);transform:rotate(-4deg);border-left:2px dashed rgba(255,255,255,.75);border-right:2px dashed rgba(255,255,255,.75)}
+.cutout .q{font-size:.95rem;color:#2A2C33;line-height:1.7;font-weight:400}
+.cutout .q b{font-weight:600;background:#5D6069;color:#fff;border-radius:50%;width:1.5rem;height:1.5rem;display:inline-grid;place-items:center;font-size:.75rem;margin-right:.375rem;vertical-align:middle}
+.ans{font-family:'Caveat',cursive;font-size:1.4rem;color:var(--pencil);border-bottom:1.5px solid #979AA2;padding:0 .25rem;line-height:1.2}
+.wrong{position:relative;display:inline-block;padding:0 .2rem}
+.wrong::after{content:"";position:absolute;inset:-.2rem -.25rem;border:2.5px solid var(--red);border-radius:50%;transform:rotate(-8deg)}
+.okpen{font-family:'Caveat',cursive;color:var(--green);font-size:1.25rem;font-weight:600}
+
+/* one shared explain box, wording swapped by version */
+body[data-mode="textbook"] .v-rl{display:none}
+body[data-mode="reallife"] .v-tb{display:none}
+.pill.auto::before{content:"📘 Textbook version"}
+body[data-mode="reallife"] .pill.auto::before{content:"🍎 Real-life version"}
+body.zh-on .pill.auto::before{content:"📘 Textbook version · 課本理論版"}
+body.zh-on[data-mode="reallife"] .pill.auto::before{content:"🍎 Real-life version · 生活應用版"}
+
+/* ask-first box: a .play that is closed, not dashed — you answer before anything opens */
+.play.ask{border-style:solid;border-color:var(--accent);transition:border-color .3s}
+
+/* explanation cut into steps; each one unlocks the next */
+.step{background:#fff;border:1px solid var(--line);border-radius:.7rem;padding:.7rem .85rem;margin:.7rem 0 0;animation:fadein .35s}
+.step[hidden]{display:none}
+.gate[hidden]{display:none}
+.gate{animation:fadein .35s}
+
+/* evidence card: what the lesson actually says */
+.ev{background:var(--soft);border:1px solid var(--line);border-left:.3rem solid var(--accent);border-radius:.5rem;padding:.55rem .75rem;margin:.5rem 0;font-size:.92rem;line-height:1.5;animation:fadein .3s}
+.ev .lbl{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--gray);font-weight:600;margin-bottom:.15rem}
+
+/* a statement being judged / rebuilt */
+.sentbox{background:var(--soft2);border-radius:.5rem;padding:.55rem .8rem;margin:.5rem 0;font-size:.98rem;line-height:1.5;max-width:40rem}
+.sentbox u{text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:.2em}
+.sentbox.built{background:var(--accent-soft);border:1.5px solid var(--accent)}
+.sentbox.trueok{background:#E6F5EC;border:1.5px solid var(--green)}
+
+/* two display cases for the museum sort */
+.cases{display:flex;flex-wrap:wrap;gap:.8rem;max-width:34rem;margin:.7rem 0 0}
+.case{flex:1 1 9rem;background:var(--soft);border:1px solid var(--line);border-radius:.7rem;padding:.55rem .65rem}
+.case h5{margin:0 0 .35rem;font-size:.88rem;font-weight:600}
+.case .schools{min-height:1.4rem}
+
+/* chips you tap to pick words or claims */
+.opb.wide{min-width:0;padding:0 .7rem;font-size:.9rem;font-weight:600;height:auto;min-height:2rem;line-height:1.3;white-space:normal;text-align:left}
+
+/* a step you must redo: the reset flash */
+.redo{animation:pop .4s}
+
+/* model answer: the words he copies, printed not handwritten */
+.model .line .ans-hi{color:var(--accent-deep);font-weight:700}
+/* base .line is a row of nowrap chips; a whole-sentence answer needs to wrap */
+.model .line.sentence{display:block}
+.model .line.sentence span{white-space:normal}
+</style>
+<body data-mode="textbook">
+<style>
+.wn-back{position:fixed;right:.8rem;bottom:.8rem;z-index:999;display:inline-flex;align-items:center;gap:.3rem;
+ background:#fff;color:#2E3037;border:1px solid #D9DADF;border-radius:999px;padding:.4rem .8rem;
+ font-family:'Fredoka',system-ui,sans-serif;font-size:.85rem;font-weight:600;text-decoration:none;
+ box-shadow:0 2px 8px rgba(0,0,0,.14)}
+.wn-back:hover{border-color:#2E3037}
+@media print{.wn-back{display:none}}
+</style>
+<a href="index.html" class="wn-back" aria-label="Back to the index">📒 Index</a>
+
+<div class="notebook">
+<div class="holes" aria-hidden="true"></div>
+<main class="page">
+
+<!-- ================= HEADER ================= -->
+<header class="top">
+  <div class="hand date">8/11 · McGraw-Hill networks · The First Americans, Lesson 1</div>
+  <h1>William's <mark>Correction</mark> Notes<span class="zh">William 的訂正筆記 — 第一批美洲人</span></h1>
+  <p class="lead">Two pages of history, and <mark>7 of your 10 answers are right</mark>. Your cause-and-effect chains about Beringia are the hardest thing on the page — and you nailed both. Only <mark>3 spots</mark> need a fix, and all three come from the same habit: <mark>check before you write</mark>.
+    <span class="zh">兩頁歷史，10 格答對 7 格。關於 Beringia 的因果鏈是整份最難的題型——兩題你都答對了。只有 3 個地方要修，而且三個都出自同一個習慣：寫之前先查證。</span></p>
+
+  <div class="vocab" aria-label="Words to know">
+    <div class="vcard"><b>artifact</b><span class="def">a thing a person made or used long ago</span><span class="zh">人造物：很久以前「人」做的或用過的東西</span></div>
+    <div class="vcard"><b>fossil</b><span class="def">remains or traces of an ancient plant or animal — nature made it</span><span class="zh">化石：古代動植物的遺骸或痕跡，大自然做的</span></div>
+    <div class="vcard"><b>nomadic</b><span class="def">moving from place to place instead of living in one home</span><span class="zh">游牧的：到處移動，不住在固定的家</span></div>
+    <div class="vcard"><b>impact</b><span class="def">a strong effect that changes things</span><span class="zh">影響：會改變事情的強大作用</span></div>
+    <div class="vcard"><b>gather</b><span class="def">to collect wild plants, nuts, and berries to eat</span><span class="zh">採集：收集野生植物、堅果、莓果來吃</span></div>
+    <div class="vcard"><b>settle</b><span class="def">to stop moving and stay in one place to live</span><span class="zh">定居：不再遷移，在一個地方住下來</span></div>
+  </div>
+
+  <div class="scores" aria-label="Scores">
+    <div class="score"><div class="n">2</div><div class="l">pages checked</div><span class="zh">檢查頁數</span></div>
+    <div class="score"><div class="n">70%</div><div class="l">correct · 7 of 10</div><span class="zh">答對（10 格對 7 格）</span></div>
+    <div class="score"><div class="n">3</div><div class="l">spots to fix</div><span class="zh">要修的地方</span></div>
+  </div>
+</header>
+
+<!-- ================= TOOLBAR ================= -->
+<div class="toolbar" id="toolbar">
+  <div class="tools">
+    <div class="seg" role="group" aria-label="Choose a version">
+      <button type="button" class="tb" data-mode="textbook" aria-pressed="true">📘 Textbook<span class="long"> version</span></button>
+      <button type="button" class="rl" data-mode="reallife" aria-pressed="false">🍎 Real-life<span class="long"> version</span></button>
+    </div>
+    <button type="button" class="zhtoggle" id="zhbtn" aria-pressed="false" aria-label="中文 translation on or off"><span class="lbl">中文</span><span class="sw" aria-hidden="true"></span></button>
+  </div>
+  <p class="modeline" id="modeline"></p>
+</div>
+
+<nav class="jumps" aria-label="Jump to">
+  <span class="lab">Jump to</span>
+  <a href="#s1">1</a><a href="#s2">2</a><a href="#s3">3</a>
+  <a href="#tips" class="q">💡 Tips</a><a href="#quiz" class="q">🎯 Quiz</a><a href="#fix" class="q">✍️ List</a>
+</nav>
+
+<!-- ================= BIG IDEA ================= -->
+<section class="bigidea" aria-label="The big idea">
+  <h3>🔑 One habit behind all three fixes<span class="zh">三個訂正背後的同一個習慣</span></h3>
+  <p>Every one of your three mistakes happened in the same half-second: you wrote the answer <mark>before checking</mark>. Nothing here is a history problem — you know the history. Three checks, one for each spot:<span class="zh">三個錯誤都發生在同一個半秒：先寫了答案，才去查證。這裡沒有一題是歷史問題——歷史你都懂。三個檢查，一個對一個：</span></p>
+  <ol>
+    <li>Before naming an artifact, ask: <b>did a person make or use it?</b><span class="zh">寫 artifact 之前先問：這是人做的或用過的嗎？</span></li>
+    <li>Before writing <b>F</b>, point at the exact word the text disagrees with.<span class="zh">寫 F 之前，指出課文不同意的到底是哪個字。</span></li>
+    <li>After rewriting, <b>read the whole sentence again</b> — is it true now?<span class="zh">改寫完，整句重讀一次——現在是真的了嗎？</span></li>
+  </ol>
+</section>
+
+<!-- ================= SECTION 1 ================= -->
+<section class="sec" id="s1">
+  <h2><span class="num">1</span><span class="ttl">Artifact or fossil?<span class="zh">人造物，還是化石？</span></span></h2>
+
+  <div class="cutout">
+    <span class="tape"></span>
+    <div class="q"><b>2</b> Listing — Name two types of things that are considered <u class="redu">artifacts</u>, or items ancient people left behind. <span class="ans"><span class="wrong">Fossils</span> and pottery</span></div>
+    <p class="redpen">Pottery ✓ — but a fossil is nature's work, not a person's.<span class="zh">陶器對了 ✓——但化石是大自然做的，不是人做的。</span></p>
+    <span class="pageref">Guided Reading · p.1 · Q2</span>
+  </div>
+
+  <div class="play ask">
+    <span class="tag">🔎 You first</span>
+    <h4>An archaeologist digs up three things.<span class="zh">考古學家挖出三樣東西。</span></h4>
+    <p class="hint">Which one is an <b>artifact</b> — something a person <mark>made or used</mark>?<span class="zh">哪一樣是 artifact——「人」做的或用過的？</span></p>
+    <div id="s1ask"></div>
+  </div>
+
+  <div class="gate" id="s1exp" hidden>
+    <div class="explain">
+      <span class="pill auto"></span>
+
+      <div class="step" id="s1st1">
+        <p class="steplbl">Step 1</p>
+        <p class="v-tb">Your book says an <mark>artifact</mark> is an object <mark>made or used by people</mark> — tools, pottery, weapons, baskets.<span class="zh">課本說：artifact 是「人」做的或用過的東西——工具、陶器、武器、籃子。</span></p>
+        <p class="v-rl">Detective rule #1: an artifact has <mark>human fingerprints</mark> on it — somebody made it, or somebody used it.<span class="zh">偵探守則一：artifact 上面有「人的痕跡」——有人做了它，或有人用過它。</span></p>
+        <p>👉 Tap the <b>3 words</b> that make something an artifact.<span class="zh">點出讓東西成為 artifact 的三個關鍵詞。</span></p>
+        <div class="row" id="s1a1"></div>
+        <div class="msg" id="s1m1" hidden></div>
+      </div>
+
+      <div class="step" id="s1st2" hidden>
+        <p class="steplbl">Step 2</p>
+        <p class="v-tb">A <mark>fossil</mark> is the remains or traces of an ancient plant or animal — bones, teeth, leaf prints. So who made it?<span class="zh">fossil 是古代動植物的遺骸或痕跡——骨頭、牙齒、葉子印。那它是誰做的？</span></p>
+        <p class="v-rl">A fossil is nature's leftover — like a footprint left in mud that turned to stone. So who made it?<span class="zh">化石是大自然留下的東西——像泥巴上的腳印後來變成石頭。那它是誰做的？</span></p>
+        <div id="s1a2"></div>
+      </div>
+
+      <div class="step" id="s1st3" hidden>
+        <p class="steplbl">Step 3</p>
+        <p class="v-tb">The check question for every find: "<mark>Did a person make or use it?</mark>" YES → artifact. NO → not an artifact. Now run it on your own answer.<span class="zh">每個出土物都問這句：「是人做的或用過的嗎？」是→artifact；不是→就不是。現在用它檢查你自己的答案。</span></p>
+        <p class="v-rl">Ask the fingerprint question: "<mark>Did human hands make or use this?</mark>" Now try it on the word you wrote.<span class="zh">問「指紋問題」：這東西有人的手做過或用過嗎？現在用你寫的那個詞試試。</span></p>
+        <p><b>Fossils</b> — did a person make or use them?<span class="zh">化石——是人做的或用過的嗎？</span></p>
+        <div id="s1a3"></div>
+      </div>
+
+      <div class="step" id="s1st4" hidden>
+        <p class="steplbl">Step 4 · say it your way</p>
+        <p>Why isn't a fossil an artifact?<span class="zh">用你自己的話選：為什麼化石不是 artifact？</span></p>
+        <div id="s1a4"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gate" id="s1try" hidden>
+    <div class="play">
+      <span class="tag">Try it</span>
+      <h4>You are the museum boss<span class="zh">你是博物館館長</span></h4>
+      <p class="hint">Sort all <b>8 finds</b> into the right case. Tap 🏺 for artifact, 🌿 for nature's work.<span class="zh">把 8 件出土物分進正確的展示櫃：🏺 人造物、🌿 大自然的作品。</span></p>
+      <div class="sorter" id="s1sorter"></div>
+      <p class="counter" id="s1count">0 / 8 sorted<span class="zhi"> ・已分類</span></p>
+      <div class="cases">
+        <div class="case"><h5>🏺 Artifacts<span class="zhi"> 人造物</span></h5><div class="schools" id="s1caseA"></div></div>
+        <div class="case"><h5>🌿 Nature's work<span class="zhi"> 大自然的作品</span></h5><div class="schools" id="s1caseN"></div></div>
+      </div>
+      <div class="msg" id="s1msg" hidden></div>
+    </div>
+  </div>
+
+  <div class="gate" id="s1model" hidden>
+    <div class="model">
+      <span class="lbl">✍️ Copy this into your workbook</span>
+      <div class="line sentence"><span>Two artifacts are <span class="ans-hi">stone tools</span> and <span class="ans-hi">pottery</span>.</span></div>
+      <span class="zh">範例答案——抄回作業本。</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 2 ================= -->
+<section class="sec" id="s2">
+  <h2><span class="num">2</span><span class="ttl">Check before you judge<span class="zh">先查證，再判斷</span></span></h2>
+
+  <div class="cutout">
+    <span class="tape"></span>
+    <div class="q"><b>1</b> True or False — Early Americans used many different methods of securing food, such as <u class="redu">hunting, gathering, and fishing</u>. <span class="ans"><span class="wrong">F</span></span> &nbsp; <span class="ans"><span class="wrong">hunting, moving, and farming</span></span></div>
+    <p class="redpen">All three ARE in the lesson — this one is T.<span class="zh">三個方法課文裡都有——這題是 T。</span></p>
+    <p style="margin:.4rem 0 0 1.9rem"><span class="okpen">You knew "gathering" was a real word from the lesson ✓</span><span class="zh">你知道 gathering 是課文裡的詞 ✓</span></p>
+    <span class="pageref">Guided Reading · p.2 · Settlement 1</span>
+  </div>
+
+  <div class="play ask">
+    <span class="tag">🔎 You first</span>
+    <h4>In a True/False game, what is the <b>only</b> way to prove a statement false?<span class="zh">在是非題裡，「唯一」能證明句子是假的方法是什麼？</span></h4>
+    <div id="s2ask"></div>
+  </div>
+
+  <div class="gate" id="s2exp" hidden>
+    <div class="explain">
+      <span class="pill auto"></span>
+
+      <div class="step" id="s2st1">
+        <p class="steplbl">Step 1</p>
+        <p class="v-tb">The underline holds <mark>three separate claims</mark>, not one: hunting · gathering · fishing. Judge them one at a time.<span class="zh">底線裡有三個獨立的說法，不是一個：打獵、採集、捕魚。要一個一個判斷。</span></p>
+        <p class="v-rl">Mom's shopping list says eggs, milk, bread. You never shout "the whole bag is wrong!" — you check <mark>item by item</mark>.<span class="zh">媽媽的購物清單寫蛋、牛奶、麵包。你不會大喊「整袋都錯」——你會一項一項對。</span></p>
+        <div class="row" id="s2a1"></div>
+        <div class="row" id="s2chips"></div>
+        <div class="msg" id="s2m1" hidden></div>
+      </div>
+
+      <div class="step" id="s2st2" hidden>
+        <p class="steplbl">Step 2</p>
+        <p class="v-tb">Now check each claim <mark>against the lesson</mark>. Tap a claim, read the evidence, then stamp it.<span class="zh">現在把每個說法拿去「對課文」。點一個說法、讀證據、蓋章。</span></p>
+        <p class="v-rl">Replay time. A referee never calls a foul on a feeling — they watch the <mark>replay</mark>. The textbook is your replay.<span class="zh">看重播。裁判不會憑感覺吹哨——他們看重播。課本就是你的重播。</span></p>
+        <div class="row" id="s2claims"></div>
+        <div id="s2ev"></div>
+        <div class="msg" id="s2m2" hidden></div>
+      </div>
+
+      <div class="step" id="s2st3" hidden>
+        <p class="steplbl">Step 3</p>
+        <p class="v-tb">The rule: <mark>every part checks out → T</mark>. Write F only when you can point at the wrong word. You stamped ✓ ✓ ✓ — so your verdict is…<span class="zh">規則：每一部分都對→T。只有能指出錯的那個字，才寫 F。你剛蓋了 ✓✓✓——所以判決是……</span></p>
+        <p class="v-rl">The replay shows no foul → no whistle. All three checks passed → your call is…<span class="zh">重播顯示沒犯規→不吹哨。三項全過→你的判決是……</span></p>
+        <div id="s2a3"></div>
+      </div>
+
+      <div class="step" id="s2st4" hidden>
+        <p class="steplbl">Step 4 · say it your way</p>
+        <p>That day you wrote F. Why was it wrong?<span class="zh">那天你寫了 F。用你自己的話選：為什麼錯？</span></p>
+        <div id="s2a4"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gate" id="s2try" hidden>
+    <div class="play">
+      <span class="tag">Try it</span>
+      <h4>Run the whole method yourself<span class="zh">整套方法自己跑一次</span></h4>
+      <p class="hint">Two fresh statements: split → check the text → verdict.<span class="zh">兩個新句子：拆開 → 查課文 → 判決。</span></p>
+      <div id="s2walk"></div>
+    </div>
+  </div>
+
+  <div class="gate" id="s2model" hidden>
+    <div class="model">
+      <span class="lbl">✍️ What to change — Settlement 1</span>
+      <div class="line"><span>F → <span class="ans-hi">T</span></span><span>rewrite line: <span class="ans-hi">leave it empty</span></span></div>
+      <span class="zh">把 F 改成 T；改寫那一行擦掉留空。</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 3 ================= -->
+<section class="sec" id="s3">
+  <h2><span class="num">3</span><span class="ttl">Flip it till it's true<span class="zh">翻轉句意，改到變真為止</span></span></h2>
+
+  <div class="cutout">
+    <span class="tape"></span>
+    <div class="q"><b>2</b> True or False — Learning to farm had <u class="redu">little impact</u> on the nomadic way of life. <span class="ans">F</span> <span class="okpen">✓ good call!</span> &nbsp; <span class="ans"><span class="wrong">little change</span></span></div>
+    <p class="redpen">"little change" means the same as "little impact" — still false. Flip the meaning!<span class="zh">little change 跟 little impact 意思一樣——句子還是假的。要翻轉意思！</span></p>
+    <span class="pageref">Guided Reading · p.2 · Settlement 2</span>
+  </div>
+
+  <div class="play ask">
+    <span class="tag">🔎 You first</span>
+    <h4>Here is your fixed sentence:<span class="zh">這是你改完的句子：</span></h4>
+    <p class="sentbox">Learning to farm had <u>little change</u> on the nomadic way of life.</p>
+    <p class="hint">Is it TRUE now?<span class="zh">它現在是「真的」了嗎？</span></p>
+    <div id="s3ask"></div>
+  </div>
+
+  <div class="gate" id="s3exp" hidden>
+    <div class="explain">
+      <span class="pill auto"></span>
+
+      <div class="step" id="s3st1">
+        <p class="steplbl">Step 1</p>
+        <p class="v-tb">The task says: rewrite to <mark>make it true</mark>. Not "make it different" — make it TRUE. That almost always means the <mark>opposite</mark> meaning.<span class="zh">題目要求：改寫讓句子「變成真的」。不是「換個說法」——是變成真的。這幾乎都表示要改成相反的意思。</span></p>
+        <p class="v-rl">A sign says "Pool CLOSED" but the pool is open. Writing "Pool SHUT" fixes nothing — you must write "<mark>OPEN</mark>".<span class="zh">告示牌寫「泳池關閉」，但泳池其實開放。改成「泳池不開」還是錯——必須寫「開放」。</span></p>
+        <p>So your rewrite must…<span class="zh">所以你的改寫必須……</span></p>
+        <div id="s3a1"></div>
+      </div>
+
+      <div class="step" id="s3st2" hidden>
+        <p class="steplbl">Step 2</p>
+        <p class="v-tb">What does the lesson say? Farming gave people a <mark>steady food supply</mark>, so they could <mark>settle in one place</mark>. So farming's impact on nomadic life was…<span class="zh">課文說：農耕帶來穩定的食物，人們可以定居下來。所以農耕對游牧生活的影響是……</span></p>
+        <p class="v-rl">Before farming: pack up all year, chase the herds. After farming: build a home and <mark>stay</mark>. That kind of change is…<span class="zh">農耕前：整年打包、追著獸群跑。農耕後：蓋房子、住下來。這種改變是……</span></p>
+        <div id="s3a2"></div>
+      </div>
+
+      <div class="step" id="s3st3" hidden>
+        <p class="steplbl">Step 3</p>
+        <p class="v-tb">Flip "little impact" → "<mark>a big impact</mark>". Then run the <mark>re-read test</mark>: read the WHOLE new sentence.<span class="zh">把 little impact 翻成 a big impact。然後做「重讀測試」：整句重新讀一次。</span></p>
+        <p class="v-rl">Fix the sign, then step back and read it like a stranger walking past.<span class="zh">修好告示牌，然後退一步，像路過的陌生人一樣重讀一次。</span></p>
+        <p class="sentbox built">Learning to farm had <u>a big impact</u> on the nomadic way of life.</p>
+        <p>Your stamp?<span class="zh">你的判決章？</span></p>
+        <div id="s3a3"></div>
+      </div>
+
+      <div class="step" id="s3st4" hidden>
+        <p class="steplbl">Step 4 · say it your way</p>
+        <p>What is the golden rule of rewriting?<span class="zh">用你自己的話選：改寫的黃金規則是什麼？</span></p>
+        <div id="s3a4"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gate" id="s3try" hidden>
+    <div class="play">
+      <span class="tag">Try it</span>
+      <h4>The sentence flip machine<span class="zh">句子翻轉機</span></h4>
+      <p class="hint">Two rounds. Pick a part, the machine builds the sentence — then YOU stamp it against the text.<span class="zh">兩回合。選一個零件、機器組出句子——然後由你對照課文蓋章。</span></p>
+      <div id="s3mach"></div>
+    </div>
+  </div>
+
+  <div class="gate" id="s3model" hidden>
+    <div class="model">
+      <span class="lbl">✍️ Copy this into your workbook</span>
+      <div class="line sentence"><span>Learning to farm had <span class="ans-hi">a big impact</span> on the nomadic way of life.</span></div>
+      <span class="zh">範例答案——抄回作業本。</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TIPS ================= -->
+<section class="sec" id="tips">
+  <h2><span class="num emoji">💡</span><span class="ttl">Tips — these are not mistakes<span class="zh">小提醒——這些不算錯</span></span></h2>
+  <div class="tips">
+    <div class="tipcard"><b class="t">Q5 · "They crossed to find food." ✓ Right!</b>Even sharper, the textbook way: "They <mark>followed the animals they hunted</mark>."<span class="zh">第 5 題答對了。更貼課文的說法：「他們跟著獵物遷徙。」</span></div>
+    <div class="tipcard"><b class="t">Q6 · Mammoths and mastodons — great animals!</b>Two polish points: the spelling is <mark>mastodons</mark> (not "mastadons"), and history happened long ago, so use past tense: "They <mark>used</mark> spears." Bonus check — the lesson says <b>spears</b>; only add "arrows" if your book says so.<span class="zh">動物答得好。兩個小修：拼字是 mastodons；歷史發生在過去，要用過去式 used。加碼查證：課文寫的是矛，書上沒寫弓箭就先別加。</span></div>
+    <div class="tipcard"><b class="t">Q4 &amp; Q7 · Your cause-and-effect chains were perfect. 🌟</b>Glaciers → sea level fell → Beringia appeared; then the melt → water rose → Beringia sank. That is the hardest question type on the page. Keep doing exactly that.<span class="zh">第 4、7 題因果鏈完美：冰川→海平面下降→Beringia 出現；融冰→水位上升→Beringia 沉沒。這是整份最難的題型，繼續保持。</span></div>
+  </div>
+</section>
+
+<!-- ================= QUIZ ================= -->
+<section class="sec" id="quiz">
+  <h2><span class="num emoji">🎯</span><span class="ttl">Quiz — no more traps this time!<span class="zh">小測驗——這次不會再被騙了吧！</span></span></h2>
+  <div class="quizbox">
+    <div class="qdots" id="qdots" aria-hidden="true"></div>
+    <div id="qbody"></div>
+  </div>
+</section>
+
+<!-- ================= CORRECTION LIST ================= -->
+<section class="sec" id="fix">
+  <h2><span class="num emoji">✍️</span><span class="ttl">Back to the workbook: correction list<span class="zh">回到作業本，訂正清單</span></span></h2>
+  <div class="fixlist" id="fixlist"></div>
+  <div class="msg" id="fixmsg" hidden></div>
+</section>
+
+<style>
+.wn-buddy{display:flex;align-items:center;gap:.8rem;margin:2rem 0 .6rem;padding:.9rem 1rem;
+ background:#fff;border:1px dashed #D9DADF;border-radius:.7rem;max-width:34rem}
+.wn-buddy img{width:3.6rem;height:3.6rem;flex:0 0 auto}
+.wn-buddy .t{display:flex;flex-direction:column;gap:.15rem}
+.wn-buddy .line{font-family:'Caveat',cursive;font-size:1.3rem;color:#6B6E76;line-height:1.15}
+.wn-buddy .sign{font-family:'Fredoka',system-ui,sans-serif;font-size:.95rem;font-weight:700;color:#2E3037}
+</style>
+
+<div class="wn-buddy">
+  <img id="wnBuddyImg" src="img/skzoo-puppym.png" alt="Your study buddy" width="150" height="150">
+  <div class="t">
+    <em class="line">History detectives check the clues twice — you just did.</em>
+    <b class="sign">Your study buddy, <span id="wnBuddyName">Puppy M</span></b>
+  </div>
+</div>
+<script>
+/* study buddy: one of the eight, picked fresh on every visit */
+(function(){
+  var CREW = [["wolfchan","Wolf Chan"],["leebit","Leebit"],["dwaekki","Dwaekki"],["jiniret","Jiniret"],
+              ["hanquokka","Han Quokka"],["bbokari","BbokAri"],["puppym","Puppy M"],["foxiny","FoxI.Ny"]];
+  var pick = CREW[Math.floor(Math.random() * CREW.length)];
+  var img = document.getElementById("wnBuddyImg"), name = document.getElementById("wnBuddyName");
+  if (!img || !name) return;
+  img.src = "img/skzoo-" + pick[0] + ".png";
+  img.alt = pick[1] + ", your study buddy";
+  name.textContent = pick[1];
+})();
+</script>
+<footer class="hand foot">The First Americans · Lesson 1 · Guided Reading p.1–2<span class="zh">第一批美洲人 · 第 1 課 · Guided Reading 第 1–2 頁</span></footer>
+
+</main>
+</div>
+
+<script>
+(function(){
+'use strict';
+const $ = id => document.getElementById(id);
+const Z = s => '<span class="zh">' + s + '</span>';
+function setMsg(el, html, cls){ el.className = 'msg' + (cls ? ' ' + cls : ''); el.innerHTML = html; el.hidden = false; }
+function openGate(id){ const el = $(id); if (el) el.hidden = false; }
+
+/* ---------- toolbar ---------- */
+const MODELINE = {
+  textbook: 'Definitions and checking steps, straight from your book.' + Z('用課本的定義和檢查步驟來講。'),
+  reallife: 'Same ideas, told with detectives, referees, and signs.' + Z('同樣的觀念，換成偵探、裁判和告示牌來講。')
+};
+function setMode(m){
+  document.body.dataset.mode = m;
+  document.querySelectorAll('.seg button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.mode === m)));
+  $('modeline').innerHTML = MODELINE[m];
+}
+document.querySelectorAll('.seg button').forEach(b =>
+  b.addEventListener('click', () => setMode(b.dataset.mode)));
+$('zhbtn').addEventListener('click', function(){
+  const on = document.body.classList.toggle('zh-on');
+  this.setAttribute('aria-pressed', String(on));
+});
+setMode('textbook');
+
+/* ---------- shared choice widget ----------
+   Socratic rule: wrong answer gets a question back, not the answer.
+   Two nudges max; the third time we tell, then immediately re-test. */
+function choice(hostId, cfg){
+  const host = $(hostId);
+  let tries = 0, settled = false, wrap, msg;
+  function build(){
+    tries = 0; settled = false;
+    host.innerHTML = '';
+    wrap = document.createElement('div');
+    wrap.className = 'choices';
+    cfg.opts.forEach((o, i) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'choice';
+      b.innerHTML = o[0] + Z(o[1]);
+      b.addEventListener('click', () => pick(i, b));
+      wrap.appendChild(b);
+    });
+    msg = document.createElement('div');
+    msg.className = 'msg'; msg.hidden = true;
+    host.appendChild(wrap); host.appendChild(msg);
+  }
+  function lock(){ [...wrap.children].forEach(b => { b.disabled = true; if (!b.classList.contains('ok') && !b.classList.contains('no')) b.classList.add('dim'); }); }
+  function pick(i, b){
+    if (settled) return;
+    if (i === cfg.ans){
+      settled = true; b.classList.add('ok'); lock();
+      setMsg(msg, cfg.good[0] + Z(cfg.good[1]), 'good');
+      if (cfg.pass) cfg.pass();
+      return;
+    }
+    b.classList.add('no');
+    tries++;
+    if (tries === 1){
+      setMsg(msg, cfg.h1[0] + Z(cfg.h1[1]), 'warn');
+      if (cfg.firstWrong) cfg.firstWrong();
+    } else if (tries === 2){
+      setMsg(msg, cfg.h2[0] + Z(cfg.h2[1]), 'warn');
+    } else {
+      settled = true;
+      wrap.children[cfg.ans].classList.add('ok');
+      lock();
+      setMsg(msg, cfg.tell[0] + Z(cfg.tell[1]), 'bad');
+      if (cfg.retest) retest(); else if (cfg.pass) cfg.pass();
+    }
+  }
+  /* told the answer → prove it once on a same-shape question before moving on */
+  function retest(){
+    const c = cfg.retest;
+    const box = document.createElement('div');
+    box.className = 'step';
+    box.innerHTML = '<p class="steplbl">One more, same idea</p><p>' + c.q[0] + Z(c.q[1]) + '</p>';
+    const cw = document.createElement('div'); cw.className = 'choices';
+    const cm = document.createElement('div'); cm.className = 'msg'; cm.hidden = true;
+    let done = false;
+    c.opts.forEach((o, i) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'choice';
+      b.innerHTML = o[0] + Z(o[1]);
+      b.addEventListener('click', () => {
+        if (done) return;
+        if (i === c.ans){
+          done = true; b.classList.add('ok');
+          [...cw.children].forEach(x => x.disabled = true);
+          setMsg(cm, c.why[0] + Z(c.why[1]), 'good');
+          if (cfg.pass) cfg.pass();
+        } else {
+          b.classList.add('no');
+          setMsg(cm, 'Read the answer just above once more, then try again.' + Z('把上面那句答案再讀一次，再選一次。'), 'warn');
+        }
+      });
+      cw.appendChild(b);
+    });
+    box.appendChild(cw); box.appendChild(cm); host.appendChild(box);
+  }
+  build();
+  return { reset: build };
+}
+
+/* ================= SECTION 1 ================= */
+choice('s1ask', {
+  opts: [['A mammoth tooth', '長毛象的牙齒'], ['A clay pot', '陶罐'], ['A leaf print in a rock', '岩石上的葉子印痕']],
+  ans: 1,
+  good: ['Yes — a person shaped that pot. Now let’s build the rule behind your choice.', '對——那個罐子是人捏出來的。現在把這個選擇背後的規則建起來。'],
+  h1: ['Who made each one — a person, or nature?', '每一樣是誰做的——人，還是大自然？'],
+  h2: ['"Artifact" means human hands made it or used it. Which one did hands make?', 'artifact 的意思是「人的手」做過或用過。哪一樣是手做出來的？'],
+  tell: ['It is the clay pot — a person shaped it. Teeth and leaf prints are nature’s work.', '答案是陶罐——人捏出來的。牙齒和葉子印是大自然的作品。'],
+  retest: {
+    q: ['A stone spear point — artifact or not?', '石矛尖——是不是 artifact？'],
+    opts: [['Artifact — a person chipped it sharp', '是——有人把它敲尖'], ['Not an artifact — it is just a rock', '不是——只是一塊石頭']],
+    ans: 0,
+    why: ['Exactly — a person shaped the stone, so it is an artifact.', '沒錯——石頭是人打磨的，所以是 artifact。']
+  },
+  pass: () => openGate('s1exp')
+});
+
+/* step 1 — tap the three words */
+(function(){
+  const host = $('s1a1'), msg = $('s1m1');
+  const WORDS = [
+    ['old', false, 'A mammoth tooth is old too — does OLD make it an artifact?', '長毛象的牙齒也很老——「老」就算 artifact 嗎？'],
+    ['made', true],
+    ['pretty', false, 'Nature makes pretty leaf prints too — does PRETTY count?', '大自然也會做出漂亮的葉子印——「漂亮」算數嗎？'],
+    ['used', true],
+    ['by people', true]
+  ];
+  let got = 0, done = false;
+  WORDS.forEach(w => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'opb wide';
+    b.textContent = w[0];
+    b.addEventListener('click', () => {
+      if (done || b.disabled) return;
+      if (w[1]){
+        b.classList.add('ok'); b.disabled = true; got++;
+        if (got === 3){
+          done = true;
+          [...host.children].forEach(x => x.disabled = true);
+          setMsg(msg, 'That is the whole rule: <mark>made</mark> or <mark>used</mark> <mark>by people</mark>.' + Z('整條規則就是這樣：人「做的」或「用過的」。'), 'good');
+          $('s1st2').hidden = false;
+        }
+      } else {
+        b.classList.add('no');
+        setMsg(msg, w[2] + Z(w[3]), 'warn');
+      }
+    });
+    host.appendChild(b);
+  });
+})();
+
+choice('s1a2', {
+  opts: [['A person 👤', '人'], ['Nature 🌿', '大自然']],
+  ans: 1,
+  good: ['Right — nature made it. So a fossil carries NO human fingerprints.', '對——是大自然做的。所以化石上沒有「人的痕跡」。'],
+  h1: ['Can a person grow a real dinosaur bone? Who grew it?', '人做得出真的恐龍骨頭嗎？那根骨頭是誰長出來的？'],
+  h2: ['Fossils formed millions of years before anyone was there to see them. So the maker is…?', '化石在有人看到它之前幾百萬年就形成了。那製造者是……？'],
+  tell: ['Nature made it — bones grew, mud hardened, no people involved.', '是大自然做的——骨頭自己長、泥巴自己硬化，跟人無關。'],
+  retest: {
+    q: ['A leaf print in a rock was made by…', '岩石上的葉子印是誰做的……'],
+    opts: [['Nature', '大自然'], ['A person', '人']],
+    ans: 0,
+    why: ['Yes — the leaf fell, the rock kept its shape. Pure nature.', '對——葉子落下、岩石留住形狀。純大自然。']
+  },
+  pass: () => { $('s1st3').hidden = false; }
+});
+
+const s1a3 = choice('s1a3', {
+  opts: [['Yes → so fossils are artifacts', '是→所以化石是 artifact'], ['No → so fossils are NOT artifacts', '不是→所以化石不是 artifact']],
+  ans: 1,
+  good: ['Exactly — so "fossils" cannot go in that blank. That is the only fix this question needs.', '正是——所以 fossils 不能填進那一格。這題只需要修這一個地方。'],
+  h1: ['You just said nature made fossils. So did a PERSON make them?', '你剛剛才說化石是大自然做的。那它是「人」做的嗎？'],
+  h2: ['Run the check slowly: fossils — made by people? used by people? Neither?', '慢慢檢查：化石——人做的嗎？人用過的嗎？都不是？'],
+  tell: ['No — nature made them, so fossils are not artifacts.', '不是——化石是大自然做的，所以不是 artifact。'],
+  retest: {
+    q: ['So in your workbook, the word "Fossils"…', '所以作業本上的 Fossils 這個字……'],
+    opts: [['must be crossed out and replaced', '要劃掉，換一個'], ['can stay where it is', '可以留在那裡']],
+    ans: 0,
+    why: ['Right — cross it out and write something people made, like tools.', '對——劃掉，改成人做的東西，例如工具。']
+  },
+  pass: () => { $('s1st4').hidden = false; }
+});
+
+choice('s1a4', {
+  opts: [
+    ['Because fossils are too old', '因為化石太老了'],
+    ['Because nature made it — no person made or used it', '因為它是大自然做的——沒有人做過或用過它'],
+    ['Because fossils are found underground', '因為化石埋在地下']
+  ],
+  ans: 1,
+  good: ['You have it in your own words. Now prove it in the museum below.', '你用自己的話說出來了。現在到下面的博物館證明給我看。'],
+  h1: ['Back one step — I reset the check question. Run it on a fossil again, then come back.', '退回上一步——檢查題我重置了。對化石再跑一次檢查，再回來答。'],
+  h2: ['Artifacts are also old, and also found underground… so what is the REAL difference?', 'artifact 也很老、也埋在地下……那真正的差別是什麼？'],
+  tell: ['The real reason: no person made or used it — nature did.', '真正的原因：沒有人做過或用過它——是大自然做的。'],
+  retest: {
+    q: ['An ancient shark tooth is not an artifact because…', '古代鯊魚牙齒不是 artifact，因為……'],
+    opts: [['no person made or used it', '沒有人做過或用過它'], ['it is too small', '它太小了']],
+    ans: 0,
+    why: ['That is the rule, in your words. Museum time!', '這條規則你已經內化了。進博物館吧！']
+  },
+  firstWrong: () => { s1a3.reset(); $('s1st3').classList.add('redo'); $('s1st3').scrollIntoView({block:'center'}); },
+  pass: () => { openGate('s1try'); $('s1try').scrollIntoView({block:'center'}); }
+});
+
+/* Try it — museum sorting */
+(function(){
+  const FINDS = [
+    ['Stone spear point', '石矛尖', true, 'A person chipped it sharp.', '有人把它敲尖的。', 'Did that sharp point shape itself?', '那個尖是自己變尖的嗎？'],
+    ['Mammoth tooth', '長毛象牙齒', false, 'It grew inside an animal — nature’s work.', '它長在動物嘴裡——大自然的作品。', 'Did a person make that tooth, or did it grow?', '那顆牙是人做的，還是自己長的？'],
+    ['Clay pot', '陶罐', true, 'A person shaped it and baked it.', '有人捏出來、燒出來的。', 'Who shaped the clay — hands, or wind?', '陶土是誰捏的——手，還是風？'],
+    ['Leaf print in a rock', '岩石上的葉子印', false, 'Nature pressed it long ago.', '大自然很久以前壓出來的。', 'Did anyone carve that leaf shape on purpose?', '有人特地刻那個葉子形狀嗎？'],
+    ['Woven basket', '編織籃子', true, 'Someone wove it by hand.', '有人親手編的。', 'Can a basket weave itself?', '籃子會自己編自己嗎？'],
+    ['Carved bone necklace', '骨頭刻成的項鍊', true, 'Nature grew the bone — but a person CARVED it. Human hands win.', '骨頭是大自然長的——但項鍊是人「刻」的。人的手勝出。', 'The bone is nature’s… but who carved it into a necklace?', '骨頭是大自然的……但把它刻成項鍊的是誰？'],
+    ['Dinosaur footprint in stone', '石頭上的恐龍腳印', false, 'A dinosaur stepped, the mud hardened — no people at all.', '恐龍踩過、泥巴硬化——完全沒有人參與。', 'Was any person even alive back then to make it?', '那個時候有人類存在嗎？'],
+    ['Ancient shark tooth', '古代鯊魚牙齒', false, 'It grew in a shark’s mouth.', '它長在鯊魚嘴裡。', 'Who made this tooth — a person, or a shark?', '這顆牙是人做的，還是鯊魚長的？']
+  ];
+  const host = $('s1sorter'), count = $('s1count'), msg = $('s1msg');
+  let done = 0;
+  FINDS.forEach(f => {
+    const row = document.createElement('div'); row.className = 'srow';
+    const ph = document.createElement('span'); ph.className = 'ph';
+    ph.innerHTML = f[0] + '<span class="zhi">（' + f[1] + '）</span>';
+    const ops = document.createElement('span'); ops.className = 'ops';
+    const why = document.createElement('span'); why.className = 'why';
+    [['🏺', true], ['🌿', false]].forEach(o => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'opb'; b.textContent = o[0];
+      b.setAttribute('aria-label', f[0] + (o[1] ? ' → artifact' : ' → nature'));
+      b.addEventListener('click', () => {
+        if (row.classList.contains('done')) return;
+        if (o[1] === f[2]){
+          b.classList.add('ok');
+          [...ops.children].forEach(x => x.disabled = true);
+          row.classList.add('done');
+          why.innerHTML = f[3] + Z(f[4]);
+          const chip = document.createElement('span');
+          chip.className = 'school' + (f[0].indexOf('necklace') > -1 ? ' last' : '');
+          chip.textContent = f[0];
+          (f[2] ? $('s1caseA') : $('s1caseN')).appendChild(chip);
+          done++;
+          count.innerHTML = done + ' / 8 sorted' + '<span class="zhi"> ・已分類</span>';
+          if (done === FINDS.length){
+            setMsg(msg, '8 / 8 — Museum Boss badge 🏅 Look at the necklace: nature’s material + a person’s hands = <mark>artifact</mark>.' + Z('8／8 全對——館長徽章到手。看那條項鍊：大自然的材料＋人的手＝artifact。'), 'good');
+            openGate('s1model');
+          }
+        } else {
+          b.classList.add('no');
+          setTimeout(() => b.classList.remove('no'), 600);
+          setMsg(msg, f[5] + Z(f[6]), 'warn');
+        }
+      });
+      ops.appendChild(b);
+    });
+    row.appendChild(ph); row.appendChild(ops); row.appendChild(why);
+    host.appendChild(row);
+  });
+})();
+
+/* ================= SECTION 2 ================= */
+choice('s2ask', {
+  opts: [
+    ['It sounds wrong to me', '聽起來怪怪的'],
+    ['Find the exact part where the text says something different', '在課文裡找到「說法不同」的那個地方'],
+    ['I remember something else from class', '我記得課堂上講過別的']
+  ],
+  ans: 1,
+  good: ['Yes — F needs evidence you can point at. Feelings do not count.', '對——F 需要「指得出來」的證據。感覺不算數。'],
+  h1: ['Feelings and memory can both trick you. What never does — what can you put your finger on?', '感覺和記憶都會騙人。什麼不會騙你——你能用手指著的是什麼？'],
+  h2: ['T or F is a court case. What is the judge’s evidence — your feeling, or the page in the book?', '是非題像法庭審判。法官的證據是什麼——你的感覺，還是書上那一頁？'],
+  tell: ['The only proof is the text: find the exact part that says something different.', '唯一的證據是課文：找到「說法不同」的那個地方。'],
+  retest: {
+    q: ['So before writing F, you must first…', '所以寫 F 之前，你必須先……'],
+    opts: [['check each underlined word against the book', '把底線裡的每個詞拿去對課本'], ['write fast and move on', '快快寫完往下走']],
+    ans: 0,
+    why: ['That is the method. Now run it on your own statement.', '方法就是這個。現在用它跑你那一題。']
+  },
+  pass: () => openGate('s2exp')
+});
+
+/* step 1 — split the underline */
+(function(){
+  const host = $('s2a1'), chipRow = $('s2chips'), msg = $('s2m1');
+  const b = document.createElement('button');
+  b.type = 'button'; b.className = 'btn';
+  b.textContent = '✂️ Split the underline into claims';
+  b.addEventListener('click', () => {
+    b.disabled = true;
+    ['hunting', 'gathering', 'fishing'].forEach(w => {
+      const c = document.createElement('span');
+      c.className = 'school'; c.textContent = w;
+      chipRow.appendChild(c);
+    });
+    setMsg(msg, 'Three separate claims — so, three separate checks.' + Z('三個獨立的說法——所以要做三次獨立的檢查。'), 'good');
+    $('s2st2').hidden = false;
+  });
+  host.appendChild(b);
+})();
+
+/* step 2 — stamp each claim against the evidence */
+(function(){
+  const CLAIMS = [
+    ['hunting', 'They hunted large animals such as mammoths and mastodons.', '他們獵捕長毛象、乳齒象這類大型動物。'],
+    ['gathering', 'They gathered wild plants, nuts, and berries to eat.', '他們採集野生植物、堅果和莓果來吃。'],
+    ['fishing', 'People who lived near water caught fish.', '住在水邊的人會捕魚。']
+  ];
+  const host = $('s2claims'), evHost = $('s2ev'), msg = $('s2m2');
+  let stamped = 0;
+  CLAIMS.forEach(cl => {
+    const chip = document.createElement('button');
+    chip.type = 'button'; chip.className = 'opb wide'; chip.textContent = cl[0];
+    chip.addEventListener('click', () => {
+      if (chip.disabled) return;
+      evHost.innerHTML = '';
+      const card = document.createElement('div'); card.className = 'ev';
+      card.innerHTML = '<span class="lbl">The lesson says</span>“' + cl[1] + '”' + Z(cl[2]);
+      const row = document.createElement('div'); row.className = 'row';
+      [['✓ In the text', true], ['✗ Not there', false]].forEach(s => {
+        const sb = document.createElement('button');
+        sb.type = 'button'; sb.className = 'btn sm ghost'; sb.textContent = s[0];
+        sb.addEventListener('click', () => {
+          if (chip.disabled) return;
+          if (s[1]){
+            chip.disabled = true; chip.classList.add('ok'); chip.textContent = cl[0] + ' ✓';
+            evHost.innerHTML = ''; stamped++;
+            if (stamped === CLAIMS.length){
+              setMsg(msg, 'Stamped ✓ ✓ ✓ — every claim is in the lesson. Now the verdict.' + Z('✓✓✓——三個說法課文裡都有。去下判決吧。'), 'good');
+              $('s2st3').hidden = false;
+            } else {
+              setMsg(msg, '“' + cl[0] + '” checks out. Next claim.' + Z('「' + cl[0] + '」查證通過。下一個。'), 'good');
+            }
+          } else {
+            setMsg(msg, 'Read the evidence once more — does it mention ' + cl[0] + ', yes or no?' + Z('再讀一次證據——它有沒有提到 ' + cl[0] + '？'), 'warn');
+          }
+        });
+        row.appendChild(sb);
+      });
+      card.appendChild(row);
+      evHost.appendChild(card);
+    });
+    host.appendChild(chip);
+  });
+})();
+
+const s2a3 = choice('s2a3', {
+  opts: [['T — every part checks out', 'T——每一部分都對'], ['F — something in it is wrong', 'F——裡面有東西是錯的']],
+  ans: 0,
+  good: ['T it is. And the rewrite line? It stays EMPTY — erase "hunting, moving, and farming".', '就是 T。那改寫那一行呢？留空——把 hunting, moving, and farming 擦掉。'],
+  h1: ['You stamped ✓ on all three. Which word can you point at as wrong?', '你三個都蓋了 ✓。那你能指出哪個字是錯的嗎？'],
+  h2: ['The rule: F needs a wrong word you can point at. No wrong word → ?', '規則：F 需要一個你指得出來的錯字。指不出來→？'],
+  tell: ['No wrong word to point at → the verdict is T.', '指不出錯的字→判決就是 T。'],
+  retest: {
+    q: ['When the verdict is T, the rewrite line…', '判決是 T 的時候，改寫那一行……'],
+    opts: [['stays empty', '留空'], ['still needs new words', '還是要寫新的字']],
+    ans: 0,
+    why: ['Right — you only rewrite when it is F.', '對——只有 F 才需要改寫。']
+  },
+  pass: () => { $('s2st4').hidden = false; }
+});
+
+choice('s2a4', {
+  opts: [
+    ['Because fishing is not really a way to get food', '因為捕魚不算取得食物的方法'],
+    ['Because I judged by feeling instead of checking the text', '因為我憑感覺判斷，沒有查課文'],
+    ['Because the sentence was too long', '因為句子太長了']
+  ],
+  ans: 1,
+  good: ['Honest, and exactly right. Now run the full method on two fresh statements.', '誠實，而且完全正確。現在把整套方法用在兩個新句子上。'],
+  h1: ['Back one step — I reset the verdict stamp. Stamp it again, and notice WHAT you used to decide.', '退回上一步——判決章我重置了。再蓋一次，注意你這次是「用什麼」決定的。'],
+  h2: ['Fishing IS in the lesson, and sentence length changes nothing. So what was missing that day?', '捕魚課文裡有，句子長短也無關。那天真正少做的是什麼？'],
+  tell: ['The missing move was checking the text. Feeling said F; the text said T.', '少做的那一步是查課文。感覺說 F，課文說 T。'],
+  retest: {
+    q: ['Your feeling says F, but every part is in the text. You write…', '感覺說 F，但每一部分課文都有。你要寫……'],
+    opts: [['T', 'T'], ['F', 'F']],
+    ans: 0,
+    why: ['The text beats the feeling, every single time.', '課文永遠贏過感覺。']
+  },
+  firstWrong: () => { s2a3.reset(); $('s2st3').classList.add('redo'); $('s2st3').scrollIntoView({block:'center'}); },
+  pass: () => { openGate('s2try'); $('s2try').scrollIntoView({block:'center'}); }
+});
+
+/* Try it — full method on two fresh statements */
+(function(){
+  const CASES = [
+    {
+      pre: 'The first Americans reached the Americas by ', post: '.',
+      under: 'walking across a land bridge called Beringia',
+      claims: [
+        ['walked across a land bridge', 'When the sea level dropped, a bridge of land appeared between Asia and the Americas, and people crossed it on foot.', '海平面下降後，亞洲和美洲之間出現一座陸橋，人們徒步走了過去。', true],
+        ['called Beringia', 'This land bridge is called Beringia.', '這座陸橋叫做 Beringia。', true]
+      ],
+      verdict: 'T',
+      wrongV: ['You stamped ✓ on both parts — so where is the wrong word?', '兩部分你都蓋了 ✓——那錯的字在哪裡？'],
+      done: ['Verdict T — and you can point at evidence for every word. That is the method.', '判決 T——而且每個字你都指得出證據。方法就是這樣。']
+    },
+    {
+      pre: 'Early Americans crossed Beringia because they were looking for ', post: '.',
+      under: 'gold',
+      claims: [
+        ['looking for gold', 'They followed the herds of animals they hunted — they crossed to find food.', '他們跟著獵物的獸群走——過橋是為了找食物。', false]
+      ],
+      verdict: 'F',
+      wrongV: ['You just stamped "not there" — can a sentence be T when the text says something different?', '你剛蓋了「課文沒有」——課文說法不同的句子，還能是 T 嗎？'],
+      fix: {
+        opts: [['silver', false], ['food — they followed the animals they hunted', true], ['a warmer beach', false]],
+        fixed: 'Early Americans crossed Beringia because they were looking for <u>food</u>.',
+        wrong: ['Look at the evidence again — what were they really looking for?', '再看一次證據——他們真正在找的是什麼？']
+      },
+      done: ['F, evidence pointed at, and fixed with the text’s own words. Full marks.', 'F、指出證據、還用課文自己的說法修好句子。滿分。']
+    }
+  ];
+  const host = $('s2walk');
+  let idx = 0;
+  function runOne(){
+    const C = CASES[idx];
+    const box = document.createElement('div');
+    box.innerHTML = '<p class="steplbl">Statement ' + (idx + 1) + ' of 2</p>';
+    const sent = document.createElement('p'); sent.className = 'sentbox';
+    sent.innerHTML = C.pre + '<u>' + C.under + '</u>' + C.post;
+    const splitBtn = document.createElement('button');
+    splitBtn.type = 'button'; splitBtn.className = 'btn sm';
+    splitBtn.textContent = '✂️ 1 · Split the underline';
+    const claimRow = document.createElement('div'); claimRow.className = 'row';
+    const evHost = document.createElement('div');
+    const vHost = document.createElement('div');
+    const fixHost = document.createElement('div');
+    const msg = document.createElement('div'); msg.className = 'msg'; msg.hidden = true;
+    let stamped = 0, vDone = false, fixDone = false;
+
+    splitBtn.addEventListener('click', () => {
+      splitBtn.disabled = true;
+      C.claims.forEach(cl => {
+        const chip = document.createElement('button');
+        chip.type = 'button'; chip.className = 'opb wide'; chip.textContent = cl[0];
+        chip.addEventListener('click', () => {
+          if (chip.disabled) return;
+          evHost.innerHTML = '';
+          const card = document.createElement('div'); card.className = 'ev';
+          card.innerHTML = '<span class="lbl">The lesson says</span>“' + cl[1] + '”' + Z(cl[2]);
+          const r = document.createElement('div'); r.className = 'row';
+          [['✓ In the text', true], ['✗ Text says different', false]].forEach(s => {
+            const sb = document.createElement('button');
+            sb.type = 'button'; sb.className = 'btn sm ghost'; sb.textContent = s[0];
+            sb.addEventListener('click', () => {
+              if (chip.disabled) return;
+              if (s[1] === cl[3]){
+                chip.disabled = true; chip.classList.add('ok');
+                chip.textContent = cl[0] + (cl[3] ? ' ✓' : ' ✗');
+                evHost.innerHTML = ''; stamped++;
+                setMsg(msg, cl[3]
+                  ? 'Stamped — that part is in the text.' + Z('蓋章——這部分課文裡有。')
+                  : 'Stamped — the text says something different. You found the wrong word!' + Z('蓋章——課文說法不同。你找到錯的地方了！'), 'good');
+                if (stamped === C.claims.length) showVerdict();
+              } else {
+                setMsg(msg, 'Compare the evidence and the claim word by word — do they match?' + Z('把證據和說法逐字比對——一致嗎？'), 'warn');
+              }
+            });
+            r.appendChild(sb);
+          });
+          card.appendChild(r); evHost.appendChild(card);
+        });
+        claimRow.appendChild(chip);
+      });
+    });
+
+    function showVerdict(){
+      const p = document.createElement('p');
+      p.className = 'steplbl'; p.textContent = '2 · Your verdict';
+      vHost.appendChild(p);
+      const r = document.createElement('div'); r.className = 'row';
+      ['T', 'F'].forEach(v => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'btn sm'; b.textContent = v;
+        b.addEventListener('click', () => {
+          if (vDone) return;
+          if (v === C.verdict){
+            vDone = true;
+            [...r.children].forEach(x => x.disabled = true);
+            if (C.fix) showFix(); else finish();
+          } else {
+            setMsg(msg, C.wrongV[0] + Z(C.wrongV[1]), 'warn');
+          }
+        });
+        r.appendChild(b);
+      });
+      vHost.appendChild(r);
+    }
+
+    function showFix(){
+      const p = document.createElement('p');
+      p.className = 'steplbl'; p.textContent = '3 · It is F — fix it with the text’s words';
+      fixHost.appendChild(p);
+      const r = document.createElement('div'); r.className = 'row';
+      C.fix.opts.forEach(o => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'opb wide'; b.textContent = o[0];
+        b.addEventListener('click', () => {
+          if (fixDone) return;
+          if (o[1]){
+            fixDone = true; b.classList.add('ok');
+            [...r.children].forEach(x => x.disabled = true);
+            const ns = document.createElement('p'); ns.className = 'sentbox trueok';
+            ns.innerHTML = C.fix.fixed;
+            fixHost.appendChild(ns);
+            finish();
+          } else {
+            b.classList.add('no');
+            setTimeout(() => b.classList.remove('no'), 600);
+            setMsg(msg, C.fix.wrong[0] + Z(C.fix.wrong[1]), 'warn');
+          }
+        });
+        r.appendChild(b);
+      });
+      fixHost.appendChild(r);
+    }
+
+    function finish(){
+      setMsg(msg, C.done[0] + Z(C.done[1]), 'good');
+      idx++;
+      if (idx < CASES.length){
+        setTimeout(runOne, 500);
+      } else {
+        openGate('s2model');
+      }
+    }
+
+    box.appendChild(sent); box.appendChild(splitBtn); box.appendChild(claimRow);
+    box.appendChild(evHost); box.appendChild(vHost); box.appendChild(fixHost); box.appendChild(msg);
+    host.appendChild(box);
+  }
+  runOne();
+})();
+
+/* ================= SECTION 3 ================= */
+choice('s3ask', {
+  opts: [['Yes — it is fixed now', '是——修好了'], ['No — it still says the same false thing', '沒有——它還是在說同一件假的事']],
+  ans: 1,
+  good: ['Sharp eyes. "Little change" is "little impact" in new clothes. Let’s learn the real fix.', '好眼力。little change 只是 little impact 換了件衣服。來學真正的修法。'],
+  h1: ['Compare them: "little impact" and "little change". Different meanings, or the same one in new clothes?', '比較看看：little impact 和 little change。是不同的意思，還是同一個意思換件衣服？'],
+  h2: ['The lesson says farming let people STOP moving around. Does "little change" match that?', '課文說農耕讓人們「不再」到處搬。little change 跟這個一致嗎？'],
+  tell: ['Still false — "little change" means the same as "little impact". A word swap is not a meaning flip.', '還是假的——little change 和 little impact 意思相同。換字不等於翻轉意思。'],
+  retest: {
+    q: ['"Little change" and "little impact" are…', 'little change 和 little impact 是……'],
+    opts: [['synonyms — the same meaning', '同義詞——意思一樣'], ['opposites', '相反詞']],
+    ans: 0,
+    why: ['Synonyms — which is why the sentence never became true.', '同義詞——所以句子從頭到尾沒變成真的。']
+  },
+  pass: () => openGate('s3exp')
+});
+
+choice('s3a1', {
+  opts: [
+    ['swap in a synonym', '換一個同義詞'],
+    ['flip the meaning so it matches the text', '翻轉意思，讓句子跟課文一致'],
+    ['make the sentence shorter', '把句子改短']
+  ],
+  ans: 1,
+  good: ['Flip the meaning — that is the whole job.', '翻轉意思——這就是這種題目的任務。'],
+  h1: ['You tried a synonym on paper ("little change") — did the sentence become true?', '你在作業本上試過同義詞（little change）——句子有變成真的嗎？'],
+  h2: ['"Pool SHUT" or "Pool OPEN" — which one actually fixes the wrong sign?', '「泳池不開」還是「泳池開放」——哪一個才真的修好錯的告示牌？'],
+  tell: ['Flip the meaning so it matches the text — that is what "make it true" means.', '翻轉意思、讓它跟課文一致——這才是「改成真的」。'],
+  retest: {
+    q: ['A sign wrongly says "Library CLOSED". The real fix is…', '告示牌誤寫「圖書館關閉」。真正的修法是……'],
+    opts: [['Library OPEN', '圖書館開放'], ['Library SHUT', '圖書館不開']],
+    ans: 0,
+    why: ['Opposite meaning = a real fix.', '相反的意思，才是真正的修正。']
+  },
+  pass: () => { $('s3st2').hidden = false; }
+});
+
+choice('s3a2', {
+  opts: [['tiny', '很小'], ['big', '很大']],
+  ans: 1,
+  good: ['Huge. Farming ended the moving-around life for many people.', '超大。農耕讓很多人結束了到處搬家的生活。'],
+  h1: ['If you never had to move house again — would that be a small thing?', '如果從此再也不用搬家——這是小事嗎？'],
+  h2: ['Nomadic = moving all year. Farming = staying put. From always-moving to staying — small, or big?', '游牧＝整年搬家。農耕＝定居。從一直搬到住下來——小改變還是大改變？'],
+  tell: ['Big — a steady food supply let people settle in one place.', '很大——穩定的食物讓人們可以定居下來。'],
+  retest: {
+    q: ['After farming began, people…', '開始農耕之後，人們……'],
+    opts: [['could settle in one place', '可以定居在一個地方'], ['moved around even more', '搬得更勤了']],
+    ans: 0,
+    why: ['Steady food → no need to chase it around any more.', '食物穩定→不用再追著食物跑。']
+  },
+  pass: () => { $('s3st3').hidden = false; }
+});
+
+const s3a3 = choice('s3a3', {
+  opts: [['TRUE now — it matches the text', '現在是真的——跟課文一致'], ['Still false', '還是假的']],
+  ans: 0,
+  good: ['It passes the re-read test — the whole sentence now matches the lesson.', '通過重讀測試——整句現在跟課文一致了。'],
+  h1: ['Read the sentence, then the fact: farming → settle down. Do they agree now?', '先讀句子，再讀事實：農耕→定居。兩邊一致了嗎？'],
+  h2: ['"A big impact" — is that what really happened to the nomadic way of life?', 'a big impact——游牧生活實際上就是被大大改變了，對嗎？'],
+  tell: ['TRUE — "a big impact" is exactly what the lesson describes.', '是真的——a big impact 正是課文描述的情況。'],
+  retest: {
+    q: ['"A big impact" passes the re-read test because…', 'a big impact 能通過重讀測試，因為……'],
+    opts: [['the sentence now matches the text', '整句現在跟課文一致'], ['it sounds fancy', '聽起來比較厲害']],
+    ans: 0,
+    why: ['Matching the text is the only thing the test checks.', '重讀測試檢查的就只有「跟課文一致」這件事。']
+  },
+  pass: () => { $('s3st4').hidden = false; }
+});
+
+choice('s3a4', {
+  opts: [
+    ['Change the underlined words to anything different', '把底線的字換成任何不一樣的字'],
+    ['Flip the meaning, then re-read the whole sentence to check it is true', '翻轉意思，然後整句重讀一次、確認是真的'],
+    ['Write fewer words so there are fewer mistakes', '字寫少一點，錯的機會就少一點']
+  ],
+  ans: 1,
+  good: ['Flip, then re-read. Now go run the machine.', '翻轉，然後重讀。現在去開翻轉機。'],
+  h1: ['Back one step — I reset the stamp. Re-read the fixed sentence once more, then come back.', '退回上一步——判決章重置了。把修好的句子再重讀一次，再回來答。'],
+  h2: ['"Anything different" is exactly what "little change" was… did that work?', '「隨便換個不一樣的」正是 little change 那次的做法……有用嗎？'],
+  tell: ['The rule: flip the meaning, then re-read the whole sentence to check it is true.', '規則：翻轉意思，然後整句重讀、確認為真。'],
+  retest: {
+    q: ['After rewriting, the last thing you always do is…', '改寫完之後，最後一定要做的是……'],
+    opts: [['re-read the whole sentence — is it true now?', '整句重讀一次——現在是真的了嗎？'], ['hand it in fast', '趕快交出去']],
+    ans: 0,
+    why: ['The re-read is what catches "new clothes" words.', '重讀就是抓出「換衣服的字」的那一步。']
+  },
+  firstWrong: () => { s3a3.reset(); $('s3st3').classList.add('redo'); $('s3st3').scrollIntoView({block:'center'}); },
+  pass: () => { openGate('s3try'); $('s3try').scrollIntoView({block:'center'}); }
+});
+
+/* Try it — the sentence flip machine */
+(function(){
+  const ROUNDS = [
+    {
+      pre: 'Learning to farm had ', post: ' on the nomadic way of life.',
+      parts: [['little change', false], ['a big impact', true], ['no impact at all', false]],
+      ev: 'Farming gave people a steady food supply, so they could settle in one place. The old moving-around life changed greatly.',
+      evzh: '農耕帶來穩定的食物，人們得以定居。過去到處遷移的生活大大改變了。'
+    },
+    {
+      pre: 'Early Americans ', post: ' while they followed the herds.',
+      parts: [['sat very still', false], ['moved from place to place', true], ['stayed inside their caves', false]],
+      ev: 'Hunters were nomadic — they moved from place to place, following the animals.',
+      evzh: '獵人是游牧的——他們跟著動物，從一個地方移動到另一個地方。'
+    }
+  ];
+  const host = $('s3mach');
+  let idx = 0;
+  function runOne(){
+    const R = ROUNDS[idx];
+    const box = document.createElement('div');
+    box.innerHTML = '<p class="steplbl">Round ' + (idx + 1) + ' of 2 · pick a part for the blank</p>';
+    const frame = document.createElement('p'); frame.className = 'sentbox';
+    frame.innerHTML = R.pre + '<u>______</u>' + R.post;
+    const row = document.createElement('div'); row.className = 'row';
+    const out = document.createElement('div');
+    const msg = document.createElement('div'); msg.className = 'msg'; msg.hidden = true;
+    let done = false;
+
+    R.parts.forEach(p => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'opb wide'; b.textContent = p[0];
+      b.addEventListener('click', () => {
+        if (done) return;
+        out.innerHTML = '';
+        const ns = document.createElement('p'); ns.className = 'sentbox built';
+        ns.innerHTML = R.pre + '<u>' + p[0] + '</u>' + R.post;
+        const card = document.createElement('div'); card.className = 'ev';
+        card.innerHTML = '<span class="lbl">The lesson says</span>“' + R.ev + '”' + Z(R.evzh);
+        const r = document.createElement('div'); r.className = 'row';
+        [['It is TRUE now', true], ['Still FALSE', false]].forEach(s => {
+          const sb = document.createElement('button');
+          sb.type = 'button'; sb.className = 'btn sm ghost'; sb.textContent = s[0];
+          sb.addEventListener('click', () => {
+            if (done) return;
+            if (s[1] === p[1]){
+              if (p[1]){
+                done = true;
+                ns.className = 'sentbox trueok';
+                [...row.children].forEach(x => x.disabled = true);
+                [...r.children].forEach(x => x.disabled = true);
+                setMsg(msg, 'Flip ✓ and re-read ✓ — the machine turns green.' + Z('翻轉 ✓ 加上重讀 ✓——機器亮綠燈。'), 'good');
+                idx++;
+                if (idx < ROUNDS.length){
+                  setTimeout(runOne, 500);
+                } else {
+                  setMsg(msg, 'Machine mastered! Flip the meaning, then re-read. Every time. 🎉' + Z('翻轉機大師！先翻轉意思、再重讀。每次都這樣。'), 'good');
+                  openGate('s3model');
+                }
+              } else {
+                setMsg(msg, 'Good catch — still false. That swap did not flip the meaning. Pick another part.' + Z('抓得好——還是假的。那個零件沒翻轉意思。換一個試試。'), 'good');
+              }
+            } else {
+              setMsg(msg, p[1]
+                ? 'Read the new sentence next to the evidence — do they match now?' + Z('把新句子和證據並排讀——現在一致了嗎？')
+                : 'Does "' + p[0] + '" match what the evidence says? Look again.' + Z('「' + p[0] + '」跟證據說的一致嗎？再看一次。'), 'warn');
+            }
+          });
+          r.appendChild(sb);
+        });
+        card.appendChild(r);
+        out.appendChild(ns); out.appendChild(card);
+      });
+      row.appendChild(b);
+    });
+
+    box.appendChild(frame); box.appendChild(row); box.appendChild(out); box.appendChild(msg);
+    host.appendChild(box);
+  }
+  runOne();
+})();
+
+/* ================= QUIZ ================= */
+(function(){
+  const QUIZ = [
+    { q: 'Which one is an artifact?', zh: '哪一個是 artifact？',
+      opts: [['A mammoth tooth', '長毛象牙齒'], ['A clay pot', '陶罐'], ['A leaf print in a rock', '岩石上的葉子印']],
+      ans: 1, why: 'A person shaped the pot. Teeth and leaf prints are nature’s work.', whyzh: '罐子是人捏的；牙齒和葉子印是大自然的作品。', go: '#s1' },
+    { q: 'A fossil is…', zh: 'fossil（化石）是……',
+      opts: [['anything old in a museum', '博物館裡任何老東西'], ['remains or traces of ancient plants or animals', '古代動植物的遺骸或痕跡'], ['a tool ancient people used', '古代人用過的工具']],
+      ans: 1, why: 'Nature made it — exactly why a fossil is not an artifact.', whyzh: '它是大自然做的——這正是化石不是 artifact 的原因。', go: '#s1' },
+    { q: 'Before you write T or F, you should…', zh: '寫 T 或 F 之前，你應該……',
+      opts: [['trust your first feeling', '相信第一直覺'], ['check each underlined part against the text', '把底線每一部分拿去對課文'], ['write F if the sentence is long', '句子長就寫 F']],
+      ans: 1, why: 'You can only call F when you can point at the wrong word.', whyzh: '只有指得出錯的字，才能判 F。', go: '#s2' },
+    { q: '"Early Americans got food by hunting, gathering, and fishing." T or F?', zh: '「早期美洲人靠打獵、採集、捕魚取得食物。」T 還是 F？',
+      opts: [['T', 'T'], ['F', 'F']],
+      ans: 0, why: 'All three are in the lesson — every part checks out → T.', whyzh: '三個方法課文都有——每部分都對→T。', go: '#s2' },
+    { q: '"The first Americans hunted only small fish." It is F. Which fix makes it TRUE?', zh: '「最早的美洲人只獵小魚。」這是 F。哪個修法讓它變成真的？',
+      opts: [['only tiny fish', '只獵迷你魚'], ['large animals like mammoths and mastodons', '長毛象、乳齒象這類大型動物'], ['only small sharks', '只獵小鯊魚']],
+      ans: 1, why: 'Flip the meaning to match the text — synonym swaps stay false.', whyzh: '要翻轉意思、貼近課文——換同義詞仍然是假的。', go: '#s3' },
+    { q: 'A necklace carved from mammoth bone is…', zh: '用長毛象骨頭刻成的項鍊是……',
+      opts: [['a fossil, because bone comes from nature', '化石，因為骨頭來自大自然'], ['an artifact, because a person carved it', 'artifact，因為是人刻的'], ['neither', '兩者都不是']],
+      ans: 1, why: 'Nature’s material + human hands = artifact. This one mixes both of today’s ideas.', whyzh: '大自然的材料＋人的手＝artifact。這題把今天兩個觀念串在一起。', go: '#s1' },
+    { q: '"Farming had little impact on nomadic life." Your F was right. Which rewrite passes the re-read test?', zh: '「農耕對游牧生活影響很小。」你的 F 是對的。哪個改寫能通過重讀測試？',
+      opts: [['little change', 'little change'], ['a big impact', 'a big impact'], ['no impact', 'no impact']],
+      ans: 1, why: 'Re-read the whole new sentence — only "a big impact" makes it true.', whyzh: '整句重讀一次——只有 a big impact 讓句子變成真的。', go: '#s3' },
+    { q: 'Writing about the first Americans: "They ___ spears to hunt."', zh: '寫第一批美洲人：「They ___ spears to hunt.」',
+      opts: [['use', 'use'], ['used', 'used'], ['uses', 'uses']],
+      ans: 1, why: 'It happened long ago — history answers use the past tense.', whyzh: '那是很久以前的事——歷史答案要用過去式。', go: '#tips' }
+  ];
+  const dots = $('qdots'), body = $('qbody');
+  function start(){
+    let i = 0, score = 0;
+    const marks = [];
+    dots.innerHTML = QUIZ.map(() => '<i></i>').join('');
+    function paint(){
+      [...dots.children].forEach((d, k) => {
+        d.className = marks[k] === true ? 'ok' : marks[k] === false ? 'no' : (k === i ? 'cur' : '');
+      });
+    }
+    function show(){
+      paint();
+      const Q = QUIZ[i];
+      body.innerHTML = '';
+      const q = document.createElement('p');
+      q.className = 'qq';
+      q.innerHTML = 'Q' + (i + 1) + '. ' + Q.q + Z(Q.zh);
+      const wrap = document.createElement('div'); wrap.className = 'choices';
+      const msg = document.createElement('div'); msg.className = 'msg'; msg.hidden = true;
+      let answered = false;
+      Q.opts.forEach((o, k) => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'choice';
+        b.innerHTML = o[0] + Z(o[1]);
+        b.addEventListener('click', () => {
+          if (answered) return;
+          answered = true;
+          [...wrap.children].forEach(x => x.disabled = true);
+          wrap.children[Q.ans].classList.add('ok');
+          if (k === Q.ans){ score++; marks[i] = true; setMsg(msg, 'Correct! ' + Q.why + Z(Q.whyzh), 'good'); }
+          else { marks[i] = false; b.classList.add('no'); setMsg(msg, Q.why + Z(Q.whyzh) + ' <a href="' + Q.go + '">Go back and walk it again</a>', 'bad'); }
+          paint();
+          const next = document.createElement('button');
+          next.type = 'button'; next.className = 'btn';
+          next.style.marginTop = '.6rem';
+          next.textContent = (i + 1 < QUIZ.length) ? 'Next ▸' : 'See my stars ★';
+          next.addEventListener('click', () => { i++; if (i < QUIZ.length) show(); else end(); });
+          body.appendChild(next);
+        });
+        wrap.appendChild(b);
+      });
+      body.appendChild(q); body.appendChild(wrap); body.appendChild(msg);
+    }
+    function end(){
+      paint();
+      const stars = score >= 7 ? '★★★' : score >= 5 ? '★★☆' : '★☆☆';
+      const line = score === QUIZ.length ? 'Every trap beaten. The workbook does not stand a chance!'
+        : score >= 6 ? 'Strong. Peek at the wobbly ones, then go fix your workbook.'
+        : 'Good try — walk the three sections again, the machine is patient.';
+      const zh = score === QUIZ.length ? '每個陷阱都被你打敗了。作業本毫無勝算！'
+        : score >= 6 ? '很強。看一下還不穩的那幾題，然後去改作業本。'
+        : '不錯的嘗試——三個段落再走一次，翻轉機很有耐心。';
+      body.innerHTML = '';
+      const box = document.createElement('div'); box.className = 'qresult';
+      box.innerHTML = '<div class="stars">' + stars + '</div><div class="sc">' + score + ' / ' + QUIZ.length + '</div><p>' + line + Z(zh) + '</p>';
+      const missed = QUIZ.map((Q, k) => marks[k] === false ? '<a href="' + Q.go + '">Q' + (k + 1) + '</a>' : null).filter(Boolean);
+      if (missed.length){
+        const p = document.createElement('p');
+        p.innerHTML = 'Worth another walk: ' + missed.join(' · ') + Z('這幾題值得再走一次。');
+        box.appendChild(p);
+      }
+      const again = document.createElement('button');
+      again.type = 'button'; again.className = 'btn ghost';
+      again.textContent = '↻ Play again';
+      again.addEventListener('click', start);
+      box.appendChild(again);
+      body.appendChild(box);
+    }
+    show();
+  }
+  start();
+})();
+
+/* ================= CORRECTION LIST ================= */
+(function(){
+  const FIXES = [
+    ['<b>Page 1, Q2</b> — cross out "Fossils" and write <b>Tools and pottery</b>.', 'things people made or used', '第 1 頁第 2 題——劃掉 Fossils，改寫 Tools and pottery（人做的或用過的東西）。'],
+    ['<b>Page 2, Settlement 1</b> — change <b>F to T</b>, and erase "hunting, moving, and farming".', 'the rewrite line stays empty', '第 2 頁 Settlement 1——F 改成 T，並擦掉 hunting, moving, and farming（改寫那行留空）。'],
+    ['<b>Page 2, Settlement 2</b> — keep your F; change "little change" to <b>a big impact</b>.', 'then read the whole sentence once more', '第 2 頁 Settlement 2——F 保留；little change 改成 a big impact，然後整句重讀一次。'],
+    ['💡 <b>Page 2, Q6</b> — fix the spelling to <b>mastodons</b>, and change "use" to <b>used</b>.', 'history happened long ago', '第 2 頁第 6 題——拼字改成 mastodons，use 改成 used（歷史用過去式）。']
+  ];
+  const host = $('fixlist'), msg = $('fixmsg');
+  let done = 0;
+  FIXES.forEach(f => {
+    const lab = document.createElement('label');
+    const inp = document.createElement('input');
+    inp.type = 'checkbox';
+    const txt = document.createElement('span');
+    txt.className = 'txt';
+    txt.innerHTML = f[0] + '<span class="w">' + f[1] + '</span>' + Z(f[2]);
+    inp.addEventListener('change', () => {
+      lab.classList.toggle('done', inp.checked);
+      done += inp.checked ? 1 : -1;
+      if (done === FIXES.length){
+        setMsg(msg, '🎉 Workbook fixed! Take it back to your teacher with a smile.' + Z('作業本修好了！帶著微笑交回給老師吧。'), 'good');
+      } else {
+        msg.hidden = true;
+      }
+    });
+    lab.appendChild(inp); lab.appendChild(txt);
+    host.appendChild(lab);
+  });
+})();
+
+})();
+</script>
+</body>
+</html>
