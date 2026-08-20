@@ -638,12 +638,25 @@ body[data-mode="reallife"] .explain.tb{display:none}
 </style>
 
 <div class="wn-buddy">
-  <img src="img/skzoo-puppym.png" alt="Puppy M, your study buddy" width="150" height="150" loading="lazy">
+  <img id="wnBuddyImg" src="img/skzoo-puppym.png" alt="Your study buddy" width="150" height="150">
   <div class="t">
-    <em class="line">Round first, then calculate. You already own the hard half.</em>
-    <b class="sign">Your study buddy, Puppy M</b>
+    <em class="line">Blank is fine. Step one is always: make the numbers friendly.</em>
+    <b class="sign">Your study buddy, <span id="wnBuddyName">Puppy M</span></b>
   </div>
 </div>
+<script>
+/* study buddy: one of the eight, picked fresh on every visit */
+(function(){
+  var CREW = [["wolfchan","Wolf Chan"],["leebit","Leebit"],["dwaekki","Dwaekki"],["jiniret","Jiniret"],
+              ["hanquokka","Han Quokka"],["bbokari","BbokAri"],["puppym","Puppy M"],["foxiny","FoxI.Ny"]];
+  var pick = CREW[Math.floor(Math.random() * CREW.length)];
+  var img = document.getElementById("wnBuddyImg"), name = document.getElementById("wnBuddyName");
+  if (!img || !name) return;
+  img.src = "img/skzoo-" + pick[0] + ".png";
+  img.alt = pick[1] + ", your study buddy";
+  name.textContent = pick[1];
+})();
+</script>
 <footer class="hand foot">Round first, then calculate. You already have the hard part — rounding — down cold. See you next worksheet, William! 🚀<span class="zh">先四捨五入，再計算。最難的那部分——四捨五入——你早就很熟了。下一份作業見，William！</span></footer>
 
 </main>

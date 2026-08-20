@@ -717,12 +717,25 @@ html{scroll-behavior:smooth}
 </style>
 
 <div class="wn-buddy">
-  <img src="img/skzoo-puppym.png" alt="Puppy M, your study buddy" width="150" height="150" loading="lazy">
+  <img id="wnBuddyImg" src="img/skzoo-puppym.png" alt="Your study buddy" width="150" height="150">
   <div class="t">
     <em class="line">One habit fixed, seven spots gone. That is a good trade.</em>
-    <b class="sign">Your study buddy, Puppy M</b>
+    <b class="sign">Your study buddy, <span id="wnBuddyName">Puppy M</span></b>
   </div>
 </div>
+<script>
+/* study buddy: one of the eight, picked fresh on every visit */
+(function(){
+  var CREW = [["wolfchan","Wolf Chan"],["leebit","Leebit"],["dwaekki","Dwaekki"],["jiniret","Jiniret"],
+              ["hanquokka","Han Quokka"],["bbokari","BbokAri"],["puppym","Puppy M"],["foxiny","FoxI.Ny"]];
+  var pick = CREW[Math.floor(Math.random() * CREW.length)];
+  var img = document.getElementById("wnBuddyImg"), name = document.getElementById("wnBuddyName");
+  if (!img || !name) return;
+  img.src = "img/skzoo-" + pick[0] + ".png";
+  img.alt = pick[1] + ", your study buddy";
+  name.textContent = pick[1];
+})();
+</script>
 <p class="foot">Add it, then tidy it up. Same bottom before you compare. See you next time! — 8/18</p>
 </main>
 <script>
