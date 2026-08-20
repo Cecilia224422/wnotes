@@ -96,6 +96,12 @@ body:not(.zh-on) .modeline .zh{display:none}
 .bigidea{border-left:.35rem solid var(--accent);background:var(--accent-soft);border-radius:.6rem;padding:.9rem 1rem .9rem 1.1rem;margin:0 0 2.2rem;max-width:48rem;transition:background-color .3s,border-color .3s}
 .bigidea h3{margin:0 0 .35rem;font-size:1.1rem}
 .bigidea ol{margin:.5rem 0 0;padding-left:1.35rem}
+.wn-hi{display:flex;align-items:flex-start;gap:.7rem;margin:.7rem 0 1.1rem;max-width:44rem}
+.wn-hi img{width:3.2rem;height:3.2rem;flex:0 0 auto}
+.wn-hi .bubble{position:relative;background:#fff;border:1px solid var(--line2);border-radius:.9rem;padding:.6rem .9rem .5rem}
+.wn-hi .bubble::before{content:"";position:absolute;left:-.4rem;top:1rem;width:.75rem;height:.75rem;background:#fff;border-left:1px solid var(--line2);border-bottom:1px solid var(--line2);transform:rotate(45deg)}
+.wn-hi .say{margin:0;font-size:.95rem;line-height:1.45}
+.wn-hi .who{font-family:'Caveat',cursive;font-size:1.1rem;color:var(--pencil)}
 .bigidea .play{margin:.9rem 0 0}
 .bigidea .gate{animation:fadein .35s;margin:.9rem 0 0}
 .bigidea .gate>p{margin:0}
@@ -362,6 +368,15 @@ body.zh-on[data-mode="reallife"] .pill.auto::before{content:"🍎 Real-life vers
 <header class="top">
   <div class="hand date">8/11 · McGraw-Hill networks · The First Americans, Lesson 1</div>
   <h1>William's <mark>Correction</mark> Notes<span class="zh">William 的訂正筆記 — 第一批美洲人</span></h1>
+
+  <div class="wn-hi">
+    <img id="wnHiImg" src="img/skzoo-puppym.png" alt="Your study buddy" width="150" height="150">
+    <div class="bubble">
+      <p class="say">Hi William — grab a brush, we are digging today. I already peeked at Q4 and Q7, the two hardest questions on the whole page: <b>both yours</b>. So this should be a good one.<span class="zh">William 嗨——拿好刷子，今天要來挖東西。Q4 和 Q7 我先偷看了，那是整份最難的兩題：<b>兩題都是你的</b>。所以這次應該會很順。</span></p>
+      <span class="who" id="wnHiName">Puppy M</span>
+    </div>
+  </div>
+
   <p class="lead">Two pages of history, and <mark>7 of your 10 answers are right</mark>. Your cause-and-effect chains about Beringia are the hardest thing on the page — and you nailed both. Only <mark>3 spots</mark> need a fix, and all three come from the same habit: <mark>check before you write</mark>.
     <span class="zh">兩頁歷史，10 格答對 7 格。關於 Beringia 的因果鏈是整份最難的題型——兩題你都答對了。只有 3 個地方要修，而且三個都出自同一個習慣：寫之前先查證。</span></p>
 
@@ -698,11 +713,14 @@ body.zh-on[data-mode="reallife"] .pill.auto::before{content:"🍎 Real-life vers
   var CREW = [["wolfchan","Wolf Chan"],["leebit","Leebit"],["dwaekki","Dwaekki"],["jiniret","Jiniret"],
               ["hanquokka","Han Quokka"],["bbokari","BbokAri"],["puppym","Puppy M"],["foxiny","FoxI.Ny"]];
   var pick = CREW[Math.floor(Math.random() * CREW.length)];
-  var img = document.getElementById("wnBuddyImg"), name = document.getElementById("wnBuddyName");
-  if (!img || !name) return;
-  img.src = "img/skzoo-" + pick[0] + ".png";
-  img.alt = pick[1] + ", your study buddy";
-  name.textContent = pick[1];
+  /* same character greets him at the top and signs off at the bottom */
+  [["wnHiImg","wnHiName"],["wnBuddyImg","wnBuddyName"]].forEach(function(ids){
+    var img = document.getElementById(ids[0]), name = document.getElementById(ids[1]);
+    if (!img || !name) return;
+    img.src = "img/skzoo-" + pick[0] + ".png";
+    img.alt = pick[1] + ", your study buddy";
+    name.textContent = pick[1];
+  });
 })();
 </script>
 <footer class="hand foot">The First Americans · Lesson 1 · Guided Reading p.1–2<span class="zh">第一批美洲人 · 第 1 課 · Guided Reading 第 1–2 頁</span></footer>
@@ -1646,7 +1664,7 @@ choice('s3a4', {
       lab.classList.toggle('done', inp.checked);
       done += inp.checked ? 1 : -1;
       if (done === FIXES.length){
-        setMsg(msg, '🎉 Workbook fixed! Take it back to your teacher with a smile.' + Z('作業本修好了！帶著微笑交回給老師吧。'), 'good');
+        setMsg(msg, '🎉 Workbook fixed! Take it back with a smile — and your notebook just got one page thicker. <a href="index.html">📒 See how many you have now</a>.' + Z('作業本修好了！帶著微笑交回去吧——你的筆記本又厚了一頁。<a href="index.html">📒 看看現在有幾課了</a>。'), 'good');
       } else {
         msg.hidden = true;
       }
