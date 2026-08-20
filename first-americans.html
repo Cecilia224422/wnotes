@@ -411,13 +411,13 @@ body.zh-on[data-mode="reallife"] .pill.auto::before{content:"🍎 Real-life vers
 
   <div class="play ask">
     <span class="tag">🔎 You first</span>
-    <h4>The same thing went wrong all three times. What was it?<span class="zh">三次出錯的都是同一件事。是哪一件？</span></h4>
-    <p class="hint">Read those three lines again before you pick.<span class="zh">選之前，把上面那三行再讀一次。</span></p>
+    <h4>Before we walk through them — what actually happened?<span class="zh">在我們一題一題走之前——當時到底是怎樣？</span></h4>
+    <p class="hint">Pick the closest one. <mark>There is no wrong answer here</mark> — you were there, the page was not.<span class="zh">挑最接近的。這題沒有錯的答案——當時在場的是你，不是這頁。</span></p>
     <div id="bigask"></div>
   </div>
 
   <div class="gate" id="bigexp" hidden>
-    <p>Three times, the same half-second — the answer went onto the paper <mark>before</mark> you looked back at the text. Nothing here is a history problem; you know the history. Three checks, one for each spot:<span class="zh">三次，同一個半秒——答案先落到紙上，你才回頭看課文。這裡沒有一題是歷史問題，歷史你都懂。三個檢查，一個對一個：</span></p>
+    <p>Q4 and Q7 were the two hardest questions on the page — both Beringia cause-and-effect chains — and you got both right. Keep that next to you while you read these three checks, one for each spot:<span class="zh">Q4 和 Q7 是整份最難的兩題——兩條 Beringia 因果鏈——你兩題都對。讀下面這三個檢查的時候，把這件事放在旁邊。三個檢查，一個對一個：</span></p>
     <ol>
       <li>Before naming an artifact, ask: <b>did a person make or use it?</b><span class="zh">寫 artifact 之前先問：這是人做的或用過的嗎？</span></li>
       <li>Before writing <b>F</b>, point at the exact word the text disagrees with.<span class="zh">寫 F 之前，指出課文不同意的到底是哪個字。</span></li>
@@ -815,25 +815,108 @@ function choice(hostId, cfg){
   return { reset: build };
 }
 
+/* ---------- self-report widget ----------
+   No right answer. He was there and the page was not, so every option is
+   taken at face value and routed to the help that answer actually implies. */
+function branch(hostId, cfg){
+  const host = $(hostId);
+  const wrap = document.createElement('div');
+  wrap.className = 'choices';
+  const msg = document.createElement('div');
+  msg.className = 'msg'; msg.hidden = true;
+  const extra = document.createElement('div');
+  let settled = false;
+  cfg.opts.forEach(o => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'choice';
+    b.innerHTML = o.label[0] + Z(o.label[1]);
+    b.addEventListener('click', () => {
+      if (settled) return;
+      settled = true;
+      b.classList.add('ok');
+      [...wrap.children].forEach(x => { x.disabled = true; if (x !== b) x.classList.add('dim'); });
+      setMsg(msg, o.reply[0] + Z(o.reply[1]), 'good');
+      if (o.follow) followUp(o.follow); else if (cfg.pass) cfg.pass();
+    });
+    wrap.appendChild(b);
+  });
+  function followUp(f){
+    const box = document.createElement('div');
+    box.className = 'step';
+    box.innerHTML = '<p class="steplbl">' + f.lbl + '</p><p>' + f.q[0] + Z(f.q[1]) + '</p>';
+    const cw = document.createElement('div'); cw.className = 'choices';
+    const cm = document.createElement('div'); cm.className = 'msg'; cm.hidden = true;
+    let done = false, tries = 0;
+    f.opts.forEach(o => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'choice';
+      b.innerHTML = o.label[0] + Z(o.label[1]);
+      b.addEventListener('click', () => {
+        if (done) return;
+        if (o.again){
+          tries++;
+          if (tries < 2){
+            b.classList.add('no');
+            setMsg(cm, o.again[0] + Z(o.again[1]), 'warn');
+            return;
+          }
+          done = true;
+          [...cw.children].forEach(x => { x.disabled = true; });
+          setMsg(cm, f.tell[0] + Z(f.tell[1]), 'bad');
+          if (cfg.pass) cfg.pass();
+          return;
+        }
+        done = true; b.classList.add('ok');
+        [...cw.children].forEach(x => x.disabled = true);
+        setMsg(cm, o.say[0] + Z(o.say[1]), 'good');
+        if (cfg.pass) cfg.pass();
+      });
+      cw.appendChild(b);
+    });
+    box.appendChild(cw); box.appendChild(cm); extra.appendChild(box);
+  }
+  host.appendChild(wrap); host.appendChild(msg); host.appendChild(extra);
+}
+
 /* ================= BIG IDEA ================= */
-/* he names the habit before the page does — same rule as every other block */
-choice('bigask', {
+branch('bigask', {
   opts: [
-    ['I forgot the history', '我把歷史內容忘了'],
-    ['I wrote the answer before I checked it', '我還沒查證，就先把答案寫下去了'],
-    ['The questions were too hard', '題目太難了']
+    {
+      label: ['I forgot some of the history', '有些歷史內容我忘了'],
+      reply: ['Fair enough — and that one is worth fixing first, because a single word did most of the damage. Check it now:', '很合理——而且這個要先補，因為傷害最大的就是一個字。現在確認一下：'],
+      follow: {
+        lbl: 'Quick check',
+        q: ['A <b>fossil</b> is…', '<b>fossil</b>（化石）是……'],
+        opts: [
+          { label: ['something a person made or used', '人做的或用過的東西'],
+            again: ['Who makes bones, teeth, and leaf prints — a person, or nature?', '骨頭、牙齒、葉子印是誰做的——人，還是大自然？'] },
+          { label: ['what is left of an ancient plant or animal', '古代動植物留下來的東西'],
+            say: ['That is the word that cost you Q2 — and now it is yours. The three checks below cover the other two spots.', '這就是讓你 Q2 失分的那個字——現在它是你的了。下面三個檢查管另外兩個地方。'] }
+        ],
+        tell: ['A fossil is what is left of an ancient plant or animal. Nature made it — so a fossil is never an artifact.', 'fossil 是古代動植物留下來的東西。大自然做的——所以化石永遠不是 artifact。']
+      }
+    },
+    {
+      label: ['Some of it was too hard', '有些地方對我來說太難'],
+      reply: ['Then we start at the hard part instead of the beginning. Which one was it?', '那我們就從難的地方開始，不從頭走。是哪一塊？'],
+      follow: {
+        lbl: 'Which part',
+        q: ['Pick the one that felt hardest — that section walks it slowly, one step at a time.', '挑感覺最難的那一塊——那一段會走得很慢，一步一步來。'],
+        opts: [
+          { label: ['The words — artifact, fossil, nomadic', '生字——artifact、fossil、nomadic'],
+            say: ['Then start at section <a href="#s1">1</a>. It builds the artifact rule one word at a time.', '那就從第 <a href="#s1">1</a> 段開始，它會一個字一個字把 artifact 的規則建起來。'] },
+          { label: ['Deciding True or False', '判斷 True 還是 False'],
+            say: ['Then start at section <a href="#s2">2</a>. It hands you a rule that decides it for you.', '那就從第 <a href="#s2">2</a> 段開始，它會給你一條替你決定的規則。'] },
+          { label: ['Rewriting a false sentence', '把假的句子改寫成真的'],
+            say: ['Then start at section <a href="#s3">3</a>. That is the one with the flip machine.', '那就從第 <a href="#s3">3</a> 段開始，翻轉機在那裡。'] }
+        ]
+      }
+    },
+    {
+      label: ['I wrote the answer before I checked it', '我還沒查證，就先把答案寫下去了'],
+      reply: ['That one explains the most of them — especially Settlement 2, where your F was already right and only the rewrite slipped. Here is what stops it:', '這個能解釋掉最多題——尤其 Settlement 2，你的 F 本來就對了，只有改寫那一步滑掉。下面就是擋住它的方法：']
+    }
   ],
-  ans: 1,
-  good: ['That is it — and you found it yourself, which is the whole point. Here is what it costs you, and the three checks that stop it.', '就是這個——而且是你自己找出來的，這才是重點。下面是它讓你付出的代價，還有擋住它的三個檢查。'],
-  h1: ['Look at Q4 and Q7 — the two hardest questions on the page, and you got both right. So was it the history, or was it the hurry?', '看 Q4 和 Q7——整份最難的兩題，你兩題都對。所以問題出在歷史，還是出在急？'],
-  h2: ['All three times, the answer was already on the paper before you went back to the text. Which option says that?', '三次都一樣：答案已經寫在紙上了，你才回去看課文。哪個選項在講這件事？'],
-  tell: ['You wrote the answer before you checked it — three times, the same half-second.', '你在查證之前就把答案寫下去了——三次，同一個半秒。'],
-  retest: {
-    q: ['You finish a math problem, write 47, and move on without re-reading the question. Same habit, or a different one?', '你算完一題數學，寫下 47，沒重讀題目就跳下一題。這是同一個習慣，還是另一個？'],
-    opts: [['Same habit — answer first, check never', '同一個——先寫答案，永遠沒檢查'], ['A different one — math is not history', '另一個——數學又不是歷史']],
-    ans: 0,
-    why: ['Same habit. It follows you from subject to subject, which is exactly why it is worth fixing once.', '同一個。它會跟著你從一科跑到另一科，所以才值得一次修好。']
-  },
   pass: () => openGate('bigexp')
 });
 
