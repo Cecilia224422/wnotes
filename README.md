@@ -18,7 +18,7 @@ William 的互動式訂正筆記，發佈在 GitHub Pages 供他隨時複習。
 | `robots.txt` | 擋搜尋引擎收錄 |
 | `.nojekyll` | 讓 GitHub Pages 直接吐靜態檔，不跑 Jekyll |
 
-每一課都是**單一自足的 HTML**：CSS、JS 都寫在檔案裡，沒有外部相依（Google Fonts 除外），也沒有圖片檔。
+每一課都是**單一自足的 HTML**：CSS、JS 都寫在檔案裡，沒有外部相依（Google Fonts 除外）。作業剪貼一律用 CSS 重畫，不放作業照片；唯一的圖片是 `img/` 裡的 8 隻 SKZOO 學習夥伴。
 
 ## 新增一課的流程
 
