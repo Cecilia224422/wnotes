@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>William's Correction Notes — Fractions: compare, add, subtract (8/18)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Huninn&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --desk:#E4E5E8; --paper:#FAFAFA; --rule:#D9DCE1; --margin:#F0A6B0;
+  --ink:#2E3037; --pencil:#6B6E76; --gray:#9C9EA5;
+  --line:#E3E4E8; --line2:#D9DADF; --soft:#F4F4F6; --soft2:#F1F1F3;
+  --red:#E2463B; --green:#2FA36B; --hl:#FFF0A0;
+  --blue:#3E6FD9; --blue-soft:#E8EEFC; --blue-deep:#2B52AE;
+  --orange:#F08A2C; --orange-soft:#FFF1E1; --orange-deep:#C4680F;
+  --accent:var(--blue); --accent-soft:var(--blue-soft); --accent-deep:var(--blue-deep);
+  --rule-h:1.875rem;
+  --zh-font:'Huninn','Zen Maru Gothic','PingFang TC','Noto Sans TC',sans-serif;
+  --hand:'Caveat','Comic Sans MS',cursive;
+}
+body[data-mode="life"]{--accent:var(--orange);--accent-soft:var(--orange-soft);--accent-deep:var(--orange-deep)}
+html{font-size:clamp(16px, 0.6vw + 13.3px, 23px);-webkit-text-size-adjust:100%}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--desk);color:var(--ink);font-family:'Fredoka',var(--zh-font),system-ui,sans-serif;line-height:1.5;font-weight:400}
+mark{background:var(--hl);color:inherit;padding:0 .15em;border-radius:.15em}
+p{margin:.5rem 0}
+h1,h2,h3,h4{line-height:1.2}
+button{font-family:inherit}
+.sr{position:absolute;left:-999rem}
+
+/* ---------- Chinese layer ---------- */
+.zh,.zhi{color:var(--pencil);font-family:var(--zh-font);font-size:.88em;font-weight:400}
+.zh{display:block;margin-top:.1em;line-height:1.45}
+.zhi{display:inline;margin-left:.35em}
+body:not(.zh-on) .zh,body:not(.zh-on) .zhi{display:none!important}
+
+/* ---------- Notebook paper ---------- */
+.notebook{position:relative;width:100%;margin:0 auto;min-height:100vh;background-color:var(--paper);
+  background-image:repeating-linear-gradient(to bottom,transparent 0,transparent calc(var(--rule-h) - 1px),var(--rule) calc(var(--rule-h) - 1px),var(--rule) var(--rule-h));
+  background-position:0 .5rem;box-shadow:0 .6rem 2.2rem rgba(40,42,50,.10),0 0 0 1px rgba(0,0,0,.03);
+  padding:1.4rem 1.1rem 3rem 3.7rem}
+@media(min-width:1200px){.notebook{max-width:80vw;margin:1.6rem auto;border-radius:.3rem}}
+.notebook::before{content:'';position:absolute;top:0;bottom:0;left:2.875rem;width:2px;background:var(--margin);opacity:.9}
+.notebook::after{content:'';position:absolute;top:0;bottom:0;left:.55rem;width:1.1rem;pointer-events:none;
+  background:radial-gradient(circle at 50% 50%,#D2D4DA 0 .3rem,#E9EAEE .32rem .38rem,transparent .42rem) 0 1.4rem/1.1rem 4.8rem repeat-y}
+
+/* ---------- Fractions ---------- */
+.fr{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1;font-size:.8em;margin:0 .15em;font-weight:500;position:relative;top:-.08em}
+.fr>span:first-child{border-bottom:2px solid currentColor;padding:0 .18em .1em}
+.fr>span:last-child{padding:.1em .18em 0}
+.big .fr{font-size:1.5em}
+
+/* ---------- Header ---------- */
+.hand{font-family:var(--hand);color:var(--pencil);font-size:1.25rem;font-weight:600}
+h1{font-size:clamp(1.7rem,1.2rem + 2vw,2.4rem);margin:.2rem 0 .6rem;font-weight:700;letter-spacing:-.01em}
+h1 mark{padding:0 .3rem;border-radius:.3rem}
+.intro{font-size:1.05rem;max-width:44rem}
+.vocab{display:flex;flex-wrap:wrap;gap:.5rem;margin:.9rem 0;max-width:50rem}
+.vcard{background:#fff;border:1px solid var(--line);border-radius:.55rem;padding:.45rem .65rem;font-size:.85rem;flex:1 1 12rem;max-width:16rem;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.vcard b{display:block;color:var(--ink);font-weight:600;font-size:.95rem}
+.vcard span{color:var(--pencil)}
+.scores{display:flex;gap:.7rem;max-width:40rem;margin:1rem 0 .4rem}
+.score{flex:1 1 0;background:#fff;border:1px solid var(--line);border-radius:.7rem;padding:.7rem .5rem .55rem;text-align:center;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.score b{display:block;font-size:1.7rem;line-height:1.1;font-weight:700}
+.score span{display:block;font-size:.82rem;color:var(--pencil)}
+.score small{display:block;font-size:.72rem;color:var(--gray);margin-top:.15rem}
+.score.good b{color:var(--green)}
+.score.fix b{color:var(--red)}
+
+/* ---------- Sticky toolbar ---------- */
+.toolbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:.6rem;flex-wrap:wrap;
+  background:rgba(250,250,250,.94);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-bottom:1px solid var(--line);
+  margin:1.2rem -1.1rem 0 -1.1rem;padding:.55rem 1.1rem}
+.seg{display:inline-flex;background:var(--soft2);border:1px solid var(--line2);border-radius:999px;padding:.2rem;gap:.15rem}
+.segbtn{border:0;background:transparent;border-radius:999px;padding:.4rem .8rem;font-weight:600;font-size:.88rem;color:var(--pencil);cursor:pointer;transition:background .3s,color .3s;white-space:nowrap}
+.segbtn.active{color:#fff}
+.segbtn[data-mode="textbook"].active{background:var(--blue)}
+.segbtn[data-mode="life"].active{background:var(--orange)}
+.segbtn:focus-visible{outline:3px solid var(--hl)}
+.switch{display:inline-flex;align-items:center;gap:.45rem;border:1px solid var(--line2);background:#fff;border-radius:999px;padding:.25rem .7rem .25rem .3rem;cursor:pointer;font-size:.88rem;font-weight:600;color:var(--pencil);font-family:var(--zh-font)}
+.switch .track{width:2.3rem;height:1.3rem;border-radius:999px;background:#CFD1D7;position:relative;transition:background .3s}
+.switch .track::after{content:'';position:absolute;top:.15rem;left:.15rem;width:1rem;height:1rem;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .25s}
+.switch[aria-checked="true"] .track{background:var(--accent)}
+.switch[aria-checked="true"] .track::after{transform:translateX(1rem)}
+.switch[aria-checked="true"]{color:var(--ink);border-color:var(--accent)}
+.modeline{font-size:.85rem;color:var(--pencil);margin:.5rem 0 0}
+@media(max-width:600px){
+  .toolbar{gap:.4rem;padding:.45rem 1.1rem .45rem .9rem;margin-left:-.9rem}
+  .seg{flex:1 1 auto;min-width:0}
+  .segbtn{flex:1;padding:.38rem .4rem;font-size:.82rem;text-align:center}
+  .segbtn .vw{display:none}
+  .switch{padding:.2rem .5rem .2rem .22rem;font-size:.82rem;gap:.3rem;flex:none}
+  .switch .track{width:2rem;height:1.15rem}
+  .switch .track::after{width:.85rem;height:.85rem}
+  .switch[aria-checked="true"] .track::after{transform:translateX(.85rem)}
+}
+
+.jump{display:flex;flex-wrap:wrap;gap:.45rem;margin:.9rem 0 .2rem;align-items:center}
+.jump a{display:inline-flex;width:1.9rem;height:1.9rem;border-radius:50%;border:1px solid var(--line2);background:#fff;align-items:center;justify-content:center;text-decoration:none;color:var(--ink);font-size:.9rem;font-weight:600;transition:border-color .2s}
+.jump a.wide{width:auto;padding:0 .6rem;border-radius:999px;font-size:.85rem}
+@media(hover:hover){.jump a:hover{border-color:var(--accent);color:var(--accent)}}
+.jump .lbl{font-size:.8rem;color:var(--gray);margin-right:.2rem}
+
+/* ---------- Sections ---------- */
+.sec{margin:2.6rem 0 0;scroll-margin-top:5.2rem}
+.sec h2{display:flex;align-items:flex-start;gap:.65rem;font-size:1.4rem;margin:0 0 .3rem;font-weight:700}
+.sec h2 .zh{font-size:.62em;font-weight:400}
+.num{display:inline-flex;flex:none;width:1.9rem;height:1.9rem;border-radius:50%;background:var(--ink);color:#fff;align-items:center;justify-content:center;font-size:1rem;font-weight:600;margin-top:.1rem}
+.num.emoji{background:transparent;font-size:1.45rem;width:auto;height:auto;margin-top:0}
+.lead{margin:.3rem 0 .6rem;max-width:44rem}
+.cause{font-size:.95rem;background:#fff;border:1px solid var(--line);border-left:.3rem solid var(--gray);border-radius:.4rem;padding:.55rem .8rem;margin:.6rem 0;max-width:44rem}
+.cause b{font-weight:600}
+
+/* ---------- Cutout ---------- */
+.cutout{position:relative;background:#fff;border:1px solid var(--line);border-radius:.4rem;padding:1.15rem 1rem 1.4rem;transform:rotate(-.6deg);box-shadow:0 2px 8px rgba(0,0,0,.07);margin:1.2rem 0 1.5rem;max-width:44rem}
+.cutout::before{content:'';position:absolute;top:-.65rem;left:50%;width:6rem;height:1.3rem;transform:translateX(-50%) rotate(1.2deg);background:rgba(255,240,160,.72);border-left:1px dashed rgba(0,0,0,.08);border-right:1px dashed rgba(0,0,0,.08);box-shadow:0 1px 2px rgba(0,0,0,.06)}
+.cutout .q{margin:.2rem 0 .4rem}
+.qnum{display:inline-flex;flex:none;width:1.5rem;height:1.5rem;border-radius:50%;background:#BFC3CC;color:#fff;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;margin-right:.45rem;vertical-align:middle}
+.qnum.letter{background:transparent;color:#7DBF8E;width:auto;font-size:.95rem;margin-right:.3rem}
+.hw{font-family:var(--hand);color:var(--pencil);font-size:1.35em;font-weight:600;text-decoration:underline;text-decoration-color:#B9BBC2;text-underline-offset:.15em}
+.hw .fr{font-size:.9em}
+.hw .fr>span:first-child{border-bottom-width:2px}
+.wrong{display:inline-block;padding:.05em .4em .1em;border:2px solid var(--red);border-radius:50%;margin:0 .1em}
+.redpen{font-family:var(--hand);color:var(--red);font-size:1.3em;font-weight:600;margin-left:.35rem}
+.redpen .fr>span:first-child{border-bottom-color:var(--red)}
+.pageref{position:absolute;right:.75rem;bottom:.35rem;font-size:.7rem;color:var(--gray);letter-spacing:.02em}
+.spots{list-style:none;margin:.4rem 0 0;padding:0}
+.spots li{display:flex;flex-wrap:wrap;align-items:center;gap:.3rem .6rem;padding:.45rem 0;border-top:1px dashed var(--line)}
+.spots li:first-child{border-top:0}
+.spots .ref{font-size:.72rem;color:var(--gray);min-width:5.2rem}
+.spots .ok{font-size:.95rem}
+.okline{display:inline-block;background:#E6F6EE;color:#1E6E48;border-radius:.4rem;padding:.2rem .6rem;font-size:.85rem;margin:.2rem 0 .5rem}
+.cutout.second{margin-top:1.2rem;transform:rotate(.5deg)}
+
+/* ---------- Explain boxes ---------- */
+.explain{position:relative;border-left:.35rem solid var(--accent);background:var(--accent-soft);border-radius:.45rem;padding:1rem 1rem .8rem 1.1rem;margin:1rem 0;max-width:44rem;animation:fade .35s ease;transition:background .3s,border-color .3s}
+.explain .tag{position:absolute;top:-.75rem;right:.8rem;font-size:.7rem;background:#fff;border:1px solid var(--accent);color:var(--accent);border-radius:999px;padding:.12rem .6rem;font-weight:600;white-space:nowrap}
+.explain ul{margin:.25rem 0 0;padding-left:1.2rem}
+.explain.textbook ul{list-style:square}
+.explain.life ul{list-style:disc}
+.explain li{margin:.45rem 0}
+.explain li::marker{color:var(--accent)}
+.explain.textbook{display:none}
+body[data-mode="textbook"] .explain.textbook{display:block}
+.explain.life{display:none}
+body[data-mode="life"] .explain.life{display:block}
+.explain .sub{margin:.2rem 0 .3rem;font-weight:600}
+
+/* ---------- Model answer ---------- */
+.model{background:#fff;border:2px dashed var(--line2);border-radius:.5rem;padding:.6rem .9rem;margin:.8rem 0;max-width:44rem;font-size:1.02rem}
+.model .lbl{display:block;font-size:.7rem;color:var(--gray);letter-spacing:.04em;text-transform:uppercase;margin-bottom:.15rem}
+.model .ans{font-weight:600}
+
+/* ---------- Play (Try it) ---------- */
+.play{background:#fff;border:2px dashed var(--line2);border-radius:.7rem;padding:1rem 1rem 1rem;margin:1rem 0;max-width:44rem}
+.play h4{margin:0 0 .55rem;font-size:1.05rem;display:flex;align-items:center;gap:.55rem;font-weight:600;flex-wrap:wrap}
+.play h4 .try{font-size:.65rem;background:var(--accent);color:#fff;border-radius:999px;padding:.18rem .55rem;letter-spacing:.03em;transition:background .3s}
+.play .hint{font-size:.9rem;color:var(--pencil);margin:.2rem 0 .6rem}
+.step{margin:.7rem 0 0;padding-top:.6rem;border-top:1px dashed var(--line)}
+.step:first-of-type{border-top:0;padding-top:0}
+.hidden{display:none!important}
+.step .slabel{font-weight:600;margin:0 0 .35rem}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.4rem 0}
+
+.btn{font:inherit;font-weight:600;border:0;border-radius:.6rem;background:var(--accent);color:#fff;padding:.5rem .95rem;box-shadow:0 .25rem 0 var(--accent-deep);cursor:pointer;transition:transform .08s,box-shadow .08s,background .3s,filter .15s;line-height:1.2}
+.btn:active{transform:translateY(.2rem);box-shadow:0 .05rem 0 var(--accent-deep)}
+.btn.alt{background:#fff;color:var(--ink);border:1px solid var(--line2);box-shadow:0 .25rem 0 var(--line2)}
+.btn.sm{padding:.38rem .7rem;font-size:.9rem}
+.btn:disabled{opacity:.45;cursor:default;transform:none}
+.btn:focus-visible{outline:3px solid var(--hl);outline-offset:2px}
+@media(hover:hover){.btn:not(:disabled):hover{filter:brightness(1.07)}}
+
+.opts{display:flex;flex-wrap:wrap;gap:.5rem;margin:.45rem 0}
+.opt{font:inherit;font-size:1rem;background:#fff;border:2px solid var(--line2);border-radius:.6rem;padding:.45rem .95rem;cursor:pointer;color:var(--ink);transition:border-color .2s,background .2s}
+@media(hover:hover){.opt:not(:disabled):hover{border-color:var(--accent)}}
+.opt:focus-visible{outline:3px solid var(--hl)}
+.opt.good{border-color:var(--green);background:#E6F6EE}
+.opt.bad{border-color:var(--red);background:#FDEAE8}
+.opt.done{border-color:var(--green);background:#E6F6EE}
+.opt:disabled{cursor:default}
+.opt:disabled:not(.good):not(.bad):not(.done){opacity:.55}
+
+.msg{margin-top:.7rem;padding:.6rem .85rem;border-radius:.5rem;background:var(--soft);border:1px solid var(--line);font-size:.95rem;color:var(--ink);transition:background .25s}
+.msg:empty{display:none}
+.msg.good{background:#E6F6EE;border-color:#B9E3CB;color:#1E6E48}
+.msg.bad{background:#FDEAE8;border-color:#F5BDB7;color:#A83128}
+.msg.warn{background:#FFF8D6;border-color:#F2E29A;color:#7A6300}
+.msg .zhi,.msg .zh{color:inherit;opacity:.8}
+
+/* bars */
+.barwrap{margin:.5rem 0}
+.barlab{display:flex;justify-content:space-between;align-items:baseline;max-width:30rem;font-size:.95rem;margin-bottom:.2rem}
+.bar{display:flex;width:100%;max-width:30rem;height:2.1rem;border:2px solid var(--ink);border-radius:.35rem;overflow:hidden;background:#fff}
+.bar .cell{flex:1;border-left:1px solid #C9CBD1;transition:background .25s}
+.bar .cell:first-child{border-left:0}
+.bar .cell.on{background:var(--accent)}
+.bar .cell.gb{border-left:2px solid var(--ink)}
+.bar .cell.gone{background:repeating-linear-gradient(45deg,#fff 0 .25rem,#F1F1F3 .25rem .5rem)}
+.bar.pop{animation:pop .35s ease}
+.bar .cell.click{cursor:pointer}
+.bar .cell.miss{background:#FDEAE8}
+/* pies */
+.pies{display:flex;gap:1.2rem;flex-wrap:wrap;margin:.4rem 0;max-width:34rem}
+.pie{flex:1 1 9rem;max-width:13rem;text-align:center}
+.pie svg{width:100%;max-width:9rem;height:auto;display:block;margin:0 auto}
+.slice{stroke:var(--ink);stroke-width:1.3;fill:#fff;transition:fill .3s}
+.slice.on{fill:var(--accent)}
+.slice.miss{fill:#FDEAE8;stroke:var(--red);stroke-dasharray:2.5 2}
+.pie .cap{font-size:.95rem;margin-top:.25rem}
+.pie .cap b{font-weight:600}
+.missl{display:none;color:var(--red);font-weight:600;font-size:.9rem}
+.pies.show .missl{display:block}
+/* simplify machine */
+.chips{display:flex;flex-wrap:wrap;gap:.45rem;margin:.4rem 0 .6rem}
+.chip{font:inherit;font-size:.95rem;background:#fff;border:2px solid var(--line2);border-radius:.6rem;padding:.3rem .7rem;cursor:pointer;color:var(--ink);display:inline-flex;align-items:center;gap:.25rem}
+.chip.cur{border-color:var(--accent);background:var(--accent-soft)}
+.chip.done{border-color:var(--green);background:#E6F6EE}
+.chip.done::after{content:'✓';color:var(--green);font-weight:700;margin-left:.15rem}
+@media(hover:hover){.chip:hover{border-color:var(--accent)}}
+.machine{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin:.4rem 0}
+.machine .now{font-size:2.2rem;font-weight:600;min-width:3.5rem;text-align:center}
+.machine .now .fr{font-size:1em;margin:0}
+.machine .now.pop{animation:pop .35s ease}
+.trail{font-size:.95rem;color:var(--pencil);margin:.3rem 0 0;min-height:1.2rem}
+.trail b{color:var(--ink)}
+.divbtns{display:flex;flex-wrap:wrap;gap:.45rem;margin:.4rem 0}
+/* counter */
+.counter{font-size:1.6rem;font-weight:600;margin:.3rem 0}
+.counter .fr{font-size:1em}
+/* quick fire */
+.qf{margin-top:.6rem;padding-top:.6rem;border-top:1px dashed var(--line)}
+.qf .qfq{margin:.55rem 0 .2rem;font-weight:600}
+
+/* ---------- Tip ---------- */
+.tiplist{margin:.4rem 0 0;padding-left:1.2rem;max-width:44rem}
+.tiplist li{margin:.55rem 0}
+.tiplist li::marker{color:var(--accent)}
+
+/* ---------- Quiz ---------- */
+.quiz{background:#fff;border:2px dashed var(--line2);border-radius:.7rem;padding:1rem;margin:1rem 0;max-width:44rem}
+.dots{display:flex;gap:.35rem;margin-bottom:.6rem;flex-wrap:wrap}
+.dot{width:.7rem;height:.7rem;border-radius:50%;background:var(--line2)}
+.dot.cur{background:var(--accent);transform:scale(1.25)}
+.dot.ok{background:var(--green)}
+.dot.no{background:var(--red)}
+.qq{font-weight:600;font-size:1.08rem;margin:.2rem 0 .5rem}
+.quiz .opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:.5rem}
+.quiz .opt{text-align:left;padding:.55rem .9rem}
+.quiz .opt .fr{font-size:1em}
+.qres{text-align:center;padding:.6rem 0}
+.stars{font-size:2rem;letter-spacing:.15em;margin:.2rem 0}
+.qres b{font-size:1.4rem;display:block}
+
+/* ---------- Checklist ---------- */
+.checks{list-style:none;padding:0;margin:.6rem 0;max-width:44rem}
+.checks li{display:flex;align-items:flex-start;gap:.6rem;padding:.45rem .2rem;border-bottom:1px dashed var(--line)}
+.checks input{position:absolute;opacity:0;width:0;height:0}
+.checks label{display:flex;align-items:flex-start;gap:.6rem;cursor:pointer;width:100%}
+.checks .box{flex:none;width:1.3rem;height:1.3rem;border:2px solid var(--line2);border-radius:.35rem;margin-top:.15rem;display:inline-flex;align-items:center;justify-content:center;background:#fff;color:#fff;font-size:.9rem;transition:background .2s,border-color .2s}
+.checks input:checked+label .box{background:var(--green);border-color:var(--green)}
+.checks input:checked+label .box::after{content:'✓';font-weight:700}
+.checks input:checked+label .txt{text-decoration:line-through;color:var(--gray)}
+.checks input:focus-visible+label .box{outline:3px solid var(--hl)}
+.checks .ref{font-size:.72rem;color:var(--gray);display:block}
+.done-banner{display:none;background:#E6F6EE;border:1px solid #B9E3CB;color:#1E6E48;border-radius:.6rem;padding:.7rem 1rem;font-weight:600;margin:.6rem 0;max-width:44rem;animation:pop .4s ease}
+.done-banner.show{display:block}
+.progress{font-size:.85rem;color:var(--pencil)}
+
+.foot{margin:3rem 0 0;font-family:var(--hand);color:var(--pencil);font-size:1.4rem;font-weight:600}
+
+@keyframes pop{0%{transform:scale(1)}45%{transform:scale(1.08)}100%{transform:scale(1)}}
+@keyframes fade{from{opacity:0;transform:translateY(.2rem)}to{opacity:1;transform:none}}
+.pop{animation:pop .35s ease}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+</head>
+<body data-mode="textbook">
+<style>
+.wn-back{position:fixed;right:.8rem;bottom:.8rem;z-index:999;display:inline-flex;align-items:center;gap:.3rem;
+ background:#fff;color:#2E3037;border:1px solid #D9DADF;border-radius:999px;padding:.4rem .8rem;
+ font-family:'Fredoka',system-ui,sans-serif;font-size:.85rem;font-weight:600;text-decoration:none;
+ box-shadow:0 2px 8px rgba(0,0,0,.14)}
+.wn-back:hover{border-color:#2E3037}
+@media print{.wn-back{display:none}}
+</style>
+<a href="index.html" class="wn-back" aria-label="Back to the index">📒 Index</a>
+
+<main class="notebook">
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="hand">8/18 · Math in Focus 4A · Chapter 3 · Comparing, adding &amp; subtracting like fractions · pages 251–258</div>
+  <h1>William's <mark>Correction Notes</mark></h1>
+  <p class="intro">8 pages this time — and your adding and subtracting is solid: <mark>15 of 16</mark> calculations are right. Most of the fixes are <em>one</em> habit: writing the answer in <mark>simplest form</mark>. Fix one habit, fix 7 spots at once!
+    <span class="zh">這次 8 頁。你的分數加減法很穩：16 題計算對了 15 題。大部分要改的地方其實是「同一個習慣」：把答案寫成最簡分數。改好一個習慣，一次修好 7 個地方！</span></p>
+
+  <div class="vocab" aria-label="Word cards">
+    <div class="vcard"><b>like fractions</b><span>fractions with the same bottom number (denominator)</span><span class="zh">同分母分數：分母一樣的分數</span></div>
+    <div class="vcard"><b>numerator / denominator</b><span>the top number / the bottom number</span><span class="zh">分子／分母：上面的數／下面的數</span></div>
+    <div class="vcard"><b>equivalent fractions</b><span>the same amount, written with different numbers: <span class="fr">1/2</span> = <span class="fr">4/8</span></span><span class="zh">等值分數：一樣多，只是數字不同</span></div>
+    <div class="vcard"><b>simplest form</b><span>the top and bottom can't both be divided by the same number any more</span><span class="zh">最簡分數：分子和分母不能再同時除以同一個數</span></div>
+    <div class="vcard"><b>common denominator</b><span>one bottom number that works for both fractions</span><span class="zh">公分母：兩個分數都能用的同一個分母</span></div>
+    <div class="vcard"><b>benchmark</b><span>a friendly fraction you compare with, like <span class="fr">1/2</span> or 1</span><span class="zh">基準分數：用來比較的好朋友，像 1/2 或 1</span></div>
+  </div>
+
+  <div class="scores">
+    <div class="score"><b>8</b><span>pages</span><small>251–258</small><span class="zh">頁</span></div>
+    <div class="score good"><b>67%</b><span>correct</span><small>20 of 30 answers</small><span class="zh">答對</span></div>
+    <div class="score fix"><b>10</b><span>spots to fix</span><small>7 are the same habit</small><span class="zh">要訂正的地方（7 個是同一個習慣）</span></div>
+  </div>
+</header>
+
+<!-- ================= TOOLBAR ================= -->
+<div class="toolbar">
+  <div class="seg" role="group" aria-label="Choose version">
+    <button type="button" class="segbtn active" data-mode="textbook" id="btnTextbook">📘 Textbook<span class="vw"> version</span></button>
+    <button type="button" class="segbtn" data-mode="life" id="btnLife">🍎 Real-life<span class="vw"> version</span></button>
+  </div>
+  <button type="button" class="switch" id="zhToggle" role="switch" aria-checked="false"><span class="track"></span>中文</button>
+</div>
+<p class="modeline" id="modeline">📘 Definitions and steps, the way the book says them — so you can write the answer the book wants.</p>
+
+<nav class="jump" aria-label="Jump to">
+  <span class="lbl">Jump:</span>
+  <a href="#s1">1</a><a href="#s2">2</a><a href="#s3">3</a><a href="#s4">4</a>
+  <a href="#tip" class="wide">💡 Tip</a><a href="#quiz" class="wide">🎯 Quiz</a><a href="#list" class="wide">✍️ List</a>
+</nav>
+
+<!-- ================= SECTION 1 ================= -->
+<section class="sec" id="s1">
+  <h2><span class="num">1</span><span>Same bottom first<span class="zh">先把分母變一樣</span></span></h2>
+  <p class="lead">You made equivalent fractions — good start! But <span class="fr">4/6</span> and <span class="fr">6/8</span> have <mark>different bottoms</mark>, so you still couldn't compare them.
+    <span class="zh">你有做等值分數，開始得很好！但是 4/6 和 6/8 的分母不一樣，所以還是沒辦法比較。</span></p>
+
+  <div class="cutout">
+    <p class="q"><span class="qnum">2</span>Which is greater, <span class="fr">3/4</span> or <span class="fr">2/3</span>?</p>
+    <p><span class="hw"><span class="fr">2/3</span> ×2 = <span class="fr">4/6</span>&nbsp; and &nbsp;<span class="fr">3/4</span> ×2 = <span class="fr">6/8</span></span></p>
+    <p><span class="wrong"><span class="hw"><span class="fr">2/3</span></span></span> is greater than <span class="hw"><span class="fr">3/4</span></span>.
+      <span class="redpen">✗ &nbsp;<span class="fr">3/4</span> = <span class="fr">9/12</span>, <span class="fr">2/3</span> = <span class="fr">8/12</span> → <span class="fr">3/4</span> is greater</span></p>
+    <span class="pageref">page 251 · Q2</span>
+  </div>
+
+  <div class="cause"><b>Why it went wrong:</b> ×2 gave two new bottoms, 6 and 8. Different bottoms = different-size pieces — you can't compare the tops yet. You needed <b>one</b> bottom for both: 12.
+    <span class="zh">為什麼錯：兩邊都 ×2 之後，分母變成 6 和 8，還是不一樣。分母不同就是「每一塊的大小不同」，不能只看分子。要找一個兩邊都能用的分母：12。</span></div>
+
+  <div class="explain textbook">
+    <span class="tag">📘 Textbook version<span class="zhi">· 課本理論版</span></span>
+    <ul>
+      <li><mark>Equivalent fractions</mark> show the same amount with different numbers. You make one by multiplying the top <em>and</em> the bottom by the <mark>same number</mark>.
+        <span class="zh">等值分數：一樣多，只是數字不同。做法是分子和分母乘以同一個數。</span></li>
+      <li>To compare two fractions, first make the <mark>denominators the same</mark>. Then compare the numerators.
+        <span class="zh">要比較兩個分數，先把分母變一樣，再比分子。</span></li>
+      <li>Find a <mark>common denominator</mark>: a common multiple of 4 and 3. 4, 8, <b>12</b>… and 3, 6, 9, <b>12</b>… → 12! (Common multiples — from last week.)
+        <span class="zh">找公分母：4 和 3 的公倍數。4、8、12…和 3、6、9、12… → 12！（上週學的公倍數。）</span></li>
+      <li><span class="fr">3/4</span> = <span class="fr">9/12</span> (×3 on top and bottom). &nbsp; <span class="fr">2/3</span> = <span class="fr">8/12</span> (×4 on top and bottom).
+        <span class="zh">3/4 = 9/12（上下都 ×3）。2/3 = 8/12（上下都 ×4）。</span></li>
+      <li>Same bottom now, so compare the tops: 9 &gt; 8. So <mark><span class="fr">3/4</span> is greater than <span class="fr">2/3</span></mark>.
+        <span class="zh">分母一樣了，比分子：9 &gt; 8。所以 3/4 比 2/3 大。</span></li>
+      <li>Check habit: before you compare, ask <mark>"Are the bottoms the same?"</mark> If not — not yet!
+        <span class="zh">檢查習慣：比較之前先問「分母一樣了嗎？」還沒一樣就還不能比。</span></li>
+    </ul>
+  </div>
+
+  <div class="explain life">
+    <span class="tag">🍎 Real-life version<span class="zhi">· 生活應用版</span></span>
+    <ul>
+      <li>Two chocolate bars, same size. Bar A is cut into <b>4</b> rows and you get <b>3</b> rows (<span class="fr">3/4</span>). Bar B is cut into <b>3</b> rows and you get <b>2</b> rows (<span class="fr">2/3</span>). Who gets more?
+        <span class="zh">兩條一樣大的巧克力。A 切成 4 排，你拿 3 排（3/4）。B 切成 3 排，你拿 2 排（2/3）。誰拿得多？</span></li>
+      <li>Counting pieces alone doesn't work: 4 sixths vs 6 eighths is like <mark>4 big cookies vs 6 small cookies</mark>. The pieces are different sizes.
+        <span class="zh">只數塊數沒用：4 個六分之一 vs 6 個八分之一，就像 4 塊大餅乾 vs 6 塊小餅乾，每塊大小不同。</span></li>
+      <li>So cut both bars into the <mark>same little squares</mark> — 12 squares each. Bar A: 3 rows × 3 = <b>9</b> squares. Bar B: 2 rows × 4 = <b>8</b> squares. 9 &gt; 8!
+        <span class="zh">所以把兩條都切成一樣的小方塊——各 12 塊。A：3 排 × 3 = 9 塊。B：2 排 × 4 = 8 塊。9 &gt; 8！</span></li>
+      <li>Another way to see it: <span class="fr">3/4</span> is missing one fourth; <span class="fr">2/3</span> is missing one third. A third is a <mark>bigger bite missing</mark>, so <span class="fr">2/3</span> is the smaller one.
+        <span class="zh">另一種看法：3/4 少了一個四分之一；2/3 少了一個三分之一。三分之一少得比較多，所以 2/3 比較小。</span></li>
+      <li>Trick: <mark>same bottom first</mark>. Can't think of a common multiple? Multiply the two bottoms: 4 × 3 = 12 always works.
+        <span class="zh">口訣：先同分母。想不到公倍數？把兩個分母相乘：4 × 3 = 12 一定可以。</span></li>
+    </ul>
+  </div>
+
+  <div class="play">
+    <h4><span class="try">Try it</span>Make the bottoms the same<span class="zhi">把分母變一樣</span></h4>
+    <div class="step" id="s1step1">
+      <p class="slabel">1. Pick a common denominator for <span class="fr">3/4</span> and <span class="fr">2/3</span>:<span class="zhi">幫 3/4 和 2/3 選一個公分母：</span></p>
+      <div class="opts" id="s1opts">
+        <button type="button" class="opt" data-v="6">6</button>
+        <button type="button" class="opt" data-v="7">7</button>
+        <button type="button" class="opt" data-v="8">8</button>
+        <button type="button" class="opt" data-v="12">12</button>
+      </div>
+      <div class="msg" id="s1msg1"></div>
+    </div>
+    <div class="step hidden" id="s1step2">
+      <p class="slabel">2. Now cut every piece into twelfths and count.<span class="zhi">現在把每一塊都切成十二分之一，數數看。</span></p>
+      <div class="barwrap"><div class="barlab"><span id="s1labA"><span class="fr">3/4</span></span></div><div class="bar" id="s1barA"></div></div>
+      <div class="barwrap"><div class="barlab"><span id="s1labB"><span class="fr">2/3</span></span></div><div class="bar" id="s1barB"></div></div>
+      <div class="row"><button type="button" class="btn" id="s1cut">Cut into twelfths</button><button type="button" class="btn alt sm" id="s1reset">Reset</button></div>
+      <div class="msg" id="s1msg2"></div>
+    </div>
+    <div class="step hidden" id="s1step3">
+      <p class="slabel">3. Which is greater?<span class="zhi">哪一個比較大？</span></p>
+      <div class="opts" id="s1opts3">
+        <button type="button" class="opt" data-v="a"><span class="fr">3/4</span></button>
+        <button type="button" class="opt" data-v="b"><span class="fr">2/3</span></button>
+      </div>
+      <div class="msg" id="s1msg3"></div>
+    </div>
+  </div>
+
+  <div class="model"><span class="lbl">Model answer · write this in the book</span>
+    <span class="ans"><span class="fr">3/4</span> = <span class="fr">9/12</span>, &nbsp;<span class="fr">2/3</span> = <span class="fr">8/12</span>. &nbsp; <span class="fr">3/4</span> is greater than <span class="fr">2/3</span>.</span></div>
+</section>
+
+<!-- ================= SECTION 2 ================= -->
+<section class="sec" id="s2">
+  <h2><span class="num">2</span><span>The missing piece<span class="zh">少掉的那一塊</span></span></h2>
+  <p class="lead">Both <span class="fr">5/6</span> and <span class="fr">7/8</span> are bigger than <span class="fr">1/2</span>, so the benchmark <span class="fr">1/2</span> can't decide this one. Look at how far each is from <mark>1</mark> instead.
+    <span class="zh">5/6 和 7/8 都比 1/2 大，所以 1/2 這個基準分不出來。改看它們各自離 1 有多遠。</span></p>
+
+  <div class="cutout">
+    <p class="q"><span class="qnum">8</span>Compare. Write &lt; or &gt;.</p>
+    <p class="big"><span class="fr">5/6</span> <span class="wrong"><span class="hw">&gt;</span></span> <span class="fr">7/8</span>
+      <span class="redpen">✗ &nbsp;&lt; &nbsp; <span class="fr">7/8</span> is only <span class="fr">1/8</span> away from 1</span></p>
+    <span class="pageref">page 252 · Q8</span>
+  </div>
+
+  <div class="cause"><b>Why it went wrong:</b> with big tops and big bottoms it's tempting to guess. Both fractions are "one piece short of a whole" — so compare the <b>missing piece</b>: <span class="fr">1/6</span> or <span class="fr">1/8</span>. The smaller missing piece means the fraction is closer to 1.
+    <span class="zh">為什麼錯：分子分母都很大的時候容易用猜的。這兩個分數都「差一塊就滿」，所以比「少掉的那一塊」：1/6 還是 1/8？少掉的越小，就越接近 1。</span></div>
+
+  <div class="explain textbook">
+    <span class="tag">📘 Textbook version<span class="zhi">· 課本理論版</span></span>
+    <ul>
+      <li>Benchmark <span class="fr">1/2</span>: <span class="fr">5/6</span> &gt; <span class="fr">1/2</span> and <span class="fr">7/8</span> &gt; <span class="fr">1/2</span>. Both on the same side — <mark>the benchmark can't decide</mark>.
+        <span class="zh">基準 1/2：5/6 &gt; 1/2，7/8 也 &gt; 1/2。兩個在同一邊，基準分不出來。</span></li>
+      <li>Use the benchmark <mark>1</mark>: <span class="fr">5/6</span> is <span class="fr">1/6</span> away from 1. <span class="fr">7/8</span> is <span class="fr">1/8</span> away from 1.
+        <span class="zh">改用基準 1：5/6 離 1 差 1/6。7/8 離 1 差 1/8。</span></li>
+      <li>Compare the unit fractions: <mark><span class="fr">1/8</span> &lt; <span class="fr">1/6</span></mark> — the same whole cut into more pieces gives smaller pieces.
+        <span class="zh">比單位分數：1/8 &lt; 1/6——同一個整體切成越多塊，每塊越小。</span></li>
+      <li><span class="fr">7/8</span> is closer to 1, so <span class="fr">7/8</span> is greater: <mark><span class="fr">5/6</span> &lt; <span class="fr">7/8</span></mark>.
+        <span class="zh">7/8 比較接近 1，所以 7/8 比較大：5/6 &lt; 7/8。</span></li>
+      <li>Check with equivalent fractions (common denominator 24): <span class="fr">5/6</span> = <span class="fr">20/24</span>, <span class="fr">7/8</span> = <span class="fr">21/24</span>. 20 &lt; 21 ✓
+        <span class="zh">用等值分數檢查（公分母 24）：5/6 = 20/24，7/8 = 21/24。20 &lt; 21 ✓</span></li>
+      <li>Habit: both tops are "one less than the bottom"? Don't guess — <mark>compare the missing pieces</mark>.
+        <span class="zh">習慣：兩個分子都「比分母少 1」？不要猜，比少掉的那一塊。</span></li>
+    </ul>
+  </div>
+
+  <div class="explain life">
+    <span class="tag">🍎 Real-life version<span class="zhi">· 生活應用版</span></span>
+    <ul>
+      <li>Two pizzas, same size. Pizza A is cut into <b>6</b> slices and one slice is eaten. Pizza B is cut into <b>8</b> slices and one slice is eaten.
+        <span class="zh">兩個一樣大的披薩。A 切成 6 片，被吃掉 1 片。B 切成 8 片，被吃掉 1 片。</span></li>
+      <li>Which pizza has more left? The one that lost the <mark>smaller slice</mark>. A slice out of 8 is smaller than a slice out of 6.
+        <span class="zh">哪個披薩剩比較多？被吃掉的那片比較小的那個。8 片中的 1 片，比 6 片中的 1 片小。</span></li>
+      <li>Pizza B lost less, so Pizza B has more left: <mark><span class="fr">7/8</span> &gt; <span class="fr">5/6</span></mark>.
+        <span class="zh">B 少得比較少，所以 B 剩比較多：7/8 &gt; 5/6。</span></li>
+      <li>Trap! "Eighths are smaller, so <span class="fr">7/8</span> is smaller" — no. Small slices, but you have <b>7</b> of them and only <b>1</b> is gone.
+        <span class="zh">陷阱！「八分之一比較小，所以 7/8 比較小」——不對。片是小，但你有 7 片，只少了 1 片。</span></li>
+      <li>Trick: when both fractions are <mark>one piece short of a whole</mark> (like <span class="fr">3/4</span>, <span class="fr">5/6</span>, <span class="fr">7/8</span>, <span class="fr">9/10</span>), the <b>bigger bottom wins</b>, because it's missing a smaller piece.
+        <span class="zh">口訣：兩個分數都「差一塊就滿」時（像 3/4、5/6、7/8、9/10），分母大的贏，因為少掉的那塊比較小。</span></li>
+    </ul>
+  </div>
+
+  <div class="play">
+    <h4><span class="try">Try it</span>Which pizza has more left?<span class="zhi">哪個披薩剩比較多？</span></h4>
+    <div class="pies" id="s2pies">
+      <div class="pie"><div id="s2pieA"></div><div class="cap"><b><span class="fr">5/6</span></b> left<span class="zhi">剩下</span><div class="missl">missing <span class="fr">1/6</span></div></div></div>
+      <div class="pie"><div id="s2pieB"></div><div class="cap"><b><span class="fr">7/8</span></b> left<span class="zhi">剩下</span><div class="missl">missing <span class="fr">1/8</span></div></div></div>
+    </div>
+    <div class="row"><button type="button" class="btn" id="s2show">Show the missing slices</button></div>
+    <div class="step hidden" id="s2step2">
+      <p class="slabel">Which missing slice is bigger?<span class="zhi">少掉的哪一片比較大？</span></p>
+      <div class="opts" id="s2opts2">
+        <button type="button" class="opt" data-v="6"><span class="fr">1/6</span></button>
+        <button type="button" class="opt" data-v="8"><span class="fr">1/8</span></button>
+      </div>
+      <div class="msg" id="s2msg2"></div>
+    </div>
+    <div class="step hidden" id="s2step3">
+      <p class="slabel">So which fraction is greater?<span class="zhi">所以哪個分數比較大？</span></p>
+      <div class="opts" id="s2opts3">
+        <button type="button" class="opt" data-v="a"><span class="fr">5/6</span></button>
+        <button type="button" class="opt" data-v="b"><span class="fr">7/8</span></button>
+      </div>
+      <div class="msg" id="s2msg3"></div>
+    </div>
+    <div class="qf hidden" id="s2qf">
+      <p class="slabel">Quick fire — pick the greater one:<span class="zhi">快問快答——選比較大的：</span></p>
+      <div id="s2qfbox"></div>
+    </div>
+  </div>
+
+  <div class="model"><span class="lbl">Model answer · write this in the book</span>
+    <span class="ans"><span class="fr">5/6</span> &lt; <span class="fr">7/8</span></span></div>
+</section>
+<!-- ================= SECTION 3 ================= -->
+<section class="sec" id="s3">
+  <h2><span class="num">3</span><span>Simplest form — the tidy-up step<span class="zh">最簡分數——最後要「整理」一下</span></span></h2>
+  <p class="lead">All 7 of these sums and differences are <mark>correct</mark> — you did the hard part! The questions say <em>"Write the answer in simplest form"</em>, and that last step is missing every time.
+    <span class="zh">這 7 題的加減結果全部正確——難的部分你都做對了！題目寫著「答案要寫成最簡分數」，每一題都少了這最後一步。</span></p>
+
+  <div class="cutout">
+    <p class="q">Add / Subtract. <b>Write each answer in simplest form.</b></p>
+    <span class="okline">✓ All 7 calculations right — only the last step is missing<span class="zhi">・7 題計算全對，只差最後一步</span></span>
+    <ul class="spots">
+      <li><span class="ref">p254 · Q1</span><span class="ok"><span class="fr">5/8</span> + <span class="fr">1/8</span> =</span><span class="wrong"><span class="hw"><span class="fr">6/8</span></span></span><span class="redpen">= <span class="fr">3/4</span></span></li>
+      <li><span class="ref">p254 · Q3a</span><span class="ok"><span class="fr">2/10</span> + <span class="fr">4/10</span> =</span><span class="wrong"><span class="hw"><span class="fr">6/10</span></span></span><span class="redpen">= <span class="fr">3/5</span></span></li>
+      <li><span class="ref">p254 · Q3b</span><span class="ok"><span class="fr">2/6</span> + <span class="fr">2/6</span> =</span><span class="wrong"><span class="hw"><span class="fr">4/6</span></span></span><span class="redpen">= <span class="fr">2/3</span></span></li>
+      <li><span class="ref">p255 · Q3</span><span class="ok"><span class="fr">2/6</span> + <span class="fr">1/6</span> =</span><span class="wrong"><span class="hw"><span class="fr">3/6</span></span></span><span class="redpen">= <span class="fr">1/2</span></span></li>
+      <li><span class="ref">p255 · Q4</span><span class="ok"><span class="fr">1/12</span> + <span class="fr">3/12</span> =</span><span class="wrong"><span class="hw"><span class="fr">4/12</span></span></span><span class="redpen">= <span class="fr">1/3</span></span></li>
+      <li><span class="ref">p257 · Q1</span><span class="ok"><span class="fr">3/8</span> − <span class="fr">1/8</span> =</span><span class="wrong"><span class="hw"><span class="fr">2/8</span></span></span><span class="redpen">= <span class="fr">1/4</span></span></li>
+      <li><span class="ref">p258 · Q3</span><span class="ok"><span class="fr">9/10</span> − <span class="fr">5/10</span> =</span><span class="wrong"><span class="hw"><span class="fr">4/10</span></span></span><span class="redpen">= <span class="fr">2/5</span></span></li>
+    </ul>
+    <span class="pageref">pages 254 · 255 · 257 · 258</span>
+  </div>
+
+  <div class="cause"><b>Why it went wrong:</b> the adding was the job in your head, so the answer felt finished. But "simplest form" means the job has <b>two steps</b>: ① add (or subtract) ② tidy up — divide the top and the bottom by the same number until you can't.
+    <span class="zh">為什麼錯：腦子裡的任務是「加起來」，所以加完就覺得做完了。但「最簡分數」表示任務有兩步：① 加（或減）② 整理——分子分母同時除以同一個數，除到不能再除。</span></div>
+
+  <div class="explain textbook">
+    <span class="tag">📘 Textbook version<span class="zhi">· 課本理論版</span></span>
+    <ul>
+      <li>A fraction is in <mark>simplest form</mark> when the numerator and denominator have <mark>no common factor except 1</mark>. (Factors — from last week again!)
+        <span class="zh">分子和分母除了 1 以外沒有公因數時，就是最簡分數。（又是上週的因數！）</span></li>
+      <li>To simplify, <mark>divide the top and the bottom by the same number</mark>. Do it again if you can.
+        <span class="zh">要化簡，分子和分母除以同一個數。還能除就再除一次。</span></li>
+      <li><span class="fr">6/8</span> → ÷2 → <span class="fr">3/4</span>. Can 3 and 4 both be divided by the same number? No. Done. &nbsp; <span class="fr">4/12</span> → ÷2 → <span class="fr">2/6</span> → ÷2 → <span class="fr">1/3</span> (or ÷4 in one go).
+        <span class="zh">6/8 → ÷2 → 3/4。3 和 4 還能同時除以同一個數嗎？不能。完成。4/12 → ÷2 → 2/6 → ÷2 → 1/3（或一次 ÷4）。</span></li>
+      <li>The book's layout has <mark>two equals signs</mark>: <span class="fr">5/8</span> + <span class="fr">1/8</span> = <span class="fr">6/8</span> = <span class="fr">3/4</span>. The second box is not a copy of the first — it's the tidy-up.
+        <span class="zh">課本的格式有兩個等號：5/8 + 1/8 = 6/8 = 3/4。第二個框不是抄第一個框，是整理過的答案。</span></li>
+      <li>Your 7 answers, tidied: <span class="fr">3/4</span>, <span class="fr">3/5</span>, <span class="fr">2/3</span>, <span class="fr">1/2</span>, <span class="fr">1/3</span>, <span class="fr">1/4</span>, <span class="fr">2/5</span>.
+        <span class="zh">你的 7 個答案整理後：3/4、3/5、2/3、1/2、1/3、1/4、2/5。</span></li>
+      <li>Check habit: after every answer ask <mark>"÷2? ÷3? ÷5?"</mark> Both even → ÷2. Both end in 0 or 5 → ÷5. Both in the 3-times table → ÷3.
+        <span class="zh">檢查習慣：每個答案寫完都問「÷2？÷3？÷5？」兩個都是偶數 → ÷2。都以 0 或 5 結尾 → ÷5。都在 3 的乘法表裡 → ÷3。</span></li>
+    </ul>
+  </div>
+
+  <div class="explain life">
+    <span class="tag">🍎 Real-life version<span class="zhi">· 生活應用版</span></span>
+    <ul>
+      <li><span class="fr">6/8</span> of a pizza: 8 slices, 6 are yours. Push the slices together in <mark>pairs</mark>: 4 pairs, and 3 pairs are yours → <span class="fr">3/4</span>. Same pizza, simpler name.
+        <span class="zh">6/8 個披薩：8 片，6 片是你的。兩片兩片併起來：4 組，你有 3 組 → 3/4。一樣的披薩，更簡單的名字。</span></li>
+      <li><span class="fr">4/12</span> of an egg carton: 12 eggs, 4 are brown. Group them in <mark>fours</mark>: 3 groups, 1 group is brown → <span class="fr">1/3</span>.
+        <span class="zh">4/12 盒雞蛋：12 顆，4 顆是棕色的。四顆一組：3 組，1 組是棕色 → 1/3。</span></li>
+      <li>Simplest form is like saying <mark>"half a dollar"</mark> instead of "50 cents" — same money, fewer words.
+        <span class="zh">最簡分數就像說「半塊錢」而不是「50 分」——一樣多的錢，更簡單的說法。</span></li>
+      <li>Trick: both numbers <mark>even</mark>? Halve them, then look again. Both end in 0 or 5? ÷5. Both in the 3-times table (3, 6, 9, 12…)? ÷3.
+        <span class="zh">口訣：兩個都是偶數？除以 2，然後再看一次。都以 0 或 5 結尾？÷5。都在 3 的乘法表裡（3、6、9、12…）？÷3。</span></li>
+      <li>Your adding was right every time — just add the <mark>tidy-up</mark> step, like putting the lid back on the marker.
+        <span class="zh">你每次都加對了——只要加上「整理」這一步，就像用完筆要蓋上筆蓋一樣。</span></li>
+    </ul>
+  </div>
+
+  <div class="play">
+    <h4><span class="try">Try it</span>The simplify machine<span class="zhi">化簡機</span></h4>
+    <p class="hint">Pick one of your answers, then press ÷ buttons to divide the top and the bottom by the same number. Keep going until the machine says "simplest form".
+      <span class="zh">選一個你的答案，按 ÷ 按鈕讓分子分母同時除以同一個數。一直到機器說「最簡分數」為止。</span></p>
+    <div class="chips" id="s3chips"></div>
+    <div class="machine">
+      <div class="now" id="s3now"></div>
+      <div style="flex:1 1 14rem">
+        <div class="bar" id="s3bar" aria-hidden="true"></div>
+        <div class="trail" id="s3trail"></div>
+      </div>
+    </div>
+    <div class="divbtns" id="s3div">
+      <button type="button" class="btn sm" data-k="2">÷2</button>
+      <button type="button" class="btn sm" data-k="3">÷3</button>
+      <button type="button" class="btn sm" data-k="4">÷4</button>
+      <button type="button" class="btn sm" data-k="5">÷5</button>
+      <button type="button" class="btn sm" data-k="6">÷6</button>
+      <button type="button" class="btn alt sm" id="s3reset">Reset this one</button>
+    </div>
+    <div class="msg" id="s3msg"></div>
+    <div class="msg good" id="s3all" style="display:none"></div>
+  </div>
+
+  <div class="model"><span class="lbl">Model answer · write this in the book</span>
+    <span class="ans"><span class="fr">5/8</span> + <span class="fr">1/8</span> = <span class="fr">6/8</span> = <span class="fr">3/4</span></span></div>
+</section>
+
+<!-- ================= SECTION 4 ================= -->
+<section class="sec" id="s4">
+  <h2><span class="num">4</span><span>1 whole = <span class="fr">8/8</span><span class="zh">1 個整體 = 8/8</span></span></h2>
+  <p class="lead">To take a fraction away from 1, first write 1 as a fraction with the <mark>same bottom</mark>. In eighths, 1 whole is <span class="fr">8/8</span> — not 10.
+    <span class="zh">要從 1 減掉一個分數，先把 1 寫成「分母一樣」的分數。用八分之一來算，1 個整體是 8/8——不是 10。</span></p>
+
+  <div class="cutout">
+    <p class="q"><span class="qnum letter">c</span>Subtract <span class="fr">4/8</span> from 1.</p>
+    <p><span class="wrong"><span class="hw"><span class="fr">6/8</span></span></span>
+      <span class="redpen">✗ &nbsp;1 = <span class="fr">8/8</span> → <span class="fr">8/8</span> − <span class="fr">4/8</span> = <span class="fr">4/8</span> = <span class="fr">1/2</span></span></p>
+    <span class="pageref">page 257 · Q3c</span>
+  </div>
+  <div class="cutout second">
+    <p class="q"><span class="qnum">4</span>1 − <span class="fr">11/12</span> = <span class="fr"><span><span class="wrong"><span class="hw">1</span></span></span><span>12</span></span> − <span class="fr">11/12</span> = <span class="hw"><span class="fr">1/12</span></span> <span style="color:var(--green);font-weight:700">✓</span>
+      <span class="redpen">box = 12 &nbsp;(1 = <span class="fr">12/12</span>) — your answer <span class="fr">1/12</span> is right!</span></p>
+    <span class="pageref">page 258 · Q4</span>
+  </div>
+
+  <div class="cause"><b>Why it went wrong:</b> 6 comes from 10 − 4. But the whole was never 10 eighths. The bottom number tells you how many pieces make one whole: eighths → 8 pieces, twelfths → 12 pieces.
+    <span class="zh">為什麼錯：6 是 10 − 4 算出來的。但整體從來不是 10 個八分之一。分母告訴你幾塊才是一個整體：八分之一 → 8 塊，十二分之一 → 12 塊。</span></div>
+
+  <div class="explain textbook">
+    <span class="tag">📘 Textbook version<span class="zhi">· 課本理論版</span></span>
+    <ul>
+      <li><mark>1 whole</mark> can be written as a fraction with the same top and bottom: 1 = <span class="fr">2/2</span> = <span class="fr">8/8</span> = <span class="fr">12/12</span>.
+        <span class="zh">1 個整體可以寫成分子分母一樣的分數：1 = 2/2 = 8/8 = 12/12。</span></li>
+      <li>To subtract from 1, first <mark>rename 1</mark> with the same denominator: 1 − <span class="fr">4/8</span> = <span class="fr">8/8</span> − <span class="fr">4/8</span>.
+        <span class="zh">要從 1 減，先把 1 改名成一樣的分母：1 − 4/8 = 8/8 − 4/8。</span></li>
+      <li><span class="fr">8/8</span> − <span class="fr">4/8</span> = <span class="fr">4/8</span>. Then simplest form: <mark><span class="fr">4/8</span> = <span class="fr">1/2</span></mark>. Two steps again!
+        <span class="zh">8/8 − 4/8 = 4/8。再化成最簡分數：4/8 = 1/2。又是兩步！</span></li>
+      <li>The book shows the layout on page 258: 1 − <span class="fr">11/12</span> = <span class="fr">12/12</span> − <span class="fr">11/12</span> = <span class="fr">1/12</span>. You wrote <span class="fr">1/12</span> ✓ — just make the first box say <b>12</b>.
+        <span class="zh">課本第 258 頁有示範格式：1 − 11/12 = 12/12 − 11/12 = 1/12。你寫 1/12 ✓——只要把第一個框改成 12。</span></li>
+      <li>Habit: see <mark>"1 −"</mark>? First write 1 as <span class="fr">□/□</span> with the <b>same bottom</b> as the other fraction.
+        <span class="zh">習慣：看到「1 −」？先把 1 寫成 □/□，分母要跟另一個分數一樣。</span></li>
+    </ul>
+  </div>
+
+  <div class="explain life">
+    <span class="tag">🍎 Real-life version<span class="zhi">· 生活應用版</span></span>
+    <ul>
+      <li>A pizza cut into 8 slices. The <mark>whole pizza = 8 slices</mark> = <span class="fr">8/8</span>. Not 10 — the box only has 8!
+        <span class="zh">一個披薩切成 8 片。整個披薩 = 8 片 = 8/8。不是 10——盒子裡只有 8 片！</span></li>
+      <li>Eat 4 slices (<span class="fr">4/8</span>). Left: 8 − 4 = 4 slices → <span class="fr">4/8</span> = <mark>half the pizza</mark>.
+        <span class="zh">吃掉 4 片（4/8）。剩下：8 − 4 = 4 片 → 4/8 = 半個披薩。</span></li>
+      <li>An egg carton has 12 eggs = <span class="fr">12/12</span>. Use 11 → 1 egg left → <span class="fr">1/12</span>. ✓ You got that one!
+        <span class="zh">一盒雞蛋 12 顆 = 12/12。用掉 11 顆 → 剩 1 顆 → 1/12。✓ 這題你對了！</span></li>
+      <li>Trick: <mark>"1 −" means "all the pieces − some pieces"</mark>. How many is "all"? Look at the bottom number.
+        <span class="zh">口訣：「1 −」就是「全部的塊數 − 一些塊數」。「全部」是幾塊？看分母。</span></li>
+    </ul>
+  </div>
+
+  <div class="play">
+    <h4><span class="try">Try it</span>Fill the whole<span class="zhi">把整體填滿</span></h4>
+    <p class="hint">Press "+ one eighth" until the bar is full. How many eighths make 1 whole?
+      <span class="zh">一直按「+ 一個八分之一」到整條填滿。幾個八分之一才是 1 個整體？</span></p>
+    <div class="counter" id="s4count"></div>
+    <div class="bar" id="s4bar"></div>
+    <div class="row">
+      <button type="button" class="btn" id="s4add">+ one eighth</button>
+      <button type="button" class="btn alt sm" id="s4reset">Reset</button>
+    </div>
+    <div class="msg" id="s4msg"></div>
+    <div class="step hidden" id="s4step2">
+      <p class="slabel">Now subtract <span class="fr">4/8</span> from 1.<span class="zhi">現在從 1 減掉 4/8。</span></p>
+      <div class="row"><button type="button" class="btn" id="s4take">Take away <span class="fr">4/8</span></button><button type="button" class="btn" id="s4simp" disabled>Simplest form ÷2</button></div>
+      <div class="msg" id="s4msg2"></div>
+    </div>
+    <div class="qf hidden" id="s4qf">
+      <p class="slabel">Quick fire<span class="zhi">快問快答</span></p>
+      <div id="s4qfbox"></div>
+    </div>
+  </div>
+
+  <div class="model"><span class="lbl">Model answer · write this in the book</span>
+    <span class="ans">1 − <span class="fr">4/8</span> = <span class="fr">8/8</span> − <span class="fr">4/8</span> = <span class="fr">4/8</span> = <span class="fr">1/2</span></span></div>
+</section>
+<!-- ================= TIP ================= -->
+<section class="sec" id="tip">
+  <h2><span class="num emoji">💡</span><span>Tip — not wrong, just tidier<span class="zh">小提醒——不算錯，但可以更精準</span></span></h2>
+  <ol class="tiplist">
+    <li><b>p252 · Q13 &amp; Q14 — your orders are right!</b> But write the fraction <em>from the set</em>: <span class="fr">3/4</span> (not <span class="fr">6/8</span>) and <span class="fr">2/3</span> (not <span class="fr">2/8</span>). <span class="fr">6/8</span> was your helper for comparing — the answer line wants the original one.
+      <span class="zh">第 252 頁 Q13、Q14——順序都排對了！但要寫題目裡原本的分數：3/4（不是 6/8）、2/3（不是 2/8）。6/8 是你拿來比較用的幫手，答案要寫原本的那個。</span></li>
+    <li><b>p254 · Q1 — copy the numbers from the question.</b> It says <span class="fr">5/8</span> and <span class="fr">1/8</span>; your boxes say 3 and 3. The total <span class="fr">6/8</span> is the same, but the boxes should show 5 and 1.
+      <span class="zh">第 254 頁 Q1——把題目的數字抄進去。題目是 5/8 和 1/8，你的框框寫了 3 和 3。加起來一樣是 6/8，但框框要寫 5 和 1。</span></li>
+    <li><b>p251 · Q2 — how to write an equivalent fraction.</b> Write <span class="fr">2/3</span> = <span class="fr">4/6</span> with a small "×2" next to the top <em>and</em> the bottom — not "<span class="fr">2/3</span> × 2". (<span class="fr">2/3</span> × 2 means two lots of <span class="fr">2/3</span>, which is a different, bigger number!)
+      <span class="zh">第 251 頁 Q2——等值分數的寫法。寫成 2/3 = 4/6，在分子和分母旁邊各標一個小小的「×2」——不要寫「2/3 × 2」。（2/3 × 2 是兩個 2/3，是另一個更大的數！）</span></li>
+    <li><b>p258 · Q4 — right answer, one box to fix.</b> <span class="fr">1/12</span> is correct. The first box should be <b>12</b>, because 1 = <span class="fr">12/12</span>.
+      <span class="zh">第 258 頁 Q4——答案對，只要改一個框。1/12 是對的。第一個框要寫 12，因為 1 = 12/12。</span></li>
+  </ol>
+</section>
+
+<!-- ================= QUIZ ================= -->
+<section class="sec" id="quiz">
+  <h2><span class="num emoji">🎯</span><span>Quiz<span class="zh">小測驗</span></span></h2>
+  <p class="lead">8 questions, one at a time. Pick an answer and you'll see why right away.
+    <span class="zh">8 題選擇題，一次一題。選了馬上看到原因。</span></p>
+  <div class="quiz" id="quizbox"></div>
+</section>
+
+<!-- ================= CORRECTION LIST ================= -->
+<section class="sec" id="list">
+  <h2><span class="num emoji">✍️</span><span>Correction list<span class="zh">訂正清單</span></span></h2>
+  <p class="lead">Open the workbook and fix each one. Tick it when it's done.
+    <span class="zh">打開作業本，一項一項改好，改完就打勾。</span></p>
+  <p class="progress" id="listprog"></p>
+  <ul class="checks" id="checks">
+    <li><input type="checkbox" id="c1"><label for="c1"><span class="box"></span><span class="txt"><span class="ref">page 251 · Q2</span>Cross out "<span class="fr">2/3</span> is greater than <span class="fr">3/4</span>". Write: <span class="fr">3/4</span> = <span class="fr">9/12</span>, <span class="fr">2/3</span> = <span class="fr">8/12</span>. <b><span class="fr">3/4</span> is greater than <span class="fr">2/3</span>.</b><span class="zh">劃掉「2/3 is greater than 3/4」，改寫：3/4 = 9/12，2/3 = 8/12。3/4 is greater than 2/3.</span></span></label></li>
+    <li><input type="checkbox" id="c2"><label for="c2"><span class="box"></span><span class="txt"><span class="ref">page 252 · Q8</span>Change &gt; to <b>&lt;</b>: &nbsp;<span class="fr">5/6</span> &lt; <span class="fr">7/8</span><span class="zh">把 &gt; 改成 &lt;：5/6 &lt; 7/8</span></span></label></li>
+    <li><input type="checkbox" id="c3"><label for="c3"><span class="box"></span><span class="txt"><span class="ref">page 252 · Q13</span>First blank: write <b><span class="fr">3/4</span></b> instead of <span class="fr">6/8</span> (the order is already right).<span class="zh">第一格寫 3/4，不要寫 6/8（順序已經對了）。</span></span></label></li>
+    <li><input type="checkbox" id="c4"><label for="c4"><span class="box"></span><span class="txt"><span class="ref">page 252 · Q14</span>Middle blank: write <b><span class="fr">2/3</span></b> instead of <span class="fr">2/8</span> (the order is already right).<span class="zh">中間那格寫 2/3，不要寫 2/8（順序已經對了）。</span></span></label></li>
+    <li><input type="checkbox" id="c5"><label for="c5"><span class="box"></span><span class="txt"><span class="ref">page 254 · Q1</span>Boxes: <b>5</b> and <b>1</b> (not 3 and 3). Last line: <span class="fr">6/8</span> = <b><span class="fr">3/4</span></b><span class="zh">框框改成 5 和 1（不是 3 和 3）。最後一行：6/8 = 3/4</span></span></label></li>
+    <li><input type="checkbox" id="c6"><label for="c6"><span class="box"></span><span class="txt"><span class="ref">page 254 · Q3a</span><span class="fr">6/10</span> = <b><span class="fr">3/5</span></b><span class="zh">6/10 = 3/5</span></span></label></li>
+    <li><input type="checkbox" id="c7"><label for="c7"><span class="box"></span><span class="txt"><span class="ref">page 254 · Q3b</span><span class="fr">4/6</span> = <b><span class="fr">2/3</span></b><span class="zh">4/6 = 2/3</span></span></label></li>
+    <li><input type="checkbox" id="c8"><label for="c8"><span class="box"></span><span class="txt"><span class="ref">page 255 · Q3</span><span class="fr">3/6</span> = <b><span class="fr">1/2</span></b><span class="zh">3/6 = 1/2</span></span></label></li>
+    <li><input type="checkbox" id="c9"><label for="c9"><span class="box"></span><span class="txt"><span class="ref">page 255 · Q4</span><span class="fr">4/12</span> = <b><span class="fr">1/3</span></b><span class="zh">4/12 = 1/3</span></span></label></li>
+    <li><input type="checkbox" id="c10"><label for="c10"><span class="box"></span><span class="txt"><span class="ref">page 257 · Q1</span><span class="fr">2/8</span> = <b><span class="fr">1/4</span></b><span class="zh">2/8 = 1/4</span></span></label></li>
+    <li><input type="checkbox" id="c11"><label for="c11"><span class="box"></span><span class="txt"><span class="ref">page 257 · Q3c</span>Cross out <span class="fr">6/8</span>. Write: 1 − <span class="fr">4/8</span> = <span class="fr">8/8</span> − <span class="fr">4/8</span> = <span class="fr">4/8</span> = <b><span class="fr">1/2</span></b><span class="zh">劃掉 6/8。改寫：1 − 4/8 = 8/8 − 4/8 = 4/8 = 1/2</span></span></label></li>
+    <li><input type="checkbox" id="c12"><label for="c12"><span class="box"></span><span class="txt"><span class="ref">page 258 · Q3</span><span class="fr">4/10</span> = <b><span class="fr">2/5</span></b><span class="zh">4/10 = 2/5</span></span></label></li>
+    <li><input type="checkbox" id="c13"><label for="c13"><span class="box"></span><span class="txt"><span class="ref">page 258 · Q4</span>First box: <b>12</b> (1 = <span class="fr">12/12</span>). Your answer <span class="fr">1/12</span> stays — it's right.<span class="zh">第一個框改成 12（1 = 12/12）。你的答案 1/12 不用改——是對的。</span></span></label></li>
+  </ul>
+  <div class="done-banner" id="listdone">🎉 All done! Every spot is fixed — nice work, William.<span class="zh">全部改好了！每個地方都訂正完了，William 做得好！</span></div>
+</section>
+
+<p class="foot">Add it, then tidy it up. Same bottom before you compare. See you next time! — 8/18</p>
+</main>
+<script>
+(function(){
+'use strict';
+var $=function(id){return document.getElementById(id);};
+var Z=function(s){return '<span class="zhi">'+s+'</span>';};
+var F=function(n,d){return '<span class="fr"><span>'+n+'</span><span>'+d+'</span></span>';};
+function convertFr(root){
+  var els=(root||document).querySelectorAll('.fr');
+  for(var i=0;i<els.length;i++){ var el=els[i]; if(el.children.length) continue;
+    var m=el.textContent.trim().split('/'); if(m.length===2){ el.innerHTML='<span>'+m[0].trim()+'</span><span>'+m[1].trim()+'</span>'; } }
+}
+convertFr();
+function setMsg(el,html,kind){ el.className='msg'+(kind?' '+kind:''); el.innerHTML=html; }
+function show(id){ $(id).classList.remove('hidden'); }
+function hide(id){ $(id).classList.add('hidden'); }
+function popEl(el){ el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); }
+function gcd(a,b){ return b?gcd(b,a%b):a; }
+function renderBar(el,d,n,group){
+  var h=''; for(var i=0;i<d;i++){ var cls='cell'; if(i<n) cls+=' on'; if(group&&i>0&&i%group===0) cls+=' gb'; h+='<div class="'+cls+'"></div>'; }
+  el.innerHTML=h; popEl(el);
+}
+function pieSVG(n,shaded){
+  var r=46,cx=50,cy=50,paths='';
+  for(var i=0;i<n;i++){
+    var a0=-Math.PI/2+i*2*Math.PI/n, a1=-Math.PI/2+(i+1)*2*Math.PI/n;
+    var x0=(cx+r*Math.cos(a0)).toFixed(2), y0=(cy+r*Math.sin(a0)).toFixed(2), x1=(cx+r*Math.cos(a1)).toFixed(2), y1=(cy+r*Math.sin(a1)).toFixed(2);
+    var large=(2*Math.PI/n)>Math.PI?1:0;
+    paths+='<path class="slice '+(i<shaded?'on':'off')+'" d="M'+cx+','+cy+' L'+x0+','+y0+' A'+r+','+r+' 0 '+large+' 1 '+x1+','+y1+' Z"/>';
+  }
+  return '<svg viewBox="0 0 100 100" role="img" aria-label="'+shaded+' of '+n+' slices">'+paths+'</svg>';
+}
+function quickFire(box,items){
+  box.innerHTML='';
+  items.forEach(function(it){
+    var wrap=document.createElement('div');
+    var h='<p class="qfq">'+it.q+'</p><div class="opts">';
+    it.o.forEach(function(o,j){ h+='<button type="button" class="opt" data-j="'+j+'">'+o.h+'</button>'; });
+    h+='</div><div class="msg"></div>';
+    wrap.innerHTML=h;
+    var msg=wrap.querySelector('.msg');
+    wrap.querySelector('.opts').addEventListener('click',function(e){
+      var b=e.target.closest('.opt'); if(!b||b.disabled) return;
+      var o=it.o[+b.getAttribute('data-j')];
+      if(o.ok){ b.classList.add('good'); wrap.querySelectorAll('.opt').forEach(function(x){x.disabled=true;}); setMsg(msg,'✓ '+it.why,'good'); }
+      else { b.classList.add('bad'); b.disabled=true; setMsg(msg,(o.no||'Not this one — try again.'+Z('不是這個——再試一次。')),'bad'); }
+    });
+    box.appendChild(wrap);
+  });
+}
+
+/* ---------- Mode & Chinese toggle ---------- */
+var body=document.body;
+var modelines={
+  textbook:'📘 Definitions and steps, the way the book says them — so you can write the answer the book wants.'+Z('課本的定義和步驟——這樣你會寫出課本要的答案。'),
+  life:'🍎 Pizzas, chocolate bars and egg cartons — so you can see why it works.'+Z('披薩、巧克力和雞蛋盒——讓你看懂為什麼。')
+};
+function setMode(m){
+  body.setAttribute('data-mode',m);
+  document.querySelectorAll('.segbtn').forEach(function(b){ b.classList.toggle('active',b.getAttribute('data-mode')===m); });
+  $('modeline').innerHTML=modelines[m];
+}
+$('btnTextbook').addEventListener('click',function(){setMode('textbook');});
+$('btnLife').addEventListener('click',function(){setMode('life');});
+setMode('textbook');
+var zt=$('zhToggle');
+zt.addEventListener('click',function(){ var on=!body.classList.contains('zh-on'); body.classList.toggle('zh-on',on); zt.setAttribute('aria-checked',String(on)); });
+
+/* ---------- Section 1: same bottom first ---------- */
+(function(){
+  var opts=$('s1opts'), msg=$('s1msg1');
+  var fb={
+    '6':['bad','6 is a multiple of 3, but not of 4 — fourths won\'t fit into sixths. Try again.'+Z('6 是 3 的倍數，但不是 4 的倍數——四分之一切不成六分之一。再試一次。')],
+    '7':['bad','7 is not a multiple of 4 or of 3. Try again.'+Z('7 不是 4 的倍數，也不是 3 的倍數。再試一次。')],
+    '8':['bad','8 is a multiple of 4, but not of 3 — thirds won\'t fit into eighths. Try again.'+Z('8 是 4 的倍數，但不是 3 的倍數——三分之一切不成八分之一。再試一次。')],
+    '12':['good','Yes! 12 is a common multiple of 4 and 3, so both fractions can be written in twelfths. Same bottom: 12.'+Z('對！12 是 4 和 3 的公倍數，兩個分數都可以寫成十二分之幾。公分母：12。')]
+  };
+  function setBars(){ renderBar($('s1barA'),4,3); renderBar($('s1barB'),3,2); $('s1labA').innerHTML=F(3,4); $('s1labB').innerHTML=F(2,3); }
+  opts.addEventListener('click',function(e){
+    var b=e.target.closest('.opt'); if(!b||b.disabled) return;
+    var v=b.getAttribute('data-v'), r=fb[v];
+    b.classList.remove('good','bad'); b.classList.add(r[0]); setMsg(msg,r[1],r[0]);
+    if(v==='12'){ opts.querySelectorAll('.opt').forEach(function(o){o.disabled=true;}); show('s1step2'); setBars(); $('s1cut').disabled=false; }
+    else { b.disabled=true; }
+  });
+  $('s1cut').addEventListener('click',function(){
+    renderBar($('s1barA'),12,9,3); renderBar($('s1barB'),12,8,4);
+    $('s1labA').innerHTML=F(3,4)+' = '+F(9,12); $('s1labB').innerHTML=F(2,3)+' = '+F(8,12);
+    setMsg($('s1msg2'),'Each fourth became 3 twelfths: 3 × 3 = <b>9</b>. Each third became 4 twelfths: 2 × 4 = <b>8</b>. Now both bars are in twelfths — now you can compare!'+Z('每個四分之一變成 3 個十二分之一：3 × 3 = 9。每個三分之一變成 4 個十二分之一：2 × 4 = 8。現在兩條都是十二分之幾——可以比了！'),'good');
+    $('s1cut').disabled=true; show('s1step3');
+  });
+  $('s1reset').addEventListener('click',function(){ setBars(); setMsg($('s1msg2'),'',''); $('s1cut').disabled=false; });
+  $('s1opts3').addEventListener('click',function(e){
+    var b=e.target.closest('.opt'); if(!b||b.disabled) return;
+    if(b.getAttribute('data-v')==='a'){ b.classList.add('good'); $('s1opts3').querySelectorAll('.opt').forEach(function(o){o.disabled=true;});
+      setMsg($('s1msg3'),'✓ '+F(9,12)+' &gt; '+F(8,12)+', so '+F(3,4)+' is greater than '+F(2,3)+'. In the book write: "'+F(3,4)+' is greater than '+F(2,3)+'."'+Z('9/12 &gt; 8/12，所以 3/4 比 2/3 大。作業本上寫：「3/4 is greater than 2/3.」'),'good'); }
+    else { b.classList.add('bad'); b.disabled=true; setMsg($('s1msg3'),'Look at the bars: 9 twelfths vs 8 twelfths. 9 &gt; 8 — the top bar is longer.'+Z('看長條：9 個十二分之一 vs 8 個十二分之一。9 &gt; 8——上面那條比較長。'),'bad'); }
+  });
+})();
+
+/* ---------- Section 2: the missing piece ---------- */
+(function(){
+  $('s2pieA').innerHTML=pieSVG(6,5); $('s2pieB').innerHTML=pieSVG(8,7);
+  $('s2show').addEventListener('click',function(){
+    $('s2pies').classList.add('show');
+    document.querySelectorAll('#s2pies .slice.off').forEach(function(s){ s.classList.add('miss'); });
+    show('s2step2'); $('s2show').disabled=true;
+  });
+  $('s2opts2').addEventListener('click',function(e){
+    var b=e.target.closest('.opt'); if(!b||b.disabled) return;
+    if(b.getAttribute('data-v')==='6'){ b.classList.add('good'); $('s2opts2').querySelectorAll('.opt').forEach(function(o){o.disabled=true;});
+      setMsg($('s2msg2'),'✓ '+F(1,6)+' is bigger. The same pizza cut into 6 has bigger slices than cut into 8. So '+F(5,6)+' is missing <b>more</b>.'+Z('1/6 比較大。同一個披薩切 6 片，每片比切 8 片大。所以 5/6 少掉的比較多。'),'good'); show('s2step3'); }
+    else { b.classList.add('bad'); b.disabled=true; setMsg($('s2msg2'),'Look again: 8 slices share the same pizza as 6 slices, so each eighth is <b>smaller</b>. The bigger missing piece is '+F(1,6)+'.'+Z('再看一次：8 片和 6 片分的是同一個披薩，所以每個八分之一比較小。少掉比較大的那塊是 1/6。'),'bad'); }
+  });
+  $('s2opts3').addEventListener('click',function(e){
+    var b=e.target.closest('.opt'); if(!b||b.disabled) return;
+    if(b.getAttribute('data-v')==='b'){ b.classList.add('good'); $('s2opts3').querySelectorAll('.opt').forEach(function(o){o.disabled=true;});
+      setMsg($('s2msg3'),'✓ '+F(7,8)+' is missing only '+F(1,8)+' — the smaller piece — so it is closer to 1. &nbsp;<b>'+F(5,6)+' &lt; '+F(7,8)+'</b>'+Z('7/8 只少了 1/8——比較小的那塊——所以它更接近 1。5/6 &lt; 7/8'),'good');
+      show('s2qf');
+      quickFire($('s2qfbox'),[
+        {q:F(3,4)+' or '+F(4,5)+'?',o:[{h:F(3,4)},{h:F(4,5),ok:true}],why:F(4,5)+' is missing only '+F(1,5)+', which is smaller than '+F(1,4)+'.'+Z('4/5 只少了 1/5，比 1/4 小。')},
+        {q:F(9,10)+' or '+F(5,6)+'?',o:[{h:F(9,10),ok:true},{h:F(5,6)}],why:F(9,10)+' is missing only '+F(1,10)+'. '+F(5,6)+' is missing '+F(1,6)+'.'+Z('9/10 只少了 1/10。5/6 少了 1/6。')},
+        {q:F(2,3)+' or '+F(7,8)+'?',o:[{h:F(2,3)},{h:F(7,8),ok:true}],why:F(2,3)+' is missing '+F(1,3)+' — a big bite. '+F(7,8)+' is missing only '+F(1,8)+'.'+Z('2/3 少了 1/3——好大一口。7/8 只少了 1/8。')}
+      ]);
+    }
+    else { b.classList.add('bad'); b.disabled=true; setMsg($('s2msg3'),F(5,6)+' is missing '+F(1,6)+', the bigger piece. It is further from 1, so it is the <b>smaller</b> fraction. Try the other one.'+Z('5/6 少了 1/6，比較大的那塊。它離 1 比較遠，所以是比較小的分數。試試另一個。'),'bad'); }
+  });
+})();
+
+/* ---------- Section 3: simplify machine ---------- */
+(function(){
+  var items=[[6,8],[6,10],[4,6],[3,6],[4,12],[2,8],[4,10]];
+  var refs=['p254 Q1','p254 Q3a','p254 Q3b','p255 Q3','p255 Q4','p257 Q1','p258 Q3'];
+  var done={}, doneCount=0, cur=0, n=0, d=0, trail=[];
+  var chips=$('s3chips'), now=$('s3now'), bar=$('s3bar'), tr=$('s3trail'), msg=$('s3msg');
+  function renderChips(){
+    chips.innerHTML=items.map(function(it,i){ return '<button type="button" class="chip'+(i===cur?' cur':'')+(done[i]?' done':'')+'" data-i="'+i+'" aria-label="'+it[0]+' over '+it[1]+'">'+F(it[0],it[1])+'</button>'; }).join('');
+  }
+  function draw(){
+    now.innerHTML=F(n,d); popEl(now); renderBar(bar,d,n);
+    tr.innerHTML=trail.map(function(t,i){ var s=t[0]+'/'+t[1]; return (i?' → ':'')+(i===trail.length-1?'<b>'+s+'</b>':s); }).join('');
+  }
+  function load(i){
+    cur=i; n=items[i][0]; d=items[i][1]; trail=[[n,d]]; draw(); renderChips();
+    if(done[i]) setMsg(msg,'You already tidied this one ✓ — do it again, or pick another fraction above.'+Z('這個你已經整理過了 ✓——可以再做一次，或到上面選另一個。'),'good');
+    else setMsg(msg,'Which number divides <b>both</b> '+n+' and '+d+'? Press it.'+Z('哪個數可以同時整除 '+n+' 和 '+d+'？按它。'),'');
+  }
+  $('s3div').addEventListener('click',function(e){
+    var b=e.target.closest('button[data-k]'); if(!b) return; var k=+b.getAttribute('data-k');
+    if(gcd(n,d)===1){ setMsg(msg,'Already in simplest form — pick another fraction above.'+Z('已經是最簡分數了——到上面選另一個。'),'good'); return; }
+    if(n%k===0&&d%k===0){
+      n=n/k; d=d/k; trail.push([n,d]); draw();
+      if(gcd(n,d)===1){
+        if(!done[cur]){ done[cur]=true; doneCount++; }
+        renderChips();
+        setMsg(msg,'✓ Simplest form! '+n+' and '+d+' have no common factor except 1. &nbsp;'+refs[cur]+' → '+F(n,d)+Z('最簡分數！'+n+' 和 '+d+' 除了 1 沒有公因數。'+refs[cur]+' → '+n+'/'+d),'good');
+        if(doneCount===items.length){ var a=$('s3all'); a.style.display='block'; a.innerHTML='🎉 All 7 tidied up: '+F(3,4)+' '+F(3,5)+' '+F(2,3)+' '+F(1,2)+' '+F(1,3)+' '+F(1,4)+' '+F(2,5)+' — now write them in the book!'+Z('7 個全部整理好了——現在寫回作業本！'); popEl(a); }
+      } else {
+        setMsg(msg,'÷'+k+' works: now '+F(n,d)+'. Can you divide both numbers again?'+Z('÷'+k+' 可以：現在是 '+n+'/'+d+'。兩個數還能再同時除嗎？'),'warn');
+      }
+    } else if(n%k===0||d%k===0){
+      var yes=(n%k===0)?n:d, no=(n%k===0)?d:n;
+      setMsg(msg,'÷'+k+' doesn\'t work: '+k+' goes into '+yes+' but not into '+no+'. It has to divide <b>both</b> numbers evenly.'+Z('÷'+k+' 不行：'+k+' 可以整除 '+yes+'，但不能整除 '+no+'。要兩個數都能整除才行。'),'bad');
+    } else {
+      setMsg(msg,'÷'+k+' doesn\'t go into '+n+' or '+d+' evenly. Try another number.'+Z('÷'+k+' 沒辦法整除 '+n+' 和 '+d+'。換一個數試試。'),'bad');
+    }
+  });
+  $('s3reset').addEventListener('click',function(){ load(cur); });
+  chips.addEventListener('click',function(e){ var c=e.target.closest('.chip'); if(c) load(+c.getAttribute('data-i')); });
+  load(0);
+})();
+
+/* ---------- Section 4: fill the whole ---------- */
+(function(){
+  var D=8, filled=0, bar=$('s4bar'), cnt=$('s4count'), msg=$('s4msg'), msg2=$('s4msg2');
+  function draw(){ renderBar(bar,D,filled); cnt.innerHTML=F(filled,D)+(filled===D?' = 1 whole'+Z('= 1 個整體'):''); }
+  $('s4add').addEventListener('click',function(){
+    if(filled>=D) return; filled++; draw(); popEl(cnt);
+    if(filled===D){ setMsg(msg,'✓ 8 eighths fill the whole bar: <b>1 = '+F(8,8)+'</b>. Not 10 — the bar only has 8 pieces!'+Z('8 個八分之一剛好填滿整條：1 = 8/8。不是 10——整條只有 8 塊！'),'good'); $('s4add').disabled=true; show('s4step2'); }
+    else setMsg(msg,filled+' of 8 — keep going.'+Z('8 塊中的 '+filled+' 塊——繼續。'),'');
+  });
+  $('s4reset').addEventListener('click',function(){
+    filled=0; draw(); setMsg(msg,'',''); $('s4add').disabled=false; hide('s4step2'); hide('s4qf'); $('s4take').disabled=false; $('s4simp').disabled=true; setMsg(msg2,'','');
+  });
+  $('s4take').addEventListener('click',function(){
+    var cells=bar.querySelectorAll('.cell'); for(var i=4;i<8;i++){ cells[i].classList.remove('on'); cells[i].classList.add('gone'); }
+    cnt.innerHTML=F(8,8)+' − '+F(4,8)+' = '+F(4,8); popEl(cnt);
+    setMsg(msg2,'4 pieces left out of 8: '+F(8,8)+' − '+F(4,8)+' = '+F(4,8)+'. One more step — is '+F(4,8)+' in simplest form?'+Z('8 塊剩 4 塊：8/8 − 4/8 = 4/8。還有一步——4/8 是最簡分數嗎？'),'warn');
+    $('s4take').disabled=true; $('s4simp').disabled=false;
+  });
+  $('s4simp').addEventListener('click',function(){
+    renderBar(bar,2,1); cnt.innerHTML=F(4,8)+' = '+F(1,2); popEl(cnt);
+    setMsg(msg2,'✓ 1 − '+F(4,8)+' = '+F(8,8)+' − '+F(4,8)+' = '+F(4,8)+' = <b>'+F(1,2)+'</b>. Half the pizza is left.'+Z('1 − 4/8 = 8/8 − 4/8 = 4/8 = 1/2。剩半個披薩。'),'good');
+    $('s4simp').disabled=true; show('s4qf');
+    quickFire($('s4qfbox'),[
+      {q:'1 = ?',o:[{h:F(1,5)},{h:F(5,5),ok:true},{h:F(10,5)}],why:'Fifths: 5 pieces make one whole, so 1 = '+F(5,5)+'.'+Z('五分之一：5 塊是一個整體，所以 1 = 5/5。')},
+      {q:'1 − '+F(2,5)+' = ?',o:[{h:F(3,5),ok:true},{h:F(8,5)},{h:F(2,5)}],why:F(5,5)+' − '+F(2,5)+' = '+F(3,5)+'.'+Z('5/5 − 2/5 = 3/5。')},
+      {q:'1 − '+F(11,12)+' = ?',o:[{h:F(10,12)},{h:F(11,12)},{h:F(1,12),ok:true}],why:F(12,12)+' − '+F(11,12)+' = '+F(1,12)+' — you got this one right in the book!'+Z('12/12 − 11/12 = 1/12——這題你在作業本上就對了！')},
+      {q:'1 − '+F(6,10)+' = ? &nbsp;(simplest form)',o:[{h:F(4,10),no:'That is the first step — now tidy it up: ÷2.'+Z('這是第一步——再整理一下：÷2。')},{h:F(2,5),ok:true},{h:F(6,10)}],why:F(10,10)+' − '+F(6,10)+' = '+F(4,10)+' = '+F(2,5)+'. Two steps!'+Z('10/10 − 6/10 = 4/10 = 2/5。兩步！')}
+    ]);
+  });
+  draw();
+})();
+
+/* ---------- Quiz ---------- */
+(function(){
+  var Q=[
+    {q:'Which is '+F(6,8)+' in simplest form?'+Z('6/8 的最簡分數是？'),o:[{h:F(3,4),ok:true},{h:F(6,8)},{h:F(2,4)},{h:F(1,2)}],why:'÷2 on the top and the bottom → '+F(3,4)+'. 3 and 4 share no factor except 1.'+Z('分子分母同時 ÷2 → 3/4。3 和 4 除了 1 沒有公因數。')},
+    {q:'Which fraction is already in simplest form?'+Z('哪一個已經是最簡分數？'),o:[{h:F(4,10)},{h:F(6,12)},{h:F(2,5),ok:true},{h:F(3,9)}],why:'2 and 5 can\'t both be divided by the same number. (The others: '+F(4,10)+' = '+F(2,5)+', '+F(6,12)+' = '+F(1,2)+', '+F(3,9)+' = '+F(1,3)+'.)'+Z('2 和 5 不能同時被同一個數整除。（其他的：4/10 = 2/5，6/12 = 1/2，3/9 = 1/3。）')},
+    {q:F(2,6)+' + '+F(2,6)+' = ? &nbsp;(simplest form)'+Z('（最簡分數）'),o:[{h:F(4,6)},{h:F(4,12)},{h:F(2,3),ok:true},{h:F(1,3)}],why:'First '+F(4,6)+', then ÷2 → '+F(2,3)+'. Two steps!'+Z('先 4/6，再 ÷2 → 2/3。兩步！')},
+    {q:'To compare '+F(3,4)+' and '+F(2,3)+' with equivalent fractions, which bottom number works for both?'+Z('要用等值分數比較 3/4 和 2/3，哪個分母兩個都能用？'),o:[{h:'6'},{h:'8'},{h:'7'},{h:'12',ok:true}],why:'12 is a multiple of 4 <em>and</em> of 3: '+F(3,4)+' = '+F(9,12)+', '+F(2,3)+' = '+F(8,12)+'.'+Z('12 是 4 的倍數，也是 3 的倍數：3/4 = 9/12，2/3 = 8/12。')},
+    {q:'Which is greater, '+F(3,4)+' or '+F(2,3)+'?'+Z('哪個比較大？'),o:[{h:F(3,4),ok:true},{h:F(2,3)},{h:'They are equal'+Z('一樣大')}],why:F(9,12)+' &gt; '+F(8,12)+'. Or: '+F(3,4)+' is missing a smaller piece ('+F(1,4)+' &lt; '+F(1,3)+').'+Z('9/12 &gt; 8/12。或者：3/4 少掉的那塊比較小（1/4 &lt; 1/3）。')},
+    {q:'Which is greater, '+F(5,6)+' or '+F(7,8)+'?'+Z('哪個比較大？'),o:[{h:F(5,6)},{h:F(7,8),ok:true},{h:'They are equal'+Z('一樣大')}],why:F(7,8)+' is missing only '+F(1,8)+'; '+F(5,6)+' is missing '+F(1,6)+'. Smaller missing piece → closer to 1.'+Z('7/8 只少了 1/8；5/6 少了 1/6。少掉的越小 → 越接近 1。')},
+    {q:'1 − '+F(4,8)+' = ?'+Z('1 − 4/8 = ?'),o:[{h:F(6,8)},{h:F(1,2),ok:true},{h:F(5,8)},{h:F(3,8)}],why:'1 = '+F(8,8)+'. '+F(8,8)+' − '+F(4,8)+' = '+F(4,8)+' = '+F(1,2)+'.'+Z('1 = 8/8。8/8 − 4/8 = 4/8 = 1/2。')},
+    {q:'1 − '+F(3,9)+' = ? &nbsp;(simplest form)'+Z('（最簡分數）'),o:[{h:F(6,9)},{h:F(2,3),ok:true},{h:F(7,9)},{h:F(3,9)}],why:F(9,9)+' − '+F(3,9)+' = '+F(6,9)+', then ÷3 → '+F(2,3)+'. Both habits in one question!'+Z('9/9 − 3/9 = 6/9，再 ÷3 → 2/3。兩個習慣一題用上！')}
+  ];
+  var box=$('quizbox'), i=0, score=0, results=[];
+  function dots(){ return '<div class="dots">'+Q.map(function(_,k){ var c='dot'; if(k===i) c+=' cur'; if(results[k]===true) c+=' ok'; if(results[k]===false) c+=' no'; return '<span class="'+c+'"></span>'; }).join('')+'</div>'; }
+  function render(){
+    if(i>=Q.length){ return finish(); }
+    var q=Q[i];
+    var h=dots()+'<p class="qq">'+(i+1)+'. '+q.q+'</p><div class="opts">'+q.o.map(function(o,j){ return '<button type="button" class="opt" data-j="'+j+'">'+o.h+'</button>'; }).join('')+'</div><div class="msg" id="qmsg"></div><div class="row" id="qnext" style="display:none"><button type="button" class="btn" id="qnextbtn">'+(i===Q.length-1?'See my score':'Next')+'</button></div>';
+    box.innerHTML=h;
+    box.querySelector('.opts').addEventListener('click',function(e){
+      var b=e.target.closest('.opt'); if(!b||b.disabled) return;
+      var o=q.o[+b.getAttribute('data-j')];
+      box.querySelectorAll('.opt').forEach(function(x){ x.disabled=true; });
+      if(o.ok){ b.classList.add('good'); score++; results[i]=true; setMsg($('qmsg'),'✓ Correct! '+q.why,'good'); }
+      else { b.classList.add('bad'); results[i]=false; box.querySelectorAll('.opt').forEach(function(x,j){ if(q.o[j].ok) x.classList.add('good'); }); setMsg($('qmsg'),'Not quite. '+q.why,'bad'); }
+      $('qnext').style.display='flex';
+      $('qnextbtn').addEventListener('click',function(){ i++; render(); window.scrollTo({top:box.getBoundingClientRect().top+window.pageYOffset-90,behavior:'smooth'}); });
+    });
+  }
+  function finish(){
+    var stars=score===Q.length?'⭐⭐⭐':(score>=6?'⭐⭐':'⭐');
+    var line=score===Q.length?'Perfect! Simplest form, same bottom, missing piece, 1 whole — you own all four.'+Z('全對！最簡分數、同分母、少掉的那塊、1 個整體——四個都會了。'):(score>=6?'Great job! Look back at the one or two you missed, then try again.'+Z('很棒！回頭看一下錯的那一兩題，再玩一次。'):'Good try! Read the sections again and play once more — you will get there.'+Z('不錯的嘗試！再讀一次上面的說明，再玩一次——你會做到的。'));
+    box.innerHTML='<div class="qres"><div class="stars">'+stars+'</div><b>'+score+' / '+Q.length+'</b><p>'+line+'</p><button type="button" class="btn" id="qagain">Play again</button></div>';
+    $('qagain').addEventListener('click',function(){ i=0; score=0; results=[]; render(); });
+  }
+  render();
+})();
+
+/* ---------- Correction list ---------- */
+(function(){
+  var list=$('checks'), prog=$('listprog'), banner=$('listdone');
+  function update(){
+    var all=list.querySelectorAll('input[type=checkbox]'), n=0;
+    all.forEach(function(c){ if(c.checked) n++; });
+    prog.innerHTML=n+' of '+all.length+' fixed'+Z(all.length+' 項已改好 '+n+' 項');
+    banner.classList.toggle('show',n===all.length&&all.length>0);
+  }
+  list.addEventListener('change',update); update();
+})();
+
+/* ---------- Jump links: keep sticky toolbar in mind ---------- */
+document.querySelectorAll('.jump a').forEach(function(a){
+  a.addEventListener('click',function(e){ var t=document.querySelector(a.getAttribute('href')); if(!t) return; e.preventDefault(); window.scrollTo({top:t.getBoundingClientRect().top+window.pageYOffset-84,behavior:'smooth'}); });
+});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>William's Correction Notes · Factors & Multiples</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Huninn&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAFAFA; --rule:#D9DCE1; --marginline:#F0A6B0; --desk:#E4E5E8;
+  --ink:#2E3037; --pencil:#6B6E76; --red:#E2463B; --green:#2FA36B;
+  --theory:#3E6FD9; --theory-soft:#E8EEFC; --theory-deep:#2B52AE;
+  --life:#F08A2C; --life-soft:#FFF1E1; --life-deep:#C4680F;
+  --hl:#FFF0A0;
+  --line:1.875rem; --margin:2.875rem;
+  --accent:var(--theory); --accent-soft:var(--theory-soft); --accent-deep:var(--theory-deep);
+  --latin:'Fredoka','Huninn','Zen Maru Gothic','PingFang TC','Microsoft JhengHei','Noto Sans TC',sans-serif;
+  --cjk:'Huninn','Zen Maru Gothic','M PLUS Rounded 1c','PingFang TC','Microsoft JhengHei','Noto Sans TC',sans-serif;
+  --hand:'Caveat','Huninn','Zen Maru Gothic',cursive;
+}
+/* fluid type: 16px on a phone → 21px on a desktop; everything below is in rem */
+html{font-size:clamp(16px,0.6vw + 13.3px,23px)}
+body[data-mode="life"]{--accent:var(--life);--accent-soft:var(--life-soft);--accent-deep:var(--life-deep)}
+body[data-mode="theory"] .life{display:none}
+body[data-mode="life"] .theory{display:none}
+
+/* Chinese layer: hidden until the 中文 switch is on */
+.zh,.zhi{display:none}
+body.zh-on .zh{display:block;font-family:var(--cjk);font-size:.9em;color:var(--pencil);margin-top:.15rem;line-height:1.6;font-weight:400}
+body.zh-on .zhi{display:inline;font-family:var(--cjk);color:var(--pencil);margin-left:.35em;font-weight:400}
+body.zh-on .msg .zh{color:inherit;opacity:.8}
+body.zh-on h1 .zh{font-size:.55em;margin-top:0}
+body.zh-on h2 .zh{font-size:.68em;font-weight:600}
+body.zh-on .seg-btn .zh{color:inherit;font-size:.74em;font-weight:600;line-height:1.2;margin-top:.1rem}
+body.zh-on .redpen .zh{color:var(--red);opacity:.9;font-size:.78em}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--desk);color:var(--ink);font-family:var(--latin);font-size:1rem;line-height:1.6;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+button{font-family:inherit;color:inherit}
+:focus-visible{outline:3px solid #7DA6FF;outline-offset:2px}
+
+/* ---------- notebook page ---------- */
+.notebook{width:100%;max-width:100%;margin:0 auto;min-height:100vh;position:relative;background-color:var(--paper);
+  background-image:
+    linear-gradient(90deg,transparent 0,transparent calc(var(--margin) - 1px),var(--marginline) calc(var(--margin) - 1px),var(--marginline) calc(var(--margin) + 1px),transparent calc(var(--margin) + 1px)),
+    repeating-linear-gradient(180deg,transparent 0,transparent calc(var(--line) - 1px),var(--rule) calc(var(--line) - 1px),var(--rule) var(--line));
+  background-position:0 0,0 .75rem;
+  box-shadow:0 0 0 1px #D5D6DA,0 .9rem 2.75rem rgba(0,0,0,.08)}
+.notebook::before{content:"";position:absolute;left:0;top:0;bottom:0;width:1.625rem;pointer-events:none;
+  background-image:radial-gradient(circle at .8125rem 1.3125rem,#C6C8CE 0 .25rem,#ECEDEF .28rem,transparent .375rem);background-size:1.625rem 2.625rem;background-repeat:repeat-y}
+@media(min-width:1200px){.notebook{max-width:80vw}}
+.page{padding:.9rem 1rem 5rem calc(var(--margin) + .75rem)}
+@media(min-width:40rem){.page{padding-left:calc(var(--margin) + 1.5rem);padding-right:1.9rem}}
+
+/* ---------- header ---------- */
+.date{font-family:var(--hand);color:var(--pencil);font-size:1.3rem;display:inline-block;transform:rotate(-1.2deg);line-height:1.2}
+h1{font-size:1.9rem;line-height:1.25;margin:.25rem 0 .5rem;font-weight:700}
+mark{background:var(--hl);color:inherit;padding:.06em .3em;border-radius:.35em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.lead{margin:0 0 .5rem;font-size:1rem}
+.lead b{color:var(--red)}
+.vocab{display:flex;flex-wrap:wrap;gap:.375rem;margin:.375rem 0 .625rem}
+.vocab span{background:#fff;border:1.5px solid #E3E4E8;border-radius:999px;padding:.12rem .7rem;font-size:.8rem;color:var(--pencil)}
+.vocab b{font-weight:600;color:var(--ink);margin-right:.35rem}
+.score{display:flex;gap:.5rem;margin:.625rem 0 .25rem;max-width:40rem}
+.sc{flex:1;background:#fff;border:1.5px solid #E3E4E8;border-radius:.875rem;padding:.5rem .375rem;text-align:center;line-height:1.2}
+.sc b{display:block;font-size:1.5rem;font-weight:700}
+.sc span{font-size:.75rem;color:var(--pencil)}
+.sc.ok b{color:var(--green)} .sc.fix b{color:var(--red)}
+
+/* ---------- sticky bar: mode toggle + Chinese switch ---------- */
+.modebar{position:sticky;top:0;z-index:20;background:var(--paper);padding:.625rem 0 .5rem;margin:.625rem 0 .25rem;box-shadow:0 .6rem .75rem -.75rem rgba(0,0,0,.25)}
+.bar-top{display:flex;gap:.5rem;align-items:stretch;flex-wrap:wrap}
+.seg{flex:1 1 14rem;display:flex;gap:.375rem;background:#E7E8EB;border-radius:999px;padding:.25rem}
+.seg-btn{flex:1;border:0;background:transparent;font-size:.95rem;font-weight:600;padding:.6rem .375rem;border-radius:999px;color:#7A7D86;cursor:pointer;transition:background .2s,color .2s,box-shadow .2s;line-height:1.2}
+.seg-btn.theory-btn.is-on{background:var(--theory);color:#fff;box-shadow:0 .19rem 0 var(--theory-deep)}
+.seg-btn.life-btn.is-on{background:var(--life);color:#fff;box-shadow:0 .19rem 0 var(--life-deep)}
+.zh-toggle{flex:none;display:inline-flex;align-items:center;gap:.4rem;border:0;background:#E7E8EB;border-radius:999px;padding:.25rem .8rem .25rem .3rem;cursor:pointer;font-family:var(--cjk);font-size:.9rem;font-weight:700;color:#7A7D86;transition:background .2s,color .2s}
+.zh-toggle .knob{width:1.6rem;height:1.6rem;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);display:grid;place-items:center;font-size:.8rem;transition:transform .2s;color:#979AA2}
+.zh-toggle[aria-pressed="true"]{background:var(--accent);color:#fff}
+.zh-toggle[aria-pressed="true"] .knob{color:var(--accent-deep)}
+.seg-hint{margin:.375rem .375rem 0;font-size:.8rem;color:var(--pencil)}
+
+/* ---------- jump chips ---------- */
+.jump{display:flex;gap:.5rem;overflow-x:auto;padding:.375rem .125rem .625rem;margin:.25rem -.125rem 0;scrollbar-width:none}
+.jump::-webkit-scrollbar{display:none}
+.jump a{flex:none;display:inline-flex;align-items:center;gap:.375rem;text-decoration:none;color:var(--ink);background:#fff;border:1.5px solid #DFE0E4;border-radius:999px;padding:.3rem .75rem .3rem .3rem;font-size:.875rem;font-weight:500}
+.jump a i{font-style:normal;font-weight:700;background:var(--ink);color:#fff;width:1.375rem;height:1.375rem;border-radius:50%;display:inline-grid;place-items:center;font-size:.8rem}
+.jump a:hover{border-color:var(--accent)}
+
+/* ---------- topic ---------- */
+.topic{margin-top:2.25rem;scroll-margin-top:7.5rem}
+.topic h2{font-size:1.4rem;line-height:1.3;margin:0 0 .875rem;display:flex;align-items:flex-start;gap:.625rem}
+.topic h2 .num{flex:none;font-weight:700;width:2rem;height:2rem;border-radius:50%;background:var(--ink);color:#fff;display:inline-grid;place-items:center;font-size:1.06rem;margin-top:.1rem}
+.topic h2 .num.emo{background:transparent;font-size:1.5rem}
+
+/* worksheet cut-out */
+.cutout{position:relative;background:#fff;border:1px solid #E2E3E7;border-radius:.375rem;padding:1.1rem .875rem .875rem;margin:.875rem 0 1.25rem;box-shadow:0 .25rem .875rem rgba(40,40,60,.10);transform:rotate(-.6deg)}
+.tape{position:absolute;top:-.7rem;left:1.375rem;width:4.9rem;height:1.375rem;background:rgba(255,224,130,.75);transform:rotate(-4deg);border-left:2px dashed rgba(255,255,255,.75);border-right:2px dashed rgba(255,255,255,.75)}
+.cutout .q{font-size:.95rem;color:#2A2C33;line-height:1.7;font-weight:400}
+.cutout .q b{font-weight:600;background:#5D6069;color:#fff;border-radius:50%;width:1.5rem;height:1.5rem;display:inline-grid;place-items:center;font-size:.75rem;margin-right:.375rem;vertical-align:middle}
+.ans{font-family:var(--hand);font-size:1.4rem;color:var(--pencil);border-bottom:1.5px solid #979AA2;padding:0 .25rem;line-height:1.2}
+.wrong{position:relative;display:inline-block;padding:0 .2rem}
+.wrong::after{content:"";position:absolute;inset:-.2rem -.25rem;border:2.5px solid var(--red);border-radius:50%;transform:rotate(-8deg)}
+.redpen{font-family:var(--hand);color:var(--red);font-size:1.2rem;margin-top:.375rem;transform:rotate(-1.5deg);display:inline-block;line-height:1.3;font-weight:700}
+.pg{position:absolute;right:.625rem;bottom:.3rem;font-size:.7rem;color:#A3A5AC}
+
+/* explanation (mode-colored) */
+.explain{position:relative;background:var(--accent-soft);border-left:.3rem solid var(--accent);border-radius:.25rem 1rem 1rem .25rem;padding:1.1rem .875rem .375rem;margin:0 0 .875rem;transition:background .25s,border-color .25s}
+.modetag{position:absolute;top:-.75rem;right:.75rem;font-size:.75rem;font-weight:600;color:#fff;background:var(--accent);padding:.12rem .625rem;border-radius:999px;transition:background .25s;white-space:nowrap}
+body[data-mode="theory"] .modetag::before{content:"📘 Textbook version"}
+body[data-mode="life"] .modetag::before{content:"🍎 Real-life version"}
+body.zh-on[data-mode="theory"] .modetag::before{content:"📘 Textbook version · 課本理論版"}
+body.zh-on[data-mode="life"] .modetag::before{content:"🍎 Real-life version · 生活應用版"}
+.explain ul{list-style:none;margin:0;padding:0}
+.explain li{position:relative;padding-left:1.5rem;margin:0 0 .625rem;font-size:.97rem}
+.explain li::before{content:"";position:absolute;left:.125rem;top:.62em;width:.625rem;height:.625rem;background:var(--accent);border-radius:.19rem}
+body[data-mode="life"] .explain li::before{border-radius:50%}
+.explain .model{margin:.25rem 0 .5rem;padding:.5rem .625rem;background:#fff;border-radius:.625rem;font-size:.95rem;border:1px dashed var(--accent);font-weight:500}
+.explain.plain{background:#F1F1F3;border-left-color:#B5B7BE}
+.explain.plain li::before{background:#B5B7BE}
+
+/* interactive block */
+.play{background:#fff;border:2px dashed #DBDCE0;border-radius:1rem;padding:.875rem .75rem .75rem;margin:0 0 .625rem}
+.play h3{margin:0 0 .625rem;font-size:1.02rem;display:flex;align-items:center;gap:.5rem;line-height:1.3;font-weight:600}
+.try{flex:none;font-size:.7rem;font-weight:700;color:var(--accent-deep);background:var(--accent-soft);border:1px solid var(--accent);border-radius:999px;padding:.05rem .5rem}
+.how{margin:0 0 .5rem;font-size:.875rem;color:var(--pencil)}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
+.btn{border:0;border-radius:.75rem;padding:.625rem .875rem;font-size:.95rem;font-weight:600;background:var(--accent);color:#fff;box-shadow:0 .19rem 0 var(--accent-deep);cursor:pointer;transition:transform .08s,box-shadow .08s,opacity .2s,filter .15s}
+.btn:hover{filter:brightness(1.06)}
+.btn:active{transform:translateY(.125rem);box-shadow:0 .06rem 0 var(--accent-deep)}
+.btn:disabled{opacity:.4;cursor:default;transform:none;filter:none}
+.btn.ghost{background:#fff;color:var(--ink);border:1.5px solid #D9DADF;box-shadow:0 .19rem 0 #D9DADF}
+.btn.ghost:active{box-shadow:0 .06rem 0 #D9DADF}
+.btn.sm{padding:.45rem .7rem;font-size:.875rem;border-radius:.625rem}
+.msg{margin:.625rem 0 0;padding:.625rem .75rem;background:#F4F4F6;border-radius:.75rem;font-size:.95rem;line-height:1.55}
+.msg:empty{display:none}
+.msg.good{background:#E9F7EE;color:#1E7A48}
+.msg.bad{background:#FDECEA;color:#B4342A}
+.msg.warn{background:#FFF6D6;color:#7A5A00}
+.msg.note{background:var(--accent-soft)}
+.choices{display:flex;flex-wrap:wrap;gap:.5rem;margin:.5rem 0}
+.choice{border:1.5px solid #D9DADF;background:#fff;border-radius:.75rem;padding:.55rem .875rem;font-size:.95rem;font-weight:600;box-shadow:0 .19rem 0 #D9DADF;cursor:pointer;transition:.15s;color:var(--ink)}
+.choice:hover{border-color:var(--accent)}
+.choice.right{background:#E9F7EE;border-color:var(--green);color:#1E7A48;box-shadow:0 .19rem 0 var(--green)}
+.choice.wrongpick{background:#FDECEA;border-color:var(--red);color:#B4342A;box-shadow:0 .19rem 0 var(--red)}
+.choice.on{background:var(--accent);color:#fff;border-color:var(--accent-deep);box-shadow:0 .19rem 0 var(--accent-deep)}
+.choice:disabled{cursor:default;opacity:.85}
+
+/* sieve */
+.sieve{display:grid;grid-template-columns:repeat(10,1fr);gap:.19rem;margin:.5rem 0;max-width:30rem}
+.cell{position:relative;aspect-ratio:1;border:1.5px solid #D2D4D9;border-radius:.44rem;background:#FDFDFD;font-weight:500;font-size:clamp(.7rem,3.4vw,1.1rem);color:var(--ink);padding:0;cursor:pointer;line-height:1;overflow:hidden;transition:box-shadow .15s}
+.cell:hover{box-shadow:0 0 0 2px #E3E4E8}
+.cell.one{border-radius:50%;box-shadow:inset 0 0 0 2px var(--ink)}
+.cell.prime{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-deep);font-weight:700}
+.cell.prime::after{content:"";position:absolute;left:18%;right:18%;bottom:.19rem;height:.16rem;border-radius:2px;background:var(--accent)}
+.cell.x{color:#B9BBC2;background:#F2F2F4}
+.cell.x::before{content:"";position:absolute;left:8%;right:8%;top:50%;height:2px;background:#8E9098;transform-origin:center;transform:rotate(-42deg);animation:draw .28s ease-out both}
+@keyframes draw{from{transform:rotate(-42deg) scaleX(0)}to{transform:rotate(-42deg) scaleX(1)}}
+.cell.star{background:#FFE7E4;border-color:var(--red);color:var(--red);font-weight:700;animation:pop .5s ease-out}
+.cell.star::before{background:var(--red);height:3px}
+.cell.peek{box-shadow:0 0 0 3px #FFD44D}
+@keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.22)}100%{transform:scale(1)}}
+
+/* times table */
+.ttable{display:grid;grid-template-columns:repeat(10,1fr);gap:.125rem;max-width:26rem;margin:.6rem 0 .25rem}
+.tt{aspect-ratio:1;display:grid;place-items:center;font-size:clamp(.6rem,2.8vw,.95rem);border-radius:.3rem;background:#fff;border:1px solid #E3E4E8;color:var(--ink);font-weight:500;padding:0;line-height:1;transition:opacity .25s,box-shadow .15s}
+button.tt{cursor:pointer}
+button.tt:hover{box-shadow:0 0 0 2px #E3E4E8}
+.tt.hd{background:#F1F1F3;color:var(--pencil);font-weight:600}
+.tt.corner{background:transparent;border-color:transparent;color:var(--pencil)}
+.tt.sq{background:var(--hl);font-weight:700;animation:pop .35s ease-out}
+.tt.sq.hot{box-shadow:inset 0 0 0 2px var(--red);color:var(--red)}
+.tt.dim{opacity:.45}
+.tt.peek{box-shadow:0 0 0 3px #FFD44D}
+.tt.sq.hot.peek{box-shadow:inset 0 0 0 2px var(--red),0 0 0 3px #FFD44D}
+
+/* baskets */
+.baskets{display:grid;grid-template-columns:1fr 1fr;gap:.625rem;max-width:34rem}
+.basket{background:#F1F1F3;border:1.5px solid #DEDFE3;border-radius:.875rem;padding:.5rem}
+.basket h4{margin:0 0 .375rem;font-size:.95rem;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+.count{font-weight:700;font-size:1.25rem;color:var(--accent-deep)}
+.balls{display:grid;grid-template-columns:repeat(5,1fr);gap:.25rem}
+.ball{aspect-ratio:1;display:grid;place-items:center;border-radius:50%;background:#fff;border:1.5px solid #DDDEE2;font-size:clamp(.62rem,3vw,.95rem);color:#83868E;transition:.25s}
+.ball.is-prime{background:var(--accent);color:#fff;border-color:var(--accent-deep);transform:scale(1.1);font-weight:700}
+
+/* eggs */
+.eq{font-size:1.75rem;font-weight:600;margin:.625rem 0 .375rem;color:var(--ink)}
+.eq b{color:var(--accent-deep);font-weight:700}
+.cartons{display:flex;flex-direction:column;gap:.19rem;margin-bottom:.375rem}
+.egg-row{font-size:.95rem;letter-spacing:1px;line-height:1.3;background:#EEEEF1;border-radius:.5rem;padding:.12rem .375rem;display:inline-block;width:max-content;max-width:100%}
+hr.dash{border:0;border-top:2px dashed #E3E4E8;margin:.875rem 0 .625rem}
+.drill-q{margin-bottom:.625rem}
+.dq{font-size:1rem;font-weight:500}
+
+/* multiples list & buses */
+.counter{font-size:.875rem;color:var(--pencil)}
+.counter b{font-size:1.125rem;color:var(--accent-deep)}
+.chips-list{display:flex;flex-wrap:wrap;gap:.375rem;margin:.625rem 0 .25rem;min-height:2.1rem;align-items:center}
+.mchip{font-weight:600;background:var(--accent-soft);color:var(--accent-deep);border-radius:.56rem;padding:.25rem .56rem;animation:pop .35s ease-out}
+.grp{font-size:.75rem;color:var(--green);font-weight:700;background:#E9F7EE;border-radius:999px;padding:.12rem .5rem}
+.lane{display:flex;flex-wrap:wrap;gap:.3rem;align-items:center;margin-bottom:.625rem}
+.lane .lbl{width:100%;font-size:.875rem;color:var(--pencil)}
+.stop{position:relative;font-size:.8rem;font-weight:600;min-width:2.125rem;text-align:center;padding:.25rem .3rem;border-radius:.5rem;background:#F1F1F3;color:#A0A2A9;border:1.5px solid transparent;transition:.25s}
+.stop.l4.on{background:#E7EBFF;color:#3F52C8;border-color:#8B98F0}
+.stop.l5.on{background:#E3F6EE;color:#1F7A55;border-color:#78CBA5}
+.stop.meet.on{background:#FFF0B8;color:#7A5300;border-color:#F0C33C;transform:scale(1.08)}
+.stop.meet::after{content:attr(data-k);position:absolute;top:-.5rem;right:-.375rem;width:1.06rem;height:1.06rem;border-radius:50%;background:#F5B400;color:#fff;font-size:.7rem;display:grid;place-items:center;font-weight:700}
+
+/* quiz */
+.qhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;font-size:.8rem;color:var(--pencil)}
+.dots{display:flex;gap:.3rem}
+.dots i{width:.56rem;height:.56rem;border-radius:50%;background:#E3E4E8;display:inline-block}
+.dots i.cur{box-shadow:0 0 0 2px var(--accent)}
+.dots i.ok{background:var(--green)} .dots i.no{background:var(--red)}
+.qq{font-size:1.06rem;font-weight:600;margin:.125rem 0 .5rem;line-height:1.5}
+.qnav{margin-top:.625rem}
+.result{text-align:center;padding:.625rem 0}
+.stars{font-size:2.1rem;letter-spacing:.25rem}
+.big{font-size:2.5rem;font-weight:700;color:var(--accent-deep);line-height:1.1;margin:.25rem 0}
+
+/* checklist */
+.todo{display:flex;gap:.625rem;align-items:flex-start;padding:.56rem 0;border-bottom:1.5px dashed #E3E4E8;font-size:.95rem;cursor:pointer}
+.todo:last-of-type{border-bottom:0}
+.todo input{appearance:none;-webkit-appearance:none;flex:none;width:1.375rem;height:1.375rem;border:2px solid #C7C9CF;border-radius:.44rem;margin:.19rem 0 0;display:grid;place-items:center;background:#fff;cursor:pointer}
+.todo input:checked{background:var(--green);border-color:var(--green)}
+.todo input:checked::after{content:"✓";color:#fff;font-weight:900;font-size:.95rem;line-height:1}
+.todo input:checked+span{text-decoration:line-through;color:#9C9EA5}
+
+.foot{margin-top:2.75rem;text-align:center;color:#9C9EA5;font-family:var(--hand);font-size:1.2rem;line-height:1.3}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body data-mode="theory">
+<style>
+.wn-back{position:fixed;right:.8rem;bottom:.8rem;z-index:999;display:inline-flex;align-items:center;gap:.3rem;
+ background:#fff;color:#2E3037;border:1px solid #D9DADF;border-radius:999px;padding:.4rem .8rem;
+ font-family:'Fredoka',system-ui,sans-serif;font-size:.85rem;font-weight:600;text-decoration:none;
+ box-shadow:0 2px 8px rgba(0,0,0,.14)}
+.wn-back:hover{border-color:#2E3037}
+@media print{.wn-back{display:none}}
+</style>
+<a href="index.html" class="wn-back" aria-label="Back to the index">📒 Index</a>
+
+<main class="notebook">
+<div class="page">
+
+<header>
+  <span class="date">Date: 8/15 &nbsp;·&nbsp; Chapter 2</span>
+  <h1>William's <mark>Correction Notes</mark><span class="zh">William 的訂正筆記</span></h1>
+  <p class="lead">I checked all 6 pages — most of it is right! 👍<br>There are just <b>4 spots</b> to look at together.<span class="zh">6 頁作業檢查完囉！大部分都答對了，只有 4 個地方我們一起看一下。</span></p>
+  <div class="vocab">
+    <span><b>prime</b>only 2 factors<i class="zhi">質數</i></span>
+    <span><b>composite</b>more than 2 factors<i class="zhi">合數</i></span>
+    <span><b>factor</b>divides it exactly<i class="zhi">因數</i></span>
+    <span><b>multiple</b>× 1, × 2, × 3 …<i class="zhi">倍數</i></span>
+    <span><b>common multiple</b>on both lists<i class="zhi">公倍數</i></span>
+  </div>
+  <div class="score">
+    <div class="sc"><b>6</b><span>pages<i class="zhi">頁</i></span></div>
+    <div class="sc ok"><b>~90%</b><span>correct<i class="zhi">答對</i></span></div>
+    <div class="sc fix"><b>4</b><span>spots to fix<i class="zhi">要訂正</i></span></div>
+  </div>
+</header>
+
+<div class="modebar">
+  <div class="bar-top">
+    <div class="seg" role="tablist" aria-label="Choose how it is explained">
+      <button type="button" class="seg-btn theory-btn is-on" data-set="theory" role="tab" aria-selected="true">📘 Textbook version<span class="zh">課本理論版</span></button>
+      <button type="button" class="seg-btn life-btn" data-set="life" role="tab" aria-selected="false">🍎 Real-life version<span class="zh">生活應用版</span></button>
+    </div>
+    <button type="button" class="zh-toggle" id="zh-toggle" aria-pressed="false" title="Show Chinese notes / 顯示中文說明"><span class="knob">中</span>中文</button>
+  </div>
+  <p class="seg-hint theory">The textbook way: definitions, steps and checks.<span class="zhi">用課本的說法，把定義和方法講清楚。</span></p>
+  <p class="seg-hint life">Think about it with everyday things — candies, eggs and buses.<span class="zhi">用生活裡的東西想一想，為什麼會這樣。</span></p>
+</div>
+
+<nav class="jump" aria-label="Jump to">
+  <a href="#s1"><i>1</i>49 isn't prime</a>
+  <a href="#s2"><i>2</i>"A or B?"</a>
+  <a href="#s3"><i>3</i>First multiple</a>
+  <a href="#s4"><i>4</i>Count to 15</a>
+  <a href="#quiz"><i>🎯</i>Quiz</a>
+</nav>
+
+<!-- ================= 1 ================= -->
+<section class="topic" id="s1">
+  <h2><span class="num">1</span><span>49 sneaked into the prime list<span class="zh">49 偷偷溜進質數名單了</span></span></h2>
+  <div class="cutout">
+    <span class="tape"></span>
+    <div class="q"><b>39</b> The prime numbers are <span class="ans">2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, <span class="wrong">49</span></span></div>
+    <div class="redpen">49 = 7 × 7 → not prime!<span class="zh">49 = 7 × 7 → 不是質數！</span></div>
+    <div class="pg">p.61 – 62</div>
+  </div>
+
+  <div class="explain">
+    <span class="modetag"></span>
+    <div class="theory"><ul>
+      <li>A <b>prime number</b> has exactly two factors: <mark>1 and itself</mark>. Example: 47 can only be written as 1 × 47.<span class="zh">質數：只有 1 和它自己兩個因數。例：47 只能寫成 1 × 47。</span></li>
+      <li>A <b>composite number</b> has <mark>more than two factors</mark>. 49 = 1 × 49 and also 7 × 7, so its factors are 1, 7, 49 — three factors → composite.<span class="zh">合數：因數超過兩個。49 = 1 × 49，也 = 7 × 7 → 因數有 1、7、49，三個 → 合數。</span></li>
+      <li>In the sieve, after crossing out the multiples of 2, 3 and 5, <mark>you still have to cross out the multiples of 7</mark>. 14, 21, 28, 35, 42 are already gone — only <b>49</b> is new. That's why it's so easy to miss.<span class="zh">篩法的重點：畫完 2、3、5 的倍數以後，7 的倍數也要畫！14、21、28、35、42 早就被畫掉了，只剩 49 是新的，所以最容易漏。</span></li>
+      <li>Checking trick: when you reach a prime p, look for <b>p × p</b> first (3 → 9, 5 → 25, 7 → 49).<span class="zh">檢查小口訣：輪到質數 p 的時候，先看 p × p 有沒有畫掉。</span></li>
+      <li>There are <b>15</b> primes from 1 to 50: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47.<span class="zh">1 到 50 的質數一共 15 個。</span></li>
+    </ul></div>
+    <div class="life"><ul>
+      <li>Imagine 49 candies shared equally with none left over. Besides "1 kid takes them all" and "49 kids take 1 each", you can also give <mark>7 kids 7 candies each</mark>. One extra way to share means it's not prime.<span class="zh">有 49 顆糖果要分給小朋友，每人一樣多、剛好分完。除了「1 個人全包」和「49 個人各 1 顆」，還可以 7 個小朋友每人 7 顆！只要多一種分法，就不是質數。</span></li>
+      <li>Prime candies only make one long line: 47 candies = 1 row of 47. But 49 candies can make a <mark>7 × 7 square</mark>, so 49 is composite.<span class="zh">質數的糖果只能排成一直排：47 顆只能排 1 排 47 顆。49 顆卻能排成 7 × 7 的正方形，所以是合數。</span></li>
+      <li>Square numbers are sneaky: the diagonal of the times table — 4, 9, 16, 25, 36, <b>49</b> — is never prime (they can all make a square). Try it in the table below ↓<span class="zh">平方數是常見陷阱：乘法表的斜對角 4、9、16、25、36、49……通通不是質數。看看下面的乘法表。</span></li>
+      <li>Next time you sieve, when you get to 7, find 7 × 7 = 49 first and cross it out hard!<span class="zh">下次做篩法，輪到 7 的時候，就先找 7 × 7 = 49，用力畫掉！</span></li>
+    </ul></div>
+  </div>
+
+  <div class="play life">
+    <h3><span class="try">Try it</span>The diagonal of the times table</h3>
+    <p class="how">Press the button to light up the diagonal — the square numbers (a number × itself). Tap any square to see its multiplication.<span class="zh">按按鈕把斜對角亮起來，那些是平方數（一個數乘自己）。點任一格看它的乘法。</span></p>
+    <div class="row">
+      <button type="button" class="btn sm" id="tt-show">✨ Show the square numbers</button>
+      <button type="button" class="btn sm ghost" id="tt-reset">Reset</button>
+    </div>
+    <div class="ttable" id="ttable" aria-label="Times table 1 to 9"></div>
+    <div class="msg" id="tt-msg"></div>
+  </div>
+
+  <div class="play">
+    <h3><span class="try">Try it</span>Sieve the primes from 1 to 50 yourself</h3>
+    <p class="how">Press the buttons in order and watch who gets crossed out each round. Tap any square to see its factors.<span class="zh">照順序按按鈕，看看每一輪會畫掉誰。也可以點任何一格，看它的因數。</span></p>
+    <div class="row">
+      <button type="button" class="btn sm sieve-btn" data-p="2">① Cross out multiples of 2</button>
+      <button type="button" class="btn sm sieve-btn" data-p="3">② multiples of 3</button>
+      <button type="button" class="btn sm sieve-btn" data-p="5">③ multiples of 5</button>
+      <button type="button" class="btn sm sieve-btn" data-p="7">④ multiples of 7</button>
+      <button type="button" class="btn sm ghost" id="sieve-reset">Reset</button>
+    </div>
+    <div class="sieve" id="sieve" aria-label="Numbers 1 to 50"></div>
+    <div class="msg" id="sieve-msg"></div>
+    <div class="msg note" id="cell-info"></div>
+  </div>
+</section>
+
+<!-- ================= 2 ================= -->
+<section class="topic" id="s2">
+  <h2><span class="num">2</span><span>"A or B?" means pick one<span class="zh">「A or B」要選一邊回答</span></span></h2>
+  <div class="cutout">
+    <span class="tape"></span>
+    <div class="q"><b>42</b> Are there more prime numbers from 1 to 25 or from 26 to 50? <span class="ans"><span class="wrong">No</span></span></div>
+    <div class="redpen">Pick a side! → 1 to 25 (9 primes vs 6)<span class="zh">要選一邊！→ 1 to 25（9 個 &gt; 6 個）</span></div>
+    <div class="pg">p.62</div>
+  </div>
+
+  <div class="explain">
+    <span class="modetag"></span>
+    <div class="theory"><ul>
+      <li>Read it again: <i>Are there more prime numbers from 1 to 25 <b>or</b> from 26 to 50?</i> When a question has <mark>"or"</mark>, it's a comparing question — the answer is <b>one of the two choices</b>, never Yes or No.<span class="zh">有 or 的比較題，答案要從兩邊選一邊，不能回答 Yes / No。</span></li>
+      <li>Primes from 1 to 25: 2, 3, 5, 7, 11, 13, 17, 19, 23 → <b>9</b><span class="zh">1 – 25 的質數：9 個</span></li>
+      <li>Primes from 26 to 50: 29, 31, 37, 41, 43, 47 → <b>6</b><span class="zh">26 – 50 的質數：6 個</span></li>
+      <li>9 &gt; 6, so write:
+        <div class="model">There are more prime numbers from 1 to 25.</div>
+        (or simply <b>1 to 25</b>)<span class="zh">9 &gt; 6，所以答案要這樣寫（或簡單寫 1 to 25）。</span></li>
+      <li>Bonus discovery: the bigger the numbers get, the <mark>fewer</mark> primes there are, because more small numbers can divide them exactly.<span class="zh">順便發現：數字越大，質數越稀疏，因為能整除它的小數字越來越多。</span></li>
+    </ul></div>
+    <div class="life"><ul>
+      <li>If someone asks "Do you want an apple <mark>or</mark> a banana?" and you answer "No", that's a strange answer, right? English "A or B" questions work the same way — pick a side.<span class="zh">有人問你「你要吃蘋果還是香蕉？」回答「不要」是不是很奇怪？英文的 A or B 也一樣，要選一邊回答。</span></li>
+      <li>Think of 1 – 50 as two baskets with 25 balls each. From the first basket you pick out <b>9</b> prime balls; from the second only <b>6</b>. So <mark>the first basket (1 to 25) has more</mark>.<span class="zh">把 1 – 50 想成兩個籃子，各裝 25 顆球。第一個籃子挑出 9 顆質數球，第二個籃子只挑出 6 顆。所以是第一個籃子（1 到 25）比較多。</span></li>
+      <li>Why fewer later? The bigger a number is, the more small numbers line up to try to divide it exactly (2, 3, 5, 7 … all get a turn). Escaping all of them gets harder, so primes get rarer.<span class="zh">為什麼越後面越少？數字越大，排隊想來「剛好把它分完」的小數字就越多，要全部躲掉很難，所以質數越來越少。</span></li>
+      <li>Write it like this:<div class="model">There are more prime numbers from 1 to 25.</div></li>
+    </ul></div>
+  </div>
+
+  <div class="play">
+    <h3><span class="try">Try it</span>Which basket has more primes?</h3>
+    <div class="baskets">
+      <div class="basket"><h4>1 – 25 <span class="count" id="c1">?</span></h4><div class="balls" id="b1"></div></div>
+      <div class="basket"><h4>26 – 50 <span class="count" id="c2">?</span></h4><div class="balls" id="b2"></div></div>
+    </div>
+    <div class="row" style="margin-top:.625rem"><button type="button" class="btn" id="find-primes">🔍 Find the primes</button></div>
+    <p class="how" style="margin-top:.75rem">Are there more prime numbers from 1 to 25 or from 26 to 50?</p>
+    <div class="choices" id="q42c">
+      <button type="button" class="choice" data-k="a">1 to 25</button>
+      <button type="button" class="choice" data-k="b">26 to 50</button>
+      <button type="button" class="choice" data-k="c">No</button>
+    </div>
+    <div class="msg" id="q42-fb"></div>
+  </div>
+</section>
+
+<!-- ================= 3 ================= -->
+<section class="topic" id="s3">
+  <h2><span class="num">3</span><span>The first multiple is the number itself<span class="zh">第一個倍數，就是它自己</span></span></h2>
+  <div class="cutout">
+    <span class="tape"></span>
+    <div class="q"><b>5</b> The first multiple of 9 is <span class="ans"><span class="wrong">18</span></span>.</div>
+    <div class="redpen">9 × 1 = 9 is the first one<span class="zh">9 × 1 = 9 才是第一個</span></div>
+    <div class="pg">p.63</div>
+  </div>
+
+  <div class="explain">
+    <span class="modetag"></span>
+    <div class="theory"><ul>
+      <li>A <b>multiple</b> is what you get when you multiply a number by <mark>1, 2, 3, …</mark> Multiples of 9: 9, 18, 27, 36, 45 …<span class="zh">倍數：把一個數 × 1、× 2、× 3……得到的數。9 的倍數：9, 18, 27, 36, 45……</span></li>
+      <li><mark>"Which multiple" = "times what"</mark>: first = 9 × 1 = <b>9</b>, second = 9 × 2 = 18. So <i>the first multiple of 9</i> is 9, not 18.<span class="zh">第幾個倍數 = 乘幾：第一個 = 9 × 1 = 9，第二個 = 9 × 2 = 18。所以 the first multiple of 9 是 9，不是 18。</span></li>
+      <li>You actually got it right in the table above (9, 18, 27, 36, 45), and Q8 "the seventh multiple of 7 = 49" was right too! Q5 was just a slip — you thought of the second one.<span class="zh">你在上面的表格其實寫對了（9, 18, 27, 36, 45），Q8 第七個 7 的倍數 = 49 也對！只是 Q5 一時想成「第二個」。</span></li>
+      <li>Remember: <mark>every number's first multiple is itself</mark> (9 is both a factor and a multiple of 9).<span class="zh">記住：每個數的第一個倍數就是它自己（9 既是 9 的因數，也是 9 的倍數）。</span></li>
+    </ul></div>
+    <div class="life"><ul>
+      <li>Eggs come in cartons of 9. Buy <b>1 carton</b> = 9 eggs, 2 cartons = 18, 3 cartons = 27 … Buying 1 carton still counts! So <mark>the first multiple is 9</mark>.<span class="zh">一盒雞蛋 9 顆。買 1 盒是 9 顆、2 盒 18 顆、3 盒 27 顆……買 1 盒也算買啊！所以第一個倍數就是 9。</span></li>
+      <li>"Which carton" = "times what": the 5th carton → 9 × 5 = 45 eggs.<span class="zh">「第幾盒」＝「乘幾」：第 5 盒 → 9 × 5 = 45 顆。</span></li>
+      <li>18 is "the 2nd carton", so it's the <b>second</b> multiple, not the first.<span class="zh">18 是「第 2 盒」，所以它是第二個倍數，不是第一個。</span></li>
+      <li>Trick: when you see first / second / seventh / twelfth, swap it for × 1 / × 2 / × 7 / × 12.<span class="zh">秘訣：看到 first / second / seventh / twelfth，就直接換成 × 1 / × 2 / × 7 / × 12。</span></li>
+    </ul></div>
+  </div>
+
+  <div class="play">
+    <h3><span class="try">Try it</span>Which multiple = times what</h3>
+    <div class="row" id="nth"></div>
+    <div class="eq"><span id="eq-l">9 × 1</span> = <b id="eq-r">9</b></div>
+    <div class="cartons" id="cartons"></div>
+    <div class="msg note" id="nth-msg"></div>
+    <hr class="dash">
+    <p class="how">Quick fire:<span class="zhi">快問快答：</span></p>
+    <div id="drill"></div>
+  </div>
+</section>
+
+<!-- ================= 4 ================= -->
+<section class="topic" id="s4">
+  <h2><span class="num">4</span><span>Count to 15 — the last one is 60<span class="zh">數到 15 個，最後一個是 60</span></span></h2>
+  <div class="cutout">
+    <span class="tape"></span>
+    <div class="q"><b>20</b> The first 15 multiples of 4 are <span class="ans">4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48,</span></div>
+    <div class="redpen">Only 12! Still need 52, 56, 60<span class="zh">只有 12 個！還差 52, 56, 60</span></div>
+    <div class="q" style="margin-top:.75rem">The first three common multiples of 4 and 5 are <span class="ans">20, 40, <span class="wrong">80</span></span></div>
+    <div class="redpen">→ 20, 40, 60</div>
+    <div class="pg">p.65</div>
+  </div>
+
+  <div class="explain">
+    <span class="modetag"></span>
+    <div class="theory"><ul>
+      <li><i>The first 15 multiples</i> means you need <mark>15 numbers</mark>. You stopped at 48 — that's 4 × 12, only 12 numbers. <b>52, 56, 60</b> are missing.<span class="zh">The first 15 multiples 要寫滿 15 個。你寫到 48 就停了，那是 4 × 12，只有 12 個，還少 52, 56, 60。</span></li>
+      <li>Check trick: the last one must be <mark>4 × 15 = 60</mark>. When you finish, look at the last number — if it's 60, you have enough. (Your "first 12 multiples of 5" ended at 5 × 12 = 60 ✓ — that line was right!)<span class="zh">檢查法：最後一個一定是 4 × 15 = 60。寫完看最後一個是不是 60，就知道夠不夠。（你寫的 first 12 multiples of 5 最後是 5 × 12 = 60 ✓ 這行對了！）</span></li>
+      <li>A <b>common multiple</b> is a multiple of <mark>both</mark> 4 and 5 — the numbers on both lists: 20, 40, 60, 80 … (all multiples of 20). First 20, second 40, <b>third 60</b>. 80 is the fourth.<span class="zh">公倍數：同時是 4 的倍數、也是 5 的倍數。兩張清單都出現的數：20, 40, 60, 80……第一個 20、第二個 40、第三個 60。80 是第四個。</span></li>
+      <li>Chain reaction: because the list of 4s wasn't finished, you couldn't see 60, so you wrote 80. <mark>Finish the list and the next part takes care of itself</mark>.<span class="zh">連鎖反應：因為 4 的清單沒寫完，看不到 60，才會寫成 80。清單寫完整，後面就不會錯。</span></li>
+    </ul></div>
+    <div class="life"><ul>
+      <li>Two buses leave the depot together: Bus 4 leaves every 4 minutes, Bus 5 every 5 minutes. When do they <mark>leave together again</mark>? At minute 20, minute 40, <b>minute 60</b> … The third time is minute 60; minute 80 is the fourth.<span class="zh">兩台公車同時從總站出發：4 號車每 4 分鐘一班，5 號車每 5 分鐘一班。什麼時候會再次一起發車？第 20 分、第 40 分、第 60 分……第三次是第 60 分鐘，第 80 分是第四次。</span></li>
+      <li>Counting to 15 is like counting marbles: <mark>make a mark every 5</mark>. 4, 8, 12, 16, 20 ✓ | 24, 28, 32, 36, 40 ✓ | 44, 48, 52, 56, 60 ✓ → three groups of five = 15.<span class="zh">數 15 個要像數彈珠：每 5 個做一個記號。三組五個，剛好 15。</span></li>
+      <li>Shortcut: the 15th multiple of 4 is just 4 × 15 = 60 — once you reach <b>60</b>, stop.<span class="zh">偷吃步：第 15 個 4 的倍數就是 4 × 15 = 60，寫到 60 就可以停。</span></li>
+      <li>The "leave together" times 20, 40, 60, 80 are all multiples of 20, because 20 is the smallest time they meet.<span class="zh">公車一起發車的時間 20, 40, 60, 80 其實都是 20 的倍數——因為 20 是最小的「一起發車」時間。</span></li>
+    </ul></div>
+  </div>
+
+  <div class="play">
+    <h3><span class="try">Try it</span>Write all 15 multiples of 4</h3>
+    <div class="row">
+      <button type="button" class="btn" id="m4-next">✏️ Write the next one</button>
+      <button type="button" class="btn sm ghost" id="m4-reset">Clear</button>
+      <span class="counter">You've written <b id="m4-k">0</b> / 15</span>
+    </div>
+    <div class="chips-list" id="m4-list"></div>
+    <div class="msg" id="m4-msg"></div>
+  </div>
+
+  <div class="play">
+    <h3><span class="try">Try it</span>When do Bus 4 and Bus 5 leave together?</h3>
+    <div class="lane" id="lane4"><span class="lbl">🚌 Bus 4 (every 4 minutes)</span></div>
+    <div class="lane" id="lane5"><span class="lbl">🚌 Bus 5 (every 5 minutes)</span></div>
+    <div class="row"><button type="button" class="btn" id="bus-go">🚏 Go!</button></div>
+    <div class="msg" id="bus-msg"></div>
+    <p class="how" style="margin-top:.75rem">The third common multiple of 4 and 5 (the third time they leave together) is …<span class="zh">4 和 5 的第三個公倍數（第三次一起發車）是？</span></p>
+    <div class="choices" id="cmc">
+      <button type="button" class="choice" data-v="40">40</button>
+      <button type="button" class="choice" data-v="60">60</button>
+      <button type="button" class="choice" data-v="80">80</button>
+    </div>
+    <div class="msg" id="cm-fb"></div>
+  </div>
+</section>
+
+<!-- ================= tip ================= -->
+<section class="topic" id="s5">
+  <h2><span class="num emo">💡</span><span>Tip: Q38 could be even more precise<span class="zh">小提醒：Q38 的說法可以更精準</span></span></h2>
+  <div class="cutout">
+    <span class="tape"></span>
+    <div class="q"><b>38</b> Explain your reasoning. <span class="ans">They can be divided by other numbers</span></div>
+    <div class="redpen">Good thinking! Add "exactly" 👍<span class="zh">意思對！加上 exactly 更好</span></div>
+    <div class="pg">p.61</div>
+  </div>
+  <div class="explain plain"><ul>
+    <li>Your idea is right — this isn't a mistake, it can just be said more clearly.<span class="zh">你的意思是對的，這題不算錯，只是可以說得更清楚。</span></li>
+    <li>Primes can also be "divided by other numbers" — you just get a remainder (7 ÷ 2 = 3 R 1). The key for composites: they can be divided <mark>exactly</mark> by a number other than 1 and themselves — in other words, they have <mark>more than 2 factors</mark>.<span class="zh">質數其實也「可以被其他數除」，只是會有餘數。合數的重點是：能被 1 和自己以外的數整除，也就是因數超過 2 個。</span></li>
+    <li>You could write:<div class="model">They have more than 2 factors.</div>or<div class="model">They can be divided exactly by numbers other than 1 and themselves.</div></li>
+  </ul></div>
+</section>
+
+<!-- ================= quiz ================= -->
+<section class="topic" id="quiz">
+  <h2><span class="num emo">🎯</span><span>Quiz: no more tricks this time!<span class="zh">小測驗：這次不會再被騙了吧！</span></span></h2>
+  <div class="play">
+    <div class="qhead"><span id="q-prog"></span><span class="dots" id="q-dots"></span></div>
+    <div id="q-body"></div>
+  </div>
+</section>
+
+<!-- ================= checklist ================= -->
+<section class="topic" id="todo">
+  <h2><span class="num emo">✍️</span><span>Back to the workbook: correction list<span class="zh">回到作業本，訂正清單</span></span></h2>
+  <div class="play">
+    <label class="todo"><input type="checkbox"><span><b>p.61 Q39 &amp; p.62</b>: cross out 49 and take it off the prime list (15 primes in total)<span class="zh">把 49 打叉、從質數名單刪掉（正確是 15 個）</span></span></label>
+    <label class="todo"><input type="checkbox"><span><b>p.62 Q42</b>: change to "There are more prime numbers from 1 to 25." (9 vs 6)<span class="zh">改成 There are more prime numbers from 1 to 25.（9 個 vs 6 個）</span></span></label>
+    <label class="todo"><input type="checkbox"><span><b>p.63 Q5</b>: The first multiple of 9 is 9<span class="zh">改成 9</span></span></label>
+    <label class="todo"><input type="checkbox"><span><b>p.65 Q20</b>: add 52, 56, 60 to the multiples of 4; change the common multiples to 20, 40, 60<span class="zh">4 的倍數補上 52, 56, 60；公倍數改成 20, 40, 60</span></span></label>
+    <label class="todo"><input type="checkbox"><span><b>Bonus · p.61 Q38</b>: change the reason to "They have more than 2 factors."<span class="zh">加分題：理由改成 They have more than 2 factors.</span></span></label>
+    <div class="msg" id="todo-msg"></div>
+  </div>
+</section>
+
+<p class="foot">When you're done playing, go back and fix the workbook ✍️<br>Grade 4A · Chapter 2 · Factors &amp; Multiples</p>
+
+</div>
+</main>
+
+<script>
+(function(){
+const $=(s,r)=>(r||document).querySelector(s);
+const $$=(s,r)=>Array.from((r||document).querySelectorAll(s));
+const Z=t=>'<span class="zh">'+t+'</span>';
+const isPrime=n=>{if(n<2)return false;for(let i=2;i*i<=n;i++)if(n%i===0)return false;return true;};
+const factorsOf=n=>{const f=[];for(let i=1;i<=n;i++)if(n%i===0)f.push(i);return f;};
+const fmt=a=>a.length>8?a.slice(0,5).join(', ')+', …, '+a[a.length-1]:a.join(', ');
+const ordEn=['','first','second','third','fourth','fifth','sixth','seventh','eighth','ninth','tenth','eleventh','twelfth','thirteenth','fourteenth','fifteenth'];
+const ordShort=['','1st','2nd','3rd','4th','5th','6th','7th','8th','9th','10th'];
+
+/* ---------- mode toggle + Chinese switch ---------- */
+$$('.seg-btn').forEach(b=>b.addEventListener('click',()=>{
+  document.body.dataset.mode=b.dataset.set;
+  $$('.seg-btn').forEach(x=>{const on=x===b;x.classList.toggle('is-on',on);x.setAttribute('aria-selected',on?'true':'false');});
+}));
+$('#zh-toggle').addEventListener('click',function(){
+  const on=!document.body.classList.contains('zh-on');
+  document.body.classList.toggle('zh-on',on);
+  this.setAttribute('aria-pressed',on?'true':'false');
+});
+
+/* ---------- 1. sieve ---------- */
+const grid=$('#sieve'),sMsg=$('#sieve-msg'),cInfo=$('#cell-info');
+const S={crossed:new Set(),used:new Set(),timers:[]};
+for(let n=1;n<=50;n++){const c=document.createElement('button');c.type='button';c.className='cell'+(n===1?' one':'');c.textContent=n;c.dataset.n=n;c.setAttribute('aria-label','Number '+n);grid.appendChild(c);}
+const cell=n=>grid.children[n-1];
+grid.addEventListener('click',e=>{
+  const b=e.target.closest('.cell');if(!b)return;
+  const n=+b.dataset.n;
+  $$('.cell.peek',grid).forEach(x=>x.classList.remove('peek'));b.classList.add('peek');
+  if(n===1){cInfo.innerHTML='<b>1</b> is neither prime nor composite — it has only one factor (itself).'+Z('1 不是質數也不是合數，因為它只有 1 個因數（就是 1 自己）。');return;}
+  const f=factorsOf(n);
+  if(f.length===2){cInfo.innerHTML='<b>'+n+'</b> is prime: its only factors are 1 and '+n+' (1 × '+n+').'+Z(n+' 是質數：因數只有 1 和 '+n+'，只能寫成 1 × '+n+'。');}
+  else{const a=f[1],b2=n/a;cInfo.innerHTML='<b>'+n+'</b> is composite: factors '+f.join(', ')+' ('+f.length+' factors). For example '+n+' = '+a+' × '+b2+'.'+Z(n+' 是合數：因數有 '+f.join('、')+'（'+f.length+' 個）。例如 '+n+' = '+a+' × '+b2+'。');}
+});
+$$('.sieve-btn').forEach(btn=>btn.addEventListener('click',()=>{
+  const p=+btn.dataset.p;if(S.used.has(p))return;
+  S.used.add(p);btn.disabled=true;cell(p).classList.add('prime');
+  const fresh=[],old=[];
+  for(let m=p*2;m<=50;m+=p){(S.crossed.has(m)?old:fresh).push(m);}
+  fresh.forEach((m,i)=>{S.timers.push(setTimeout(()=>{S.crossed.add(m);const c=cell(m);c.classList.add('x');if(m===49&&p===7)c.classList.add('star');},i*80));});
+  const done=fresh.length*80+80;
+  S.timers.push(setTimeout(()=>{
+    let note,noteZh;
+    if(p===2){note='2 is the first prime. Underline it, then cross out every multiple of 2 (all the even numbers).';noteZh='2 是第一個質數，先畫底線，再把 2 的倍數（所有雙數）全部畫掉。';}
+    else if(p===7&&fresh.length===1){note='The multiples of 7 — 14, 21, 28, 35, 42 — were already crossed out. Only <b>49 = 7 × 7</b> is new. That is the one that slipped past last time 👀';noteZh='7 的倍數 14、21、28、35、42 早就被畫掉了，只剩 49 = 7 × 7 是新的——就是它上次溜掉了。';}
+    else{note='Watch out for '+p+' × '+p+' = <b>'+(p*p)+'</b> — look for this square number first in every round!';noteZh='留意 '+p+' × '+p+' = '+(p*p)+'，每一輪都先找這個平方數！';}
+    let t='<b>Multiples of '+p+'</b>: ';
+    if(old.length)t+=fmt(old)+' were already crossed out; ';
+    t+=(fresh.length?'newly crossed out: <b>'+fmt(fresh)+'</b> ('+fresh.length+' numbers).':'nothing new to cross out.')+'<br>'+note;
+    let tz=p+' 的倍數：'+(old.length?fmt(old)+' 已經被畫掉了；':'')+(fresh.length?'新畫掉 '+fmt(fresh)+'（'+fresh.length+' 個）。':'沒有新的可以畫。')+noteZh;
+    sMsg.innerHTML=t+Z(tz);sMsg.className='msg'+(p===7?' warn':'');
+    if(S.used.size===4){
+      const rest=[];for(let n=2;n<=50;n++){if(!S.crossed.has(n)){rest.push(n);cell(n).classList.add('prime');}}
+      S.timers.push(setTimeout(()=>{sMsg.className='msg good';sMsg.innerHTML='🎉 The next prime is 11, but 11 × 11 = 121 is bigger than 50, so we can stop.<br>The <b>'+rest.length+'</b> numbers left are the primes: <b>'+rest.join(', ')+'</b>'+Z('下一個質數是 11，可是 11 × 11 = 121 已經超過 50，所以不用再畫了。剩下沒被畫掉的 '+rest.length+' 個就是質數。');},700));
+    }
+  },done));
+}));
+$('#sieve-reset').addEventListener('click',()=>{
+  S.timers.forEach(clearTimeout);S.timers=[];S.crossed.clear();S.used.clear();
+  $$('.cell',grid).forEach(c=>c.classList.remove('x','prime','star','peek'));
+  $$('.sieve-btn').forEach(b=>b.disabled=false);
+  sMsg.innerHTML='';sMsg.className='msg';cInfo.innerHTML='';
+});
+
+/* ---------- 1b. times table diagonal ---------- */
+const tt=$('#ttable'),ttMsg=$('#tt-msg');let ttTimers=[];
+for(let r=0;r<=9;r++){for(let c=0;c<=9;c++){
+  const isHd=r===0||c===0;const d=document.createElement(isHd?'span':'button');
+  if(r===0&&c===0){d.className='tt corner';d.textContent='×';}
+  else if(isHd){d.className='tt hd';d.textContent=r||c;}
+  else{d.type='button';d.className='tt';d.textContent=r*c;d.dataset.a=r;d.dataset.b=c;d.setAttribute('aria-label',r+' times '+c+' equals '+(r*c));}
+  tt.appendChild(d);
+}}
+const ttCell=(r,c)=>tt.children[r*10+c];
+tt.addEventListener('click',e=>{
+  const b=e.target.closest('button.tt');if(!b)return;
+  const a=+b.dataset.a,c=+b.dataset.b,n=a*c;
+  $$('.tt.peek',tt).forEach(x=>x.classList.remove('peek'));b.classList.add('peek');
+  if(a===1&&c===1)ttMsg.innerHTML='1 × 1 = 1. 1 is neither prime nor composite.'+Z('1 × 1 = 1。1 不是質數也不是合數。');
+  else if(a===c)ttMsg.innerHTML=a+' × '+a+' = <b>'+n+'</b> — a square number. '+n+' candies can make a '+a+' × '+a+' square, so '+n+' is composite.'+Z(a+' × '+a+' = '+n+'，是平方數。'+n+' 顆糖果可以排成 '+a+' × '+a+' 的正方形，所以 '+n+' 是合數。');
+  else if(a===1||c===1)ttMsg.innerHTML=a+' × '+c+' = <b>'+n+'</b>. Multiplying by 1 is not a new way to share, so this row does not make '+n+' composite.'+(isPrime(n)?' '+n+' is prime.':' ('+n+' is composite for another reason: it shows up somewhere else in the table.)')+Z(a+' × '+c+' = '+n+'。乘 1 不算新的分法，所以這一排不會讓 '+n+' 變成合數。'+(isPrime(n)?n+' 是質數。':'（'+n+' 是合數是因為它在表裡別的地方也出現。）'));
+  else ttMsg.innerHTML=a+' × '+c+' = <b>'+n+'</b>. '+n+' candies can be shared as '+a+' groups of '+c+', so '+n+' is composite.'+Z(a+' × '+c+' = '+n+'。'+n+' 顆糖果可以分成 '+a+' 組、每組 '+c+' 顆，所以 '+n+' 是合數。');
+  ttMsg.className='msg';
+});
+$('#tt-show').addEventListener('click',function(){
+  if(this.disabled)return;this.disabled=true;
+  const parts=[];
+  for(let i=1;i<=9;i++){ttTimers.push(setTimeout(()=>{
+    const c=ttCell(i,i);c.classList.add('sq');if(i===7)c.classList.add('hot');
+    parts.push(i+'×'+i+'='+(i*i));ttMsg.className='msg';ttMsg.innerHTML=parts.join(', ');
+  },i*160));}
+  ttTimers.push(setTimeout(()=>{
+    $$('button.tt',tt).forEach(x=>{if(!x.classList.contains('sq'))x.classList.add('dim');});
+    ttMsg.className='msg warn';
+    ttMsg.innerHTML='The diagonal is the square numbers. Except 1, every one of them is composite — and <b>49 = 7 × 7</b> is sitting right there.<br>Even better: every number inside the table (from row 2 and column 2 on) is a × b, so it is composite. Primes only ever appear in the × 1 row and column!'+Z('斜對角就是平方數。除了 1，它們通通是合數，49 = 7 × 7 就在那裡。更厲害的是：表格裡面（第 2 排、第 2 行以後）的每個數都是 a × b，所以都是合數。質數只會出現在 × 1 那一排和那一行！');
+  },10*160+200));
+});
+$('#tt-reset').addEventListener('click',()=>{
+  ttTimers.forEach(clearTimeout);ttTimers=[];
+  $$('.tt',tt).forEach(x=>x.classList.remove('sq','hot','dim','peek'));
+  $('#tt-show').disabled=false;ttMsg.className='msg';ttMsg.innerHTML='';
+});
+
+/* ---------- 2. baskets ---------- */
+const b1=$('#b1'),b2=$('#b2');
+const fill=(el,a,b)=>{for(let n=a;n<=b;n++){const s=document.createElement('span');s.className='ball';s.textContent=n;s.dataset.n=n;el.appendChild(s);}};
+fill(b1,1,25);fill(b2,26,50);
+let found=false;
+$('#find-primes').addEventListener('click',function(){
+  if(found)return;found=true;this.disabled=true;
+  let d=0;
+  [[b1,'#c1'],[b2,'#c2']].forEach(pair=>{
+    const el=pair[0],cEl=$(pair[1]);let k=0;cEl.textContent='0';
+    $$('.ball',el).forEach(s=>{const n=+s.dataset.n;if(isPrime(n)){k++;const kk=k;setTimeout(()=>{s.classList.add('is-prime');cEl.textContent=kk;},d*110);d++;}});
+  });
+});
+$('#q42c').addEventListener('click',e=>{
+  const b=e.target.closest('.choice');if(!b)return;
+  const box=$('#q42c'),fb=$('#q42-fb');
+  $$('.choice',box).forEach(x=>x.classList.remove('right','wrongpick'));
+  const k=b.dataset.k;
+  if(k==='a'){b.classList.add('right');fb.className='msg good';fb.innerHTML='✅ Correct! 1 – 25 has <b>9</b> primes, 26 – 50 has only <b>6</b>.<br>Write: <b>There are more prime numbers from 1 to 25.</b>'+Z('答對了！1 – 25 有 9 個質數，26 – 50 只有 6 個。');}
+  else if(k==='b'){b.classList.add('wrongpick');fb.className='msg bad';fb.innerHTML='Count again: the left basket lit up 9, the right basket only 6 — so 1 to 25 has more.'+Z('再數一次看看：左邊的籃子亮了 9 顆，右邊只有 6 顆，所以是 1 to 25 比較多。');}
+  else{b.classList.add('wrongpick');fb.className='msg bad';fb.innerHTML='This is not a Yes / No question! It asks which side has more — 1 to 25 <b>or</b> 26 to 50 — so pick one of them.'+Z('這題不是 Yes / No 的問題喔！題目問「哪一邊比較多」，要從兩邊選一邊。');}
+});
+
+/* ---------- 3. eggs ---------- */
+const nthRow=$('#nth');
+for(let i=1;i<=10;i++){const b=document.createElement('button');b.type='button';b.className='choice nth-btn';b.textContent=ordShort[i];b.dataset.i=i;nthRow.appendChild(b);}
+function showNth(i){
+  $$('.nth-btn').forEach(b=>b.classList.toggle('on',+b.dataset.i===i));
+  $('#eq-l').textContent='9 × '+i;$('#eq-r').textContent=9*i;
+  const c=$('#cartons');c.innerHTML='';
+  for(let r=0;r<i;r++){const row=document.createElement('div');row.className='egg-row';row.textContent='🥚'.repeat(9);c.appendChild(row);}
+  const m=$('#nth-msg');
+  if(i===1)m.innerHTML='The <b>first</b> multiple of 9 = 9 × 1 = <b>9</b>. The first multiple is 9 itself! (Buying 1 carton is still buying.)'+Z('第一個倍數就是 9 本身！（買 1 盒也是買）');
+  else if(i===2)m.innerHTML='The <b>second</b> multiple of 9 = 9 × 2 = <b>18</b>. 18 is the 2nd carton, so it is the <b>second</b> multiple.'+Z('18 是「第 2 盒」，所以是第二個。');
+  else m.innerHTML='The <b>'+ordEn[i]+'</b> multiple of 9 = 9 × '+i+' = <b>'+(9*i)+'</b>. ('+i+' cartons of eggs)'+Z('第 '+i+' 個 9 的倍數 = 9 × '+i+' = '+(9*i)+'（'+i+' 盒雞蛋）');
+}
+nthRow.addEventListener('click',e=>{const b=e.target.closest('.nth-btn');if(b)showNth(+b.dataset.i);});
+showNth(1);
+
+const DRILL=[
+  {q:'The first multiple of 6 is …',n:6,k:1,opts:[1,6,12]},
+  {q:'The third multiple of 8 is …',n:8,k:3,opts:[16,24,32]},
+  {q:'The twelfth multiple of 7 is …',n:7,k:12,opts:[77,84,91]}
+];
+const dEl=$('#drill');
+DRILL.forEach(d=>{
+  const w=document.createElement('div');w.className='drill-q';
+  w.innerHTML='<div class="dq">'+d.q+'</div><div class="choices"></div><div class="msg"></div>';
+  const ch=$('.choices',w),fb=$('.msg',w),ans=d.n*d.k;
+  d.opts.forEach(o=>{const b=document.createElement('button');b.type='button';b.className='choice';b.textContent=o;
+    b.addEventListener('click',()=>{
+      $$('.choice',ch).forEach(x=>x.classList.remove('right','wrongpick'));
+      const ok=o===ans;b.classList.add(ok?'right':'wrongpick');fb.className='msg '+(ok?'good':'bad');
+      fb.innerHTML=ok?'✅ Yes! '+d.n+' × '+d.k+' = '+ans+Z('對！'+d.n+' × '+d.k+' = '+ans):'Think again: "'+ordEn[d.k]+'" = × '+d.k+', so '+d.n+' × '+d.k+' = '+ans+Z('再想想：「'+ordEn[d.k]+'」＝ × '+d.k+'，所以是 '+d.n+' × '+d.k+' = '+ans);
+    });ch.appendChild(b);});
+  dEl.appendChild(w);
+});
+
+/* ---------- 4a. write 15 multiples ---------- */
+let k4=0;const list4=$('#m4-list'),m4msg=$('#m4-msg'),m4next=$('#m4-next');
+m4next.addEventListener('click',()=>{
+  if(k4>=15)return;k4++;
+  const s=document.createElement('span');s.className='mchip';s.textContent=4*k4;list4.appendChild(s);
+  if(k4%5===0){const g=document.createElement('span');g.className='grp';g.textContent='✓ '+k4;list4.appendChild(g);}
+  $('#m4-k').textContent=k4;
+  if(k4===12){m4msg.className='msg warn';m4msg.innerHTML='Last time William stopped at <b>48</b> — that is only 4 × 12, the 12th one. Three more to go!'+Z('William 上次寫到 48 就停了——那只是 4 × 12，第 12 個。還要再寫 3 個！');}
+  else if(k4===15){m4msg.className='msg good';m4msg.innerHTML='🎉 Exactly 15! The last one is <b>60 = 4 × 15</b>. From now on, check the last number first — then you know if you have enough.'+Z('剛好 15 個！最後一個是 60 = 4 × 15。以後寫完先看最後一個對不對，就知道有沒有寫夠。');m4next.disabled=true;}
+  else{m4msg.className='msg';m4msg.innerHTML='Number '+k4+': 4 × '+k4+' = '+(4*k4)+(k4>12?' — almost there!':'')+Z('第 '+k4+' 個：4 × '+k4+' = '+(4*k4));}
+});
+$('#m4-reset').addEventListener('click',()=>{k4=0;list4.innerHTML='';$('#m4-k').textContent='0';m4msg.className='msg';m4msg.innerHTML='';m4next.disabled=false;});
+
+/* ---------- 4b. buses ---------- */
+const L4=$('#lane4'),L5=$('#lane5');
+const mk=(el,step,cls)=>{for(let m=step;m<=80;m+=step){const s=document.createElement('span');s.className='stop '+cls;s.textContent=m;s.dataset.m=m;el.appendChild(s);}};
+mk(L4,4,'l4');mk(L5,5,'l5');
+let went=false;
+$('#bus-go').addEventListener('click',function(){
+  if(went)return;went=true;this.disabled=true;
+  const stops=$$('.stop');const bm=$('#bus-msg');const lines=[];
+  const times=Array.from(new Set(stops.map(s=>+s.dataset.m))).sort((a,b)=>a-b);
+  let meet=0;
+  times.forEach((t,i)=>{setTimeout(()=>{
+    const both=t%20===0;
+    if(both)meet++;
+    stops.filter(s=>+s.dataset.m===t).forEach(s=>{s.classList.add('on');if(both){s.classList.add('meet');s.dataset.k=meet;}});
+    if(both){lines.push('Together #'+meet+': <b>'+t+'</b> min');bm.innerHTML=lines.join(' · ')+Z('第 '+meet+' 次一起發車：第 '+t+' 分');bm.className='msg'+(meet===3?' good':'');}
+  },i*130);});
+});
+$('#cmc').addEventListener('click',e=>{
+  const b=e.target.closest('.choice');if(!b)return;const v=+b.dataset.v;const fb=$('#cm-fb');
+  $$('.choice',$('#cmc')).forEach(x=>x.classList.remove('right','wrongpick'));
+  if(v===60){b.classList.add('right');fb.className='msg good';fb.innerHTML='✅ Yes! First 20, second 40, <b>third 60</b>. 80 is the fourth.'+Z('對！第一次 20、第二次 40、第三次 60。80 是第四次。');}
+  else if(v===80){b.classList.add('wrongpick');fb.className='msg bad';fb.innerHTML='80 is the <b>fourth</b> common multiple. Count from the start: 20 (1), 40 (2), 60 (3), 80 (4). Last time the list of 4s stopped before 60, so you could not see it!'+Z('80 是第四個公倍數。從頭數：20 (1)、40 (2)、60 (3)、80 (4)。上次因為 4 的清單沒寫到 60，所以看不到它！');}
+  else{b.classList.add('wrongpick');fb.className='msg bad';fb.innerHTML='40 is the second one. The third is 60 (20 × 3).'+Z('40 是第二個。第三個是 60（20 × 3）。');}
+});
+
+/* ---------- quiz ---------- */
+const QUIZ=[
+  {q:'Is 49 prime or composite?',zq:'49 是質數還是合數？',opts:['Prime','Composite'],a:1,why:'49 = 7 × 7, so its factors are 1, 7, 49 — more than two → composite.',zw:'49 = 7 × 7，因數有 1、7、49，超過兩個 → 合數。'},
+  {q:'Are there more prime numbers from 1 to 25 or from 26 to 50?',zq:'1 到 25 還是 26 到 50 的質數比較多？',opts:['1 to 25','26 to 50','No','Yes'],a:0,why:'1 – 25 has 9 primes, 26 – 50 has only 6. An "A or B" question needs one of the two — not Yes / No.',zw:'1 – 25 有 9 個質數，26 – 50 只有 6 個。「A or B」的題目要選一邊，不能回答 Yes / No。'},
+  {q:'The first multiple of 12 is …',zq:'12 的第一個倍數是？',opts:['0','1','12','24'],a:2,why:'The first multiple = 12 × 1 = 12 — the number itself.',zw:'第一個倍數 = 12 × 1 = 12，就是它自己。'},
+  {q:'The seventh multiple of 7 is …',zq:'7 的第七個倍數是？',opts:['42','47','49','56'],a:2,why:'Seventh = 7 × 7 = 49 (the very same composite that sneaked past!)',zw:'第七個 = 7 × 7 = 49（也就是那個溜掉的合數！）'},
+  {q:'The 15th multiple of 4 is …',zq:'4 的第 15 個倍數是？',opts:['48','56','60','64'],a:2,why:'15th = 4 × 15 = 60. When you write the first 15 multiples, the last one must be 60.',zw:'第 15 個 = 4 × 15 = 60。寫 first 15 multiples 時，最後一個要是 60。'},
+  {q:'The first three common multiples of 4 and 5 are …',zq:'4 和 5 的前三個公倍數是？',opts:['20, 40, 60','20, 40, 80','4, 5, 20','20, 25, 30'],a:0,why:'Common multiples of 4 and 5 are multiples of 20: 20, 40, 60, 80 … the third is 60.',zw:'4 和 5 的公倍數都是 20 的倍數：20, 40, 60, 80……第三個是 60。'},
+  {q:'Which of these is a prime number?',zq:'下面哪一個是質數？',opts:['21','27','29','33'],a:2,why:'21 = 3 × 7, 27 = 3 × 9, 33 = 3 × 11 are composite; 29 has only 1 and 29 → prime.',zw:'21 = 3 × 7、27 = 3 × 9、33 = 3 × 11 都是合數；29 只有 1 和 29 → 質數。'}
+];
+let qi=0,score=0,answered=false;
+const qBody=$('#q-body'),qProg=$('#q-prog'),qDots=$('#q-dots');
+function dots(){qDots.innerHTML=QUIZ.map((q,i)=>'<i class="'+(q.r===true?'ok':q.r===false?'no':'')+(i===qi?' cur':'')+'"></i>').join('');}
+function renderQ(){
+  answered=false;const q=QUIZ[qi];qProg.textContent='Question '+(qi+1)+' / '+QUIZ.length;dots();
+  qBody.innerHTML='<div class="qq">'+q.q+Z(q.zq)+'</div><div class="choices"></div><div class="msg"></div><div class="row qnav"></div>';
+  const ch=$('.choices',qBody),fb=$('.msg',qBody),nav=$('.qnav',qBody);
+  q.opts.forEach((o,i)=>{const b=document.createElement('button');b.type='button';b.className='choice';b.textContent=o;
+    b.addEventListener('click',()=>{
+      if(answered)return;answered=true;const ok=i===q.a;q.r=ok;if(ok)score++;
+      $$('.choice',ch).forEach((x,j)=>{x.disabled=true;if(j===q.a)x.classList.add('right');else if(j===i)x.classList.add('wrongpick');});
+      fb.className='msg '+(ok?'good':'bad');fb.innerHTML=(ok?'✅ Correct! ':'❌ Not quite. ')+q.why+Z(q.zw);
+      const n=document.createElement('button');n.type='button';n.className='btn';n.textContent=qi<QUIZ.length-1?'Next →':'See my score 🎉';
+      n.addEventListener('click',()=>{if(qi<QUIZ.length-1){qi++;renderQ();}else renderResult();});
+      nav.appendChild(n);dots();
+    });ch.appendChild(b);});
+}
+function renderResult(){
+  qProg.textContent='Result';qi=QUIZ.length;dots();
+  const s=score,t=QUIZ.length;
+  const stars=s===t?'⭐⭐⭐':s>=5?'⭐⭐':'⭐';
+  const m=s===t?'All correct! Those four traps cannot fool you anymore 🎉':s>=5?'Great job! Look back at the one you missed and you are perfect.':'No worries — go back up, play the activities again, then try again!';
+  const mz=s===t?'全部答對！這四個陷阱以後都騙不到你了':s>=5?'很棒！再回去看一下答錯的那題，就完美了。':'沒關係，回到上面把互動練習再玩一次，然後再來挑戰！';
+  qBody.innerHTML='<div class="result"><div class="stars">'+stars+'</div><div class="big">'+s+' / '+t+'</div><p>'+m+Z(mz)+'</p><button type="button" class="btn" id="q-again">Play again</button></div>';
+  $('#q-again').addEventListener('click',()=>{qi=0;score=0;QUIZ.forEach(q=>{delete q.r;});renderQ();});
+}
+renderQ();
+
+/* ---------- checklist ---------- */
+const boxes=$$('#todo input[type=checkbox]');
+boxes.forEach(b=>b.addEventListener('change',()=>{
+  const d=boxes.filter(x=>x.checked).length;const m=$('#todo-msg');
+  if(d===boxes.length){m.className='msg good';m.innerHTML='🎉 All corrected! Now the homework is full marks.'+Z('全部訂正完成！這份作業就是滿分了。');}
+  else if(d>0){m.className='msg';m.innerHTML=(boxes.length-d)+' left — keep going!'+Z('還剩 '+(boxes.length-d)+' 項，加油！');}
+  else{m.className='msg';m.innerHTML='';}
+}));
+})();
+</script>
+</body>
+</html>

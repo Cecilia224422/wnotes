@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>William's Correction Notes — Rounding &amp; Estimation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Huninn&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html{font-size:clamp(16px, 0.6vw + 13.3px, 23px);-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:#E4E5E8;color:#2E3037;font-family:'Fredoka',system-ui,sans-serif;line-height:1.5;
+  --ink:#2E3037;--pencil:#6B6E76;--gray:#9C9EA5;--line:#E3E4E8;--line2:#D9DADF;--soft:#F4F4F6;--soft2:#F1F1F3;
+  --red:#E2463B;--green:#2FA36B;--hl:#FFF0A0;--paper:#FAFAFA;--rule:#D9DCE1;--margin:#F0A6B0;
+  --tb:#3E6FD9;--tb-soft:#E8EEFC;--tb-deep:#2B52AE;--rl:#F08A2C;--rl-soft:#FFF1E1;--rl-deep:#C4680F;
+  --accent:#3E6FD9;--accent-soft:#E8EEFC;--accent-deep:#2B52AE;
+  --ruleh:1.875rem;
+}
+body[data-mode="reallife"]{--accent:#F08A2C;--accent-soft:#FFF1E1;--accent-deep:#C4680F}
+
+/* ---------- notebook page ---------- */
+.notebook{
+  position:relative;width:100%;margin:0 auto;background-color:var(--paper);min-height:100vh;
+  box-shadow:0 0 0 1px #d6d7db,0 .6rem 2rem rgba(40,42,50,.14);
+  background-image:
+    linear-gradient(to right,transparent 2.875rem,var(--margin) 2.875rem,var(--margin) calc(2.875rem + 2px),transparent calc(2.875rem + 2px)),
+    repeating-linear-gradient(to bottom,transparent 0,transparent calc(var(--ruleh) - 1px),var(--rule) calc(var(--ruleh) - 1px),var(--rule) var(--ruleh));
+}
+@media(min-width:1200px){.notebook{max-width:80vw;margin:1.5rem auto}}
+.holes{position:absolute;top:0;bottom:0;left:0;width:2.2rem;pointer-events:none;
+  background:radial-gradient(circle at 1rem 50%,#E4E5E8 0 .36rem,#cfd0d5 .36rem .42rem,transparent .46rem) 0 1.2rem/2.2rem 3.75rem repeat-y}
+.page{padding:1.25rem 1rem 3rem 3.6rem}
+@media(min-width:760px){.page{padding:2rem 2.5rem 4rem 4.5rem}}
+
+/* ---------- text basics ---------- */
+.hand{font-family:'Caveat',cursive;color:var(--pencil)}
+.date{font-size:1.35rem;margin:0 0 .2rem;line-height:1.2}
+h1{font-size:2.1rem;line-height:1.15;margin:.15rem 0 .7rem;font-weight:700;letter-spacing:-.01em}
+h1 .zh{font-size:.5em;font-weight:400;margin-top:.25rem;letter-spacing:0}
+mark{background:linear-gradient(transparent 38%,var(--hl) 38%,var(--hl) 92%,transparent 92%);color:inherit;padding:0 .12em;border-radius:.15em}
+.lead{font-size:1.05rem;margin:0 0 1.1rem;max-width:46rem}
+p{margin:.4rem 0}
+b{font-weight:600}
+a{color:var(--accent-deep)}
+
+/* Chinese layer */
+.zh{display:none;font-family:'Huninn','Zen Maru Gothic','PingFang TC','Noto Sans TC',sans-serif;color:var(--pencil);font-size:.88em;line-height:1.55;font-weight:400}
+body.zh-on .zh{display:block}
+.zhi{display:none;font-family:'Huninn','Zen Maru Gothic','PingFang TC','Noto Sans TC',sans-serif;color:inherit;font-size:.92em;font-weight:400}
+body.zh-on .zhi{display:inline}
+.pill .zhi,.tag .zhi{color:#fff}
+
+/* vocab + scores */
+.vocab{display:grid;grid-template-columns:repeat(auto-fill,minmax(9.5rem,1fr));gap:.5rem;margin:0 0 1.2rem;max-width:60rem}
+.vcard{background:#fff;border:1px solid var(--line);border-radius:.75rem;padding:.45rem .7rem .5rem;font-size:.84rem;box-shadow:0 1px 0 var(--line2);line-height:1.4}
+.vcard b{display:block;font-size:.98rem;color:var(--ink)}
+.vcard .def{color:var(--pencil)}
+.scores{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;max-width:40rem;margin:0 0 1.4rem}
+.score{background:#fff;border:1px solid var(--line);border-radius:1rem;padding:.7rem .5rem .6rem;text-align:center;box-shadow:0 2px 0 var(--line2)}
+.score .n{font-size:1.85rem;font-weight:700;line-height:1.1}
+.score .l{font-size:.75rem;color:var(--gray);text-transform:uppercase;letter-spacing:.05em;margin-top:.15rem}
+.score .zh{font-size:.78rem}
+
+/* ---------- sticky toolbar ---------- */
+.toolbar{position:sticky;top:0;z-index:30;background:var(--paper);margin:0 -.5rem 1.2rem;padding:.6rem .5rem .5rem;border-bottom:1px solid var(--line2);box-shadow:0 6px 10px -8px rgba(0,0,0,.18)}
+.tools{display:flex;align-items:center;justify-content:space-between;gap:.6rem .9rem;flex-wrap:wrap}
+.seg{display:inline-flex;background:#fff;border:1px solid var(--line2);border-radius:2rem;padding:.2rem;gap:.2rem}
+.seg button{border:0;background:transparent;border-radius:2rem;padding:.42rem .85rem;font:inherit;font-size:.88rem;font-weight:600;color:var(--pencil);cursor:pointer;transition:background-color .25s,color .25s;white-space:nowrap}
+.seg button:hover{background:var(--soft)}
+.seg button.tb[aria-pressed="true"]{background:var(--tb);color:#fff}
+.seg button.rl[aria-pressed="true"]{background:var(--rl);color:#fff}
+.zhtoggle{display:inline-flex;align-items:center;gap:.45rem;border:0;background:transparent;font:inherit;cursor:pointer;padding:.25rem .35rem;border-radius:1rem}
+.zhtoggle .lbl{font-family:'Huninn','Zen Maru Gothic','PingFang TC','Noto Sans TC',sans-serif;font-size:.95rem;color:var(--pencil)}
+.sw{width:2.6rem;height:1.45rem;border-radius:1rem;background:#D9DADF;position:relative;transition:background-color .25s;flex:0 0 auto}
+.sw::after{content:'';position:absolute;top:.15rem;left:.15rem;width:1.15rem;height:1.15rem;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .25s}
+.zhtoggle[aria-pressed="true"] .sw{background:var(--accent)}
+.zhtoggle[aria-pressed="true"] .sw::after{transform:translateX(1.15rem)}
+.modeline{font-size:.8rem;color:var(--gray);margin:.45rem 0 0;line-height:1.4}
+.modeline .zh{display:inline;font-size:.8rem}
+@media(max-width:520px){.seg button{font-size:.8rem;padding:.4rem .5rem}.long{display:none}.tools{gap:.4rem}.zhtoggle{padding:.2rem .1rem}}
+body:not(.zh-on) .modeline .zh{display:none}
+
+/* jump chips */
+.jumps{display:flex;flex-wrap:wrap;gap:.45rem;margin:0 0 1.3rem;align-items:center}
+.jumps .lab{font-size:.8rem;color:var(--gray);margin-right:.15rem}
+.jumps a{display:inline-flex;align-items:center;justify-content:center;min-width:2rem;height:2rem;padding:0 .65rem;border-radius:1rem;background:var(--ink);color:#fff;text-decoration:none;font-weight:600;font-size:.9rem;transition:transform .1s}
+.jumps a:hover{transform:translateY(-1px)}
+.jumps a.q{background:#fff;color:var(--ink);border:1px solid var(--line2)}
+
+/* big idea */
+.bigidea{border-left:.35rem solid var(--accent);background:var(--accent-soft);border-radius:.6rem;padding:.9rem 1rem .9rem 1.1rem;margin:0 0 2.2rem;max-width:48rem;transition:background-color .3s,border-color .3s}
+.bigidea h3{margin:0 0 .35rem;font-size:1.1rem}
+.bigidea ol{margin:.5rem 0 0;padding-left:1.35rem}
+.bigidea li{margin:.3rem 0}
+.bigidea li::marker{color:var(--accent-deep);font-weight:600}
+
+/* ---------- sections ---------- */
+.sec{margin:0 0 2.8rem;scroll-margin-top:5.5rem}
+.sec h2{display:flex;align-items:flex-start;gap:.6rem;font-size:1.35rem;margin:0 0 1rem;line-height:1.25}
+.sec h2 .num{flex:0 0 auto;width:1.9rem;height:1.9rem;border-radius:50%;background:var(--ink);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:1rem;font-weight:700;margin-top:.05rem}
+.sec h2 .num.emoji{background:transparent;font-size:1.45rem;width:auto;min-width:1.9rem}
+.sec h2 .ttl{flex:1 1 12rem}
+.sec h2 .ttl .zh{font-size:.68em;margin-top:.2rem;font-weight:400}
+
+/* cutout (worksheet clipping) */
+.cutout{position:relative;background:#fff;border:1px solid var(--line);box-shadow:0 2px 6px rgba(0,0,0,.08),0 1px 0 var(--line2);padding:1.15rem 1rem 1.7rem;margin:1rem 0 1.3rem;transform:rotate(-.6deg);max-width:46rem;font-size:.95rem;line-height:1.55;color:#333}
+.cutout::before{content:'';position:absolute;top:-.65rem;left:50%;width:6rem;height:1.3rem;background:rgba(255,236,150,.55);transform:translateX(-50%) rotate(-2deg);border-left:1px dashed rgba(0,0,0,.07);border-right:1px dashed rgba(0,0,0,.07)}
+.cutout .qno{display:inline-flex;width:1.45rem;height:1.45rem;border-radius:50%;background:var(--soft2);color:var(--pencil);align-items:center;justify-content:center;font-size:.8rem;margin-right:.45rem;vertical-align:.05rem;border:1px solid var(--line);font-weight:600}
+.cutout .qtext{margin:0;display:inline}
+.cutout .opts{display:flex;flex-wrap:wrap;gap:.5rem 1.8rem;margin:.75rem 0 0 1.9rem}
+.cutout .opts span{position:relative;padding:0 .25rem}
+.cutout .blank{display:inline-block;min-width:5.5rem;border-bottom:1.5px solid #444;vertical-align:-.15rem;height:1.15em;position:relative}
+.redu{text-decoration:none;border-bottom:2px solid var(--red);padding-bottom:.02em}
+.circ{position:relative}
+.circ::after{content:'';position:absolute;inset:-.3rem -.5rem;border:2px solid var(--red);border-radius:50%;transform:rotate(-5deg);pointer-events:none}
+.redpen{font-family:'Caveat',cursive;color:var(--red);font-size:1.3rem;line-height:1.2;margin:.7rem 0 0 1.9rem;font-weight:600}
+.pageref{position:absolute;right:.7rem;bottom:.35rem;font-size:.72rem;color:var(--gray)}
+
+/* explain box */
+.explain{position:relative;border-left:.35rem solid var(--accent);background:var(--accent-soft);border-radius:.6rem;padding:1rem 1rem .8rem 1.1rem;margin:0 0 1.2rem;max-width:48rem;transition:background-color .3s,border-color .3s;animation:fadein .35s}
+.explain .pill{position:absolute;top:-.75rem;right:.8rem;background:var(--accent);color:#fff;border-radius:1rem;padding:.15rem .7rem;font-size:.72rem;font-weight:600;letter-spacing:.02em;transition:background-color .3s;white-space:nowrap}
+.explain ul{margin:.2rem 0 0;padding-left:1.15rem}
+.explain.tb ul{list-style:square}
+.explain.rl ul{list-style:disc}
+.explain li{margin:.45rem 0}
+.explain li::marker{color:var(--accent)}
+body[data-mode="textbook"] .explain.rl{display:none}
+body[data-mode="reallife"] .explain.tb{display:none}
+
+/* try-it box */
+.play{position:relative;background:#fff;border:2px dashed var(--line2);border-radius:.9rem;padding:1.15rem 1rem 1rem;margin:0 0 1.1rem;max-width:48rem}
+.play .tag{position:absolute;top:-.75rem;left:.9rem;background:var(--accent);color:#fff;border-radius:1rem;padding:.15rem .65rem;font-size:.72rem;font-weight:700;letter-spacing:.03em;transition:background-color .3s}
+.play h4{margin:0 0 .25rem;font-size:1.05rem}
+.play .hint{margin:0 0 .6rem;color:var(--pencil);font-size:.9rem}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.55rem 0}
+.out{font-size:1rem;font-weight:600;min-height:1.4rem}
+.faint{color:var(--gray);font-weight:400}
+.steplbl{font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--gray);font-weight:600;margin:.8rem 0 .1rem}
+.steplbl:first-of-type{margin-top:.2rem}
+
+/* buttons */
+.btn{font:inherit;font-weight:600;font-size:.92rem;color:#fff;background:var(--accent);border:0;border-radius:.7rem;padding:.55rem .95rem;cursor:pointer;box-shadow:0 3px 0 var(--accent-deep);transition:transform .08s,box-shadow .08s,background-color .3s,filter .15s;touch-action:manipulation;line-height:1.25}
+.btn:hover{filter:brightness(1.06)}
+.btn:active{transform:translateY(3px);box-shadow:0 0 0 var(--accent-deep)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:0 3px 0 var(--accent-deep);filter:none}
+.btn.ghost{background:#fff;color:var(--pencil);border:1px solid var(--line2);box-shadow:0 3px 0 var(--line2)}
+.btn.ghost:active{box-shadow:0 0 0 var(--line2)}
+.btn.ghost:disabled{box-shadow:0 3px 0 var(--line2)}
+.btn.sm{font-size:.82rem;padding:.4rem .7rem;border-radius:.6rem}
+.btn.dial[aria-pressed="false"]{background:#fff;color:var(--pencil);border:1px solid var(--line2);box-shadow:0 3px 0 var(--line2)}
+.btn.dial[aria-pressed="false"]:active{box-shadow:0 0 0 var(--line2)}
+.btn[aria-pressed="true"]:not(.dial){box-shadow:0 3px 0 var(--accent-deep),0 0 0 .2rem #fff,0 0 0 .32rem var(--accent)}
+
+/* messages */
+.msg{margin:.75rem 0 0;padding:.65rem .85rem;border-radius:.6rem;background:var(--soft);color:var(--ink);font-size:.93rem;line-height:1.45;border:1px solid var(--line);animation:fadein .25s}
+.msg.good{background:#E6F5EC;border-color:#BFE4CD}
+.msg.bad{background:#FDEAE8;border-color:#F5C2BC}
+.msg.warn{background:#FFF7D6;border-color:#F0E0A0}
+.msg[hidden]{display:none}
+
+/* choice buttons */
+.choices{display:grid;gap:.45rem;margin:.5rem 0}
+.choice{font:inherit;text-align:left;background:#fff;border:2px solid var(--line2);border-radius:.7rem;padding:.55rem .8rem;cursor:pointer;font-size:.95rem;color:var(--ink);transition:border-color .15s,background-color .15s;line-height:1.35}
+.choice:hover{border-color:var(--accent)}
+.choice.ok{border-color:var(--green);background:#E6F5EC}
+.choice.no{border-color:var(--red);background:#FDEAE8}
+.choice.dim{opacity:.55}
+.choice:disabled{cursor:default}
+.choice:disabled:hover{border-color:var(--line2)}
+.choice.ok:disabled:hover{border-color:var(--green)}
+.choice.no:disabled:hover{border-color:var(--red)}
+
+/* model answer */
+.model{background:#fff;border:2px dashed var(--line2);border-radius:.7rem;padding:.7rem .9rem;margin:0 0 .6rem;max-width:48rem;font-size:.95rem}
+.model .lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--gray);display:block;margin-bottom:.25rem;font-weight:600}
+.model .line{font-weight:600;font-size:1.02rem;line-height:1.5;display:flex;flex-wrap:wrap;gap:.1rem 1.1rem}
+.model .line span{white-space:nowrap}
+.model .line .ans{color:var(--accent-deep)}
+
+/* section 1: schools */
+.bar{position:relative;height:1.3rem;background:var(--soft2);border:1px solid var(--line);border-radius:1rem;overflow:hidden;margin:.5rem 0 .3rem;max-width:34rem}
+.bar-fill{height:100%;width:0;background:var(--accent);transition:width .35s,background-color .3s}
+.barlbl{font-size:.82rem;color:var(--pencil);margin:0 0 .4rem}
+.schools{display:flex;flex-wrap:wrap;gap:.3rem;max-width:34rem;min-height:1.9rem}
+.school{display:inline-flex;align-items:center;gap:.15rem;background:var(--soft);border:1px solid var(--line);border-radius:.5rem;padding:.15rem .45rem;font-size:.8rem;animation:pop .3s}
+.school.last{background:#E6F5EC;border-color:#BFE4CD;font-weight:600}
+
+/* section 2: stickers */
+.dots{display:flex;flex-wrap:wrap;gap:.3rem;max-width:30rem;margin:.4rem 0 .35rem}
+.dot{width:clamp(.9rem,3.4vw,1.25rem);height:clamp(.9rem,3.4vw,1.25rem);border-radius:50%;background:var(--line2);transition:background-color .3s,transform .3s}
+.dot.boy{background:#7FA7E8}
+.dot.girl{background:#F4A6B8;transform:scale(1.12)}
+.legend{display:flex;gap:1rem;font-size:.85rem;color:var(--pencil);flex-wrap:wrap}
+.legend i{display:inline-block;width:.8rem;height:.8rem;border-radius:50%;vertical-align:-.05rem;margin-right:.3rem}
+.packs{display:flex;flex-wrap:wrap;gap:.2rem;max-width:30rem;margin:.3rem 0}
+.pack{width:clamp(.55rem,2.2vw,.8rem);height:clamp(.75rem,3vw,1.05rem);border-radius:.15rem;background:var(--accent);opacity:.85;animation:pop .3s backwards}
+.pack.extra{background:var(--line2);opacity:1}
+
+/* section 3: dial */
+.cards2{display:grid;grid-template-columns:1fr auto 1fr;gap:.5rem;align-items:center;max-width:30rem;margin:.6rem 0 .3rem}
+.ncard{background:var(--soft);border:1px solid var(--line);border-radius:.8rem;padding:.55rem .4rem;text-align:center}
+.ncard .orig{font-size:.75rem;color:var(--gray)}
+.ncard .val{font-size:clamp(1.05rem,4.5vw,1.6rem);font-weight:700;line-height:1.15;transition:color .2s}
+.op{font-size:1.6rem;font-weight:700;color:var(--pencil);text-align:center}
+.res{font-size:clamp(1.05rem,4.5vw,1.4rem);font-weight:700;margin:.2rem 0 0}
+.nlines{max-width:30rem;margin:.4rem 0 0}
+.nline{position:relative;height:3.1rem;margin:.5rem 0 0}
+.nline .track{position:absolute;left:0;right:0;top:1.55rem;height:2px;background:var(--pencil)}
+.nline .tick{position:absolute;top:1.2rem;width:2px;height:.75rem;background:var(--pencil)}
+.nline .tick.mid{background:var(--gray);height:.5rem;top:1.3rem}
+.nline .lab{position:absolute;top:1.95rem;font-size:.72rem;color:var(--pencil);white-space:nowrap}
+.nline .lab.l{left:0}.nline .lab.r{right:0}.nline .lab.m{left:50%;transform:translateX(-50%);color:var(--gray)}
+.nline .pt{position:absolute;top:1.2rem;width:.75rem;height:.75rem;border-radius:50%;background:var(--red);transform:translateX(-50%);box-shadow:0 0 0 3px #fff}
+.nline .ptl{position:absolute;top:0;font-size:.74rem;font-weight:600;color:var(--red);transform:translateX(-50%);white-space:nowrap}
+
+/* section 4: sorter */
+.sorter{display:grid;gap:.4rem;max-width:34rem;margin:.4rem 0}
+.srow{display:flex;align-items:center;justify-content:space-between;gap:.5rem;background:var(--soft);border:1px solid var(--line);border-radius:.7rem;padding:.4rem .65rem;flex-wrap:wrap}
+.srow .ph{font-weight:600;font-size:.95rem;flex:1 1 7rem}
+.srow .ops{flex:0 0 auto}
+.srow .ops{display:inline-flex;gap:.3rem}
+.opb{font:inherit;font-weight:700;min-width:2.3rem;height:2rem;padding:0 .45rem;border-radius:.5rem;border:2px solid var(--line2);background:#fff;cursor:pointer;color:var(--ink);font-size:1rem;transition:border-color .15s,background-color .15s}
+.opb:hover{border-color:var(--accent)}
+.opb.ok{background:#E6F5EC;border-color:var(--green)}
+.opb.no{background:#FDEAE8;border-color:var(--red)}
+.opb:disabled{cursor:default}
+.srow .why{flex-basis:100%;font-size:.82rem;color:var(--pencil);display:none;line-height:1.35}
+.srow.done .why{display:block}
+.counter{font-size:.85rem;color:var(--pencil);margin:.3rem 0 0}
+
+/* section 5: half */
+.bignum{font-size:clamp(1.7rem,7vw,2.5rem);font-weight:700;line-height:1.1;letter-spacing:.01em;margin:.2rem 0}
+.bignum .tail{transition:color .5s}
+.bignum.r .tail{color:var(--gray)}
+.halves{display:flex;gap:.3rem;height:2.3rem;max-width:30rem;margin:.5rem 0}
+.half{flex:1;background:var(--line2);border-radius:.5rem;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.95rem;transition:background-color .4s,color .4s;color:var(--pencil)}
+.half.a{background:#7FA7E8;color:#fff}
+.half.b{background:#F4A6B8;color:#fff}
+.half.full{flex:1 1 100%}
+
+/* quiz */
+.quizbox{background:#fff;border:2px dashed var(--line2);border-radius:.9rem;padding:1rem;max-width:48rem}
+.qdots{display:flex;gap:.35rem;margin:0 0 .7rem;flex-wrap:wrap}
+.qdots i{width:.6rem;height:.6rem;border-radius:50%;background:var(--line2);display:block}
+.qdots i.cur{background:var(--accent);transform:scale(1.25)}
+.qdots i.ok{background:var(--green)}
+.qdots i.no{background:var(--red)}
+.qq{font-size:1.05rem;font-weight:600;margin:0 0 .6rem;line-height:1.4}
+.qq .zh{font-weight:400}
+.qresult{text-align:center;padding:1rem 0 .3rem}
+.qresult .stars{font-size:2.3rem;letter-spacing:.1em;animation:pop .5s}
+.qresult .sc{font-size:1.5rem;font-weight:700;margin:.2rem 0}
+
+/* tips */
+.tips{display:grid;gap:.6rem;max-width:48rem}
+.tipcard{background:#fff;border:1px solid var(--line);border-left:.35rem solid var(--hl);border-radius:.6rem;padding:.7rem .9rem;font-size:.95rem}
+.tipcard b.t{display:block;margin-bottom:.15rem}
+
+/* correction list */
+.fixlist{list-style:none;padding:0;margin:0;max-width:48rem;display:grid;gap:.45rem}
+.fixlist label{display:flex;gap:.7rem;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:.7rem;padding:.6rem .75rem;cursor:pointer;transition:background-color .2s}
+.fixlist input{appearance:none;-webkit-appearance:none;width:1.35rem;height:1.35rem;border:2px solid var(--line2);border-radius:.4rem;flex:0 0 auto;margin:.15rem 0 0;position:relative;cursor:pointer;background:#fff;transition:background-color .15s,border-color .15s}
+.fixlist input:checked{background:var(--green);border-color:var(--green)}
+.fixlist input:checked::after{content:'';position:absolute;left:.36rem;top:.08rem;width:.35rem;height:.72rem;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg)}
+.fixlist label.done{background:var(--soft)}
+.fixlist label.done .txt{text-decoration:line-through;color:var(--gray)}
+.fixlist .txt{font-size:.95rem;line-height:1.4}
+.fixlist .txt b{font-weight:600}
+.fixlist .txt .w{display:block;font-size:.86rem;color:var(--pencil)}
+.fixlist label.done .txt .w{color:var(--gray)}
+
+.foot{font-size:1.5rem;margin:2.5rem 0 0;line-height:1.25}
+.foot .zh{font-size:.65em;margin-top:.2rem}
+
+/* motion + a11y */
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.pop{animation:pop .35s}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body data-mode="textbook">
+<style>
+.wn-back{position:fixed;right:.8rem;bottom:.8rem;z-index:999;display:inline-flex;align-items:center;gap:.3rem;
+ background:#fff;color:#2E3037;border:1px solid #D9DADF;border-radius:999px;padding:.4rem .8rem;
+ font-family:'Fredoka',system-ui,sans-serif;font-size:.85rem;font-weight:600;text-decoration:none;
+ box-shadow:0 2px 8px rgba(0,0,0,.14)}
+.wn-back:hover{border-color:#2E3037}
+@media print{.wn-back{display:none}}
+</style>
+<a href="index.html" class="wn-back" aria-label="Back to the index">📒 Index</a>
+
+<div class="notebook">
+<div class="holes" aria-hidden="true"></div>
+<main class="page">
+
+<!-- ================= HEADER ================= -->
+<header class="top">
+  <div class="hand date">8/19 · K5 Learning · Mixed rounding practice + Estimation word problems</div>
+  <h1>William's <mark>Correction</mark> Notes<span class="zh">William 的訂正筆記 — 四捨五入與估算應用題</span></h1>
+  <p class="lead">3 pages this time. Your rounding page is <mark>perfect — 27 out of 27</mark>, and Q1 of the word problems is right too. Only 5 word problems were left blank, and they all use one trick you already have: <mark>round first, then calculate</mark>. Let's fill them in together.
+    <span class="zh">這次三頁。四捨五入那一頁全對——27 題對 27 題，應用題第 1 題也對了。只有 5 題應用題空白，而且它們都用同一招，你已經會了：先四捨五入，再計算。我們一起把它們填起來。</span></p>
+
+  <div class="vocab" aria-label="Words to know">
+    <div class="vcard"><b>estimate</b><span class="def">find an answer that is close, not exact — round first, then work it out</span><span class="zh">估算：找一個接近的答案，不用精確——先四捨五入再算</span></div>
+    <div class="vcard"><b>about</b><span class="def">the answer only needs to be close to the real one</span><span class="zh">大約：答案接近就可以</span></div>
+    <div class="vcard"><b>round</b><span class="def">swap a number for a nearby friendly one: 67,721 → 68,000</span><span class="zh">四捨五入：把一個數換成附近好算的數：67,721 → 68,000</span></div>
+    <div class="vcard"><b>difference</b><span class="def">how much bigger one number is than another — subtract</span><span class="zh">差：一個數比另一個大多少——用減的</span></div>
+    <div class="vcard"><b>increased by</b><span class="def">went up by that much — add</span><span class="zh">增加了：往上加了那麼多——用加的</span></div>
+    <div class="vcard"><b>half</b><span class="def">one of two equal parts — divide by 2</span><span class="zh">一半：分成相等的兩份——除以 2</span></div>
+    <div class="vcard"><b>minimum</b><span class="def">the smallest number that is still enough</span><span class="zh">最少：剛好夠用的最小數量</span></div>
+    <div class="vcard"><b>for every 1,000</b><span class="def">in each group of 1,000</span><span class="zh">每 1,000 個：每一組 1,000 裡面有……</span></div>
+  </div>
+
+  <div class="scores" aria-label="Scores">
+    <div class="score"><div class="n">3</div><div class="l">pages</div><span class="zh">頁</span></div>
+    <div class="score"><div class="n">85%</div><div class="l">correct · 28 of 33</div><span class="zh">答對（33 格對 28 格）</span></div>
+    <div class="score"><div class="n">5</div><div class="l">spots to fill</div><span class="zh">要補上的地方</span></div>
+  </div>
+</header>
+
+<!-- ================= TOOLBAR ================= -->
+<div class="toolbar" id="toolbar">
+  <div class="tools">
+    <div class="seg" role="group" aria-label="Choose a version">
+      <button type="button" class="tb" data-mode="textbook" aria-pressed="true">📘 Textbook<span class="long"> version</span></button>
+      <button type="button" class="rl" data-mode="reallife" aria-pressed="false">🍎 Real-life<span class="long"> version</span></button>
+    </div>
+    <button type="button" class="zhtoggle" id="zhbtn" aria-pressed="false" aria-label="中文 translation on or off"><span class="lbl">中文</span><span class="sw" aria-hidden="true"></span></button>
+  </div>
+  <p class="modeline" id="modeline"></p>
+</div>
+
+<nav class="jumps" aria-label="Jump to">
+  <span class="lab">Jump to</span>
+  <a href="#s1">1</a><a href="#s2">2</a><a href="#s3">3</a><a href="#s4">4</a><a href="#s5">5</a>
+  <a href="#tips" class="q">💡 Tips</a><a href="#quiz" class="q">🎯 Quiz</a><a href="#fix" class="q">✍️ List</a>
+</nav>
+
+<!-- ================= BIG IDEA ================= -->
+<section class="bigidea" aria-label="The big idea">
+  <h3>🔑 The one idea behind all five blanks<span class="zh">五個空格背後的同一個想法</span></h3>
+  <p>Estimate = <mark>round first, then calculate</mark>. You already rounded 27 numbers perfectly on page 1 — now use that same skill on the word problems.<span class="zh">估算 ＝ 先四捨五入，再計算。你在第一頁已經完美地四捨五入了 27 個數——現在把同一招用在應用題上。</span></p>
+  <ol>
+    <li>Read the <b>last sentence</b> first — what is the question asking for?<span class="zh">先讀最後一句——題目到底在問什麼？</span></li>
+    <li>Underline the <b>key word</b>: difference · increased · half · minimum · for every 1,000.<span class="zh">把關鍵字畫底線：difference、increased、half、minimum、for every 1,000。</span></li>
+    <li><b>Round</b> the big numbers to friendly ones — usually the nearest thousand.<span class="zh">把大數四捨五入成好算的數——通常到千位。</span></li>
+    <li><b>Calculate</b> with the friendly numbers.<span class="zh">用好算的數計算。</span></li>
+    <li>Pick the choice that is <b>closest</b>.<span class="zh">選最接近的選項。</span></li>
+  </ol>
+</section>
+
+<!-- ================= SECTION 1 : Q2 schools ================= -->
+<section class="sec" id="s1">
+  <h2><span class="num">1</span><span class="ttl">Q2 — How many schools? Two steps, then round up<span class="zh">第 2 題 — 需要幾所學校？兩個步驟，然後無條件進位</span></span></h2>
+
+  <div class="cutout">
+    <span class="qno">2</span><p class="qtext">In a town, there are 1,349 families. If there are on average two children attending elementary school from each family and each school can accommodate 220 children, the <u class="redu">minimum number</u> of elementary schools needed in the region is <span class="blank circ"></span>.</p>
+    <div class="opts"><span>a. 6</span><span>b. 9</span><span class="circ">c. 13</span></div>
+    <div class="redpen">Two steps: children first (×2), then schools (÷220). Leftover children still need a school → round UP → c. 13</div>
+    <span class="pageref">Word problems · page 1 · Q2</span>
+  </div>
+
+  <div class="explain tb"><span class="pill">📘 Textbook version<span class="zhi"> · 課本理論版</span></span>
+    <ul>
+      <li>Read the last sentence first: it asks for the <mark>minimum number of schools</mark>. But the story gives <b>families</b>, not children — so this is a <mark>two-step</mark> question.<span class="zh">先讀最後一句：題目要的是「最少需要幾所學校」。但題目給的是家庭數，不是孩子數——所以這題要分兩步。</span></li>
+      <li>Step 1 — children: 1,349 families × 2 = 2,698. Round it: <mark>about 2,700 children</mark>.<span class="zh">第一步 — 孩子數：1,349 × 2 = 2,698，四捨五入：大約 2,700 個孩子。</span></li>
+      <li>Step 2 — schools: one school holds 220. 220 × 12 = 2,640 — that leaves 60 children with no school. 220 × 13 = 2,860 — now everyone fits. So <mark>13 schools</mark>.<span class="zh">第二步 — 學校數：一所 220 人。220 × 12 = 2,640，還剩 60 個孩子沒學校；220 × 13 = 2,860，大家都裝得下。所以 13 所。</span></li>
+      <li>Rule: when a question asks for the <mark>minimum number needed</mark>, always round <mark>up</mark>. Even 1 extra child needs a whole school. Answer: <mark>c. 13</mark>.<span class="zh">規則：題目問「最少需要幾個」，一定往上進位。就算只多 1 個孩子，也需要一整所學校。答案：c. 13。</span></li>
+      <li>Check: 13 × 220 = 2,860 ≥ 2,698 ✓ and 12 × 220 = 2,640 is too small ✗.<span class="zh">檢查：13 × 220 = 2,860 ≥ 2,698 ✓；12 × 220 = 2,640 太少 ✗。</span></li>
+    </ul>
+  </div>
+  <div class="explain rl"><span class="pill">🍎 Real-life version<span class="zhi"> · 生活應用版</span></span>
+    <ul>
+      <li>Picture 2,700 children going on a school trip. Each <mark>bus seats 220</mark>. You fill the buses one at a time.<span class="zh">想像 2,700 個孩子要去校外教學，一台車坐 220 人，一台一台裝。</span></li>
+      <li>After 12 full buses (2,640 seats) there are still <mark>60 children standing at the gate</mark>. You can't leave them behind — so you call a 13th bus, even if it's mostly empty.<span class="zh">裝滿 12 台（2,640 個位子）後，還有 60 個孩子站在門口。不能把他們丟下——所以要叫第 13 台車，就算它很空。</span></li>
+      <li>Schools work the same way: <mark>leftover children = one more school</mark>.<span class="zh">學校也一樣：多出來的孩子 ＝ 多一所學校。</span></li>
+      <li>Why double first? The story talks about families, but buses carry <b>children</b>. Always change to the thing you are counting before you divide.<span class="zh">為什麼要先乘 2？題目講的是家庭，但車上坐的是孩子。除之前，一定先換成你要數的那樣東西。</span></li>
+      <li>Trick: "how many groups do I need?" → divide, and if anything is left over, <mark>add 1</mark>.<span class="zh">口訣：「需要幾組？」→ 先除，有剩就再加 1。</span></li>
+    </ul>
+  </div>
+
+  <div class="play">
+    <span class="tag">Try it</span>
+    <h4>Fill the schools<span class="zh">把學校填滿</span></h4>
+    <p class="hint">Step 1: find the children. Step 2: open schools until everyone has a seat.<span class="zh">第一步：算出孩子數。第二步：一所一所開學校，直到每個人都有位子。</span></p>
+    <div class="steplbl">Step 1 · children</div>
+    <div class="row"><button type="button" class="btn" id="p1-double">1,349 families × 2</button><span class="out" id="p1-kids">? children</span></div>
+    <div class="steplbl">Step 2 · schools</div>
+    <div class="row"><button type="button" class="btn" id="p1-school" disabled>Open a school (220 seats)</button><button type="button" class="btn ghost" id="p1-reset">Reset</button></div>
+    <div class="bar" aria-hidden="true"><div class="bar-fill" id="p1-fill"></div></div>
+    <div class="barlbl" id="p1-barlbl">0 / 2,700 seats</div>
+    <div class="schools" id="p1-schools" aria-live="polite"></div>
+    <div class="msg" id="p1-msg" hidden></div>
+  </div>
+
+  <div class="model"><span class="lbl">Write on your worksheet</span><div class="line"><span>1,349 × 2 = 2,698 ≈ 2,700</span><span>220 × 12 = 2,640 (not enough)</span><span>220 × 13 = 2,860 ✓</span><span class="ans">→ 13 schools → c</span></div></div>
+</section>
+
+<!-- ================= SECTION 2 : Q3 girls ================= -->
+<section class="sec" id="s2">
+  <h2><span class="num">2</span><span class="ttl">Q3 — Girls for every 1,000 families: find the rate, then multiply<span class="zh">第 3 題 — 每 1,000 個家庭有幾個女嬰：先找每組幾個，再乘</span></span></h2>
+
+  <div class="cutout">
+    <span class="qno">3</span><p class="qtext">In 2017, a survey finds that there are 34 babies born <u class="redu">for every 1,000 families</u> in a city. Among these babies, 20 of them are boys. There are 88,326 families in this city in 2017 and the total number of <u class="redu">girls</u> born in this year is about <span class="blank circ"></span>.</p>
+    <div class="opts"><span class="circ">a. 1,200</span><span>b. 1,500</span><span>c. 1,800</span></div>
+    <div class="redpen">Girls in every 1,000 = 34 − 20 = 14. 88,326 ≈ 88 thousands. 14 × 88 ≈ 1,200 → a</div>
+    <span class="pageref">Word problems · page 1 · Q3</span>
+  </div>
+
+  <div class="explain tb"><span class="pill">📘 Textbook version<span class="zhi"> · 課本理論版</span></span>
+    <ul>
+      <li>The question asks for <mark>girls</mark>, but it only tells you 34 babies and 20 boys. So first: girls for every 1,000 families = 34 − 20 = <mark>14</mark>.<span class="zh">題目問的是女嬰，但只告訴你 34 個嬰兒、20 個男嬰。所以先算：每 1,000 個家庭的女嬰 = 34 − 20 = 14。</span></li>
+      <li>"For every 1,000 families" means: count the <mark>groups of 1,000</mark>. 88,326 families ≈ 88,000 = <mark>88 groups</mark>.<span class="zh">「每 1,000 個家庭」的意思是：數數看有幾組 1,000。88,326 ≈ 88,000 ＝ 88 組。</span></li>
+      <li>Multiply: 14 girls × 88 groups = 1,232. Quick estimate: 14 × 90 = 1,260. Both are <mark>about 1,200</mark>. Answer: <mark>a. 1,200</mark>.<span class="zh">相乘：14 × 88 = 1,232。快速估算：14 × 90 = 1,260。都大約是 1,200。答案：a. 1,200。</span></li>
+      <li>The trap: 20 boys × 88 = 1,760 ≈ 1,800 — that is choice c, but it counts the <mark>boys</mark>, not the girls.<span class="zh">陷阱：20 × 88 = 1,760 ≈ 1,800——那是選項 c，但那算的是男嬰，不是女嬰。</span></li>
+      <li>Habit: underline <mark>what</mark> the question asks for (girls) before you touch any numbers.<span class="zh">習慣：動手算之前，先把題目問的東西（girls）畫底線。</span></li>
+    </ul>
+  </div>
+  <div class="explain rl"><span class="pill">🍎 Real-life version<span class="zhi"> · 生活應用版</span></span>
+    <ul>
+      <li>Think of every 1,000 families as one <mark>sticker pack</mark>. Each pack holds 34 stickers: 20 blue ones (boys) and 14 pink ones (girls).<span class="zh">把每 1,000 個家庭想成一包貼紙。每包 34 張：20 張藍的（男生）、14 張粉紅的（女生）。</span></li>
+      <li>88,326 families is about <mark>88 packs</mark>. The extra 326 families is less than half a pack, so you can ignore it.<span class="zh">88,326 個家庭大約是 88 包。多出來的 326 不到半包，可以忽略。</span></li>
+      <li>Pink stickers altogether: 14 × 88. Easy way: 10 × 88 = 880 and 4 × 88 = 352, so 1,232. Or just 14 × 90 = 1,260. Either way, <mark>about 1,200</mark>.<span class="zh">粉紅貼紙總共：14 × 88。簡單算法：10 × 88 = 880，4 × 88 = 352，加起來 1,232。或者直接 14 × 90 = 1,260。反正大約 1,200。</span></li>
+      <li>If you counted the blue stickers by mistake (20 × 88 = 1,760) you would land on 1,800 — the wrong colour!<span class="zh">如果不小心數到藍色貼紙（20 × 88 = 1,760），就會選到 1,800——顏色錯了！</span></li>
+      <li>Trick: when you see "for every 1,000", ask <mark>"how many thousands do I have?"</mark> That number is your multiplier.<span class="zh">口訣：看到「每 1,000 個」，就問自己「我有幾個 1,000？」那個數就是要乘的數。</span></li>
+    </ul>
+  </div>
+
+  <div class="play">
+    <span class="tag">Try it</span>
+    <h4>Sticker pack<span class="zh">貼紙包</span></h4>
+    <p class="hint">One pack = 1,000 families. Find the pink stickers, count the packs, multiply.<span class="zh">一包 ＝ 1,000 個家庭。找出粉紅貼紙、數包數、相乘。</span></p>
+    <div class="steplbl">Step 1 · one pack = 34 babies</div>
+    <div class="dots" id="p2-dots" aria-label="34 babies in one pack"></div>
+    <div class="legend"><span><i style="background:#7FA7E8"></i>boys</span><span><i style="background:#F4A6B8"></i>girls</span><span><i style="background:#D9DADF"></i>not sorted yet</span></div>
+    <div class="row"><button type="button" class="btn" id="p2-girls">Find the girls</button><span class="out" id="p2-out1"></span></div>
+    <div class="steplbl">Step 2 · how many packs?</div>
+    <div class="row"><button type="button" class="btn" id="p2-packs" disabled>Count the packs</button><span class="out" id="p2-out2"></span></div>
+    <div class="packs" id="p2-packvis" aria-hidden="true"></div>
+    <div class="steplbl">Step 3 · multiply</div>
+    <div class="row"><button type="button" class="btn" id="p2-mult" disabled>14 girls × 88 packs</button><span class="out" id="p2-out3"></span><button type="button" class="btn ghost" id="p2-reset">Reset</button></div>
+    <div class="msg" id="p2-msg" hidden></div>
+  </div>
+
+  <div class="model"><span class="lbl">Write on your worksheet</span><div class="line"><span>34 − 20 = 14 girls per 1,000</span><span>88,326 ≈ 88,000 → 88 groups</span><span>14 × 88 = 1,232 ≈ 1,200</span><span class="ans">→ a</span></div></div>
+</section>
+
+<!-- ================= SECTION 3 : Q4 difference ================= -->
+<section class="sec" id="s3">
+  <h2><span class="num">3</span><span class="ttl">Q4 — The difference: round to the nearest thousand, then subtract<span class="zh">第 4 題 — 兩城相差多少：先四捨五入到千位，再相減</span></span></h2>
+
+  <div class="cutout">
+    <span class="qno">4</span><p class="qtext">The population of a city is 67,721 and the neighboring city has a population of 52,103. The <u class="redu">difference</u> between two cities is <span class="blank circ"></span>.</p>
+    <div class="opts"><span>a. 13,000</span><span>b. 14,00</span><span class="circ">c. 16,000</span></div>
+    <div class="redpen">Difference = subtract. Round to thousands: 68,000 − 52,000 = 16,000 → c</div>
+    <span class="pageref">Word problems · page 2 · Q4</span>
+  </div>
+
+  <div class="explain tb"><span class="pill">📘 Textbook version<span class="zhi"> · 課本理論版</span></span>
+    <ul>
+      <li><mark>Difference</mark> means subtract: bigger − smaller → 67,721 − 52,103.<span class="zh">Difference（差）就是相減：大的減小的 → 67,721 − 52,103。</span></li>
+      <li>Estimate: round each number to the <mark>nearest thousand</mark> — exactly what you did on your rounding page. 67,721 → 68,000 and 52,103 → 52,000.<span class="zh">估算：把兩個數都四捨五入到千位——跟你那頁四捨五入一模一樣。67,721 → 68,000，52,103 → 52,000。</span></li>
+      <li>68,000 − 52,000 = <mark>16,000</mark>. Answer: <mark>c. 16,000</mark>.<span class="zh">68,000 − 52,000 = 16,000。答案：c. 16,000。</span></li>
+      <li>Why not round to the nearest ten thousand? 70,000 − 50,000 = 20,000 — and 20,000 isn't even a choice. Too rough. The <mark>nearest thousand</mark> keeps enough detail.<span class="zh">為什麼不四捨五入到萬位？70,000 − 50,000 = 20,000——選項裡根本沒有 20,000。太粗了。到千位才留得住足夠的細節。</span></li>
+      <li>Check with the exact answer: 67,721 − 52,103 = 15,618, and 15,618 is closest to 16,000 ✓.<span class="zh">用精確答案檢查：67,721 − 52,103 = 15,618，最接近 16,000 ✓。</span></li>
+    </ul>
+  </div>
+  <div class="explain rl"><span class="pill">🍎 Real-life version<span class="zhi"> · 生活應用版</span></span>
+    <ul>
+      <li>Picture each city's people packed into <mark>bags of 1,000</mark>. City A: 67 full bags plus most of another one (721 people) → call it <mark>68 bags</mark>. City B: 52 bags plus a little (103) → <mark>52 bags</mark>.<span class="zh">想像每個城市的人都裝進「一袋 1,000 人」的袋子。A 城：67 袋再加大半袋（721 人）→ 算 68 袋。B 城：52 袋多一點點（103 人）→ 算 52 袋。</span></li>
+      <li>How many more bags does A have? 68 − 52 = <mark>16 bags</mark> → 16,000 people.<span class="zh">A 比 B 多幾袋？68 − 52 = 16 袋 → 16,000 人。</span></li>
+      <li>If you used giant bags of 10,000 instead: 7 bags − 5 bags = 2 bags = 20,000. The bags are so big you can't see the answer any more. Bags of 1,000 are the right size here.<span class="zh">如果改用 10,000 人的大袋子：7 袋 − 5 袋 = 2 袋 = 20,000。袋子太大，反而看不出答案。這題用 1,000 的袋子剛剛好。</span></li>
+      <li>Trick: the answer choices tell you the bag size. Choices like 13,000 / 16,000 → think in <mark>thousands</mark>.<span class="zh">口訣：選項會告訴你袋子多大。選項是 13,000／16,000 這種 → 用「千」來想。</span></li>
+    </ul>
+  </div>
+
+  <div class="play">
+    <span class="tag">Try it</span>
+    <h4>Rounding dial<span class="zh">四捨五入轉盤</span></h4>
+    <p class="hint">Turn the dial and watch the answer change. Which setting gives a choice from the worksheet?<span class="zh">轉轉看，看答案怎麼變。哪一個設定算出來的是作業本上的選項？</span></p>
+    <div class="row" role="group" aria-label="Rounding dial">
+      <button type="button" class="btn sm dial" data-dial="ten" aria-pressed="false">Nearest 10,000</button>
+      <button type="button" class="btn sm dial" data-dial="thou" aria-pressed="false">Nearest 1,000</button>
+      <button type="button" class="btn sm dial" data-dial="exact" aria-pressed="false">Exact</button>
+    </div>
+    <div class="cards2">
+      <div class="ncard"><div class="orig">67,721 →</div><div class="val" id="p3-a">67,721</div></div>
+      <div class="op">−</div>
+      <div class="ncard"><div class="orig">52,103 →</div><div class="val" id="p3-b">52,103</div></div>
+    </div>
+    <div class="res" id="p3-res">= ?</div>
+    <div class="nlines" id="p3-lines" hidden>
+      <div class="nline"><div class="ptl" style="right:0;transform:none">67,721 · 721 is past 500 → up</div><div class="track"></div><div class="tick" style="left:0"></div><div class="tick mid" style="left:50%"></div><div class="tick" style="right:0"></div><div class="pt" style="left:72.1%"></div><span class="lab l">67,000</span><span class="lab m">67,500</span><span class="lab r">68,000</span></div>
+      <div class="nline"><div class="ptl" style="left:10.3%;transform:none">52,103 · 103 is before 500 → stay</div><div class="track"></div><div class="tick" style="left:0"></div><div class="tick mid" style="left:50%"></div><div class="tick" style="right:0"></div><div class="pt" style="left:10.3%"></div><span class="lab l">52,000</span><span class="lab m">52,500</span><span class="lab r">53,000</span></div>
+    </div>
+    <div class="msg" id="p3-msg" hidden></div>
+  </div>
+
+  <div class="model"><span class="lbl">Write on your worksheet</span><div class="line"><span>67,721 ≈ 68,000</span><span>52,103 ≈ 52,000</span><span>68,000 − 52,000 = 16,000</span><span class="ans">→ c</span></div></div>
+</section>
+
+<!-- ================= SECTION 4 : Q5 increased ================= -->
+<section class="sec" id="s4">
+  <h2><span class="num">4</span><span class="ttl">Q5 — Increased by: which operation?<span class="zh">第 5 題 — 人口增加了：該用加還是減？</span></span></h2>
+
+  <div class="cutout">
+    <span class="qno">5</span><p class="qtext">In 2016, the population of a region was 91,274. In 2017, the population was <u class="redu">increased by</u> 6,015. In 2017, the population was about <span class="blank circ"></span>.</p>
+    <div class="opts"><span>a. 85,000</span><span class="circ">b. 97,300</span><span>c. 99,800</span></div>
+    <div class="redpen">"Increased by" = add. 91,000 + 6,000 = 97,000 → closest is b. 97,300</div>
+    <span class="pageref">Word problems · page 2 · Q5</span>
+  </div>
+
+  <div class="explain tb"><span class="pill">📘 Textbook version<span class="zhi"> · 課本理論版</span></span>
+    <ul>
+      <li><mark>Increased by 6,015</mark> means the population went up by 6,015. Went up = <mark>add</mark>.<span class="zh">「increased by 6,015」表示人口往上多了 6,015。往上 ＝ 用加的。</span></li>
+      <li>Round to the nearest thousand: 91,274 → 91,000 and 6,015 → 6,000. Then 91,000 + 6,000 = <mark>97,000</mark>.<span class="zh">四捨五入到千位：91,274 → 91,000，6,015 → 6,000。然後 91,000 + 6,000 = 97,000。</span></li>
+      <li>Which choice is closest to 97,000? <mark>b. 97,300</mark>. (The exact answer is 97,289 — very close.)<span class="zh">哪個選項最接近 97,000？b. 97,300。（精確答案是 97,289，非常接近。）</span></li>
+      <li>The trap: 85,000 is what you get if you <mark>subtract</mark>: 91,000 − 6,000. The word "increased" tells you not to.<span class="zh">陷阱：85,000 是用減的（91,000 − 6,000）會得到的。「increased」這個字告訴你不能減。</span></li>
+      <li>Key words → operation: increased by / more / total / altogether → <b>+</b>. Decreased by / difference / fewer / how many more → <b>−</b>. Half → <b>÷ 2</b>.<span class="zh">關鍵字 → 運算：increased by、more、total、altogether → 加；decreased by、difference、fewer、how many more → 減；half → 除以 2。</span></li>
+    </ul>
+  </div>
+  <div class="explain rl"><span class="pill">🍎 Real-life version<span class="zhi"> · 生活應用版</span></span>
+    <ul>
+      <li>The region has about <mark>91 bags</mark> of 1,000 people. In 2017 it got <mark>6 more bags</mark>.<span class="zh">這個地區有大約 91 袋 1,000 人。2017 年又多了 6 袋。</span></li>
+      <li>More bags → <mark>add</mark>: 91 + 6 = 97 bags = 97,000 people → the closest choice is 97,300.<span class="zh">袋子變多 → 用加的：91 + 6 = 97 袋 = 97,000 人 → 最接近的選項是 97,300。</span></li>
+      <li>If 6 bags had been taken away, the story would say "decreased", and you'd have 85 bags. Not this time!<span class="zh">如果是被拿走 6 袋，題目會說 decreased，那就剩 85 袋。這題不是！</span></li>
+      <li>Trick: read the story like a movie — is the number <mark>growing or shrinking</mark>? Growing = +, shrinking = −.<span class="zh">口訣：把題目當電影看——數字是在變多還是變少？變多 ＝ 加，變少 ＝ 減。</span></li>
+    </ul>
+  </div>
+
+  <div class="play">
+    <span class="tag">Try it</span>
+    <h4>Which operation?<span class="zh">該用哪一種運算？</span></h4>
+    <p class="hint">First decide + or − for Q5. Then sort the key words.<span class="zh">先決定第 5 題要用加還是減。然後把關鍵字分類。</span></p>
+    <div class="steplbl">Part 1 · Q5: 91,274 increased by 6,015</div>
+    <div class="row"><button type="button" class="btn" id="p4-add">+ Add</button><button type="button" class="btn" id="p4-sub">− Subtract</button></div>
+    <div class="msg" id="p4-msg" hidden></div>
+    <div class="steplbl">Part 2 · key-word sorter</div>
+    <div class="sorter" id="p4-sorter"></div>
+    <div class="counter" id="p4-count"></div>
+    <div class="msg" id="p4-msg2" hidden></div>
+    <div class="row"><button type="button" class="btn ghost" id="p4-reset">Reset</button></div>
+  </div>
+
+  <div class="model"><span class="lbl">Write on your worksheet</span><div class="line"><span>91,274 ≈ 91,000</span><span>6,015 ≈ 6,000</span><span>91,000 + 6,000 = 97,000</span><span class="ans">→ b. 97,300</span></div></div>
+</section>
+
+<!-- ================= SECTION 5 : Q6 half ================= -->
+<section class="sec" id="s5">
+  <h2><span class="num">5</span><span class="ttl">Q6 — Half of a big number: round first, then halve<span class="zh">第 6 題 — 大數的一半：先四捨五入，再對半分</span></span></h2>
+
+  <div class="cutout">
+    <span class="qno">6</span><p class="qtext">There are 26,358 children living in this town. <u class="redu">Half</u> of the children are boys. There are about <span class="blank circ"></span> boys living in this town.</p>
+    <div class="opts"><span>a. 12,800</span><span class="circ">b. 13,000</span><span>c. 13,300</span></div>
+    <div class="redpen">Round first: 26,358 → 26,000. Half of 26,000 = 13,000 → b</div>
+    <span class="pageref">Word problems · page 2 · Q6</span>
+  </div>
+
+  <div class="explain tb"><span class="pill">📘 Textbook version<span class="zhi"> · 課本理論版</span></span>
+    <ul>
+      <li><mark>Half</mark> means divide by 2.<span class="zh">Half（一半）就是除以 2。</span></li>
+      <li>Estimate: round first. 26,358 → nearest thousand → <mark>26,000</mark>. Half of 26,000 = <mark>13,000</mark>. Answer: <mark>b. 13,000</mark>.<span class="zh">估算：先四捨五入。26,358 → 千位 → 26,000。26,000 的一半 ＝ 13,000。答案：b. 13,000。</span></li>
+      <li>To halve thousands fast, halve the <mark>number of thousands</mark>: half of 26 thousand = 13 thousand. Half of 48 thousand = 24 thousand. If it's odd, like 70 thousand, half is 35 thousand.<span class="zh">快速對半分「幾千」：把幾千的數字對半分就好。26 千的一半 ＝ 13 千；48 千的一半 ＝ 24 千；奇數像 70 千，一半是 35 千。</span></li>
+      <li>Why round first? If you divide exactly you get 13,179, which sits between 13,000 and 13,300 — confusing. "About" questions want you to <mark>round first</mark>, and then the answer is clear: 13,000.<span class="zh">為什麼要先四捨五入？精確算會得到 13,179，夾在 13,000 和 13,300 中間——很混亂。有「about」的題目就是要你先四捨五入，這樣答案就清楚了：13,000。</span></li>
+    </ul>
+  </div>
+  <div class="explain rl"><span class="pill">🍎 Real-life version<span class="zhi"> · 生活應用版</span></span>
+    <ul>
+      <li>26,358 children ≈ <mark>26 bags</mark> of 1,000. Boys and girls share the bags equally: 26 ÷ 2 = <mark>13 bags each</mark> → 13,000 boys.<span class="zh">26,358 個孩子 ≈ 26 袋 1,000。男生女生平分：26 ÷ 2 ＝ 一邊 13 袋 → 13,000 個男生。</span></li>
+      <li>The loose 358 children are less than half a bag — for an "about" answer, let them go.<span class="zh">零散的 358 個孩子不到半袋——要的是「大約」，就不用管他們。</span></li>
+      <li>Halving bags is easy when the number of bags is even (26, 48, 90). If it's odd (70 bags), split one bag in half: 35 bags.<span class="zh">袋數是偶數（26、48、90）時對半分很簡單。奇數（70 袋）的話，把一袋切一半：35 袋。</span></li>
+      <li>Trick: half = <mark>share between two</mark>. Round to bags first, then share the bags.<span class="zh">口訣：一半 ＝ 兩個人平分。先四捨五入成幾袋，再平分袋子。</span></li>
+    </ul>
+  </div>
+
+  <div class="play">
+    <span class="tag">Try it</span>
+    <h4>Half it!<span class="zh">切一半！</span></h4>
+    <p class="hint">Round first, then cut in half. Then try four quick ones.<span class="zh">先四捨五入，再切一半。然後試試四題快問快答。</span></p>
+    <div class="bignum" id="p5-num">26,<span class="tail">358</span></div>
+    <div class="row"><button type="button" class="btn" id="p5-round">Round to the nearest thousand</button><button type="button" class="btn" id="p5-half" disabled>Cut in half</button><button type="button" class="btn ghost" id="p5-reset">Reset</button></div>
+    <div class="halves" id="p5-halves" aria-hidden="true"><div class="half full" id="p5-h0">26,358 children</div></div>
+    <div class="msg" id="p5-msg" hidden></div>
+    <div class="steplbl">Quick fire · halve these</div>
+    <div id="p5-qf"></div>
+  </div>
+
+  <div class="model"><span class="lbl">Write on your worksheet</span><div class="line"><span>26,358 ≈ 26,000</span><span>26,000 ÷ 2 = 13,000</span><span class="ans">→ b</span></div></div>
+</section>
+
+<!-- ================= TIPS ================= -->
+<section class="sec" id="tips">
+  <h2><span class="num emoji">💡</span><span class="ttl">Tips — not mistakes, just better<span class="zh">小提醒 — 不算錯，只是可以更好</span></span></h2>
+  <div class="tips">
+    <div class="tipcard"><b class="t">Q1 (houses × 6) — you did it the long way</b>You worked out 795 × 6 = 4,770 exactly — correct, and nice carrying! But on an <mark>"about"</mark> question you can go faster: 795 ≈ 800, and 800 × 6 = 4,800 in your head. Save the long multiplication for questions that say "exactly".<span class="zh">第 1 題（房子 × 6）—— 你精確算了 795 × 6 = 4,770，對的，進位也很漂亮！不過遇到有「about」的題目可以更快：795 ≈ 800，800 × 6 = 4,800 心算就好。把直式乘法留給要求「精確」的題目。</span></div>
+    <div class="tipcard"><b class="t">Rounding page — 27 out of 27</b>You clearly know the rule: look at the digit to the right of the underlined one — 5 or more → up, 4 or less → stay. In Q11 you first wrote 5,000 and then fixed it to 50,000: great self-check! A fast way to catch that kind of slip: the rounded answer must have the <mark>same number of digits</mark> as the original (50,056 has 5 digits → 50,000 has 5 digits).<span class="zh">四捨五入那頁 —— 27 題全對。你很清楚規則：看底線數字右邊那一位，5 以上往上進，4 以下不動。第 11 題你先寫了 5,000，後來自己改成 50,000：這種自我檢查很棒！一個快速抓錯的方法：四捨五入後的答案位數要和原來一樣（50,056 是 5 位數 → 50,000 也是 5 位數）。</span></div>
+    <div class="tipcard"><b class="t">Q4 — the worksheet has a misprint</b>Choice b says "14,00" — it should read 14,000. Not your fault! The answer is still c. 16,000.<span class="zh">第 4 題 —— 作業本印錯了：選項 b 印成「14,00」，應該是 14,000。不是你的問題！答案還是 c. 16,000。</span></div>
+    <div class="tipcard"><b class="t">When a problem looks scary</b>Leaving it blank is okay — but next time, write step 1 anyway: round the big numbers. Once the numbers are friendly, the rest usually follows. And remember the choices: if your estimate isn't close to any of them, you probably used the wrong operation.<span class="zh">題目看起來很可怕的時候 —— 空白沒關係，但下次還是先寫第一步：把大數四捨五入。數字變好算之後，後面通常就跟著出來了。也記得看選項：如果你估出來的數跟哪個選項都不接近，大概是用錯運算了。</span></div>
+  </div>
+</section>
+
+<!-- ================= QUIZ ================= -->
+<section class="sec" id="quiz">
+  <h2><span class="num emoji">🎯</span><span class="ttl">Quiz — 8 quick ones<span class="zh">小測驗 — 8 題快問快答</span></span></h2>
+  <div class="quizbox" id="quizroot"></div>
+</section>
+
+<!-- ================= CORRECTION LIST ================= -->
+<section class="sec" id="fix">
+  <h2><span class="num emoji">✍️</span><span class="ttl">Correction list — back to the worksheet<span class="zh">訂正清單 — 回到作業本上</span></span></h2>
+  <ul class="fixlist" id="fixlist">
+    <li><label><input type="checkbox"><span class="txt"><b>Word problems · page 1 · Q2</b> → circle <b>c. 13</b><span class="w">Write: 1,349 × 2 ≈ 2,700 → 220 × 13 = 2,860 ✓ (13 schools, round up)</span><span class="zh">應用題第 1 頁第 2 題 → 圈 c. 13。寫下：1,349 × 2 ≈ 2,700 → 220 × 13 = 2,860 ✓（13 所，無條件進位）</span></span></label></li>
+    <li><label><input type="checkbox"><span class="txt"><b>Word problems · page 1 · Q3</b> → circle <b>a. 1,200</b><span class="w">Write: 34 − 20 = 14 girls per 1,000 · 88 × 14 ≈ 1,200</span><span class="zh">應用題第 1 頁第 3 題 → 圈 a. 1,200。寫下：34 − 20 = 14（每 1,000 個家庭的女嬰）· 88 × 14 ≈ 1,200</span></span></label></li>
+    <li><label><input type="checkbox"><span class="txt"><b>Word problems · page 2 · Q4</b> → circle <b>c. 16,000</b><span class="w">Write: 68,000 − 52,000 = 16,000</span><span class="zh">應用題第 2 頁第 4 題 → 圈 c. 16,000。寫下：68,000 − 52,000 = 16,000</span></span></label></li>
+    <li><label><input type="checkbox"><span class="txt"><b>Word problems · page 2 · Q5</b> → circle <b>b. 97,300</b><span class="w">Write: 91,000 + 6,000 = 97,000</span><span class="zh">應用題第 2 頁第 5 題 → 圈 b. 97,300。寫下：91,000 + 6,000 = 97,000</span></span></label></li>
+    <li><label><input type="checkbox"><span class="txt"><b>Word problems · page 2 · Q6</b> → circle <b>b. 13,000</b><span class="w">Write: 26,000 ÷ 2 = 13,000</span><span class="zh">應用題第 2 頁第 6 題 → 圈 b. 13,000。寫下：26,000 ÷ 2 = 13,000</span></span></label></li>
+    <li><label><input type="checkbox"><span class="txt"><b>Bonus · page 1 · Q1</b> → next to your 4,770, add the quick way<span class="w">Write: 800 × 6 = 4,800</span><span class="zh">加分題 · 第 1 頁第 1 題 → 在你的 4,770 旁邊補上快速算法。寫下：800 × 6 = 4,800</span></span></label></li>
+  </ul>
+  <div class="counter" id="fixcount"></div>
+  <div class="msg" id="fixmsg" hidden></div>
+</section>
+
+<footer class="hand foot">Round first, then calculate. You already have the hard part — rounding — down cold. See you next worksheet, William! 🚀<span class="zh">先四捨五入，再計算。最難的那部分——四捨五入——你早就很熟了。下一份作業見，William！</span></footer>
+
+</main>
+</div>
+
+<script>
+(function(){
+'use strict';
+const $ = id => document.getElementById(id);
+const Z = s => '<span class="zh">' + s + '</span>';
+const fmt = n => n.toLocaleString('en-US');
+function setMsg(el, html, cls){ el.className = 'msg' + (cls ? ' ' + cls : ''); el.innerHTML = html; el.hidden = false; }
+function hideMsg(el){ el.hidden = true; el.innerHTML = ''; el.className = 'msg'; }
+
+/* ---------- mode + language toggles ---------- */
+const body = document.body;
+const modeText = {
+  textbook: 'Textbook version: uses the worksheet\'s own words — round, estimate, nearest thousand.' + Z('課本理論版：用作業本裡的字——round、estimate、nearest thousand。'),
+  reallife: 'Real-life version: same answers, told with bags of 1,000, school buses and sticker packs.' + Z('生活應用版：答案一樣，用「一袋 1,000」、校車和貼紙包來講。')
+};
+function setMode(m){
+  body.dataset.mode = m;
+  document.querySelectorAll('.seg button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.mode === m)));
+  $('modeline').innerHTML = modeText[m];
+}
+document.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode)));
+setMode('textbook');
+$('zhbtn').addEventListener('click', () => {
+  const on = !body.classList.contains('zh-on');
+  body.classList.toggle('zh-on', on);
+  $('zhbtn').setAttribute('aria-pressed', String(on));
+});
+
+/* ---------- Section 1: Fill the schools ---------- */
+(function(){
+  const TOTAL = 2700, SEATS = 220;
+  let n = 0;
+  const kids = $('p1-kids'), btnD = $('p1-double'), btnS = $('p1-school'), fill = $('p1-fill'),
+        lbl = $('p1-barlbl'), sch = $('p1-schools'), msg = $('p1-msg');
+  btnD.addEventListener('click', () => {
+    kids.innerHTML = '<b>2,698</b> children <span class="faint">≈ 2,700</span>';
+    kids.classList.remove('pop'); void kids.offsetWidth; kids.classList.add('pop');
+    btnD.disabled = true; btnS.disabled = false;
+    setMsg(msg, '1,349 × 2 = 2,698. Round it: <b>about 2,700</b> children need a seat. Now open schools — 220 seats each.' + Z('1,349 × 2 = 2,698，四捨五入：大約 2,700 個孩子要有位子。現在開始開學校——一所 220 個位子。'));
+  });
+  btnS.addEventListener('click', () => {
+    n++;
+    const seats = n * SEATS;
+    fill.style.width = Math.min(seats / TOTAL * 100, 100) + '%';
+    lbl.textContent = fmt(seats) + ' / 2,700 seats';
+    const s = document.createElement('span'); s.className = 'school'; s.textContent = '🏫 ' + n; sch.appendChild(s);
+    if (seats >= TOTAL) {
+      s.classList.add('last'); btnS.disabled = true;
+      setMsg(msg, '<b>13 schools</b> × 220 = 2,860 seats — enough for 2,700 ✓ 12 schools were not enough (2,640), so we round <b>up</b> to 13. Answer: <b>c. 13</b>.' + Z('13 所 × 220 = 2,860 個位子——夠 2,700 個孩子坐了 ✓。12 所不夠（2,640），所以要無條件進位到 13。答案：c. 13。'), 'good');
+    } else {
+      const left = TOTAL - seats;
+      const tight = left <= 60;
+      setMsg(msg, n + ' school' + (n > 1 ? 's' : '') + ' × 220 = ' + fmt(seats) + ' seats. <b>' + fmt(left) + '</b> children still waiting…' + (tight ? ' Only 60 left — but they still need a school!' : '') + Z(n + ' 所 × 220 = ' + fmt(seats) + ' 個位子，還有 ' + fmt(left) + ' 個孩子在等……' + (tight ? '只剩 60 個——但他們還是需要一所學校！' : '')), tight ? 'warn' : '');
+    }
+  });
+  $('p1-reset').addEventListener('click', () => {
+    n = 0; kids.textContent = '? children'; btnD.disabled = false; btnS.disabled = true;
+    fill.style.width = '0%'; lbl.textContent = '0 / 2,700 seats'; sch.innerHTML = ''; hideMsg(msg);
+  });
+})();
+
+/* ---------- Section 2: Sticker pack ---------- */
+(function(){
+  const dotsEl = $('p2-dots'), out1 = $('p2-out1'), out2 = $('p2-out2'), out3 = $('p2-out3'),
+        b1 = $('p2-girls'), b2 = $('p2-packs'), b3 = $('p2-mult'), msg = $('p2-msg'), packvis = $('p2-packvis');
+  const dots = [];
+  for (let i = 0; i < 34; i++) { const d = document.createElement('span'); d.className = 'dot'; dotsEl.appendChild(d); dots.push(d); }
+  let timers = [];
+  function clearTimers(){ timers.forEach(clearTimeout); timers = []; }
+  b1.addEventListener('click', () => {
+    b1.disabled = true;
+    dots.forEach((d, i) => { timers.push(setTimeout(() => { d.classList.add(i < 20 ? 'boy' : 'girl'); }, i * 35)); });
+    timers.push(setTimeout(() => {
+      out1.innerHTML = '34 − 20 = <b>14 girls</b> in every pack';
+      setMsg(msg, 'In every 1,000 families: 34 babies, 20 boys, so <b>14 girls</b>. That is the number we multiply — not 34, not 20.' + Z('每 1,000 個家庭：34 個嬰兒、20 個男嬰，所以 14 個女嬰。要乘的是這個數——不是 34，也不是 20。'));
+      b2.disabled = false;
+    }, 34 * 35 + 100));
+  });
+  b2.addEventListener('click', () => {
+    b2.disabled = true;
+    out2.innerHTML = '88,326 → 88,000 = <b>88 packs</b>';
+    packvis.innerHTML = '';
+    for (let i = 0; i < 88; i++) { const p = document.createElement('span'); p.className = 'pack'; p.style.animationDelay = (i * 8) + 'ms'; packvis.appendChild(p); }
+    const x = document.createElement('span'); x.className = 'pack extra'; x.style.width = '.3rem'; x.title = '326 families — less than half a pack'; packvis.appendChild(x);
+    setMsg(msg, '88,326 families ≈ 88,000 = <b>88 packs</b> of 1,000. The leftover 326 is less than half a pack (the little grey sliver), so we ignore it.' + Z('88,326 個家庭 ≈ 88,000 ＝ 88 包 1,000。多出來的 326 不到半包（那個小小的灰色條），所以忽略。'));
+    b3.disabled = false;
+  });
+  b3.addEventListener('click', () => {
+    b3.disabled = true;
+    out3.innerHTML = '14 × 88 = 1,232 → <b>about 1,200</b>';
+    setMsg(msg, '14 × 88 = 1,232 (or 14 × 90 = 1,260) → <b>about 1,200 → a</b> ✓<br>Trap check: 20 × 88 = 1,760 ≈ 1,800 — that is choice c, but it counts the <b>boys</b>.' + Z('14 × 88 = 1,232（或 14 × 90 = 1,260）→ 大約 1,200 → a ✓<br>陷阱檢查：20 × 88 = 1,760 ≈ 1,800——那是選項 c，但那算的是男嬰。'), 'good');
+  });
+  $('p2-reset').addEventListener('click', () => {
+    clearTimers(); dots.forEach(d => d.className = 'dot');
+    out1.textContent = ''; out2.textContent = ''; out3.textContent = ''; packvis.innerHTML = '';
+    b1.disabled = false; b2.disabled = true; b3.disabled = true; hideMsg(msg);
+  });
+})();
+
+/* ---------- Section 3: Rounding dial ---------- */
+(function(){
+  const a = $('p3-a'), b = $('p3-b'), res = $('p3-res'), msg = $('p3-msg'), lines = $('p3-lines');
+  const btns = document.querySelectorAll('[data-dial]');
+  const modes = {
+    ten:   { a: '70,000', b: '50,000', r: '= 20,000', cls: 'warn',
+             m: '70,000 − 50,000 = 20,000. But 20,000 is not one of the choices! Rounding to the nearest <b>ten thousand</b> is too rough here.' + Z('70,000 − 50,000 = 20,000。可是選項裡沒有 20,000！四捨五入到萬位太粗了。') },
+    thou:  { a: '68,000', b: '52,000', r: '= 16,000', cls: 'good',
+             m: '68,000 − 52,000 = <b>16,000 → c</b> ✓ Rounding to the nearest <b>thousand</b> keeps enough detail. Look at the number lines: 721 is past the middle (500) → up; 103 is before it → stay.' + Z('68,000 − 52,000 = 16,000 → c ✓。四捨五入到千位留得住足夠的細節。看看數線：721 超過中間（500）→ 往上；103 還沒到 → 不動。') },
+    exact: { a: '67,721', b: '52,103', r: '= 15,618', cls: 'good',
+             m: '67,721 − 52,103 = 15,618, and 15,618 is closest to <b>16,000 → c</b> ✓ Same answer as rounding — but much more work. For an "about" question, round first.' + Z('67,721 − 52,103 = 15,618，最接近 16,000 → c ✓。答案跟四捨五入一樣——但辛苦多了。有「about」的題目，先四捨五入。') }
+  };
+  btns.forEach(bt => bt.addEventListener('click', () => {
+    const k = bt.dataset.dial, m = modes[k];
+    btns.forEach(x => x.setAttribute('aria-pressed', String(x === bt)));
+    a.textContent = m.a; b.textContent = m.b; res.textContent = m.r;
+    [a, b, res].forEach(el => { el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); });
+    lines.hidden = (k !== 'thou');
+    setMsg(msg, m.m, m.cls);
+  }));
+})();
+
+/* ---------- Section 4: Which operation + key-word sorter ---------- */
+(function(){
+  const msg = $('p4-msg'), msg2 = $('p4-msg2'), sorter = $('p4-sorter'), count = $('p4-count');
+  const addB = $('p4-add'), subB = $('p4-sub');
+  addB.addEventListener('click', () => {
+    addB.setAttribute('aria-pressed', 'true'); subB.setAttribute('aria-pressed', 'false');
+    setMsg(msg, '✓ <b>Add.</b> "Increased by" means the population went <b>up</b>. 91,000 + 6,000 = 97,000 → closest choice is <b>b. 97,300</b>.' + Z('✓ 用加的。「increased by」表示人口往上。91,000 + 6,000 = 97,000 → 最接近的選項是 b. 97,300。'), 'good');
+  });
+  subB.addEventListener('click', () => {
+    subB.setAttribute('aria-pressed', 'true'); addB.setAttribute('aria-pressed', 'false');
+    setMsg(msg, '✗ 91,000 − 6,000 = 85,000 — that is choice a, the trap! "Increased by" means the number went <b>up</b>, so we <b>add</b>: 97,000 → b. 97,300.' + Z('✗ 91,000 − 6,000 = 85,000——那是選項 a，陷阱！「increased by」表示數字往上，所以要加：97,000 → b. 97,300。'), 'bad');
+  });
+
+  const items = [
+    { ph: 'increased by 6,015', a: '+', why: 'went up → add', whyz: '變多 → 加' },
+    { ph: 'the difference between', a: '−', why: 'how much bigger → subtract', whyz: '大多少 → 減' },
+    { ph: 'altogether', a: '+', why: 'put together → add', whyz: '合起來 → 加' },
+    { ph: '3,200 fewer than', a: '−', why: 'fewer = less → subtract', whyz: '比較少 → 減' },
+    { ph: 'how many more', a: '−', why: 'compare two amounts → subtract', whyz: '比較兩個數 → 減' },
+    { ph: 'the total', a: '+', why: 'everything combined → add', whyz: '全部加起來 → 加' },
+    { ph: 'decreased by', a: '−', why: 'went down → subtract', whyz: '變少 → 減' },
+    { ph: 'half of', a: '÷2', why: 'two equal parts → divide by 2', whyz: '分成兩等份 → 除以 2' }
+  ];
+  let done = 0, right = 0;
+  function build(){
+    sorter.innerHTML = ''; done = 0; right = 0; updateCount(); hideMsg(msg2);
+    items.forEach(it => {
+      const row = document.createElement('div'); row.className = 'srow';
+      row.innerHTML = '<span class="ph">' + it.ph + '</span><span class="ops"></span><span class="why"></span>';
+      const ops = row.querySelector('.ops'), why = row.querySelector('.why');
+      ['+', '−', '÷2'].forEach(op => {
+        const bt = document.createElement('button'); bt.type = 'button'; bt.className = 'opb'; bt.textContent = op; bt.setAttribute('aria-label', it.ph + ': ' + op);
+        bt.addEventListener('click', () => {
+          const ok = op === it.a; done++; if (ok) right++;
+          ops.querySelectorAll('.opb').forEach(x => { x.disabled = true; if (x.textContent === it.a) x.classList.add('ok'); else if (x === bt) x.classList.add('no'); });
+          why.innerHTML = (ok ? '✓ ' : '✗ ') + it.why + Z(it.whyz); row.classList.add('done');
+          updateCount();
+          if (done === items.length) {
+            setMsg(msg2, right === items.length ? '🎉 All 8 sorted correctly! You can read the story and pick the operation.' + Z('🎉 8 個全部分對！你會讀題目、選運算了。') : 'Sorted ' + right + ' of 8. Look at the red ones again — the key word tells you up, down, or share.' + Z('分對 ' + right + ' 個（共 8 個）。再看一下紅色的——關鍵字會告訴你是變多、變少，還是平分。'), right === items.length ? 'good' : 'warn');
+          }
+        });
+        ops.appendChild(bt);
+      });
+      sorter.appendChild(row);
+    });
+  }
+  function updateCount(){ count.textContent = 'Sorted ' + done + ' / ' + items.length + (done ? ' · ' + right + ' correct' : ''); }
+  build();
+  $('p4-reset').addEventListener('click', () => { build(); hideMsg(msg); addB.setAttribute('aria-pressed', 'false'); subB.setAttribute('aria-pressed', 'false'); });
+})();
+
+/* ---------- Section 5: Half it + quick fire ---------- */
+(function(){
+  const num = $('p5-num'), rB = $('p5-round'), hB = $('p5-half'), halves = $('p5-halves'), msg = $('p5-msg');
+  function resetHalves(){ halves.innerHTML = '<div class="half full" id="p5-h0">26,358 children</div>'; }
+  rB.addEventListener('click', () => {
+    num.classList.add('r'); num.innerHTML = '26,<span class="tail">000</span>';
+    num.classList.remove('pop'); void num.offsetWidth; num.classList.add('pop');
+    halves.innerHTML = '<div class="half full">26,000 children (rounded)</div>';
+    rB.disabled = true; hB.disabled = false;
+    setMsg(msg, '26,358 → the hundreds digit is 3 (less than 5) → stay → <b>26,000</b>. Now it is easy to halve.' + Z('26,358 → 百位是 3（小於 5）→ 不動 → 26,000。現在對半分就簡單了。'));
+  });
+  hB.addEventListener('click', () => {
+    hB.disabled = true;
+    halves.innerHTML = '<div class="half a">13,000 boys</div><div class="half b">13,000 girls</div>';
+    setMsg(msg, 'Half of 26,000 = <b>13,000 → b</b> ✓ (Exact: 26,358 ÷ 2 = 13,179 — close to 13,000, but the rounded way is faster and clearer.)' + Z('26,000 的一半 ＝ 13,000 → b ✓（精確：26,358 ÷ 2 = 13,179——接近 13,000，但先四捨五入的方法更快也更清楚。）'), 'good');
+  });
+  $('p5-reset').addEventListener('click', () => {
+    num.classList.remove('r'); num.innerHTML = '26,<span class="tail">358</span>'; resetHalves();
+    rB.disabled = false; hB.disabled = true; hideMsg(msg);
+  });
+
+  quizEngine($('p5-qf'), [
+    { q: 'Half of 48,000?', opts: ['24,000', '28,000', '23,000'], a: 0, why: 'Half of 48 thousand = 24 thousand.', whyz: '48 千的一半 ＝ 24 千。' },
+    { q: 'Half of 70,000?', opts: ['30,000', '35,000', '40,000'], a: 1, why: '70 is odd: half of 70 thousand = 35 thousand.', whyz: '70 是奇數：70 千的一半 ＝ 35 千。' },
+    { q: 'Half of 9,000?', opts: ['4,000', '4,500', '5,000'], a: 1, why: 'Half of 9 thousand = 4 thousand 500 → 4,500.', whyz: '9 千的一半 ＝ 4 千 5 百 → 4,500。' },
+    { q: 'Half of 12,600?', opts: ['6,300', '6,600', '6,000'], a: 0, why: 'Half of 12,000 = 6,000 and half of 600 = 300 → 6,300.', whyz: '12,000 的一半 ＝ 6,000，600 的一半 ＝ 300 → 6,300。' }
+  ], { simple: true, label: 'Quick fire' });
+})();
+
+/* ---------- generic one-at-a-time quiz engine ---------- */
+function quizEngine(root, items, cfg){
+  cfg = cfg || {};
+  let i = 0, score = 0, results = [];
+  const dots = document.createElement('div'); dots.className = 'qdots';
+  const qbox = document.createElement('div');
+  root.innerHTML = ''; root.appendChild(dots); root.appendChild(qbox);
+  function renderDots(){
+    dots.innerHTML = items.map((_, k) => '<i class="' + (k === i ? 'cur ' : '') + (results[k] === true ? 'ok' : results[k] === false ? 'no' : '') + '"></i>').join('');
+  }
+  function render(){
+    renderDots();
+    if (i >= items.length) { finish(); return; }
+    const it = items[i];
+    qbox.innerHTML = '<p class="qq">' + (cfg.label ? cfg.label + ' ' : 'Question ') + (i + 1) + ' / ' + items.length + ' · ' + it.q + (it.qz ? Z(it.qz) : '') + '</p><div class="choices"></div><div class="msg" hidden></div><div class="row"></div>';
+    const ch = qbox.querySelector('.choices'), msg = qbox.querySelector('.msg'), row = qbox.querySelector('.row');
+    it.opts.forEach((o, k) => {
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'choice';
+      b.innerHTML = '<b>' + 'abc'[k] + '.</b> ' + o;
+      b.addEventListener('click', () => {
+        const ok = (k === it.a); results[i] = ok; if (ok) score++;
+        ch.querySelectorAll('.choice').forEach((x, j) => { x.disabled = true; if (j === it.a) x.classList.add('ok'); else if (j === k) x.classList.add('no'); else x.classList.add('dim'); });
+        setMsg(msg, (ok ? '✓ Correct! ' : '✗ Not quite. ') + it.why + (it.whyz ? Z(it.whyz) : ''), ok ? 'good' : 'bad');
+        renderDots();
+        const nb = document.createElement('button'); nb.type = 'button'; nb.className = 'btn';
+        nb.textContent = i < items.length - 1 ? 'Next →' : (cfg.simple ? 'Finish' : 'See my score');
+        nb.addEventListener('click', () => { i++; render(); });
+        row.appendChild(nb); nb.focus({ preventScroll: true });
+      });
+      ch.appendChild(b);
+    });
+  }
+  function finish(){
+    const total = items.length;
+    let stars, note, notez;
+    if (score === total) { stars = '⭐⭐⭐'; note = 'Perfect! You are an estimation master.'; notez = '全對！你是估算大師。'; }
+    else if (score >= total - 2) { stars = '⭐⭐'; note = 'Great job — look again at the ones you missed.'; notez = '很棒——再看一下錯的那幾題。'; }
+    else { stars = '⭐'; note = 'Good try — read the sections again and play once more.'; notez = '不錯的嘗試——再讀一次上面的段落，然後再玩一次。'; }
+    if (cfg.simple) {
+      qbox.innerHTML = '<div class="qresult"><div class="sc">' + score + ' / ' + total + '</div><p>' + (score === total ? 'All halved correctly! ✓' + Z('全部切對了！✓') : 'Nice — try again to get them all.' + Z('不錯——再試一次看能不能全對。')) + '</p></div><div class="row" style="justify-content:center"></div>';
+    } else {
+      qbox.innerHTML = '<div class="qresult"><div class="stars">' + stars + '</div><div class="sc">' + score + ' / ' + total + '</div><p>' + note + Z(notez) + '</p></div><div class="row" style="justify-content:center"></div>';
+    }
+    const pb = document.createElement('button'); pb.type = 'button'; pb.className = 'btn'; pb.textContent = 'Play again';
+    pb.addEventListener('click', () => { i = 0; score = 0; results = []; render(); });
+    qbox.querySelector('.row').appendChild(pb);
+  }
+  render();
+}
+
+/* ---------- main quiz ---------- */
+quizEngine($('quizroot'), [
+  { q: '"About" in a question means…', qz: '題目裡的「about」是什麼意思？',
+    opts: ['only the exact answer is right', 'a close answer is fine — estimate', 'skip the question'], a: 1,
+    why: '"About" = estimate. Round first, then calculate — no long working needed.', whyz: '「about」＝估算。先四捨五入再算，不用長長的直式。' },
+  { q: 'Round 67,721 to the nearest thousand.', qz: '把 67,721 四捨五入到千位。',
+    opts: ['67,000', '68,000', '70,000'], a: 1,
+    why: 'The hundreds digit is 7 (5 or more) → round up to 68,000. 70,000 would be the nearest ten thousand.', whyz: '百位是 7（5 以上）→ 往上到 68,000。70,000 是到萬位。' },
+  { q: '3,000 children, 220 per school. 220 × 13 = 2,860 and 220 × 14 = 3,080. Minimum number of schools?', qz: '3,000 個孩子，一所學校 220 人。220 × 13 = 2,860，220 × 14 = 3,080。最少需要幾所？',
+    opts: ['13', '14', '12'], a: 1,
+    why: '13 schools hold only 2,860 — 140 children still have no school → round up to 14.', whyz: '13 所只裝得下 2,860——還有 140 個孩子沒學校 → 往上進位到 14。' },
+  { q: '"The population decreased by 4,000." Which operation?', qz: '「人口 decreased by 4,000」要用哪一種運算？',
+    opts: ['+ add', '− subtract', '÷ 2'], a: 1,
+    why: 'Decreased = went down = subtract. "Increased" would be add.', whyz: 'decreased ＝ 變少 ＝ 用減的。increased 才是加。' },
+  { q: '34 babies for every 1,000 families, and 20 are boys. Girls for every 1,000 families?', qz: '每 1,000 個家庭有 34 個嬰兒，20 個是男嬰。每 1,000 個家庭有幾個女嬰？',
+    opts: ['34', '20', '14'], a: 2,
+    why: 'Girls = all babies − boys = 34 − 20 = 14. Find the girls first, then multiply.', whyz: '女嬰 ＝ 全部 − 男嬰 ＝ 34 − 20 = 14。先找女嬰，再乘。' },
+  { q: 'Half of 48,000?', qz: '48,000 的一半？',
+    opts: ['24,000', '28,000', '44,000'], a: 0,
+    why: 'Half of 48 thousand = 24 thousand.', whyz: '48 千的一半 ＝ 24 千。' },
+  { q: 'Two towns: 41,860 people and 29,905 people. About how many more people in the bigger town?', qz: '兩個城鎮：41,860 人和 29,905 人。大的那個大約多幾個人？',
+    opts: ['72,000', '12,000', '22,000'], a: 1,
+    why: '"How many more" = difference = subtract. Round: 42,000 − 30,000 = 12,000. (72,000 is adding — the trap.)', whyz: '「how many more」＝差＝用減的。四捨五入：42,000 − 30,000 = 12,000。（72,000 是加起來——陷阱。）' },
+  { q: 'Every 1,000 families have 14 girl babies. A city has about 50,000 families. About how many girl babies?', qz: '每 1,000 個家庭有 14 個女嬰。一個城市大約有 50,000 個家庭。大約有幾個女嬰？',
+    opts: ['64', '700', '7,000'], a: 1,
+    why: '50,000 families = 50 groups of 1,000. 14 × 50 = 700.', whyz: '50,000 個家庭 ＝ 50 組 1,000。14 × 50 = 700。' }
+]);
+
+/* ---------- correction list ---------- */
+(function(){
+  const boxes = Array.from(document.querySelectorAll('#fixlist input[type=checkbox]'));
+  const count = $('fixcount'), msg = $('fixmsg');
+  function update(){
+    const done = boxes.filter(b => b.checked).length;
+    boxes.forEach(b => b.closest('label').classList.toggle('done', b.checked));
+    count.textContent = done + ' / ' + boxes.length + ' done';
+    if (done === boxes.length) {
+      setMsg(msg, '🎉 All done! Your worksheet is complete — and now you know the trick: <b>round first, then calculate</b>. Great work, William!' + Z('🎉 全部完成！作業本補齊了——而且你現在知道那一招了：先四捨五入，再計算。做得好，William！'), 'good');
+    } else { hideMsg(msg); }
+  }
+  boxes.forEach(b => b.addEventListener('change', update));
+  update();
+})();
+})();
+</script>
+</body>
+</html>
