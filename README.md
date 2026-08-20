@@ -4,7 +4,7 @@ William 的互動式訂正筆記，發佈在 GitHub Pages 供他隨時複習。
 
 ## 網址
 
-`https://<username>.github.io/<repo>/`（開好 Pages 後回填）
+<https://cecilia224422.github.io/wnotes/>
 
 ## 結構
 
@@ -14,6 +14,7 @@ William 的互動式訂正筆記，發佈在 GitHub Pages 供他隨時複習。
 | `factors-multiples.html` | 2026-08-15 因數與倍數（Math in Focus 4A Ch.2） |
 | `fractions.html` | 2026-08-18 分數比較與加減（Math in Focus 4A Ch.3, p.251–258） |
 | `rounding.html` | 2026-08-19 四捨五入與估算（K5 Learning） |
+| `img/skzoo-*.png` | 8 隻 SKZOO 學習夥伴，頁尾隨機輪替 |
 | `robots.txt` | 擋搜尋引擎收錄 |
 | `.nojekyll` | 讓 GitHub Pages 直接吐靜態檔，不跑 Jekyll |
 
@@ -23,7 +24,7 @@ William 的互動式訂正筆記，發佈在 GitHub Pages 供他隨時複習。
 
 1. 在 claude.ai 的「互動式教學」Project 產出 `William訂正筆記-<主題>.html`，下載
 2. 檔案改成 ASCII 檔名（例：`area-perimeter.html`）放進這個資料夾
-3. 在檔案的 `<body ...>` 後面貼上回目錄的按鈕（見任一現有課程頁最上方的 `.wn-back` 區塊）
+3. 在檔案的 `<body ...>` 後面貼上回目錄按鈕（`.wn-back`），頁尾貼上學習夥伴區塊（`.wn-buddy` + 隨機挑角色的小 script）——兩段都直接從任一現有課程頁複製，只改 `.line` 那句話（英文、≤15 字、每頁不同、不可跟頁尾標語重複）
 4. 在 `index.html` 的 `LESSONS` 陣列最前面加一筆：
 
 ```js
