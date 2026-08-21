@@ -1,0 +1,2437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>William's Correction Notes — Writing the Whole Answer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Huninn&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html{font-size:clamp(16px, 0.6vw + 13.3px, 23px);-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:#E4E5E8;color:#2E3037;font-family:'Fredoka',system-ui,sans-serif;line-height:1.5;
+  --ink:#2E3037;--pencil:#6B6E76;--gray:#9C9EA5;--line:#E3E4E8;--line2:#D9DADF;--soft:#F4F4F6;--soft2:#F1F1F3;
+  --red:#E2463B;--green:#2FA36B;--hl:#FFF0A0;--paper:#FAFAFA;--rule:#D9DCE1;--margin:#F0A6B0;
+  --tb:#3E6FD9;--tb-soft:#E8EEFC;--tb-deep:#2B52AE;--rl:#F08A2C;--rl-soft:#FFF1E1;--rl-deep:#C4680F;
+  --accent:#3E6FD9;--accent-soft:#E8EEFC;--accent-deep:#2B52AE;
+  --ruleh:1.875rem;
+}
+body[data-mode="reallife"]{--accent:#F08A2C;--accent-soft:#FFF1E1;--accent-deep:#C4680F}
+
+/* ---------- notebook page ---------- */
+.notebook{
+  position:relative;width:100%;margin:0 auto;background-color:var(--paper);min-height:100vh;
+  box-shadow:0 0 0 1px #d6d7db,0 .6rem 2rem rgba(40,42,50,.14);
+  background-image:
+    linear-gradient(to right,transparent 2.875rem,var(--margin) 2.875rem,var(--margin) calc(2.875rem + 2px),transparent calc(2.875rem + 2px)),
+    repeating-linear-gradient(to bottom,transparent 0,transparent calc(var(--ruleh) - 1px),var(--rule) calc(var(--ruleh) - 1px),var(--rule) var(--ruleh));
+}
+@media(min-width:1200px){.notebook{max-width:80vw;margin:1.5rem auto}}
+.holes{position:absolute;top:0;bottom:0;left:0;width:2.2rem;pointer-events:none;
+  background:radial-gradient(circle at 1rem 50%,#E4E5E8 0 .36rem,#cfd0d5 .36rem .42rem,transparent .46rem) 0 1.2rem/2.2rem 3.75rem repeat-y}
+.page{padding:1.25rem 1rem 3rem 3.6rem}
+@media(min-width:760px){.page{padding:2rem 2.5rem 4rem 4.5rem}}
+
+/* ---------- text basics ---------- */
+.hand{font-family:'Caveat',cursive;color:var(--pencil)}
+.date{font-size:1.35rem;margin:0 0 .2rem;line-height:1.2}
+h1{font-size:2.1rem;line-height:1.15;margin:.15rem 0 .7rem;font-weight:700;letter-spacing:-.01em}
+h1 .zh{font-size:.5em;font-weight:400;margin-top:.25rem;letter-spacing:0}
+mark{background:linear-gradient(transparent 38%,var(--hl) 38%,var(--hl) 92%,transparent 92%);color:inherit;padding:0 .12em;border-radius:.15em}
+.lead{font-size:1.05rem;margin:0 0 1.1rem;max-width:46rem}
+p{margin:.4rem 0}
+b{font-weight:600}
+a{color:var(--accent-deep)}
+
+/* Chinese layer */
+.zh{display:none;font-family:'Huninn','Zen Maru Gothic','PingFang TC','Noto Sans TC',sans-serif;color:var(--pencil);font-size:.88em;line-height:1.55;font-weight:400}
+body.zh-on .zh{display:block}
+.zhi{display:none;font-family:'Huninn','Zen Maru Gothic','PingFang TC','Noto Sans TC',sans-serif;color:inherit;font-size:.92em;font-weight:400}
+body.zh-on .zhi{display:inline}
+.pill .zhi,.tag .zhi{color:#fff}
+
+/* vocab + scores */
+.vocab{display:grid;grid-template-columns:repeat(auto-fill,minmax(9.5rem,1fr));gap:.5rem;margin:0 0 1.2rem;max-width:60rem}
+.vcard{background:#fff;border:1px solid var(--line);border-radius:.75rem;padding:.45rem .7rem .5rem;font-size:.84rem;box-shadow:0 1px 0 var(--line2);line-height:1.4}
+.vcard b{display:block;font-size:.98rem;color:var(--ink)}
+.vcard .def{color:var(--pencil)}
+.scores{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;max-width:40rem;margin:0 0 1.4rem}
+.score{background:#fff;border:1px solid var(--line);border-radius:1rem;padding:.7rem .5rem .6rem;text-align:center;box-shadow:0 2px 0 var(--line2)}
+.score .n{font-size:1.85rem;font-weight:700;line-height:1.1}
+.score .l{font-size:.75rem;color:var(--gray);text-transform:uppercase;letter-spacing:.05em;margin-top:.15rem}
+.score .zh{font-size:.78rem}
+
+/* ---------- sticky toolbar ---------- */
+.toolbar{position:sticky;top:0;z-index:30;background:var(--paper);margin:0 -.5rem 1.2rem;padding:.6rem .5rem .5rem;border-bottom:1px solid var(--line2);box-shadow:0 6px 10px -8px rgba(0,0,0,.18)}
+.tools{display:flex;align-items:center;justify-content:space-between;gap:.6rem .9rem;flex-wrap:wrap}
+.seg{display:inline-flex;background:#fff;border:1px solid var(--line2);border-radius:2rem;padding:.2rem;gap:.2rem}
+.seg button{border:0;background:transparent;border-radius:2rem;padding:.42rem .85rem;font:inherit;font-size:.88rem;font-weight:600;color:var(--pencil);cursor:pointer;transition:background-color .25s,color .25s;white-space:nowrap}
+.seg button:hover{background:var(--soft)}
+.seg button.tb[aria-pressed="true"]{background:var(--tb);color:#fff}
+.seg button.rl[aria-pressed="true"]{background:var(--rl);color:#fff}
+.zhtoggle{display:inline-flex;align-items:center;gap:.45rem;border:0;background:transparent;font:inherit;cursor:pointer;padding:.25rem .35rem;border-radius:1rem}
+.zhtoggle .lbl{font-family:'Huninn','Zen Maru Gothic','PingFang TC','Noto Sans TC',sans-serif;font-size:.95rem;color:var(--pencil)}
+.sw{width:2.6rem;height:1.45rem;border-radius:1rem;background:#D9DADF;position:relative;transition:background-color .25s;flex:0 0 auto}
+.sw::after{content:'';position:absolute;top:.15rem;left:.15rem;width:1.15rem;height:1.15rem;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .25s}
+.zhtoggle[aria-pressed="true"] .sw{background:var(--accent)}
+.zhtoggle[aria-pressed="true"] .sw::after{transform:translateX(1.15rem)}
+.modeline{font-size:.8rem;color:var(--gray);margin:.45rem 0 0;line-height:1.4}
+.modeline .zh{display:inline;font-size:.8rem}
+@media(max-width:520px){.seg button{font-size:.8rem;padding:.4rem .5rem}.long{display:none}.tools{gap:.4rem}.zhtoggle{padding:.2rem .1rem}}
+body:not(.zh-on) .modeline .zh{display:none}
+
+/* jump chips */
+.jumps{display:flex;flex-wrap:wrap;gap:.45rem;margin:0 0 1.3rem;align-items:center}
+.jumps .lab{font-size:.8rem;color:var(--gray);margin-right:.15rem}
+.jumps a{display:inline-flex;align-items:center;justify-content:center;min-width:2rem;height:2rem;padding:0 .65rem;border-radius:1rem;background:var(--ink);color:#fff;text-decoration:none;font-weight:600;font-size:.9rem;transition:transform .1s}
+.jumps a:hover{transform:translateY(-1px)}
+.jumps a.q{background:#fff;color:var(--ink);border:1px solid var(--line2)}
+
+/* big idea */
+.bigidea{border-left:.35rem solid var(--accent);background:var(--accent-soft);border-radius:.6rem;padding:.9rem 1rem .9rem 1.1rem;margin:0 0 2.2rem;max-width:48rem;transition:background-color .3s,border-color .3s}
+.bigidea h3{margin:0 0 .35rem;font-size:1.1rem}
+.bigidea ol{margin:.5rem 0 0;padding-left:1.35rem}
+.wn-hi{display:flex;align-items:flex-start;gap:.7rem;margin:.7rem 0 1.1rem;max-width:44rem}
+.wn-hi img{width:3.2rem;height:3.2rem;flex:0 0 auto}
+.wn-hi .bubble{position:relative;background:#fff;border:1px solid var(--line2);border-radius:.9rem;padding:.6rem .9rem .5rem}
+.wn-hi .bubble::before{content:"";position:absolute;left:-.4rem;top:1rem;width:.75rem;height:.75rem;background:#fff;border-left:1px solid var(--line2);border-bottom:1px solid var(--line2);transform:rotate(45deg)}
+.wn-hi .say{margin:0;font-size:.95rem;line-height:1.45}
+.wn-hi .who{font-family:'Caveat',cursive;font-size:1.1rem;color:var(--pencil)}
+.bigidea .play{margin:.9rem 0 0}
+.bigidea .gate{animation:fadein .35s;margin:.9rem 0 0}
+.bigidea .gate>p{margin:0}
+.bigidea li{margin:.3rem 0}
+.bigidea li::marker{color:var(--accent-deep);font-weight:600}
+
+/* ---------- sections ---------- */
+.sec{margin:0 0 2.8rem;scroll-margin-top:5.5rem}
+.sec h2{display:flex;align-items:flex-start;gap:.6rem;font-size:1.35rem;margin:0 0 1rem;line-height:1.25}
+.sec h2 .num{flex:0 0 auto;width:1.9rem;height:1.9rem;border-radius:50%;background:var(--ink);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:1rem;font-weight:700;margin-top:.05rem}
+.sec h2 .num.emoji{background:transparent;font-size:1.45rem;width:auto;min-width:1.9rem}
+.sec h2 .ttl{flex:1 1 12rem}
+.sec h2 .ttl .zh{font-size:.68em;margin-top:.2rem;font-weight:400}
+
+/* cutout (worksheet clipping) */
+.cutout{position:relative;background:#fff;border:1px solid var(--line);box-shadow:0 2px 6px rgba(0,0,0,.08),0 1px 0 var(--line2);padding:1.15rem 1rem 1.7rem;margin:1rem 0 1.3rem;transform:rotate(-.6deg);max-width:46rem;font-size:.95rem;line-height:1.55;color:#333}
+.redu{text-decoration:none;border-bottom:2px solid var(--red);padding-bottom:.02em}
+.redpen{font-family:'Caveat',cursive;color:var(--red);font-size:1.3rem;line-height:1.2;margin:.7rem 0 0 1.9rem;font-weight:600}
+.pageref{position:absolute;right:.7rem;bottom:.35rem;font-size:.72rem;color:var(--gray)}
+
+/* explain box */
+.explain{position:relative;border-left:.35rem solid var(--accent);background:var(--accent-soft);border-radius:.6rem;padding:1rem 1rem .8rem 1.1rem;margin:0 0 1.2rem;max-width:48rem;transition:background-color .3s,border-color .3s;animation:fadein .35s}
+.explain .pill{position:absolute;top:-.75rem;right:.8rem;background:var(--accent);color:#fff;border-radius:1rem;padding:.15rem .7rem;font-size:.72rem;font-weight:600;letter-spacing:.02em;transition:background-color .3s;white-space:nowrap}
+.explain ul{margin:.2rem 0 0;padding-left:1.15rem}
+.explain.tb ul{list-style:square}
+.explain.rl ul{list-style:disc}
+.explain li{margin:.45rem 0}
+.explain li::marker{color:var(--accent)}
+body[data-mode="textbook"] .explain.rl{display:none}
+body[data-mode="reallife"] .explain.tb{display:none}
+
+/* try-it box */
+.play{position:relative;background:#fff;border:2px dashed var(--line2);border-radius:.9rem;padding:1.15rem 1rem 1rem;margin:0 0 1.1rem;max-width:48rem}
+.play .tag{position:absolute;top:-.75rem;left:.9rem;background:var(--accent);color:#fff;border-radius:1rem;padding:.15rem .65rem;font-size:.72rem;font-weight:700;letter-spacing:.03em;transition:background-color .3s}
+.play h4{margin:0 0 .25rem;font-size:1.05rem}
+.play .hint{margin:0 0 .6rem;color:var(--pencil);font-size:.9rem}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.55rem 0}
+.steplbl{font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--gray);font-weight:600;margin:.8rem 0 .1rem}
+.steplbl:first-of-type{margin-top:.2rem}
+
+/* buttons */
+.btn{font:inherit;font-weight:600;font-size:.92rem;color:#fff;background:var(--accent);border:0;border-radius:.7rem;padding:.55rem .95rem;cursor:pointer;box-shadow:0 3px 0 var(--accent-deep);transition:transform .08s,box-shadow .08s,background-color .3s,filter .15s;touch-action:manipulation;line-height:1.25}
+.btn:hover{filter:brightness(1.06)}
+.btn:active{transform:translateY(3px);box-shadow:0 0 0 var(--accent-deep)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:0 3px 0 var(--accent-deep);filter:none}
+.btn.ghost{background:#fff;color:var(--pencil);border:1px solid var(--line2);box-shadow:0 3px 0 var(--line2)}
+.btn.ghost:active{box-shadow:0 0 0 var(--line2)}
+.btn.ghost:disabled{box-shadow:0 3px 0 var(--line2)}
+
+/* messages */
+.msg{margin:.75rem 0 0;padding:.65rem .85rem;border-radius:.6rem;background:var(--soft);color:var(--ink);font-size:.93rem;line-height:1.45;border:1px solid var(--line);animation:fadein .25s}
+.msg.good{background:#E6F5EC;border-color:#BFE4CD}
+.msg.bad{background:#FDEAE8;border-color:#F5C2BC}
+.msg.warn{background:#FFF7D6;border-color:#F0E0A0}
+.msg[hidden]{display:none}
+
+/* choice buttons */
+.choices{display:grid;gap:.45rem;margin:.5rem 0}
+.choice{font:inherit;text-align:left;background:#fff;border:2px solid var(--line2);border-radius:.7rem;padding:.55rem .8rem;cursor:pointer;font-size:.95rem;color:var(--ink);transition:border-color .15s,background-color .15s;line-height:1.35}
+.choice:hover{border-color:var(--accent)}
+.choice.ok{border-color:var(--green);background:#E6F5EC}
+.choice.no{border-color:var(--red);background:#FDEAE8}
+.choice.dim{opacity:.55}
+.choice:disabled{cursor:default}
+.choice:disabled:hover{border-color:var(--line2)}
+.choice.ok:disabled:hover{border-color:var(--green)}
+.choice.no:disabled:hover{border-color:var(--red)}
+
+/* model answer */
+.model{background:#fff;border:2px dashed var(--line2);border-radius:.7rem;padding:.7rem .9rem;margin:0 0 .6rem;max-width:48rem;font-size:.95rem}
+.model .lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--gray);display:block;margin-bottom:.25rem;font-weight:600}
+.model .line{font-weight:600;font-size:1.02rem;line-height:1.5;display:flex;flex-wrap:wrap;gap:.1rem 1.1rem}
+.model .line span{white-space:nowrap}
+.model .line .ans{color:var(--accent-deep)}
+
+/* sorter rows */
+.sorter{display:grid;gap:.4rem;max-width:34rem;margin:.4rem 0}
+.srow{display:flex;align-items:center;justify-content:space-between;gap:.5rem;background:var(--soft);border:1px solid var(--line);border-radius:.7rem;padding:.4rem .65rem;flex-wrap:wrap}
+.srow .ph{font-weight:600;font-size:.95rem;flex:1 1 7rem}
+/* rows here can hold long-text options, so the button group must be able to
+   shrink and drop onto its own line instead of pushing the page sideways */
+.srow .ops{flex:1 1 11rem;min-width:0;display:inline-flex;gap:.3rem;flex-wrap:wrap}
+.opb{font:inherit;font-weight:700;min-width:2.3rem;height:2rem;padding:0 .45rem;border-radius:.5rem;border:2px solid var(--line2);background:#fff;cursor:pointer;color:var(--ink);font-size:1rem;transition:border-color .15s,background-color .15s}
+.opb:hover{border-color:var(--accent)}
+.opb.ok{background:#E6F5EC;border-color:var(--green)}
+.opb.no{background:#FDEAE8;border-color:var(--red)}
+.opb:disabled{cursor:default}
+.srow .why{flex-basis:100%;font-size:.82rem;color:var(--pencil);display:none;line-height:1.35}
+.srow.done .why{display:block}
+.counter{font-size:.85rem;color:var(--pencil);margin:.3rem 0 0}
+
+/* quiz */
+.quizbox{background:#fff;border:2px dashed var(--line2);border-radius:.9rem;padding:1rem;max-width:48rem}
+.qdots{display:flex;gap:.35rem;margin:0 0 .7rem;flex-wrap:wrap}
+.qdots i{width:.6rem;height:.6rem;border-radius:50%;background:var(--line2);display:block}
+.qdots i.cur{background:var(--accent);transform:scale(1.25)}
+.qdots i.ok{background:var(--green)}
+.qdots i.no{background:var(--red)}
+.qq{font-size:1.05rem;font-weight:600;margin:0 0 .6rem;line-height:1.4}
+.qq .zh{font-weight:400}
+.qresult{text-align:center;padding:1rem 0 .3rem}
+.qresult .stars{font-size:2.3rem;letter-spacing:.1em;animation:pop .5s}
+.qresult .sc{font-size:1.5rem;font-weight:700;margin:.2rem 0}
+
+/* tips */
+.tips{display:grid;gap:.6rem;max-width:48rem}
+.tipcard{background:#fff;border:1px solid var(--line);border-left:.35rem solid var(--hl);border-radius:.6rem;padding:.7rem .9rem;font-size:.95rem}
+.tipcard b.t{display:block;margin-bottom:.15rem}
+
+/* correction list */
+.fixlist{list-style:none;padding:0;margin:0;max-width:48rem;display:grid;gap:.45rem}
+.fixlist label{display:flex;gap:.7rem;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:.7rem;padding:.6rem .75rem;cursor:pointer;transition:background-color .2s}
+.fixlist input{appearance:none;-webkit-appearance:none;width:1.35rem;height:1.35rem;border:2px solid var(--line2);border-radius:.4rem;flex:0 0 auto;margin:.15rem 0 0;position:relative;cursor:pointer;background:#fff;transition:background-color .15s,border-color .15s}
+.fixlist input:checked{background:var(--green);border-color:var(--green)}
+.fixlist input:checked::after{content:'';position:absolute;left:.36rem;top:.08rem;width:.35rem;height:.72rem;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg)}
+.fixlist label.done{background:var(--soft)}
+.fixlist label.done .txt{text-decoration:line-through;color:var(--gray)}
+.fixlist .txt{font-size:.95rem;line-height:1.4}
+.fixlist .txt b{font-weight:600}
+.fixlist .txt .w{display:block;font-size:.86rem;color:var(--pencil)}
+.fixlist label.done .txt .w{color:var(--gray)}
+
+.foot{font-size:1.5rem;margin:2.5rem 0 0;line-height:1.25}
+.foot .zh{font-size:.65em;margin-top:.2rem}
+
+/* motion + a11y */
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* ===== page-specific additions (built from the base vocabulary) ===== */
+
+/* handwriting inside a cutout */
+.tape{position:absolute;top:-.7rem;left:1.375rem;width:4.9rem;height:1.375rem;background:rgba(255,224,130,.75);transform:rotate(-4deg);border-left:2px dashed rgba(255,255,255,.75);border-right:2px dashed rgba(255,255,255,.75)}
+.cutout .q{font-size:.95rem;color:#2A2C33;line-height:1.7;font-weight:400}
+.cutout .q b{font-weight:600;background:#5D6069;color:#fff;border-radius:50%;width:1.5rem;height:1.5rem;display:inline-grid;place-items:center;font-size:.75rem;margin-right:.375rem;vertical-align:middle}
+.ans{font-family:'Caveat',cursive;font-size:1.4rem;color:var(--pencil);border-bottom:1.5px solid #979AA2;padding:0 .25rem;line-height:1.2}
+.wrong{position:relative;display:inline-block;padding:0 .2rem}
+.wrong::after{content:"";position:absolute;inset:-.2rem -.25rem;border:2.5px solid var(--red);border-radius:50%;transform:rotate(-8deg)}
+.okpen{font-family:'Caveat',cursive;color:var(--green);font-size:1.25rem;font-weight:600}
+/* true, just not the biggest: a pencil note, not a mistake.
+   The red circle stays reserved for things that are actually wrong. */
+.small{position:relative;display:inline-block;padding:0 .2rem}
+.small::after{content:"";position:absolute;inset:-.18rem -.22rem;border:2px dotted var(--gray);border-radius:.45rem}
+
+/* one shared explain box, wording swapped by version */
+body[data-mode="textbook"] .v-rl{display:none}
+body[data-mode="reallife"] .v-tb{display:none}
+.pill.auto::before{content:"📘 Textbook version"}
+body[data-mode="reallife"] .pill.auto::before{content:"🍎 Real-life version"}
+body.zh-on .pill.auto::before{content:"📘 Textbook version · 課本理論版"}
+body.zh-on[data-mode="reallife"] .pill.auto::before{content:"🍎 Real-life version · 生活應用版"}
+
+/* ask-first box: a .play that is closed, not dashed */
+.play.ask{border-style:solid;border-color:var(--accent);transition:border-color .3s}
+
+/* explanation cut into steps; each one unlocks the next */
+.step{background:#fff;border:1px solid var(--line);border-radius:.7rem;padding:.7rem .85rem;margin:.7rem 0 0;animation:fadein .35s}
+.step[hidden]{display:none}
+.gate[hidden]{display:none}
+.gate{animation:fadein .35s}
+
+/* evidence card: what the lesson actually says */
+.ev{background:var(--soft);border:1px solid var(--line);border-left:.3rem solid var(--accent);border-radius:.5rem;padding:.55rem .75rem;margin:.5rem 0;font-size:.92rem;line-height:1.5;animation:fadein .3s}
+.ev .lbl{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--gray);font-weight:600;margin-bottom:.15rem}
+
+/* a statement being judged / rebuilt */
+.sentbox{background:var(--soft2);border-radius:.5rem;padding:.55rem .8rem;margin:.5rem 0;font-size:.98rem;line-height:1.5;max-width:40rem}
+.sentbox u{text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:.2em}
+.sentbox.built{background:var(--accent-soft);border:1.5px solid var(--accent)}
+.sentbox.trueok{background:#E6F5EC;border:1.5px solid var(--green)}
+
+/* chips you tap to pick words or claims */
+.opb.wide{min-width:0;max-width:100%;padding:.35rem .7rem;font-size:.9rem;font-weight:600;height:auto;min-height:2rem;line-height:1.3;white-space:normal;text-align:left}
+
+/* a step you must redo: the reset flash */
+.redo{animation:pop .4s}
+
+/* model answer: the words he copies, printed not handwritten */
+.model .line .ans-hi{color:var(--accent-deep);font-weight:700}
+.model .line.sentence{display:block}
+.model .line.sentence span{white-space:normal}
+
+/* ---- NEW: the cause-and-effect chain rail ----
+   links stack downward, each joined to the next by an arrow, so a missing
+   middle link is something he can literally see a hole in. */
+.chain{display:block;max-width:36rem;margin:.6rem 0 .2rem}
+.clink{position:relative;background:var(--soft);border:1px solid var(--line);border-left:.32rem solid var(--accent);border-radius:.55rem;padding:.5rem .75rem;font-size:.92rem;line-height:1.45;animation:pop .3s}
+.clink.start{border-left-color:var(--gray);background:#fff}
+.clink.end{background:#E6F5EC;border-color:#BFE4CD;border-left-color:var(--green);font-weight:600}
+.clink .n{font-size:.72rem;color:var(--gray);font-weight:600;display:block}
+.carrow{color:var(--gray);font-size:1rem;line-height:1;margin:.12rem 0 .12rem 1rem;height:1.1rem}
+
+/* ---- NEW: a lab bench — two test panels for the rubber rematch ---- */
+.bench{display:flex;flex-wrap:wrap;gap:.6rem;max-width:36rem;margin:.6rem 0 .2rem}
+.panel{flex:1 1 10rem;background:#fff;border:1px solid var(--line);border-radius:.7rem;padding:.6rem .7rem;text-align:center}
+.panel .big{font-size:1.7rem;line-height:1.2}
+.panel .cap{font-size:.82rem;color:var(--pencil);margin-top:.15rem}
+.panel .res{font-size:.86rem;font-weight:600;margin-top:.3rem;min-height:1.2rem;color:var(--accent-deep)}
+.panel.hot{border-color:#F0C2A0}
+.panel.cold{border-color:#B7CBEA}
+.panel.done{background:var(--soft)}
+</style>
+<body data-mode="textbook">
+<style>
+.wn-back{position:fixed;right:.8rem;bottom:.8rem;z-index:999;display:inline-flex;align-items:center;gap:.3rem;
+ background:#fff;color:#2E3037;border:1px solid #D9DADF;border-radius:999px;padding:.4rem .8rem;
+ font-family:'Fredoka',system-ui,sans-serif;font-size:.85rem;font-weight:600;text-decoration:none;
+ box-shadow:0 2px 8px rgba(0,0,0,.14)}
+.wn-back:hover{border-color:#2E3037}
+@media print{.wn-back{display:none}}
+</style>
+<a href="index.html" class="wn-back" aria-label="Back to the index">📒 Index</a>
+
+<div class="notebook">
+<div class="holes" aria-hidden="true"></div>
+<main class="page">
+
+<!-- ================= HEADER ================= -->
+<header class="top">
+  <div class="hand date">7/28 · Science · Chapter 7 Robots + Review + Final Test (Ch 1–7)</div>
+  <h1>William's <mark>Correction</mark> Notes<span class="zh">William 的訂正筆記 — 把答案寫完整</span></h1>
+
+  <div class="wn-hi">
+    <img id="wnHiImg" src="img/skzoo-puppym.png" alt="Your study buddy" width="150" height="150">
+    <div class="bubble">
+      <p class="say">Hi William — I read <b>p.121 #26</b> before anything else. You named the Third Law, you gave a real example (the box and the table), and you used <b>because</b> without anyone telling you to. Today we take that same move to five more answers.<span class="zh">William 嗨——我第一個看的是 p.121 #26。你講出了第三運動定律、給了真實的例子（桌子上的箱子），而且沒人提醒你就用了 because。今天就把這一招帶去另外五個答案。</span></p>
+      <span class="who" id="wnHiName">Puppy M</span>
+    </div>
+  </div>
+
+  <p class="lead">Five pages, and <mark>35 answers are already yours</mark> — every objective question, including the Final Test that covers all seven chapters at once. The <mark>5 spots left</mark> are all the same kind: the ones where you write the answer out in your own sentence.
+    <span class="zh">五頁，35 格已經到手——所有客觀題全對，包含一次涵蓋七章的 Final Test。剩下的 5 個地方都是同一種：要你自己寫成句子的那種。</span></p>
+
+  <div class="vocab" aria-label="Words to know">
+    <div class="vcard"><b>chain</b><span class="def">each step causes the next one, all the way to the end</span><span class="zh">因果鏈：每一步造成下一步，一路到最後</span></div>
+    <div class="vcard"><b>system</b><span class="def">many parts that work together as one whole</span><span class="zh">系統：很多部分一起運作，合成一個整體</span></div>
+    <div class="vcard"><b>robot</b><span class="def">a machine that can move, sense, and decide by itself</span><span class="zh">機器人：能自己移動、感測、做決定的機器</span></div>
+    <div class="vcard"><b>exact</b><span class="def">the precise thing that went wrong — not just "bad"</span><span class="zh">精確：講出到底哪裡出問題，不是只說「不好」</span></div>
+    <div class="vcard"><b>past tense</b><span class="def">the story already happened, so verbs look back: was, died, cracked</span><span class="zh">過去式：事情已經發生了，動詞要回頭看：was、died、cracked</span></div>
+    <div class="vcard"><b>pressure</b><span class="def">deep water pushing hard on everything down there</span><span class="zh">水壓：深海的水用力壓著底下的所有東西</span></div>
+  </div>
+
+  <div class="scores" aria-label="Progress">
+    <div class="score"><div class="n">5</div><div class="l">pages</div><span class="zh">頁數</span></div>
+    <div class="score"><div class="n">35</div><div class="l">already yours</div><span class="zh">已經到手</span></div>
+    <div class="score"><div class="n">5</div><div class="l">to power up</div><span class="zh">要升級的</span></div>
+  </div>
+</header>
+
+<!-- ================= TOOLBAR ================= -->
+<div class="toolbar" id="toolbar">
+  <div class="tools">
+    <div class="seg" role="group" aria-label="Choose a version">
+      <button type="button" class="tb" data-mode="textbook" aria-pressed="true">📘 Textbook<span class="long"> version</span></button>
+      <button type="button" class="rl" data-mode="reallife" aria-pressed="false">🍎 Real-life<span class="long"> version</span></button>
+    </div>
+    <button type="button" class="zhtoggle" id="zhbtn" aria-pressed="false" aria-label="中文 translation on or off"><span class="lbl">中文</span><span class="sw" aria-hidden="true"></span></button>
+  </div>
+  <p class="modeline" id="modeline"></p>
+</div>
+
+<nav class="jumps" aria-label="Jump to">
+  <span class="lab">Jump to</span>
+  <a href="#s1">1</a><a href="#s2">2</a><a href="#s3">3</a><a href="#s4">4</a><a href="#s5">5</a>
+  <a href="#tips" class="q">💡 Tips</a><a href="#quiz" class="q">🎯 Quiz</a><a href="#fix" class="q">✍️ List</a>
+</nav>
+
+<!-- ================= BIG IDEA ================= -->
+<section class="bigidea" aria-label="The big idea">
+  <h3>🔍 Your five answers, exactly as you wrote them<span class="zh">你那五個答案，一字不改擺在一起</span></h3>
+  <p>Nothing added, nothing fixed yet — just the five lines:<span class="zh">什麼都沒加、也還沒修——就是那五行：</span></p>
+  <ol>
+    <li>p.119 #10 — <b>"A meteorite hit Earth and changed the climate and there is no food so dinosaurs died."</b><span class="zh">p.119 第 10 題。</span></li>
+    <li>p.121 #22 — <b>"Earth has a lot of ecosystems work together"</b><span class="zh">p.121 第 22 題。</span></li>
+    <li>p.119 #11 — <b>"A electronic cat. It can act like a normal cat."</b><span class="zh">p.119 第 11 題。</span></li>
+    <li>p.121 #25 — <b>"Rubber being very bad."</b><span class="zh">p.121 第 25 題。</span></li>
+    <li>p.117 #7 — <b>"It can save time."</b><span class="zh">p.117 第 7 題。</span></li>
+  </ol>
+
+  <div class="play ask">
+    <span class="tag">🔎 You first</span>
+    <h4>Before we open any of them — what happens when you write a short answer?<span class="zh">在打開任何一題之前——你在寫「要自己寫句子」的答案時，通常發生什麼事？</span></h4>
+    <p class="hint">Pick the closest one. <mark>There is no wrong answer here</mark> — you were holding the pencil, this page was not.<span class="zh">挑最接近的。這題沒有錯的答案——拿鉛筆的是你，不是這頁。</span></p>
+    <div id="bigask"></div>
+  </div>
+
+  <div class="gate" id="bigexp" hidden>
+    <p>One move per line — five lines, five different moves. Same order as your list up there:<span class="zh">一行一個動作——五行、五個不同的動作。順序跟上面那張清單一樣：</span></p>
+    <ol>
+      <li><b>p.119 #10</b> — a <b>how</b> question wants <mark>every link</mark>, and links the reader can actually see.<span class="zh">how 的題目要「每一環」，而且是讀的人看得見的那種環。</span></li>
+      <li><b>p.121 #22</b> — two verbs standing side by side need a <mark>glue word</mark> in between.<span class="zh">兩個動詞並排站著，中間要有一個黏合詞。</span></li>
+      <li><b>p.119 #11</b> — a comparison question has to start from an <mark>ordinary machine</mark>, not from a robot.<span class="zh">比較題要從「普通機器」出發，不是從機器人出發。</span></li>
+      <li><b>p.121 #25</b> — "what problem" wants the <mark>exact</mark> one — what melts? what cracks?<span class="zh">問「什麼問題」就要精確的那一個——什麼會融化？什麼會裂？</span></li>
+      <li><b>p.117 #7</b> — a <b>why</b> question wants the <mark>biggest</mark> reason, not the first one you thought of.<span class="zh">why 的題目要「最大的理由」，不是你最先想到的那個。</span></li>
+    </ol>
+    <div id="bigpick"></div>
+    <div class="gate" id="bignext" hidden>
+      <p>Five moves, five lines, and you keep every one you collect. First stop: your dinosaur answer. <a href="#s1">Start with p.119 #10 ▸</a><span class="zh">五個動作、五行答案，收到的都是你的。第一站：你的恐龍那題。</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 1 ================= -->
+<section class="sec" id="s1">
+  <h2><span class="num">1</span><span class="ttl">The middle link nobody can see<span class="zh">中間那一環，讀的人看不到</span></span></h2>
+
+  <div class="cutout">
+    <span class="tape"></span>
+    <div class="q"><b>10</b> Explain <u class="redu">how</u> a meteorite could have caused the dinosaurs to die out. <span class="ans">A meteorite hit Earth and changed the climate and <span class="wrong">there is</span> no food so dinosaurs died</span></div>
+    <p class="redpen">Right start, right ending — and you did write a middle link. It just has to be one the reader can see. And "there is" → "there was".<span class="zh">開頭對、結尾也對——而且你中間確實有寫一環，只是那一環要換成讀的人看得見的。另外 there is 要改成 there was。</span></p>
+    <span class="pageref">Chapter 7 Review · p.119 · Q10</span>
+  </div>
+
+  <div class="play ask">
+    <span class="tag">🔎 You first</span>
+    <h4>Your chain, exactly as you wrote it:<span class="zh">你的鏈條，一字不改：</span></h4>
+    <p class="sentbox">meteorite hit &nbsp;→&nbsp; changed the climate &nbsp;→&nbsp; no food &nbsp;→&nbsp; dinosaurs died</p>
+    <p class="hint">A friend who has never heard this story reads it. What do they ask you first?<span class="zh">一個從沒聽過這故事的朋友讀完了。他第一句會問你什麼？</span></p>
+    <div id="s1ask"></div>
+  </div>
+
+  <div class="gate" id="s1exp" hidden>
+    <div class="explain">
+      <span class="pill auto"></span>
+
+      <div class="step" id="s1st1">
+        <p class="steplbl">Step 1</p>
+        <p class="v-tb">A question that asks <mark>how</mark> or <mark>why</mark> is a <mark>chain question</mark>. It is not asking what happened — it is asking how one thing led to the next.<span class="zh">問 how 或 why 的題目就是「因果鏈題」。它問的不是發生了什麼，而是一件事怎麼帶出下一件。</span></p>
+        <p class="v-rl">Telling a friend how you got a bruise: "I fell" is not the story. Where were you? What did you trip on? A chain question wants <mark>the whole run</mark>.<span class="zh">跟朋友講你怎麼撞出瘀青：「我跌倒了」不算故事。你在哪裡？被什麼絆到？因果鏈題要的是整段過程。</span></p>
+        <p>👉 Tap the part of the question that makes this a chain question.<span class="zh">點出讓這題變成因果鏈題的那個部分。</span></p>
+        <div class="row" id="s1a1"></div>
+        <div class="msg" id="s1m1" hidden></div>
+      </div>
+
+      <div class="step" id="s1st2" hidden>
+        <p class="steplbl">Step 2</p>
+        <p class="v-tb">You did put a link in the middle: <mark>changed the climate</mark>. True — but it is the same kind of word as <b>"very bad"</b> on page 121: the reader cannot see it. The lesson swaps it for two things you can see — <mark>dust</mark> and <mark>sunlight</mark>: the crash threw dust up, the dust blocked the sun.<span class="zh">你中間確實有寫一環：changed the climate。是對的——但它跟 p.121 的「very bad」是同一種字：讀的人看不到畫面。課文把它換成兩個看得見的東西——塵埃和陽光：撞擊揚起塵埃，塵埃擋住太陽。</span></p>
+        <p class="v-rl">"The climate changed" is the size of a whole news headline. Zoom in: a huge dust cloud parked over the sky for years — the world's longest cloudy day.<span class="zh">「氣候變了」大得像一則新聞標題。拉近看：一整片巨大的塵埃雲停在天空上好幾年——史上最長的一個陰天。</span></p>
+        <p>So — when the sunlight is blocked, what stops working first?<span class="zh">所以——陽光被擋住的時候，最先停擺的是什麼？</span></p>
+        <div id="s1a2"></div>
+      </div>
+
+      <div class="step" id="s1st3" hidden>
+        <p class="steplbl">Step 3</p>
+        <p class="v-tb">One more thing to fix. Your sentence ends in the past — <b>died</b> — but the middle slipped into now: "<mark>there is</mark> no food".<span class="zh">還有一個地方要修。你的句子結尾是過去式 died，但中間滑回了現在式：there is no food。</span></p>
+        <p class="v-rl">Dinosaurs are not out there being hungry right now. The whole story is over, so every verb has to look back.<span class="zh">恐龍現在並沒有在外面餓肚子。整個故事早就結束了，所以每個動詞都要回頭看。</span></p>
+        <p class="sentbox">…and <u>there is</u> no food so dinosaurs <u>died</u>.</p>
+        <p>👉 Pick the verb that matches <b>died</b>.<span class="zh">選出跟 died 對得上的那個動詞。</span></p>
+        <div id="s1a3"></div>
+      </div>
+
+      <div class="step" id="s1st4" hidden>
+        <p class="steplbl">Step 4 · say it your way</p>
+        <p>Why does a chain answer need the middle links?<span class="zh">用你自己的話選：因果鏈的答案為什麼需要中間那幾環？</span></p>
+        <div id="s1a4"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gate" id="s1try" hidden>
+    <div class="play">
+      <span class="tag">Try it</span>
+      <h4>The chain builder<span class="zh">因果鏈建造機</span></h4>
+      <p class="hint">Build the whole chain, one link at a time. Every link has to <b>touch</b> the one before it — no jumping. Last of all, the tense check.<span class="zh">一次接一環，把整條鏈建起來。每一環都要「碰得到」上一環——不准跳。最後跑一次時態檢查。</span></p>
+      <div class="chain" id="s1chain"></div>
+      <div id="s1pick"></div>
+      <div class="msg" id="s1msg" hidden></div>
+      <div id="s1tense"></div>
+    </div>
+  </div>
+
+  <div class="gate" id="s1model" hidden>
+    <div class="model">
+      <span class="lbl">✍️ Copy this into your workbook</span>
+      <div class="line sentence"><span>A meteorite hit Earth. The crash threw huge clouds of <span class="ans-hi">dust</span> into the air. The dust <span class="ans-hi">blocked the sunlight</span>, so plants could not make food and died. Plant-eating dinosaurs <span class="ans-hi">starved</span>, and then the meat-eating dinosaurs died too.</span></div>
+      <span class="zh">範例答案——抄回作業本。</span>
+    </div>
+  </div>
+</section>
+<!-- ================= SECTION 2 ================= -->
+<section class="sec" id="s2">
+  <h2><span class="num">2</span><span class="ttl">Two verbs bumping into each other<span class="zh">兩個動詞撞在一起</span></span></h2>
+
+  <div class="cutout">
+    <span class="tape"></span>
+    <div class="q"><b>22</b> Explain why Earth is called a <u class="redu">system</u>. <span class="ans">Earth has a lot of <span class="wrong">ecosystems work</span> together</span></div>
+    <p class="redpen">The idea is right! One little word is missing between them.<span class="zh">觀念是對的！只是中間少了一個小小的字。</span></p>
+    <p style="margin:.4rem 0 0 1.9rem"><span class="okpen">On #21 you sorted Earth = system, paper = not a system ✓</span><span class="zh">第 21 題你把「地球是系統、紙不是系統」分對了 ✓</span></p>
+    <span class="pageref">Final Test · p.121 · Q22</span>
+  </div>
+
+  <div class="play ask">
+    <span class="tag">🔎 You first</span>
+    <h4>Say your sentence out loud, slowly:<span class="zh">把你的句子慢慢唸出來：</span></h4>
+    <p class="sentbox">Earth has a lot of ecosystems work together.</p>
+    <p class="hint">Verbs are the doing words. Which <b>two</b> words in there are both verbs?<span class="zh">動詞是「做事」的字。這句裡面哪「兩個」字都是動詞？</span></p>
+    <div id="s2ask"></div>
+  </div>
+
+  <div class="gate" id="s2exp" hidden>
+    <div class="explain">
+      <span class="pill auto"></span>
+
+      <div class="step" id="s2st1">
+        <p class="steplbl">Step 1</p>
+        <p class="v-tb">One clause gets <mark>one main verb</mark>. Your sentence has two — <b>has</b> and <b>work</b> — standing side by side with nothing between them.<span class="zh">一個子句只能有一個主要動詞。你的句子有兩個——has 和 work——並排站著，中間什麼都沒有。</span></p>
+        <p class="v-rl">Two train carriages cannot just touch and hope. They need a <mark>coupler</mark> — the metal hook that joins them.<span class="zh">兩節車廂不能只是碰在一起就算連好。它們需要一個「連結器」——那個把車廂勾起來的金屬鉤。</span></p>
+        <p>👉 Tap the <b>2 verbs</b> that are bumping.<span class="zh">點出撞在一起的那兩個動詞。</span></p>
+        <div class="row" id="s2a1"></div>
+        <div class="msg" id="s2m1" hidden></div>
+      </div>
+
+      <div class="step" id="s2st2" hidden>
+        <p class="steplbl">Step 2</p>
+        <p class="v-tb">The glue word goes <mark>between</mark> them. Different glue words do different jobs — pick one and read what comes out.<span class="zh">黏合詞要放在兩者「中間」。不同的黏合詞工作不同——選一個，看看組出來是什麼。</span></p>
+        <p class="v-rl">Wrong coupler, wrong train. Try each hook and watch what rolls out of the station.<span class="zh">用錯連結器，火車就接錯。每個鉤子都試一次，看看開出車站的是什麼。</span></p>
+        <div class="row" id="s2glue"></div>
+        <div id="s2out"></div>
+        <div class="msg" id="s2m2" hidden></div>
+      </div>
+
+      <div class="step" id="s2st3" hidden>
+        <p class="steplbl">Step 3</p>
+        <p class="v-tb"><mark>that</mark> points back at a noun and tells you more about it: parts <b>that</b> work together. <mark>because</mark> gives a reason: it floats <b>because</b> it is lighter.<span class="zh">that 指回前面的名詞，補充說明它：parts that work together。because 給理由：它會浮起來 because 它比較輕。</span></p>
+        <p class="v-rl">"that" is a pointing finger 👉 — it points back at the thing you just named. "because" is an arrow ➜ — it points at the reason.<span class="zh">that 是一根指回去的手指 👉，指著你剛講的東西；because 是一支箭 ➜，指向理由。</span></p>
+        <p>👉 Now build the full answer. Which word goes in the gap?<span class="zh">現在把完整答案組起來。空格要填哪個字？</span></p>
+        <p class="sentbox">Earth is a system because it has many parts <u>______</u> work together as one whole.</p>
+        <div id="s2a3"></div>
+      </div>
+
+      <div class="step" id="s2st4" hidden>
+        <p class="steplbl">Step 4 · say it your way</p>
+        <p>Why did your sentence need that little word?<span class="zh">用你自己的話選：你的句子為什麼需要那個小小的字？</span></p>
+        <div id="s2a4"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gate" id="s2try" hidden>
+    <div class="play">
+      <span class="tag">Try it</span>
+      <h4>The sentence glue machine<span class="zh">句子黏合機</span></h4>
+      <p class="hint">Three rounds, three steps each: <b>find the bump → choose the glue → re-read it</b>. Round 1 is your own sentence.<span class="zh">三回合，每回合三步：找出撞點 → 選黏合詞 → 重讀一次。第一回合就是你自己的句子。</span></p>
+      <div id="s2walk"></div>
+    </div>
+  </div>
+
+  <div class="gate" id="s2model" hidden>
+    <div class="model">
+      <span class="lbl">✍️ Copy this into your workbook</span>
+      <div class="line sentence"><span>Earth is a system <span class="ans-hi">because</span> it has many parts — air, water, land, and living things — <span class="ans-hi">that</span> work together as one whole.</span></div>
+      <span class="zh">範例答案——抄回作業本。</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 3 ================= -->
+<section class="sec" id="s3">
+  <h2><span class="num">3</span><span class="ttl">Start from a machine, not from a robot<span class="zh">要從「機器」出發，不是從機器人出發</span></span></h2>
+
+  <div class="cutout">
+    <span class="tape"></span>
+    <div class="q"><b>11</b> Name a <u class="redu">machine that is not a robot</u>. Explain what it could do if it were a robot. <span class="ans"><span class="wrong">A electronic cat</span>. It can act like a normal cat.</span></div>
+    <p class="redpen">An electronic cat is already a robot — so there is nothing to add. (Also: <b>An</b> electronic.)<span class="zh">電子貓本來就是機器人——所以沒有東西可以加上去。（另外：要用 An electronic。）</span></p>
+    <span class="pageref">Chapter 7 Review · p.119 · Q11</span>
+  </div>
+
+  <div class="play ask">
+    <span class="tag">🔎 You first</span>
+    <h4>The question wants a machine that is <b>not</b> a robot yet.<span class="zh">題目要的是「還不是機器人」的機器。</span></h4>
+    <p class="hint">Which one of these is still just a machine?<span class="zh">哪一個目前還只是機器？</span></p>
+    <div id="s3ask"></div>
+  </div>
+
+  <div class="gate" id="s3exp" hidden>
+    <div class="explain">
+      <span class="pill auto"></span>
+
+      <div class="step" id="s3st1">
+        <p class="steplbl">Step 1</p>
+        <p class="v-tb">Your lesson gives a robot <mark>three powers</mark> an ordinary machine does not have: it can <mark>move by itself</mark>, <mark>sense</mark> what is around it, and <mark>decide</mark> what to do next.<span class="zh">課文給機器人三種普通機器沒有的能力：能自己移動、能感測周圍、能決定下一步做什麼。</span></p>
+        <p class="v-rl">A toaster is metal and runs on electricity — still not a robot. It waits for you. A robot does not wait.<span class="zh">烤麵包機是金屬做的、也用電——但它不是機器人。它在等你。機器人不等人。</span></p>
+        <p>👉 Tap the <b>3 robot powers</b>. Two of these five are traps.<span class="zh">點出三種「機器人能力」。五個裡面有兩個是陷阱。</span></p>
+        <div class="row" id="s3a1"></div>
+        <div class="msg" id="s3m1" hidden></div>
+      </div>
+
+      <div class="step" id="s3st2" hidden>
+        <p class="steplbl">Step 2</p>
+        <p class="v-tb">Now the reason this answer had nowhere to go: the question is a <mark>comparison</mark>. It needs a machine that is <mark>missing</mark> those three powers, so you have something to add.<span class="zh">現在講你那個答案為什麼寫不下去：這是一題「比較題」。它需要一台「缺少」那三種能力的機器，你才有東西可以加上去。</span></p>
+        <p class="v-rl">You cannot upgrade a phone that is already the newest one. You need the old phone to show what upgrading means.<span class="zh">你沒辦法升級一支本來就是最新的手機。要用舊手機，才看得出「升級」是什麼意思。</span></p>
+        <p>👉 Run the three powers over the whole shelf. Which side does each one belong on?<span class="zh">把三種能力拿去掃過整個架子。每一台該站哪一邊？</span></p>
+        <div class="sorter" id="s3a2"></div>
+        <div class="msg" id="s3m2" hidden></div>
+      </div>
+
+      <div class="step" id="s3st3" hidden>
+        <p class="steplbl">Step 3</p>
+        <p class="v-tb">One spelling fix while we are here: <mark>a</mark> before a consonant sound, <mark>an</mark> before a vowel sound. "Electronic" starts with an <b>e</b> sound.<span class="zh">順手修一個拼寫：子音開頭用 a，母音開頭用 an。electronic 是 e 的音開頭。</span></p>
+        <p class="v-rl">Say "a electronic" fast — your mouth trips. "An electronic" slides. Your ear already knows this rule.<span class="zh">快速唸「a electronic」——嘴巴會卡住；唸「an electronic」就很滑順。你的耳朵早就知道這條規則了。</span></p>
+        <p>👉 Give each one the right word.<span class="zh">替每一個配上正確的字。</span></p>
+        <div class="sorter" id="s3art"></div>
+        <div class="msg" id="s3m3" hidden></div>
+      </div>
+
+      <div class="step" id="s3st4" hidden>
+        <p class="steplbl">Step 4 · say it your way</p>
+        <p>Why was "an electronic cat" not the answer this question wanted?<span class="zh">用你自己的話選：為什麼「電子貓」不是這題要的答案？</span></p>
+        <div id="s3a4"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gate" id="s3try" hidden>
+    <div class="play">
+      <span class="tag">Try it</span>
+      <h4>The robot upgrade lab<span class="zh">機器人升級實驗室</span></h4>
+      <p class="hint">Three stages: <b>pick an ordinary machine → bolt on the three powers → read the finished answer</b>. Two machines on the shelf are already robots — do not grab those.<span class="zh">三個階段：挑一台普通機器 → 裝上三種能力 → 讀完成的答案。架上有兩台本來就是機器人——不要拿那兩台。</span></p>
+      <div id="s3lab"></div>
+    </div>
+  </div>
+
+  <div class="gate" id="s3model" hidden>
+    <div class="model">
+      <span class="lbl">✍️ Copy this into your workbook</span>
+      <div class="line sentence"><span>A vacuum cleaner is a machine. If it were a robot, it could <span class="ans-hi">move around the house by itself</span>, <span class="ans-hi">sense walls and furniture</span>, and <span class="ans-hi">decide where to clean</span> without a person pushing it.</span></div>
+      <span class="zh">範例答案——抄回作業本。</span>
+    </div>
+  </div>
+</section>
+<!-- ================= SECTION 4 ================= -->
+<section class="sec" id="s4">
+  <h2><span class="num">4</span><span class="ttl">"Very bad" — but bad how?<span class="zh">「很糟」——可是到底怎麼糟？</span></span></h2>
+
+  <div class="cutout">
+    <span class="tape"></span>
+    <div class="q"><b>25</b> What <u class="redu">problem</u> was Charles Goodyear trying to solve? <span class="ans">Rubber being <span class="wrong">very bad</span>.</span></div>
+    <p class="redpen">You are on the right subject — now say what "bad" actually did. Rematch: you met this rubber back in June!<span class="zh">主題抓對了——現在要說出「糟」到底做了什麼。再戰一次：六月你就碰過這塊橡膠了！</span></p>
+    <span class="pageref">Final Test · p.121 · Q25</span>
+  </div>
+
+  <div class="play ask">
+    <span class="tag">🔎 You first</span>
+    <h4>You own a rubber factory in 1839. This letter arrives:<span class="zh">1839 年，你開了一家橡膠工廠。這封信寄到了：</span></h4>
+    <p class="sentbox">Dear Sir, your rubber is <u>very bad</u>. Yours truly, A Customer</p>
+    <p class="hint">What can you actually fix from that letter?<span class="zh">拿著這封信，你能修好什麼？</span></p>
+    <div id="s4ask"></div>
+  </div>
+
+  <div class="gate" id="s4exp" hidden>
+    <div class="explain">
+      <span class="pill auto"></span>
+
+      <div class="step" id="s4st1">
+        <p class="steplbl">Step 1</p>
+        <p class="v-tb">"Very bad" is a <mark>judgement</mark>, not an <mark>observation</mark>. Science answers report what you could see happen.<span class="zh">「很糟」是一個評價，不是觀察。科學的答案要寫「看得到發生了什麼」。</span></p>
+        <p class="v-rl">If you tell the doctor "I feel bad", they still have to ask everything. "My throat hurts when I swallow" gets you medicine.<span class="zh">你跟醫生說「我不舒服」，他還是得一路問下去。說「吞口水的時候喉嚨痛」才拿得到藥。</span></p>
+        <p>👉 Sort these four into vague and exact.<span class="zh">把這四句分成「模糊」和「精確」。</span></p>
+        <div class="sorter" id="s4sort"></div>
+        <p class="counter" id="s4count">0 / 4 sorted<span class="zhi"> ・已分類</span></p>
+        <div class="msg" id="s4m1" hidden></div>
+      </div>
+
+      <div class="step" id="s4st2" hidden>
+        <p class="steplbl">Step 2</p>
+        <p class="v-tb">Natural rubber had <mark>two</mark> exact problems, and they were opposites — one in the heat, one in the cold.<span class="zh">天然橡膠有「兩個」精確的問題，而且方向相反——一個在熱的時候，一個在冷的時候。</span></p>
+        <p class="v-rl">Summer: your rubber boots turn into sticky goo on the porch. Winter: they snap like a cracker.<span class="zh">夏天：橡膠靴在門廊上變成黏黏的一團。冬天：一踩就像餅乾一樣裂開。</span></p>
+        <p>👉 Match each weather to what the rubber did.<span class="zh">把每種天氣配上橡膠當時的反應。</span></p>
+        <div class="sorter" id="s4match"></div>
+        <div class="msg" id="s4m2" hidden></div>
+      </div>
+
+      <div class="step" id="s4st3" hidden>
+        <p class="steplbl">Step 3</p>
+        <p class="v-tb">Now the sentence pattern for any "what was the problem" question: <mark>___ did not work because it ___ when ___.</mark><span class="zh">任何「問題是什麼」的題目都可以套這個句型：___ 不能用，因為它在 ___ 的時候 ___。</span></p>
+        <p class="v-rl">Same shape you would use to complain about a broken toy — say the thing, say what it did, say when.<span class="zh">跟你抱怨玩具壞掉時會用的說法一樣——講東西、講它怎麼了、講什麼時候。</span></p>
+        <p>👉 Fill the pattern, one slot at a time.<span class="zh">一格一格把句型填起來。</span></p>
+        <div id="s4build"></div>
+      </div>
+
+      <div class="step" id="s4st4" hidden>
+        <p class="steplbl">Step 4 · say it your way</p>
+        <p>Why is the exact version the better answer?<span class="zh">用你自己的話選：精確的版本為什麼比較好？</span></p>
+        <div id="s4a4"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gate" id="s4try" hidden>
+    <div class="play">
+      <span class="tag">Try it</span>
+      <h4>Rematch: the 1839 rubber lab<span class="zh">再戰一次：1839 橡膠實驗室</span></h4>
+      <p class="hint">Run both tests yourself, write down <b>exactly</b> what happened each time, then finish Goodyear's answer.<span class="zh">兩個實驗自己跑一次，每次都寫下「精確」發生了什麼，最後把 Goodyear 那題的答案收尾。</span></p>
+      <div class="bench">
+        <div class="panel hot" id="s4hot"><div class="big">☀️</div><div class="cap">Summer test · 40°C<span class="zhi"> 夏天實驗</span></div><div class="res" id="s4hotres">—</div></div>
+        <div class="panel cold" id="s4cold"><div class="big">❄️</div><div class="cap">Winter test · −10°C<span class="zhi"> 冬天實驗</span></div><div class="res" id="s4coldres">—</div></div>
+      </div>
+      <div id="s4lab"></div>
+      <div class="msg" id="s4msg" hidden></div>
+    </div>
+  </div>
+
+  <div class="gate" id="s4model" hidden>
+    <div class="model">
+      <span class="lbl">✍️ Copy this into your workbook</span>
+      <div class="line sentence"><span>Natural rubber <span class="ans-hi">melted and turned sticky when it got hot</span>, and <span class="ans-hi">cracked when it got cold</span>. Goodyear wanted rubber that stayed strong at any temperature.</span></div>
+      <span class="zh">範例答案——抄回作業本。</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 5 ================= -->
+<section class="sec" id="s5">
+  <h2><span class="num">5</span><span class="ttl">The biggest reason, not the first reason<span class="zh">要寫最大的理由，不是最先想到的理由</span></span></h2>
+
+  <div class="cutout">
+    <span class="tape"></span>
+    <div class="q"><b>7</b> Why do we send <u class="redu">robots</u> to explore space and the deep ocean? <span class="ans"><span class="small">It can save time.</span></span></div>
+    <p class="redpen">Dotted, not circled — this one is <b>true</b>, it is just the small bonus. What would happen to a person out there?<span class="zh">這裡是虛線不是紅圈——這句是「對的」，只是它是小紅利。人如果去了那裡，會怎麼樣？</span></p>
+    <span class="pageref">Lesson 7.7 Robots · p.117 · Q7</span>
+  </div>
+
+  <div class="play ask">
+    <span class="tag">🔎 You first</span>
+    <h4>Imagine a robot that is <b>slower</b> than a person at exploring the deep ocean.<span class="zh">想像有一台機器人探索深海比人「還要慢」。</span></h4>
+    <p class="hint">It saves no time at all. Would we still send the robot instead of a person?<span class="zh">它完全省不了時間。我們還會派機器人去，而不是派人去嗎？</span></p>
+    <div id="s5ask"></div>
+  </div>
+
+  <div class="gate" id="s5exp" hidden>
+    <div class="explain">
+      <span class="pill auto"></span>
+
+      <div class="step" id="s5st1">
+        <p class="steplbl">Step 1</p>
+        <p class="v-tb">Both places are deadly, in two different ways: <mark>radiation</mark> in space, <mark>crushing water pressure</mark> deep in the ocean.<span class="zh">兩個地方都會要人命，但方式不同：太空是輻射，深海是巨大的水壓。</span></p>
+        <p class="v-rl">Space radiation there can be <mark>1,000 times</mark> more than a human body can take. Down deep, the water squeezes like the whole ocean sitting on your chest.<span class="zh">那裡的太空輻射可以達到人體能承受的一千倍。深海裡，水壓像整片海洋壓在你胸口。</span></p>
+        <p>👉 Send each danger to the right place.<span class="zh">把每個危險送到正確的地方。</span></p>
+        <div class="sorter" id="s5match"></div>
+        <div class="msg" id="s5m1" hidden></div>
+      </div>
+
+      <div class="step" id="s5st2" hidden>
+        <p class="steplbl">Step 2</p>
+        <p class="v-tb">Now weigh your two reasons. A good test: take one away and see what breaks.<span class="zh">現在把兩個理由拿來秤一秤。有個好方法：把其中一個拿掉，看看會壞掉什麼。</span></p>
+        <p class="v-rl">Same test you would use on a bike: no bell — annoying. No brakes — you are going to the hospital.<span class="zh">跟檢查腳踏車一樣：沒有鈴鐺——很煩；沒有煞車——你要進醫院了。</span></p>
+        <p>👉 Tap each reason to see what happens without it.<span class="zh">點每個理由，看看少了它會怎樣。</span></p>
+        <div class="row" id="s5weigh"></div>
+        <div id="s5weighout"></div>
+        <div id="s5a2"></div>
+      </div>
+
+      <div class="step" id="s5st3" hidden>
+        <p class="steplbl">Step 3</p>
+        <p class="v-tb">The habit for every "why" question: ask yourself <mark>what is the biggest reason</mark>, not the first reason I thought of.<span class="zh">每一題 why 的習慣：問自己「最大的理由是什麼」，不是「我最先想到的是什麼」。</span></p>
+        <p class="v-rl">Your first thought is like the first sock you grab in the morning — quick, but not always the one you want.<span class="zh">最先想到的就像早上隨手抓到的第一隻襪子——很快，但不一定是你要的那一隻。</span></p>
+        <p>👉 Try the habit on a brand-new case: firefighters fly a drone into a burning building. The biggest reason is…<span class="zh">用這個習慣試一個全新的例子：消防隊把無人機飛進失火的大樓。最大的理由是……</span></p>
+        <div id="s5a3"></div>
+      </div>
+
+      <div class="step" id="s5st4" hidden>
+        <p class="steplbl">Step 4 · say it your way</p>
+        <p>Why was "It can save time" not enough on its own?<span class="zh">用你自己的話選：為什麼只寫「可以省時間」不夠？</span></p>
+        <div id="s5a4"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gate" id="s5try" hidden>
+    <div class="play">
+      <span class="tag">Try it</span>
+      <h4>Mission control<span class="zh">任務指揮中心</span></h4>
+      <p class="hint">Two missions. Each one: <b>read the site → name the danger → choose who goes → write the reason</b>. All four steps, both missions.<span class="zh">兩個任務。每個任務都要：讀地點 → 說出危險 → 決定派誰去 → 寫出理由。四步都要走，兩個任務都要。</span></p>
+      <div id="s5mission"></div>
+    </div>
+  </div>
+
+  <div class="gate" id="s5model" hidden>
+    <div class="model">
+      <span class="lbl">✍️ Copy this into your workbook</span>
+      <div class="line sentence"><span>Robots <span class="ans-hi">keep people safe</span>. In space the radiation can be 1,000 times more than a human body can take, and deep in the ocean the water pressure is crushing. A robot can go there, so nobody gets hurt.</span></div>
+      <span class="zh">範例答案——抄回作業本。</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TIPS ================= -->
+<section class="sec" id="tips">
+  <h2><span class="num emoji">💡</span><span class="ttl">Tips — these are not mistakes<span class="zh">小提醒——這些不算錯</span></span></h2>
+  <div class="tips">
+    <div class="tipcard"><b class="t">p.117 #8 · Factory robots</b>Say it again with the real reasons: "Robots are <mark>precise</mark> and <mark>never get tired</mark>, so they can do the same job 24 hours a day without making mistakes."<span class="zh">工廠機器人那題，用真正的理由再說一次：機器人精準、不會累，可以一天 24 小時做同一件事而不出錯。</span></div>
+    <div class="tipcard"><b class="t">p.118 #6 · Lavoisier — fix the verbs</b>"They broke substances down again and again until they <mark>could not</mark> be broken down <mark>any further</mark>. Those simplest substances are the elements."<span class="zh">拉瓦節那題把動詞修一下：他們不斷分解物質，直到再也分解不下去為止；那些最簡單的物質就是元素。</span></div>
+    <div class="tipcard"><b class="t">p.117 Unifying Concepts · The question had two halves</b>You gave your opinion <b>with a reason</b> — good. Now add the second half: "Robots suit jobs that are repetitive, dangerous, or need great precision. People suit jobs that need creativity, judgement, and caring for others."<span class="zh">那題有兩半。你有給意見也有給理由（很好），再補第二半：機器人適合重複、危險、需要高精度的工作；人適合需要創造力、判斷力和照顧他人的工作。</span></div>
+    <div class="tipcard"><b class="t">p.121 #20 · You knew both night hunters 🌟</b>Bats use sound waves, platypuses use special receptors. Make it plural and add the detail: "platypuses use special <mark>receptors</mark> in their bills that sense tiny electric signals."<span class="zh">兩種夜行動物你都知道。改成複數再加細節：鴨嘴獸用嘴喙裡的特殊受器，感測微弱的電訊號。</span></div>
+    <div class="tipcard"><b class="t">Spelling · smoke detector</b>de-tec-tor — only one <b>c</b> in the middle. Say it in three beats before you write it.<span class="zh">detector 拼字：de-tec-tor，中間只有一個 c。寫之前先唸三拍。</span></div>
+    <div class="tipcard"><b class="t">Every open answer, one question first</b>"What exactly is this question asking me?" <mark>Underline the question word</mark> — how, why, what problem — before you write anything.<span class="zh">每一題開放式答案，先問一句：這題到底在問我什麼？動筆前先把疑問詞（how、why、what problem）劃出來。</span></div>
+  </div>
+</section>
+
+<!-- ================= QUIZ ================= -->
+<section class="sec" id="quiz">
+  <h2><span class="num emoji">🎯</span><span class="ttl">Quiz — spot the trap before it spots you<span class="zh">小測驗——在陷阱抓到你之前先抓到它</span></span></h2>
+  <div class="quizbox">
+    <div class="qdots" id="qdots" aria-hidden="true"></div>
+    <div id="qbody"></div>
+  </div>
+</section>
+
+<!-- ================= CORRECTION LIST ================= -->
+<section class="sec" id="fix">
+  <h2><span class="num emoji">✍️</span><span class="ttl">Back to the workbook: correction list<span class="zh">回到作業本，訂正清單</span></span></h2>
+  <div class="fixlist" id="fixlist"></div>
+  <div class="msg" id="fixmsg" hidden></div>
+</section>
+
+<style>
+.wn-buddy{display:flex;align-items:center;gap:.8rem;margin:2rem 0 .6rem;padding:.9rem 1rem;
+ background:#fff;border:1px dashed #D9DADF;border-radius:.7rem;max-width:34rem}
+.wn-buddy img{width:3.6rem;height:3.6rem;flex:0 0 auto}
+.wn-buddy .t{display:flex;flex-direction:column;gap:.15rem}
+.wn-buddy .line{font-family:'Caveat',cursive;font-size:1.3rem;color:#6B6E76;line-height:1.15}
+.wn-buddy .sign{font-family:'Fredoka',system-ui,sans-serif;font-size:.95rem;font-weight:700;color:#2E3037}
+</style>
+
+<div class="wn-buddy">
+  <img id="wnBuddyImg" src="img/skzoo-puppym.png" alt="Your study buddy" width="150" height="150">
+  <div class="t">
+    <em class="line">You built every link today — nothing skipped, nothing fuzzy.</em>
+    <b class="sign">Your study buddy, <span id="wnBuddyName">Puppy M</span></b>
+  </div>
+</div>
+<script>
+/* study buddy: one of the eight, picked fresh on every visit */
+(function(){
+  var CREW = [["wolfchan","Wolf Chan"],["leebit","Leebit"],["dwaekki","Dwaekki"],["jiniret","Jiniret"],
+              ["hanquokka","Han Quokka"],["bbokari","BbokAri"],["puppym","Puppy M"],["foxiny","FoxI.Ny"]];
+  var pick = CREW[Math.floor(Math.random() * CREW.length)];
+  /* same character greets him at the top and signs off at the bottom */
+  [["wnHiImg","wnHiName"],["wnBuddyImg","wnBuddyName"]].forEach(function(ids){
+    var img = document.getElementById(ids[0]), name = document.getElementById(ids[1]);
+    if (!img || !name) return;
+    img.src = "img/skzoo-" + pick[0] + ".png";
+    img.alt = pick[1] + ", your study buddy";
+    name.textContent = pick[1];
+  });
+})();
+</script>
+<footer class="hand foot">Science · Lesson 7.7 Robots · Chapter 7 Review · Final Test Ch 1–7<span class="zh">自然 · 7.7 機器人 · 第 7 章複習 · 第 1–7 章總測驗</span></footer>
+
+</main>
+</div>
+
+<script>
+(function(){
+'use strict';
+const $ = id => document.getElementById(id);
+const Z = s => '<span class="zh">' + s + '</span>';
+function setMsg(el, html, cls){ el.className = 'msg' + (cls ? ' ' + cls : ''); el.innerHTML = html; el.hidden = false; }
+function openGate(id){ const el = $(id); if (el) el.hidden = false; }
+
+/* ---------- toolbar ---------- */
+const MODELINE = {
+  textbook: 'Definitions and sentence patterns, straight from your book.' + Z('用課本的定義和句型來講。'),
+  reallife: 'Same ideas, told with factories, trains, and rescue drones.' + Z('同樣的觀念，換成工廠、火車和救難無人機來講。')
+};
+function setMode(m){
+  document.body.dataset.mode = m;
+  document.querySelectorAll('.seg button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.mode === m)));
+  $('modeline').innerHTML = MODELINE[m];
+}
+document.querySelectorAll('.seg button').forEach(b =>
+  b.addEventListener('click', () => setMode(b.dataset.mode)));
+$('zhbtn').addEventListener('click', function(){
+  const on = document.body.classList.toggle('zh-on');
+  this.setAttribute('aria-pressed', String(on));
+});
+setMode('textbook');
+
+/* ---------- shared choice widget ----------
+   Socratic rule: a wrong answer gets a question back, not the answer.
+   Two nudges max; the third time we tell, then immediately re-test. */
+function choice(hostId, cfg){
+  const host = $(hostId);
+  let tries = 0, settled = false, frozen = false, wrap, msg;
+  function build(){
+    tries = 0; settled = false; frozen = false;
+    host.innerHTML = '';
+    wrap = document.createElement('div');
+    wrap.className = 'choices';
+    cfg.opts.forEach((o, i) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'choice';
+      b.innerHTML = o[0] + Z(o[1]);
+      b.addEventListener('click', () => pick(i, b));
+      wrap.appendChild(b);
+    });
+    msg = document.createElement('div');
+    msg.className = 'msg'; msg.hidden = true;
+    host.appendChild(wrap); host.appendChild(msg);
+  }
+  function lock(){ [...wrap.children].forEach(b => { b.disabled = true; if (!b.classList.contains('ok') && !b.classList.contains('no')) b.classList.add('dim'); }); }
+  /* rule 4: a wrong "say it your way" sends him back one step — so this question
+     really does go quiet until that step has been walked again */
+  function freeze(){ frozen = true; [...wrap.children].forEach(b => { b.disabled = true; }); }
+  function unlock(){ if (settled || !frozen) return; frozen = false; [...wrap.children].forEach(b => { b.disabled = false; }); }
+  function pick(i, b){
+    if (settled || frozen) return;
+    if (i === cfg.ans){
+      settled = true; b.classList.add('ok'); lock();
+      setMsg(msg, cfg.good[0] + Z(cfg.good[1]), 'good');
+      if (cfg.pass) cfg.pass();
+      return;
+    }
+    b.classList.add('no');
+    tries++;
+    if (tries === 1){
+      setMsg(msg, cfg.h1[0] + Z(cfg.h1[1]), 'warn');
+      if (cfg.firstWrong){ cfg.firstWrong(); freeze(); }
+    } else if (tries === 2){
+      setMsg(msg, cfg.h2[0] + Z(cfg.h2[1]), 'warn');
+    } else {
+      settled = true;
+      wrap.children[cfg.ans].classList.add('ok');
+      lock();
+      setMsg(msg, cfg.tell[0] + Z(cfg.tell[1]), 'bad');
+      if (cfg.retest) retest(); else if (cfg.pass) cfg.pass();
+    }
+  }
+  /* told the answer → prove it once on a same-shape question before moving on */
+  function retest(){
+    const c = cfg.retest;
+    const box = document.createElement('div');
+    box.className = 'step';
+    box.innerHTML = '<p class="steplbl">One more, same idea</p><p>' + c.q[0] + Z(c.q[1]) + '</p>';
+    const cw = document.createElement('div'); cw.className = 'choices';
+    const cm = document.createElement('div'); cm.className = 'msg'; cm.hidden = true;
+    let done = false;
+    c.opts.forEach((o, i) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'choice';
+      b.innerHTML = o[0] + Z(o[1]);
+      b.addEventListener('click', () => {
+        if (done) return;
+        if (i === c.ans){
+          done = true; b.classList.add('ok');
+          [...cw.children].forEach(x => x.disabled = true);
+          setMsg(cm, c.why[0] + Z(c.why[1]), 'good');
+          if (cfg.pass) cfg.pass();
+        } else {
+          b.classList.add('no');
+          setMsg(cm, 'Read the answer just above once more, then try again.' + Z('把上面那句答案再讀一次，再選一次。'), 'warn');
+        }
+      });
+      cw.appendChild(b);
+    });
+    box.appendChild(cw); box.appendChild(cm); host.appendChild(box);
+  }
+  build();
+  return { reset: build, unlock: unlock };
+}
+
+/* ---------- self-report widget ----------
+   No right answer. He was there and the page was not, so every option is
+   taken at face value and routed to the help that answer actually implies. */
+function branch(hostId, cfg){
+  const host = $(hostId);
+  const wrap = document.createElement('div');
+  wrap.className = 'choices';
+  const msg = document.createElement('div');
+  msg.className = 'msg'; msg.hidden = true;
+  const extra = document.createElement('div');
+  let settled = false;
+  cfg.opts.forEach(o => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'choice';
+    b.innerHTML = o.label[0] + Z(o.label[1]);
+    b.addEventListener('click', () => {
+      if (settled) return;
+      settled = true;
+      b.classList.add('ok');
+      [...wrap.children].forEach(x => { x.disabled = true; if (x !== b) x.classList.add('dim'); });
+      setMsg(msg, o.reply[0] + Z(o.reply[1]), 'good');
+      if (o.follow) followUp(o.follow); else if (cfg.pass) cfg.pass();
+    });
+    wrap.appendChild(b);
+  });
+  function followUp(f){
+    const box = document.createElement('div');
+    box.className = 'step';
+    box.innerHTML = '<p class="steplbl">' + f.lbl + '</p><p>' + f.q[0] + Z(f.q[1]) + '</p>';
+    const cw = document.createElement('div'); cw.className = 'choices';
+    const cm = document.createElement('div'); cm.className = 'msg'; cm.hidden = true;
+    let done = false, tries = 0;
+    f.opts.forEach(o => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'choice';
+      b.innerHTML = o.label[0] + Z(o.label[1]);
+      b.addEventListener('click', () => {
+        if (done) return;
+        if (o.again){
+          tries++;
+          if (tries < 2){
+            b.classList.add('no');
+            setMsg(cm, o.again[0] + Z(o.again[1]), 'warn');
+            return;
+          }
+          done = true;
+          [...cw.children].forEach(x => { x.disabled = true; });
+          setMsg(cm, f.tell[0] + Z(f.tell[1]), 'bad');
+          if (cfg.pass) cfg.pass();
+          return;
+        }
+        done = true; b.classList.add('ok');
+        [...cw.children].forEach(x => x.disabled = true);
+        setMsg(cm, o.say[0] + Z(o.say[1]), 'good');
+        if (cfg.pass) cfg.pass();
+      });
+      cw.appendChild(b);
+    });
+    box.appendChild(cw); box.appendChild(cm); extra.appendChild(box);
+  }
+  host.appendChild(wrap); host.appendChild(msg); host.appendChild(extra);
+}
+
+/* ---------- sequence widget ----------
+   Walks a whole procedure, one round at a time. A wrong pick never reveals
+   the next link — it asks a question and hands the round straight back. */
+function steps(hostId, cfg){
+  const host = $(hostId);
+  let i = 0;
+  function run(){
+    const R = cfg.rounds[i];
+    const box = document.createElement('div');
+    if (R.lbl) box.innerHTML = '<p class="steplbl">' + R.lbl + '</p>';
+    if (R.q){
+      const p = document.createElement('p');
+      p.innerHTML = R.q[0] + Z(R.q[1]);
+      box.appendChild(p);
+    }
+    const row = document.createElement('div');
+    row.className = R.stack ? 'choices' : 'row';
+    const msg = document.createElement('div'); msg.className = 'msg'; msg.hidden = true;
+    let done = false, tries = 0;
+    R.opts.forEach(o => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = R.stack ? 'choice' : 'opb wide';
+      b.innerHTML = o[0] + Z(o[1]);
+      b.addEventListener('click', () => {
+        if (done) return;
+        if (o[2]){
+          done = true; b.classList.add('ok');
+          [...row.children].forEach(x => x.disabled = true);
+          if (R.onOk) R.onOk(o);
+          if (o[5]) setMsg(msg, o[5] + Z(o[6] || ''), 'good');
+          i++;
+          if (i < cfg.rounds.length) setTimeout(run, 260);
+          else if (cfg.done) cfg.done();
+        } else {
+          b.classList.add('no');
+          setTimeout(() => b.classList.remove('no'), 700);
+          tries++;
+          /* a guided round carries R.tell: two nudges, then the answer and on we go.
+             Try-it rounds have no tell, so those still have to be walked correctly. */
+          if (R.tell && tries >= 2){
+            done = true;
+            const k = R.opts.findIndex(x => x[2]);
+            row.children[k].classList.add('ok');
+            [...row.children].forEach(x => x.disabled = true);
+            if (R.onOk) R.onOk(R.opts[k]);
+            setMsg(msg, R.tell[0] + Z(R.tell[1]), 'bad');
+            i++;
+            if (i < cfg.rounds.length) setTimeout(run, 260);
+            else if (cfg.done) cfg.done();
+            return;
+          }
+          setMsg(msg, o[3] + Z(o[4]), 'warn');
+        }
+      });
+      row.appendChild(b);
+    });
+    box.appendChild(row); box.appendChild(msg);
+    host.appendChild(box);
+  }
+  function reset(){ host.innerHTML = ''; i = 0; if (cfg.onReset) cfg.onReset(); run(); }
+  run();
+  return { reset: reset };
+}
+
+/* ================= BIG IDEA ================= */
+branch('bigask', {
+  opts: [
+    {
+      label: ['I wanted to finish it fast', '我想快點寫完'],
+      reply: ['Fair — and fast is not the problem. The problem is only that the check has to be fast too. Pick the one that fits in about ten seconds:', '合理——而且「快」本身不是問題。問題只在於「檢查」也要夠快。挑一個大概十秒能做完的：'],
+      follow: {
+        lbl: 'The ten-second check',
+        q: ['Which of these could you finish before the bell rings?', '哪一個你能在鐘響前做完？'],
+        opts: [
+          { label: ['Read my sentence out loud once, then look at the question word again', '把句子唸出來一次，再看一眼題目的疑問詞'],
+            say: ['That is the whole check — and it catches four of your five spots. Keep writing fast; just spend ten seconds at the end.', '整個檢查就是這樣——而且它抓得到你五個地方中的四個。照樣寫快沒關係，最後花十秒就好。'] },
+          { label: ['Copy the whole paragraph out of the textbook first', '先把課本整段抄一次'],
+            again: ['That one takes five minutes. Which one takes ten seconds?', '那個要花五分鐘。哪一個只要十秒？'] }
+        ],
+        tell: ['The ten-second check is: read it out loud once, then look at the question word again.', '十秒檢查就是：唸出來一次，再看一眼疑問詞。']
+      }
+    },
+    {
+      label: ['I thought one sentence was enough', '我以為寫一句就夠了'],
+      reply: ['Very often it IS enough — #23 was one sentence and it was perfect. The trick is knowing which questions want more. There is a clue in the question itself:', '很多時候一句真的就夠——第 23 題就是一句，而且完美。關鍵是分辨哪些題目要更多。線索就在題目裡：'],
+      follow: {
+        lbl: 'Where the clue lives',
+        q: ['What tells you a question wants more than one sentence?', '什麼東西會告訴你「這題不只要一句」？'],
+        opts: [
+          { label: ['The question word — how, why, what problem', '疑問詞——how、why、what problem'],
+            say: ['Exactly. "How" and "why" always want a chain; "what problem" always wants the exact one. Underline that word before you write.', '正是。how 和 why 一定要因果鏈；what problem 一定要精確的那個。動筆前先把那個字劃起來。'] },
+          { label: ['How long the answer line is on the page', '作業本上那條線有多長'],
+            again: ['Sometimes the line is short and the answer still needs three steps. What is inside the question itself?', '有時候線很短，答案還是要三個步驟。題目「裡面」有什麼？'] }
+        ],
+        tell: ['The question word is the clue: how and why want a chain, what problem wants the exact one.', '線索是疑問詞：how 和 why 要因果鏈，what problem 要精確答案。']
+      }
+    },
+    {
+      label: ['I did not know how much detail to write', '我不知道要寫多細'],
+      reply: ['That is the most useful thing you could have told me — and there is a real rule for it. Write until someone who was NOT there could picture it. Try the rule:', '這是你能告訴我最有用的一句話——而且這件事真的有規則。規則是：寫到「當時不在場的人也能想像出畫面」為止。試一下：'],
+      follow: {
+        lbl: 'The picture rule',
+        q: ['Close your eyes on each one. Which one can you actually see?', '每一句都閉上眼睛想一下。哪一句你真的看得到畫面？'],
+        opts: [
+          { label: ['Rubber melted and turned sticky when it got hot', '橡膠一熱就融化、變得黏黏的'],
+            say: ['You can see that one — sticky, melting, hot day. That is exactly the right amount of detail.', '這句看得到畫面——黏黏的、在融化、大熱天。這就是剛剛好的細節量。'] },
+          { label: ['Rubber was very bad', '橡膠很糟'],
+            again: ['Try to picture "very bad". What colour is it? What is it doing? Anything?', '試著想像「很糟」的畫面。它是什麼顏色？它在做什麼？有畫面嗎？'] }
+        ],
+        tell: ['Write until someone who was not there could picture it — "melted and turned sticky" beats "very bad" every time.', '寫到不在場的人也能想像出畫面為止——「融化變黏」永遠贏過「很糟」。']
+      }
+    }
+  ],
+  pass: () => openGate('bigexp')
+});
+
+/* the five moves are not a lecture — he decides which one is already his.
+   Every option is a true self-report, so every option counts as an answer. */
+steps('bigpick', {
+  rounds: [
+    { lbl: 'Your call', stack: true,
+      q: ['👉 Tap the one you reckon you already do without anyone reminding you. <b>No wrong tap here</b> — you were the one holding the pencil.', '點一個你覺得「沒人提醒也會做」的。這裡沒有錯的選項——拿鉛筆的是你。'],
+      opts: [
+        ['1 · I write <b>every link</b>, not just the two ends', '1 · 我會寫出每一環，不是只寫頭尾', true, '', '', 'Then section 1 is your warm-up — you will build that chain fast.', '那第 1 段是你的暖身——那條鏈你會建得很快。'],
+        ['2 · I hear it when <b>two verbs bump</b>', '2 · 兩個動詞撞在一起我聽得出來', true, '', '', 'Then section 2 is your warm-up — the ear is already there.', '那第 2 段是你的暖身——那個耳朵你已經有了。'],
+        ['3 · I start a comparison from the <b>ordinary</b> one', '3 · 比較題我會從「普通的」那個開始', true, '', '', 'Then section 3 is your warm-up. Bring that habit to the other four.', '那第 3 段是你的暖身。把這個習慣帶去另外四題。'],
+        ['4 · I name the <b>exact</b> problem, not just "bad"', '4 · 我會講出精確的問題，不是只說「不好」', true, '', '', 'Then section 4 is your warm-up — hold onto that one, it is the rarest.', '那第 4 段是你的暖身——這個要抓緊，它最少見。'],
+        ['5 · I look for the <b>biggest</b> reason first', '5 · 我會先找最大的理由', true, '', '', 'Then section 5 is your warm-up. That habit is worth a lot.', '那第 5 段是你的暖身。這個習慣很值錢。'],
+        ['Honestly? None of them yet', '老實說：目前一個都還沒有', true, '', '', 'Then all five are new tools — and you get to collect the whole set today.', '那五個都是新工具——今天你可以一次收齊一整套。']
+      ] }
+  ],
+  done: () => openGate('bignext')
+});
+
+/* ================= SECTION 1 · dinosaurs ================= */
+choice('s1ask', {
+  opts: [
+    ['"What is a meteorite?"', '「什麼是隕石？」'],
+    ['"Why was there suddenly no food?"', '「為什麼突然就沒有食物了？」'],
+    ['"How big were the dinosaurs?"', '「恐龍有多大？」']
+  ],
+  ans: 1,
+  good: ['That is the hole. You did give them a middle link — "changed the climate" — but they still cannot see how that empties the whole world of food.', '那就是那個洞。你確實給了他們一個中間環——「changed the climate」——但他們還是看不出那怎麼會讓全世界都沒有食物。'],
+  h1: ['Your friend can look up "meteorite" in a dictionary. Which part could they NOT look up anywhere?', '「隕石」你朋友可以去查字典。哪一件事他到哪裡都查不到？'],
+  h2: ['Read your middle link out loud: "changed the climate". Can your friend picture what that looked like from the ground?', '把你中間那一環唸出來：「changed the climate」。你朋友想像得出在地面上那看起來是什麼樣子嗎？'],
+  tell: ['They would ask why there was suddenly no food. "Changed the climate" is true, but it is too fuzzy to walk across.', '他們會問「為什麼突然沒食物」。「氣候變了」是真的，但它太模糊了，走不過去。'],
+  retest: {
+    q: ['"I was late because of the rain." What is missing?', '「我遲到是因為下雨。」少了什麼？'],
+    opts: [['How the rain actually made me late', '雨到底怎麼害我遲到的'], ['How heavy the rain was', '雨下得多大']],
+    ans: 0,
+    why: ['Same hole, smaller story. Rain → ??? → late. Chains need the middle.', '一樣的洞，只是故事比較小。下雨→？？？→遲到。鏈條需要中間。']
+  },
+  pass: () => openGate('s1exp')
+});
+
+/* step 1 — find the word that makes it a chain question */
+(function(){
+  const host = $('s1a1'), msg = $('s1m1');
+  const WORDS = [
+    ['Explain how', true],
+    ['a meteorite', false, 'That is the thing the question is about — but does the word "meteorite" tell you to give steps?', '那是題目在講的東西——但「meteorite」這個字有叫你寫出步驟嗎？'],
+    ['the dinosaurs', false, 'Also part of the story. Which word tells you HOW MUCH to write?', '也是故事的一部分。哪個字告訴你「要寫多少」？'],
+    ['die out', false, 'That is the ending. Which word asks you for the road that leads there?', '那是結局。哪個字要你寫出「通到那裡的那條路」？']
+  ];
+  let done = false;
+  WORDS.forEach(w => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'opb wide';
+    b.textContent = w[0];
+    b.addEventListener('click', () => {
+      if (done) return;
+      if (w[1]){
+        done = true; b.classList.add('ok');
+        [...host.children].forEach(x => x.disabled = true);
+        setMsg(msg, '<mark>How</mark> means: show me the road, not just the two ends of it.' + Z('how 的意思是：把整條路給我看，不是只給我兩端。'), 'good');
+        $('s1st2').hidden = false;
+      } else {
+        b.classList.add('no');
+        setTimeout(() => b.classList.remove('no'), 700);
+        setMsg(msg, w[2] + Z(w[3]), 'warn');
+      }
+    });
+    host.appendChild(b);
+  });
+})();
+
+choice('s1a2', {
+  opts: [['The dinosaurs — they need sunlight to stay warm', '恐龍——牠們需要陽光取暖'], ['The plants — they need sunlight to make food', '植物——它們需要陽光製造食物'], ['The meteorite — it needs sunlight to burn', '隕石——它需要陽光才能燃燒']],
+  ans: 1,
+  good: ['There it is. No sunlight → no plant food → the plants die. That is what "changed the climate" was hiding.', '就是這個。沒有陽光→植物做不出食物→植物死掉。這就是「changed the climate」藏起來的東西。'],
+  h1: ['Who in this story actually MAKES food, instead of eating food someone else made?', '這個故事裡，誰是真的在「製造」食物，而不是吃別人做好的食物？'],
+  h2: ['Plants are the only living things on the list that can turn sunlight into food. So block the sun and…?', '清單上只有植物能把陽光變成食物。所以擋住太陽之後……？'],
+  tell: ['The plants. They make their own food from sunlight, so no sunlight means no food at all.', '是植物。它們用陽光自己製造食物，所以沒有陽光就等於完全沒有食物。'],
+  retest: {
+    q: ['So the missing link between dust and hunger is…', '所以「塵埃」和「挨餓」之間少掉的那一環是……'],
+    opts: [['the dust blocked the sunlight, so plants died', '塵埃擋住陽光，所以植物死了'], ['the dust was very heavy', '塵埃很重']],
+    ans: 0,
+    why: ['Dust → no sunlight → no plants → no food. Now every step touches the next one.', '塵埃→沒陽光→沒植物→沒食物。現在每一步都碰得到下一步了。']
+  },
+  pass: () => { $('s1st3').hidden = false; }
+});
+
+const s1a3 = choice('s1a3', {
+  opts: [['there <b>is</b> no food', 'there is no food'], ['there <b>was</b> no food', 'there was no food'], ['there <b>will be</b> no food', 'there will be no food']],
+  ans: 1,
+  good: ['<mark>was</mark> — and now the whole sentence looks back together: was… died.', 'was——現在整句一起回頭看了：was……died。'],
+  h1: ['When did this happen — this morning, or 66 million years ago?', '這件事是什麼時候發生的——今天早上，還是六千六百萬年前？'],
+  h2: ['You already wrote "died", not "dies". Which food verb matches "died"?', '你已經寫了 died，不是 dies。哪個食物的動詞跟 died 配得起來？'],
+  tell: ['"there was" — the story is finished, so every verb in it looks back.', '是 there was——故事已經結束了，所以裡面每個動詞都要回頭看。'],
+  retest: {
+    q: ['"The dust blocked the sun and plants ___ ." Which one?', '「塵埃擋住太陽，植物 ___ 。」哪一個？'],
+    opts: [['died', 'died'], ['die', 'die']],
+    ans: 0,
+    why: ['Past story, past verb. Every single time.', '過去的故事，用過去的動詞。每次都是。']
+  },
+  pass: () => { $('s1st4').hidden = false; s1a4.unlock(); }
+});
+
+const s1a4 = choice('s1a4', {
+  opts: [
+    ['Because long answers get more marks', '因為答案寫長一點分數比較高'],
+    ['Because the reader cannot get from the start to the end without them', '因為少了它們，讀的人沒辦法從開頭走到結尾'],
+    ['Because the teacher likes lots of writing', '因為老師喜歡看很多字']
+  ],
+  ans: 1,
+  good: ['That is it in your own words. Length is not the point — the road being complete is the point.', '你用自己的話說出來了。重點不是長度，是那條路有沒有走完。'],
+  h1: ['Back one step — I reset the tense check and locked this question. Pick the verb again and this one opens back up.', '退回上一步——時態檢查我重置了，這題先鎖住。重選一次動詞，這題就會解鎖。'],
+  h2: ['An answer that says "the climate changed" and then stops — does making it longer make it any easier to see?', '一個只寫「氣候變了」就停住的答案——寫得更長，讀的人就看得到畫面了嗎？'],
+  tell: ['The real reason: without the middle links the reader cannot walk from the start to the end.', '真正的原因：少了中間那幾環，讀的人沒辦法從頭走到尾。'],
+  retest: {
+    q: ['A chain answer is finished when…', '因果鏈的答案什麼時候算寫完？'],
+    opts: [['every step touches the next one', '每一步都碰得到下一步'], ['it fills the whole line', '把整條線寫滿']],
+    ans: 0,
+    why: ['Touching, not filling. Now go build one.', '重點是「接得上」，不是「填得滿」。去建一條吧。']
+  },
+  firstWrong: () => { s1a3.reset(); $('s1st3').classList.add('redo'); $('s1st3').scrollIntoView({block:'center'}); },
+  pass: () => { openGate('s1try'); $('s1try').scrollIntoView({block:'center'}); }
+});
+
+/* Try it — the chain builder */
+(function(){
+  const rail = $('s1chain');
+  let n = 0;
+  function addLink(text, zh, cls){
+    if (n > 0){
+      const a = document.createElement('div');
+      a.className = 'carrow'; a.textContent = '↓';
+      rail.appendChild(a);
+    }
+    n++;
+    const d = document.createElement('div');
+    d.className = 'clink' + (cls ? ' ' + cls : '');
+    d.innerHTML = '<span class="n">Link ' + n + '</span>' + text + Z(zh);
+    rail.appendChild(d);
+  }
+  addLink('A meteorite hit Earth.', '一顆隕石撞上地球。', 'start');
+
+  steps('s1pick', {
+    rounds: [
+      { lbl: 'Link 2 · what happened in the very next second?',
+        opts: [
+          ['There was no food anywhere.', '到處都沒有食物了。', false, 'That does come later — but it is still minutes after the crash. What went UP into the air the moment it hit?', '那的確會發生——但那是撞擊之後好一陣子的事。撞下去的那一瞬間，是什麼「飛上」空中？'],
+          ['The crash threw huge clouds of dust into the air.', '撞擊把大量塵埃拋上空中。', true, '', '', 'Link 2 locked in.', '第 2 環接好了。'],
+          ['The dinosaurs died.', '恐龍死了。', false, 'That is the end of the whole story. We are still one second after the crash.', '那是整個故事的結尾。我們現在還在撞擊後一秒鐘。']
+        ],
+        onOk: () => addLink('The crash threw huge clouds of dust into the air.', '撞擊把大量塵埃拋上空中。') },
+      { lbl: 'Link 3 · the dust is now high in the sky',
+        opts: [
+          ['The dust blocked the sunlight.', '塵埃擋住了陽光。', true, '', '', 'Link 3 locked in. This is the link most people forget.', '第 3 環接好了。這就是最多人漏掉的一環。'],
+          ['The plants died.', '植物死了。', false, 'Not yet — the dust is up in the sky, nowhere near the plants. What does a thick cloud get in the way of?', '還沒——塵埃在天上，離植物遠得很。厚厚的雲會擋住什麼？'],
+          ['The dust turned into rain.', '塵埃變成雨。', false, 'Your lesson does not say that. What does a thick dust cloud do to the light coming down?', '課文沒有這樣說。厚厚的塵埃雲會對「照下來的光」做什麼？']
+        ],
+        onOk: () => addLink('The dust blocked the sunlight.', '塵埃擋住了陽光。') },
+      { lbl: 'Link 4 · who feels a dark sky first?',
+        opts: [
+          ['Plant-eating dinosaurs starved.', '吃植物的恐龍餓死了。', false, 'Careful — dinosaurs do not eat sunlight. Something else needs the sun before they do.', '小心——恐龍不吃陽光。在牠們之前，有別的東西更需要太陽。'],
+          ['Plants could not make food, and died.', '植物做不出食物，死掉了。', true, '', '', 'Link 4 locked in — this is the one that was hiding inside "changed the climate".', '第 4 環接好了——這就是躲在「changed the climate」裡面的那一環。'],
+          ['Earth got hotter.', '地球變熱了。', false, 'A blocked sky lets LESS sunlight through, not more. Who runs on sunlight?', '天空被擋住，照下來的陽光是「變少」不是變多。誰是靠陽光在運作的？']
+        ],
+        onOk: () => addLink('Plants could not make food, and died.', '植物做不出食物，死掉了。') },
+      { lbl: 'Link 5 · the plants are gone',
+        opts: [
+          ['Plant-eating dinosaurs starved.', '吃植物的恐龍餓死了。', true, '', '', 'Link 5 locked in.', '第 5 環接好了。'],
+          ['Meat-eating dinosaurs died.', '吃肉的恐龍死了。', false, 'They eat other dinosaurs, not plants. Who notices the missing plants first?', '牠們吃的是其他恐龍，不是植物。誰會最先發現植物不見了？'],
+          ['The dust settled back down.', '塵埃落回地面。', false, 'That does not explain a single death. Who was eating those plants every day?', '那解釋不了任何一隻恐龍的死。每天吃那些植物的是誰？']
+        ],
+        onOk: () => addLink('Plant-eating dinosaurs starved.', '吃植物的恐龍餓死了。') },
+      { lbl: 'Link 6 · one group is still standing',
+        opts: [
+          ['Then the meat-eating dinosaurs died too.', '接著吃肉的恐龍也死了。', true, '', '', 'Chain complete — six links, no holes. 🔗', '整條鏈完成——六環，沒有洞。'],
+          ['And that is the end.', '故事就這樣結束了。', false, 'One group has not been explained yet. Who ate the plant-eaters?', '還有一群沒有交代。誰在吃那些草食恐龍？'],
+          ['The plants grew back.', '植物長回來了。', false, 'Maybe much later — but this question is about how the dinosaurs died. Who is left on the list?', '也許很久以後會——但這題問的是恐龍怎麼死的。名單上還剩誰？']
+        ],
+        onOk: () => addLink('Then the meat-eating dinosaurs died too.', '接著吃肉的恐龍也死了。', 'end') }
+    ],
+    done: () => {
+      setMsg($('s1msg'), 'Six links and every one touches the next. Last job: write it as a sentence — and watch the verbs.' + Z('六環，每一環都接得上。最後一件事：把它寫成句子——注意動詞。'), 'good');
+      runFrame();
+    }
+  });
+
+  /* final stage — same chain, now written out, with the tense trap in it */
+  function runFrame(){
+    const host = $('s1tense');
+    const out = document.createElement('p');
+    out.className = 'sentbox built';
+    out.innerHTML = '<u>______</u>';
+    const parts = [];
+    function paint(){
+      out.innerHTML = parts.length ? parts.join(' ') : '<u>______</u>';
+    }
+    host.appendChild(out);
+    const holder = document.createElement('div');
+    holder.id = 's1frame';
+    host.appendChild(holder);
+    steps('s1frame', {
+      rounds: [
+        { lbl: 'Sentence · slot 1 — First…', stack: true,
+          opts: [
+            ['First a meteorite <b>hit</b> Earth.', '首先，一顆隕石撞上地球。', true],
+            ['First a meteorite <b>hits</b> Earth.', '首先，一顆隕石撞上地球（現在式）。', false, 'Check the verb. Did this happen today, or 66 million years ago?', '看動詞。這是今天發生的，還是六千六百萬年前？']
+          ],
+          onOk: o => { parts.push('First a meteorite hit Earth.'); paint(); } },
+        { lbl: 'Slot 2 — That caused…', stack: true,
+          opts: [
+            ['That caused huge clouds of <b>dust</b>,', '那造成了大量的塵埃，', true],
+            ['That caused a very loud <b>noise</b>,', '那造成了很大的聲音，', false, 'True, but a noise does not kill plants. Which one leads to the next link?', '是真的，但聲音不會殺死植物。哪一個接得到下一環？']
+          ],
+          onOk: o => { parts.push('That caused huge clouds of dust,'); paint(); } },
+        { lbl: 'Slot 3 — so…', stack: true,
+          opts: [
+            ['so <b>there is</b> no food for the plants,', '所以植物沒有食物（現在式），', false, 'That is the exact slip from your workbook. Which verb looks back like "died" does?', '這正是你作業本上滑掉的地方。哪個動詞跟 died 一樣是回頭看的？'],
+            ['so the plants <b>could not</b> make food and <b>died</b>,', '所以植物做不出食物、死掉了，', true]
+          ],
+          onOk: o => { parts.push('so the plants could not make food and died,'); paint(); } },
+        { lbl: 'Slot 4 — In the end…', stack: true,
+          opts: [
+            ['in the end the dinosaurs <b>are dying</b>.', '最後恐龍正在死去。', false, 'Are they dying right now, out there? Or did it finish long ago?', '牠們現在還在外面死掉嗎？還是那件事早就結束了？'],
+            ['in the end the dinosaurs <b>starved and died</b>.', '最後恐龍餓死了。', true]
+          ],
+          onOk: o => { parts.push('in the end the dinosaurs starved and died.'); paint(); } }
+      ],
+      done: () => {
+        out.className = 'sentbox trueok';
+        setMsg($('s1msg'), 'Green light 🟢 Whole chain, whole story in the past. That is the answer, built by you.' + Z('綠燈 🟢 整條鏈完整、整個故事都是過去式。這個答案是你自己建出來的。'), 'good');
+        openGate('s1model');
+      }
+    });
+  }
+})();
+/* ================= SECTION 2 · the glue word ================= */
+choice('s2ask', {
+  opts: [
+    ['<b>Earth</b> and <b>ecosystems</b>', 'Earth 和 ecosystems'],
+    ['<b>has</b> and <b>work</b>', 'has 和 work'],
+    ['<b>a lot</b> and <b>together</b>', 'a lot 和 together']
+  ],
+  ans: 1,
+  good: ['Both are doing words, and they are standing right next to each other with nothing in between. That is the whole problem.', '兩個都是「做事」的字，而且緊挨著站在一起，中間什麼都沒有。問題就在這裡。'],
+  h1: ['Try each word in "I ___ every day." Earth every day? Or work every day?', '把每個字放進「I ___ every day.」試試看。I Earth every day？還是 I work every day？'],
+  h2: ['Earth and ecosystems are things (nouns). "A lot" is an amount. Which two are actions?', 'Earth 和 ecosystems 是東西（名詞），a lot 是數量。哪兩個是動作？'],
+  tell: ['<b>has</b> and <b>work</b> — two verbs side by side with nothing joining them.', '是 has 和 work——兩個動詞並排，中間沒有東西連著。'],
+  retest: {
+    q: ['"The dog my brother feeds barks all night." Which two words are the verbs?', '「The dog my brother feeds barks all night.」哪兩個字是動詞？'],
+    opts: [['feeds and barks', 'feeds 和 barks'], ['dog and brother', 'dog 和 brother']],
+    ans: 0,
+    why: ['Verbs are what somebody DOES. Now let us fix your sentence.', '動詞就是「有人在做的事」。現在來修你的句子。']
+  },
+  pass: () => openGate('s2exp')
+});
+
+/* step 1 — tap the two bumping verbs */
+(function(){
+  const host = $('s2a1'), msg = $('s2m1');
+  const WORDS = [
+    ['Earth', false, 'Earth is the thing doing something — not the doing itself.', 'Earth 是「在做事的那個東西」，不是「做事」本身。'],
+    ['has', true],
+    ['ecosystems', false, 'Those are the parts you correctly named. Is "ecosystems" an action?', '那是你正確講出來的那些部分。ecosystems 是一個動作嗎？'],
+    ['work', true],
+    ['together', false, '"Together" tells you HOW they do it. What is the doing word itself?', 'together 講的是「怎麼做」。真正的動作字是哪一個？']
+  ];
+  let got = 0, done = false;
+  WORDS.forEach(w => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'opb wide';
+    b.textContent = w[0];
+    b.addEventListener('click', () => {
+      if (done || b.disabled) return;
+      if (w[1]){
+        b.classList.add('ok'); b.disabled = true; got++;
+        if (got === 2){
+          done = true;
+          [...host.children].forEach(x => x.disabled = true);
+          setMsg(msg, '<mark>has</mark> … <mark>work</mark> — nothing between them. Time for the glue.' + Z('has……work——中間什麼都沒有。該上黏合詞了。'), 'good');
+          $('s2st2').hidden = false;
+        } else {
+          setMsg(msg, 'One down. There is one more doing word in there.' + Z('抓到一個。裡面還有一個「做事」的字。'), 'good');
+        }
+      } else {
+        b.classList.add('no');
+        setTimeout(() => b.classList.remove('no'), 700);
+        setMsg(msg, w[2] + Z(w[3]), 'warn');
+      }
+    });
+    host.appendChild(b);
+  });
+})();
+
+/* step 2 — try each glue word and read what comes out */
+(function(){
+  const host = $('s2glue'), out = $('s2out'), msg = $('s2m2');
+  const GLUE = [
+    ['and', false, 'Earth has a lot of ecosystems <u>and</u> work together.', 'Read it out loud: who works together? "And" starts a new action, but nobody is named to do it.', '唸出來看看：是「誰」work together？and 開了一個新動作，卻沒有人在做它。'],
+    ['that', true, 'Earth has a lot of ecosystems <u>that</u> work together.', '', ''],
+    ['because', false, 'Earth has a lot of ecosystems <u>because</u> work together.', '"Because" needs a whole new idea after it — "work together" on its own is not one. It is a description of the ecosystems.', 'because 後面要接一個完整的新想法——「work together」本身不是。它是在描述那些 ecosystems。']
+  ];
+  let done = false;
+  GLUE.forEach(g => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'opb wide'; b.textContent = g[0];
+    b.addEventListener('click', () => {
+      if (done) return;
+      out.innerHTML = '';
+      const p = document.createElement('p');
+      p.className = 'sentbox' + (g[1] ? ' trueok' : ' built');
+      p.innerHTML = g[2];
+      out.appendChild(p);
+      if (g[1]){
+        done = true; b.classList.add('ok');
+        [...host.children].forEach(x => x.disabled = true);
+        setMsg(msg, 'That reads clean. <mark>that</mark> hooks "work together" onto the ecosystems, so only <b>has</b> is left standing as the main verb.' + Z('這樣唸起來就順了。that 把 work together 勾在 ecosystems 上面，主要動詞就只剩下 has 一個。'), 'good');
+        $('s2st3').hidden = false;
+      } else {
+        b.classList.add('no');
+        setTimeout(() => b.classList.remove('no'), 700);
+        setMsg(msg, g[3] + Z(g[4]), 'warn');
+      }
+    });
+    host.appendChild(b);
+  });
+})();
+
+const s2a3 = choice('s2a3', {
+  opts: [['and', 'and'], ['that', 'that'], ['because', 'because']],
+  ans: 1,
+  good: ['<mark>that</mark> — it points back at "parts" and tells you more about them. Full answer built.', 'that——它指回 parts，並且補充說明它們。完整答案組好了。'],
+  h1: ['Which word points back at the word right in front of it — "parts"?', '哪個字會指回它前面那個字（parts）？'],
+  h2: ['You already used "because" earlier in the sentence. Can the same sentence take a second one?', '句子前面已經用過 because 了。同一句還能再塞第二個嗎？'],
+  tell: ['<b>that</b> — parts <b>that</b> work together. It describes the parts.', '答案是 that——parts that work together。它是在描述那些 parts。'],
+  retest: {
+    q: ['"A robot is a machine ___ can decide by itself." Which word?', '「A robot is a machine ___ can decide by itself.」哪個字？'],
+    opts: [['that', 'that'], ['because', 'because']],
+    ans: 0,
+    why: ['Pointing back at "machine" — that is the job of "that".', '指回前面的 machine——這就是 that 的工作。']
+  },
+  pass: () => { $('s2st4').hidden = false; s2a4.unlock(); }
+});
+
+const s2a4 = choice('s2a4', {
+  opts: [
+    ['Because "that" makes the sentence longer', '因為 that 讓句子變長'],
+    ['Because two verbs cannot stand side by side — "that" turns "work together" into a description', '因為兩個動詞不能並排——that 把 work together 變成一句描述'],
+    ['Because science answers always use "that"', '因為科學答案都要用 that']
+  ],
+  ans: 1,
+  good: ['That is the rule in your own words. Now run the machine on three sentences.', '你用自己的話把規則說出來了。現在把機器用在三個句子上。'],
+  h1: ['Back one step — I reset the gap and locked this question. Fill it again, watch what "that" points at, and this one opens back up.', '退回上一步——空格我重置了，這題先鎖住。再填一次、注意 that 指著什麼，這題就會解鎖。'],
+  h2: ['Question 23 ("Aluminum is less dense than steel") was perfect with no "that" at all. So it is not a rule about all answers — what is it about?', '第 23 題（Aluminum is less dense than steel）完全沒有 that，一樣完美。所以那不是「所有答案」的規則——那到底是關於什麼的規則？'],
+  tell: ['Two verbs cannot stand side by side. "That" turns the second one into a description of the noun before it.', '兩個動詞不能並排。that 把第二個動詞變成前面那個名詞的描述。'],
+  retest: {
+    q: ['You need a glue word whenever…', '什麼時候需要黏合詞？'],
+    opts: [['two verbs end up side by side', '兩個動詞並排在一起的時候'], ['the sentence is longer than five words', '句子超過五個字的時候']],
+    ans: 0,
+    why: ['That is the trigger. Listen for the bump when you read it out loud.', '這就是觸發點。唸出來的時候聽那個「撞一下」。']
+  },
+  firstWrong: () => { s2a3.reset(); $('s2st3').classList.add('redo'); $('s2st3').scrollIntoView({block:'center'}); },
+  pass: () => { openGate('s2try'); $('s2try').scrollIntoView({block:'center'}); }
+});
+
+/* Try it — the sentence glue machine, three full rounds */
+(function(){
+  const host = $('s2walk');
+  const disp = document.createElement('p');
+  disp.className = 'sentbox';
+  disp.innerHTML = 'Earth has a lot of ecosystems work together.';
+  const holder = document.createElement('div');
+  holder.id = 's2walkR';
+  host.appendChild(disp); host.appendChild(holder);
+  function show(html, cls){ disp.className = 'sentbox' + (cls ? ' ' + cls : ''); disp.innerHTML = html; }
+
+  steps('s2walkR', {
+    rounds: [
+      /* ---- round 1: his own sentence ---- */
+      { lbl: 'Round 1 of 3 · step 1 — find the bump', stack: true,
+        opts: [
+          ['<b>has</b> and <b>work</b> — two verbs, nothing between them', 'has 和 work——兩個動詞，中間沒東西', true],
+          ['"ecosystems" is the wrong word', 'ecosystems 這個字用錯了', false, 'Ecosystems is exactly right — you named the parts of the system. Look at the doing words instead.', 'ecosystems 完全正確——你講出了系統的組成。改看「做事」的那些字。'],
+          ['it needs a full stop in the middle', '中間要加一個句號', false, 'Try it: "Earth has a lot of ecosystems. Work together." Does the second half say WHO?', '試試看：「Earth has a lot of ecosystems. Work together.」後半有講「誰」嗎？']
+        ] },
+      { lbl: 'Round 1 · step 2 — choose the glue', stack: true,
+        opts: [
+          ['<b>that</b>', 'that', true],
+          ['<b>because</b>', 'because', false, '"Because" needs a full reason after it. Is "work together" a reason, or a description of the ecosystems?', 'because 後面要接完整的理由。work together 是理由，還是在描述那些 ecosystems？'],
+          ['<b>and</b>', 'and', false, '"And" starts a new action — but who does it? Nobody is named.', 'and 開了一個新動作——但誰在做？沒有人被指名。']
+        ],
+        onOk: () => show('Earth has a lot of ecosystems <u>that</u> work together.', 'built') },
+      { lbl: 'Round 1 · step 3 — read it out loud and check', stack: true,
+        opts: [
+          ['One main verb now — <b>has</b>. "That work together" describes the ecosystems.', '現在只有一個主要動詞 has。that work together 是在描述 ecosystems。', true, '', '', 'Round 1 clear.', '第一回合過關。'],
+          ['Still two verbs bumping.', '還是兩個動詞在撞。', false, '"That" hooked "work together" onto ecosystems. Is "work" still standing alone with nothing holding it?', 'that 已經把 work together 勾在 ecosystems 上了。work 現在還孤零零地站著嗎？']
+        ],
+        onOk: () => show('Earth has a lot of ecosystems <u>that</u> work together.', 'trueok') },
+
+      /* ---- round 2: Challenge 2a ---- */
+      { lbl: 'Round 2 of 3 · step 1 — find the bump', stack: true,
+        q: ['New sentence: <b>A rainforest has many animals live together.</b>', '新句子：A rainforest has many animals live together.'],
+        opts: [
+          ['<b>has</b> and <b>live</b> are bumping', 'has 和 live 撞在一起', true],
+          ['"rainforest" should be plural', 'rainforest 要用複數', false, 'One rainforest is fine. Say the sentence out loud — where does your mouth trip?', '一座雨林沒問題。把句子唸出來——嘴巴在哪裡卡住？'],
+          ['"many" is the wrong word', 'many 這個字用錯了', false, '"Many animals" is good English. Which two words are both actions?', 'many animals 是正確的英文。哪兩個字都是動作？']
+        ],
+        onOk: () => show('A rainforest has many animals live together.') },
+      { lbl: 'Round 2 · step 2 — choose the glue', stack: true,
+        opts: [
+          ['<b>that</b>', 'that', true],
+          ['<b>because</b>', 'because', false, 'Does "live together" explain WHY the rainforest has animals? Or does it describe the animals?', 'live together 是在解釋「為什麼雨林有動物」嗎？還是在描述那些動物？'],
+          ['<b>and</b>', 'and', false, '"A rainforest has many animals and live together" — who lives together? The rainforest?', '「A rainforest has many animals and live together」——是誰住在一起？雨林嗎？']
+        ],
+        onOk: () => show('A rainforest has many animals <u>that</u> live together.', 'built') },
+      { lbl: 'Round 2 · step 3 — what is "that" pointing back at?', stack: true,
+        opts: [
+          ['<b>animals</b> — the word right in front of it', 'animals——就在它前面的那個字', true, '', '', 'Round 2 clear. "That" always points back at the word just before it.', '第二回合過關。that 永遠指回它前面那個字。'],
+          ['<b>rainforest</b>', 'rainforest', false, 'Then it would mean the rainforest lives together — with what? Look at the word right before "that".', '那意思會變成「雨林住在一起」——跟誰？看 that 正前面那個字。']
+        ],
+        onOk: () => show('A rainforest has many animals <u>that</u> live together.', 'trueok') },
+
+      /* ---- round 3: Challenge 2b ---- */
+      { lbl: 'Round 3 of 3 · step 1 — what is the join?', stack: true,
+        q: ['Two sentences this time: <b>Ice floats on water. It is less dense than water.</b>', '這次是兩個句子：Ice floats on water. It is less dense than water.'],
+        opts: [
+          ['The second one is the <b>reason</b> for the first — join them', '第二句是第一句的「理由」——把它們接起來', true],
+          ['They are about different things — leave them apart', '它們在講不同的事——不要接', false, 'Ask "why does ice float?" The answer is sitting right there in sentence two. Still different things?', '問一句「冰為什麼會浮？」答案就擺在第二句裡。還是不同的事嗎？'],
+          ['Swap their order', '把順序對調', false, 'Try it: "It is less dense than water. Ice floats on water." Who is "it" now?', '試試看：「It is less dense than water. Ice floats on water.」現在 it 是指誰？']
+        ],
+        onOk: () => show('Ice floats on water. It is less dense than water.') },
+      { lbl: 'Round 3 · step 2 — choose the glue', stack: true,
+        opts: [
+          ['<b>because</b>', 'because', true],
+          ['<b>that</b>', 'that', false, '"Ice floats on water that is less dense" — now the WATER is the less dense one. Does that say what you mean?', '「Ice floats on water that is less dense」——變成「水」比較不密。這是你要講的意思嗎？'],
+          ['<b>and</b>', 'and', false, '"And" just puts them in a row. Does it tell the reader WHY ice floats?', 'and 只是把它們排在一起。它有告訴讀者「冰為什麼浮」嗎？']
+        ],
+        onOk: () => show('Ice floats on water <u>because</u> it is less dense than water.', 'built') },
+      { lbl: 'Round 3 · step 3 — read it out loud, one last check', stack: true,
+        opts: [
+          ['<b>because</b> — it is the word that hands the reader the reason', 'because——它就是把理由交給讀者的那個字', true, '', '', 'Machine mastered 🔗 "that" describes, "because" explains. Both are yours now.', '黏合機大師 🔗 that 用來描述，because 用來解釋。兩個都是你的了。'],
+          ['<b>floats</b>', 'floats', false, '"Floats" is what ice DOES. Which word tells you why it does it?', 'floats 是冰「在做的事」。哪個字告訴你「為什麼」？']
+        ],
+        onOk: () => show('Ice floats on water <u>because</u> it is less dense than water.', 'trueok') }
+    ],
+    done: () => openGate('s2model')
+  });
+})();
+
+/* ================= SECTION 3 · machine vs robot ================= */
+choice('s3ask', {
+  opts: [
+    ['An electronic cat', '電子貓'],
+    ['A bicycle', '腳踏車'],
+    ['A self-driving car', '自動駕駛的車']
+  ],
+  ans: 1,
+  good: ['A bicycle sits there until you push the pedals. That is a machine — and it leaves you three whole things to add.', '腳踏車放在那裡，等你去踩踏板。那就是「機器」——而且它留給你三整項可以加上去的東西。'],
+  h1: ['Ask each one: does it already move, sense and decide without a person?', '每一個都問一次：它是不是已經可以不靠人就移動、感測、做決定？'],
+  h2: ['The electronic cat walks and reacts on its own; the self-driving car steers itself. Which one waits for a person?', '電子貓會自己走、自己反應；自駕車會自己轉方向。哪一個在等人？'],
+  tell: ['The bicycle. It cannot move, sense or decide by itself — so it is still just a machine.', '是腳踏車。它不能自己移動、感測或決定——所以它還只是一台機器。'],
+  retest: {
+    q: ['A toaster — machine, or robot?', '烤麵包機——是機器，還是機器人？'],
+    opts: [['Machine — it waits for me to push the lever', '機器——它在等我壓下拉桿'], ['Robot', '機器人']],
+    ans: 0,
+    why: ['Machines wait. Robots do not. That is the whole difference.', '機器會等，機器人不會等。差別就在這裡。']
+  },
+  pass: () => openGate('s3exp')
+});
+
+/* step 1 — tap the three robot powers */
+(function(){
+  const host = $('s3a1'), msg = $('s3m1');
+  const POWERS = [
+    ['moves by itself', true],
+    ['is made of metal', false, 'A toaster is made of metal. Is a toaster a robot?', '烤麵包機也是金屬做的。烤麵包機是機器人嗎？'],
+    ['senses what is around it', true],
+    ['runs on electricity', false, 'A lamp runs on electricity. Does a lamp decide anything?', '檯燈也用電。檯燈會做任何決定嗎？'],
+    ['decides what to do next', true]
+  ];
+  let got = 0, done = false;
+  POWERS.forEach(p => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'opb wide';
+    b.textContent = p[0];
+    b.addEventListener('click', () => {
+      if (done || b.disabled) return;
+      if (p[1]){
+        b.classList.add('ok'); b.disabled = true; got++;
+        if (got === 3){
+          done = true;
+          [...host.children].forEach(x => x.disabled = true);
+          setMsg(msg, 'Move · sense · decide. Metal and electricity are just building materials.' + Z('移動 · 感測 · 決定。金屬和電只是「材料」，不是能力。'), 'good');
+          $('s3st2').hidden = false;
+        } else {
+          setMsg(msg, got + ' of 3 powers found.' + Z('三種能力找到 ' + got + ' 種。'), 'good');
+        }
+      } else {
+        b.classList.add('no');
+        setTimeout(() => b.classList.remove('no'), 700);
+        setMsg(msg, p[2] + Z(p[3]), 'warn');
+      }
+    });
+    host.appendChild(b);
+  });
+})();
+
+/* step 2 — take the three powers he just found and run them over a whole shelf.
+   His bicycle is on it, so the machine he picked upstairs stays in the story. */
+const s3sort = (function(){
+  const ROWS = [
+    ['🐈 An electronic cat', '電子貓', 'robot', 'It walks and reacts with nobody touching it. How many of the three powers is it missing?', '它會自己走、自己反應，沒有人碰它。三種能力它缺了幾種？'],
+    ['🧹 A vacuum cleaner', '吸塵器', 'machine', 'Somebody has to push it around the room. Does it decide anything for itself?', '要有人推著它在房間裡跑。它有自己決定任何事嗎？'],
+    ['🚁 A drone that flies itself', '會自己飛的無人機', 'robot', 'It takes off and steers with nobody holding it. Move, sense, decide — count them.', '它自己起飛、自己轉向，沒有人抓著。移動、感測、決定——數數看。'],
+    ['🚲 A bicycle', '腳踏車', 'machine', 'It waits for your feet on the pedals. Waiting is exactly what a machine does.', '它在等你的腳踩上踏板。「等」正是機器在做的事。']
+  ];
+  const OPS = [['🤖 already a robot', 'robot', '已經是機器人'], ['🔧 still just a machine', 'machine', '還只是機器']];
+  const host = $('s3a2'), msg = $('s3m2');
+  let done = 0;
+  function build(){
+    host.innerHTML = ''; msg.hidden = true; done = 0;
+    ROWS.forEach(r => {
+      const row = document.createElement('div'); row.className = 'srow';
+      const ph = document.createElement('span'); ph.className = 'ph';
+      ph.innerHTML = r[0] + '<span class="zhi">（' + r[1] + '）</span>';
+      const ops = document.createElement('span'); ops.className = 'ops';
+      const why = document.createElement('span'); why.className = 'why';
+      OPS.forEach(o => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'opb wide';
+        b.innerHTML = o[0] + '<span class="zhi">（' + o[2] + '）</span>';
+        b.setAttribute('aria-label', r[0] + ' — ' + o[0]);
+        b.addEventListener('click', () => {
+          if (row.classList.contains('done')) return;
+          if (o[1] === r[2]){
+            b.classList.add('ok');
+            [...ops.children].forEach(x => x.disabled = true);
+            row.classList.add('done');
+            why.innerHTML = (r[2] === 'robot'
+              ? 'Move, sense, decide — it has all three already.'
+              : 'It waits for a person, so all three are still free to add.')
+              + Z(r[2] === 'robot' ? '移動、感測、決定，三種它都有了。' : '它在等人，所以三種能力都還可以加上去。');
+            done++;
+            if (done === ROWS.length){
+              setMsg(msg, 'Two robots, two machines — and the bicycle you picked upstairs is one of the machines. Either machine would work; we will build with the <mark>vacuum cleaner</mark>, so you and the model answer upgrade the same one.' + Z('兩台機器人、兩台機器——你上面選的腳踏車就是其中一台機器。兩台機器當起點都可以；等一下我們用吸塵器來建，這樣你和範例答案升級的是同一台。'), 'good');
+              $('s3st3').hidden = false;
+              s3a4.unlock();
+            } else {
+              setMsg(msg, 'Yes. ' + (ROWS.length - done) + ' to go.' + Z('對了。還剩 ' + (ROWS.length - done) + ' 台。'), 'good');
+            }
+          } else {
+            b.classList.add('no');
+            setTimeout(() => b.classList.remove('no'), 700);
+            setMsg(msg, r[3] + Z(r[4]), 'warn');
+          }
+        });
+        ops.appendChild(b);
+      });
+      row.appendChild(ph); row.appendChild(ops); row.appendChild(why);
+      host.appendChild(row);
+    });
+  }
+  build();
+  return { reset: build };
+})();
+
+/* step 3 — a or an */
+(function(){
+  const ROWS = [
+    ['___ electronic cat', '電子貓', 'An', 'Say it out loud: "a electronic" makes your mouth stop. Which one slides?', '唸出來：a electronic 會讓嘴巴卡住。哪一個比較滑順？'],
+    ['___ vacuum cleaner', '吸塵器', 'A', '"Vacuum" starts with a v sound — your mouth closes for it. Vowel sound, or not?', 'vacuum 是 v 的音開頭，嘴巴要合起來。這是母音的音嗎？'],
+    ['___ old toaster', '舊的烤麵包機', 'An', 'The next word is "old" — say the first sound of it. Is your mouth open?', '下一個字是 old——唸出它的第一個音。你的嘴巴是張開的嗎？']
+  ];
+  const host = $('s3art'), msg = $('s3m3');
+  let done = 0;
+  ROWS.forEach(r => {
+    const row = document.createElement('div'); row.className = 'srow';
+    const ph = document.createElement('span'); ph.className = 'ph';
+    ph.innerHTML = r[0] + '<span class="zhi">（' + r[1] + '）</span>';
+    const ops = document.createElement('span'); ops.className = 'ops';
+    const why = document.createElement('span'); why.className = 'why';
+    ['A', 'An'].forEach(w => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'opb'; b.textContent = w;
+      b.addEventListener('click', () => {
+        if (row.classList.contains('done')) return;
+        if (w === r[2]){
+          b.classList.add('ok');
+          [...ops.children].forEach(x => x.disabled = true);
+          row.classList.add('done');
+          why.innerHTML = r[2] + ' ' + r[0].replace('___ ', '') + Z('正解。');
+          done++;
+          if (done === ROWS.length){
+            setMsg(msg, 'All three. <mark>An</mark> before a vowel sound, <mark>a</mark> before everything else — your ear already knew.' + Z('三個全對。母音的音前面用 an，其他用 a——你的耳朵本來就知道。'), 'good');
+            $('s3st4').hidden = false;
+          } else {
+            setMsg(msg, 'Yes. ' + (ROWS.length - done) + ' to go.' + Z('對了。還剩 ' + (ROWS.length - done) + ' 個。'), 'good');
+          }
+        } else {
+          b.classList.add('no');
+          setTimeout(() => b.classList.remove('no'), 700);
+          setMsg(msg, r[3] + Z(r[4]), 'warn');
+        }
+      });
+      ops.appendChild(b);
+    });
+    row.appendChild(ph); row.appendChild(ops); row.appendChild(why);
+    host.appendChild(row);
+  });
+})();
+
+const s3a4 = choice('s3a4', {
+  opts: [
+    ['Because cats are not in the science chapter', '因為這章沒有講貓'],
+    ['Because it is already a robot, so there is nothing left to add', '因為它本來就是機器人，沒有東西可以加上去了'],
+    ['Because it was spelled wrong', '因為拼字寫錯了']
+  ],
+  ans: 1,
+  good: ['That is exactly it — and notice your idea was not wrong, it was just standing at the finish line instead of the start line.', '完全正確——而且注意：你的想法沒有錯，它只是站在終點線上，不是站在起跑線上。'],
+  h1: ['Back one step — I cleared the shelf and locked this question. Sort it again, watch which side is empty-handed, and this one opens back up.', '退回上一步——架子我清空了，這題先鎖住。再分類一次、注意哪一邊「兩手空空」，這題就會解鎖。'],
+  h2: ['The spelling was a small fix, and cats are fine as examples. What did the electronic cat leave you with nothing to write?', '拼字只是小修，用貓當例子也沒問題。電子貓讓你「沒東西可寫」的原因是什麼？'],
+  tell: ['An electronic cat is already a robot — so the "if it were a robot" half has nothing to say.', '電子貓本來就是機器人——所以「如果它是機器人」那一半沒東西可講。'],
+  retest: {
+    q: ['To answer this kind of question you must start with…', '這種題目你必須從什麼開始？'],
+    opts: [['a machine that is missing the robot powers', '一台缺少機器人能力的機器'], ['the coolest robot you can think of', '你想得到最酷的機器人']],
+    ans: 0,
+    why: ['Start low so you have somewhere to climb. Lab time!', '從低的地方開始，才有得往上爬。進實驗室！']
+  },
+  firstWrong: () => { s3sort.reset(); $('s3st2').classList.add('redo'); $('s3st2').scrollIntoView({block:'center'}); },
+  pass: () => { openGate('s3try'); $('s3try').scrollIntoView({block:'center'}); }
+});
+
+/* Try it — the robot upgrade lab */
+(function(){
+  const host = $('s3lab');
+  const disp = document.createElement('p');
+  disp.className = 'sentbox';
+  disp.innerHTML = '<u>______</u>';
+  const holder = document.createElement('div');
+  holder.id = 's3labR';
+  host.appendChild(disp); host.appendChild(holder);
+  const powers = [];
+  /* the first word stays an empty slot until Stage 3 — otherwise the last
+     question of the lab is already answered at the top of the box */
+  let article = '<u>___</u>';
+  function paint(cls){
+    let s = article + ' vacuum cleaner is a machine. If it were a robot, it could ';
+    s += powers.length ? powers.join(', ') : '<u>______</u>';
+    disp.className = 'sentbox' + (cls ? ' ' + cls : ' built');
+    disp.innerHTML = s + (powers.length === 3 ? ' without a person pushing it.' : '');
+  }
+
+  steps('s3labR', {
+    rounds: [
+      { lbl: 'Stage 1 · pick a machine off the shelf', stack: true,
+        q: ['Two of these are already robots. Which one gives you room to upgrade?', '其中兩台本來就是機器人。哪一台留得下升級的空間？'],
+        opts: [
+          ['🤖 A robot dog', '機器狗', false, 'It already moves, senses and decides. What would you write in the "if it were a robot" half?', '它已經會移動、感測、決定了。那「如果它是機器人」那一半你要寫什麼？'],
+          ['🧹 A vacuum cleaner', '吸塵器', true, '', '', 'Good pick — a person has to push it, so all three powers are free to add.', '挑得好——它要靠人推，所以三種能力都可以加。'],
+          ['🚗 A self-driving car', '自動駕駛的車', false, 'It steers itself already. Is there anything left for the robot half of your sentence?', '它已經會自己開了。你句子的機器人那一半還剩什麼可寫？']
+        ],
+        onOk: () => paint() },
+      { lbl: 'Stage 2 · upgrade 1 of 3 — it only moves when you push it', stack: true,
+        opts: [
+          ['move around the house by itself', '自己在房子裡到處移動', true, '', '', 'Power 1 bolted on.', '第 1 種能力裝好了。'],
+          ['be painted bright red', '漆成鮮紅色', false, 'Nice colour. Does paint let it move without your hands?', '顏色不錯。油漆能讓它不靠你的手移動嗎？'],
+          ['have a longer cord', '有更長的電線', false, 'Longer cord, still your hand pushing. Which upgrade takes your hand out of it?', '電線再長，還是你的手在推。哪個升級能讓你的手離開？']
+        ],
+        onOk: () => { powers.push('move around the house by itself'); paint(); } },
+      { lbl: 'Stage 2 · upgrade 2 of 3 — it is moving on its own, and it just hit the sofa', stack: true,
+        opts: [
+          ['move much faster', '移動得更快', false, 'Faster into the sofa is worse, not better. What does it need in order to notice the sofa?', '更快撞上沙發只會更慘。它需要什麼才能「發現」沙發？'],
+          ['sense walls and furniture', '感測牆壁和家具', true, '', '', 'Power 2 bolted on.', '第 2 種能力裝好了。'],
+          ['play music while it cleans', '一邊打掃一邊放音樂', false, 'Fun, but the sofa is still there. Which power lets it notice things in the way?', '很有趣，但沙發還在那裡。哪種能力能讓它發現擋路的東西？']
+        ],
+        onOk: () => { powers.push('sense walls and furniture'); paint(); } },
+      { lbl: 'Stage 2 · upgrade 3 of 3 — it moves, it senses, but it cleans the same square every day', stack: true,
+        opts: [
+          ['have a bigger dust bag', '換一個更大的集塵袋', false, 'More room for dust it never goes to collect. What is it not doing for itself yet?', '集塵袋再大，它還是沒去把灰塵收回來。它還有什麼沒辦法自己做？'],
+          ['come with a remote control', '附一個遙控器', false, 'A remote means a PERSON decides. Who should be deciding, if it is a robot?', '有遙控器就代表「人」在決定。如果它是機器人，該由誰決定？'],
+          ['decide where to clean', '自己決定要打掃哪裡', true, '', '', 'Power 3 bolted on. Move · sense · decide — it is a robot now.', '第 3 種能力裝好了。移動·感測·決定——它現在是機器人了。']
+        ],
+        onOk: () => { powers.push('decide where to clean'); paint(); } },
+      { lbl: 'Stage 3 · the first word of your answer', stack: true,
+        opts: [
+          ['<b>A</b> vacuum cleaner is a machine.', 'A vacuum cleaner is a machine.', true, '', '', 'Green light 🟢 A full comparison answer, built by you from an ordinary machine.', '綠燈 🟢 一個完整的比較型答案，從一台普通機器開始，由你自己建起來。'],
+          ['<b>An</b> vacuum cleaner is a machine.', 'An vacuum cleaner is a machine.', false, 'Say it out loud — does your mouth like "an vacuum"? Which sound starts the word?', '唸出來——「an vacuum」順嗎？這個字是什麼音開頭？']
+        ],
+        onOk: () => { article = 'A'; paint('trueok'); } }
+    ],
+    done: () => openGate('s3model')
+  });
+})();
+/* ================= SECTION 4 · say the exact problem ================= */
+choice('s4ask', {
+  opts: [
+    ['Nothing — I still do not know what went wrong', '什麼都修不了——我還是不知道哪裡出問題'],
+    ['Everything — I just make better rubber', '全部——我做出更好的橡膠就行了'],
+    ['The colour', '顏色']
+  ],
+  ans: 0,
+  good: ['Exactly. "Very bad" hands the factory nothing to hold on to — and that is what your answer handed the reader.', '完全正確。「很糟」沒有給工廠任何東西可以抓——你的答案給讀的人的，也是這樣。'],
+  h1: ['You are standing in the factory holding that letter. What do you shout to the workers to change?', '你站在工廠裡拿著那封信。你要對工人喊「把什麼改掉」？'],
+  h2: ['Did it melt? Crack? Smell? Break? The letter never says. So how much can you fix?', '它是融化了？裂了？有味道？斷了？信裡完全沒說。那你能修多少？'],
+  tell: ['Nothing. "Very bad" does not name what went wrong, so nothing can actually be fixed.', '什麼都修不了。「很糟」沒有講出哪裡出問題，所以什麼都修不了。'],
+  retest: {
+    q: ['Which letter could you actually act on?', '哪一封信你真的可以照著做？'],
+    opts: [['"Your rubber turns sticky in the sun."', '「你們的橡膠在太陽下會變黏。」'], ['"Your rubber is terrible."', '「你們的橡膠很糟糕。」']],
+    ans: 0,
+    why: ['Exact words are instructions. Vague words are just noise.', '精確的字是「指示」，模糊的字只是噪音。']
+  },
+  pass: () => openGate('s4exp')
+});
+
+/* step 1 — vague or exact */
+(function(){
+  const ROWS = [
+    ['"very bad"', '「很糟」', false, 'Nothing to picture, nothing to fix.', '想像不出畫面，也修不了。', 'Close your eyes — can you see "very bad"? What colour is it?', '閉上眼睛——你看得到「很糟」嗎？它是什麼顏色？'],
+    ['"melts and turns sticky when it gets hot"', '「一熱就融化、變黏」', true, 'You can see it, so you can fix it.', '看得到畫面，所以修得了。', 'Can you picture this one happening? Then it belongs on the other side.', '這句你想像得出畫面嗎？那它應該在另一邊。'],
+    ['"not good"', '「不太好」', false, 'Same as "very bad" wearing a smaller hat.', '跟「很糟」一樣，只是戴了頂小一點的帽子。', 'Does this tell the factory which machine to change?', '這句有告訴工廠要改哪一台機器嗎？'],
+    ['"cracks when it gets cold"', '「一冷就裂開」', true, 'Names the damage AND the weather. Perfect.', '同時講出「壞法」和「天氣」。完美。', 'It names what happened and when. Which side is that?', '它講出了發生什麼、什麼時候發生。這算哪一邊？']
+  ];
+  const host = $('s4sort'), count = $('s4count'), msg = $('s4m1');
+  let done = 0;
+  ROWS.forEach(r => {
+    const row = document.createElement('div'); row.className = 'srow';
+    const ph = document.createElement('span'); ph.className = 'ph';
+    ph.innerHTML = r[0] + '<span class="zhi">（' + r[1] + '）</span>';
+    const ops = document.createElement('span'); ops.className = 'ops';
+    const why = document.createElement('span'); why.className = 'why';
+    [['🌫️ vague', false], ['🔍 exact', true]].forEach(o => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'opb wide'; b.textContent = o[0];
+      b.setAttribute('aria-label', r[0] + (o[1] ? ' is exact' : ' is vague'));
+      b.addEventListener('click', () => {
+        if (row.classList.contains('done')) return;
+        if (o[1] === r[2]){
+          b.classList.add('ok');
+          [...ops.children].forEach(x => x.disabled = true);
+          row.classList.add('done');
+          why.innerHTML = r[3] + Z(r[4]);
+          done++;
+          count.innerHTML = done + ' / 4 sorted<span class="zhi"> ・已分類</span>';
+          if (done === ROWS.length){
+            setMsg(msg, 'Look at the exact side: both of them name <mark>what happened</mark> and <mark>when</mark>. That is the shape you need.' + Z('看「精確」那一邊：兩句都講出了「發生什麼」和「什麼時候」。這就是你要的形狀。'), 'good');
+            $('s4st2').hidden = false;
+          }
+        } else {
+          b.classList.add('no');
+          setTimeout(() => b.classList.remove('no'), 700);
+          setMsg(msg, r[5] + Z(r[6]), 'warn');
+        }
+      });
+      ops.appendChild(b);
+    });
+    row.appendChild(ph); row.appendChild(ops); row.appendChild(why);
+    host.appendChild(row);
+  });
+})();
+
+/* step 2 — match the weather to the failure */
+(function(){
+  const ROWS = [
+    ['☀️ A hot summer day', '炎熱的夏天', 'melts and turns sticky', 'Heat makes things soft and runny, not hard and snappy. Which one is that?', '熱會讓東西變軟、變黏，不是變硬變脆。哪一個才是？'],
+    ['❄️ A freezing winter day', '結冰的冬天', 'cracks', 'Think of anything frozen — is it soft and sticky, or hard and brittle?', '想想任何結凍的東西——它是軟軟黏黏的，還是又硬又脆？']
+  ];
+  const host = $('s4match'), msg = $('s4m2');
+  let done = 0;
+  ROWS.forEach(r => {
+    const row = document.createElement('div'); row.className = 'srow';
+    const ph = document.createElement('span'); ph.className = 'ph';
+    ph.innerHTML = r[0] + '<span class="zhi">（' + r[1] + '）</span>';
+    const ops = document.createElement('span'); ops.className = 'ops';
+    const why = document.createElement('span'); why.className = 'why';
+    ['melts and turns sticky', 'cracks'].forEach(t => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'opb wide'; b.textContent = t;
+      b.addEventListener('click', () => {
+        if (row.classList.contains('done')) return;
+        if (t === r[2]){
+          b.classList.add('ok');
+          [...ops.children].forEach(x => x.disabled = true);
+          row.classList.add('done');
+          why.innerHTML = r[0] + ' → ' + r[2] + Z('配對正確。');
+          done++;
+          if (done === ROWS.length){
+            setMsg(msg, 'Two exact problems, pointing opposite ways. That pair is the whole answer to #25.' + Z('兩個精確的問題，方向相反。這一對就是第 25 題的完整答案。'), 'good');
+            $('s4st3').hidden = false;
+          } else {
+            setMsg(msg, 'Matched. One weather left.' + Z('配對成功。還剩一種天氣。'), 'good');
+          }
+        } else {
+          b.classList.add('no');
+          setTimeout(() => b.classList.remove('no'), 700);
+          setMsg(msg, r[3] + Z(r[4]), 'warn');
+        }
+      });
+      ops.appendChild(b);
+    });
+    row.appendChild(ph); row.appendChild(ops); row.appendChild(why);
+    host.appendChild(row);
+  });
+})();
+
+/* step 3 — fill the pattern, one slot at a time */
+const s4build = (function(){
+  const host = $('s4build');
+  const disp = document.createElement('p');
+  disp.className = 'sentbox';
+  const holder = document.createElement('div');
+  holder.id = 's4buildR';
+  host.appendChild(disp); host.appendChild(holder);
+  let parts = [];
+  function paint(cls){
+    disp.className = 'sentbox' + (cls || ' built');
+    disp.innerHTML = parts.length ? parts.join(' ') : '<u>______</u> did not work because it <u>______</u> when <u>______</u>.';
+  }
+  paint('');
+  const S = steps('s4buildR', {
+    onReset: () => { parts = []; paint(''); },
+    rounds: [
+      { lbl: 'Slot 1 — the thing', stack: true,
+        opts: [
+          ['<b>Natural rubber</b> did not work…', '天然橡膠不能用……', true],
+          ['<b>Something</b> did not work…', '有個東西不能用……', false, 'Which thing? The reader was not in your head — name it.', '哪個東西？讀的人不在你腦袋裡——講出名字。']
+        ],
+        tell: ['The thing is <b>natural rubber</b>. Slot 1 is always the name of the thing.', '那個東西就是「天然橡膠」。第一格永遠是那個東西的名字。'],
+        onOk: () => { parts.push('Natural rubber did not work'); paint(); } },
+      { lbl: 'Slot 2 — what it did', stack: true,
+        opts: [
+          ['…because it <b>was very bad</b>', '……因為它很糟', false, 'That is the word we just retired. What did the rubber actually DO?', '那正是我們剛剛淘汰掉的字。橡膠實際上「做了」什麼？'],
+          ['…because it <b>melted and turned sticky</b>', '……因為它融化、變黏', true]
+        ],
+        tell: ['It <b>melted and turned sticky</b> — that is what "bad" was hiding.', '它「融化、變得黏黏的」——這就是「糟」藏起來的東西。'],
+        onOk: () => { parts.push('because it melted and turned sticky'); paint(); } },
+      { lbl: 'Slot 3 — when it did it', stack: true,
+        opts: [
+          ['…when <b>it got hot</b>.', '……當它變熱的時候。', true],
+          ['…<b>sometimes</b>.', '……有時候。', false, 'When exactly? Name the weather — that is the half that makes it exact.', '到底什麼時候？講出天氣——精確就是靠這一半。']
+        ],
+        tell: ['<b>When it got hot.</b> Naming the weather is the half that makes it exact.', '答案是「當它變熱的時候」。講出天氣，才叫精確。'],
+        onOk: () => { parts.push('when it got hot,'); paint(); } },
+      { lbl: 'Slot 4 — the opposite problem', stack: true,
+        opts: [
+          ['…and it was <b>also bad in winter</b>.', '……而且冬天也很糟。', false, '"Bad" is back. What did the cold actually do to it?', '「糟」又出現了。冷到底對它做了什麼？'],
+          ['…and <b>cracked when it got cold</b>.', '……而且一冷就裂開。', true]
+        ],
+        tell: ['The opposite half: it <b>cracked when it got cold</b>.', '相反的那一半：它「一冷就裂開」。'],
+        onOk: () => { parts.push('and cracked when it got cold.'); paint(' trueok'); $('s4st4').hidden = false; s4a4.unlock(); } }
+    ]
+  });
+  return S;
+})();
+
+const s4a4 = choice('s4a4', {
+  opts: [
+    ['Because it uses more words', '因為它用了比較多字'],
+    ['Because it tells the reader what actually went wrong, so it could be fixed', '因為它講出了到底哪裡出問題，這樣才修得好'],
+    ['Because it uses harder words', '因為它用了比較難的字']
+  ],
+  ans: 1,
+  good: ['Yours, in your own words. Exact beats long every single time.', '你自己的話。精確永遠贏過冗長。'],
+  h1: ['Back one step — I cleared the pattern and locked this question. Build it again and this one opens back up.', '退回上一步——句型我清空了，這題先鎖住。再組一次，這題就會解鎖。'],
+  h2: ['"Rubber was extremely dreadfully bad" is longer and harder. Is it better?', '「Rubber was extremely dreadfully bad」又長又難。它比較好嗎？'],
+  tell: ['The real reason: an exact answer names what went wrong, so somebody could actually fix it.', '真正的原因：精確的答案講出了哪裡出問題，別人才有辦法真的去修。'],
+  retest: {
+    q: ['Your bike will not go. Which sentence gets it fixed fastest?', '你的腳踏車不能騎。哪一句最快修好？'],
+    opts: [['"The chain came off the back wheel."', '「鏈條從後輪掉出來了。」'], ['"My bike is bad."', '「我的腳踏車很爛。」']],
+    ans: 0,
+    why: ['Name the exact fault and the fix takes one minute. Rematch time!', '講出精確的故障，一分鐘就修好。再戰時間到！']
+  },
+  firstWrong: () => { s4build.reset(); $('s4st3').classList.add('redo'); $('s4st3').scrollIntoView({block:'center'}); },
+  pass: () => { openGate('s4try'); $('s4try').scrollIntoView({block:'center'}); }
+});
+
+/* Try it — the 1839 rubber lab */
+(function(){
+  const host = $('s4lab');
+  const holder = document.createElement('div');
+  holder.id = 's4labR';
+  host.appendChild(holder);
+  steps('s4labR', {
+    rounds: [
+      { lbl: 'Test 1 · summer',
+        opts: [['▶ Heat the sample to 40°C', '把樣本加熱到 40°C', true, '', '', 'Look at the sample — it is sagging, and the bench is sticky.', '看看樣本——它垮下去了，實驗桌變得黏黏的。']],
+        onOk: () => { $('s4hot').classList.add('done'); $('s4hotres').textContent = 'sample is sagging…'; } },
+      { lbl: 'Write down exactly what happened', stack: true,
+        opts: [
+          ['It got very bad.', '它變得很糟。', false, 'That is the old word. Look at the sample — what is it DOING?', '那是舊的說法。看著樣本——它「正在做」什麼？'],
+          ['It melted and turned sticky.', '它融化了、變得黏黏的。', true, '', '', 'Recorded. That is a scientist writing.', '記錄完成。這才是科學家的寫法。'],
+          ['It got a bit warmer.', '它變得有點溫。', false, 'Warm is what we DID to it. What happened to the rubber because of the heat?', '「變溫」是我們對它做的事。因為熱，橡膠發生了什麼？']
+        ],
+        onOk: () => { $('s4hotres').textContent = 'melts + turns sticky'; } },
+      { lbl: 'Test 2 · winter',
+        opts: [['▶ Chill the sample to −10°C', '把樣本冷卻到 −10°C', true, '', '', 'It has gone stiff. Tap it once with the hammer…', '它變硬了。用槌子敲一下……']],
+        onOk: () => { $('s4cold').classList.add('done'); $('s4coldres').textContent = 'sample is stiff…'; } },
+      { lbl: 'Write down exactly what happened', stack: true,
+        opts: [
+          ['It cracked.', '它裂開了。', true, '', '', 'Recorded. Two exact failures, opposite weather.', '記錄完成。兩個精確的故障，天氣相反。'],
+          ['It stopped working properly.', '它就不太能用了。', false, 'Vague again. You just heard it break — say the sound in words.', '又模糊了。你剛剛聽到它斷掉——用文字把那個聲音講出來。'],
+          ['It got very bad.', '它變得很糟。', false, 'Same three words that started all this. What did the cold DO to it?', '就是這三個字害的。冷對它「做了」什麼？']
+        ],
+        onOk: () => { $('s4coldres').textContent = 'cracks'; } },
+      { lbl: 'Last piece · what was Goodyear after?', stack: true,
+        opts: [
+          ['Rubber that was less bad', '沒那麼糟的橡膠', false, 'Less bad than what, in what weather? Say what he wanted it to DO.', '比什麼沒那麼糟？在什麼天氣？講出他要它「做得到什麼」。'],
+          ['Rubber that stayed strong at any temperature', '在任何溫度下都保持強韌的橡膠', true, '', '', 'Green light 🟢 Two exact problems and the goal — that is the full answer to #25.', '綠燈 🟢 兩個精確問題加上目標——這就是第 25 題的完整答案。'],
+          ['A new kind of shoe', '一種新的鞋子', false, 'He did make things from rubber — but the question asks about the PROBLEM he was solving.', '他的確用橡膠做東西——但題目問的是他要解決的「問題」。']
+        ],
+        onOk: () => {
+          setMsg($('s4msg'), 'Rematch won 🥊 Hot → melts and turns sticky. Cold → cracks. He wanted rubber that stayed strong at any temperature.' + Z('再戰成功 🥊 熱→融化變黏；冷→裂開。他要的是任何溫度都保持強韌的橡膠。'), 'good');
+        } }
+    ],
+    done: () => openGate('s4model')
+  });
+})();
+
+/* ================= SECTION 5 · the biggest reason ================= */
+choice('s5ask', {
+  opts: [
+    ['Yes — send the robot anyway', '會——還是派機器人去'],
+    ['No — send the person, they are faster', '不會——派人去，人比較快']
+  ],
+  ans: 0,
+  good: ['Yes. And that just answered the whole question: if being slow does not stop us, then <mark>time was never the real reason</mark>.', '會。而這句話已經回答了整題：如果「慢」都擋不住我們，那時間從來就不是真正的理由。'],
+  h1: ['Picture the person standing at the bottom of the ocean. What is the water doing to them?', '想像那個人站在海底。水正在對他做什麼？'],
+  h2: ['Pick one: the job finished quickly, or everybody comes home tonight.', '二選一：工作很快做完，還是今晚每個人都回得了家。'],
+  tell: ['Yes — we would still send the robot. Which proves time was never the real reason.', '會——我們還是會派機器人。這就證明了時間從來不是真正的理由。'],
+  retest: {
+    q: ['So "it saves time" is…', '所以「可以省時間」是……'],
+    opts: [['a small bonus, not the main reason', '一個小紅利，不是主要理由'], ['the main reason', '主要理由']],
+    ans: 0,
+    why: ['Bonus reasons are true. They are just not the biggest.', '紅利型的理由是真的，只是它們不是最大的那個。']
+  },
+  pass: () => openGate('s5exp')
+});
+
+/* step 1 — send each danger to the right place */
+(function(){
+  const ROWS = [
+    ['🚀 Out in space', '在太空中', 'radiation, up to 1,000× what a body can take', 'Is there deep water in space for the pressure to come from?', '太空裡有深水可以產生那種水壓嗎？'],
+    ['🌊 Deep in the ocean', '在深海裡', 'crushing water pressure', 'Sunlight barely reaches down there. What is squeezing you from every side?', '陽光幾乎照不到那麼深。是什麼從四面八方擠壓你？']
+  ];
+  const host = $('s5match'), msg = $('s5m1');
+  let done = 0;
+  ROWS.forEach(r => {
+    const row = document.createElement('div'); row.className = 'srow';
+    const ph = document.createElement('span'); ph.className = 'ph';
+    ph.innerHTML = r[0] + '<span class="zhi">（' + r[1] + '）</span>';
+    const ops = document.createElement('span'); ops.className = 'ops';
+    const why = document.createElement('span'); why.className = 'why';
+    ['radiation, up to 1,000× what a body can take', 'crushing water pressure'].forEach(t => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'opb wide'; b.textContent = t;
+      b.addEventListener('click', () => {
+        if (row.classList.contains('done')) return;
+        if (t === r[2]){
+          b.classList.add('ok');
+          [...ops.children].forEach(x => x.disabled = true);
+          row.classList.add('done');
+          why.innerHTML = r[0] + ' → ' + r[2] + Z('配對正確。');
+          done++;
+          if (done === ROWS.length){
+            setMsg(msg, 'Two different places, two different ways to be killed. Neither one has anything to do with time.' + Z('兩個不同的地方，兩種不同的死法。兩個都跟時間無關。'), 'good');
+            $('s5st2').hidden = false;
+          } else {
+            setMsg(msg, 'Matched. One place left.' + Z('配對成功。還剩一個地方。'), 'good');
+          }
+        } else {
+          b.classList.add('no');
+          setTimeout(() => b.classList.remove('no'), 700);
+          setMsg(msg, r[3] + Z(r[4]), 'warn');
+        }
+      });
+      ops.appendChild(b);
+    });
+    row.appendChild(ph); row.appendChild(ops); row.appendChild(why);
+    host.appendChild(row);
+  });
+})();
+
+/* step 2 — take each reason away and see what breaks */
+(function(){
+  const host = $('s5weigh'), out = $('s5weighout');
+  const R = [
+    ['⏱️ It saves time', 'Take it away: the mission takes longer. Annoying — and everybody still comes home.', '把它拿掉：任務會花比較久。很煩——但每個人都還是回得了家。'],
+    ['🦺 It keeps people safe', 'Take it away: a person goes instead — into the radiation, or into the crushing pressure.', '把它拿掉：換成人去——去到那個輻射裡，或那個把人壓扁的水壓裡。']
+  ];
+  let seen = 0;
+  R.forEach(r => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'opb wide'; b.textContent = r[0];
+    b.addEventListener('click', () => {
+      if (b.disabled) return;
+      b.disabled = true; b.classList.add('ok');
+      const card = document.createElement('div'); card.className = 'ev';
+      card.innerHTML = '<span class="lbl">Without ' + r[0] + '</span>' + r[1] + Z(r[2]);
+      out.appendChild(card);
+      seen++;
+      if (seen === R.length) ask();
+    });
+    host.appendChild(b);
+  });
+  function ask(){
+    const p = document.createElement('p');
+    p.innerHTML = 'One costs you time. One costs you a person. So the biggest reason is…' + Z('一個讓你損失時間，一個讓你損失一個人。所以最大的理由是……');
+    $('s5a2').insertBefore(p, $('s5a2x'));
+    choice('s5a2x', {
+      opts: [['It saves time', '可以省時間'], ['It keeps people safe', '可以保護人的安全']],
+      ans: 1,
+      good: ['The one you cannot afford to lose is the biggest reason. Always.', '「輸不起的那個」就是最大的理由。永遠都是。'],
+      h1: ['Which loss would you take back if you could only take one back?', '如果只能挽回一個，你會挽回哪一個損失？'],
+      h2: ['A slow mission still ends with everyone alive. What does the other one end with?', '慢一點的任務結束時大家都還活著。另一個結束時是什麼樣子？'],
+      tell: ['Keeping people safe. Time is the bonus you mention afterwards.', '是保護人的安全。時間是後面才順帶提到的紅利。'],
+      retest: {
+        q: ['A rescue team sends a drone into a collapsed building instead of a person. The biggest reason is…', '救難隊派無人機、而不是派人，進到倒塌的大樓。最大的理由是……'],
+        opts: [['the building could fall on a person', '大樓可能會壓到人'], ['drones are quicker', '無人機比較快']],
+        ans: 0,
+        why: ['The reason with a person in it is always the biggest one.', '「裡面有人」的那個理由永遠是最大的。']
+      },
+      pass: () => { $('s5st3').hidden = false; }
+    });
+  }
+  const holder = document.createElement('div');
+  holder.id = 's5a2x';
+  $('s5a2').appendChild(holder);
+})();
+
+const s5a3 = choice('s5a3', {
+  opts: [
+    ['Drones are fun to fly', '無人機飛起來很好玩'],
+    ['So a firefighter does not have to walk into the fire', '這樣消防員就不用走進火場'],
+    ['Drones are cheaper than fire trucks', '無人機比消防車便宜']
+  ],
+  ans: 1,
+  good: ['Same shape as your robot question: the biggest reason is always the one about the person.', '跟你那題機器人一模一樣的形狀：最大的理由永遠是「跟人有關」的那一個。'],
+  h1: ['Two of these are true and one is huge. Which one is about somebody not getting hurt?', '這三個裡有兩個是真的，有一個是「重大」的。哪一個講的是「有人不會受傷」？'],
+  h2: ['Money and fun are bonuses. What is the thing a burning building can take away from you?', '錢和好玩都是紅利。失火的大樓會從你身上奪走什麼？'],
+  tell: ['So a firefighter does not have to walk into the fire — safety is the biggest reason again.', '為了讓消防員不用走進火場——最大的理由又是「安全」。'],
+  retest: {
+    q: ['A bomb-disposal robot is used because…', '拆彈機器人被使用，是因為……'],
+    opts: [['a person would be killed if it went off', '如果炸彈爆炸，人會被炸死'], ['it looks impressive', '它看起來很厲害']],
+    ans: 0,
+    why: ['Every time: find the reason with a person in it.', '每次都一樣：找出「裡面有人」的那個理由。']
+  },
+  pass: () => { $('s5st4').hidden = false; s5a4.unlock(); }
+});
+
+const s5a4 = choice('s5a4', {
+  opts: [
+    ['Because it is not true', '因為那不是真的'],
+    ['Because it is only the small bonus — the big reason is that a person would be hurt out there', '因為那只是小紅利——大理由是人去了那裡會受傷'],
+    ['Because it was too short', '因為它太短了']
+  ],
+  ans: 1,
+  good: ['Notice what you did NOT say: you did not call your answer wrong. It was true, it was just not the biggest.', '注意你「沒有」說什麼：你沒有說自己的答案是錯的。它是真的，只是不是最大的那個。'],
+  h1: ['Back one step — I reset the firefighter question and locked this one. Run it again and this one opens back up.', '退回上一步——消防員那題我重置了，這題先鎖住。再跑一次，這題就會解鎖。'],
+  h2: ['Robots really are faster at some of this, and #23 proved a short answer can be perfect. So what was missing here?', '機器人在有些事上真的比較快，而且第 23 題證明了短答案也能完美。所以這裡少的到底是什麼？'],
+  tell: ['It was true but small. The big reason is that a person would be hurt out there.', '它是真的，但很小。大理由是人去了那裡會受傷。'],
+  retest: {
+    q: ['Before you write a "why" answer, ask yourself…', '寫 why 的答案之前，先問自己……'],
+    opts: [['what is the biggest reason, not the first one I thought of', '最大的理由是什麼，不是我最先想到的那個'], ['what is the shortest thing I can write', '我可以寫的最短的東西是什麼']],
+    ans: 0,
+    why: ['Biggest, not first. Mission control is waiting.', '最大的，不是最先想到的。任務指揮中心在等你了。']
+  },
+  firstWrong: () => { s5a3.reset(); $('s5st3').classList.add('redo'); $('s5st3').scrollIntoView({block:'center'}); },
+  pass: () => { openGate('s5try'); $('s5try').scrollIntoView({block:'center'}); }
+});
+
+/* Try it — mission control */
+(function(){
+  const host = $('s5mission');
+  const disp = document.createElement('p');
+  disp.className = 'sentbox';
+  disp.innerHTML = 'We send robots because it is too dangerous for people to <u>______</u>.';
+  const holder = document.createElement('div');
+  holder.id = 's5missionR';
+  host.appendChild(disp); host.appendChild(holder);
+  function show(txt, cls){ disp.className = 'sentbox' + (cls || ' built'); disp.innerHTML = txt; }
+
+  steps('s5missionR', {
+    rounds: [
+      /* ---- mission 1 ---- */
+      { lbl: 'Mission 1 of 2 · step 1 — read the site', stack: true,
+        q: ['<b>Destination: an ocean trench, 10 km straight down.</b> What is down there that a human body cannot handle?', '<b>目的地：海溝，垂直往下 10 公里。</b>那裡有什麼是人體撐不住的？'],
+        opts: [
+          ['Crushing water pressure', '會把人壓扁的水壓', true],
+          ['There is no phone signal', '那裡沒有手機訊號', false, 'Annoying, but nobody dies of it. What is pressing on you from every side down there?', '很煩，但不會死人。在那個深度，是什麼從四面八方壓著你？'],
+          ['It is very far from home', '離家很遠', false, 'Far is a time problem. What would actually happen to the person’s body?', '「遠」是時間問題。人的身體實際上會怎麼樣？']
+        ] },
+      { lbl: 'Mission 1 · step 2 — who goes?', stack: true,
+        opts: [
+          ['A diver in a wetsuit', '穿潛水衣的潛水員', false, 'At 10 km the pressure would crush a diver instantly. Who can we send instead?', '在 10 公里深，水壓會瞬間壓扁潛水員。那我們可以派誰去？'],
+          ['A robot submarine', '機器人潛水艇', true]
+        ] },
+      { lbl: 'Mission 1 · step 3 — write the reason', stack: true,
+        opts: [
+          ['…too dangerous for people to <b>get there quickly</b>.', '……人很難「快速抵達」那裡。', false, 'That is a time reason again. What would actually happen to the person down there?', '那又是時間的理由。人在那下面實際上會怎麼樣？'],
+          ['…too dangerous for people to <b>dive that deep — the water pressure would crush them</b>.', '……人潛不了那麼深——水壓會把人壓扁。', true, '', '', 'That names the danger. A reader can see it.', '這句講出了危險。讀的人看得到畫面。']
+        ],
+        onOk: () => show('We send robots because it is too dangerous for people to <u>dive that deep — the water pressure would crush them</u>.') },
+      { lbl: 'Mission 1 · step 4 — where does "it saves time" belong?', stack: true,
+        opts: [
+          ['At the end, as a bonus', '放在最後，當成紅利', true, '', '', 'Mission 1 complete 🛟 Biggest reason first, bonus after.', '任務 1 完成 🛟 最大的理由放前面，紅利放後面。'],
+          ['At the start, as the main reason', '放在最前面，當成主要理由', false, 'You already decided it was not the main reason. Where do bonuses go?', '你剛剛已經判定它不是主要理由了。紅利要放在哪裡？']
+        ],
+        onOk: () => show('We send robots because it is too dangerous for people to <u>dive that deep — the water pressure would crush them</u>. It also saves time.', ' trueok') },
+
+      /* ---- mission 2 ---- */
+      { lbl: 'Mission 2 of 2 · step 1 — read the site', stack: true,
+        q: ['<b>Destination: deep space.</b> What is out there that a human body cannot handle?', '<b>目的地：外太空深處。</b>那裡有什麼是人體撐不住的？'],
+        opts: [
+          ['Radiation — up to 1,000 times what a body can take', '輻射——可達人體能承受的一千倍', true],
+          ['There is no gravity to walk in', '那裡沒有重力可以走路', false, 'Astronauts really do float — but which danger is measured at 1,000 times what a body can take?', '太空人的確會飄——但哪一個危險是「人體能承受的一千倍」？'],
+          ['It is a long way away', '距離很遠', false, 'Distance is a time problem again. What would damage the body itself?', '距離又是時間問題。什麼會傷害到身體本身？']
+        ],
+        onOk: () => show('We send robots because it is too dangerous for people to <u>______</u>.', '') },
+      { lbl: 'Mission 2 · step 2 — who goes?', stack: true,
+        opts: [
+          ['A robot rover', '機器人探測車', true],
+          ['An astronaut with sunglasses', '戴太陽眼鏡的太空人', false, 'Sunglasses stop light, not radiation. Who can sit in that for months and be fine?', '太陽眼鏡擋的是光，不是輻射。誰可以在那裡待好幾個月還沒事？']
+        ] },
+      { lbl: 'Mission 2 · step 3 — write the reason', stack: true,
+        opts: [
+          ['…too dangerous for people to <b>work where the radiation is 1,000 times what a body can take</b>.', '……人不能在輻射高達人體承受量一千倍的地方工作。', true, '', '', 'Danger named, number included. Strong sentence.', '危險講清楚了，數字也放進去了。很有力的句子。'],
+          ['…too dangerous for people to <b>travel that far</b>.', '……人不能跑那麼遠。', false, 'Far is time and distance. What is in space that would hurt the body?', '「遠」是時間和距離的問題。太空裡有什麼會傷害身體？']
+        ],
+        onOk: () => show('We send robots because it is too dangerous for people to <u>work where the radiation is 1,000 times what a body can take</u>.') },
+      { lbl: 'Mission 2 · step 4 — say the habit back', stack: true,
+        opts: [
+          ['Write the first reason I think of, quickly', '把最先想到的理由趕快寫下來', false, 'That is the move that produced "It can save time". What is the better question to ask yourself?', '那正是「It can save time」是怎麼來的。應該問自己什麼更好的問題？'],
+          ['Ask what the <b>biggest</b> reason is, not the first one I thought of', '問自己「最大的理由」是什麼，不是最先想到的那個', true, '', '', 'Green light 🟢 Two missions, both answered with the danger named.', '綠燈 🟢 兩個任務，兩個答案都把危險講清楚了。']
+        ],
+        onOk: () => show('We send robots because it is too dangerous for people to <u>work where the radiation is 1,000 times what a body can take</u>.', ' trueok') }
+    ],
+    done: () => openGate('s5model')
+  });
+})();
+/* ================= QUIZ ================= */
+(function(){
+  const QUIZ = [
+    { q: 'Which chain still has a hole in the middle?', zh: '哪一條鏈中間還有洞？',
+      opts: [
+        ['A meteorite hit → dust filled the sky → sunlight was blocked → plants died', '隕石撞擊→塵埃佈滿天空→陽光被擋住→植物死亡'],
+        ['A meteorite hit → the dinosaurs died', '隕石撞擊→恐龍死亡'],
+        ['Dust blocked the sun → plants could not make food → plant-eaters starved', '塵埃擋住太陽→植物做不出食物→草食動物餓死']
+      ],
+      ans: 1, why: 'The crash and the dying are the two ends. Dust, sunlight and plants live in between.', whyzh: '撞擊和死亡是兩端。塵埃、陽光、植物住在中間。', go: '#s1' },
+    { q: '"The dust blocked the sun and there ___ no food." Which one?', zh: '「The dust blocked the sun and there ___ no food.」哪一個？',
+      opts: [['is', 'is'], ['was', 'was'], ['will be', 'will be']],
+      ans: 1, why: 'The story finished long ago, so every verb in it looks back — blocked, was, died.', whyzh: '故事早就結束了，所以裡面每個動詞都回頭看——blocked、was、died。', go: '#s1' },
+    { q: 'Which sentence has two verbs bumping into each other?', zh: '哪一句有兩個動詞撞在一起？',
+      opts: [
+        ['A rainforest has many animals live together.', 'A rainforest has many animals live together.'],
+        ['A rainforest is warm and wet all year.', 'A rainforest is warm and wet all year.'],
+        ['Many animals live in the rainforest.', 'Many animals live in the rainforest.']
+      ],
+      ans: 0, why: '"has" and "live" with nothing between them. Glue it: animals THAT live together.', whyzh: 'has 和 live 中間沒東西。用 that 黏起來：animals that live together。', go: '#s2' },
+    { q: '"Ice floats on water. It is less dense than water." Which word joins them into one strong sentence?', zh: '「Ice floats on water. It is less dense than water.」用哪個字把兩句接成一句？',
+      opts: [['that', 'that'], ['because', 'because'], ['and', 'and']],
+      ans: 1, why: 'The second sentence is the REASON for the first, and "because" is the reason word.', whyzh: '第二句是第一句的「理由」，而 because 就是講理由的字。', go: '#s2' },
+    { q: 'Which one is a machine that is NOT a robot yet?', zh: '哪一個還「不是」機器人？',
+      opts: [['A drone that flies itself', '會自己飛的無人機'], ['A toaster', '烤麵包機'], ['A robot vacuum', '掃地機器人']],
+      ans: 1, why: 'A toaster waits for you to push the lever — it cannot move, sense or decide by itself.', whyzh: '烤麵包機在等你壓拉桿——它不能自己移動、感測或決定。', go: '#s3' },
+    { q: 'Which answer names the exact problem?', zh: '哪一個答案講出了「精確」的問題？',
+      opts: [
+        ['Rubber was very bad.', '橡膠很糟。'],
+        ['Rubber melted and turned sticky when it got hot.', '橡膠一熱就融化、變得黏黏的。'],
+        ['Rubber was not good enough.', '橡膠不夠好。']
+      ],
+      ans: 1, why: 'It names what happened AND when. The other two could mean anything.', whyzh: '它同時講出「發生什麼」和「什麼時候」。另外兩個可以是任何意思。', go: '#s4' },
+    { q: 'Scientists send a robot into a volcano. What is the BIGGEST reason?', zh: '科學家把機器人送進火山。最大的理由是什麼？',
+      opts: [
+        ['Robots walk faster than people', '機器人走得比人快'],
+        ['A person would be burned by the heat and the gas', '人會被高溫和毒氣灼傷'],
+        ['Robots do not need lunch breaks', '機器人不用午休']
+      ],
+      ans: 1, why: 'All three can be true — but the biggest reason is always the one with a person in it.', whyzh: '三個都可能是真的——但最大的理由永遠是「裡面有人」的那一個。', go: '#s5' },
+    { q: '"Which jobs suit robots, and which suit people?" How many parts must your answer have?', zh: '「哪些工作適合機器人，哪些適合人？」你的答案必須有幾個部分？',
+      opts: [['One', '一個'], ['Two', '兩個'], ['Three', '三個']],
+      ans: 1, why: 'A question with "and" in the middle is two questions wearing one coat. Answer both halves.', whyzh: '中間有 and 的題目，是兩題穿同一件外套。兩半都要答。', go: '#tips' }
+  ];
+  const dots = $('qdots'), body = $('qbody');
+  function start(){
+    let i = 0, score = 0;
+    const marks = [];
+    dots.innerHTML = QUIZ.map(() => '<i></i>').join('');
+    function paint(){
+      [...dots.children].forEach((d, k) => {
+        d.className = marks[k] === true ? 'ok' : marks[k] === false ? 'no' : (k === i ? 'cur' : '');
+      });
+    }
+    function show(){
+      paint();
+      const Q = QUIZ[i];
+      body.innerHTML = '';
+      const q = document.createElement('p');
+      q.className = 'qq';
+      q.innerHTML = 'Q' + (i + 1) + '. ' + Q.q + Z(Q.zh);
+      const wrap = document.createElement('div'); wrap.className = 'choices';
+      const msg = document.createElement('div'); msg.className = 'msg'; msg.hidden = true;
+      let answered = false;
+      Q.opts.forEach((o, k) => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'choice';
+        b.innerHTML = o[0] + Z(o[1]);
+        b.addEventListener('click', () => {
+          if (answered) return;
+          answered = true;
+          [...wrap.children].forEach(x => x.disabled = true);
+          wrap.children[Q.ans].classList.add('ok');
+          if (k === Q.ans){ score++; marks[i] = true; setMsg(msg, 'Correct! ' + Q.why + Z(Q.whyzh), 'good'); }
+          else { marks[i] = false; b.classList.add('no'); setMsg(msg, Q.why + Z(Q.whyzh) + ' <a href="' + Q.go + '">Go back and walk it again</a>', 'bad'); }
+          paint();
+          const next = document.createElement('button');
+          next.type = 'button'; next.className = 'btn';
+          next.style.marginTop = '.6rem';
+          next.textContent = (i + 1 < QUIZ.length) ? 'Next ▸' : 'See my stars ★';
+          next.addEventListener('click', () => { i++; if (i < QUIZ.length) show(); else end(); });
+          body.appendChild(next);
+        });
+        wrap.appendChild(b);
+      });
+      body.appendChild(q); body.appendChild(wrap); body.appendChild(msg);
+    }
+    function end(){
+      paint();
+      const stars = score >= 7 ? '★★★' : score >= 5 ? '★★☆' : '★☆☆';
+      const line = score === QUIZ.length ? 'Every trap spotted before it spotted you. 🎉'
+        : score >= 6 ? 'Strong. Peek at the wobbly ones, then go fix your workbook.'
+        : 'Good try — walk the sections again, the machines are patient.';
+      const zh = score === QUIZ.length ? '每個陷阱都被你先抓到了。'
+        : score >= 6 ? '很強。看一下還不穩的那幾題，然後去改作業本。'
+        : '不錯的嘗試——段落再走一次，那些機器很有耐心。';
+      body.innerHTML = '';
+      const box = document.createElement('div'); box.className = 'qresult';
+      box.innerHTML = '<div class="stars">' + stars + '</div><div class="sc">' + score + ' / ' + QUIZ.length + '</div><p>' + line + Z(zh) + '</p>';
+      const missed = QUIZ.map((Q, k) => marks[k] === false ? '<a href="' + Q.go + '">Q' + (k + 1) + '</a>' : null).filter(Boolean);
+      if (missed.length){
+        const p = document.createElement('p');
+        p.innerHTML = 'Worth another walk: ' + missed.join(' · ') + Z('這幾題值得再走一次。');
+        box.appendChild(p);
+      }
+      const again = document.createElement('button');
+      again.type = 'button'; again.className = 'btn ghost';
+      again.textContent = '↻ Play again';
+      again.addEventListener('click', start);
+      box.appendChild(again);
+      body.appendChild(box);
+    }
+    show();
+  }
+  start();
+})();
+
+/* ================= CORRECTION LIST ================= */
+(function(){
+  const FIXES = [
+    ['<b>Page 117, Q7</b> — cross out "It can save time" and write <b>Robots keep people safe. In space the radiation can be 1,000 times more than a human body can take, and deep in the ocean the water pressure is crushing.</b>', 'biggest reason first, time as a bonus', '第 117 頁第 7 題——劃掉「It can save time」，改寫成「機器人是為了保護人的安全：太空輻射可達人體承受量的一千倍，深海水壓會把人壓扁」。最大的理由放前面，省時間當紅利。'],
+    ['<b>Page 119, Q10</b> — swap "changed the climate" for the links a reader can see: <b>the crash threw dust into the air → the dust blocked the sunlight → plants could not make food and died → plant-eaters starved → meat-eaters died too.</b> And change "there is" to <b>there was</b>.', 'every link, and the whole story in the past', '第 119 頁第 10 題——把「changed the climate」換成讀的人看得見的那幾環：撞擊揚起塵埃→塵埃擋住陽光→植物做不出食物而死→草食恐龍餓死→肉食恐龍也死。另外 there is 改成 there was。'],
+    ['<b>Page 119, Q11</b> — swap the electronic cat for an ordinary machine: <b>A vacuum cleaner is a machine. If it were a robot, it could move around the house by itself, sense walls and furniture, and decide where to clean.</b>', 'start from a machine, not a robot', '第 119 頁第 11 題——把電子貓換成普通機器：吸塵器是機器；如果它是機器人，它可以自己在房子裡移動、感測牆壁和家具、自己決定要打掃哪裡。'],
+    ['<b>Page 121, Q22</b> — add the glue word: <b>Earth is a system because it has many parts — air, water, land, and living things — that work together as one whole.</b>', 'one little word: that', '第 121 頁第 22 題——把黏合詞加上去：地球是一個系統，因為它有很多部分（空氣、水、陸地、生物）一起運作成一個整體。關鍵是那個 that。'],
+    ['<b>Page 121, Q25</b> — replace "very bad" with the two exact problems: <b>Natural rubber melted and turned sticky when it got hot, and cracked when it got cold.</b>', 'name what happened and when', '第 121 頁第 25 題——把「very bad」換成兩個精確的問題：天然橡膠一熱就融化變黏、一冷就裂開。要講出發生什麼、什麼時候。'],
+    ['💡 <b>Page 118, Q6</b> — fix the verbs on Lavoisier: <b>They broke substances down again and again until they could not be broken down any further.</b>', 'bonus — not one of the five, just a sharper way to say it', '💡 第 118 頁第 6 題（加分題，不在那五題裡，只是換一個更精準的說法）——拉瓦節那句的動詞修一下：他們不斷分解物質，直到再也分解不下去為止。']
+  ];
+  const host = $('fixlist'), msg = $('fixmsg');
+  let done = 0;
+  FIXES.forEach(f => {
+    const lab = document.createElement('label');
+    const inp = document.createElement('input');
+    inp.type = 'checkbox';
+    const txt = document.createElement('span');
+    txt.className = 'txt';
+    txt.innerHTML = f[0] + '<span class="w">' + f[1] + '</span>' + Z(f[2]);
+    inp.addEventListener('change', () => {
+      lab.classList.toggle('done', inp.checked);
+      done += inp.checked ? 1 : -1;
+      if (done === FIXES.length){
+        setMsg(msg, '🎉 Workbook fixed! Every answer now says the whole thing — and your notebook just got one page thicker. <a href="index.html">📒 See how many you have now</a>.' + Z('作業本修好了！每個答案現在都把整件事講完了——而且你的筆記本又厚了一頁。<a href="index.html">📒 看看現在有幾課了</a>。'), 'good');
+      } else {
+        msg.hidden = true;
+      }
+    });
+    lab.appendChild(inp); lab.appendChild(txt);
+    host.appendChild(lab);
+  });
+})();
+
+})();
+</script>
+</body>
+</html>

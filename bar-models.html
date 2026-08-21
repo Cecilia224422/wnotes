@@ -1,0 +1,2216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>William's Correction Notes — Bar Models</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Huninn&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html{font-size:clamp(16px, 0.6vw + 13.3px, 23px);-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:#E4E5E8;color:#2E3037;font-family:'Fredoka',system-ui,sans-serif;line-height:1.5;
+  --ink:#2E3037;--pencil:#6B6E76;--gray:#9C9EA5;--line:#E3E4E8;--line2:#D9DADF;--soft:#F4F4F6;--soft2:#F1F1F3;
+  --red:#E2463B;--green:#2FA36B;--hl:#FFF0A0;--paper:#FAFAFA;--rule:#D9DCE1;--margin:#F0A6B0;
+  --tb:#3E6FD9;--tb-soft:#E8EEFC;--tb-deep:#2B52AE;--rl:#F08A2C;--rl-soft:#FFF1E1;--rl-deep:#C4680F;
+  --accent:#3E6FD9;--accent-soft:#E8EEFC;--accent-deep:#2B52AE;
+  --ruleh:1.875rem;
+}
+body[data-mode="reallife"]{--accent:#F08A2C;--accent-soft:#FFF1E1;--accent-deep:#C4680F}
+
+/* ---------- notebook page ---------- */
+.notebook{
+  position:relative;width:100%;margin:0 auto;background-color:var(--paper);min-height:100vh;
+  box-shadow:0 0 0 1px #d6d7db,0 .6rem 2rem rgba(40,42,50,.14);
+  background-image:
+    linear-gradient(to right,transparent 2.875rem,var(--margin) 2.875rem,var(--margin) calc(2.875rem + 2px),transparent calc(2.875rem + 2px)),
+    repeating-linear-gradient(to bottom,transparent 0,transparent calc(var(--ruleh) - 1px),var(--rule) calc(var(--ruleh) - 1px),var(--rule) var(--ruleh));
+}
+@media(min-width:1200px){.notebook{max-width:80vw;margin:1.5rem auto}}
+.holes{position:absolute;top:0;bottom:0;left:0;width:2.2rem;pointer-events:none;
+  background:radial-gradient(circle at 1rem 50%,#E4E5E8 0 .36rem,#cfd0d5 .36rem .42rem,transparent .46rem) 0 1.2rem/2.2rem 3.75rem repeat-y}
+.page{padding:1.25rem 1rem 3rem 3.6rem}
+@media(min-width:760px){.page{padding:2rem 2.5rem 4rem 4.5rem}}
+
+/* ---------- text basics ---------- */
+.hand{font-family:'Caveat',cursive;color:var(--pencil)}
+.date{font-size:1.35rem;margin:0 0 .2rem;line-height:1.2}
+h1{font-size:2.1rem;line-height:1.15;margin:.15rem 0 .7rem;font-weight:700;letter-spacing:-.01em}
+h1 .zh{font-size:.5em;font-weight:400;margin-top:.25rem;letter-spacing:0}
+mark{background:linear-gradient(transparent 38%,var(--hl) 38%,var(--hl) 92%,transparent 92%);color:inherit;padding:0 .12em;border-radius:.15em}
+.lead{font-size:1.05rem;margin:0 0 1.1rem;max-width:46rem}
+p{margin:.4rem 0}
+b{font-weight:600}
+a{color:var(--accent-deep)}
+
+/* Chinese layer */
+.zh{display:none;font-family:'Huninn','Zen Maru Gothic','PingFang TC','Noto Sans TC',sans-serif;color:var(--pencil);font-size:.88em;line-height:1.55;font-weight:400}
+body.zh-on .zh{display:block}
+.zhi{display:none;font-family:'Huninn','Zen Maru Gothic','PingFang TC','Noto Sans TC',sans-serif;color:inherit;font-size:.92em;font-weight:400}
+body.zh-on .zhi{display:inline}
+.pill .zhi,.tag .zhi{color:#fff}
+
+/* vocab + progress */
+.vocab{display:grid;grid-template-columns:repeat(auto-fill,minmax(9.5rem,1fr));gap:.5rem;margin:0 0 1.2rem;max-width:60rem}
+.vcard{background:#fff;border:1px solid var(--line);border-radius:.75rem;padding:.45rem .7rem .5rem;font-size:.84rem;box-shadow:0 1px 0 var(--line2);line-height:1.4}
+.vcard b{display:block;font-size:.98rem;color:var(--ink)}
+.vcard .def{color:var(--pencil)}
+.scores{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;max-width:40rem;margin:0 0 1.4rem}
+.score{background:#fff;border:1px solid var(--line);border-radius:1rem;padding:.7rem .5rem .6rem;text-align:center;box-shadow:0 2px 0 var(--line2)}
+.score .n{font-size:1.85rem;font-weight:700;line-height:1.1}
+.score .l{font-size:.75rem;color:var(--gray);text-transform:uppercase;letter-spacing:.05em;margin-top:.15rem}
+.score .zh{font-size:.78rem}
+
+/* ---------- sticky toolbar ---------- */
+.toolbar{position:sticky;top:0;z-index:30;background:var(--paper);margin:0 -.5rem 1.2rem;padding:.6rem .5rem .5rem;border-bottom:1px solid var(--line2);box-shadow:0 6px 10px -8px rgba(0,0,0,.18)}
+.tools{display:flex;align-items:center;justify-content:space-between;gap:.6rem .9rem;flex-wrap:wrap}
+.seg{display:inline-flex;background:#fff;border:1px solid var(--line2);border-radius:2rem;padding:.2rem;gap:.2rem}
+.seg button{border:0;background:transparent;border-radius:2rem;padding:.42rem .85rem;font:inherit;font-size:.88rem;font-weight:600;color:var(--pencil);cursor:pointer;transition:background-color .25s,color .25s;white-space:nowrap}
+.seg button:hover{background:var(--soft)}
+.seg button.tb[aria-pressed="true"]{background:var(--tb);color:#fff}
+.seg button.rl[aria-pressed="true"]{background:var(--rl);color:#fff}
+.zhtoggle{display:inline-flex;align-items:center;gap:.45rem;border:0;background:transparent;font:inherit;cursor:pointer;padding:.25rem .35rem;border-radius:1rem}
+.zhtoggle .lbl{font-family:'Huninn','Zen Maru Gothic','PingFang TC','Noto Sans TC',sans-serif;font-size:.95rem;color:var(--pencil)}
+.sw{width:2.6rem;height:1.45rem;border-radius:1rem;background:#D9DADF;position:relative;transition:background-color .25s;flex:0 0 auto}
+.sw::after{content:'';position:absolute;top:.15rem;left:.15rem;width:1.15rem;height:1.15rem;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .25s}
+.zhtoggle[aria-pressed="true"] .sw{background:var(--accent)}
+.zhtoggle[aria-pressed="true"] .sw::after{transform:translateX(1.15rem)}
+.modeline{font-size:.8rem;color:var(--gray);margin:.45rem 0 0;line-height:1.4}
+.modeline .zh{display:inline;font-size:.8rem}
+@media(max-width:520px){.seg button{font-size:.8rem;padding:.4rem .5rem}.long{display:none}.tools{gap:.4rem}.zhtoggle{padding:.2rem .1rem}}
+body:not(.zh-on) .modeline .zh{display:none}
+
+/* jump chips */
+.jumps{display:flex;flex-wrap:wrap;gap:.45rem;margin:0 0 1.3rem;align-items:center}
+.jumps .lab{font-size:.8rem;color:var(--gray);margin-right:.15rem}
+.jumps a{display:inline-flex;align-items:center;justify-content:center;min-width:2rem;height:2rem;padding:0 .65rem;border-radius:1rem;background:var(--ink);color:#fff;text-decoration:none;font-weight:600;font-size:.9rem;transition:transform .1s}
+.jumps a:hover{transform:translateY(-1px)}
+.jumps a.q{background:#fff;color:var(--ink);border:1px solid var(--line2)}
+
+/* big idea */
+.bigidea{border-left:.35rem solid var(--accent);background:var(--accent-soft);border-radius:.6rem;padding:.9rem 1rem .9rem 1.1rem;margin:0 0 2.2rem;max-width:48rem;transition:background-color .3s,border-color .3s}
+.bigidea h3{margin:0 0 .35rem;font-size:1.1rem}
+.bigidea ol{margin:.5rem 0 0;padding-left:1.35rem}
+.wn-hi{display:flex;align-items:flex-start;gap:.7rem;margin:.7rem 0 1.1rem;max-width:44rem}
+.wn-hi img{width:3.2rem;height:3.2rem;flex:0 0 auto}
+.wn-hi .bubble{position:relative;background:#fff;border:1px solid var(--line2);border-radius:.9rem;padding:.6rem .9rem .5rem}
+.wn-hi .bubble::before{content:"";position:absolute;left:-.4rem;top:1rem;width:.75rem;height:.75rem;background:#fff;border-left:1px solid var(--line2);border-bottom:1px solid var(--line2);transform:rotate(45deg)}
+.wn-hi .say{margin:0;font-size:.95rem;line-height:1.45}
+.wn-hi .who{font-family:'Caveat',cursive;font-size:1.1rem;color:var(--pencil)}
+.bigidea .play{margin:.9rem 0 0}
+.bigidea .gate{animation:fadein .35s;margin:.9rem 0 0}
+.bigidea .gate>p{margin:0}
+.bigidea li{margin:.3rem 0}
+.bigidea li::marker{color:var(--accent-deep);font-weight:600}
+
+/* ---------- sections ---------- */
+.sec{margin:0 0 2.8rem;scroll-margin-top:5.5rem}
+.sec h2{display:flex;align-items:flex-start;gap:.6rem;font-size:1.35rem;margin:0 0 1rem;line-height:1.25}
+.sec h2 .num{flex:0 0 auto;width:1.9rem;height:1.9rem;border-radius:50%;background:var(--ink);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:1rem;font-weight:700;margin-top:.05rem}
+.sec h2 .num.emoji{background:transparent;font-size:1.45rem;width:auto;min-width:1.9rem}
+.sec h2 .ttl{flex:1 1 12rem}
+.sec h2 .ttl .zh{font-size:.68em;margin-top:.2rem;font-weight:400}
+
+/* cutout (worksheet clipping) */
+.cutout{position:relative;background:#fff;border:1px solid var(--line);box-shadow:0 2px 6px rgba(0,0,0,.08),0 1px 0 var(--line2);padding:1.15rem 1rem 1.7rem;margin:1rem 0 1.3rem;transform:rotate(-.6deg);max-width:46rem;font-size:.95rem;line-height:1.55;color:#333}
+.cutout::before{content:'';position:absolute;top:-.65rem;left:50%;width:6rem;height:1.3rem;background:rgba(255,236,150,.55);transform:translateX(-50%) rotate(-2deg);border-left:1px dashed rgba(0,0,0,.07);border-right:1px dashed rgba(0,0,0,.07)}
+.cutout.alt{transform:rotate(.5deg)}
+.cutout .qno{display:inline-flex;width:1.45rem;height:1.45rem;border-radius:50%;background:var(--soft2);color:var(--pencil);align-items:center;justify-content:center;font-size:.8rem;margin-right:.45rem;vertical-align:.05rem;border:1px solid var(--line);font-weight:600}
+.cutout .qtext{margin:0;display:inline}
+.redu{text-decoration:none;border-bottom:2px solid var(--red);padding-bottom:.02em}
+.redpen{font-family:'Caveat',cursive;color:var(--red);font-size:1.3rem;line-height:1.2;margin:.7rem 0 0 1.9rem;font-weight:600}
+.pageref{position:absolute;right:.7rem;bottom:.35rem;font-size:.72rem;color:var(--gray)}
+.tape{position:absolute;top:-.7rem;left:1.375rem;width:4.9rem;height:1.375rem;background:rgba(255,224,130,.75);transform:rotate(-4deg);border-left:2px dashed rgba(255,255,255,.75);border-right:2px dashed rgba(255,255,255,.75)}
+.cutout .q{font-size:.95rem;color:#2A2C33;line-height:1.7;font-weight:400}
+.cutout .q b{font-weight:600;background:#5D6069;color:#fff;border-radius:50%;width:1.5rem;height:1.5rem;display:inline-grid;place-items:center;font-size:.75rem;margin-right:.375rem;vertical-align:middle}
+.ans{font-family:'Caveat',cursive;font-size:1.4rem;color:var(--pencil);border-bottom:1.5px solid #979AA2;padding:0 .25rem;line-height:1.2}
+.wrong{position:relative;display:inline-block;padding:0 .2rem}
+.wrong::after{content:"";position:absolute;inset:-.2rem -.25rem;border:2.5px solid var(--red);border-radius:50%;transform:rotate(-8deg)}
+.okpen{font-family:'Caveat',cursive;color:var(--green);font-size:1.25rem;font-weight:600}
+/* a red dashed gap where something was never written — the pen points at the space, not at his number */
+.slotpen{display:inline-grid;place-items:center;min-width:1.15rem;margin-right:.1rem;padding:0 .1rem;
+  border:2px dashed var(--red);border-radius:.3rem;font-family:'Caveat',cursive;color:var(--red);font-size:1.1rem;font-weight:700;line-height:1.1;vertical-align:.05rem}
+
+/* explain box */
+.explain{position:relative;border-left:.35rem solid var(--accent);background:var(--accent-soft);border-radius:.6rem;padding:1rem 1rem .8rem 1.1rem;margin:0 0 1.2rem;max-width:48rem;transition:background-color .3s,border-color .3s;animation:fadein .35s}
+.explain .pill{position:absolute;top:-.75rem;right:.8rem;background:var(--accent);color:#fff;border-radius:1rem;padding:.15rem .7rem;font-size:.72rem;font-weight:600;letter-spacing:.02em;transition:background-color .3s;white-space:nowrap}
+body[data-mode="textbook"] .v-rl{display:none}
+body[data-mode="reallife"] .v-tb{display:none}
+.pill.auto::before{content:"📘 Textbook version"}
+body[data-mode="reallife"] .pill.auto::before{content:"🍎 Real-life version"}
+body.zh-on .pill.auto::before{content:"📘 Textbook version · 課本理論版"}
+body.zh-on[data-mode="reallife"] .pill.auto::before{content:"🍎 Real-life version · 生活應用版"}
+
+/* try-it box */
+.play{position:relative;background:#fff;border:2px dashed var(--line2);border-radius:.9rem;padding:1.15rem 1rem 1rem;margin:0 0 1.1rem;max-width:48rem}
+.play .tag{position:absolute;top:-.75rem;left:.9rem;background:var(--accent);color:#fff;border-radius:1rem;padding:.15rem .65rem;font-size:.72rem;font-weight:700;letter-spacing:.03em;transition:background-color .3s}
+.play h4{margin:0 0 .25rem;font-size:1.05rem}
+.play .hint{margin:0 0 .6rem;color:var(--pencil);font-size:.9rem}
+.play.ask{border-style:solid;border-color:var(--accent);transition:border-color .3s}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.55rem 0}
+.out{font-size:1rem;font-weight:600;min-height:1.4rem}
+.faint{color:var(--gray);font-weight:400}
+.steplbl{font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--gray);font-weight:600;margin:.8rem 0 .1rem}
+.steplbl:first-of-type{margin-top:.2rem}
+.steplbl .zh{text-transform:none;letter-spacing:0;font-size:1em;margin-top:.1rem}
+
+/* explanation cut into steps; each one unlocks the next */
+.step{background:#fff;border:1px solid var(--line);border-radius:.7rem;padding:.7rem .85rem;margin:.7rem 0 0;animation:fadein .35s}
+.step[hidden]{display:none}
+.gate[hidden]{display:none}
+.gate{animation:fadein .35s}
+.redo{animation:pop .4s}
+
+/* buttons */
+.btn{font:inherit;font-weight:600;font-size:.92rem;color:#fff;background:var(--accent);border:0;border-radius:.7rem;padding:.55rem .95rem;cursor:pointer;box-shadow:0 3px 0 var(--accent-deep);transition:transform .08s,box-shadow .08s,background-color .3s,filter .15s;touch-action:manipulation;line-height:1.25}
+.btn:hover{filter:brightness(1.06)}
+.btn:active{transform:translateY(3px);box-shadow:0 0 0 var(--accent-deep)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:0 3px 0 var(--accent-deep);filter:none}
+.btn.ghost{background:#fff;color:var(--pencil);border:1px solid var(--line2);box-shadow:0 3px 0 var(--line2)}
+.btn.ghost:active{box-shadow:0 0 0 var(--line2)}
+.btn.ghost:disabled{box-shadow:0 3px 0 var(--line2)}
+.btn.sm{font-size:.82rem;padding:.4rem .7rem;border-radius:.6rem}
+
+/* messages */
+.msg{margin:.75rem 0 0;padding:.65rem .85rem;border-radius:.6rem;background:var(--soft);color:var(--ink);font-size:.93rem;line-height:1.45;border:1px solid var(--line);animation:fadein .25s}
+.msg.good{background:#E6F5EC;border-color:#BFE4CD}
+.msg.bad{background:#FDEAE8;border-color:#F5C2BC}
+.msg.warn{background:#FFF7D6;border-color:#F0E0A0}
+.msg[hidden]{display:none}
+
+/* choice buttons */
+.choices{display:grid;gap:.45rem;margin:.5rem 0}
+.choice{font:inherit;text-align:left;background:#fff;border:2px solid var(--line2);border-radius:.7rem;padding:.55rem .8rem;cursor:pointer;font-size:.95rem;color:var(--ink);transition:border-color .15s,background-color .15s;line-height:1.35}
+.choice:hover{border-color:var(--accent)}
+.choice.ok{border-color:var(--green);background:#E6F5EC}
+.choice.no{border-color:var(--red);background:#FDEAE8}
+.choice.dim{opacity:.55}
+.choice:disabled{cursor:default}
+.choice:disabled:hover{border-color:var(--line2)}
+.choice.ok:disabled:hover{border-color:var(--green)}
+.choice.no:disabled:hover{border-color:var(--red)}
+
+/* small option chips (used by every hands-on step) */
+.opb{font:inherit;font-weight:700;min-width:2.3rem;height:2rem;padding:0 .45rem;border-radius:.5rem;border:2px solid var(--line2);background:#fff;cursor:pointer;color:var(--ink);font-size:1rem;transition:border-color .15s,background-color .15s}
+.opb:hover{border-color:var(--accent)}
+.opb.ok{background:#E6F5EC;border-color:var(--green)}
+.opb.no{background:#FDEAE8;border-color:var(--red)}
+.opb:disabled{cursor:default}
+.opb.wide{min-width:0;padding:0 .7rem;font-size:.9rem;font-weight:600;height:auto;min-height:2rem;line-height:1.3;white-space:normal;text-align:left}
+.counter{font-size:.85rem;color:var(--pencil);margin:.3rem 0 0}
+
+/* chips that get collected into a list */
+.chips{display:flex;flex-wrap:wrap;gap:.3rem;max-width:34rem;min-height:1.9rem}
+.chip{display:inline-flex;align-items:center;gap:.15rem;background:var(--soft);border:1px solid var(--line);border-radius:.5rem;padding:.15rem .45rem;font-size:.8rem;animation:pop .3s}
+.chip.last{background:#E6F5EC;border-color:#BFE4CD;font-weight:600}
+
+/* model answer */
+.model{background:#fff;border:2px dashed var(--line2);border-radius:.7rem;padding:.7rem .9rem;margin:0 0 .6rem;max-width:48rem;font-size:.95rem}
+.model .lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--gray);display:block;margin-bottom:.25rem;font-weight:600}
+.model .line{font-weight:600;font-size:1.02rem;line-height:1.5;display:flex;flex-wrap:wrap;gap:.1rem 1.1rem}
+.model .line span{white-space:nowrap}
+.model .line.sentence{display:block}
+.model .line.sentence span{white-space:normal}
+.model .line .ans-hi{color:var(--accent-deep);font-weight:700}
+
+/* evidence card: what the question actually says */
+.ev{background:var(--soft);border:1px solid var(--line);border-left:.3rem solid var(--accent);border-radius:.5rem;padding:.55rem .75rem;margin:.5rem 0;font-size:.92rem;line-height:1.5;animation:fadein .3s}
+.ev .lbl{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--gray);font-weight:600;margin-bottom:.15rem}
+
+/* quiz */
+.quizbox{background:#fff;border:2px dashed var(--line2);border-radius:.9rem;padding:1rem;max-width:48rem}
+.qdots{display:flex;gap:.35rem;margin:0 0 .7rem;flex-wrap:wrap}
+.qdots i{width:.6rem;height:.6rem;border-radius:50%;background:var(--line2);display:block}
+.qdots i.cur{background:var(--accent);transform:scale(1.25)}
+.qdots i.ok{background:var(--green)}
+.qdots i.no{background:var(--red)}
+.qq{font-size:1.05rem;font-weight:600;margin:0 0 .6rem;line-height:1.4}
+.qq .zh{font-weight:400}
+.qresult{text-align:center;padding:1rem 0 .3rem}
+.qresult .stars{font-size:2.3rem;letter-spacing:.1em;animation:pop .5s}
+.qresult .sc{font-size:1.5rem;font-weight:700;margin:.2rem 0}
+
+/* tips */
+.tips{display:grid;gap:.6rem;max-width:48rem}
+.tipcard{background:#fff;border:1px solid var(--line);border-left:.35rem solid var(--hl);border-radius:.6rem;padding:.7rem .9rem;font-size:.95rem}
+.tipcard b.t{display:block;margin-bottom:.15rem}
+.tipcard ol{margin:.35rem 0 0;padding-left:1.2rem}
+.tipcard li{margin:.25rem 0}
+
+/* correction list */
+.fixlist{list-style:none;padding:0;margin:0;max-width:48rem;display:grid;gap:.45rem}
+.fixlist label{display:flex;gap:.7rem;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:.7rem;padding:.6rem .75rem;cursor:pointer;transition:background-color .2s}
+.fixlist input{appearance:none;-webkit-appearance:none;width:1.35rem;height:1.35rem;border:2px solid var(--line2);border-radius:.4rem;flex:0 0 auto;margin:.15rem 0 0;position:relative;cursor:pointer;background:#fff;transition:background-color .15s,border-color .15s}
+.fixlist input:checked{background:var(--green);border-color:var(--green)}
+.fixlist input:checked::after{content:'';position:absolute;left:.36rem;top:.08rem;width:.35rem;height:.72rem;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg)}
+.fixlist label.done{background:var(--soft)}
+.fixlist label.done .txt{text-decoration:line-through;color:var(--gray)}
+.fixlist .txt{font-size:.95rem;line-height:1.4}
+.fixlist .txt b{font-weight:600}
+.fixlist .txt .w{display:block;font-size:.86rem;color:var(--pencil)}
+.fixlist label.done .txt .w{color:var(--gray)}
+
+.foot{font-size:1.5rem;margin:2.5rem 0 0;line-height:1.25}
+.foot .zh{font-size:.65em;margin-top:.2rem}
+
+/* motion + a11y */
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.pop{animation:pop .35s}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* ===== page-specific additions (built from the base vocabulary) ===== */
+
+/* the printed instruction line lifted off the top of the page */
+.instr{background:var(--soft2);border:1px dashed var(--line2);border-radius:.4rem;padding:.4rem .6rem;font-size:.9rem;margin:0 0 .7rem;color:#2A2C33;line-height:1.5}
+.instr .lbl{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--gray);font-weight:600;margin-bottom:.1rem}
+
+/* an empty space where something should have been drawn — the red pen circles nothing */
+.missing{position:relative;margin:.7rem 0 .2rem 1.9rem;border:2px dashed var(--red);border-radius:.5rem;min-height:3.6rem;max-width:20rem;display:grid;place-items:center;
+  background:repeating-linear-gradient(45deg,transparent 0 .55rem,rgba(226,70,59,.055) .55rem 1.1rem)}
+.missing span{font-family:'Caveat',cursive;color:var(--red);font-size:1.15rem;font-weight:600;padding:.4rem .6rem;text-align:center}
+
+/* ---------- bar model ---------- */
+.bm{--n:4;display:grid;gap:.4rem;margin:.7rem 0 .2rem;max-width:32rem}
+.bmrow{display:flex;align-items:center;gap:.45rem}
+.bmname{flex:0 0 4rem;text-align:right;font-size:clamp(.68rem,2.9vw,.85rem);font-weight:600;color:var(--pencil);line-height:1.2}
+.bmbars{flex:1 1 auto;display:flex;gap:.15rem;min-height:2.05rem;align-items:center;border-radius:.35rem}
+.bmbars.empty{border:1.5px dashed var(--line2);background:var(--soft2)}
+/* boxes shrink rather than push the page sideways when he draws one too many */
+.unit{flex:0 1 calc((100% - (var(--n) - 1) * .15rem) / var(--n));min-width:0;height:2.05rem;border:2px solid var(--accent);background:var(--accent-soft);color:var(--accent-deep);
+  border-radius:.35rem;display:grid;place-items:center;font-size:clamp(.62rem,2.6vw,.82rem);font-weight:600;animation:pop .3s;overflow:hidden;transition:background-color .3s,border-color .3s}
+.unit.ghost{border-style:dashed;border-color:var(--line2);background:#fff;color:var(--gray)}
+.unit.hi{border-color:var(--green);background:#E6F5EC;color:#1D7A4E}
+.bmnote{font-size:.82rem;color:var(--pencil);margin:.15rem 0 0 4.45rem;line-height:1.4}
+.bmtot{display:flex;align-items:center;gap:.45rem;margin:.1rem 0 0 4.45rem;font-size:.82rem;color:var(--pencil)}
+.bmtot .brace{flex:1 1 auto;height:.45rem;border:2px solid var(--line2);border-top:0;border-radius:0 0 .45rem .45rem;max-width:18rem}
+
+/* ---------- long division ---------- */
+.ldwrap{overflow-x:auto;padding:.15rem 0 .3rem}
+.ld{display:grid;grid-template-columns:repeat(var(--c),1.5rem);grid-auto-rows:1.65rem;justify-content:start;
+  font-variant-numeric:tabular-nums;font-size:clamp(.85rem,3.6vw,1.1rem);font-weight:600;color:var(--ink);margin:.3rem 0}
+.ld .c{display:grid;place-items:center;animation:fadein .3s}
+.ld .c.faded{color:var(--gray)}
+.ld .c.mark{background:var(--hl);border-radius:.25rem}
+.ld .c.fresh{background:#E6F5EC;border-radius:.25rem;color:#1D7A4E;animation:pop .35s}
+.ld .c.slot{border:1.5px dashed var(--red);border-radius:.25rem;color:transparent}
+.ld .c.pick{cursor:pointer;border-radius:.25rem}
+.ld .c.pick:hover{background:var(--accent-soft)}
+.ld .rule{align-self:start;height:0;border-top:2px solid var(--ink);width:100%}
+.ld .rule.slotrule{border-top-style:dashed;border-top-color:var(--red)}
+.ldcap{font-size:.8rem;color:var(--gray);margin:.1rem 0 0}
+
+/* ---------- label matcher ---------- */
+.tray{display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0 .7rem}
+.lb{font:inherit;font-weight:700;font-size:.9rem;padding:.35rem .75rem;border-radius:.6rem;border:2px solid var(--line2);background:#fff;color:var(--ink);cursor:pointer;transition:border-color .15s,opacity .25s,background-color .15s}
+.lb:hover{border-color:var(--accent)}
+.lb.used{opacity:.42;background:var(--soft)}   /* already placed — faded as a reminder, still tappable */
+.lb.no{border-color:var(--red);background:#FDEAE8}
+.qrow{display:flex;align-items:center;gap:.5rem;background:var(--soft);border:1px solid var(--line);border-radius:.7rem;padding:.5rem .7rem;margin:.35rem 0;flex-wrap:wrap;transition:border-color .2s,background-color .2s}
+.qrow.cur{background:#fff;border-color:var(--accent);box-shadow:0 0 0 .12rem var(--accent-soft)}
+.qrow.done{background:#E6F5EC;border-color:#BFE4CD}
+.qrow .txt{flex:1 1 12rem;font-size:.92rem;line-height:1.45}
+.blankslot{display:inline-grid;place-items:center;min-width:3.4rem;padding:0 .25rem;border-bottom:2px solid var(--line2);font-weight:700;color:var(--gray)}
+.qrow.done .blankslot{border-bottom-color:var(--green);color:#1D7A4E}
+.qrow .who{font-size:.75rem;color:var(--gray);flex:0 0 auto}
+</style>
+<body data-mode="textbook">
+<style>
+.wn-back{position:fixed;right:.8rem;bottom:.8rem;z-index:999;display:inline-flex;align-items:center;gap:.3rem;
+ background:#fff;color:#2E3037;border:1px solid #D9DADF;border-radius:999px;padding:.4rem .8rem;
+ font-family:'Fredoka',system-ui,sans-serif;font-size:.85rem;font-weight:600;text-decoration:none;
+ box-shadow:0 2px 8px rgba(0,0,0,.14)}
+.wn-back:hover{border-color:#2E3037}
+@media print{.wn-back{display:none}}
+</style>
+<a href="index.html" class="wn-back" aria-label="Back to the index">📒 Index</a>
+
+<div class="notebook">
+<div class="holes" aria-hidden="true"></div>
+<main class="page">
+
+<!-- ================= HEADER ================= -->
+<header class="top">
+  <div class="hand date">7/18 · Math in Focus 4A · Chapter 2 Activity 4 · Real-World Problems</div>
+  <h1>William's <mark>Correction</mark> Notes<span class="zh">William 的訂正筆記 — 乘除應用題與 bar model</span></h1>
+
+  <div class="wn-hi">
+    <img id="wnHiImg" src="img/skzoo-puppym.png" alt="Your study buddy" width="150" height="150">
+    <div class="bubble">
+      <p class="say">Hi William — I checked all ten answers before you got here. <b>All ten are right.</b> Number 5 (456 × 8) needed two carries in a row and you kept every digit.<span class="zh">William 嗨——你來之前我先把十題答案全對過了。<b>十題全對。</b>第 5 題 456 × 8 連續兩次進位，你一個數字都沒掉。</span></p>
+      <span class="who" id="wnHiName">Puppy M</span>
+    </div>
+  </div>
+
+  <p class="lead">Five pages, ten word problems, <mark>ten right answers</mark>. Three spots on those same pages are still waiting for something. <mark>What those three have in common is yours to spot</mark> — that is the first thing below.
+    <span class="zh">五頁、十題應用題，十題答案全對。同樣這幾頁上，有三個地方還在等著被補上。這三個地方的共同點留給你自己找——下面第一件事就是這個。</span></p>
+
+  <div class="vocab" aria-label="Words to know">
+    <div class="vcard"><b>bar model</b><span class="def">a drawing of equal boxes that shows how the numbers in a problem fit together</span><span class="zh">bar model：用一格一格等大的方塊，畫出題目裡數字的關係</span></div>
+    <div class="vcard"><b>1 unit</b><span class="def">one box — the smallest amount in the problem. Everything else is copies of it</span><span class="zh">1 unit：一格，題目裡最小的那個量；其他都是它的複製品</span></div>
+    <div class="vcard"><b>3 times as many</b><span class="def">3 copies of the same amount, so 3 boxes — not a bigger box</span><span class="zh">3 倍：同一個量複製 3 份，所以是 3 格，不是把格子畫大</span></div>
+    <div class="vcard"><b>long division</b><span class="def">the tall way of dividing: divide, multiply, subtract, bring down, repeat</span><span class="zh">長除法：除、乘、減、下移，一直重複</span></div>
+    <div class="vcard"><b>remainder</b><span class="def">what is left at the very end — you write it even when it is 0</span><span class="zh">餘數：最後剩下的數；就算是 0 也要寫出來</span></div>
+    <div class="vcard"><b>label</b><span class="def">the word that belongs with the number: $, cm, muffins, stamps</span><span class="zh">單位／標籤：跟著數字的那個字，例如 $、cm、muffins、stamps</span></div>
+  </div>
+
+  <div class="scores" aria-label="Progress">
+    <div class="score"><div class="n">5</div><div class="l">pages</div><span class="zh">頁數</span></div>
+    <div class="score"><div class="n">10</div><div class="l">answers already yours</div><span class="zh">答案已經到手</span></div>
+    <div class="score"><div class="n">3</div><div class="l">habits to build</div><span class="zh">要練起來的習慣</span></div>
+  </div>
+</header>
+
+<!-- ================= TOOLBAR ================= -->
+<div class="toolbar" id="toolbar">
+  <div class="tools">
+    <div class="seg" role="group" aria-label="Choose a version">
+      <button type="button" class="tb" data-mode="textbook" aria-pressed="true">📘 Textbook<span class="long"> version</span></button>
+      <button type="button" class="rl" data-mode="reallife" aria-pressed="false">🍎 Real-life<span class="long"> version</span></button>
+    </div>
+    <button type="button" class="zhtoggle" id="zhbtn" aria-pressed="false" aria-label="中文 translation on or off"><span class="lbl">中文</span><span class="sw" aria-hidden="true"></span></button>
+  </div>
+  <p class="modeline" id="modeline"></p>
+</div>
+
+<nav class="jumps" aria-label="Jump to">
+  <span class="lab">Jump to</span>
+  <a href="#s1">1</a><a href="#s2">2</a><a href="#s3">3</a>
+  <a href="#tips" class="q">💡 Tips</a><a href="#quiz" class="q">🎯 Quiz</a><a href="#fix" class="q">✍️ List</a>
+</nav>
+
+<!-- ================= BIG IDEA ================= -->
+<section class="bigidea" aria-label="The big idea">
+  <h3>🔑 Ten right answers — so what is left to fix?<span class="zh">十題全對——那還有什麼要修？</span></h3>
+  <p>Here are the three spots, with nothing added. Just what is on the pages:<span class="zh">三個地方擺在一起，什麼都沒加，就是紙上有的東西：</span></p>
+  <ol>
+    <li>p.49 top line: <b>"Solve. Show your work. Draw a bar model to help you."</b> Ten questions, no bar model.<span class="zh">p.49 最上面那行寫著「Solve. Show your work. Draw a bar model to help you.」——十題，沒有任何一個 bar model。</span></li>
+    <li><b>#6</b> (272 ÷ 4) and <b>#10</b> (1,252 ÷ 4) — quotients 68 and 313, both right; the last subtraction line is not written.<span class="zh">第 6 題（272÷4）和第 10 題（1,252÷4）——商 68 和 313 都對；但最後一行減法沒寫。</span></li>
+    <li><b>#2</b> — the answer line says <b>2,020</b>, and that question is about money.<span class="zh">第 2 題——答案欄寫 2,020，而那題問的是錢。</span></li>
+  </ol>
+  <p style="margin-top:.5rem">And one more fact from the same pages: <b>every one of the ten answers is correct</b>.<span class="zh">還有一個同樣來自這幾頁的事實：十題答案，每一題都對。</span></p>
+
+  <div class="play ask">
+    <span class="tag">🔎 You first</span>
+    <h4>Before we walk through them — what was going on while you were doing these?<span class="zh">在我們一題一題走之前——你寫這幾題的時候，是什麼情況？</span></h4>
+    <p class="hint">Pick the closest one. <mark>There is no wrong answer here</mark> — you were there, this page was not.<span class="zh">挑最接近的。這題沒有錯的答案——當時在場的是你，不是這一頁。</span></p>
+    <div id="bigask"></div>
+  </div>
+
+  <div class="gate" id="bigexp" hidden>
+    <p>Good. Then here are three checks, one for each spot — and notice that <b>none of them is a sum</b>:<span class="zh">好。那就給你三個檢查，一個對一個——注意：沒有一個是在算數學：</span></p>
+    <ol>
+      <li>Before the number sentence, look at the <b>top line of the page</b>: does it ask for a bar model? Boxes first.<span class="zh">寫算式之前，先看那一頁最上面那行：有沒有要求 bar model？有的話先畫格子。</span></li>
+      <li>In long division, never stop while a number is still sitting under the line — <b>subtract, then write what is left</b>, even if it is 0.<span class="zh">長除法：只要線下面還有數字就不能停——減下去，把剩下的寫出來，就算是 0。</span></li>
+      <li>Before you close the book, read your answer out loud: <b>"555… what?"</b> The label lives in the question.<span class="zh">闔上本子前，把答案念出來：「555……什麼？」單位就藏在題目裡。</span></li>
+    </ol>
+    <p style="margin-top:.5rem">Check 3 you already do on your own — on <b>#8</b> you wrote <b>800 cm</b>, not 800. We will borrow that from you later.<span class="zh">第 3 個檢查你本來就會——第 8 題你寫的是 800 cm，不是 800。等一下要跟你借這個習慣來用。</span></p>
+  </div>
+</section>
+
+<!-- ================= SECTION 1 ================= -->
+<section class="sec" id="s1">
+  <h2><span class="num">1</span><span class="ttl">The drawing the page asked for<span class="zh">那一頁要你畫的東西</span></span></h2>
+
+  <div class="cutout">
+    <span class="tape"></span>
+    <p class="instr"><span class="lbl">Printed at the top of p.49</span>Solve. Show your work. <mark>Draw a bar model to help you.</mark></p>
+    <div class="q"><b>1</b> Riley baked 185 muffins. Thomas baked 3 times as many muffins as Riley. How many muffins did Thomas bake? <span class="ans">185 × 3 = 555</span> <span class="okpen">✓ 555 — correct</span></div>
+    <div class="missing"><span>bar model:<br>nothing here, on any of the ten</span></div>
+    <p class="redpen">The answer is right. The drawing the top line asked for is missing.<span class="zh">答案是對的。上面那行要求的那張圖沒有畫。</span></p>
+    <span class="pageref">Extra Practice 4A · p.49 · Q1</span>
+  </div>
+
+  <div class="play ask">
+    <span class="tag">🔎 You first</span>
+    <h4>That line at the top of p.49 — what happened?<span class="zh">p.49 最上面那一行——當時發生了什麼事？</span></h4>
+    <p class="hint">All three of these are real answers. Pick yours and I will take you the right way round.<span class="zh">這三個都是真的答案。挑你的那一個，我就走那條路帶你。</span></p>
+    <div id="s1ask"></div>
+  </div>
+
+  <div class="gate" id="s1exp" hidden>
+    <div class="explain">
+      <span class="pill auto"></span>
+
+      <div class="step" id="s1st1">
+        <p class="steplbl">Step 1 · what one box means</p>
+        <p class="v-tb">In a bar model every box is the same size. One box is <mark>1 unit</mark>. The smallest amount in the problem is 1 unit, and everything else is built from copies of it.<span class="zh">bar model 裡每一格都一樣大。一格就是 1 unit。題目裡最小的那個量當作 1 unit，其他東西都用它複製出來。</span></p>
+        <p class="v-rl">Think LEGO. One brick is 1 unit. "Three times as many" means <mark>three of the same brick</mark> — you never make one fat brick instead.<span class="zh">想像樂高。一塊積木＝1 unit。「3 倍」的意思是「同樣的積木三塊」——不是把一塊做胖。</span></p>
+        <p>👉 Tap the <b>3 chips</b> that describe 1 unit.<span class="zh">點出描述 1 unit 的三個詞。</span></p>
+        <div class="row" id="s1a1"></div>
+        <div class="msg" id="s1m1" hidden></div>
+      </div>
+
+      <div class="step" id="s1st2" hidden>
+        <p class="steplbl">Step 2 · who is 1 unit?</p>
+        <p class="v-tb">The problem says "Thomas baked <mark>3 times as many as Riley</mark>". Riley is the one being compared <i>to</i> — so Riley is the small bar.<span class="zh">題目說「Thomas 是 Riley 的 3 倍」。被拿來比較的那一個是 Riley——所以 Riley 是小的那條。</span></p>
+        <p class="v-rl">Riley's tray is the tray you photocopy. Thomas's pile is <mark>three of Riley's trays</mark>, not one mysterious big tray.<span class="zh">Riley 的托盤就是你要拿去影印的那一盤。Thomas 那堆是「三盤 Riley」，不是一個神秘的大盤子。</span></p>
+        <p>So in question 1, who is <b>1 unit</b>?<span class="zh">所以第 1 題裡，誰是 1 unit？</span></p>
+        <div id="s1a2"></div>
+      </div>
+
+      <div class="step" id="s1st3" hidden>
+        <p class="steplbl">Step 3 · how many copies?</p>
+        <p class="v-tb">"3 times as many" means <mark>3 units</mark>. Copy Riley's box, keep it exactly the same size, and stop when the picture matches the words.<span class="zh">「3 倍」＝3 units。把 Riley 那格複製，大小保持一模一樣，圖跟文字對上就停。</span></p>
+        <p class="v-rl">You are the photocopier. Press the button, out comes the same tray. Press it until the pile matches the sentence — <mark>then stop</mark>.<span class="zh">你就是影印機。按一下，出來一模一樣的一盤。按到跟句子一樣多就停。</span></p>
+        <p>👉 Copy Riley's box for Thomas, then press <b>Done</b> when the picture matches the problem.<span class="zh">幫 Thomas 複製 Riley 的格子，圖跟題目對上時按 Done。</span></p>
+        <div class="row" id="s1a3"></div>
+        <div class="msg" id="s1m3" hidden></div>
+      </div>
+
+      <div class="step" id="s1st4" hidden>
+        <p class="steplbl">Step 4 · read the sentence off the picture</p>
+        <p class="v-tb">Now the drawing does the thinking. 1 unit = 185, and Thomas is 3 units. Which number sentence does the picture give you?<span class="zh">現在換圖幫你想。1 unit = 185，Thomas 是 3 units。這張圖給你的算式是哪一個？</span></p>
+        <p class="v-rl">Look at the boxes and just read them out: three trays, 185 in each. What do you do with three lots of 185?<span class="zh">看著格子直接念出來：三盤，每盤 185。三份 185 要用什麼算？</span></p>
+        <div id="s1a4"></div>
+      </div>
+
+      <div class="step" id="s1st5" hidden>
+        <p class="steplbl">Step 5 · say it your way</p>
+        <p>Why did the picture tell you to <b>multiply</b>?<span class="zh">用你自己的話選：為什麼這張圖叫你用乘的？</span></p>
+        <div id="s1a5"></div>
+      </div>
+
+      <div class="bm" id="s1bm" style="--n:3" aria-label="The bar model being built"></div>
+      <p class="bmnote" id="s1bmnote">Your bar model starts empty. It fills in as you work through the steps.<span class="zh">你的 bar model 現在是空的，會隨著你走每一步慢慢長出來。</span></p>
+    </div>
+  </div>
+
+  <div class="gate" id="s1try" hidden>
+    <div class="play">
+      <span class="tag">Try it</span>
+      <h4>Build three of them, start to finish<span class="zh">從頭到尾，親手蓋三個</span></h4>
+      <p class="hint">Round 1 is your question 1. Round 2 is a bakery. Round 3 is the tangled one the bar model was invented for.<span class="zh">第 1 回合是你的第 1 題；第 2 回合是麵包店；第 3 回合就是 bar model 天生要對付的那種糾結題。</span></p>
+      <div id="s1build"></div>
+    </div>
+  </div>
+
+  <div class="gate" id="s1model" hidden>
+    <div class="model">
+      <span class="lbl">✍️ Copy this into your workbook — p.49 Q1</span>
+      <div class="bm" style="--n:3">
+        <div class="bmrow"><span class="bmname">Riley</span><span class="bmbars"><span class="unit">185</span></span></div>
+        <div class="bmrow"><span class="bmname">Thomas</span><span class="bmbars"><span class="unit">185</span><span class="unit">185</span><span class="unit">185</span></span></div>
+      </div>
+      <div class="line sentence"><span>1 unit = 185 &nbsp;→&nbsp; 3 units = <span class="ans-hi">185 × 3 = 555</span></span></div>
+      <div class="line sentence"><span>Thomas baked <span class="ans-hi">555 muffins</span>.</span></div>
+      <span class="zh">範例答案——連同上面那張圖一起抄回作業本。</span>
+    </div>
+  </div>
+</section>
+<!-- ================= SECTION 2 ================= -->
+<section class="sec" id="s2">
+  <h2><span class="num">2</span><span class="ttl">One line from the end<span class="zh">離終點只差一行</span></span></h2>
+
+  <div class="cutout">
+    <span class="tape"></span>
+    <div class="q"><b>6</b> 272 ÷ 4 = <span class="ans">68</span> <span class="okpen">✓ 68 is right</span></div>
+    <div class="ldwrap" id="s2cut6" aria-label="Your working for 272 divided by 4"></div>
+    <p class="redpen">Both lines you wrote are correct — but the working stops before the last subtraction.<span class="zh">你寫的兩行都對——但工作到最後一次減法之前就停住了。</span></p>
+    <span class="pageref">Extra Practice 4A · p.49–53 · Q6</span>
+  </div>
+
+  <div class="play ask">
+    <span class="tag">🔎 You first</span>
+    <h4>In long division, how do you know you have <b>finished</b>?<span class="zh">長除法要怎麼知道自己「做完了」？</span></h4>
+    <div id="s2ask"></div>
+  </div>
+
+  <div class="gate" id="s2exp" hidden>
+    <div class="explain">
+      <span class="pill auto"></span>
+
+      <div class="step" id="s2st1">
+        <p class="steplbl">Step 1 · what you already wrote</p>
+        <p class="v-tb">Long division repeats four moves: <mark>divide, multiply, subtract, bring down</mark>. You ran that loop twice and both rounds are correct.<span class="zh">長除法重複四個動作：除、乘、減、把下一位拉下來。這個循環你跑了兩輪，兩輪都對。</span></p>
+        <p class="v-rl">It is like unpacking a box in rounds: take out what fits, see what is left, pull the next thing down. You did two rounds perfectly.<span class="zh">像分批清空一個箱子：拿走裝得下的，看剩什麼，再把下一個拉下來。你完美跑完兩輪。</span></p>
+        <p>👉 In the working at the bottom of this box, <b>tap the number that is still waiting</b> to be divided.<span class="zh">在這個方框最下面的算式裡，點出「還在等著被除」的那個數字。</span></p>
+        <div class="msg" id="s2m1" hidden></div>
+      </div>
+
+      <div class="step" id="s2st2" hidden>
+        <p class="steplbl">Step 2 · the line that is missing</p>
+        <p class="v-tb">32 is still sitting under the line, so the loop is not over. 32 ÷ 4 = 8 — you wrote that 8 on top. Now the <mark>multiply</mark> step: 8 × 4 goes on the next line.<span class="zh">32 還在線下面，所以循環還沒結束。32 ÷ 4 = 8，這個 8 你上面寫了。現在是「乘」那一步：8 × 4 要寫在下一行。</span></p>
+        <p class="v-rl">There are still 32 things in the box, so you cannot walk away yet. You know 8 groups of 4 come out. Write down how many that takes away.<span class="zh">箱子裡還有 32 個東西，還不能走。你知道會拿出 8 組 4 個。把「拿走多少」寫下來。</span></p>
+        <p>What goes on the next line, under the 32?<span class="zh">32 的下面那一行要寫什麼？</span></p>
+        <div class="row" id="s2a2"></div>
+        <div class="msg" id="s2m2" hidden></div>
+      </div>
+
+      <div class="step" id="s2st3" hidden>
+        <p class="steplbl">Step 3 · the number that proves it</p>
+        <p class="v-tb">Draw the line and <mark>subtract</mark>: 32 − 32. Whatever is left is the <mark>remainder</mark>, and it is written even when it is 0.<span class="zh">畫線，做減法：32 − 32。剩下的就是餘數，就算是 0 也要寫出來。</span></p>
+        <p class="v-rl">Empty the box and show it is empty. Saying "it is empty, trust me" is not the same as turning it upside down.<span class="zh">把箱子倒空，還要讓人看到它空了。嘴巴說「空了啦」跟真的倒過來給人看，是兩回事。</span></p>
+        <p>32 − 32 = ?<span class="zh">32 − 32 = ?</span></p>
+        <div class="row" id="s2a3"></div>
+        <div class="msg" id="s2m3" hidden></div>
+      </div>
+
+      <div class="step" id="s2st4" hidden>
+        <p class="steplbl">Step 4 · say it your way</p>
+        <p>Why does that last <b>0</b> matter, when your 68 was right all along?<span class="zh">用你自己的話選：你的 68 本來就對了，那最後那個 0 為什麼重要？</span></p>
+        <div id="s2a4"></div>
+      </div>
+
+      <div class="ldwrap" id="s2ld" aria-label="272 divided by 4, being finished line by line"></div>
+      <p class="ldcap" id="s2ldcap">Your working, exactly as it is on the page.<span class="zh">你紙上的算式，原樣搬過來。</span></p>
+    </div>
+  </div>
+
+  <div class="gate" id="s2try" hidden>
+    <div class="play">
+      <span class="tag">Try it</span>
+      <h4>Finish both of them yourself<span class="zh">兩題都由你自己收尾</span></h4>
+      <p class="hint">Four decisions each: what is left · how many fit · what to take away · what remains. The green light only comes when the <b>0</b> is on the page.<span class="zh">每題四個決定：還剩什麼、裝得下幾組、要拿走多少、最後剩多少。0 出現在紙上，才會亮綠燈。</span></p>
+      <div id="s2walk"></div>
+    </div>
+  </div>
+
+  <div class="gate" id="s2model" hidden>
+    <div class="model">
+      <span class="lbl">✍️ The two lines to add — p.49–53 Q6 and Q10</span>
+      <div class="ldwrap" id="s2mod6"></div>
+      <div class="ldwrap" id="s2mod10"></div>
+      <div class="line sentence"><span>Keep your quotients: <span class="ans-hi">68</span> and <span class="ans-hi">313</span>. Add the last subtraction and the <span class="ans-hi">0</span>.</span></div>
+      <span class="zh">商 68 和 313 保留不動，補上最後一行減法和那個 0。</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 3 ================= -->
+<section class="sec" id="s3">
+  <h2><span class="num">3</span><span class="ttl">555 what?<span class="zh">555 個什麼？</span></span></h2>
+
+  <div class="cutout">
+    <span class="tape"></span>
+    <div class="q"><b>2</b> A money problem — how much Ms. Lee paid. Your answer line: <span class="ans"><span class="slotpen" aria-label="an empty space in front of the number">?</span>2,020</span></div>
+    <p class="redpen">The number is right. The answer line starts straight at 2,020.<span class="zh">數字是對的。答案欄直接就從 2,020 開始。</span></p>
+    <span class="pageref">Extra Practice 4A · p.49–53 · Q2</span>
+  </div>
+
+  <div class="cutout alt">
+    <span class="tape"></span>
+    <div class="q"><b>8</b> 32 × 25 = <span class="ans">800 cm</span> <span class="okpen">✓ 160 + 640 lined up, and the cm is there</span></div>
+    <p class="redpen" style="color:var(--green)">Same page, same day: here you did it yourself.<span class="zh">同一份、同一天：這裡你自己就做到了。</span></p>
+    <span class="pageref">Extra Practice 4A · p.49–53 · Q8</span>
+  </div>
+
+  <div class="play ask">
+    <span class="tag">🔎 You first</span>
+    <h4>Two answers, both from your own pages. Which one tells the whole story?<span class="zh">兩個答案，都出自你自己的紙上。哪一個把話講完了？</span></h4>
+    <div id="s3ask"></div>
+  </div>
+
+  <div class="gate" id="s3exp" hidden>
+    <div class="explain">
+      <span class="pill auto"></span>
+
+      <div class="step" id="s3st1">
+        <p class="steplbl">Step 1 · half an answer</p>
+        <p class="v-tb">A word problem asks about real things, so the answer is a <mark>number and its label</mark>: 555 muffins, 800 cm, $2,020. The number alone is half the answer.<span class="zh">應用題問的是真實的東西，所以答案是「數字＋單位」：555 muffins、800 cm、$2,020。只寫數字等於只寫了一半。</span></p>
+        <p class="v-rl">If I texted you just <mark>15</mark>, you would text back "15 what?" Minutes? Dollars? Muffins? A bare number is a riddle.<span class="zh">如果我只傳「15」給你，你一定會回「15 什麼？」分鐘？錢？muffin？光一個數字就是謎語。</span></p>
+        <p>👉 The question asks how much Ms. Lee paid. Tap the finished answer.<span class="zh">題目問 Ms. Lee 付了多少。點出「寫完了」的那個答案。</span></p>
+        <div class="row" id="s3a1"></div>
+        <div class="msg" id="s3m1" hidden></div>
+      </div>
+
+      <div class="step" id="s3st2" hidden>
+        <p class="steplbl">Step 2 · where labels come from</p>
+        <p class="v-tb">You never invent a label. It is already printed in the question — muffins, centimetres, stamps, dollars. Copy it down with the number.<span class="zh">單位不用發明。它早就印在題目裡了——muffins、公分、郵票、錢。連著數字一起抄下來就對了。</span></p>
+        <p class="v-rl">The label is not yours to choose, like a name tag at a party: you do not make one up, you pick up the one with your name already on it.<span class="zh">單位不是你選的，像派對上的名牌：你不會自己編一個，你會去拿寫著你名字的那一個。</span></p>
+        <p>So where do you look for the right label?<span class="zh">那要去哪裡找對的單位？</span></p>
+        <div id="s3a2"></div>
+      </div>
+
+      <div class="step" id="s3st3" hidden>
+        <p class="steplbl">Step 3 · the out-loud check</p>
+        <p class="v-tb">Before you close the book, read your answer aloud. If it sounds unfinished — "<mark>2,020… what?</mark>" — it is unfinished.<span class="zh">闔上本子前，把答案念出來。如果聽起來沒講完——「2,020……什麼？」——那就是還沒寫完。</span></p>
+        <p class="v-rl">Say it to an imaginary friend who did not read the question. If they would say "huh?", the label is missing.<span class="zh">念給一個沒讀過題目的想像朋友聽。如果他會說「蛤？」，就是少了單位。</span></p>
+        <div class="row" id="s3a3btn"></div>
+        <div id="s3a3"></div>
+      </div>
+
+      <div class="step" id="s3st4" hidden>
+        <p class="steplbl">Step 4 · say it your way</p>
+        <p>Your 2,020 was the right number. So why can a bare number still lose a mark?<span class="zh">用你自己的話選：你的 2,020 數字是對的，那為什麼還是可能被扣分？</span></p>
+        <div id="s3a4"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gate" id="s3try" hidden>
+    <div class="play">
+      <span class="tag">Try it</span>
+      <h4>Give every answer its label<span class="zh">幫每個答案配上單位</span></h4>
+      <p class="hint">Six answers, six labels, one tray. Nothing is ever crossed off the tray, so every row still has all six to choose from — read the question first, then tap.<span class="zh">六個答案、六個單位、一個工具盤。盤子上的單位不會被劃掉，每一列都還是六選一——先把題目讀完再點。</span></p>
+      <div class="tray" id="s3tray"></div>
+      <div id="s3rows"></div>
+      <p class="counter" id="s3count">0 / 6 labelled<span class="zhi"> ・已配對</span></p>
+      <div class="msg" id="s3msg" hidden></div>
+    </div>
+  </div>
+
+  <div class="gate" id="s3model" hidden>
+    <div class="model">
+      <span class="lbl">✍️ Copy this into your workbook — p.49–53 Q2</span>
+      <div class="line sentence"><span>Ms. Lee paid <span class="ans-hi">$2,020</span>.</span></div>
+      <div class="line sentence"><span>(and the one you already wrote perfectly: <span class="ans-hi">800 cm</span>)</span></div>
+      <span class="zh">範例答案——抄回作業本。</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TIPS ================= -->
+<section class="sec" id="tips">
+  <h2><span class="num emoji">💡</span><span class="ttl">Tips — nothing here is a mistake<span class="zh">小提醒——這一段沒有一項是錯的</span></span></h2>
+  <div class="tips">
+    <div class="tipcard"><b class="t">⭐ Already yours · #5 — 456 × 8 = 3,648</b>Two regroupings in a row: 8 × 6 = 48, then 8 × 5 = 40 <i>plus</i> the carried 4. You kept both. That is exactly where most people drop a digit.<span class="zh">第 5 題連續兩次進位：8×6=48，然後 8×5=40 再加進位的 4。兩次你都守住了——大部分人就是在這裡掉數字。</span></div>
+    <div class="tipcard"><b class="t">⭐ Already yours · #8 — 32 × 25 = 800 cm</b>Both partial products right (32 × 5 = 160 and 32 × 20 = 640) and lined up before you added. Plus the <mark>cm</mark>. That is Grade 5 work.<span class="zh">第 8 題兩個部分積都對（32×5=160、32×20=640），相加前也對齊了，還寫了 cm。這是五年級的水準。</span></div>
+    <div class="tipcard"><b class="t">⭐ Already yours · #7 — 1,080 ÷ 5 = 216</b>The 0 in the middle of 1,080 tricks a lot of people into writing a wrong digit. You brought it down and kept going. #10 (1,252 ÷ 4 = 313) was just as steady.<span class="zh">1,080 中間那個 0 很多人會寫錯一位數。你把它拉下來繼續走。第 10 題（1,252÷4=313）一樣穩。</span></div>
+    <div class="tipcard"><b class="t">🧰 Four habits to carry into the next set</b>
+      <ol>
+        <li><b>Bar model first, number sentence second.</b> Read, draw, label the bars — then choose × or ÷.<span class="zh">先畫 bar model，再寫算式：讀題、畫格、標數字，最後才決定用乘還是除。</span></li>
+        <li><b>Find 1 unit.</b> In any "times as many" or "half as many" problem, the smallest bar is 1 unit. Draw that one first.<span class="zh">找出 1 unit：只要出現「幾倍」「一半」，最小的那條就是 1 unit，先畫它。</span></li>
+        <li><b>Never stop a long division early.</b> Keep subtracting until the bottom line is written — even when you can already see the answer.<span class="zh">長除法不准提早停：一直減到最後一行寫出來，就算你早就看出答案了。</span></li>
+        <li><b>Ask "what is the unit?"</b> before you close the book: dollars, cm, boxes, photos, stamps, muffins.<span class="zh">闔上本子前問一句「單位是什麼？」——錢、公分、盒、照片、郵票、muffin。</span></li>
+      </ol>
+    </div>
+    <div class="tipcard"><b class="t">🧲 Why the bar model is worth it, even when it feels too easy</b>It is not there to slow you down. It is the tool that rescues you later, on the question where one total is shared three ways and one person gets double and another gets half. If you skip it while the questions are easy, it will not be in your hands when a question really needs it. <mark>Practise it while it feels too easy.</mark><span class="zh">bar model 不是來拖慢你的。它是以後救你的工具——那種「一個總數分給三個人、一個拿兩倍、一個拿一半」的題目。簡單的時候不畫，難的時候它就不在你手上。趁著覺得太簡單的時候練起來。</span></div>
+  </div>
+</section>
+
+<!-- ================= QUIZ ================= -->
+<section class="sec" id="quiz">
+  <h2><span class="num emoji">🎯</span><span class="ttl">Quiz — boxes, last lines, labels<span class="zh">小測驗——格子、最後一行、單位</span></span></h2>
+  <div class="quizbox">
+    <div class="qdots" id="qdots" aria-hidden="true"></div>
+    <div id="qbody"></div>
+  </div>
+</section>
+
+<!-- ================= CORRECTION LIST ================= -->
+<section class="sec" id="fix">
+  <h2><span class="num emoji">✍️</span><span class="ttl">Back to the workbook: correction list<span class="zh">回到作業本，訂正清單</span></span></h2>
+  <div class="fixlist" id="fixlist"></div>
+  <div class="msg" id="fixmsg" hidden></div>
+</section>
+
+<style>
+.wn-buddy{display:flex;align-items:center;gap:.8rem;margin:2rem 0 .6rem;padding:.9rem 1rem;
+ background:#fff;border:1px dashed #D9DADF;border-radius:.7rem;max-width:34rem}
+.wn-buddy img{width:3.6rem;height:3.6rem;flex:0 0 auto}
+.wn-buddy .t{display:flex;flex-direction:column;gap:.15rem}
+.wn-buddy .line{font-family:'Caveat',cursive;font-size:1.3rem;color:#6B6E76;line-height:1.15}
+.wn-buddy .sign{font-family:'Fredoka',system-ui,sans-serif;font-size:.95rem;font-weight:700;color:#2E3037}
+</style>
+
+<div class="wn-buddy">
+  <img id="wnBuddyImg" src="img/skzoo-puppym.png" alt="Your study buddy" width="150" height="150">
+  <div class="t">
+    <em class="line">You drew the boxes today — next week's tangled question will not stand a chance.</em>
+    <b class="sign">Your study buddy, <span id="wnBuddyName">Puppy M</span></b>
+  </div>
+</div>
+<script>
+/* study buddy: one of the eight, picked fresh on every visit */
+(function(){
+  var CREW = [["wolfchan","Wolf Chan"],["leebit","Leebit"],["dwaekki","Dwaekki"],["jiniret","Jiniret"],
+              ["hanquokka","Han Quokka"],["bbokari","BbokAri"],["puppym","Puppy M"],["foxiny","FoxI.Ny"]];
+  var pick = CREW[Math.floor(Math.random() * CREW.length)];
+  /* same character greets him at the top and signs off at the bottom */
+  [["wnHiImg","wnHiName"],["wnBuddyImg","wnBuddyName"]].forEach(function(ids){
+    var img = document.getElementById(ids[0]), name = document.getElementById(ids[1]);
+    if (!img || !name) return;
+    img.src = "img/skzoo-" + pick[0] + ".png";
+    img.alt = pick[1] + ", your study buddy";
+    name.textContent = pick[1];
+  });
+})();
+</script>
+<footer class="hand foot">Math in Focus 4A · Chapter 2 Activity 4 · Real-World Problems · p.49–53<span class="zh">Math in Focus 4A · 第 2 章 活動 4 · 乘除應用題 · 第 49–53 頁</span></footer>
+
+</main>
+</div>
+<script>
+(function(){
+'use strict';
+const $ = id => document.getElementById(id);
+const Z = s => '<span class="zh">' + s + '</span>';
+function setMsg(el, html, cls){ el.className = 'msg' + (cls ? ' ' + cls : ''); el.innerHTML = html; el.hidden = false; }
+function openGate(id){ const el = $(id); if (el) el.hidden = false; }
+/* send him back to a step he has already finished — replay the nudge, put it on screen */
+function sendBack(stepId){
+  const el = $(stepId);
+  if (!el) return;
+  el.classList.remove('redo');
+  void el.offsetWidth;
+  el.classList.add('redo');
+  el.scrollIntoView({ block: 'center' });
+}
+function mkBtn(html, cls){
+  const b = document.createElement('button');
+  b.type = 'button'; b.className = cls || 'btn';
+  b.innerHTML = html;
+  return b;
+}
+
+/* ---------- toolbar ---------- */
+const MODELINE = {
+  textbook: 'Bar models, units and long division, in your book’s own words.' + Z('用課本自己的說法：bar model、unit、長除法。'),
+  reallife: 'Same maths, told with LEGO bricks, photocopiers and packing boxes.' + Z('同樣的數學，換成樂高、影印機和打包箱來講。')
+};
+function setMode(m){
+  document.body.dataset.mode = m;
+  document.querySelectorAll('.seg button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.mode === m)));
+  $('modeline').innerHTML = MODELINE[m];
+}
+document.querySelectorAll('.seg button').forEach(b =>
+  b.addEventListener('click', () => setMode(b.dataset.mode)));
+$('zhbtn').addEventListener('click', function(){
+  const on = document.body.classList.toggle('zh-on');
+  this.setAttribute('aria-pressed', String(on));
+});
+setMode('textbook');
+
+/* ---------- shared choice widget ----------
+   Socratic rule: a wrong answer gets a question back, not the answer.
+   Two nudges max; the third time we tell, then immediately re-test. */
+function choice(hostId, cfg){
+  const host = $(hostId);
+  let tries = 0, settled = false, held = false, wrap, msg;
+  function build(){
+    tries = 0; settled = false; held = false;
+    host.innerHTML = '';
+    wrap = document.createElement('div');
+    wrap.className = 'choices';
+    cfg.opts.forEach((o, i) => {
+      const b = mkBtn(o[0] + Z(o[1]), 'choice');
+      b.addEventListener('click', () => pick(i, b));
+      wrap.appendChild(b);
+    });
+    msg = document.createElement('div');
+    msg.className = 'msg'; msg.hidden = true;
+    host.appendChild(wrap); host.appendChild(msg);
+  }
+  function lock(){ [...wrap.children].forEach(b => { b.disabled = true; if (!b.classList.contains('ok') && !b.classList.contains('no')) b.classList.add('dim'); }); }
+  /* the question is closed but not answered: it comes back only when the step it was sent
+     back to has been walked again, which is what "back one step" has to mean. */
+  function hold(){ held = true; lock(); }
+  function pick(i, b){
+    if (settled || held) return;
+    if (i === cfg.ans){
+      settled = true; b.classList.add('ok'); lock();
+      setMsg(msg, cfg.good[0] + Z(cfg.good[1]), 'good');
+      if (cfg.pass) cfg.pass();
+      return;
+    }
+    b.classList.add('no');
+    tries++;
+    if (tries === 1){
+      setMsg(msg, cfg.h1[0] + Z(cfg.h1[1]), 'warn');
+      if (cfg.firstWrong) cfg.firstWrong();
+    } else if (tries === 2){
+      setMsg(msg, cfg.h2[0] + Z(cfg.h2[1]), 'warn');
+    } else {
+      settled = true;
+      wrap.children[cfg.ans].classList.add('ok');
+      lock();
+      setMsg(msg, cfg.tell[0] + Z(cfg.tell[1]), 'bad');
+      if (cfg.retest) retest(); else if (cfg.pass) cfg.pass();
+    }
+  }
+  /* told the answer → prove it once on a same-shape question before moving on */
+  function retest(){
+    const c = cfg.retest;
+    const box = document.createElement('div');
+    box.className = 'step';
+    box.innerHTML = '<p class="steplbl">One more, same idea</p><p>' + c.q[0] + Z(c.q[1]) + '</p>';
+    const cw = document.createElement('div'); cw.className = 'choices';
+    const cm = document.createElement('div'); cm.className = 'msg'; cm.hidden = true;
+    let done = false;
+    c.opts.forEach((o, i) => {
+      const b = mkBtn(o[0] + Z(o[1]), 'choice');
+      b.addEventListener('click', () => {
+        if (done) return;
+        if (i === c.ans){
+          done = true; b.classList.add('ok');
+          [...cw.children].forEach(x => x.disabled = true);
+          setMsg(cm, c.why[0] + Z(c.why[1]), 'good');
+          if (cfg.pass) cfg.pass();
+        } else {
+          b.classList.add('no');
+          setMsg(cm, 'Read the answer just above once more, then try again.' + Z('把上面那句答案再讀一次，再選一次。'), 'warn');
+        }
+      });
+      cw.appendChild(b);
+    });
+    box.appendChild(cw); box.appendChild(cm); host.appendChild(box);
+  }
+  build();
+  return { reset: build, hold: hold };
+}
+
+/* ---------- self-report widget ----------
+   No right answer. He was there and the page was not, so every option is
+   taken at face value and routed to the help that answer actually implies. */
+function branch(hostId, cfg){
+  const host = $(hostId);
+  const wrap = document.createElement('div');
+  wrap.className = 'choices';
+  const msg = document.createElement('div');
+  msg.className = 'msg'; msg.hidden = true;
+  const extra = document.createElement('div');
+  let settled = false;
+  cfg.opts.forEach(o => {
+    const b = mkBtn(o.label[0] + Z(o.label[1]), 'choice');
+    b.addEventListener('click', () => {
+      if (settled) return;
+      settled = true;
+      b.classList.add('ok');
+      [...wrap.children].forEach(x => { x.disabled = true; if (x !== b) x.classList.add('dim'); });
+      setMsg(msg, o.reply[0] + Z(o.reply[1]), 'good');
+      if (o.follow) followUp(o.follow); else if (cfg.pass) cfg.pass();
+    });
+    wrap.appendChild(b);
+  });
+  function followUp(f){
+    const box = document.createElement('div');
+    box.className = 'step';
+    box.innerHTML = '<p class="steplbl">' + f.lbl[0] + Z(f.lbl[1]) + '</p><p>' + f.q[0] + Z(f.q[1]) + '</p>';
+    const cw = document.createElement('div'); cw.className = 'choices';
+    const cm = document.createElement('div'); cm.className = 'msg'; cm.hidden = true;
+    let done = false, tries = 0, okBtn = null;
+    /* one nudge per wrong option, never the same hint twice, never more than two */
+    const nudges = Math.min(2, f.opts.filter(o => o.again).length);
+    /* told the answer → prove it once on a same-shape question, exactly like choice() does */
+    function retest(){
+      const c = f.retest;
+      const rb = document.createElement('div');
+      rb.className = 'step';
+      rb.innerHTML = '<p class="steplbl">One more, same idea<span class="zh">再一題，同樣的想法</span></p><p>' + c.q[0] + Z(c.q[1]) + '</p>';
+      const rw = document.createElement('div'); rw.className = 'choices';
+      const rm = document.createElement('div'); rm.className = 'msg'; rm.hidden = true;
+      let rdone = false;
+      c.opts.forEach((o, i) => {
+        const b = mkBtn(o[0] + Z(o[1]), 'choice');
+        b.addEventListener('click', () => {
+          if (rdone) return;
+          if (i === c.ans){
+            rdone = true; b.classList.add('ok');
+            [...rw.children].forEach(x => x.disabled = true);
+            setMsg(rm, c.why[0] + Z(c.why[1]), 'good');
+            if (cfg.pass) cfg.pass();
+          } else {
+            b.classList.add('no');
+            setMsg(rm, 'Read the answer just above once more, then try again.' + Z('把上面那句答案再讀一次，再選一次。'), 'warn');
+          }
+        });
+        rw.appendChild(b);
+      });
+      rb.appendChild(rw); rb.appendChild(rm); extra.appendChild(rb);
+    }
+    f.opts.forEach(o => {
+      const b = mkBtn(o.label[0] + Z(o.label[1]), 'choice');
+      if (!o.again && !okBtn) okBtn = b;
+      b.addEventListener('click', () => {
+        if (done) return;
+        if (o.again){
+          tries++;
+          if (tries <= nudges){
+            b.classList.add('no');
+            setMsg(cm, o.again[0] + Z(o.again[1]), 'warn');
+            return;
+          }
+          done = true;
+          if (okBtn) okBtn.classList.add('ok');
+          [...cw.children].forEach(x => { x.disabled = true; });
+          setMsg(cm, f.tell[0] + Z(f.tell[1]), 'bad');
+          if (f.retest) retest(); else if (cfg.pass) cfg.pass();
+          return;
+        }
+        done = true; b.classList.add('ok');
+        [...cw.children].forEach(x => x.disabled = true);
+        setMsg(cm, o.say[0] + Z(o.say[1]), 'good');
+        if (cfg.pass) cfg.pass();
+      });
+      cw.appendChild(b);
+    });
+    box.appendChild(cw); box.appendChild(cm); extra.appendChild(box);
+  }
+  host.appendChild(wrap); host.appendChild(msg); host.appendChild(extra);
+}
+
+/* ---------- tap-the-words widget ----------
+   Every wrong chip answers with a question, never with the rule. */
+function tapWords(hostId, msgId, WORDS, need, doneMsg, onDone){
+  const host = $(hostId), msg = $(msgId);
+  let got = 0, finished = false;
+  WORDS.forEach(w => {
+    const b = mkBtn(w[0], 'opb wide');
+    b.addEventListener('click', () => {
+      if (finished || b.disabled) return;
+      if (w[1]){
+        b.classList.add('ok'); b.disabled = true; got++;
+        if (got === need){
+          finished = true;
+          [...host.children].forEach(x => { x.disabled = true; });
+          setMsg(msg, doneMsg[0] + Z(doneMsg[1]), 'good');
+          onDone();
+        } else {
+          setMsg(msg, 'Yes — ' + (need - got) + ' to go.' + Z('對——還有 ' + (need - got) + ' 個。'), 'good');
+        }
+      } else {
+        b.classList.add('no');
+        setTimeout(() => b.classList.remove('no'), 700);
+        setMsg(msg, w[2] + Z(w[3]), 'warn');
+      }
+    });
+    host.appendChild(b);
+  });
+}
+
+/* ---------- bar model drawing ---------- */
+function drawBM(host, model){
+  host.style.setProperty('--n', model.n);
+  host.innerHTML = '';
+  model.rows.forEach(r => {
+    const row = document.createElement('div'); row.className = 'bmrow';
+    const nm = document.createElement('span'); nm.className = 'bmname'; nm.textContent = r.name;
+    const bars = document.createElement('span'); bars.className = 'bmbars' + (r.units ? '' : ' empty');
+    /* a bar with more boxes than the picture can hold shows plain boxes — half a digit
+       in a squeezed box reads as broken, and the crowding is the point he needs to see */
+    const crowded = r.units > model.n;
+    for (let i = 0; i < r.units; i++){
+      const u = document.createElement('span');
+      u.className = 'unit' + (r.cls ? ' ' + r.cls : '');
+      u.textContent = crowded ? '' : (r.text || '');
+      bars.appendChild(u);
+    }
+    row.appendChild(nm); row.appendChild(bars);
+    host.appendChild(row);
+  });
+}
+
+/* ---------- long division drawing ----------
+   Cells sit on a grid so the digits line up exactly like squared paper.
+   cells: [text, col, row, cls] · rules: [row, fromCol, toCol]
+   slots: the lines he has not written yet — dashed and red until revealed. */
+function drawLD(parent, cfg, opts){
+  opts = opts || {};
+  const g = document.createElement('div');
+  g.className = 'ld';
+  g.style.setProperty('--c', cfg.cols);
+  parent.appendChild(g);
+  const rowCells = {};
+  function put(text, x, y, cls){
+    const c = document.createElement('span');
+    c.className = 'c' + (cls ? ' ' + cls : '');
+    c.textContent = text;
+    c.style.gridColumn = String(x);
+    c.style.gridRow = String(y);
+    g.appendChild(c);
+    (rowCells[y] = rowCells[y] || []).push(c);
+    return c;
+  }
+  function rule(y, a, b, cls){
+    const r = document.createElement('span');
+    r.className = 'rule' + (cls ? ' ' + cls : '');
+    r.style.gridRow = String(y);
+    r.style.gridColumn = a + ' / ' + (b + 1);
+    g.appendChild(r);
+    return r;
+  }
+  (cfg.cells || []).forEach(c => put(c[0], c[1], c[2], c[3]));
+  (cfg.rules || []).forEach(r => rule(r[0], r[1], r[2]));
+  const slotCells = {}, slotRules = {};
+  (cfg.slots || []).forEach(s => {
+    const c = put(s[0], s[1], s[2], opts.revealAll ? 'fresh' : 'slot');
+    if (!opts.revealAll) c.setAttribute('aria-hidden', 'true');   /* an unwritten line should not be read out either */
+    (slotCells[s[2]] = slotCells[s[2]] || []).push(c);
+  });
+  (cfg.slotRules || []).forEach(r => {
+    const el = rule(r[0], r[1], r[2], opts.revealAll ? '' : 'slotrule');
+    slotRules[r[0]] = el;
+  });
+  return {
+    el: g,
+    reveal(y){
+      (slotCells[y] || []).forEach(c => { c.className = 'c fresh'; c.removeAttribute('aria-hidden'); });
+      if (slotRules[y]) slotRules[y].className = 'rule';
+    },
+    hide(y){
+      (slotCells[y] || []).forEach(c => { c.className = 'c slot'; c.setAttribute('aria-hidden', 'true'); });
+      if (slotRules[y]) slotRules[y].className = 'rule slotrule';
+    },
+    pickable(rows, handler){
+      Object.keys(rowCells).forEach(y => {
+        if (rows.indexOf(Number(y)) === -1) return;
+        rowCells[y].forEach(c => {
+          c.classList.add('pick');
+          c.addEventListener('click', () => handler(Number(y), rowCells[y]));
+        });
+      });
+    },
+    row(y){ return rowCells[y] || []; },
+    lock(){ g.querySelectorAll('.pick').forEach(c => c.classList.remove('pick')); }
+  };
+}
+
+/* long division layouts, digit for digit as they sit on his page */
+const LD6 = {
+  cols: 5,
+  cells: [
+    ['6', 4, 1], ['8', 5, 1],
+    ['4', 1, 2, 'faded'], [')', 2, 2, 'faded'], ['2', 3, 2], ['7', 4, 2], ['2', 5, 2],
+    ['2', 3, 3], ['4', 4, 3],
+    ['3', 4, 4], ['2', 5, 4]
+  ],
+  rules: [[2, 3, 5], [4, 3, 5]],
+  slots: [['3', 4, 5], ['2', 5, 5], ['0', 5, 6]],
+  slotRules: [[6, 4, 5]]
+};
+const LD10 = {
+  cols: 6,
+  cells: [
+    ['3', 4, 1], ['1', 5, 1], ['3', 6, 1],
+    ['4', 1, 2, 'faded'], [')', 2, 2, 'faded'], ['1', 3, 2], ['2', 4, 2], ['5', 5, 2], ['2', 6, 2],
+    ['1', 3, 3], ['2', 4, 3],
+    ['0', 4, 4], ['5', 5, 4],
+    ['4', 5, 5],
+    ['1', 5, 6], ['2', 6, 6]
+  ],
+  rules: [[2, 3, 6], [4, 3, 4], [6, 4, 5]],
+  slots: [['1', 5, 7], ['2', 6, 7], ['0', 6, 8]],
+  slotRules: [[8, 5, 6]]
+};
+
+/* ================= BIG IDEA ================= */
+branch('bigask', {
+  opts: [
+    {
+      label: ['I could do them in my head, so I just wrote the answer', '我心算得出來，就直接把答案寫下去'],
+      reply: ['That is exactly what the pages look like — ten right answers, working kept short. So the real question is who the written part is <b>for</b>. Quick check:',
+              '這跟紙上看到的完全一致——十題答案都對，過程寫得很短。那真正的問題就是：寫下來的部分是「給誰看的」。確認一下：'],
+      follow: {
+        lbl: ['Quick check', '確認一下'],
+        q: ['On a word problem, "Show your work" is there so that…', '應用題上寫「Show your work」，是為了……'],
+        opts: [
+          { label: ['someone else can follow how you got there', '別人可以跟著看出你是怎麼走到答案的'],
+            say: ['Right. The marker cannot read your head, only your page. All three fixes below are about the page.', '對。批改的人讀不到你的腦袋，只讀得到你的紙。下面三個訂正講的都是那張紙。'] },
+          { label: ['the answer takes up more space', '讓答案佔多一點空間'],
+            again: ['It does end up longer, true. But who is that extra writing <b>for</b>?', '確實會變長。但那些多寫的東西是「給誰」看的？'] }
+        ],
+        tell: ['It is so someone else can follow your steps — the page is the only part they can see.', '是為了讓別人能跟著你的步驟走——他們唯一看得到的就是那張紙。'],
+        retest: {
+          q: ['You solve a problem in your head in two seconds and write only the answer. What can the marker see?', '你兩秒就心算出一題，只寫下答案。批改的人看得到什麼？'],
+          opts: [['the answer, and nothing about how you got it', '只有答案，看不到你怎麼走到那裡'], ['everything you did, because the answer is right', '全部，因為答案是對的']],
+          ans: 0,
+          why: ['Exactly — a right answer does not carry your steps with it. Only the page does.', '對——正確答案不會順便把你的步驟帶著走。只有紙上寫的才會。']
+        }
+      }
+    },
+    {
+      label: ['I was going fast', '我那時候寫得很快'],
+      reply: ['Then let us make the writing part fast instead of skipping it. Question 1 needs four boxes — about as long as writing the number sentence.',
+              '那我們就把「寫」變快，而不是跳過。第 1 題只需要四個格子——大概跟寫一行算式一樣久。'],
+      follow: {
+        lbl: ['How fast is fast', '到底有多快'],
+        q: ['"Thomas baked 3 times as many as Riley." How many boxes does the whole drawing need?', '「Thomas 是 Riley 的 3 倍。」整張圖總共需要幾個格子？'],
+        opts: [
+          { label: ['4 — one for Riley, three for Thomas', '4 個——Riley 一個、Thomas 三個'],
+            say: ['Four boxes, and the drawing is done. Section 1 shows what those four boxes buy you.', '四個格子，圖就畫完了。第 1 段會讓你看到這四格能換到什麼。'] },
+          { label: ['185 — one box for each muffin', '185 個——一個 muffin 一格'],
+            again: ['A bar model draws <b>amounts</b>, not muffins. Riley’s amount takes one box — how many does Thomas need?', 'bar model 畫的是「量」，不是 muffin。Riley 的量佔一格——那 Thomas 需要幾格？'] }
+        ],
+        tell: ['Four: one box for Riley, three for Thomas. That is the entire drawing.', '四個：Riley 一格、Thomas 三格。整張圖就這樣。'],
+        retest: {
+          q: ['"Ken has 5 times as many marbles as Sam." How many boxes for that whole drawing?', '「Ken 的彈珠是 Sam 的 5 倍。」那張圖總共幾格？'],
+          opts: [['6 — one for Sam, five for Ken', '6 個——Sam 一格、Ken 五格'], ['5 — one for each time', '5 個——一倍一格']],
+          ans: 0,
+          why: ['One box for the small one, five copies for the big one. Both bars have to be on the paper.', '小的那個一格，大的那個複製五格。兩條都要畫在紙上。']
+        }
+      }
+    },
+    {
+      label: ['I did not know a bar model was wanted', '我不知道要畫 bar model'],
+      reply: ['Then the first thing to find is the line that asks for it — it sits at the very top of p.49, and section 1 starts exactly there.',
+              '那第一件事就是找到那行要求——它就在 p.49 最上面，而第 1 段正是從那裡開始。']
+    }
+  ],
+  pass: () => openGate('bigexp')
+});
+
+/* ================= SECTION 1 ================= */
+const s1model = { n: 3, rows: [
+  { name: 'Riley', units: 0, text: '', cls: 'ghost' },
+  { name: 'Thomas', units: 0, text: '', cls: 'ghost' }
+] };
+function s1draw(){ drawBM($('s1bm'), s1model); }
+function s1note(en, zh){ $('s1bmnote').innerHTML = en + Z(zh); }
+
+branch('s1ask', {
+  opts: [
+    {
+      label: ['I did not see that line', '我沒看到那一行'],
+      reply: ['Easy to miss — one line sitting on top of ten questions. Let us find it now so it cannot hide again.',
+              '很容易漏掉——一行字壓在十題上面。現在把它找出來，之後就藏不住了。'],
+      follow: {
+        lbl: ['Find it', '把它找出來'],
+        q: ['Here is the top of page 49. Which part asks you to <b>draw</b> something?', '這是 p.49 最上面那一行。哪一部分要你「畫」東西？'],
+        opts: [
+          { label: ['"Solve."', 'Solve.'],
+            again: ['That one asks for an answer, and you gave ten of them. Which part asks for a picture?', '那一句要的是答案，而你給了十個。哪一句要的是「圖」？'] },
+          { label: ['"Show your work."', 'Show your work.'],
+            again: ['Close — that one asks for your steps. One more sentence asks for an actual drawing.', '很接近——那句要的是你的步驟。還有一句要的是真的畫一張圖。'] },
+          { label: ['"Draw a bar model to help you."', 'Draw a bar model to help you.'],
+            say: ['Found it. Three sentences, three different jobs — and the third one is a drawing.', '找到了。三句話，三件不同的事——第三句要的是一張圖。'] }
+        ],
+        tell: ['It is the third sentence: "Draw a bar model to help you."', '是第三句：「Draw a bar model to help you.」'],
+        retest: {
+          q: ['Another page says "Work out the total. Show a diagram." How many jobs is that?', '另一頁寫「Work out the total. Show a diagram.」，那是幾件事？'],
+          opts: [['two — a total, and a diagram', '兩件——一個總數，一張圖'], ['one — just the total', '一件——只要總數']],
+          ans: 0,
+          why: ['Each sentence in the instruction is its own job. Count the sentences, do that many things.', '指示裡的每一句都是一件事。數幾句，就做幾件。']
+        }
+      }
+    },
+    {
+      label: ['I saw it, but I could get the answer without the drawing', '我有看到，但不畫我也算得出來'],
+      reply: ['True — and you did, ten times out of ten. So let us test what the drawing is really saving you for.',
+              '沒錯——而且你十題都做到了。那我們來測一下：這張圖到底是留給什麼場合的。'],
+      follow: {
+        lbl: ['The real test', '真正的考驗'],
+        q: ['$210 is shared between three children. Ben gets twice as much as Ann. Cara gets half as much as Ann. Try it in your head — what does Ann get?',
+            '$210 分給三個小孩。Ben 是 Ann 的兩倍，Cara 是 Ann 的一半。先心算看看——Ann 拿多少？'],
+        opts: [
+          { label: ['$60', '$60'],
+            say: ['You got it in your head. With the boxes it is two steps instead of ten — round 3 of Try it builds exactly this one.',
+                  '你心算出來了。用格子的話，這題會從十步變成兩步——Try it 第 3 回合蓋的就是這一題。'] },
+          { label: ['I am not sure yet', '我還不確定'],
+            say: ['That is an honest answer, and it is exactly why the boxes exist. Round 3 of Try it walks this question step by step.',
+                  '這是誠實的答案，而這正是格子存在的理由。Try it 第 3 回合會一步一步走這一題。'] }
+        ]
+      }
+    },
+    {
+      label: ['I am not sure how to draw one', '我不太確定 bar model 怎麼畫'],
+      reply: ['Perfect place to start, then. The next part builds one box at a time, and you are the one placing them.',
+              '那就從最好的地方開始。下一段會一格一格蓋起來，而且放格子的人是你。']
+    }
+  ],
+  pass: () => { openGate('s1exp'); s1draw(); }
+});
+
+/* step 1 — what one box means */
+tapWords('s1a1', 's1m1', [
+  ['one box', true],
+  ['the total', false, 'The total is everything added together. Is one box the whole thing, or a part of it?', '總數是全部加起來。一格是「整個」，還是「一部分」？'],
+  ['always the same size', true],
+  ['the answer', false, 'The answer turns up at the end, once you read the picture. Is a box an answer?', '答案是最後讀圖才出現的。一個格子會是答案嗎？'],
+  ['the smallest amount in the problem', true]
+], 3,
+  ['That is 1 unit: <mark>one box</mark>, <mark>always the same size</mark>, <mark>the smallest amount</mark>. Everything else is copies.',
+   '這就是 1 unit：一格、大小永遠一樣、題目裡最小的量。其他東西都是它的複製品。'],
+  () => { $('s1st2').hidden = false; });
+
+/* step 2 — who is 1 unit? */
+choice('s1a2', {
+  opts: [['Riley — 185 muffins', 'Riley——185 個 muffin'], ['Thomas — he baked more', 'Thomas——他烤比較多']],
+  ans: 0,
+  good: ['Riley is 1 unit. Watch the picture below: one box, and 185 lives inside it.', 'Riley 是 1 unit。看下面那張圖：一格，185 就住在裡面。'],
+  h1: ['Which one is the <b>smaller</b> amount — the one the other is measured against?', '哪一個是「比較小」的量——另一個是拿它來量的？'],
+  h2: ['The sentence is "Thomas baked 3 times as many <b>as Riley</b>". Whose amount gets copied?', '句子是「Thomas 是 <b>Riley</b> 的 3 倍」。被複製的是誰的量？'],
+  tell: ['Riley is 1 unit — he is the one Thomas is compared to, and his bar is the small one.', 'Riley 是 1 unit——Thomas 是拿他來比的，他的條是小的那一條。'],
+  retest: {
+    q: ['"Mia has 4 times as many stickers as Ken." Who is 1 unit?', '「Mia 的貼紙是 Ken 的 4 倍。」誰是 1 unit？'],
+    opts: [['Ken', 'Ken'], ['Mia', 'Mia']],
+    ans: 0,
+    why: ['Ken — the one being compared to is always 1 unit.', 'Ken——被拿來比的那一個永遠是 1 unit。']
+  },
+  pass: () => {
+    s1model.rows[0].units = 1;
+    s1model.rows[0].text = '185';
+    s1model.rows[0].cls = '';
+    s1draw();
+    s1note('1 unit = 185. Riley’s bar is on the paper.', '1 unit = 185。Riley 那條已經上紙了。');
+    $('s1st3').hidden = false;
+  }
+});
+
+/* step 3 — how many copies? */
+(function(){
+  const host = $('s1a3'), msg = $('s1m3');
+  const add = mkBtn('＋ copy Riley’s box', 'btn sm');
+  const rm = mkBtn('− take one off', 'btn sm ghost');
+  const done = mkBtn('✓ Done', 'btn sm ghost');
+  let finished = false;
+  add.addEventListener('click', () => {
+    if (finished) return;
+    if (s1model.rows[1].units >= 5){
+      setMsg(msg, 'That is as long as this bar goes. Read the words once more: <b>3 times</b> as many.' + Z('這條到頭了。再讀一次句子：Riley 的 <b>3 倍</b>。'), 'warn');
+      return;
+    }
+    s1model.rows[1].units++;
+    s1model.rows[1].text = '185';
+    s1model.rows[1].cls = '';
+    s1draw();
+    msg.hidden = true;
+  });
+  rm.addEventListener('click', () => {
+    if (finished || s1model.rows[1].units === 0) return;
+    s1model.rows[1].units--;
+    s1draw();
+    msg.hidden = true;
+  });
+  done.addEventListener('click', () => {
+    if (finished) return;
+    const u = s1model.rows[1].units;
+    if (u === 3){
+      finished = true;
+      [add, rm, done].forEach(b => { b.disabled = true; });
+      setMsg(msg, 'Three equal boxes. The picture now says the same thing as the sentence.' + Z('三個一樣大的格子。圖現在跟句子講的是同一件事了。'), 'good');
+      s1note('Riley = 1 unit · Thomas = 3 units · 1 unit = 185', 'Riley = 1 unit・Thomas = 3 units・1 unit = 185');
+      $('s1st4').hidden = false;
+    } else if (u < 3){
+      setMsg(msg, 'Count Thomas’s boxes, then read the words again: <b>3 times as many</b> as Riley. How many copies is that?' + Z('數一下 Thomas 有幾格，再讀一次句子：Riley 的 3 倍。那是幾份？'), 'warn');
+    } else {
+      setMsg(msg, 'More boxes than the sentence asks for. How many times as many did Thomas bake?' + Z('格子比句子要求的多。Thomas 是幾倍？'), 'warn');
+    }
+  });
+  host.appendChild(add); host.appendChild(rm); host.appendChild(done);
+})();
+
+/* step 4 — read the number sentence off the picture */
+let s1a5 = null;
+const s1a4 = choice('s1a4', {
+  opts: [['185 × 3', '185 × 3'], ['185 ÷ 3', '185 ÷ 3'], ['185 + 3', '185 + 3']],
+  ans: 0,
+  good: ['185 × 3 = 555. Same answer you already had — now with the picture that proves it.', '185 × 3 = 555。跟你原本的答案一樣——現在多了一張能證明它的圖。'],
+  h1: ['Point at the picture: are you <b>splitting</b> 185 up, or taking it <b>three times</b>?', '看著圖：你是把 185 分開，還是拿了三次 185？'],
+  h2: ['Three boxes, 185 in each. 185 and 185 and 185 — what is the short way to write that?', '三格，每格 185。185 加 185 加 185——有沒有更短的寫法？'],
+  tell: ['185 × 3 — three equal boxes of 185 means multiply.', '185 × 3——三個一樣的 185，就是用乘的。'],
+  retest: {
+    q: ['A bar model shows 4 boxes of 20. The number sentence is…', 'bar model 上有 4 格、每格 20。算式是……'],
+    opts: [['20 × 4', '20 × 4'], ['20 ÷ 4', '20 ÷ 4']],
+    ans: 0,
+    why: ['Equal boxes are always a multiply.', '一樣大的格子，永遠是乘法。']
+  },
+  pass: () => {
+    s1model.rows[1].cls = 'hi';
+    s1draw();
+    s1note('3 units = 185 × 3 = <b>555 muffins</b>', '3 units = 185 × 3 = <b>555 個 muffin</b>');
+    $('s1st5').hidden = false;
+    if (s1a5) s1a5.reset();   /* step 5 always opens fresh, whether this is the first walk or a redo */
+  }
+});
+
+/* step 5 — say it your way */
+s1a5 = choice('s1a5', {
+  opts: [
+    ['Because the numbers were big', '因為數字很大'],
+    ['Because 3 units are 3 copies of the same 185', '因為 3 units 是同一個 185 複製 3 份'],
+    ['Because Thomas is the older one', '因為 Thomas 比較大']
+  ],
+  ans: 1,
+  good: ['That is the rule in your own words. Now build three of them from scratch.', '這是你自己講出來的規則。現在從零蓋三個給我看。'],
+  h1: ['Back one step — I have taken the number sentence back off the picture. Read the boxes again, choose it again, and this question comes back.', '退回上一步——算式我從圖上收回去了。再讀一次格子、再選一次，這一題就會回來。'],
+  h2: ['Big numbers can be added or divided too, and ages change nothing. What does the <b>picture</b> show three of?', '大數字也可以加、也可以除，年紀更是無關。圖上「三個」的是什麼？'],
+  tell: ['Because the picture holds 3 copies of the same amount — copies of an equal box mean multiply.', '因為圖上有 3 份「同樣的量」——等大格子的複製，就是乘法。'],
+  retest: {
+    q: ['A bar model shows 5 equal boxes of 12. You multiply because…', 'bar model 上有 5 個一樣的 12。要用乘法是因為……'],
+    opts: [['there are 5 copies of the same 12', '有 5 份一樣的 12'], ['12 is a big number', '12 是大數字']],
+    ans: 0,
+    why: ['Copies of an equal box — that is what multiplying is.', '等大格子的複製——乘法就是這個意思。']
+  },
+  firstWrong: () => {
+    s1a5.hold();                    /* closed until step 4 has actually been walked again */
+    s1model.rows[1].cls = '';       /* and everything step 4 wrote comes back off the picture */
+    s1draw();
+    s1note('Riley = 1 unit · Thomas = 3 units · 1 unit = 185', 'Riley = 1 unit・Thomas = 3 units・1 unit = 185');
+    s1a4.reset();
+    sendBack('s1st4');
+  },
+  pass: () => { openGate('s1try'); $('s1try').scrollIntoView({block:'center'}); }
+});
+
+/* ---------- Try it: build three bar models from scratch ---------- */
+function barBuilder(hostId, ROUNDS, onAllDone){
+  const host = $(hostId);
+  let idx = 0;
+  function runRound(){
+    const R = ROUNDS[idx];
+    const model = { n: R.n, rows: R.rows.map(r => ({ name: r, units: 0, text: '', cls: 'ghost' })) };
+    const box = document.createElement('div');
+    const head = document.createElement('p');
+    head.className = 'steplbl';
+    head.innerHTML = 'Round ' + (idx + 1) + ' of ' + ROUNDS.length + ' · ' + R.title[0] + Z('第 ' + (idx + 1) + ' 回合，共 ' + ROUNDS.length + ' 回合 · ' + R.title[1]);
+    const prob = document.createElement('div');
+    prob.className = 'ev';
+    prob.innerHTML = '<span class="lbl">The problem</span>' + R.problem[0] + Z(R.problem[1]);
+    const bm = document.createElement('div'); bm.className = 'bm';
+    const note = document.createElement('p'); note.className = 'bmnote';
+    const act = document.createElement('div');
+    const msg = document.createElement('div'); msg.className = 'msg'; msg.hidden = true;
+    box.appendChild(head); box.appendChild(prob); box.appendChild(bm);
+    box.appendChild(note); box.appendChild(act); box.appendChild(msg);
+    host.appendChild(box);
+    let si = 0, misses = 0;   /* counted so the round can only claim a clean walk when there was one */
+    const redraw = () => drawBM(bm, model);
+    redraw();
+
+    function finishStep(S){
+      if (S.note) note.innerHTML = S.note[0] + Z(S.note[1]);
+      si++;
+      nextStep();
+    }
+    function placeStep(S){
+      const row = document.createElement('div'); row.className = 'row';
+      const add = mkBtn('＋ box', 'btn sm');
+      const rm = mkBtn('− box', 'btn sm ghost');
+      const ok = mkBtn('✓ Done', 'btn sm ghost');
+      add.addEventListener('click', () => {
+        /* the ceiling follows this step, not a magic 7: one box past the answer is enough to
+           be told "too many", and the bar can never get wide enough to push the page sideways */
+        if (model.rows[S.row].units >= S.need + 1){
+          setMsg(msg, S.wrong[0] + Z(S.wrong[1]), 'warn');
+          return;
+        }
+        model.rows[S.row].units++;
+        redraw(); msg.hidden = true;
+      });
+      rm.addEventListener('click', () => {
+        if (model.rows[S.row].units === 0) return;
+        model.rows[S.row].units--;
+        redraw(); msg.hidden = true;
+      });
+      ok.addEventListener('click', () => {
+        if (model.rows[S.row].units === S.need){
+          [add, rm, ok].forEach(b => { b.disabled = true; });
+          setMsg(msg, S.good[0] + Z(S.good[1]), 'good');
+          finishStep(S);
+        } else {
+          misses++;
+          setMsg(msg, S.wrong[0] + Z(S.wrong[1]), 'warn');
+        }
+      });
+      row.appendChild(add); row.appendChild(rm); row.appendChild(ok);
+      act.appendChild(row);
+    }
+    function pickStep(S){
+      const row = document.createElement('div'); row.className = 'row';
+      let done = false;
+      S.opts.forEach(o => {
+        const b = mkBtn(o[0], 'opb wide');
+        b.addEventListener('click', () => {
+          if (done) return;
+          if (o[1]){
+            done = true; b.classList.add('ok');
+            [...row.children].forEach(x => { x.disabled = true; });
+            if (S.after) S.after(model);
+            redraw();
+            setMsg(msg, S.good[0] + Z(S.good[1]), 'good');
+            finishStep(S);
+          } else {
+            misses++;
+            b.classList.add('no');
+            setTimeout(() => b.classList.remove('no'), 700);
+            setMsg(msg, (o[2] || S.wrong[0]) + Z(o[3] || S.wrong[1]), 'warn');
+          }
+        });
+        row.appendChild(b);
+      });
+      act.appendChild(row);
+    }
+    function nextStep(){
+      act.innerHTML = '';
+      if (si >= R.steps.length){
+        model.rows.forEach(r => { r.cls = 'hi'; });
+        redraw();
+        /* only a round with no wrong turns gets told it had no wrong turns */
+        const D = (misses === 0 && R.doneClean) ? R.doneClean : R.done;
+        setMsg(msg, D[0] + Z(D[1]), 'good');
+        idx++;
+        if (idx < ROUNDS.length) setTimeout(runRound, 700);
+        else onAllDone();
+        return;
+      }
+      const S = R.steps[si];
+      const p = document.createElement('p');
+      p.innerHTML = '<b>' + (si + 1) + '.</b> ' + S.prompt[0] + Z(S.prompt[1]);
+      act.appendChild(p);
+      if (S.kind === 'place') placeStep(S); else pickStep(S);
+    }
+    nextStep();
+  }
+  runRound();
+}
+barBuilder('s1build', [
+  {
+    title: ['your question 1 — the muffins', '你的第 1 題——muffin'],
+    problem: ['Riley baked 185 muffins. Thomas baked 3 times as many muffins as Riley. How many muffins did Thomas bake?',
+              'Riley 烤了 185 個 muffin。Thomas 烤的是 Riley 的 3 倍。Thomas 烤了幾個？'],
+    n: 3, rows: ['Riley', 'Thomas'],
+    steps: [
+      { kind: 'place', row: 0, need: 1,
+        prompt: ['Riley baked 185 muffins. Put Riley’s bar on the paper.', 'Riley 烤了 185 個。先把 Riley 那條放上去。'],
+        good: ['One box for 1 unit. Riley is down.', '1 unit 就是一格。Riley 完成。'],
+        wrong: ['Riley is 1 unit, and 1 unit is one box. How many boxes should Riley have?', 'Riley 是 1 unit，1 unit 就是一格。Riley 應該有幾格？'] },
+      { kind: 'place', row: 1, need: 3,
+        prompt: ['Now Thomas — 3 times as many as Riley. Copy the box.', '換 Thomas——Riley 的 3 倍。把格子複製過去。'],
+        good: ['Three copies of the same box. The picture and the sentence now say the same thing.', '三個一樣的格子。圖和句子現在講的是同一件事。'],
+        wrong: ['Count Thomas’s boxes, then read the sentence again: <b>3 times</b> as many as Riley. How many copies is that?', '數一下 Thomas 有幾格，再讀一次句子：Riley 的 3 倍。那是幾份？'] },
+      { kind: 'pick',
+        prompt: ['Label the boxes. What number goes inside <b>every</b> box?', '幫格子標數字。每一格裡面要放哪個數？'],
+        opts: [
+          ['185', true],
+          ['555', false, '555 is where you are heading, not where you start. What is inside ONE box?', '555 是終點，不是起點。「一格」裡面是多少？'],
+          ['3', false, '3 is how many boxes there are, not what is inside them. What was Riley’s amount?', '3 是格子的「數量」，不是格子裡的東西。Riley 的量是多少？']
+        ],
+        after: m => { m.rows.forEach(r => { r.text = '185'; r.cls = ''; }); },
+        good: ['Every box holds 185 — that is what "equal boxes" means.', '每一格都是 185——這就是「等大格子」的意思。'],
+        note: ['1 unit = 185 · Thomas = 3 units', '1 unit = 185・Thomas = 3 units'],
+        wrong: ['Look at 1 unit. What number is that?', '看 1 unit。那是多少？'] },
+      { kind: 'pick',
+        prompt: ['Read the picture. Thomas is 3 units, so the number sentence is…', '讀圖。Thomas 是 3 units，所以算式是……'],
+        opts: [
+          ['185 × 3', true],
+          ['185 ÷ 3', false, 'Dividing would <b>split</b> Riley’s 185 into pieces. Is Thomas’s pile smaller or bigger?', '除法是把 Riley 的 185「切開」。Thomas 那堆是變少還是變多？'],
+          ['185 + 3', false, 'That adds three muffins, not three trays. How many trays does Thomas have?', '那是加三個 muffin，不是三盤。Thomas 有幾盤？']
+        ],
+        good: ['Three equal boxes of 185 — that is a multiply.', '三個一樣的 185——就是乘法。'],
+        wrong: ['Three lots of the same number. Which sign does that?', '同一個數字三份。哪個符號在做這件事？'] },
+      { kind: 'pick',
+        prompt: ['185 × 3 = ?', '185 × 3 = ?'],
+        opts: [
+          ['555', true],
+          ['545', false, 'Check the middle column: 80 × 3. What is that, and did it get carried?', '檢查中間那一位：80 × 3 是多少？進位有沒有加進去？'],
+          ['375', false, 'Try it in parts: (100 × 3) + (80 × 3) + (5 × 3). What do you get?', '拆開算：(100×3)+(80×3)+(5×3)。答案是多少？']
+        ],
+        good: ['555 — the answer you already had, now with a picture that proves it.', '555——本來就是你的答案，現在多了一張能證明它的圖。'],
+        note: ['3 units = 185 × 3 = 555 muffins', '3 units = 185 × 3 = 555 個 muffin'],
+        wrong: ['Break it up: 100 × 3, 80 × 3, 5 × 3, then add.', '拆開來：100×3、80×3、5×3，再相加。'] }
+    ],
+    done: ['Round 1 built. Two rows of boxes, and the drawing p.49 asked for is on the paper.', '第 1 回合完成。兩排格子——p.49 要求的那張圖，上紙了。'],
+    doneClean: ['Round 1 built, straight through. Two rows of boxes, half a minute, full marks.', '第 1 回合一次走完。兩排格子，半分鐘，滿分。']
+  },
+  {
+    title: ['the bakery — two questions, one picture', '麵包店——兩個問題，一張圖'],
+    problem: ['A bakery sold 126 loaves of bread on Saturday. On Sunday it sold 4 times as many loaves as on Saturday. (a) How many loaves did it sell on Sunday? (b) How many loaves in the two days altogether?',
+              '麵包店週六賣了 126 條吐司，週日賣的是週六的 4 倍。(a) 週日賣幾條？(b) 兩天總共賣幾條？'],
+    n: 5, rows: ['Saturday', 'Sunday', 'Both days'],
+    steps: [
+      { kind: 'place', row: 0, need: 1,
+        prompt: ['Which day is 1 unit? Put that bar down first.', '哪一天是 1 unit？先把那條放下去。'],
+        good: ['Saturday is 1 unit — Sunday is measured against it.', '週六是 1 unit——週日是拿它來比的。'],
+        wrong: ['Sunday is "4 times as many <b>as Saturday</b>". So which day is the one box?', '週日是「週六的 4 倍」。那哪一天是那一格？'] },
+      { kind: 'place', row: 1, need: 4,
+        prompt: ['Now Sunday — 4 times as many.', '換週日——4 倍。'],
+        good: ['Four copies of Saturday. Nothing new to work out yet, just copying.', '四份週六。到這裡都還不用算，只是複製。'],
+        wrong: ['Read it once more: <b>4 times</b> as many as Saturday. How many copies of that box?', '再讀一次：週六的 4 倍。那格要複製幾份？'] },
+      { kind: 'pick',
+        prompt: ['What goes inside every box?', '每一格裡面放什麼？'],
+        opts: [
+          ['126', true],
+          ['504', false, '504 is the answer to (a). What is inside ONE box, before you work anything out?', '504 是 (a) 的答案。還沒開始算之前，「一格」裡面是多少？'],
+          ['4', false, '4 is how many boxes Sunday has. What amount does one box hold?', '4 是週日的格子數。一格裝的量是多少？']
+        ],
+        after: m => { m.rows.forEach(r => { r.text = '126'; r.cls = ''; }); },
+        good: ['1 unit = 126 loaves, in every single box.', '1 unit = 126 條，每一格都是。'],
+        note: ['1 unit = 126 loaves', '1 unit = 126 條'],
+        wrong: ['1 unit is Saturday’s amount. What is it?', '1 unit 就是週六的量。是多少？'] },
+      { kind: 'pick',
+        prompt: ['<b>(a)</b> Sunday is 4 units, so Sunday sold…', '<b>(a)</b> 週日是 4 units，所以週日賣了……'],
+        opts: [
+          ['126 × 4 = 504', true],
+          ['126 ÷ 4 = 31.5', false, 'Sunday sold <b>more</b> than Saturday. Does dividing make a number bigger or smaller?', '週日賣得比週六「多」。除法會讓數字變大還是變小？'],
+          ['126 + 4 = 130', false, 'That adds four loaves, not four Saturdays. How many Saturdays is Sunday?', '那是多加四條，不是多四個週六。週日等於幾個週六？']
+        ],
+        good: ['(a) 504 loaves — read straight off the boxes.', '(a) 504 條——直接從格子讀出來的。'],
+        wrong: ['Four equal boxes of 126. Multiply or divide?', '四個 126 的格子。乘還是除？'] },
+      { kind: 'place', row: 2, need: 5,
+        prompt: ['<b>(b)</b> asks for both days together. Build that bar out of the boxes you can already see.', '<b>(b)</b> 問兩天總共。用你眼前看得到的格子，把那條蓋出來。'],
+        good: ['5 units — Saturday’s 1 plus Sunday’s 4. No new multiplying needed to spot it.', '5 units——週六 1 格加週日 4 格。這一步不用算，用看的。'],
+        wrong: ['Count Saturday’s boxes, then Sunday’s boxes. How many altogether?', '先數週六幾格，再數週日幾格。加起來幾格？'] },
+      { kind: 'pick',
+        prompt: ['<b>(b)</b> 5 units of 126 is…', '<b>(b)</b> 5 units、每格 126，是……'],
+        opts: [
+          ['126 × 5 = 630', true],
+          ['504 + 4 = 508', false, 'You added Sunday’s number of <b>boxes</b>, not Saturday’s loaves. How many loaves is Saturday?', '你加的是週日的「格子數」，不是週六的條數。週六是幾條？'],
+          ['630 ÷ 2 = 315', false, 'Both days <b>together</b> — is that more than one day, or less?', '兩天「合起來」——會比一天多還是少？']
+        ],
+        good: ['(b) 630 loaves. One picture answered two questions.', '(b) 630 條。一張圖回答了兩個問題。'],
+        note: ['(a) 504 loaves · (b) 630 loaves', '(a) 504 條・(b) 630 條'],
+        wrong: ['Five boxes, 126 in each.', '五格，每格 126。'] }
+    ],
+    done: ['Round 2 built. One picture, two questions — (b) was already sitting in the boxes.', '第 2 回合完成。一張圖回答兩個問題——(b) 早就躺在格子裡了。']
+  },
+  {
+    title: ['the tangled one — $210, three children', '糾結的那一題——$210，三個小孩'],
+    problem: ['Mr. Diaz shared $210 among his three children. Ben received twice as much as Ann. Cara received half as much as Ann. How much did each child receive? (Hint: make Ann 2 units.)',
+              'Diaz 先生把 $210 分給三個小孩。Ben 拿的是 Ann 的兩倍，Cara 拿的是 Ann 的一半。每個小孩各拿多少？（提示：把 Ann 當成 2 units。）'],
+    n: 4, rows: ['Ann', 'Ben', 'Cara'],
+    steps: [
+      { kind: 'pick',
+        prompt: ['The hint says make Ann <b>2 units</b>, not 1. Why would anyone do that?', '提示說把 Ann 當 2 units，不是 1。為什麼要這樣做？'],
+        opts: [
+          ['so Cara’s half is still a whole box', true],
+          ['because Ann is first in the list', false, 'Being first changes nothing about the boxes. Look at Cara — what does she get?', '排第一跟格子無關。看 Cara——她拿多少？'],
+          ['because 2 is an even number', false, 'Try it: if Ann were 1 box, what would half a box look like on your drawing?', '試想：如果 Ann 是 1 格，那「半格」在圖上要怎麼畫？']
+        ],
+        good: ['Exactly. Half of 2 boxes is 1 whole box — no cutting boxes in half.', '正是。2 格的一半是 1 整格——不用把格子切開。'],
+        wrong: ['Cara gets half of Ann. If Ann were one box, what would Cara’s bar be?', 'Cara 拿 Ann 的一半。如果 Ann 只有一格，Cara 那條會變成什麼？'] },
+      { kind: 'place', row: 0, need: 2,
+        prompt: ['Build Ann first — 2 units.', '先蓋 Ann——2 units。'],
+        good: ['Ann is 2 boxes. Everyone else is measured against her.', 'Ann 是 2 格。其他人都是拿她來比的。'],
+        wrong: ['The hint gave you this one. How many units is Ann?', '這一格提示直接告訴你了。Ann 是幾 units？'] },
+      { kind: 'place', row: 1, need: 4,
+        prompt: ['Ben received <b>twice as much as Ann</b>.', 'Ben 拿的是 <b>Ann 的兩倍</b>。'],
+        good: ['Twice Ann’s 2 boxes = 4 boxes.', 'Ann 的 2 格乘以兩倍＝4 格。'],
+        wrong: ['Twice Ann. Count Ann’s boxes first — how many is double that?', 'Ann 的兩倍。先數 Ann 幾格——兩倍是幾格？'] },
+      { kind: 'place', row: 2, need: 1,
+        prompt: ['Cara received <b>half as much as Ann</b>.', 'Cara 拿的是 <b>Ann 的一半</b>。'],
+        good: ['Half of 2 boxes = 1 box. That is why Ann started at 2.', '2 格的一半＝1 格。這就是 Ann 從 2 開始的理由。'],
+        wrong: ['Half of Ann’s 2 boxes. How many boxes is that?', 'Ann 的 2 格的一半。是幾格？'] },
+      { kind: 'pick',
+        prompt: ['Count every box in the picture. How many units altogether?', '把圖上所有格子數一次。總共幾 units？'],
+        opts: [
+          ['7', true],
+          ['3', false, 'That is how many <b>children</b> there are. How many boxes did you actually draw?', '那是「小孩」的人數。你實際畫了幾格？'],
+          ['6', false, 'Count them row by row: Ann 2, then Ben, then Cara. Did you include Cara’s?', '一排一排數：Ann 2 格、Ben 幾格、Cara 幾格。Cara 那格算進去了嗎？']
+        ],
+        good: ['7 units, and all 7 together are the whole $210.', '7 units，7 格加起來就是整筆 $210。'],
+        note: ['7 units = $210', '7 units = $210'],
+        wrong: ['2 for Ann + Ben’s + Cara’s. Count the boxes, not the children.', 'Ann 2 格＋Ben＋Cara。數格子，不是數人。'] },
+      { kind: 'pick',
+        prompt: ['7 equal boxes make $210. So <b>1 unit</b> is…', '7 個一樣的格子＝$210。所以 <b>1 unit</b> 是……'],
+        opts: [
+          ['$30 (210 ÷ 7)', true],
+          ['$70 (210 ÷ 3)', false, 'You shared it between the three children, not the seven boxes. How many boxes is the $210 spread over?', '你是分給三個小孩，不是分給七個格子。$210 攤在幾個格子上？'],
+          ['$1,470 (210 × 7)', false, 'One box has to be <b>smaller</b> than the whole $210. Multiply or divide?', '一格一定比 $210 「少」。要乘還是除？']
+        ],
+        after: m => { m.rows.forEach(r => { r.text = '$30'; r.cls = ''; }); },
+        good: ['1 unit = $30. Now every child can be read straight off the picture.', '1 unit = $30。現在每個小孩都可以直接從圖上讀出來。'],
+        note: ['1 unit = $30', '1 unit = $30'],
+        wrong: ['The $210 is spread over all the boxes. How many boxes?', '$210 攤在所有格子上。總共幾格？'] },
+      { kind: 'pick',
+        prompt: ['Ann is 2 units, so Ann received…', 'Ann 是 2 units，所以 Ann 拿到……'],
+        opts: [
+          ['$60', true],
+          ['$30', false, 'That is one box. How many boxes does Ann have?', '那是一格。Ann 有幾格？'],
+          ['$120', false, 'That is 4 boxes — whose bar is that?', '那是 4 格——那是誰的？']
+        ],
+        good: ['Ann $60, Ben $120, Cara $30 — and 60 + 120 + 30 = 210. The picture checks its own answer.', 'Ann $60、Ben $120、Cara $30——而且 60+120+30 = 210。這張圖會自己驗算。'],
+        note: ['Ann $60 · Ben $120 · Cara $30 · check: 60 + 120 + 30 = 210', 'Ann $60・Ben $120・Cara $30・驗算：60+120+30 = 210'],
+        wrong: ['Ann has 2 boxes and each box is $30.', 'Ann 有 2 格，每格 $30。'] }
+    ],
+    done: ['That is the question bar models were invented for — and the boxes did the thinking, seven steps from tangled to finished.', '這就是 bar model 被發明出來要對付的題目——想事情的是那些格子，七步從糾結走到收工。'],
+    doneClean: ['That is the question bar models were invented for — and you walked all seven steps without one wrong turn.', '這就是 bar model 被發明出來要對付的題目——七步走完，你一次都沒走錯。']
+  }
+], () => { openGate('s1model'); });
+
+/* ================= SECTION 2 ================= */
+drawLD($('s2cut6'), LD6);
+
+let s2ld = null, s2c3 = null, s2a4 = null;
+
+choice('s2ask', {
+  opts: [
+    ['When I can already see the answer', '當我已經看得出答案的時候'],
+    ['When the last subtraction is written and what is left is 0', '當最後一次減法寫完、剩下 0 的時候'],
+    ['When the numbers get small', '當數字變小的時候']
+  ],
+  ans: 1,
+  good: ['Yes — the working ends with a subtraction, not with a feeling. Let us look at yours.', '對——收尾的是一次減法，不是一種感覺。來看你的。'],
+  h1: ['You could see 68 was right, and it was. But could the <b>marker</b> see the division was finished?', '你看得出 68 是對的，而且真的是對的。但「批改的人」看得出來除完了嗎？'],
+  h2: ['If a number is still sitting under the line, is the dividing over? What has to happen to it?', '如果線下面還有一個數字，除法算結束了嗎？那個數字要怎麼處理？'],
+  tell: ['You are finished when the last subtraction is written and what is left is 0.', '最後一次減法寫完、剩下 0，才算做完。'],
+  retest: {
+    q: ['You can see in your head that 32 ÷ 4 = 8. On paper you still have to…', '你心裡知道 32 ÷ 4 = 8。紙上你還是得……'],
+    opts: [['subtract and write what is left', '減下去，把剩下的寫出來'], ['stop, since you know it', '既然知道了就可以停']],
+    ans: 0,
+    why: ['The page has to show it, even when your head already did it.', '就算腦袋算完了，紙上還是要看得到。']
+  },
+  pass: () => {
+    openGate('s2exp');
+    s2ld = drawLD($('s2ld'), LD6);
+    s2ld.pickable([1, 2, 3, 4], (y, cells) => {
+      if (y === 4){
+        cells.forEach(c => c.classList.add('mark'));
+        s2ld.lock();
+        setMsg($('s2m1'), 'That is the one — <b>32</b> is still under the line, so the loop is not finished.' + Z('就是它——32 還在線下面，所以循環還沒結束。'), 'good');
+        $('s2st2').hidden = false;
+      } else if (y === 1){
+        setMsg($('s2m1'), 'That is your answer so far, 68, and it is right. But which number is still sitting <b>under</b> the line?' + Z('那是你目前的答案 68，而且是對的。但「線下面」還留著哪個數字？'), 'warn');
+      } else if (y === 2){
+        setMsg($('s2m1'), 'That is the number you started with. Which number is left at the bottom right now?' + Z('那是你一開始的數字。現在「最下面」剩下的是哪個？'), 'warn');
+      } else {
+        setMsg($('s2m1'), 'That is what you took away in the first round. What was left <b>after</b> that subtraction?' + Z('那是第一輪你拿走的量。那次減完之後，剩下的是什麼？'), 'warn');
+      }
+    });
+  }
+});
+
+/* a row of chips that has to be got right before the next step opens */
+function chipStep(hostId, msgId, OPTS, good, onOk){
+  const host = $(hostId), msg = $(msgId);
+  function build(){
+    host.innerHTML = '';
+    msg.hidden = true;
+    let done = false;
+    OPTS.forEach(o => {
+      const b = mkBtn(o[0], 'opb wide');
+      b.addEventListener('click', () => {
+        if (done) return;
+        if (o[1]){
+          done = true; b.classList.add('ok');
+          [...host.children].forEach(x => { x.disabled = true; });
+          setMsg(msg, good[0] + Z(good[1]), 'good');
+          onOk();
+        } else {
+          b.classList.add('no');
+          setTimeout(() => b.classList.remove('no'), 700);
+          setMsg(msg, o[2] + Z(o[3]), 'warn');
+        }
+      });
+      host.appendChild(b);
+    });
+  }
+  build();
+  return { reset: build };
+}
+
+chipStep('s2a2', 's2m2', [
+  ['32', true],
+  ['8', false, 'The 8 belongs on top, in the answer. What is 8 × 4 — the amount you are taking away?', '8 是寫在上面的答案。8 × 4 是多少——你要「拿走」的量？'],
+  ['28', false, 'Count in fours: 4, 8, … eight of them. Is that 28 or 32?', '四個四個數：4、8、……數八次。那是 28 還是 32？']
+],
+  ['8 × 4 = 32, written under the 32. One line to go.', '8 × 4 = 32，寫在 32 底下。剩最後一行。'],
+  () => { if (s2ld) s2ld.reveal(5); $('s2st3').hidden = false; });
+
+s2c3 = chipStep('s2a3', 's2m3', [
+  ['0', true],
+  ['4', false, 'Look again — the two numbers are the same. Take 32 away from 32; how much is left?', '再看一次——兩個數字一模一樣。32 減 32，剩多少？'],
+  ['1', false, 'Same number on both lines. Subtract them: what does that always leave?', '兩行是同一個數字。相減之後永遠會剩下什麼？']
+],
+  ['<b>0</b> on the page. Now anyone can see the division ran out cleanly.', '紙上出現 <b>0</b>。現在任何人都看得出這題除得乾乾淨淨。'],
+  () => {
+    if (s2ld) s2ld.reveal(6);
+    $('s2ldcap').innerHTML = 'Finished — the last two lines are the new part.' + Z('完成了——最後兩行是新加上去的。');
+    $('s2st4').hidden = false;
+    if (s2a4) s2a4.reset();   /* step 4 opens fresh, whether this is the first walk or a redo */
+  });
+
+s2a4 = choice('s2a4', {
+  opts: [
+    ['Because it makes the page look tidy', '因為看起來比較整齊'],
+    ['Because it shows there is nothing left over — the division really is finished', '因為它證明沒有東西剩下——除法真的做完了'],
+    ['Because every long division must end in 0', '因為長除法一定要以 0 結尾']
+  ],
+  ans: 1,
+  good: ['That is it in your own words. Now finish both of yours from scratch.', '這是你自己講出來的。現在把你那兩題從頭收尾一次。'],
+  h1: ['Back one step — the last line is rubbed out again, caption and all. Do the subtraction once more and this question comes back.', '退回上一步——最後一行連同下面那句圖說都擦掉了。再減一次，這一題就會回來。'],
+  h2: ['Careful: some divisions end with 3 or 5 left over. So what is the 0 actually reporting?', '注意：有些除法最後會剩 3 或 5。那這個 0 到底在報告什麼？'],
+  tell: ['It shows the remainder is 0 — nothing is left over, so the division is complete.', '它顯示餘數是 0——沒有剩下任何東西，所以除法完成了。'],
+  retest: {
+    q: ['A division ends with 3 left under the line. That 3 is…', '一題除法最後線下剩 3。那個 3 是……'],
+    opts: [['the remainder', '餘數'], ['a mistake', '寫錯了']],
+    ans: 0,
+    why: ['Right — the last line reports what is left, whether that is 3 or 0.', '對——最後一行報告的就是「剩下多少」，是 3 是 0 都一樣。']
+  },
+  firstWrong: () => {
+    s2a4.hold();                 /* closed until the subtraction has actually been done again */
+    if (s2ld) s2ld.hide(6);
+    /* the caption goes back too — a rubbed-out line must not sit under the word "Finished" */
+    $('s2ldcap').innerHTML = 'Your working, exactly as it is on the page.' + Z('你紙上的算式，原樣搬過來。');
+    if (s2c3) s2c3.reset();
+    sendBack('s2st3');
+  },
+  pass: () => { openGate('s2try'); $('s2try').scrollIntoView({ block: 'center' }); }
+});
+
+/* Try it — finish both divisions, four decisions each */
+(function(){
+  const WALK = [
+    { title: '#6 · 272 ÷ 4', cfg: LD6,
+      steps: [
+        { prompt: ['Which number is under the line right now, waiting to be divided?', '現在線下面等著被除的是哪個數？'],
+          opts: [['32', true], ['4', false, 'That is the number you are dividing <b>by</b>. Which one is waiting to be shared out?', '那是你「拿來除」的數。等著被分掉的是哪一個？'],
+                 ['68', false, 'That is your answer so far — it lives on top. What is at the bottom?', '那是你目前的答案，寫在上面。「最下面」的是什麼？']],
+          good: ['32 it is.', '就是 32。'] },
+        { prompt: ['How many 4s fit into 32?', '32 裡面有幾個 4？'],
+          opts: [['8', true], ['6', false, 'Count in fours: 4, 8, 12, 16, 20, 24 — that is six of them, and 24 is not 32 yet. Keep going.', '四個四個數：4、8、12、16、20、24——這是六個，還沒到 32。繼續數。'],
+                 ['4', false, 'Four 4s make 16. Is 16 as big as 32?', '四個 4 是 16。16 有 32 那麼大嗎？']],
+          good: ['8 — and you already wrote that 8 on top.', '8——而且這個 8 你上面早就寫了。'] },
+        { prompt: ['So what goes on the next line, under the 32?', '那下一行、32 底下要寫什麼？'],
+          opts: [['32', true], ['8', false, 'The 8 is the answer digit up top. The line below shows how much you take <b>away</b> — 8 × 4 = ?', '8 是上面的答案數字。下面那行寫的是你「拿走」多少——8 × 4 = ?'],
+                 ['28', false, '8 × 4 — count it out. 28 or 32?', '8 × 4 算一次。28 還是 32？']],
+          good: ['8 × 4 = 32, written underneath.', '8 × 4 = 32，寫在下面。'], reveal: 5 },
+        { prompt: ['Draw the line and subtract. 32 − 32 = ?', '畫線，相減。32 − 32 = ?'],
+          opts: [['0', true], ['4', false, 'The two lines hold the same number. What is left when you take a number from itself?', '兩行是同一個數。一個數減掉自己，剩下多少？'],
+                 ['32', false, 'You are taking 32 <b>away</b>, not adding it. What is left?', '你是「減掉」32，不是加上去。剩多少？']],
+          good: ['0 on the page — question 6 is now finished, not just correct.', '紙上有 0——第 6 題現在不只是對，而是「做完了」。'], reveal: 6 }
+      ],
+      done: ['#6 complete: 272 ÷ 4 = 68, remainder 0, and every line of it visible.', '第 6 題完成：272 ÷ 4 = 68，餘 0，而且每一行都看得見。'] },
+    { title: '#10 · 1,252 ÷ 4', cfg: LD10,
+      steps: [
+        { prompt: ['Same job, longer sum. Which number is under the line, waiting?', '同樣的工作，題目長一點。線下面等著的是哪個數？'],
+          opts: [['12', true], ['4', false, 'That is the divisor — the number doing the dividing. Which one is waiting?', '那是除數——負責去除的那個。等著被除的是哪一個？'],
+                 ['313', false, 'That is your answer along the top. What is left at the bottom?', '那是你上面的答案。最下面剩的是什麼？']],
+          good: ['12 — one round to go.', '12——剩最後一輪。'] },
+        { prompt: ['How many 4s fit into 12?', '12 裡面有幾個 4？'],
+          opts: [['3', true], ['4', false, 'Four 4s make 16, which is bigger than 12. Try one fewer.', '四個 4 是 16，比 12 大。少一個試試。'],
+                 ['8', false, 'Eight 4s make 32 — far past 12. How many fit exactly?', '八個 4 是 32——遠超過 12。剛好裝得下幾個？']],
+          good: ['3 — the last digit of your 313.', '3——就是你 313 的最後一位。'] },
+        { prompt: ['So what goes on the next line, under the 12?', '那下一行、12 底下寫什麼？'],
+          opts: [['12', true], ['3', false, 'The 3 is the answer digit. The line below is what you take away: 3 × 4 = ?', '3 是答案數字。下面那行寫你拿走多少：3 × 4 = ?'],
+                 ['8', false, '3 × 4 — is that 8 or 12?', '3 × 4——是 8 還是 12？']],
+          good: ['3 × 4 = 12, written underneath.', '3 × 4 = 12，寫在下面。'], reveal: 7 },
+        { prompt: ['Subtract. 12 − 12 = ?', '相減。12 − 12 = ?'],
+          opts: [['0', true], ['1', false, 'Same number, both lines. Take it away from itself — what is left?', '兩行同一個數。自己減自己，剩多少？'],
+                 ['12', false, 'Subtract, do not copy. What is left after taking 12 from 12?', '是相減不是照抄。12 拿走 12，剩多少？']],
+          good: ['0. Both of your divisions now show the whole story.', '0。你的兩題長除法現在都把故事講完了。'], reveal: 8 }
+      ],
+      done: ['#10 complete: 1,252 ÷ 4 = 313, remainder 0, all lines written.', '第 10 題完成：1,252 ÷ 4 = 313，餘 0，每一行都寫出來了。'] }
+  ];
+  const host = $('s2walk');
+  let idx = 0;
+  function runOne(){
+    const W = WALK[idx];
+    const box = document.createElement('div');
+    const head = document.createElement('p');
+    head.className = 'steplbl';
+    head.innerHTML = 'Problem ' + (idx + 1) + ' of 2 · ' + W.title + Z('第 ' + (idx + 1) + ' 題，共 2 題 · ' + W.title);
+    const ldw = document.createElement('div'); ldw.className = 'ldwrap';
+    const act = document.createElement('div');
+    const msg = document.createElement('div'); msg.className = 'msg'; msg.hidden = true;
+    box.appendChild(head); box.appendChild(ldw); box.appendChild(act); box.appendChild(msg);
+    host.appendChild(box);
+    const ld = drawLD(ldw, W.cfg);
+    let si = 0;
+    function step(){
+      act.innerHTML = '';
+      if (si >= W.steps.length){
+        setMsg(msg, W.done[0] + Z(W.done[1]), 'good');
+        idx++;
+        if (idx < WALK.length) setTimeout(runOne, 700);
+        else openGate('s2model');
+        return;
+      }
+      const S = W.steps[si];
+      const p = document.createElement('p');
+      p.innerHTML = '<b>' + (si + 1) + '.</b> ' + S.prompt[0] + Z(S.prompt[1]);
+      const row = document.createElement('div'); row.className = 'row';
+      let done = false;
+      S.opts.forEach(o => {
+        const b = mkBtn(o[0], 'opb wide');
+        b.addEventListener('click', () => {
+          if (done) return;
+          if (o[1]){
+            done = true; b.classList.add('ok');
+            [...row.children].forEach(x => { x.disabled = true; });
+            if (S.reveal) ld.reveal(S.reveal);
+            setMsg(msg, S.good[0] + Z(S.good[1]), 'good');
+            si++; step();
+          } else {
+            b.classList.add('no');
+            setTimeout(() => b.classList.remove('no'), 700);
+            setMsg(msg, o[2] + Z(o[3]), 'warn');
+          }
+        });
+        row.appendChild(b);
+      });
+      act.appendChild(p); act.appendChild(row);
+    }
+    step();
+  }
+  runOne();
+})();
+
+drawLD($('s2mod6'), LD6, { revealAll: true });
+drawLD($('s2mod10'), LD10, { revealAll: true });
+/* ================= SECTION 3 ================= */
+let s3c3 = null, s3a4 = null, s3step3reset = null;
+
+choice('s3ask', {
+  opts: [
+    ['800 cm', '800 cm'],
+    ['2,020', '2,020'],
+    ['They both do', '兩個都有講完']
+  ],
+  ans: 0,
+  good: ['800 cm names what was measured. 2,020 leaves the reader asking a question.', '800 cm 有說出量的是什麼。2,020 會讓讀的人想再問一句。'],
+  h1: ['Read them both out loud. Which one makes you want to ask something back?', '兩個都念出來。哪一個會讓你想反問一句？'],
+  h2: ['One of them names the thing being counted. The other could be muffins, minutes or dollars. Which is which?', '其中一個有講出「數的是什麼」；另一個可能是 muffin、分鐘或錢。哪個是哪個？'],
+  tell: ['800 cm — it carries its label. 2,020 on its own could be anything.', '800 cm——它帶著單位。2,020 單獨出現可以是任何東西。'],
+  retest: {
+    q: ['Which one is a finished answer?', '哪一個是「寫完了」的答案？'],
+    opts: [['96 stamps', '96 stamps'], ['96', '96']],
+    ans: 0,
+    why: ['Number plus label. That is a whole answer.', '數字＋單位，才是完整的答案。']
+  },
+  pass: () => openGate('s3exp')
+});
+
+tapWords('s3a1', 's3m1', [
+  ['2,020', false, 'Read it aloud: "Ms. Lee paid 2,020." Two thousand and twenty <b>what</b>?', '念出來：「Ms. Lee paid 2,020。」2,020 個「什麼」？'],
+  ['$2,020', true],
+  ['2,020 $', false, 'Nearly! Where does a dollar sign live — in front of the number, or behind it?', '很接近！錢的符號住在數字「前面」還是「後面」？']
+], 1,
+  ['<mark>$2,020</mark> — the dollar sign goes in front, and now the answer says what it is.', '<mark>$2,020</mark>——錢的符號寫在前面，這樣答案才有說出它是什麼。'],
+  () => { $('s3st2').hidden = false; });
+
+choice('s3a2', {
+  opts: [
+    ['Guess from the size of the number', '從數字大小猜'],
+    ['In the question itself — the word is already printed there', '在題目裡——那個字早就印在上面了'],
+    ['It does not really matter which one you write', '寫哪個其實都可以']
+  ],
+  ans: 1,
+  good: ['Right. Muffins, centimetres, stamps, dollars — the question hands you the label for free.', '對。muffin、公分、郵票、錢——題目直接把單位送給你。'],
+  h1: ['Where did the <b>cm</b> in your 800 cm come from — your head, or the page?', '你寫的 800 cm 那個 cm 是哪來的——你腦袋，還是題目？'],
+  h2: ['If a question talks about stamps all the way through, what must the answer be counting?', '如果一題從頭到尾都在講郵票，那答案數的一定是什麼？'],
+  tell: ['In the question. You never invent a label — you copy the one already printed there.', '在題目裡。單位不用發明，把印在上面的抄下來就好。'],
+  retest: {
+    q: ['"A ribbon is cut into 6 pieces of 15 cm." The answer will be counting…', '「一條緞帶剪成 6 段，每段 15 公分。」答案數的是……'],
+    opts: [['centimetres', '公分'], ['dollars', '錢']],
+    ans: 0,
+    why: ['The question only ever mentions cm — so the answer wears cm.', '整題只出現公分——所以答案就戴公分。']
+  },
+  pass: () => { $('s3st3').hidden = false; }
+});
+
+/* step 3 — the out-loud check */
+(function(){
+  const host = $('s3a3btn');
+  const b = mkBtn('🔊 Read your answer out loud', 'btn sm');
+  let ev = null, hint = null;
+  b.addEventListener('click', () => {
+    if (b.disabled) return;
+    b.disabled = true;
+    ev = document.createElement('div');
+    ev.className = 'ev';
+    ev.innerHTML = '<span class="lbl">You just said</span>"Ms. Lee paid… <b>2,020</b>."' + Z('你剛剛念的是：「Ms. Lee paid… 2,020。」');
+    host.parentNode.insertBefore(ev, $('s3a3'));
+    hint = document.createElement('p');
+    const p = hint;
+    p.innerHTML = 'Two thousand and twenty <b>what</b>? The question asks how much she <b>paid</b>, so the label is…' + Z('2,020 個「什麼」？題目問她「付了」多少，所以單位是……');
+    host.parentNode.insertBefore(p, $('s3a3'));
+    s3c3 = choice('s3a3', {
+      opts: [['muffins', 'muffin'], ['dollars — money, so it wears a $', '錢——所以要戴 $'], ['centimetres', '公分']],
+      ans: 1,
+      good: ['$2,020. The out-loud test takes three seconds and catches every bare number.', '$2,020。念出來這個測試花三秒，可以抓到每一個「裸數字」。'],
+      h1: ['Does anybody <b>pay</b> in muffins or centimetres? What do people pay in?', '有人用 muffin 或公分「付錢」嗎？付錢是用什麼？'],
+      h2: ['The word in the question is "paid". What kind of thing gets paid?', '題目裡的字是 paid（付）。付的是什麼東西？'],
+      tell: ['Dollars — it is a money question, so the number wears a $.', '錢——這是錢的題目，所以數字要戴 $。'],
+      retest: {
+        q: ['"How many stamps did she buy?" The answer wears…', '「她買了幾張郵票？」答案戴的是……'],
+        opts: [['stamps', 'stamps'], ['$', '$']],
+        ans: 0,
+        why: ['The question asks about stamps, so the answer counts stamps.', '題目問郵票，答案就數郵票。']
+      },
+      pass: () => {
+        $('s3st4').hidden = false;
+        if (s3a4) s3a4.reset();   /* step 4 opens fresh, whether this is the first walk or a redo */
+      }
+    });
+  });
+  host.appendChild(b);
+  /* a real rewind: the read-aloud card and its prompt come off the page and the button works again */
+  s3step3reset = () => {
+    if (ev){ ev.remove(); ev = null; }
+    if (hint){ hint.remove(); hint = null; }
+    $('s3a3').innerHTML = '';
+    s3c3 = null;
+    b.disabled = false;
+  };
+})();
+
+s3a4 = choice('s3a4', {
+  opts: [
+    ['Because it looks too short', '因為看起來太短'],
+    ['Because it never says what was counted', '因為它沒有說出「數的是什麼」'],
+    ['Because 2,020 is a big number', '因為 2,020 是大數字']
+  ],
+  ans: 1,
+  good: ['In your own words. Now give six answers their labels.', '你自己講出來了。現在去幫六個答案配上單位。'],
+  h1: ['Back one step — the out-loud check is cleared, button and all. Say the answer aloud again, listen to what is missing, and this question comes back.', '退回上一步——念出來那一題連按鈕都清掉了。再念一次答案，聽聽看少了什麼，這一題就會回來。'],
+  h2: ['Short answers can be perfect: <b>0</b> is short. And big numbers are fine too. So what is actually missing from 2,020?', '短的答案也可以是滿分：0 就很短。大數字也沒問題。那 2,020 到底少了什麼？'],
+  tell: ['Because a bare number never says what was counted — the reader cannot tell muffins from dollars.', '因為裸數字沒說出數的是什麼——讀的人分不出是 muffin 還是錢。'],
+  retest: {
+    q: ['A word problem answer is complete when it has…', '應用題的答案要完整，必須有……'],
+    opts: [['a number and its label', '數字＋單位'], ['a number, neatly written', '一個寫得漂亮的數字']],
+    ans: 0,
+    why: ['Number plus label, every time.', '數字加單位，每次都是。']
+  },
+  firstWrong: () => {
+    s3a4.hold();                              /* closed until the answer has been said aloud again */
+    if (s3step3reset) s3step3reset();
+    sendBack('s3st3');
+  },
+  pass: () => { openGate('s3try'); $('s3try').scrollIntoView({ block: 'center' }); }
+});
+
+/* Try it — one tray of labels, six answers waiting */
+(function(){
+  const LABELS = [
+    { id: 'muffins', text: 'muffins' },
+    { id: 'money', text: '$', pre: true },
+    { id: 'cm', text: 'cm' },
+    { id: 'photos', text: 'photos' },
+    { id: 'stamps', text: 'stamps' },
+    { id: 'boxes', text: 'boxes' }
+  ];
+  /* the tray is deliberately out of step with the rows — position must never be the answer */
+  const TRAY_ORDER = ['cm', 'stamps', 'muffins', 'boxes', 'money', 'photos'];
+  const ROWS = [
+    { q: ['Riley baked 185 muffins. Thomas baked 3 times as many, so Thomas baked',
+          'Riley 烤了 185 個 muffin，Thomas 是他的 3 倍，所以 Thomas 烤了'], num: '555', label: 'muffins',
+      hint: ['What was being baked in that question?', '那題烤的是什麼？'],
+      why: ['The word was sitting in the question the whole time.', '那個字從頭到尾就待在題目裡。'] },
+    { q: ['Dad’s new laptop cost', '爸爸的新筆電要價'], num: '1,299', label: 'money',
+      hint: ['Does a laptop <b>cost</b> 1,299 muffins? What do things cost?', '筆電的價格會是 1,299 個 muffin 嗎？東西的價格是用什麼算的？'],
+      why: ['"Cost" means money — and you put the $ in front yourself.', 'cost（價格）＝錢——而 $ 的位置是你自己放上去的。'] },
+    { q: ['Four pieces of ribbon, 32 cm each, joined end to end, measure',
+          '四段緞帶，每段 32 公分，接起來總長'], num: '128', label: 'cm',
+      hint: ['The pieces were measured in something. Look at the "32".', '每一段是用什麼在量的？看那個 32。'],
+      why: ['The pieces were in cm, so the total is in cm.', '每段用公分，總長也是公分。'] },
+    { q: ['96 photos shared evenly into 4 albums gives each album',
+          '96 張照片平分到 4 本相簿，每本得到'], num: '24', label: 'photos',
+      hint: ['What is being shared out — the albums, or the things inside them?', '被分掉的是什麼——相簿本身，還是裡面的東西？'],
+      why: ['The albums are the containers; the photos are what you counted.', '相簿是容器，數的是照片。'] },
+    { q: ['The post office sold 1,252 stamps in 4 days, the same each day — so per day,',
+          '郵局 4 天賣掉 1,252 張郵票，每天一樣多——所以一天賣了'], num: '313', label: 'stamps',
+      hint: ['Read the question: 1,252 of what were sold?', '讀題目：賣掉的 1,252 是什麼？'],
+      why: ['Stamps in, stamps out — dividing never changes the label.', '進去是郵票，出來還是郵票——除法不會換單位。'] },
+    { q: ['630 loaves packed 90 to a box fill exactly', '630 條吐司，每 90 條裝一盒，剛好裝滿'], num: '7', label: 'boxes',
+      hint: ['This time the answer is not loaves. What are you counting when you pack them up?', '這次答案不是「條」。打包完你在數的是什麼？'],
+      why: ['Careful one: the answer counts boxes, not loaves. The question decides, not the biggest number.', '這題要小心：答案數的是「盒」，不是「條」。決定的是題目，不是最大的那個數字。'] }
+  ];
+  const tray = $('s3tray'), host = $('s3rows'), count = $('s3count'), msg = $('s3msg');
+  let cur = 0, done = 0, pending = false;
+  const rowEls = [];
+
+  ROWS.forEach((r, i) => {
+    const row = document.createElement('div');
+    row.className = 'qrow' + (i === 0 ? ' cur' : '');
+    const txt = document.createElement('span');
+    txt.className = 'txt';
+    txt.innerHTML = r.q[0] + ' <span class="blankslot">' + r.num + ' ?</span>' + Z(r.q[1]);
+    row.appendChild(txt);
+    host.appendChild(row);
+    rowEls.push(row);
+  });
+
+  function finishRow(chip, R, text){
+    chip.classList.add('used');   /* faded as a reminder — never crossed off, so every row still has six choices */
+    const row = rowEls[cur];
+    row.classList.remove('cur');
+    row.classList.add('done');
+    row.querySelector('.blankslot').textContent = text;
+    const w = document.createElement('span');
+    w.className = 'who';
+    w.textContent = '✓';   /* the reason lives in the message below; a whole sentence in here used to burst the row */
+    row.appendChild(w);
+    setMsg(msg, R.why[0] + Z(R.why[1] || ''), 'good');
+    done++; cur++;
+    count.innerHTML = done + ' / 6 labelled' + '<span class="zhi"> ・已配對</span>';
+    if (cur < ROWS.length) rowEls[cur].classList.add('cur');
+    if (done === ROWS.length){
+      setMsg(msg, '6 / 6 — every number now says what it is. That is the habit you already had on <b>#8</b>, used everywhere.' + Z('6／6——每個數字現在都說得出自己是什麼。這就是你第 8 題本來就有的習慣，全面上線。'), 'good');
+      openGate('s3model');
+    }
+  }
+
+  /* the $ is the one label that has a place as well as a name — he puts it there himself */
+  function placeMoney(chip, R){
+    pending = true;
+    const row = rowEls[cur];
+    const pick = document.createElement('span');
+    pick.className = 'row';
+    pick.style.margin = '.1rem 0';
+    const front = mkBtn('$' + R.num, 'opb wide');
+    const back = mkBtn(R.num + ' $', 'opb wide');
+    front.addEventListener('click', () => {
+      if (!pending) return;
+      pending = false;
+      pick.remove();
+      finishRow(chip, R, '$' + R.num);
+    });
+    back.addEventListener('click', () => {
+      if (!pending) return;
+      back.classList.add('no');
+      setTimeout(() => back.classList.remove('no'), 700);
+      setMsg(msg, 'That is the order you say it in, not the order you write it in. Which side of the number does a price start on?' + Z('那是「念」的順序，不是「寫」的順序。價錢是從數字的哪一邊開始寫的？'), 'warn');
+    });
+    pick.appendChild(front); pick.appendChild(back);
+    row.appendChild(pick);
+    setMsg(msg, 'Money it is. Now put the <b>$</b> where it lives — tap the one that is written the way you would hand it in.' + Z('是錢沒錯。現在把 <b>$</b> 放到它該待的位置——點出可以直接交出去的那個寫法。'), 'warn');
+  }
+
+  TRAY_ORDER.forEach(id => {
+    const L = LABELS.filter(x => x.id === id)[0];
+    const b = mkBtn(L.text, 'lb');
+    b.addEventListener('click', () => {
+      if (pending || cur >= ROWS.length) return;
+      const R = ROWS[cur];
+      if (L.id === R.label){
+        if (L.pre) placeMoney(b, R); else finishRow(b, R, R.num + ' ' + L.text);
+      } else {
+        b.classList.add('no');
+        setTimeout(() => b.classList.remove('no'), 700);
+        setMsg(msg, R.hint[0] + Z(R.hint[1]), 'warn');
+      }
+    });
+    tray.appendChild(b);
+  });
+})();
+
+/* ================= QUIZ ================= */
+(function(){
+  const QUIZ = [
+    { q: 'The top of p.49 says "Solve. Show your work. Draw a bar model to help you." That means the question also wants…',
+      zh: 'p.49 最上面寫「Solve. Show your work. Draw a bar model to help you.」，代表這題還要你……',
+      opts: [['neat handwriting', '字寫工整'], ['a bar model drawn for it', '幫它畫一個 bar model'], ['the answer twice', '答案寫兩次']],
+      ans: 1, why: 'Three sentences, three jobs — the third one is a drawing.', whyzh: '三句話三件事——第三句要的是一張圖。', go: '#s1' },
+    { q: '"Mia has 4 times as many stickers as Ken." Whose bar is 1 unit?',
+      zh: '「Mia 的貼紙是 Ken 的 4 倍。」誰的那條是 1 unit？',
+      opts: [['Ken’s', 'Ken 的'], ['Mia’s', 'Mia 的'], ['They are the same', '兩條一樣']],
+      ans: 0, why: 'The one being compared to is always 1 unit — the smaller bar.', whyzh: '被拿來比的那一個永遠是 1 unit——小的那條。', go: '#s1' },
+    { q: 'A box holds 96 marbles. A bag holds 3 times as many. How many units is the bag?',
+      zh: '一個盒子裝 96 顆彈珠，一個袋子是它的 3 倍。袋子是幾 units？',
+      opts: [['1 unit', '1 unit'], ['96 units', '96 units'], ['3 units', '3 units']],
+      ans: 2, why: '"3 times as many" is 3 copies of the box — 3 units of 96.', whyzh: '「3 倍」就是盒子複製 3 份——3 units，每份 96。', go: '#s1' },
+    { q: 'In 272 ÷ 4 you have written 32 under the line and 8 on top. The very next thing to write is…',
+      zh: '272 ÷ 4 裡，你線下寫了 32、上面寫了 8。接下來要寫的是……',
+      opts: [['8 × 4 = 32, then subtract', '8 × 4 = 32，然後相減'], ['nothing — the answer is already 68', '不用寫了，答案已經是 68'], ['the next question', '下一題']],
+      ans: 0, why: 'Something under the line means the loop is not finished.', whyzh: '線下面還有東西，就代表循環還沒跑完。', go: '#s2' },
+    { q: 'A finished 272 ÷ 4 ends with which number written at the bottom?',
+      zh: '寫完整的 272 ÷ 4，最下面寫的是哪個數字？',
+      opts: [['68', '68'], ['0', '0'], ['32', '32']],
+      ans: 1, why: 'The last line reports the remainder — here it is 0, and it still gets written.', whyzh: '最後一行報告餘數——這題是 0，還是要寫出來。', go: '#s2' },
+    { q: 'The question asks how much Ms. Lee paid. Your working gives 2,020. The full answer is…',
+      zh: '題目問 Ms. Lee 付了多少，你算出 2,020。完整答案是……',
+      opts: [['2,020', '2,020'], ['$2,020', '$2,020'], ['2,020 $', '2,020 $']],
+      ans: 1, why: 'Money wears its dollar sign in front of the number.', whyzh: '錢的符號戴在數字前面。', go: '#s3' },
+    { q: 'A bakery sold 126 loaves on Saturday and 4 times as many on Sunday. Sunday’s answer is…',
+      zh: '麵包店週六賣 126 條，週日是 4 倍。週日的答案是……',
+      opts: [['504', '504'], ['504 loaves', '504 條吐司'], ['130 loaves', '130 條吐司']],
+      ans: 1, why: '4 units of 126 = 504, and the question counts loaves — number plus label.', whyzh: '4 units、每份 126＝504，而題目數的是「條」——數字加單位。', go: '#s1' },
+    { q: '$210 is shared: Ben gets twice Ann, Cara gets half of Ann. With Ann as 2 units, how many units altogether?',
+      zh: '$210 分掉：Ben 是 Ann 的兩倍、Cara 是 Ann 的一半。Ann 當 2 units 的話，總共幾 units？',
+      opts: [['5', '5'], ['7', '7'], ['3', '3']],
+      ans: 1, why: 'Ann 2 + Ben 4 + Cara 1 = 7 units, so 1 unit = 210 ÷ 7 = $30.', whyzh: 'Ann 2＋Ben 4＋Cara 1＝7 units，所以 1 unit＝210÷7＝$30。', go: '#s1' }
+  ];
+  const dots = $('qdots'), body = $('qbody');
+  function start(){
+    let i = 0, score = 0;
+    const marks = [];
+    dots.innerHTML = QUIZ.map(() => '<i></i>').join('');
+    function paint(){
+      [...dots.children].forEach((d, k) => {
+        d.className = marks[k] === true ? 'ok' : marks[k] === false ? 'no' : (k === i ? 'cur' : '');
+      });
+    }
+    function show(){
+      paint();
+      const Q = QUIZ[i];
+      body.innerHTML = '';
+      const q = document.createElement('p');
+      q.className = 'qq';
+      q.innerHTML = 'Q' + (i + 1) + '. ' + Q.q + Z(Q.zh);
+      const wrap = document.createElement('div'); wrap.className = 'choices';
+      const msg = document.createElement('div'); msg.className = 'msg'; msg.hidden = true;
+      let answered = false;
+      Q.opts.forEach((o, k) => {
+        const b = mkBtn(o[0] + Z(o[1]), 'choice');
+        b.addEventListener('click', () => {
+          if (answered) return;
+          answered = true;
+          [...wrap.children].forEach(x => x.disabled = true);
+          wrap.children[Q.ans].classList.add('ok');
+          if (k === Q.ans){ score++; marks[i] = true; setMsg(msg, 'Correct! ' + Q.why + Z(Q.whyzh), 'good'); }
+          else { marks[i] = false; b.classList.add('no'); setMsg(msg, Q.why + Z(Q.whyzh) + ' <a href="' + Q.go + '">Go back and walk it again</a>', 'bad'); }
+          paint();
+          const next = mkBtn((i + 1 < QUIZ.length) ? 'Next ▸' : 'See my stars ★', 'btn');
+          next.style.marginTop = '.6rem';
+          next.addEventListener('click', () => { i++; if (i < QUIZ.length) show(); else end(); });
+          body.appendChild(next);
+        });
+        wrap.appendChild(b);
+      });
+      body.appendChild(q); body.appendChild(wrap); body.appendChild(msg);
+    }
+    function end(){
+      paint();
+      const stars = score >= 7 ? '★★★' : score >= 5 ? '★★☆' : '★☆☆';
+      const line = score === QUIZ.length ? 'Every trap dodged. Boxes, last lines and labels are all yours.'
+        : score >= 6 ? 'Strong. Peek at the wobbly ones, then go and fix the workbook.'
+        : 'Good try — walk the three sections again, the boxes are patient.';
+      const zh = score === QUIZ.length ? '每個陷阱都閃過了。格子、最後一行、單位，全部到手。'
+        : score >= 6 ? '很強。看一下還不穩的那幾題，然後去改作業本。'
+        : '不錯的嘗試——三段再走一次，格子很有耐心。';
+      body.innerHTML = '';
+      const box = document.createElement('div'); box.className = 'qresult';
+      box.innerHTML = '<div class="stars">' + stars + '</div><div class="sc">' + score + ' / ' + QUIZ.length + '</div><p>' + line + Z(zh) + '</p>';
+      const missed = QUIZ.map((Q, k) => marks[k] === false ? '<a href="' + Q.go + '">Q' + (k + 1) + '</a>' : null).filter(Boolean);
+      if (missed.length){
+        const p = document.createElement('p');
+        p.innerHTML = 'Worth another walk: ' + missed.join(' · ') + Z('這幾題值得再走一次。');
+        box.appendChild(p);
+      }
+      const again = mkBtn('↻ Play again', 'btn ghost');
+      again.addEventListener('click', start);
+      box.appendChild(again);
+      body.appendChild(box);
+    }
+    show();
+  }
+  start();
+})();
+
+/* ================= CORRECTION LIST ================= */
+(function(){
+  const FIXES = [
+    ['<b>p.49, Q1</b> — draw the bar model above your number sentence: Riley 1 box (185), Thomas 3 boxes.', 'keep your 555 muffins exactly as it is', '第 49 頁第 1 題——在算式上方畫 bar model：Riley 1 格（185）、Thomas 3 格；555 muffins 保留不動。'],
+    ['<b>p.49–53, the other nine</b> — add a bar model to each one. Boxes only; the answers stay.', 'the page asked for a drawing, not new answers', '第 49–53 頁其餘九題——每題補一個 bar model。只補圖，答案不動。'],
+    ['<b>Q6</b> (272 ÷ 4) — write <b>32</b> under the 32, draw the line, write <b>0</b>.', 'the quotient 68 stays', '第 6 題（272÷4）——在 32 底下寫 32，畫線，寫 0；商 68 不動。'],
+    ['<b>Q10</b> (1,252 ÷ 4) — write <b>12</b> under the 12, draw the line, write <b>0</b>.', 'the quotient 313 stays', '第 10 題（1,252÷4）——在 12 底下寫 12，畫線，寫 0；商 313 不動。'],
+    ['<b>Q2</b> — put the dollar sign in front: <b>$2,020</b>.', 'the same habit you already used on #8 (800 cm)', '第 2 題——把錢的符號加在前面：$2,020（就是你第 8 題寫 800 cm 的那個習慣）。']
+  ];
+  const host = $('fixlist'), msg = $('fixmsg');
+  let done = 0;
+  FIXES.forEach(f => {
+    const lab = document.createElement('label');
+    const inp = document.createElement('input');
+    inp.type = 'checkbox';
+    const txt = document.createElement('span');
+    txt.className = 'txt';
+    txt.innerHTML = f[0] + '<span class="w">' + f[1] + '</span>' + Z(f[2]);
+    inp.addEventListener('change', () => {
+      lab.classList.toggle('done', inp.checked);
+      done += inp.checked ? 1 : -1;
+      if (done === FIXES.length){
+        setMsg(msg, '🎉 Ten right answers just became ten full-mark answers. And your notebook got one page thicker. <a href="index.html">📒 See how many you have now</a>.' + Z('十題「答對」剛剛升級成十題「滿分」。你的筆記本又厚了一頁。<a href="index.html">📒 看看現在有幾課了</a>。'), 'good');
+      } else {
+        msg.hidden = true;
+      }
+    });
+    lab.appendChild(inp); lab.appendChild(txt);
+    host.appendChild(lab);
+  });
+})();
+
+})();
+</script>
+
+
+
+</body>
+</html>
+

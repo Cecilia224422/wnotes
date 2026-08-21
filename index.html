@@ -154,6 +154,24 @@ const SUBJECTS = {
    thumb: "sieve" | "fraction" | "numberline" | "artifact" | "grid"  (see THUMBS below)      */
 const LESSONS = [
   {
+    subject:"math", date:"2026-07-18",
+    title:"Bar Models & Real-World Problems", zh:"Bar model 與乘除應用題",
+    desc:"All ten answers right — including the two carries in a row on 456 × 8 — so the five fixes are about the drawing p.49 asked for, the last line of two long divisions, and one missing dollar sign.",
+    zhDesc:"十題答案全對，456×8 連續兩次進位都守住——五個訂正講的是 p.49 要求的那張圖、兩題長除法的最後一行，和一個沒寫的錢字號。",
+    source:"Math in Focus 4A · Chapter 2 Activity 4 · Extra Practice p.49–53",
+    fixes:5, thumb:"barmodel",
+    href:"bar-models.html"
+  },
+  {
+    subject:"science", date:"2026-07-28",
+    title:"Writing the Whole Answer", zh:"把答案寫完整",
+    desc:"35 objective answers all correct, Final Test included — every chapter at once, not one dropped. The 5 spots left are all the same kind: the ones you write out in your own sentence.",
+    zhDesc:"35 題客觀題全對，含一次涵蓋七章的 Final Test，一題沒掉。剩下的 5 個地方都是同一種：要自己寫成句子的那種。",
+    source:"Science · Lesson 7.7 Robots · Chapter 7 Review · Final Test Ch 1–7",
+    fixes:5, thumb:"chain",
+    href:"science-full-answers.html"
+  },
+  {
     subject:"social", date:"2026-08-11",
     title:"The First Americans", zh:"第一批美洲人",
     desc:"7 of 10 right, and both cause-and-effect chains nailed. All three fixes come from one habit — check the text before you write.",
@@ -193,6 +211,36 @@ const LESSONS = [
 
 /* ===== 3. Thumbnails — drawn with SVG, no photo files needed ===== */
 const THUMBS = {
+  /* one unit against three copies of it — the drawing p.49 asked for */
+  barmodel(){
+    const W=19, H=15, G=2.2, X=26, Y1=17, Y2=43;
+    const box=(x,y,hi)=>`<rect x="${x}" y="${y}" width="${W}" height="${H}" rx="2.5" fill="${hi?"#E8EEFC":"#F4F4F6"}" stroke="${hi?"#3E6FD9":"#C9CBD2"}" stroke-width="1.2"/><text x="${x+W/2}" y="${y+H/2+2.3}" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="6" fill="${hi?"#2B52AE":"#9C9EA5"}">185</text>`;
+    let t="";
+    for(let i=0;i<3;i++) t+=box(X+i*(W+G),Y2,true);
+    const r=X+3*W+2*G;
+    return `<svg viewBox="0 0 104 78" role="img" aria-label="A bar model: one box for Riley, three equal boxes for Thomas, 555 altogether">`
+      + `<text x="3" y="${Y1+10}" font-family="Fredoka,sans-serif" font-size="6" fill="#6B6E76">1 unit</text>`
+      + `<text x="3" y="${Y2+10}" font-family="Fredoka,sans-serif" font-size="6" fill="#6B6E76">3 units</text>`
+      + box(X,Y1,false) + t
+      + `<path d="M${X} ${Y2+H+5} H${r} M${X} ${Y2+H+5} v-3.5 M${r} ${Y2+H+5} v-3.5" stroke="#C9CBD2" stroke-width="1" fill="none"/>`
+      + `<text x="${(X+r)/2}" y="${Y2+H+14}" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="7.5" fill="#3E6FD9">555</text>`
+      + `</svg>`;
+  },
+  /* a cause-and-effect chain: solid links, and the middle one still empty */
+  chain(){
+    const link = (y, fill, stroke, dash) =>
+      `<rect x="12" y="${y}" width="80" height="12" rx="3.5" fill="${fill}" stroke="${stroke}" stroke-width="1.3"${dash ? ' stroke-dasharray="3.5 3"' : ''}/>`;
+    const arrow = y =>
+      `<path d="M52 ${y} L52 ${y + 4}" stroke="#9C9EA5" stroke-width="1.3" stroke-linecap="round"/><path d="M52 ${y + 5.8} l-2.4 -2.8 h4.8 z" fill="#9C9EA5"/>`;
+    return `<svg viewBox="0 0 104 78" role="img" aria-label="A cause and effect chain with the middle link still empty">
+      ${link(4, "#E8EEFC", "#3E6FD9")}${arrow(16)}
+      ${link(23, "#FAFAFA", "#C9CBD2", true)}
+      <text x="52" y="32" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="9" font-weight="600" fill="#E2463B">?</text>
+      ${arrow(35)}
+      ${link(42, "#E8EEFC", "#3E6FD9")}${arrow(54)}
+      ${link(61, "#E6F5EC", "#2FA36B")}
+    </svg>`;
+  },
   /* sieve grid: some numbers crossed out, primes highlighted */
   sieve(){
     const cross = new Set([4,6,8,9,10,12,14,15,16,18,20,21,22,24]);
