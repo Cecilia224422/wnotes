@@ -119,7 +119,7 @@ h1 .zh{font-size:.9rem;font-weight:400}
   <div class="wn-hi">
     <img id="wnHiImg" src="img/skzoo-puppym.png" alt="Your study buddy" width="150" height="150">
     <div class="bubble">
-      <p class="say" id="wnHiLine">Every page in here is something you already beat.<span class="zh">這裡每一頁，都是你已經打贏過的。</span></p>
+      <p class="say" id="wnHiLine"><b>Hi William!</b> Good to see you — pick any card.<span class="zh"><b>William 嗨！</b>看到你真好——隨便挑一張卡。</span></p>
       <span class="who" id="wnHiName">Puppy M</span>
     </div>
   </div>
@@ -331,19 +331,44 @@ function buddy(){
   name.textContent = pick[1];
 }
 
-/* the greeting counts his collection, so the number goes up as it grows */
+/* ===== 6. The greeting =====
+   Coming to this page at all means he chose to review or to chase a question
+   down. So the friend is simply glad he came. No counting, no scoring, and no
+   guessing why he is here — the page cannot know that, and does not need to.
+   The one thing it can honestly notice is the time of day. */
+function helloFor(h){
+  if(h >= 22 || h < 5) return ["Still up?",                    "還沒睡啊？"];
+  if(h < 11)           return ["Morning, William!",            "William 早安！"];
+  if(h < 14)           return ["Hi William!",                  "William 嗨！"];
+  if(h < 18)           return ["Hey William — school is done.", "William 嗨——放學囉。"];
+  return                      ["Evening, William.",            "William 晚上好。"];
+}
+
+const WARM = [
+  ["Good to see you. Reviewing something, or chasing one question down?",
+   "看到你真好。是來複習，還是來追一個卡住你的問題？"],
+  ["Coming back to look again is the whole trick — most people just shut the book.",
+   "回頭再看一次，訣竅就在這裡——大部分人是把書闔上就算了。"],
+  ["Pick any card. I have got nowhere else to be.",
+   "隨便挑一張卡。我反正哪裡也不去。"],
+  ["Every page in here is something you already beat once.",
+   "這裡每一頁，都是你已經打贏過一次的。"],
+  ["Take your time. Nothing in here is being timed.",
+   "慢慢來。這裡沒有一樣東西在計時。"],
+  ["If something is still bugging you, it is in here somewhere. Let us go find it.",
+   "如果還有什麼卡著你，它就在這裡面某個地方。我們去把它找出來。"],
+  ["The notebook is open whenever you are.",
+   "你什麼時候來，筆記本就什麼時候開著。"],
+  ["No test today. Just you and the pages you already know.",
+   "今天沒有考試。只有你，還有這些你已經認識的頁面。"]
+];
+
 function greet(){
   const line = $("#wnHiLine");
-  if(!line || !LESSONS.length) return;
-  const newest = [...LESSONS].sort((a,b)=> b.date.localeCompare(a.date))[0];
-  const n = LESSONS.length, one = n === 1;
-  const en = one
-    ? `One page in your notebook so far, William — and it is one you already beat. Newest: <b>${esc(newest.title)}</b>.`
-    : `<b>${n} pages</b> in your notebook now, William — every one of them something you already beat. Newest: <b>${esc(newest.title)}</b>.`;
-  const zh = one
-    ? `William，你的筆記本目前有 1 課——而且那一課你已經打贏了。最新的一課：<b>${esc(newest.zh||newest.title)}</b>。`
-    : `William，你的筆記本現在有 <b>${n} 課</b>了——每一課都是你已經打贏過的。最新的一課：<b>${esc(newest.zh||newest.title)}</b>。`;
-  line.innerHTML = en + `<span class="zh">${zh}</span>`;
+  if(!line) return;
+  const hi = helloFor(new Date().getHours());
+  const w  = WARM[Math.floor(Math.random() * WARM.length)];
+  line.innerHTML = `<b>${hi[0]}</b> ${w[0]}<span class="zh"><b>${hi[1]}</b>${w[1]}</span>`;
 }
 
 renderFilters(); render(); stats(); buddy(); greet();
