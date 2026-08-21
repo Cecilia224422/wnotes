@@ -96,6 +96,14 @@ h1 .zh{font-size:.9rem;font-weight:400}
 .card .src{margin-top:.55rem;color:var(--grey);font-size:1rem;line-height:1.2;font-family:'Caveat',cursive;border-top:1px dashed var(--border);padding-top:.4rem}
 .empty{color:var(--grey);font-style:italic;padding:1rem 0}
 
+/* study buddy greets him at the door */
+.wn-hi{display:flex;align-items:flex-start;gap:.7rem;margin:.7rem 0 1.2rem;max-width:44rem}
+.wn-hi img{width:3.2rem;height:3.2rem;flex:0 0 auto}
+.wn-hi .bubble{position:relative;background:#fff;border:1px solid var(--border2);border-radius:.9rem;padding:.6rem .9rem .5rem}
+.wn-hi .bubble::before{content:"";position:absolute;left:-.4rem;top:1rem;width:.75rem;height:.75rem;background:#fff;border-left:1px solid var(--border2);border-bottom:1px solid var(--border2);transform:rotate(45deg)}
+.wn-hi .say{margin:0;font-size:.95rem;line-height:1.45}
+.wn-hi .who{font-family:'Caveat',cursive;font-size:1.1rem;color:var(--pencil)}
+
 .foot{margin-top:2.2rem;color:var(--pencil);font-size:1.25rem}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -107,49 +115,28 @@ h1 .zh{font-size:.9rem;font-weight:400}
   <div class="date hand">📒 Index · all subjects</div>
   <h1>William's <mark>Correction Notes</mark>
     <span class="zh">William 訂正筆記總目錄</span></h1>
+
+  <div class="wn-hi">
+    <img id="wnHiImg" src="img/skzoo-puppym.png" alt="Your study buddy" width="150" height="150">
+    <div class="bubble">
+      <p class="say" id="wnHiLine">Every page in here is something you already beat.<span class="zh">這裡每一頁，都是你已經打贏過的。</span></p>
+      <span class="who" id="wnHiName">Puppy M</span>
+    </div>
+  </div>
+
   <p class="intro">Every homework you fix becomes one page in this notebook. Tap a card to open that lesson.
     <span class="zh">每一次訂正的作業都是這本筆記的一頁。點卡片就能打開那一課。</span></p>
 
   <div class="stats">
     <div class="stat"><b id="stLessons">0</b><span>lessons<span class="zh" style="display:inline"> 課</span></span></div>
     <div class="stat"><b id="stSubjects">0</b><span>subjects<span class="zh" style="display:inline"> 科目</span></span></div>
-    <div class="stat"><b id="stFixes">0</b><span>spots fixed<span class="zh" style="display:inline"> 個訂正</span></span></div>
+    <div class="stat"><b id="stFixes">0</b><span>spots to beat<span class="zh" style="display:inline"> 個要打的</span></span></div>
   </div>
 
   <nav class="filters" id="filters" aria-label="Subject filter"></nav>
 
   <div id="subjects"></div>
 
-  
-<style>
-.wn-buddy{display:flex;align-items:center;gap:.8rem;margin:2rem 0 .6rem;padding:.9rem 1rem;
- background:#fff;border:1px dashed #D9DADF;border-radius:.7rem;max-width:34rem}
-.wn-buddy img{width:3.6rem;height:3.6rem;flex:0 0 auto}
-.wn-buddy .t{display:flex;flex-direction:column;gap:.15rem}
-.wn-buddy .line{font-family:'Caveat',cursive;font-size:1.3rem;color:#6B6E76;line-height:1.15}
-.wn-buddy .sign{font-family:'Fredoka',system-ui,sans-serif;font-size:.95rem;font-weight:700;color:#2E3037}
-</style>
-
-<div class="wn-buddy">
-  <img id="wnBuddyImg" src="img/skzoo-puppym.png" alt="Your study buddy" width="150" height="150">
-  <div class="t">
-    <em class="line">Keep going, William — every page here is a mistake you already beat.</em>
-    <b class="sign">Your study buddy, <span id="wnBuddyName">Puppy M</span></b>
-  </div>
-</div>
-<script>
-/* study buddy: one of the eight, picked fresh on every visit */
-(function(){
-  var CREW = [["wolfchan","Wolf Chan"],["leebit","Leebit"],["dwaekki","Dwaekki"],["jiniret","Jiniret"],
-              ["hanquokka","Han Quokka"],["bbokari","BbokAri"],["puppym","Puppy M"],["foxiny","FoxI.Ny"]];
-  var pick = CREW[Math.floor(Math.random() * CREW.length)];
-  var img = document.getElementById("wnBuddyImg"), name = document.getElementById("wnBuddyName");
-  if (!img || !name) return;
-  img.src = "img/skzoo-" + pick[0] + ".png";
-  img.alt = pick[1] + ", your study buddy";
-  name.textContent = pick[1];
-})();
-</script>
 </div>
 </div>
 
@@ -332,7 +319,34 @@ function stats(){
   $("#stFixes").textContent = LESSONS.reduce((n,l)=>n+(l.fixes||0),0);
 }
 
-renderFilters(); render(); stats();
+/* ===== 5. Study buddy — one of the eight, picked fresh on every visit ===== */
+function buddy(){
+  const CREW = [["wolfchan","Wolf Chan"],["leebit","Leebit"],["dwaekki","Dwaekki"],["jiniret","Jiniret"],
+                ["hanquokka","Han Quokka"],["bbokari","BbokAri"],["puppym","Puppy M"],["foxiny","FoxI.Ny"]];
+  const pick = CREW[Math.floor(Math.random() * CREW.length)];
+  const img = $("#wnHiImg"), name = $("#wnHiName");
+  if(!img || !name) return;
+  img.src = "img/skzoo-" + pick[0] + ".png";
+  img.alt = pick[1] + ", your study buddy";
+  name.textContent = pick[1];
+}
+
+/* the greeting counts his collection, so the number goes up as it grows */
+function greet(){
+  const line = $("#wnHiLine");
+  if(!line || !LESSONS.length) return;
+  const newest = [...LESSONS].sort((a,b)=> b.date.localeCompare(a.date))[0];
+  const n = LESSONS.length, one = n === 1;
+  const en = one
+    ? `One page in your notebook so far, William — and it is one you already beat. Newest: <b>${esc(newest.title)}</b>.`
+    : `<b>${n} pages</b> in your notebook now, William — every one of them something you already beat. Newest: <b>${esc(newest.title)}</b>.`;
+  const zh = one
+    ? `William，你的筆記本目前有 1 課——而且那一課你已經打贏了。最新的一課：<b>${esc(newest.zh||newest.title)}</b>。`
+    : `William，你的筆記本現在有 <b>${n} 課</b>了——每一課都是你已經打贏過的。最新的一課：<b>${esc(newest.zh||newest.title)}</b>。`;
+  line.innerHTML = en + `<span class="zh">${zh}</span>`;
+}
+
+renderFilters(); render(); stats(); buddy(); greet();
 </script>
 </body>
 </html>
