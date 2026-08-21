@@ -225,6 +225,12 @@ hr.dash{border:0;border-top:2px dashed #E3E4E8;margin:.875rem 0 .625rem}
 .stars{font-size:2.1rem;letter-spacing:.25rem}
 .big{font-size:2.5rem;font-weight:700;color:var(--accent-deep);line-height:1.1;margin:.25rem 0}
 
+.wn-hi{display:flex;align-items:flex-start;gap:.7rem;margin:.7rem 0 1.1rem;max-width:44rem}
+.wn-hi img{width:3.2rem;height:3.2rem;flex:0 0 auto}
+.wn-hi .bubble{position:relative;background:#fff;border:1px solid #D9DADF;border-radius:.9rem;padding:.6rem .9rem .5rem}
+.wn-hi .bubble::before{content:"";position:absolute;left:-.4rem;top:1rem;width:.75rem;height:.75rem;background:#fff;border-left:1px solid #D9DADF;border-bottom:1px solid #D9DADF;transform:rotate(45deg)}
+.wn-hi .say{margin:0;font-size:.95rem;line-height:1.45}
+.wn-hi .who{font-family:'Caveat',cursive;font-size:1.1rem;color:#6B6E76}
 /* checklist */
 .todo{display:flex;gap:.625rem;align-items:flex-start;padding:.56rem 0;border-bottom:1.5px dashed #E3E4E8;font-size:.95rem;cursor:pointer}
 .todo:last-of-type{border-bottom:0}
@@ -255,6 +261,15 @@ hr.dash{border:0;border-top:2px dashed #E3E4E8;margin:.875rem 0 .625rem}
 <header>
   <span class="date">Date: 8/15 &nbsp;·&nbsp; Chapter 2</span>
   <h1>William's <mark>Correction Notes</mark><span class="zh">William 的訂正筆記</span></h1>
+
+  <div class="wn-hi">
+    <img id="wnHiImg" src="img/skzoo-puppym.png" alt="Your study buddy" width="150" height="150">
+    <div class="bubble">
+      <p class="say">Hi William — <b>six pages checked, and most of it was already right</b>. Just four spots for the two of us to look at together. Bring a pencil.<span class="zh">William 嗨——<b>六頁檢查完了，大部分本來就是對的</b>。只剩四個地方我們兩個一起看。帶枝鉛筆來。</span></p>
+      <span class="who" id="wnHiName">Puppy M</span>
+    </div>
+  </div>
+
   <p class="lead">I checked all 6 pages — most of it is right! 👍<br>There are just <b>4 spots</b> to look at together.<span class="zh">6 頁作業檢查完囉！大部分都答對了，只有 4 個地方我們一起看一下。</span></p>
   <div class="vocab">
     <span><b>prime</b>only 2 factors<i class="zhi">質數</i></span>
@@ -265,8 +280,7 @@ hr.dash{border:0;border-top:2px dashed #E3E4E8;margin:.875rem 0 .625rem}
   </div>
   <div class="score">
     <div class="sc"><b>6</b><span>pages<i class="zhi">頁</i></span></div>
-    <div class="sc ok"><b>~90%</b><span>correct<i class="zhi">答對</i></span></div>
-    <div class="sc fix"><b>4</b><span>spots to fix<i class="zhi">要訂正</i></span></div>
+    <div class="sc fix"><b>4</b><span>left to beat<i class="zhi">還要打</i></span></div>
   </div>
 </header>
 
@@ -544,11 +558,14 @@ hr.dash{border:0;border-top:2px dashed #E3E4E8;margin:.875rem 0 .625rem}
   var CREW = [["wolfchan","Wolf Chan"],["leebit","Leebit"],["dwaekki","Dwaekki"],["jiniret","Jiniret"],
               ["hanquokka","Han Quokka"],["bbokari","BbokAri"],["puppym","Puppy M"],["foxiny","FoxI.Ny"]];
   var pick = CREW[Math.floor(Math.random() * CREW.length)];
-  var img = document.getElementById("wnBuddyImg"), name = document.getElementById("wnBuddyName");
-  if (!img || !name) return;
-  img.src = "img/skzoo-" + pick[0] + ".png";
-  img.alt = pick[1] + ", your study buddy";
-  name.textContent = pick[1];
+  /* same character greets him at the top and signs off at the bottom */
+  [["wnHiImg","wnHiName"],["wnBuddyImg","wnBuddyName"]].forEach(function(ids){
+    var img = document.getElementById(ids[0]), name = document.getElementById(ids[1]);
+    if (!img || !name) return;
+    img.src = "img/skzoo-" + pick[0] + ".png";
+    img.alt = pick[1] + ", your study buddy";
+    name.textContent = pick[1];
+  });
 })();
 </script>
 <p class="foot">When you're done playing, go back and fix the workbook ✍️<br>Grade 4A · Chapter 2 · Factors &amp; Multiples</p>
@@ -799,7 +816,7 @@ renderQ();
 const boxes=$$('#todo input[type=checkbox]');
 boxes.forEach(b=>b.addEventListener('change',()=>{
   const d=boxes.filter(x=>x.checked).length;const m=$('#todo-msg');
-  if(d===boxes.length){m.className='msg good';m.innerHTML='🎉 All corrected! Now the homework is full marks.'+Z('全部訂正完成！這份作業就是滿分了。');}
+  if(d===boxes.length){m.className='msg good';m.innerHTML='🎉 All corrected! Now the homework is full marks — and your notebook just got one page thicker. <a href="index.html">📒 See how many you have now</a>.'+Z('全部訂正完成！這份作業就是滿分了——你的筆記本又厚了一頁。<a href="index.html">📒 看看現在有幾課了</a>。');}
   else if(d>0){m.className='msg';m.innerHTML=(boxes.length-d)+' left — keep going!'+Z('還剩 '+(boxes.length-d)+' 項，加油！');}
   else{m.className='msg';m.innerHTML='';}
 }));

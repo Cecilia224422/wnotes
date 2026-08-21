@@ -267,6 +267,12 @@ body[data-mode="life"] .explain.life{display:block}
 .checks input:checked+label .txt{text-decoration:line-through;color:var(--gray)}
 .checks input:focus-visible+label .box{outline:3px solid var(--hl)}
 .checks .ref{font-size:.72rem;color:var(--gray);display:block}
+.wn-hi{display:flex;align-items:flex-start;gap:.7rem;margin:.7rem 0 1.1rem;max-width:44rem}
+.wn-hi img{width:3.2rem;height:3.2rem;flex:0 0 auto}
+.wn-hi .bubble{position:relative;background:#fff;border:1px solid #D9DADF;border-radius:.9rem;padding:.6rem .9rem .5rem}
+.wn-hi .bubble::before{content:"";position:absolute;left:-.4rem;top:1rem;width:.75rem;height:.75rem;background:#fff;border-left:1px solid #D9DADF;border-bottom:1px solid #D9DADF;transform:rotate(45deg)}
+.wn-hi .say{margin:0;font-size:.95rem;line-height:1.45}
+.wn-hi .who{font-family:'Caveat',cursive;font-size:1.1rem;color:#6B6E76}
 .done-banner{display:none;background:#E6F6EE;border:1px solid #B9E3CB;color:#1E6E48;border-radius:.6rem;padding:.7rem 1rem;font-weight:600;margin:.6rem 0;max-width:44rem;animation:pop .4s ease}
 .done-banner.show{display:block}
 .progress{font-size:.85rem;color:var(--pencil)}
@@ -296,6 +302,15 @@ html{scroll-behavior:smooth}
 <header>
   <div class="hand">8/18 · Math in Focus 4A · Chapter 3 · Comparing, adding &amp; subtracting like fractions · pages 251–258</div>
   <h1>William's <mark>Correction Notes</mark></h1>
+
+  <div class="wn-hi">
+    <img id="wnHiImg" src="img/skzoo-puppym.png" alt="Your study buddy" width="150" height="150">
+    <div class="bubble">
+      <p class="say">Hi William — <b>15 of your 16 calculations were already right</b>, so the hard part is behind you. Today is the tidying-up step, and it is the same step every time.<span class="zh">William 嗨——<b>16 題計算你本來就對了 15 題</b>，難的部分已經過去了。今天要練的是收尾那一步，而且每次都是同一步。</span></p>
+      <span class="who" id="wnHiName">Puppy M</span>
+    </div>
+  </div>
+
   <p class="intro">8 pages this time — and your adding and subtracting is solid: <mark>15 of 16</mark> calculations are right. Most of the fixes are <em>one</em> habit: writing the answer in <mark>simplest form</mark>. Fix one habit, fix 7 spots at once!
     <span class="zh">這次 8 頁。你的分數加減法很穩：16 題計算對了 15 題。大部分要改的地方其實是「同一個習慣」：把答案寫成最簡分數。改好一個習慣，一次修好 7 個地方！</span></p>
 
@@ -310,8 +325,8 @@ html{scroll-behavior:smooth}
 
   <div class="scores">
     <div class="score"><b>8</b><span>pages</span><small>251–258</small><span class="zh">頁</span></div>
-    <div class="score good"><b>67%</b><span>correct</span><small>20 of 30 answers</small><span class="zh">答對</span></div>
-    <div class="score fix"><b>10</b><span>spots to fix</span><small>7 are the same habit</small><span class="zh">要訂正的地方（7 個是同一個習慣）</span></div>
+    <div class="score good"><b>20</b><span>already yours</span><small>of 30 answers</small><span class="zh">已經到手（30 格中）</span></div>
+    <div class="score fix"><b>10</b><span>left to beat</span><small>7 are the same habit</small><span class="zh">還要打（7 個是同一個習慣）</span></div>
   </div>
 </header>
 
@@ -703,7 +718,7 @@ html{scroll-behavior:smooth}
     <li><input type="checkbox" id="c12"><label for="c12"><span class="box"></span><span class="txt"><span class="ref">page 258 · Q3</span><span class="fr">4/10</span> = <b><span class="fr">2/5</span></b><span class="zh">4/10 = 2/5</span></span></label></li>
     <li><input type="checkbox" id="c13"><label for="c13"><span class="box"></span><span class="txt"><span class="ref">page 258 · Q4</span>First box: <b>12</b> (1 = <span class="fr">12/12</span>). Your answer <span class="fr">1/12</span> stays — it's right.<span class="zh">第一個框改成 12（1 = 12/12）。你的答案 1/12 不用改——是對的。</span></span></label></li>
   </ul>
-  <div class="done-banner" id="listdone">🎉 All done! Every spot is fixed — nice work, William.<span class="zh">全部改好了！每個地方都訂正完了，William 做得好！</span></div>
+  <div class="done-banner" id="listdone">🎉 All done! Every spot is fixed — and your notebook just got one page thicker. <a href="index.html">📒 See how many you have now</a>.<span class="zh">全部改好了！每個地方都訂正完了——你的筆記本又厚了一頁。<a href="index.html">📒 看看現在有幾課了</a>。</span></div>
 </section>
 
 
@@ -729,11 +744,14 @@ html{scroll-behavior:smooth}
   var CREW = [["wolfchan","Wolf Chan"],["leebit","Leebit"],["dwaekki","Dwaekki"],["jiniret","Jiniret"],
               ["hanquokka","Han Quokka"],["bbokari","BbokAri"],["puppym","Puppy M"],["foxiny","FoxI.Ny"]];
   var pick = CREW[Math.floor(Math.random() * CREW.length)];
-  var img = document.getElementById("wnBuddyImg"), name = document.getElementById("wnBuddyName");
-  if (!img || !name) return;
-  img.src = "img/skzoo-" + pick[0] + ".png";
-  img.alt = pick[1] + ", your study buddy";
-  name.textContent = pick[1];
+  /* same character greets him at the top and signs off at the bottom */
+  [["wnHiImg","wnHiName"],["wnBuddyImg","wnBuddyName"]].forEach(function(ids){
+    var img = document.getElementById(ids[0]), name = document.getElementById(ids[1]);
+    if (!img || !name) return;
+    img.src = "img/skzoo-" + pick[0] + ".png";
+    img.alt = pick[1] + ", your study buddy";
+    name.textContent = pick[1];
+  });
 })();
 </script>
 <p class="foot">Add it, then tidy it up. Same bottom before you compare. See you next time! — 8/18</p>
