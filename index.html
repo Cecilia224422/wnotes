@@ -21,7 +21,10 @@
 *{box-sizing:border-box}
 html{font-size:clamp(16px, 0.6vw + 13.3px, 23px)}
 body{margin:0;background:var(--desk);font-family:'Fredoka',system-ui,sans-serif;color:var(--ink);line-height:1.5}
-.zh{display:block;font-family:var(--zhfont);color:var(--pencil);font-size:.86em;line-height:1.5}
+.zh{display:none;font-family:var(--zhfont);color:var(--pencil);font-size:.86em;line-height:1.5}
+body.zh-on .zh{display:block}
+body.zh-on .zhi{display:inline}
+.zhi{display:none;font-family:var(--zhfont);color:var(--pencil)}
 .hand{font-family:'Caveat',cursive}
 
 /* notebook page */
@@ -38,6 +41,13 @@ body{margin:0;background:var(--desk);font-family:'Fredoka',system-ui,sans-serif;
 
 /* header */
 .date{color:var(--pencil);font-size:1.25rem}
+.topline{display:flex;align-items:center;justify-content:space-between;gap:.6rem;flex-wrap:wrap}
+.zhtoggle{display:inline-flex;align-items:center;gap:.45rem;border:0;background:transparent;font:inherit;cursor:pointer;padding:.25rem .35rem;border-radius:1rem}
+.zhtoggle .lbl{font-family:var(--zhfont);font-size:.95rem;color:var(--pencil)}
+.sw{width:2.6rem;height:1.45rem;border-radius:1rem;background:#D9DADF;position:relative;transition:background-color .25s;flex:0 0 auto}
+.sw::after{content:'';position:absolute;top:.15rem;left:.15rem;width:1.15rem;height:1.15rem;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .25s}
+.zhtoggle[aria-pressed="true"] .sw{background:var(--blue)}
+.zhtoggle[aria-pressed="true"] .sw::after{transform:translateX(1.15rem)}
 h1{font-size:2rem;font-weight:700;margin:.15rem 0 .2rem;line-height:1.2}
 h1 mark{background:linear-gradient(transparent 45%,var(--hl) 45%);padding:0 .1em}
 h1 .zh{font-size:.9rem;font-weight:400}
@@ -55,7 +65,8 @@ h1 .zh{font-size:.9rem;font-weight:400}
   display:flex;gap:.45rem;flex-wrap:wrap}
 .chip{border:2px solid var(--border2);background:#fff;color:var(--ink);border-radius:999px;padding:.3rem .9rem;
   font:inherit;font-weight:600;font-size:.85rem;cursor:pointer;transition:.15s}
-.chip .zh{display:inline;margin-left:.3rem;font-size:.85em}
+.chip .zh{margin-left:.3rem;font-size:.85em}
+body.zh-on .chip .zh{display:inline}
 .chip:hover{border-color:var(--ink)}
 .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
 .chip.on .zh{color:#ddd}
@@ -112,7 +123,7 @@ h1 .zh{font-size:.9rem;font-weight:400}
 <div class="notebook">
 <div class="content">
 
-  <div class="date hand">📒 Index · all subjects</div>
+  <div class="topline"><div class="date hand">📒 Index · all subjects</div><button type="button" class="zhtoggle" id="zhbtn" aria-pressed="false" aria-label="中文 translation on or off"><span class="lbl">中文</span><span class="sw" aria-hidden="true"></span></button></div>
   <h1>William's <mark>Correction Notes</mark>
     <span class="zh">William 訂正筆記總目錄</span></h1>
 
@@ -128,9 +139,9 @@ h1 .zh{font-size:.9rem;font-weight:400}
     <span class="zh">每一次訂正的作業都是這本筆記的一頁。點卡片就能打開那一課。</span></p>
 
   <div class="stats">
-    <div class="stat"><b id="stLessons">0</b><span>lessons<span class="zh" style="display:inline"> 課</span></span></div>
-    <div class="stat"><b id="stSubjects">0</b><span>subjects<span class="zh" style="display:inline"> 科目</span></span></div>
-    <div class="stat"><b id="stFixes">0</b><span>spots to beat<span class="zh" style="display:inline"> 個要打的</span></span></div>
+    <div class="stat"><b id="stLessons">0</b><span>lessons<span class="zhi"> 課</span></span></div>
+    <div class="stat"><b id="stSubjects">0</b><span>subjects<span class="zhi"> 科目</span></span></div>
+    <div class="stat"><b id="stFixes">0</b><span>spots to beat<span class="zhi"> 個要打的</span></span></div>
   </div>
 
   <nav class="filters" id="filters" aria-label="Subject filter"></nav>
@@ -141,6 +152,12 @@ h1 .zh{font-size:.9rem;font-weight:400}
 </div>
 
 <script>
+document.getElementById("zhbtn").addEventListener("click",function(){
+  var on=!document.body.classList.contains("zh-on");
+  document.body.classList.toggle("zh-on",on);
+  this.setAttribute("aria-pressed",String(on));
+});
+
 /* ===== 1. Subjects (order = display order) ===== */
 const SUBJECTS = {
   math:    { en:"Math",           zh:"數學", icon:"🔢" },
@@ -344,7 +361,7 @@ function render(){
     if(!list.length && filter==="all") return;         // hide empty subjects on "all"
     const s = SUBJECTS[k];
     html += `<section class="subject" data-subject="${k}">
-      <div class="subject-head"><h2>${s.icon} ${s.en} <span class="zh" style="display:inline;font-size:.8em">${s.zh}</span></h2>
+      <div class="subject-head"><h2>${s.icon} ${s.en} <span class="zhi" style="font-size:.8em">${s.zh}</span></h2>
         <span class="count">${list.length} lesson${list.length===1?"":"s"}</span><span class="bar"></span></div>
       ${list.length ? `<div class="grid">${list.map(cardHTML).join("")}</div>`
                     : `<div class="empty">Nothing here yet · 還沒有這一科的筆記</div>`}
