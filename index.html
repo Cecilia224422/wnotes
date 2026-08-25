@@ -171,6 +171,60 @@ const SUBJECTS = {
    thumb: "sieve" | "fraction" | "numberline" | "artifact" | "grid"  (see THUMBS below)      */
 const LESSONS = [
   {
+    subject:"math", date:"2026-08-24",
+    title:"Balloon Packs: Build the Expression", zh:"氣球包：把故事變成算式",
+    desc:"Turn seven packs of 15 and one pack of 20 into one expression without treating all eight packs as equal.",
+    zhDesc:"把 7 包各 15 顆和另 1 包 20 顆寫成同一個算式，不把 8 包誤當成相同數量。",
+    source:"ZOZECK MAP Test · Math G5 · IMG_0592",
+    fixes:1, thumb:"balloons",
+    href:"zozeck-balloon-expression.html"
+  },
+  {
+    subject:"math", date:"2026-08-24",
+    title:"Sharing Whole Dolls", zh:"完整娃娃怎麼平均分",
+    desc:"Count Jessica too, divide among four girls, and interpret the remainder as whole dolls.",
+    zhDesc:"把 Jessica 本人也算進去，平均分給 4 個女孩，再按完整娃娃解釋餘數。",
+    source:"ZOZECK MAP Test · Math G5 · IMG_0589",
+    fixes:1, thumb:"whole-share",
+    href:"zozeck-whole-dolls.html"
+  },
+  {
+    subject:"math", date:"2026-08-24",
+    title:"Patterns That Multiply", zh:"會一直乘下去的數列",
+    desc:"Keep the same ×3 rule for every step: 27 becomes 81, then 243, then 729.",
+    zhDesc:"每一步都維持同一個 ×3 規律：27 變 81，再變 243、729。",
+    source:"ZOZECK MAP Test · Math G5 · IMG_0593",
+    fixes:1, thumb:"times-three",
+    href:"zozeck-times-three-pattern.html"
+  },
+  {
+    subject:"math", date:"2026-08-24",
+    title:"Fractions: Find the Difference", zh:"分數：找出相差多少",
+    desc:"Read difference as subtraction and keep the common denominator of 9.",
+    zhDesc:"把 difference 讀成相減，並保留共同的分母 9。",
+    source:"ZOZECK MAP Test · Math G5 · IMG_0590",
+    fixes:1, thumb:"fraction-difference",
+    href:"zozeck-fraction-difference.html"
+  },
+  {
+    subject:"math", date:"2026-08-24",
+    title:"Mixed Numbers: What Is Left?", zh:"帶分數：最後剩多少",
+    desc:"Keep all three used amounts, combine them in twelfths, then subtract from 5 cups.",
+    zhDesc:"三個使用量都要算進去，通分成十二分之一後，再從 5 杯扣除。",
+    source:"ZOZECK MAP Test · Math G5 · IMG_0591",
+    fixes:1, thumb:"flour-left",
+    href:"zozeck-mixed-number-flour.html"
+  },
+  {
+    subject:"science", date:"2026-08-24",
+    title:"Living Systems: Structure & Function", zh:"生物系統：構造與功能",
+    desc:"Q1–Q4 and Q8 are in place. Q5–Q7 focus on mitochondria, stomata, and how structure supports function.",
+    zhDesc:"第 1–4 題與第 8 題已對上；第 5–7 題處理粒線體、氣孔，以及構造如何支持功能。",
+    source:"Science · Chapter 1 · Lesson 2 · pp. 23–32",
+    fixes:3, thumb:"living-systems",
+    href:"living-systems.html"
+  },
+  {
     subject:"math", date:"2026-07-18",
     title:"Bar Models & Real-World Problems", zh:"Bar model 與乘除應用題",
     desc:"All ten answers right — including the two carries in a row on 456 × 8 — so the five fixes are about the drawing p.49 asked for, the last line of two long divisions, and one missing dollar sign.",
@@ -322,6 +376,39 @@ const THUMBS = {
       <path d="M70 44 C74 35, 83 35, 87 44 C83 52, 74 52, 70 44 Z" fill="none" stroke="#9C9EA5" stroke-width="1.2"/>
       <path d="M70 44 H87 M76 39.2 L79 44 M76 48.8 L79 44 M83 39.6 L80.5 44 M83 48.4 L80.5 44" stroke="#C9CBD2" stroke-width=".9" stroke-linecap="round"/>
     </svg>`;
+  },
+  /* seven equal balloon packs plus one different pack */
+  balloons(){
+    let packs="";
+    for(let i=0;i<7;i++){const x=5+(i%4)*18,y=10+Math.floor(i/4)*22;packs+=`<rect x="${x}" y="${y}" width="15" height="16" rx="3" fill="#E8EEFC" stroke="#3E6FD9"/><text x="${x+7.5}" y="${y+10.5}" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="6.5" fill="#2B52AE">15</text>`;}
+    return `<svg viewBox="0 0 104 78" role="img" aria-label="Seven packs of fifteen balloons plus one pack of twenty">${packs}<rect x="77" y="21" width="20" height="22" rx="4" fill="#FFF1E1" stroke="#F08A2C" stroke-width="1.4"/><text x="87" y="34.5" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="8" fill="#C4680F">20</text><text x="52" y="69" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="8" fill="#3E6FD9">7 × 15 + 20</text></svg>`;
+  },
+  /* 34 whole dolls shared among four people, with two left */
+  "whole-share"(){
+    let groups="";
+    for(let i=0;i<4;i++){const x=8+i*24;groups+=`<circle cx="${x+8}" cy="17" r="6" fill="#F4F4F6" stroke="#C9CBD2"/><rect x="${x}" y="28" width="16" height="20" rx="3" fill="#E8EEFC" stroke="#3E6FD9"/><text x="${x+8}" y="41" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="8" fill="#2B52AE">8</text>`;}
+    return `<svg viewBox="0 0 104 78" role="img" aria-label="Thirty-four whole dolls shared as four groups of eight with two left">${groups}<circle cx="46" cy="60" r="3.2" fill="#FFF1E1" stroke="#F08A2C"/><circle cx="58" cy="60" r="3.2" fill="#FFF1E1" stroke="#F08A2C"/><text x="52" y="72" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="6.5" fill="#6B6E76">34 ÷ 4 = 8 R2</text></svg>`;
+  },
+  /* each term is three times the term before */
+  "times-three"(){
+    const xs=[10,34,58,82],nums=[27,81,243,729];let nodes="";
+    for(let i=0;i<4;i++){nodes+=`<rect x="${xs[i]}" y="25" width="16" height="18" rx="3" fill="${i?"#E8EEFC":"#F4F4F6"}" stroke="${i?"#3E6FD9":"#C9CBD2"}"/><text x="${xs[i]+8}" y="36.5" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="${nums[i]>99?5.5:7}" fill="${i?"#2B52AE":"#6B6E76"}">${nums[i]}</text>`;if(i<3)nodes+=`<path d="M${xs[i]+17} 34 H${xs[i+1]-2}" stroke="#F08A2C" stroke-width="1.5"/><path d="M${xs[i+1]-2} 34 l-4 -3 v6 z" fill="#F08A2C"/><text x="${(xs[i]+xs[i+1]+15)/2}" y="22" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="6" fill="#C4680F">×3</text>`;}
+    return `<svg viewBox="0 0 104 78" role="img" aria-label="A number pattern multiplying by three from 27 to 729">${nodes}</svg>`;
+  },
+  /* like fractions: five ninths minus two ninths */
+  "fraction-difference"(){
+    let cells="";
+    for(let i=0;i<9;i++){cells+=`<rect x="${7+i*10}" y="23" width="9" height="18" rx="2" fill="${i<2?"#FDEAE8":i<5?"#E8EEFC":"#F4F4F6"}" stroke="${i<2?"#E2463B":i<5?"#3E6FD9":"#E3E4E8"}"/>`;}
+    return `<svg viewBox="0 0 104 78" role="img" aria-label="Five ninths minus two ninths equals three ninths">${cells}<text x="52" y="16" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="8" fill="#6B6E76">5/9 − 2/9</text><path d="M27 49 H55" stroke="#3E6FD9" stroke-width="1.5" stroke-linecap="round"/><text x="68" y="62" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="9" fill="#3E6FD9">= 3/9</text></svg>`;
+  },
+  /* five cups minus three mixed-number uses leaves eleven twelfths */
+  "flour-left"(){
+    let ticks="";for(let i=0;i<=12;i++)ticks+=`<path d="M71 ${12+i*4.2} H${i%3===0?82:78}" stroke="#C9CBD2" stroke-width=".9"/>`;
+    return `<svg viewBox="0 0 104 78" role="img" aria-label="A measuring cup showing eleven twelfths left after three uses"><text x="6" y="20" font-family="Fredoka,sans-serif" font-size="8" fill="#6B6E76">5 cups</text><text x="6" y="37" font-family="Fredoka,sans-serif" font-size="7" fill="#E2463B">− 3 uses</text><path d="M47 18 H57 M52 13 V23" stroke="#F08A2C" stroke-width="1.8" stroke-linecap="round"/><path d="M67 10 V64 H91 V10" fill="#fff" stroke="#3E6FD9" stroke-width="1.4"/><rect x="68.5" y="18" width="21" height="44.5" fill="#E8EEFC"/>${ticks}<text x="79" y="73" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="7" fill="#2B52AE">11/12</text></svg>`;
+  },
+  /* living organization from cell to tissue to organ */
+  "living-systems"(){
+    return `<svg viewBox="0 0 104 78" role="img" aria-label="Cells form tissue, tissue forms an organ, and the organ has a function"><circle cx="14" cy="31" r="8" fill="#E8EEFC" stroke="#3E6FD9"/><circle cx="11" cy="29" r="1.8" fill="#3E6FD9"/><circle cx="18" cy="34" r="1.8" fill="#3E6FD9"/><path d="M23 31 H31" stroke="#9C9EA5" stroke-width="1.5"/><path d="M31 31 l-4 -3 v6 z" fill="#9C9EA5"/><g fill="#E8EEFC" stroke="#3E6FD9"><ellipse cx="42" cy="24" rx="9" ry="3"/><ellipse cx="42" cy="31" rx="9" ry="3"/><ellipse cx="42" cy="38" rx="9" ry="3"/></g><path d="M52 31 H61" stroke="#9C9EA5" stroke-width="1.5"/><path d="M61 31 l-4 -3 v6 z" fill="#9C9EA5"/><path d="M74 18 C90 11 96 25 90 35 C86 43 93 49 82 55 C70 60 62 49 65 39 C68 30 61 23 74 18 Z" fill="#FFF1E1" stroke="#F08A2C" stroke-width="1.6"/><text x="14" y="57" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="6" fill="#6B6E76">cell</text><text x="42" y="57" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="6" fill="#6B6E76">tissue</text><text x="80" y="68" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="6" fill="#6B6E76">organ → job</text></svg>`;
   },
   /* fallback: blank ruled page */
   grid(){
