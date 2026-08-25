@@ -171,6 +171,24 @@ const SUBJECTS = {
    thumb: "sieve" | "fraction" | "numberline" | "artifact" | "grid"  (see THUMBS below)      */
 const LESSONS = [
   {
+    subject:"math", date:"2026-06-21",
+    title:"Estimate First, Then Divide", zh:"先估算，再動手除",
+    desc:"19 of 20 right, including the trap question 9,036 ÷ 3 — the 0 in 3,012 placed exactly where it belongs. Two fixes: one place-value slip on p.45, and every ≈ line moves to before the divide so it can finally catch a mistake.",
+    zhDesc:"20 題對 19 題，連陷阱題 9,036÷3 的 0 都放對位置。兩個訂正：p.45 一個位值滑倒，以及把每一行 ≈ 搬到「除之前」，讓估算真的能抓錯。",
+    source:"Extra Practice 4A · Chapter 2 Activity 3 · p.45–47",
+    fixes:2, thumb:"estimate-first",
+    href:"estimate-first.html"
+  },
+  {
+    subject:"english", date:"2026-07-09",
+    title:"Connectors & Story Combos", zh:"連接詞與故事連招",
+    desc:"All 4 quests cleared, every element power right, and Baymax's line written from memory. The 3 fixes: carry your Quest 2 connectors into free writing, one time-jumping speech tag, and four scrambled spellings.",
+    zhDesc:"四關全破，每個忍者的元素能力全對，杯麵的台詞還是憑記憶寫出來的。三個訂正：把 Quest 2 的連接詞帶進自由寫作、一個跳時態的說話標籤，還有四個拼錯的字。",
+    source:"Ninjago × Baymax Writing Quest · Quests 1–4 · Free write",
+    fixes:3, thumb:"combo",
+    href:"story-connectors.html"
+  },
+  {
     subject:"math", date:"2026-08-24",
     title:"Balloon Packs: Build the Expression", zh:"氣球包：把故事變成算式",
     desc:"Turn seven packs of 15 and one pack of 20 into one expression without treating all eight packs as equal.",
@@ -282,6 +300,34 @@ const LESSONS = [
 
 /* ===== 3. Thumbnails — drawn with SVG, no photo files needed ===== */
 const THUMBS = {
+  /* an estimate written above the division box, catching the wrong 200 */
+  "estimate-first"(){
+    const cell=(x,y,t,b)=>`<rect x="${x}" y="${y}" width="12" height="12" rx="2.5" fill="${b?"#E8EEFC":"#F4F4F6"}" stroke="${b?"#3E6FD9":"#C9CBD2"}" stroke-width="1"/><text x="${x+6}" y="${y+8.8}" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="7" fill="${b?"#2B52AE":"#6B6E76"}">${t}</text>`;
+    let s="";
+    ["≈","4","0","0"].forEach((t,i)=>s+=cell(34+i*14,6,t,true));
+    ["2","4","0","0"].forEach((t,i)=>s+=cell(34+i*14,40,t,false));
+    return `<svg viewBox="0 0 104 78" role="img" aria-label="An estimate of about 400 written above the long division box, catching the wrong answer 200">`
+      + s
+      + `<path d="M55 21 V31" stroke="#3E6FD9" stroke-width="1.4" stroke-linecap="round"/><path d="M55 34 l-2.6 -3.2 h5.2 z" fill="#3E6FD9"/>`
+      + `<text x="18" y="50" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="8" fill="#6B6E76">6</text>`
+      + `<path d="M26 40 q4 7 0 14" fill="none" stroke="#9C9EA5" stroke-width="1.2"/>`
+      + `<path d="M28 36 H90" stroke="#9C9EA5" stroke-width="1.4" stroke-linecap="round"/>`
+      + `<text x="36" y="70" font-family="Fredoka,sans-serif" font-size="8" fill="#E2463B">200</text>`
+      + `<path d="M33 68 L56 62" stroke="#E2463B" stroke-width="1.4" stroke-linecap="round"/>`
+      + `</svg>`;
+  },
+  /* an and-list of moves on top; the same moves chained by when and so into one combo below */
+  combo(){
+    const box=(x,y,w,fill,stroke)=>`<rect x="${x}" y="${y}" width="${w}" height="11" rx="3" fill="${fill}" stroke="${stroke}" stroke-width="1.2"/>`;
+    const lbl=(x,y,t,c)=>`<text x="${x}" y="${y}" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="6" fill="${c}">${t}</text>`;
+    const arc=(x1,x2,y)=>`<path d="M${x1} ${y} C${x1+8} ${y-12}, ${x2-10} ${y-12}, ${x2} ${y-1}" fill="none" stroke="#3E6FD9" stroke-width="1.5" stroke-linecap="round"/><path d="M${x2} ${y-1} l-4.4 -1 l2.9 -3.3 z" fill="#3E6FD9"/>`;
+    return `<svg viewBox="0 0 104 78" role="img" aria-label="Three moves in an and-list on top; the same moves linked by when and so into one combo below">
+      ${box(6,8,24,"#F4F4F6","#C9CBD2")}${lbl(37,16,"and","#9C9EA5")}${box(44,8,24,"#F4F4F6","#C9CBD2")}${lbl(75,16,"and","#9C9EA5")}${box(82,8,16,"#F4F4F6","#C9CBD2")}
+      ${box(6,56,24,"#E8EEFC","#3E6FD9")}${box(44,56,24,"#E8EEFC","#3E6FD9")}${box(82,56,16,"#E6F5EC","#2FA36B")}
+      ${arc(16,50,56)}${arc(54,88,56)}
+      ${lbl(32,40,"when","#3E6FD9")}${lbl(70,40,"so","#2B52AE")}
+    </svg>`;
+  },
   /* one unit against three copies of it — the drawing p.49 asked for */
   barmodel(){
     const W=19, H=15, G=2.2, X=26, Y1=17, Y2=43;

@@ -1,0 +1,1899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>William's Correction Notes — Ninjago × Baymax Writing Quest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Huninn&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html{font-size:clamp(16px, 0.6vw + 13.3px, 23px);-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:#E4E5E8;color:#2E3037;font-family:'Fredoka',system-ui,sans-serif;line-height:1.5;
+  --ink:#2E3037;--pencil:#6B6E76;--gray:#9C9EA5;--line:#E3E4E8;--line2:#D9DADF;--soft:#F4F4F6;--soft2:#F1F1F3;
+  --red:#E2463B;--green:#2FA36B;--hl:#FFF0A0;--paper:#FAFAFA;--rule:#D9DCE1;--margin:#F0A6B0;
+  --tb:#3E6FD9;--tb-soft:#E8EEFC;--tb-deep:#2B52AE;--rl:#F08A2C;--rl-soft:#FFF1E1;--rl-deep:#C4680F;
+  --accent:#3E6FD9;--accent-soft:#E8EEFC;--accent-deep:#2B52AE;
+  --ruleh:1.875rem;
+}
+body[data-mode="reallife"]{--accent:#F08A2C;--accent-soft:#FFF1E1;--accent-deep:#C4680F}
+
+/* ---------- notebook page ---------- */
+.notebook{
+  position:relative;width:100%;margin:0 auto;background-color:var(--paper);min-height:100vh;
+  box-shadow:0 0 0 1px #d6d7db,0 .6rem 2rem rgba(40,42,50,.14);
+  background-image:
+    linear-gradient(to right,transparent 2.875rem,var(--margin) 2.875rem,var(--margin) calc(2.875rem + 2px),transparent calc(2.875rem + 2px)),
+    repeating-linear-gradient(to bottom,transparent 0,transparent calc(var(--ruleh) - 1px),var(--rule) calc(var(--ruleh) - 1px),var(--rule) var(--ruleh));
+}
+@media(min-width:1200px){.notebook{max-width:80vw;margin:1.5rem auto}}
+.holes{position:absolute;top:0;bottom:0;left:0;width:2.2rem;pointer-events:none;
+  background:radial-gradient(circle at 1rem 50%,#E4E5E8 0 .36rem,#cfd0d5 .36rem .42rem,transparent .46rem) 0 1.2rem/2.2rem 3.75rem repeat-y}
+.page{padding:1.25rem 1rem 3rem 3.6rem}
+@media(min-width:760px){.page{padding:2rem 2.5rem 4rem 4.5rem}}
+
+/* ---------- text basics ---------- */
+.hand{font-family:'Caveat',cursive;color:var(--pencil)}
+.date{font-size:1.35rem;margin:0 0 .2rem;line-height:1.2}
+h1{font-size:2.1rem;line-height:1.15;margin:.15rem 0 .7rem;font-weight:700;letter-spacing:-.01em}
+h1 .zh{font-size:.5em;font-weight:400;margin-top:.25rem;letter-spacing:0}
+mark{background:linear-gradient(transparent 38%,var(--hl) 38%,var(--hl) 92%,transparent 92%);color:inherit;padding:0 .12em;border-radius:.15em}
+.lead{font-size:1.05rem;margin:0 0 1.1rem;max-width:46rem}
+p{margin:.4rem 0}
+b{font-weight:600}
+a{color:var(--accent-deep)}
+
+/* Chinese layer */
+.zh{display:none;font-family:'Huninn','Zen Maru Gothic','PingFang TC','Noto Sans TC',sans-serif;color:var(--pencil);font-size:.88em;line-height:1.55;font-weight:400}
+body.zh-on .zh{display:block}
+.zhi{display:none;font-family:'Huninn','Zen Maru Gothic','PingFang TC','Noto Sans TC',sans-serif;color:inherit;font-size:.92em;font-weight:400}
+body.zh-on .zhi{display:inline}
+.pill .zhi,.tag .zhi{color:#fff}
+
+/* vocab */
+.vocab{display:grid;grid-template-columns:repeat(auto-fill,minmax(9.5rem,1fr));gap:.5rem;margin:0 0 1.2rem;max-width:60rem}
+.vcard{background:#fff;border:1px solid var(--line);border-radius:.75rem;padding:.45rem .7rem .5rem;font-size:.84rem;box-shadow:0 1px 0 var(--line2);line-height:1.4}
+.vcard b{display:block;font-size:.98rem;color:var(--ink)}
+.vcard .def{color:var(--pencil)}
+
+/* ---------- sticky toolbar ---------- */
+.toolbar{position:sticky;top:0;z-index:30;background:var(--paper);margin:0 -.5rem 1.2rem;padding:.6rem .5rem .5rem;border-bottom:1px solid var(--line2);box-shadow:0 6px 10px -8px rgba(0,0,0,.18)}
+.tools{display:flex;align-items:center;justify-content:space-between;gap:.6rem .9rem;flex-wrap:wrap}
+.seg{display:inline-flex;background:#fff;border:1px solid var(--line2);border-radius:2rem;padding:.2rem;gap:.2rem}
+.seg button{border:0;background:transparent;border-radius:2rem;padding:.42rem .85rem;font:inherit;font-size:.88rem;font-weight:600;color:var(--pencil);cursor:pointer;transition:background-color .25s,color .25s;white-space:nowrap}
+.seg button:hover{background:var(--soft)}
+.seg button.tb[aria-pressed="true"]{background:var(--tb);color:#fff}
+.seg button.rl[aria-pressed="true"]{background:var(--rl);color:#fff}
+.zhtoggle{display:inline-flex;align-items:center;gap:.45rem;border:0;background:transparent;font:inherit;cursor:pointer;padding:.25rem .35rem;border-radius:1rem}
+.zhtoggle .lbl{font-family:'Huninn','Zen Maru Gothic','PingFang TC','Noto Sans TC',sans-serif;font-size:.95rem;color:var(--pencil)}
+.sw{width:2.6rem;height:1.45rem;border-radius:1rem;background:#D9DADF;position:relative;transition:background-color .25s;flex:0 0 auto}
+.sw::after{content:'';position:absolute;top:.15rem;left:.15rem;width:1.15rem;height:1.15rem;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .25s}
+.zhtoggle[aria-pressed="true"] .sw{background:var(--accent)}
+.zhtoggle[aria-pressed="true"] .sw::after{transform:translateX(1.15rem)}
+.modeline{font-size:.8rem;color:var(--gray);margin:.45rem 0 0;line-height:1.4}
+.modeline .zh{display:inline;font-size:.8rem}
+@media(max-width:520px){.seg button{font-size:.8rem;padding:.4rem .5rem}.long{display:none}.tools{gap:.4rem}.zhtoggle{padding:.2rem .1rem}}
+body:not(.zh-on) .modeline .zh{display:none}
+
+/* jump chips */
+.jumps{display:flex;flex-wrap:wrap;gap:.45rem;margin:0 0 1.3rem;align-items:center}
+.jumps .lab{font-size:.8rem;color:var(--gray);margin-right:.15rem}
+.jumps a{display:inline-flex;align-items:center;justify-content:center;min-width:2rem;height:2rem;padding:0 .65rem;border-radius:1rem;background:var(--ink);color:#fff;text-decoration:none;font-weight:600;font-size:.9rem;transition:transform .1s}
+.jumps a:hover{transform:translateY(-1px)}
+.jumps a.q{background:#fff;color:var(--ink);border:1px solid var(--line2)}
+
+/* big idea */
+.bigidea{border-left:.35rem solid var(--accent);background:var(--accent-soft);border-radius:.6rem;padding:.9rem 1rem .9rem 1.1rem;margin:0 0 2.2rem;max-width:48rem;transition:background-color .3s,border-color .3s}
+.bigidea h3{margin:0 0 .35rem;font-size:1.1rem}
+.bigidea ol{margin:.5rem 0 0;padding-left:1.35rem}
+.wn-hi{display:flex;align-items:flex-start;gap:.7rem;margin:.7rem 0 1.1rem;max-width:44rem}
+.wn-hi img{width:3.2rem;height:3.2rem;flex:0 0 auto}
+.wn-hi .bubble{position:relative;background:#fff;border:1px solid var(--line2);border-radius:.9rem;padding:.6rem .9rem .5rem}
+.wn-hi .bubble::before{content:"";position:absolute;left:-.4rem;top:1rem;width:.75rem;height:.75rem;background:#fff;border-left:1px solid var(--line2);border-bottom:1px solid var(--line2);transform:rotate(45deg)}
+.wn-hi .say{margin:0;font-size:.95rem;line-height:1.45}
+.wn-hi .who{font-family:'Caveat',cursive;font-size:1.1rem;color:var(--pencil)}
+.bigidea .play{margin:.9rem 0 0}
+.bigidea .gate{animation:fadein .35s;margin:.9rem 0 0}
+.bigidea .gate>p{margin:0}
+.bigidea li{margin:.3rem 0}
+.bigidea li::marker{color:var(--accent-deep);font-weight:600}
+
+/* ---------- sections ---------- */
+.sec{margin:0 0 2.8rem;scroll-margin-top:5.5rem}
+.sec h2{display:flex;align-items:flex-start;gap:.6rem;font-size:1.35rem;margin:0 0 1rem;line-height:1.25}
+.sec h2 .num{flex:0 0 auto;width:1.9rem;height:1.9rem;border-radius:50%;background:var(--ink);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:1rem;font-weight:700;margin-top:.05rem}
+.sec h2 .num.emoji{background:transparent;font-size:1.45rem;width:auto;min-width:1.9rem}
+.sec h2 .ttl{flex:1 1 12rem}
+.sec h2 .ttl .zh{font-size:.68em;margin-top:.2rem;font-weight:400}
+
+/* cutout (story clipping) */
+.cutout{position:relative;background:#fff;border:1px solid var(--line);box-shadow:0 2px 6px rgba(0,0,0,.08),0 1px 0 var(--line2);padding:1.15rem 1rem 2.7rem;margin:1rem 0 1.3rem;transform:rotate(-.6deg);max-width:46rem;font-size:.95rem;line-height:1.55;color:#333}
+.cutout.alt{transform:rotate(.5deg)}
+.cutout .qno{display:inline-flex;width:1.45rem;height:1.45rem;border-radius:50%;background:var(--soft2);color:var(--pencil);align-items:center;justify-content:center;font-size:.8rem;margin-right:.45rem;vertical-align:.05rem;border:1px solid var(--line);font-weight:600}
+.redu{text-decoration:none;border-bottom:2px solid var(--red);padding-bottom:.02em}
+.redpen{font-family:'Caveat',cursive;color:var(--red);font-size:1.3rem;line-height:1.2;margin:.7rem 0 0 1.9rem;font-weight:600}
+.pageref{position:absolute;left:.7rem;right:.7rem;bottom:.35rem;font-size:.72rem;color:var(--gray);text-align:right;line-height:1.35}
+
+/* explain box */
+.explain{position:relative;border-left:.35rem solid var(--accent);background:var(--accent-soft);border-radius:.6rem;padding:1rem 1rem .8rem 1.1rem;margin:0 0 1.2rem;max-width:48rem;transition:background-color .3s,border-color .3s;animation:fadein .35s}
+.explain .pill{position:absolute;top:-.75rem;right:.8rem;background:var(--accent);color:#fff;border-radius:1rem;padding:.15rem .7rem;font-size:.72rem;font-weight:600;letter-spacing:.02em;transition:background-color .3s;white-space:nowrap}
+.explain ul{margin:.2rem 0 0;padding-left:1.15rem}
+.explain.tb ul{list-style:square}
+.explain.rl ul{list-style:disc}
+.explain li{margin:.45rem 0}
+.explain li::marker{color:var(--accent)}
+body[data-mode="textbook"] .explain.rl{display:none}
+body[data-mode="reallife"] .explain.tb{display:none}
+
+/* try-it box */
+.play{position:relative;background:#fff;border:2px dashed var(--line2);border-radius:.9rem;padding:1.15rem 1rem 1rem;margin:0 0 1.1rem;max-width:48rem}
+.play .tag{position:absolute;top:-.75rem;left:.9rem;background:var(--accent);color:#fff;border-radius:1rem;padding:.15rem .65rem;font-size:.72rem;font-weight:700;letter-spacing:.03em;transition:background-color .3s}
+.play h4{margin:0 0 .25rem;font-size:1.05rem}
+.play .hint{margin:0 0 .6rem;color:var(--pencil);font-size:.9rem}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.55rem 0}
+.out{font-size:1rem;font-weight:600;min-height:1.4rem}
+.faint{color:var(--gray);font-weight:400}
+.steplbl{font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--gray);font-weight:600;margin:.8rem 0 .1rem}
+.steplbl:first-of-type{margin-top:.2rem}
+
+/* buttons */
+.btn{font:inherit;font-weight:600;font-size:.92rem;color:#fff;background:var(--accent);border:0;border-radius:.7rem;padding:.55rem .95rem;cursor:pointer;box-shadow:0 3px 0 var(--accent-deep);transition:transform .08s,box-shadow .08s,background-color .3s,filter .15s;touch-action:manipulation;line-height:1.25}
+.btn:hover{filter:brightness(1.06)}
+.btn:active{transform:translateY(3px);box-shadow:0 0 0 var(--accent-deep)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:0 3px 0 var(--accent-deep);filter:none}
+.btn.ghost{background:#fff;color:var(--pencil);border:1px solid var(--line2);box-shadow:0 3px 0 var(--line2)}
+.btn.ghost:active{box-shadow:0 0 0 var(--line2)}
+.btn.ghost:disabled{box-shadow:0 3px 0 var(--line2)}
+.btn.sm{font-size:.82rem;padding:.4rem .7rem;border-radius:.6rem}
+
+/* messages */
+.msg{margin:.75rem 0 0;padding:.65rem .85rem;border-radius:.6rem;background:var(--soft);color:var(--ink);font-size:.93rem;line-height:1.45;border:1px solid var(--line);animation:fadein .25s}
+.msg.good{background:#E6F5EC;border-color:#BFE4CD}
+.msg.bad{background:#FDEAE8;border-color:#F5C2BC}
+.msg.warn{background:#FFF7D6;border-color:#F0E0A0}
+.msg[hidden]{display:none}
+
+/* choice buttons */
+.choices{display:grid;gap:.45rem;margin:.5rem 0}
+.choice{font:inherit;text-align:left;background:#fff;border:2px solid var(--line2);border-radius:.7rem;padding:.55rem .8rem;cursor:pointer;font-size:.95rem;color:var(--ink);transition:border-color .15s,background-color .15s;line-height:1.35}
+.choice:hover{border-color:var(--accent)}
+.choice.ok{border-color:var(--green);background:#E6F5EC}
+.choice.no{border-color:var(--red);background:#FDEAE8}
+.choice.dim{opacity:.55}
+.choice:disabled{cursor:default}
+.choice:disabled:hover{border-color:var(--line2)}
+.choice.ok:disabled:hover{border-color:var(--green)}
+.choice.no:disabled:hover{border-color:var(--red)}
+
+/* model answer */
+.model{background:#fff;border:2px dashed var(--line2);border-radius:.7rem;padding:.7rem .9rem;margin:0 0 .6rem;max-width:48rem;font-size:.95rem}
+.model .lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--gray);display:block;margin-bottom:.25rem;font-weight:600}
+.model .line{font-weight:600;font-size:1.02rem;line-height:1.5;display:flex;flex-wrap:wrap;gap:.1rem 1.1rem}
+.model .line span{white-space:nowrap}
+.model .line .ans-hi{color:var(--accent-deep);font-weight:700}
+.model .line.sentence{display:block}
+.model .line.sentence span{white-space:normal}
+
+/* word chips + sorter rows (shared vocabulary) */
+.schools{display:flex;flex-wrap:wrap;gap:.3rem;max-width:34rem;min-height:1.9rem}
+.school{display:inline-flex;align-items:center;gap:.15rem;background:var(--soft);border:1px solid var(--line);border-radius:.5rem;padding:.15rem .45rem;font-size:.8rem;animation:pop .3s}
+.school.last{background:#E6F5EC;border-color:#BFE4CD;font-weight:600}
+.sorter{display:grid;gap:.4rem;max-width:34rem;margin:.4rem 0}
+.srow{display:flex;align-items:center;justify-content:space-between;gap:.5rem;background:var(--soft);border:1px solid var(--line);border-radius:.7rem;padding:.4rem .65rem;flex-wrap:wrap}
+.srow .ph{font-weight:600;font-size:.95rem;flex:1 1 7rem}
+.srow .ph .faint{font-weight:400}
+.srow .ops{flex:0 0 auto;display:inline-flex;gap:.3rem}
+.opb{font:inherit;font-weight:700;min-width:2.3rem;height:2rem;padding:0 .45rem;border-radius:.5rem;border:2px solid var(--line2);background:#fff;cursor:pointer;color:var(--ink);font-size:1rem;transition:border-color .15s,background-color .15s}
+.opb:hover{border-color:var(--accent)}
+.opb.ok{background:#E6F5EC;border-color:var(--green)}
+.opb.no{background:#FDEAE8;border-color:var(--red)}
+.opb:disabled{cursor:default}
+.srow .why{flex-basis:100%;font-size:.82rem;color:var(--pencil);display:none;line-height:1.35}
+.srow.done .why{display:block}
+.counter{font-size:.85rem;color:var(--pencil);margin:.3rem 0 0}
+
+/* quiz */
+.quizbox{background:#fff;border:2px dashed var(--line2);border-radius:.9rem;padding:1rem;max-width:48rem}
+.qdots{display:flex;gap:.35rem;margin:0 0 .7rem;flex-wrap:wrap}
+.qdots i{width:.6rem;height:.6rem;border-radius:50%;background:var(--line2);display:block}
+.qdots i.cur{background:var(--accent);transform:scale(1.25)}
+.qdots i.ok{background:var(--green)}
+.qdots i.no{background:var(--red)}
+.qq{font-size:1.05rem;font-weight:600;margin:0 0 .6rem;line-height:1.4}
+.qq .zh{font-weight:400}
+.qresult{text-align:center;padding:1rem 0 .3rem}
+.qresult .stars{font-size:2.3rem;letter-spacing:.1em;animation:pop .5s}
+.qresult .sc{font-size:1.5rem;font-weight:700;margin:.2rem 0}
+
+/* tips */
+.tips{display:grid;gap:.6rem;max-width:48rem}
+.tipcard{background:#fff;border:1px solid var(--line);border-left:.35rem solid var(--hl);border-radius:.6rem;padding:.7rem .9rem;font-size:.95rem}
+.tipcard b.t{display:block;margin-bottom:.15rem}
+
+/* correction list */
+.fixlist{list-style:none;padding:0;margin:0;max-width:48rem;display:grid;gap:.45rem}
+.fixlist label{display:flex;gap:.7rem;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:.7rem;padding:.6rem .75rem;cursor:pointer;transition:background-color .2s}
+.fixlist input{appearance:none;-webkit-appearance:none;width:1.35rem;height:1.35rem;border:2px solid var(--line2);border-radius:.4rem;flex:0 0 auto;margin:.15rem 0 0;position:relative;cursor:pointer;background:#fff;transition:background-color .15s,border-color .15s}
+.fixlist input:checked{background:var(--green);border-color:var(--green)}
+.fixlist input:checked::after{content:'';position:absolute;left:.36rem;top:.08rem;width:.35rem;height:.72rem;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg)}
+.fixlist label.done{background:var(--soft)}
+.fixlist label.done .txt{text-decoration:line-through;color:var(--gray)}
+.fixlist .txt{font-size:.95rem;line-height:1.4}
+.fixlist .txt b{font-weight:600}
+.fixlist .txt .w{display:block;font-size:.86rem;color:var(--pencil)}
+.fixlist label.done .txt .w{color:var(--gray)}
+
+.foot{font-size:1.5rem;margin:2.5rem 0 0;line-height:1.25}
+.foot .zh{font-size:.65em;margin-top:.2rem}
+
+/* motion + a11y */
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.pop{animation:pop .35s}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* ===== page-specific additions (built from the base vocabulary) ===== */
+
+/* handwriting inside a cutout — same voice as the other pages */
+.tape{position:absolute;top:-.7rem;left:1.375rem;width:4.9rem;height:1.375rem;background:rgba(255,224,130,.75);transform:rotate(-4deg);border-left:2px dashed rgba(255,255,255,.75);border-right:2px dashed rgba(255,255,255,.75)}
+.cutout .q{font-size:.95rem;color:#2A2C33;line-height:1.7;font-weight:400}
+.cutout .q b{font-weight:600;background:#5D6069;color:#fff;border-radius:50%;min-width:1.5rem;height:1.5rem;display:inline-grid;place-items:center;font-size:.72rem;margin-right:.375rem;vertical-align:middle;padding:0 .3rem}
+.ans{font-family:'Caveat',cursive;font-size:1.4rem;color:var(--pencil);border-bottom:1.5px solid #979AA2;padding:0 .25rem;line-height:1.35}
+.wrong{position:relative;display:inline-block;padding:0 .2rem}
+.wrong::after{content:"";position:absolute;inset:-.2rem -.25rem;border:2.5px solid var(--red);border-radius:50%;transform:rotate(-8deg);pointer-events:none}
+
+/* one shared explain box, wording swapped by version */
+body[data-mode="textbook"] .v-rl{display:none}
+body[data-mode="reallife"] .v-tb{display:none}
+.pill.auto::before{content:"📘 Textbook version"}
+body[data-mode="reallife"] .pill.auto::before{content:"🍎 Real-life version"}
+body.zh-on .pill.auto::before{content:"📘 Textbook version · 課本理論版"}
+body.zh-on[data-mode="reallife"] .pill.auto::before{content:"🍎 Real-life version · 生活應用版"}
+
+/* ask-first box: a .play that is closed, not dashed — you answer before anything opens */
+.play.ask{border-style:solid;border-color:var(--accent);transition:border-color .3s}
+
+/* explanation cut into steps; each one unlocks the next */
+.step{background:#fff;border:1px solid var(--line);border-radius:.7rem;padding:.7rem .85rem;margin:.7rem 0 0;animation:fadein .35s}
+.step[hidden]{display:none}
+.gate[hidden]{display:none}
+.gate{animation:fadein .35s}
+
+/* evidence card: lines straight from his own story */
+.ev{background:var(--soft);border:1px solid var(--line);border-left:.3rem solid var(--accent);border-radius:.5rem;padding:.55rem .75rem;margin:.5rem 0;font-size:.92rem;line-height:1.5;animation:fadein .3s}
+.ev .lbl{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--gray);font-weight:600;margin-bottom:.15rem}
+
+/* a sentence being judged / rebuilt */
+.sentbox{background:var(--soft2);border-radius:.5rem;padding:.55rem .8rem;margin:.5rem 0;font-size:.98rem;line-height:1.6;max-width:44rem}
+.sentbox u{text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:.2em}
+.sentbox.built{background:var(--accent-soft);border:1.5px solid var(--accent)}
+.sentbox.trueok{background:#E6F5EC;border:1.5px solid var(--green)}
+.sentbox .cx{font-weight:700;color:var(--accent-deep)}
+.sentbox.trueok .cx{color:var(--green)}
+
+/* chips you tap to pick words, moves or claims */
+.opb.wide{min-width:0;padding:0 .7rem;font-size:.9rem;font-weight:600;height:auto;min-height:2rem;line-height:1.3;white-space:normal;text-align:left}
+
+/* connector words inside a built sentence that he taps to light up */
+.cxbtn{font:inherit;font-weight:700;border:2px solid var(--line2);background:#fff;color:var(--ink);border-radius:.45rem;padding:0 .35rem;cursor:pointer;line-height:1.35;transition:border-color .15s,background-color .15s}
+.cxbtn:hover{border-color:var(--accent)}
+.cxbtn.lit{background:var(--hl);border-color:#E8CC50}
+.cxbtn:disabled{cursor:default}
+
+/* the spelling forge: letter slots + a letter bank */
+.forgeword{font-size:.8rem;color:var(--gray);text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin:.7rem 0 .15rem}
+.slots{display:flex;flex-wrap:wrap;gap:.3rem;margin:.4rem 0;align-items:center}
+.slot{width:2.1rem;height:2.5rem;border:2px dashed var(--line2);border-radius:.55rem;display:grid;place-items:center;font-weight:700;font-size:1.25rem;background:#fff;color:var(--ink);transition:border-color .2s,background-color .2s}
+.slot.next{border-color:var(--accent)}
+.slot.fill{border-style:solid;border-color:var(--green);background:#E6F5EC;animation:pop .25s}
+.slots .tail{font-family:'Caveat',cursive;font-size:1.4rem;color:var(--pencil)}
+.bank{display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0}
+.bank .opb{min-width:2.3rem;height:2.4rem;font-size:1.1rem}
+.bank .opb:disabled:not(.no){opacity:.35}
+
+/* a step you must redo: the reset flash */
+.redo{animation:pop .4s}
+</style>
+</head>
+<body data-mode="textbook">
+<style>
+.wn-back{position:fixed;right:.8rem;bottom:.8rem;z-index:999;display:inline-flex;align-items:center;gap:.3rem;
+ background:#fff;color:#2E3037;border:1px solid #D9DADF;border-radius:999px;padding:.4rem .8rem;
+ font-family:'Fredoka',system-ui,sans-serif;font-size:.85rem;font-weight:600;text-decoration:none;
+ box-shadow:0 2px 8px rgba(0,0,0,.14)}
+.wn-back:hover{border-color:#2E3037}
+@media print{.wn-back{display:none}}
+</style>
+<a href="index.html" class="wn-back" aria-label="Back to the index">📒 Index</a>
+
+<div class="notebook">
+<div class="holes" aria-hidden="true"></div>
+<main class="page">
+
+<!-- ================= HEADER ================= -->
+<header class="top">
+  <div class="hand date">7/09 · Ninjago × Baymax Writing Quest · Quests 1–4</div>
+  <h1>William's <mark>Correction</mark> Notes<span class="zh">William 的訂正筆記 — 忍者 × 杯麵寫作任務</span></h1>
+
+  <div class="wn-hi">
+    <img id="wnHiImg" src="img/skzoo-puppym.png" alt="Your study buddy" width="150" height="150">
+    <div class="bubble">
+      <p class="say">Hi William! Four quests, <b>four clears</b> — and you wrote Baymax's "Are you satisfied with your care?" <b>straight from memory</b>. Suit up, today we're building combos.<span class="zh">William 嗨！四關，四關全破——杯麵那句「Are you satisfied with your care?」你還是憑記憶寫出來的耶。裝備穿好，我們今天要來組連招囉！</span></p>
+      <span class="who" id="wnHiName">Puppy M</span>
+    </div>
+  </div>
+
+  <p class="lead">Power-up time: your story already hits hard — these pages are where it learns to hit <mark>even harder</mark>.
+    <span class="zh">升級時間到：你的故事已經打得很有力了——接下來這幾頁，就是讓它學會打得更重的地方。</span></p>
+
+  <div class="vocab" aria-label="Words to know">
+    <div class="vcard"><b>connector</b><span class="def">a joining word that shows how two ideas connect: when, because, although, so</span><span class="zh">連接詞：把兩個想法接起來、還說出它們「怎麼連」的字</span></div>
+    <div class="vcard"><b>combo sentence</b><span class="def">moves linked by a connector, so the reader sees timing and cause</span><span class="zh">連招句：用連接詞把動作連起來，讀者看得到時機和因果</span></div>
+    <div class="vcard"><b>list sentence</b><span class="def">actions lined up with "and" — every move stands alone</span><span class="zh">清單句：用 and 排排站的動作，每一招都自己站著</span></div>
+    <div class="vcard"><b>speech tag</b><span class="def">the little label that tells who is talking: <i>Cole shouted</i></span><span class="zh">說話標籤：標出「是誰在說話」的小標籤，例如 Cole shouted</span></div>
+    <div class="vcard"><b>past tense</b><span class="def">the verb form for things that already happened: shouted, said</span><span class="zh">過去式：已經發生的事用的動詞形，例如 shouted、said</span></div>
+    <div class="vcard"><b>free write</b><span class="def">a story that is all yours — nobody tells you what to put in</span><span class="zh">自由寫作：完全自己作主的故事，沒有人規定要寫什麼</span></div>
+  </div>
+</header>
+
+<!-- ================= TOOLBAR ================= -->
+<div class="toolbar" id="toolbar">
+  <div class="tools">
+    <div class="seg" role="group" aria-label="Choose a version">
+      <button type="button" class="tb" data-mode="textbook" aria-pressed="true">📘 Textbook<span class="long"> version</span></button>
+      <button type="button" class="rl" data-mode="reallife" aria-pressed="false">🍎 Real-life<span class="long"> version</span></button>
+    </div>
+    <button type="button" class="zhtoggle" id="zhbtn" aria-pressed="false" aria-label="中文 translation on or off"><span class="lbl">中文</span><span class="sw" aria-hidden="true"></span></button>
+  </div>
+  <p class="modeline" id="modeline"></p>
+</div>
+
+<nav class="jumps" aria-label="Jump to">
+  <span class="lab">Jump to</span>
+  <a href="#s1">1</a><a href="#s2">2</a><a href="#s3">3</a>
+  <a href="#tips" class="q">💡 Tips</a><a href="#quiz" class="q">🎯 Quiz</a><a href="#fix" class="q">✍️ List</a>
+</nav>
+
+<!-- ================= BIG IDEA ================= -->
+<section class="bigidea" aria-label="The big idea">
+  <h3>🔑 Your three power-up spots, side by side<span class="zh">你的三個升級點，並排放好</span></h3>
+  <p>Nothing added, nothing judged — this is exactly what you wrote:<span class="zh">什麼都沒加、什麼都還沒評——這就是你自己寫下來的東西：</span></p>
+  <ol>
+    <li>Quest 2 — <b>"Although Cole was tired, he kept fighting."</b> Quest 4 — <b>"Zane iced five enemies, Lloyd lifted an enemy, Nya blasted two enemies and Cole and Kai finished them off."</b><span class="zh">Quest 2 你寫了「Although Cole was tired, he kept fighting.」Quest 4 你寫了「Zane iced five enemies, Lloyd lifted an enemy, Nya blasted two enemies and Cole and Kai finished them off.」</span></li>
+    <li>Your five speech tags — <b>shouted · says · said · screamed · yelled</b>.<span class="zh">你的五個說話標籤——shouted、says、said、screamed、yelled。</span></li>
+    <li>Four words came out as — <b>brust · companian · so medicine · Lloyed</b>.<span class="zh">有四個字寫成了——brust、companian、so medicine、Lloyed。</span></li>
+  </ol>
+
+  <div class="play ask">
+    <span class="tag">🔎 You first</span>
+    <h4>Quest 4 was the free write — no helper, no reminders. What was it like in there?<span class="zh">Quest 4 是自由寫作——沒有幫手、沒有提醒。當時在裡面是什麼感覺呀？</span></h4>
+    <p class="hint">Pick the closest one. <mark>No wrong answers here</mark> — you were in that battle, this page wasn't.<span class="zh">挑最接近的那個吧。這裡沒有錯的答案喔——當時在戰場上的是你，這一頁又不在。</span></p>
+    <div id="bigask"></div>
+  </div>
+
+  <div class="gate" id="bigexp" hidden>
+    <p>Keep this next to you while you work: Quest 2's connector and Quest 3's Baymax scene, 3 for 3 — those wins are already yours. Three checks, one for each spot:<span class="zh">做的時候把這件事放在旁邊喔：Quest 2 的連接詞、Quest 3 杯麵場景 3 分全拿——那些勝利已經是你的了。下面三個檢查，一個對一個：</span></p>
+    <ol>
+      <li>Combo check — after the last sentence, ask: <b>where can when or so link two moves?</b><span class="zh">連招檢查——寫完最後一句，問問自己：哪裡可以用 when 或 so 把兩招連起來？</span></li>
+      <li>Time check — read every said-word out loud: <b>do they all live in the past?</b><span class="zh">時間檢查——把每個「說」字唸出來：它們全都住在過去式裡嗎？</span></li>
+      <li>Letter check — say each tricky word slowly, <b>the way your mouth builds it</b>.<span class="zh">字母檢查——把不確定的字慢慢唸，照你嘴巴組出它的順序寫。</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= SECTION 1 ================= -->
+<section class="sec" id="s1">
+  <h2><span class="num">1</span><span class="ttl">Carry your combo into the free write<span class="zh">把連招帶進自由寫作</span></span></h2>
+
+  <div class="cutout alt">
+    <span class="tape"></span>
+    <div class="q"><b>Q2</b> Connector quest — your sentence: <span class="ans">Although Cole was tired, he kept fighting.</span></div>
+    <span class="pageref">Question reconstruction 原題重現 · Writing Quest · Quest 2</span>
+  </div>
+
+  <div class="cutout">
+    <span class="tape"></span>
+    <div class="q"><b>Q4</b> Free write — your battle: <span class="ans">Zane iced five enemies, Lloyd lifted an enemy, Nya blasted two enemies and Cole and Kai finished them off.</span></div>
+    <p class="redpen">Great moves — read both battles out loud. How are the moves held together in each one?<span class="zh">招式都很棒——把兩場戰鬥都唸出聲。每一句裡，招式是怎麼被接在一起的呢？</span></p>
+    <span class="pageref">Question reconstruction 原題重現 · Writing Quest · Quest 4</span>
+  </div>
+
+  <div class="play ask">
+    <span class="tag">🔎 You first</span>
+    <h4>Two battles, both yours. Which sentence shows how the moves <mark>connect</mark>?<span class="zh">兩場戰鬥，都是你寫的。哪一句讓讀者看得到招式之間「怎麼連」呢？</span></h4>
+    <div id="s1ask"></div>
+  </div>
+
+  <div class="gate" id="s1exp" hidden>
+    <div class="explain">
+      <span class="pill auto"></span>
+
+      <div class="step" id="s1st1">
+        <p class="steplbl">Step 1</p>
+        <p class="v-tb">Two kinds of sentences. A <mark>list sentence</mark> lines actions up with "and" — each one stands alone. A <mark>combo sentence</mark> uses a connector to show how they link.<span class="zh">句子有兩種。清單句用 and 把動作排成一排——每一招自己站著。連招句用連接詞，講出招式之間怎麼連。</span></p>
+        <p class="v-rl">Four hits with no link — the enemy resets after every one. A <mark>combo</mark> chains them: each move powers the next.<span class="zh">四下攻擊沒有連起來——每打一下，敵人就重置一次。連招是把招式鏈起來：每一招都幫下一招充能。</span></p>
+        <p>👉 In your Quest 4 line, tap the word doing the lining-up.<span class="zh">在你的 Quest 4 句子裡，點出那個「把招式排成一排」的字。</span></p>
+        <div class="row" id="s1a1"></div>
+        <div class="msg" id="s1m1" hidden></div>
+      </div>
+
+      <div class="step" id="s1st2" hidden>
+        <p class="steplbl">Step 2</p>
+        <p class="v-tb">Meet the two combo words for battle scenes. <mark>when</mark> = timing: two moves share the same moment. <mark>so</mark> = cause: one move makes the next one possible.<span class="zh">認識戰鬥場景的兩個連招字。when＝時機：兩招共用同一個瞬間。so＝因果：前一招讓下一招變得可能。</span></p>
+        <p class="v-rl"><mark>when</mark> says "as this lands…". <mark>so</mark> says "…which opens the door for…". Two different links in the chain.<span class="zh">when 是「就在這招落下的同時……」。so 是「……於是門就為下一招打開了」。鏈子上兩種不同的扣環。</span></p>
+        <p>"<b>When</b> Lloyd lifted an enemy into the air, Nya blasted two more" — what is <b>when</b> telling you?<span class="zh">「When Lloyd lifted an enemy into the air, Nya blasted two more」——when 在告訴你什麼呢？</span></p>
+        <div id="s1a2a"></div>
+        <div class="gate" id="s1a2bwrap" hidden>
+          <p>"…, <b>so</b> Cole and Kai could finish them off." — and what does <b>so</b> add?<span class="zh">「…, so Cole and Kai could finish them off.」——那 so 又加上了什麼呢？</span></p>
+          <div id="s1a2b"></div>
+        </div>
+      </div>
+
+      <div class="step" id="s1st3" hidden>
+        <p class="steplbl">Step 3</p>
+        <p class="v-tb">Now the proof that this skill is already yours. Quest 2 asked for a connector — and here is your answer:<span class="zh">現在來看「這個能力早就是你的」的證據。Quest 2 要求用連接詞——這就是你當時的答案：</span></p>
+        <p class="v-rl">Roll your own replay — the training-hall round, the one where the move landed perfectly:<span class="zh">播放你自己的重播——訓練場那一回合，那招落得漂漂亮亮：</span></p>
+        <div class="ev"><span class="lbl">Your Quest 2 sentence</span>“Although Cole was tired, he kept fighting.”</div>
+        <p>👉 Tap the connector in your own sentence.<span class="zh">點出你自己句子裡的連接詞。</span></p>
+        <div class="row" id="s1a3"></div>
+        <div class="msg" id="s1m3" hidden></div>
+      </div>
+
+      <div class="step" id="s1st4" hidden>
+        <p class="steplbl">Step 4 · say it your way</p>
+        <p>So why is the When/so version stronger than the "and" version?<span class="zh">用你自己的話選選看：為什麼 When／so 的版本比 and 的版本更強呢？</span></p>
+        <div id="s1a4"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gate" id="s1try" hidden>
+    <div class="play">
+      <span class="tag">Try it</span>
+      <h4>The combo rebuilder<span class="zh">連招重組機</span></h4>
+      <p class="hint">Three rounds: rebuild your own battle line, relaunch your opening, then forge a brand-new combo.<span class="zh">三回合喔：先重組你自己的戰鬥句，再把你的開場重新發射，最後打造一記全新連招。</span></p>
+      <div id="s1mach"></div>
+    </div>
+  </div>
+
+  <div class="gate" id="s1model" hidden>
+    <div class="model">
+      <span class="lbl">✍️ Copy this into your story</span>
+      <div class="line sentence"><span><span class="ans-hi">When</span> Lloyd lifted an enemy into the air, Nya blasted two more, <span class="ans-hi">so</span> Cole and Kai could finish them off.</span></div>
+      <div class="line sentence"><span class="faint">The pattern: When ___ , ___ , so ___ .</span></div>
+      <span class="zh">範例答案——抄回你的故事。句型：When ___ , ___ , so ___ 。</span>
+    </div>
+  </div>
+</section>
+<!-- ================= SECTION 2 ================= -->
+<section class="sec" id="s2">
+  <h2><span class="num">2</span><span class="ttl">Speech tags — one story, one time<span class="zh">說話標籤——一個故事，一個時間</span></span></h2>
+
+  <div class="cutout">
+    <span class="tape"></span>
+    <div class="q"><b>Tags</b> The five speech tags in your story: <span class="ans">shouted · says · said · screamed · yelled</span></div>
+    <p class="redpen">Read these five out loud — do they all live in the same time?<span class="zh">把這五個唸出來看看——它們全都住在同一個時間裡嗎？</span></p>
+    <span class="pageref">Question reconstruction 原題重現 · Writing Quest · story draft</span>
+  </div>
+
+  <div class="play ask">
+    <span class="tag">🔎 You first</span>
+    <h4>Your battle already happened — you're telling it afterwards. Which tag fits: <b>says</b> or <b>said</b>?<span class="zh">你的戰鬥已經發生過了——你是事後在講它。哪個標籤合身呢：says 還是 said？</span></h4>
+    <div id="s2ask"></div>
+  </div>
+
+  <div class="gate" id="s2exp" hidden>
+    <div class="explain">
+      <span class="pill auto"></span>
+
+      <div class="step" id="s2st1">
+        <p class="steplbl">Step 1</p>
+        <p class="v-tb">After the quotation marks comes a little label that tells who spoke. That label is the <mark>speech tag</mark>.<span class="zh">引號後面接著一個小標籤，說出是誰講的話。那個標籤就叫 speech tag。</span></p>
+        <p class="v-rl">Every line of battle dialogue wears a name tag, so the reader knows whose mouth it came out of.<span class="zh">每一句戰鬥台詞都掛著名牌，讀者才知道是從誰的嘴巴出來的。</span></p>
+        <p>👉 In your opening line, tap the speech tag.<span class="zh">在你的開場句裡，點出 speech tag。</span></p>
+        <div class="ev"><span class="lbl">Your Quest 4 opening</span>“Let's go! Ninjas and Baymax!” Cole shouted.</div>
+        <div class="row" id="s2a1"></div>
+        <div class="msg" id="s2m1" hidden></div>
+      </div>
+
+      <div class="step" id="s2st2" hidden>
+        <p class="steplbl">Step 2</p>
+        <p class="v-tb">A verb wears a <mark>tense</mark> — its time. <b>shouted</b> wears the past: it already happened. <b>says</b> wears the present: happening right now.<span class="zh">動詞會穿著「時態」——它的時間。shouted 穿的是過去式：已經發生了。says 穿的是現在式：正在發生。</span></p>
+        <p class="v-rl">Every tag carries a time stamp: <mark>BACK THEN</mark> or <mark>RIGHT NOW</mark>. Stamp these two.<span class="zh">每個標籤都帶著時間印章：「當時」或「現在」。幫下面兩個蓋章吧。</span></p>
+        <div class="sorter" id="s2a2"></div>
+        <div class="msg" id="s2m2" hidden></div>
+      </div>
+
+      <div class="step" id="s2st3" hidden>
+        <p class="steplbl">Step 3 · say it your way</p>
+        <p>Why must every tag in this story wear the past form?<span class="zh">用你自己的話選選看：為什麼這個故事裡的每個標籤都要穿過去式呢？</span></p>
+        <div id="s2a3"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gate" id="s2try" hidden>
+    <div class="play">
+      <span class="tag">Try it</span>
+      <h4>The tense radar<span class="zh">時態雷達</span></h4>
+      <p class="hint">Sweep 1: scan your own five tags. Sweep 2: scan a whole battle scene. Green light only when every tag lives in the past.<span class="zh">第一輪：掃你自己的五個標籤。第二輪：掃一整段戰鬥。全部住進過去式，雷達才亮綠燈。</span></p>
+      <div id="s2radar"></div>
+    </div>
+  </div>
+
+  <div class="gate" id="s2model" hidden>
+    <div class="model">
+      <span class="lbl">✍️ Fix this in your story</span>
+      <div class="line sentence"><span>says → <span class="ans-hi">said</span>. Then all five tags read: shouted, said, said, screamed, yelled.</span></div>
+      <span class="zh">把 says 改成 said。改完五個標籤唸起來就是：shouted、said、said、screamed、yelled。</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 3 ================= -->
+<section class="sec" id="s3">
+  <h2><span class="num">3</span><span class="ttl">The spelling forge<span class="zh">拼字鍛造爐</span></span></h2>
+
+  <div class="cutout">
+    <span class="tape"></span>
+    <div class="q"><b>4</b> Four words from your battle: <span class="ans"><span class="wrong">brust</span> · <span class="wrong">companian</span> · <span class="wrong">so</span> medicine · <span class="wrong">Lloyed</span></span></div>
+    <p class="redpen">Four strong words — say each one slowly, out loud. Does your pencil agree with your mouth?<span class="zh">四個很強的字——一個一個慢慢唸出聲。你的鉛筆跟你的嘴巴意見一樣嗎？</span></p>
+    <span class="pageref">Question reconstruction 原題重現 · Writing Quest · story draft</span>
+  </div>
+
+  <div class="play ask">
+    <span class="tag">🔎 You first</span>
+    <h4>The word you wrote as <b>brust</b> — say it slowly, like slow motion. Right after the b, which sound does your mouth make first?<span class="zh">你當時寫成 brust 的那個字——像慢動作一樣慢慢唸出聲。b 的後面，你的嘴巴先發出哪個音呢？</span></h4>
+    <div id="s3ask"></div>
+  </div>
+
+  <div class="gate" id="s3exp" hidden>
+    <div class="explain">
+      <span class="pill auto"></span>
+
+      <div class="step" id="s3st1">
+        <p class="steplbl">Step 1</p>
+        <p class="v-tb">The <mark>slow-say check</mark>: say the word slowly, and write the letters in the order your mouth makes them.<span class="zh">慢唸檢查法：把字慢慢唸出來，照嘴巴發出聲音的順序寫字母。</span></p>
+        <p class="v-rl">Forge rule: heat the word up, then hammer <mark>one letter at a time</mark> — no double hits.<span class="zh">鍛造守則：把字燒熱，然後一次敲一個字母——不能連敲。</span></p>
+        <p>🔨 Forge <b>burst</b> — strike 1 of 3. Tap the letters in order.<span class="zh">鍛造 burst——三連擊的第 1 擊。照順序點字母。</span></p>
+        <div id="s3f1"></div>
+      </div>
+
+      <div class="step" id="s3st2" hidden>
+        <p class="steplbl">Step 2</p>
+        <p class="v-tb"><mark>companion</mark> ends like <mark>onion</mark>: …n-i-o-n. Say it in parts: com·pan·ion.<span class="zh">companion 的結尾跟 onion 一樣：…n-i-o-n。分段唸：com·pan·ion。</span></p>
+        <p class="v-rl">A companion is the friend you share onion rings with — and <mark>companion ends like onion</mark>.<span class="zh">companion 就是跟你分洋蔥圈的朋友——而且 companion 的結尾就跟 onion 一樣。</span></p>
+        <p>Pick the ending: <b>compan + ___</b><span class="zh">選出正確的結尾：compan ＋ ___</span></p>
+        <div id="s3a2"></div>
+      </div>
+
+      <div class="step" id="s3st3" hidden>
+        <p class="steplbl">Step 3</p>
+        <p class="v-tb">Two look-back words. <mark>some</mark> medicine is an amount; <mark>so</mark> means "therefore" — a different word. And names deserve a double-check.<span class="zh">兩個「回頭看」的字。some medicine 講的是份量；so 是「所以」——完全不同的字。還有，名字值得多看一眼。</span></p>
+        <p class="v-rl">Baymax always checks the dose — and a ninja always checks the name tag.<span class="zh">杯麵一定會核對藥量——忍者一定會核對名牌。</span></p>
+        <p>First, the dose: <b>Baymax gave Kai ___ medicine.</b><span class="zh">先看藥量：Baymax gave Kai ___ medicine.</span></p>
+        <div id="s3a3a"></div>
+        <div class="gate" id="s3a3bwrap" hidden>
+          <p>Now the name tag. It reads…<span class="zh">再看名牌。上面寫的是……</span></p>
+          <div id="s3a3b"></div>
+        </div>
+      </div>
+
+      <div class="step" id="s3st4" hidden>
+        <p class="steplbl">Step 4 · say it your way</p>
+        <p>What is the forge habit that catches all four of these?<span class="zh">用你自己的話選選看：能一次接住這四個字的鍛造習慣是什麼呢？</span></p>
+        <div id="s3a4"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gate" id="s3try" hidden>
+    <div class="play">
+      <span class="tag">Try it</span>
+      <h4>The spelling forge<span class="zh">拼字鍛造爐</span></h4>
+      <p class="hint">Forge every word start to finish — burst gets strikes 2 and 3, then companion, some, Lloyd. Watch out: the bank hides the exact letters that tricked you last time.<span class="zh">每個字都要從頭鍛到尾——burst 補完第 2、3 擊，然後是 companion、some、Lloyd。小心：字母庫裡藏著上次騙到你的那幾顆字母喔。</span></p>
+      <div id="s3forge"></div>
+      <p class="counter" id="s3count">0 / 4 words forged<span class="zhi"> ・已鍛成</span></p>
+      <div class="msg" id="s3fmsg" hidden></div>
+    </div>
+  </div>
+
+  <div class="gate" id="s3model" hidden>
+    <div class="model">
+      <span class="lbl">✍️ Fix these in your story</span>
+      <div class="line"><span>brust → <span class="ans-hi">burst</span></span><span>companian → <span class="ans-hi">companion</span></span><span>so medicine → <span class="ans-hi">some medicine</span></span><span>Lloyed → <span class="ans-hi">Lloyd</span></span></div>
+      <span class="zh">回到故事裡把這四個字改正。</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TIPS ================= -->
+<section class="sec" id="tips">
+  <h2><span class="num emoji">💡</span><span class="ttl">Tips — these aren't mistakes<span class="zh">小提醒——這些都不算錯喔</span></span></h2>
+  <div class="tips">
+    <div class="tipcard"><b class="t">Quest 3 · Baymax scene: 3 for 3 🌟</b>You opened with "Ow!" to <mark>show</mark> Kai was hurt instead of telling it, you used <b>so</b>, and you wrote "Are you satisfied with your care?" from memory. Show-don't-tell plus a connector — both already in your hands.<span class="zh">你用「Ow!」開場，「演」出 Kai 受傷而不是用講的；你用了 so；杯麵那句台詞還是憑記憶寫出來的。「用演的不用講的」加上連接詞——兩招都已經在你手上了。</span></div>
+    <div class="tipcard"><b class="t">Quest 4 · Your battle verbs hit hard</b>iced, lifted, blasted, punched, kicked, finished off — and every element matched its ninja: Zane ice, Nya water, Cole strength, Kai fire. Keep choosing verbs like these.<span class="zh">iced、lifted、blasted、punched、kicked、finished off——而且每個元素都配對正確：Zane 冰、Nya 水、Cole 力量、Kai 火。繼續挑這種有力的動詞。</span></div>
+    <div class="tipcard"><b class="t">🥋 The next black belt</b>In your next story, aim for <mark>2 connectors</mark> (when / because / although / so) before anyone asks. Then read the story out loud — jumpy tags and scrambled words light up on the way.<span class="zh">下一篇故事，目標是在沒有人要求之前，自己放進 2 個連接詞（when／because／although／so）。然後把故事唸出聲——跳時態的標籤和拼錯的字會自己亮起來。</span></div>
+  </div>
+</section>
+
+<!-- ================= QUIZ ================= -->
+<section class="sec" id="quiz">
+  <h2><span class="num emoji">🎯</span><span class="ttl">Quiz — no more traps this time!<span class="zh">小測驗——這次不會再被騙了吧！</span></span></h2>
+  <div class="quizbox">
+    <div class="qdots" id="qdots" aria-hidden="true"></div>
+    <div id="qbody"></div>
+  </div>
+</section>
+
+<!-- ================= CORRECTION LIST ================= -->
+<section class="sec" id="fix">
+  <h2><span class="num emoji">✍️</span><span class="ttl">Back to your story: correction list<span class="zh">回到你的故事，訂正清單</span></span></h2>
+  <div class="fixlist" id="fixlist"></div>
+  <div class="msg" id="fixmsg" hidden></div>
+</section>
+
+<style>
+.wn-buddy{display:flex;align-items:center;gap:.8rem;margin:2rem 0 .6rem;padding:.9rem 1rem;
+ background:#fff;border:1px dashed #D9DADF;border-radius:.7rem;max-width:34rem}
+.wn-buddy img{width:3.6rem;height:3.6rem;flex:0 0 auto}
+.wn-buddy .t{display:flex;flex-direction:column;gap:.15rem}
+.wn-buddy .line{font-family:'Caveat',cursive;font-size:1.3rem;color:#6B6E76;line-height:1.15}
+.wn-buddy .sign{font-family:'Fredoka',system-ui,sans-serif;font-size:.95rem;font-weight:700;color:#2E3037}
+</style>
+
+<div class="wn-buddy">
+  <img id="wnBuddyImg" src="img/skzoo-puppym.png" alt="Your study buddy" width="150" height="150">
+  <div class="t">
+    <em class="line">Next story: two connectors before anyone asks — black belt.</em>
+    <b class="sign">Your study buddy, <span id="wnBuddyName">Puppy M</span></b>
+  </div>
+</div>
+<script>
+(function(global){
+  'use strict';
+  var orders=new WeakMap();
+  function entries(owner,options){
+    var saved=orders.get(owner);
+    if(saved&&saved.length===options.length)return saved.entries.slice();
+    var shuffled=options.map(function(value,index){return {value:value,index:index};});
+    for(var i=shuffled.length-1;i>0;i--){
+      var j=Math.floor(Math.random()*(i+1)),temp=shuffled[i];
+      shuffled[i]=shuffled[j];shuffled[j]=temp;
+    }
+    orders.set(owner,{length:options.length,entries:shuffled});
+    return shuffled.slice();
+  }
+  function values(owner,options){
+    return entries(owner,options).map(function(entry){return entry.value;});
+  }
+  function shuffleNodes(container,selector){
+    if(!container)return [];
+    var nodes=Array.prototype.filter.call(container.children,function(node){
+      return !selector||node.matches(selector);
+    });
+    entries(container,nodes).forEach(function(entry){container.appendChild(entry.value);});
+    return nodes;
+  }
+  global.WNotesChoiceOrder={entries:entries,values:values,shuffleNodes:shuffleNodes};
+})(window);
+</script>
+<script>
+/* study buddy: one of the eight, picked fresh on every visit */
+(function(){
+  var CREW = [["wolfchan","Wolf Chan"],["leebit","Leebit"],["dwaekki","Dwaekki"],["jiniret","Jiniret"],
+              ["hanquokka","Han Quokka"],["bbokari","BbokAri"],["puppym","Puppy M"],["foxiny","FoxI.Ny"]];
+  var pick = CREW[Math.floor(Math.random() * CREW.length)];
+  /* same character greets him at the top and signs off at the bottom */
+  [["wnHiImg","wnHiName"],["wnBuddyImg","wnBuddyName"]].forEach(function(ids){
+    var img = document.getElementById(ids[0]), name = document.getElementById(ids[1]);
+    if (!img || !name) return;
+    img.src = "img/skzoo-" + pick[0] + ".png";
+    img.alt = pick[1] + ", your study buddy";
+    name.textContent = pick[1];
+  });
+})();
+</script>
+<footer class="hand foot">Ninjago × Baymax Writing Quest · Quests 1–4 · Free write<span class="zh">忍者 × 杯麵寫作任務 · 第 1–4 關 · 自由寫作</span></footer>
+
+</main>
+</div>
+<script>
+(function(){
+'use strict';
+const $ = id => document.getElementById(id);
+const Z = s => '<span class="zh">' + s + '</span>';
+function setMsg(el, html, cls){ el.className = 'msg' + (cls ? ' ' + cls : ''); el.innerHTML = html; el.hidden = false; }
+function openGate(id){ const el = $(id); if (el) el.hidden = false; }
+
+/* ---------- toolbar ---------- */
+const MODELINE = {
+  textbook: 'Rules and checks, the way a writing book says them.' + Z('用寫作課本的規則和檢查方式來講。'),
+  reallife: 'Same ideas, told with combos, radars, and a forge.' + Z('同樣的觀念，換成連招、雷達和鍛造爐來講。')
+};
+function setMode(m){
+  document.body.dataset.mode = m;
+  document.querySelectorAll('.seg button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.mode === m)));
+  $('modeline').innerHTML = MODELINE[m];
+}
+document.querySelectorAll('.seg button').forEach(b =>
+  b.addEventListener('click', () => setMode(b.dataset.mode)));
+$('zhbtn').addEventListener('click', function(){
+  const on = document.body.classList.toggle('zh-on');
+  this.setAttribute('aria-pressed', String(on));
+});
+setMode('textbook');
+
+/* ---------- shared choice widget ----------
+   Socratic rule: wrong answer gets a question back, not the answer.
+   Two nudges max; the third time we tell, then immediately re-test. */
+function choice(hostId, cfg){
+  const host = $(hostId);
+  let tries = 0, settled = false, wrap, msg;
+  function build(){
+    tries = 0; settled = false;
+    host.innerHTML = '';
+    wrap = document.createElement('div');
+    wrap.className = 'choices';
+    WNotesChoiceOrder.entries(cfg, cfg.opts).forEach(({ value: o, index: i }) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'choice';
+      b.dataset.choiceIndex = i;
+      b.innerHTML = o[0] + Z(o[1]);
+      b.addEventListener('click', () => pick(i, b));
+      wrap.appendChild(b);
+    });
+    msg = document.createElement('div');
+    msg.className = 'msg'; msg.hidden = true;
+    host.appendChild(wrap); host.appendChild(msg);
+  }
+  function lock(){ [...wrap.children].forEach(b => { b.disabled = true; if (!b.classList.contains('ok') && !b.classList.contains('no')) b.classList.add('dim'); }); }
+  function pick(i, b){
+    if (settled) return;
+    if (i === cfg.ans){
+      settled = true; b.classList.add('ok'); lock();
+      setMsg(msg, cfg.good[0] + Z(cfg.good[1]), 'good');
+      if (cfg.pass) cfg.pass();
+      return;
+    }
+    b.classList.add('no');
+    tries++;
+    if (tries === 1){
+      setMsg(msg, cfg.h1[0] + Z(cfg.h1[1]), 'warn');
+      if (cfg.firstWrong) cfg.firstWrong();
+    } else if (tries === 2){
+      setMsg(msg, cfg.h2[0] + Z(cfg.h2[1]), 'warn');
+    } else {
+      settled = true;
+      wrap.querySelector('[data-choice-index="' + cfg.ans + '"]').classList.add('ok');
+      lock();
+      setMsg(msg, cfg.tell[0] + Z(cfg.tell[1]), 'bad');
+      if (cfg.retest) retest(); else if (cfg.pass) cfg.pass();
+    }
+  }
+  /* told the answer → prove it once on a same-shape question before moving on */
+  function retest(){
+    const c = cfg.retest;
+    const box = document.createElement('div');
+    box.className = 'step';
+    box.innerHTML = '<p class="steplbl">One more, same idea</p><p>' + c.q[0] + Z(c.q[1]) + '</p>';
+    const cw = document.createElement('div'); cw.className = 'choices';
+    const cm = document.createElement('div'); cm.className = 'msg'; cm.hidden = true;
+    let done = false;
+    WNotesChoiceOrder.entries(c, c.opts).forEach(({ value: o, index: i }) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'choice';
+      b.innerHTML = o[0] + Z(o[1]);
+      b.addEventListener('click', () => {
+        if (done) return;
+        if (i === c.ans){
+          done = true; b.classList.add('ok');
+          [...cw.children].forEach(x => x.disabled = true);
+          setMsg(cm, c.why[0] + Z(c.why[1]), 'good');
+          if (cfg.pass) cfg.pass();
+        } else {
+          b.classList.add('no');
+          setMsg(cm, 'Read the answer just above one more time, then try again.' + Z('把上面那句答案再讀一次，然後再選一次看看。'), 'warn');
+        }
+      });
+      cw.appendChild(b);
+    });
+    box.appendChild(cw); box.appendChild(cm); host.appendChild(box);
+  }
+  /* gate helper: a why-question stays off until the step it depends on is walked again */
+  function setEnabled(on){
+    if (settled || !wrap) return;
+    [...wrap.children].forEach(b => { b.disabled = !on; });
+  }
+  build();
+  return { reset: build, setEnabled: setEnabled };
+}
+
+/* ---------- self-report widget ----------
+   No right answer. He was there and the page was not, so every option is
+   taken at face value and routed to the help that answer actually implies. */
+function branch(hostId, cfg){
+  const host = $(hostId);
+  const wrap = document.createElement('div');
+  wrap.className = 'choices';
+  const msg = document.createElement('div');
+  msg.className = 'msg'; msg.hidden = true;
+  const extra = document.createElement('div');
+  let settled = false;
+  cfg.opts.forEach(o => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'choice';
+    b.innerHTML = o.label[0] + Z(o.label[1]);
+    b.addEventListener('click', () => {
+      if (settled) return;
+      settled = true;
+      b.classList.add('ok');
+      [...wrap.children].forEach(x => { x.disabled = true; if (x !== b) x.classList.add('dim'); });
+      setMsg(msg, o.reply[0] + Z(o.reply[1]), 'good');
+      if (o.follow) followUp(o.follow); else if (cfg.pass) cfg.pass();
+    });
+    wrap.appendChild(b);
+  });
+  function followUp(f, after){
+    /* Socratic ladder: two nudges, then tell (correct lights up), then a same-type retest */
+    const box = document.createElement('div');
+    box.className = 'step';
+    box.innerHTML = '<p class="steplbl">' + f.lbl + '</p><p>' + f.q[0] + Z(f.q[1]) + '</p>';
+    const cw = document.createElement('div'); cw.className = 'choices';
+    const cm = document.createElement('div'); cm.className = 'msg'; cm.hidden = true;
+    const finish = after || (() => { if (cfg.pass) cfg.pass(); });
+    let done = false, tries = 0;
+    const btns = [];
+    WNotesChoiceOrder.entries(f, f.opts).forEach(({ value: o }) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'choice';
+      b.innerHTML = o.label[0] + Z(o.label[1]);
+      b._ok = !o.again;
+      b.addEventListener('click', () => {
+        if (done) return;
+        if (o.again){
+          tries++;
+          if (tries < 3){
+            b.classList.add('no');
+            setTimeout(() => b.classList.remove('no'), 600);
+            setMsg(cm, o.again[0] + Z(o.again[1]), 'warn');
+            return;
+          }
+          done = true;
+          btns.forEach(x => { x.disabled = true; if (x._ok) x.classList.add('ok'); });
+          setMsg(cm, f.tell[0] + Z(f.tell[1]), 'bad');
+          if (f.retest) followUp(f.retest, finish); else finish();
+          return;
+        }
+        done = true; b.classList.add('ok');
+        btns.forEach(x => x.disabled = true);
+        setMsg(cm, o.say[0] + Z(o.say[1]), 'good');
+        finish();
+      });
+      btns.push(b);
+      cw.appendChild(b);
+    });
+    box.appendChild(cw); box.appendChild(cm); extra.appendChild(box);
+  }
+  host.appendChild(wrap); host.appendChild(msg); host.appendChild(extra);
+}
+
+/* small helper: a row of tap-chips where exactly one (or n) are the target */
+function tapWords(hostId, msgId, words, onDone){
+  const host = $(hostId), msg = $(msgId);
+  let need = words.filter(w => w[1]).length, got = 0, done = false;
+  words.forEach(w => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'opb wide';
+    b.textContent = w[0];
+    b.addEventListener('click', () => {
+      if (done || b.disabled) return;
+      if (w[1]){
+        b.classList.add('ok'); b.disabled = true; got++;
+        if (got === need){
+          done = true;
+          [...host.children].forEach(x => x.disabled = true);
+          onDone(msg);
+        }
+      } else {
+        b.classList.add('no');
+        setTimeout(() => b.classList.remove('no'), 600);
+        setMsg(msg, w[2] + Z(w[3]), 'warn');
+      }
+    });
+    host.appendChild(b);
+  });
+}
+
+/* ================= BIG IDEA ================= */
+branch('bigask', {
+  opts: [
+    {
+      label: ['The battle was loud in my head — I just kept writing', '戰鬥在我腦袋裡轟轟響——我就一直寫下去了'],
+      reply: ['That’s exactly how a first draft should feel — Quest 4 had zero help and you still cleared it. A loud battle just leaves three quick checks for after:', '第一次寫草稿就該是這種感覺呀——Quest 4 完全沒人幫忙，你還是把它破關了。戰鬥太吵沒關係，三個小檢查留到戰鬥結束之後就好：']
+    },
+    {
+      label: ['Nobody asked for connectors, so they slipped away', '沒有人要求連接詞，它們就溜走了'],
+      reply: ['Honest — and Quest 2 proves the skill is already yours when someone asks. Using it unasked is exactly what section 1 trains. Warm-up first:', '很誠實——而且 Quest 2 證明只要有人要求，這個能力早就是你的了。「沒人要求也用」正是第 1 段要練的。先熱身一下：'],
+      follow: {
+        lbl: 'Quick check',
+        q: ['Which of these is a connector?', '下面哪一個是連接詞呢？'],
+        opts: [
+          { label: ['ninja', 'ninja'],
+            again: ['A ninja does the moves. Which word could JOIN two moves?', 'ninja 是出招的人。哪個字才能把兩招「接」起來呢？'] },
+          { label: ['because', 'because'],
+            say: ['One of your four: when · because · although · so. Section 1 puts them to work.', '你的四個連接詞之一：when、because、although、so。第 1 段就要讓它們上工囉。'] },
+          { label: ['blasted', 'blasted'],
+            again: ['blasted is a move — a good one. Which word is for linking moves together?', 'blasted 是一招——還是好招。但哪個字才是負責把招式連起來的呢？'] }
+        ],
+        tell: ['A connector joins two ideas: when, because, although, so — and because is one of them.', '連接詞把兩個想法接起來：when、because、although、so——because 就是其中之一。'],
+        retest: {
+          lbl: 'One more',
+          q: ['One more, same idea — which of these is a connector?', '再一題，一樣的想法——下面哪一個是連接詞呢？'],
+          tell: ['so is the connector here — when, because, although, so. Gate opens; section 1 gives them work.', '這裡的連接詞是 so——when、because、although、so。門開了，第 1 段就讓它們上工。'],
+          opts: [
+            { label: ['shouted', 'shouted'], again: ['shouted is something Cole DID. Which word could join two ideas?', 'shouted 是 Cole「做」的事。哪個字才能把兩個想法接起來呢？'] },
+            { label: ['so', 'so'], say: ['so — another of your four. Warm-up done, gate open.', 'so——你的四個連接詞又一個。熱身完成，門開了。'] },
+            { label: ['Baymax', 'Baymax'], again: ['Baymax is a who, not a joiner. Which word links ideas?', 'Baymax 是「誰」，不是接的字。哪個字負責把想法連起來呢？'] }
+          ]
+        }
+      }
+    },
+    {
+      label: ['I finished and handed it in — no read-back', '寫完就交出去了——沒有回頭再讀'],
+      reply: ['Then good news: one slow read-back catches most of these by itself. The three checks below ARE that read-back, split into parts:', '那有個好消息：光是慢慢回讀一次，就能自己接住大部分。下面三個檢查就是那次回讀，拆成三步而已：']
+    }
+  ],
+  pass: () => openGate('bigexp')
+});
+
+/* ================= SECTION 1 ================= */
+choice('s1ask', {
+  opts: [
+    ['Quest 2 — “Although Cole was tired, he kept fighting.”', 'Quest 2 那句——「Although Cole was tired, he kept fighting.」'],
+    ['Quest 4 — “Zane iced five enemies, Lloyd lifted an enemy, …”', 'Quest 4 那句——「Zane iced five enemies, Lloyd lifted an enemy, …」'],
+    ['They show it the same way', '兩句展示的方式一樣']
+  ],
+  ans: 0,
+  good: ['Yes — although links the halves: tired, yet he KEPT fighting. You can feel how they connect.', '對——although 把兩半連起來：明明累了，卻繼續打。它們怎麼連，你感覺得到。'],
+  h1: ['Read Quest 4 out loud. Does any word tell you how one move leads to the next — or is it and, and, and?', '把 Quest 4 唸出來看看。有哪個字告訴你「這招怎麼帶出下一招」嗎——還是只有 and、and、and 呢？'],
+  h2: ['In Quest 2, although connects “tired” with “kept fighting”. Hunt for a connecting word like that in Quest 4 — find one?', 'Quest 2 裡，although 把「累了」和「繼續打」連起來。去 Quest 4 找找看有沒有這種連接字——找得到嗎？'],
+  tell: ['Quest 2 — although shows how its halves connect. Quest 4 only has and: it lists the moves without linking them.', '是 Quest 2——although 說出兩半怎麼連。Quest 4 只有 and：它把招式列出來，卻沒有連起來。'],
+  retest: {
+    q: ['A connector’s job is to…', '連接詞的工作是……'],
+    opts: [['show how two ideas connect — timing, cause, contrast', '說出兩個想法怎麼連——時機、因果、對比'], ['make a sentence longer', '把句子變長']],
+    ans: 0,
+    why: ['That’s the job. Now let’s find what Quest 4 was missing.', '工作就是這個。現在來看看 Quest 4 少了什麼吧。']
+  },
+  pass: () => openGate('s1exp')
+});
+
+/* step 1 — tap the lining-up word */
+tapWords('s1a1', 's1m1', [
+  ['Zane', false, 'Zane is a fighter, not a joiner. Which little word joins the moves?', 'Zane 是出招的忍者，不是連接的字。哪個小字在把招式接起來呢？'],
+  ['iced', false, '“iced” is a move — a strong one. Which little word is doing the lining-up?', 'iced 是一招——還是很強的一招。是哪個小字在把招式排成一排呢？'],
+  ['and', true],
+  ['enemies', false, 'Enemies are what the moves hit. Which word strings the moves together?', 'enemies 是被打的對象。是哪個字把招式串在一起呢？'],
+  ['finished off', false, 'That’s a move too — the last hit. Which small word lines the moves up?', '那也是一招——最後一擊。把招式排成一排的小字是哪個呢？']
+], (msg) => {
+  setMsg(msg, 'That’s the lister. <mark>and</mark> can join moves, but it never says <b>when</b> or <b>why</b>.' + Z('就是這個「排隊字」。and 可以把招式接起來，但它從來不說「什麼時候」和「為什麼」。'), 'good');
+  $('s1st2').hidden = false;
+});
+
+/* step 2 — when = timing, so = cause */
+choice('s1a2a', {
+  opts: [
+    ['The two moves happen in the same moment', '兩招發生在同一個瞬間'],
+    ['The reason Nya blasted', 'Nya 開砲的理由'],
+    ['Which move was louder', '哪一招比較大聲']
+  ],
+  ans: 0,
+  good: ['Timing — as the enemy hangs in the air, the blast lands. One shared moment.', '時機——敵人還掛在空中的同時，砲火就落下。同一個瞬間。'],
+  h1: ['Try reading it as “At the moment Lloyd lifted…”. What is when pointing at?', '試著讀成「就在 Lloyd 舉起敵人的那一刻……」。when 指著的是什麼呢？'],
+  h2: ['Does when explain WHY Nya blasted — or WHEN she blasted?', 'when 是在解釋 Nya「為什麼」開砲，還是「什麼時候」開砲呢？'],
+  tell: ['when = timing: the lift and the blast share the same moment.', 'when＝時機：舉起和轟炸共用同一個瞬間。'],
+  retest: {
+    q: ['“When the gate opened, the ninjas charged.” — when tells you…', '「When the gate opened, the ninjas charged.」——when 告訴你……'],
+    opts: [['the charge happened at the moment the gate opened', '衝鋒就發生在門打開的那一刻'], ['the gate was heavy', '門很重']],
+    ans: 0,
+    why: ['Timing, locked in.', '時機，鎖定完成。']
+  },
+  pass: () => openGate('s1a2bwrap')
+});
+
+const s1b2 = choice('s1a2b', {
+  opts: [
+    ['The first moves made the finish possible', '前面的招讓收尾變得可能'],
+    ['The finish came first', '收尾最先發生'],
+    ['Nothing — it’s decoration', '沒什麼——只是裝飾']
+  ],
+  ans: 0,
+  good: ['Cause — the lift and the blast opened the door, so the finish could walk through.', '因果——舉起和轟炸把門打開，收尾才走得進去。'],
+  h1: ['Read so as “and that’s why…”. Does the sentence still make sense that way?', '把 so 讀成「所以呢……」。句子這樣讀，通嗎？'],
+  h2: ['Could Cole and Kai finish enemies nobody lifted or blasted? What did those first moves DO for the finish?', '沒被舉起、沒被轟過的敵人，Cole 和 Kai 能直接收尾嗎？前兩招替收尾「做」了什麼呢？'],
+  tell: ['so = cause: the first two moves made the finish possible.', 'so＝因果：前兩招讓收尾變得可能。'],
+  retest: {
+    q: ['“Zane froze the lake, so the ninjas could run across.” — so shows…', '「Zane froze the lake, so the ninjas could run across.」——so 表示……'],
+    opts: [['freezing made the run possible', '結冰讓奔跑變得可能'], ['the lake was cold', '湖水很冰']],
+    ans: 0,
+    why: ['That’s cause. Two link types down!', '這就是因果。兩種扣環都到手了！'],
+  },
+  pass: () => { $('s1st3').hidden = false; }
+});
+
+/* step 3 — tap the connector in his own Quest 2 sentence */
+tapWords('s1a3', 's1m3', [
+  ['Although', true],
+  ['Cole', false, 'Cole is who fought. Which word connects “tired” with “kept fighting”?', 'Cole 是打架的人。把「累了」和「繼續打」連起來的字是哪個呢？'],
+  ['tired', false, 'That’s one half of the combo. Which word links it to the other half?', '那是連招的其中一半。把它和另一半連起來的字是哪個呢？'],
+  ['kept fighting', false, 'The other half. Which word makes the two halves shake hands?', '那是另一半。讓兩半握手的字是哪個呢？']
+], (msg) => {
+  setMsg(msg, 'First word of your sentence — when the quest asked, you led with the connector. The mission now: <mark>use it when nobody asks</mark>.' + Z('你句子的第一個字——關卡有要求的時候，你直接用連接詞開場。現在的任務只有一個：沒人要求也用。'), 'good');
+  $('s1st4').hidden = false;
+});
+
+/* step 4 — say it your way */
+choice('s1a4', {
+  opts: [
+    ['Because it’s longer', '因為比較長'],
+    ['Because the reader sees timing and cause — the moves become one team combo', '因為讀者看得到時機和因果——招式變成一記團隊連招'],
+    ['Because it uses fancier words', '因為用了比較華麗的字']
+  ],
+  ans: 1,
+  good: ['In your own words — that’s the whole upgrade. Now go run the rebuilder!', '你用自己的話說出來了——升級的全部就是這個。去開重組機吧！'],
+  h1: ['Back one step — I’ve reset the “so” question in Step 2. Answer it again, then come back.', '退回上一步囉——Step 2 那題 so 我重置了。再答一次，然後回來。'],
+  h2: ['Longer isn’t stronger by itself. What two things do when and so hand the reader?', '「比較長」本身不會比較強喔。when 和 so 交到讀者手上的，是哪兩樣東西呢？'],
+  tell: ['Stronger because the reader sees timing (when) and cause (so) — one team combo, not a list.', '更強是因為讀者看得到時機（when）和因果（so）——一記團隊連招，而不是清單。'],
+  retest: {
+    q: ['A combo sentence beats a list sentence because…', '連招句贏過清單句，是因為……'],
+    opts: [['it shows how the moves connect', '它讓人看到招式怎麼連'], ['it has more enemies in it', '它裡面的敵人比較多']],
+    ans: 0,
+    why: ['Connection is the whole upgrade.', '「連起來」就是升級的全部。']
+  },
+  firstWrong: () => { s1b2.reset(); $('s1st2').classList.add('redo'); $('s1st2').scrollIntoView({block:'center'}); },
+  pass: () => { openGate('s1try'); $('s1try').scrollIntoView({block:'center'}); }
+});
+
+/* Try it — the combo rebuilder, three rounds */
+(function(){
+  const host = $('s1mach');
+
+  function chips(defs, onPick){
+    const row = document.createElement('div'); row.className = 'row';
+    defs.forEach(d => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'opb wide'; b.innerHTML = d.t;
+      b.addEventListener('click', () => onPick(d, b, row));
+      row.appendChild(b);
+    });
+    return row;
+  }
+
+  /* ---- round 1: his own battle line, rebuilt ---- */
+  function round1(){
+    const box = document.createElement('div');
+    box.innerHTML = '<p class="steplbl">Round 1 of 3 · your battle line, rebuilt</p>';
+    const frame = document.createElement('p');
+    const fill = ['______', '______', '______'];
+    function paint(cls){
+      frame.className = 'sentbox' + (cls ? ' ' + cls : '');
+      frame.innerHTML = '<span class="cx">When</span> <u>' + fill[0] + '</u>, <u>' + fill[1] + '</u>, <span class="cx">so</span> <u>' + fill[2] + '</u>.';
+    }
+    paint();
+    const ask = document.createElement('p');
+    const msg = document.createElement('div'); msg.className = 'msg'; msg.hidden = true;
+    const PROMPTS = [
+      ['Slot 1 — after <b>When</b>: which move sets the stage, the one the others happen during?', '第 1 格——When 的後面：哪一招是搭舞台的，其他招都發生在它進行的時候？'],
+      ['Slot 2 — while Lloyd holds one up: which move lands in that same moment?', '第 2 格——Lloyd 把敵人舉在空中的同時：哪一招就在那個瞬間落下？'],
+      ['Slot 3 — after <b>so</b>: tap the move the first two made possible.', '第 3 格——so 的後面：點出被前兩招鋪出來的那一招。']
+    ];
+    ask.innerHTML = PROMPTS[0][0] + Z(PROMPTS[0][1]);
+    let cur = 0, stamped = false;
+    const MOVES = [
+      { t: 'Nya blasted two more', at: 1,
+        no: ['Nya blasts enemies that are already in the air. Which move put one there?', 'Nya 轟的是已經在空中的敵人喔。是哪一招把敵人送上去的呢？'] },
+      { t: 'Cole and Kai could finish them off', at: 2,
+        no: ['Can they finish enemies nobody has lifted or blasted yet? The finish comes last.', '沒被舉起、也沒被轟過的敵人，能直接收尾嗎？收尾要留到最後喔。'] },
+      { t: 'Lloyd lifted an enemy into the air', at: 0,
+        no: ['The lift is the stage-setter — it belongs right after When.', '舉起那一招是搭舞台的——它屬於 When 的正後面喔。'] }
+    ];
+    const row = chips(MOVES, (d, b) => {
+      if (b.disabled || cur > 2) return;
+      if (d.at === cur){
+        b.classList.add('ok'); b.disabled = true;
+        fill[cur] = d.t; cur++;
+        if (cur < 3){
+          paint();
+          ask.innerHTML = PROMPTS[cur][0] + Z(PROMPTS[cur][1]);
+        } else {
+          paint('built');
+          ask.innerHTML = 'Built! Now read it out loud. What do you hear?' + Z('組好了！現在把它唸出聲。你聽到的是什麼呢？');
+          stampRow();
+        }
+      } else {
+        b.classList.add('no');
+        setTimeout(() => b.classList.remove('no'), 600);
+        setMsg(msg, d.no[0] + Z(d.no[1]), 'warn');
+      }
+    });
+    function stampRow(){
+      const r = document.createElement('div'); r.className = 'row';
+      [['One connected combo — I can hear the timing and the cause', '一記連起來的連招——聽得到時機和因果', true],
+       ['Still a list', '還是清單', false]].forEach(s => {
+        const sb = document.createElement('button');
+        sb.type = 'button'; sb.className = 'btn sm ghost'; sb.innerHTML = s[0] + Z(s[1]);
+        sb.addEventListener('click', () => {
+          if (stamped) return;
+          if (s[2]){
+            stamped = true;
+            paint('trueok');
+            [...r.children].forEach(x => x.disabled = true);
+            setMsg(msg, 'That’s your own Quest 4 line — leveled up by your own hands. 🎮' + Z('這就是你自己的 Quest 4 句子——被你親手升級了。'), 'good');
+            setTimeout(round2, 500);
+          } else {
+            setMsg(msg, 'Hunt for them: when = the shared moment, so = the open door. Read it once more, then choose again.' + Z('去找找看：when＝共用的瞬間，so＝打開的門。再唸一次，然後再選。'), 'warn');
+          }
+        });
+        r.appendChild(sb);
+      });
+      box.appendChild(r);
+    }
+    box.appendChild(frame); box.appendChild(ask); box.appendChild(row); box.appendChild(msg);
+    host.appendChild(box);
+  }
+
+  /* ---- round 2: relaunch his opening (the Writer Challenge) ---- */
+  function round2(){
+    const box = document.createElement('div');
+    box.innerHTML = '<p class="steplbl">Round 2 of 3 · relaunch your opening</p>'
+      + '<div class="ev"><span class="lbl">Your Quest 4 opening</span>“Let’s go! Ninjas and Baymax!” Cole shouted.</div>'
+      + '<p>Writer Challenge: open with <b>When</b>. Which piece did the ninjas react to — the thing that appeared?'
+      + Z('作家挑戰：用 When 開場。忍者是對哪件事起反應的——「出現」的那個東西是什麼？') + '</p>';
+    const msg = document.createElement('div'); msg.className = 'msg'; msg.hidden = true;
+    const out = document.createElement('div');
+    let built = false, stamped = false;
+    const row = chips([
+      { t: 'the dark army appeared', ok: true },
+      { t: 'Cole shouted', no: ['That’s the reaction. The When-part is the thing he reacted TO.', '那是「反應」。When 的部分要放他「對什麼」起反應喔。'] },
+      { t: 'Baymax gave Kai some medicine', no: ['A calm clinic moment — does shouting “Let’s go!” answer medicine? Pick what starts a battle.', '那是安靜的看診時刻——大喊「Let’s go!」會是給藥的反應嗎？挑會點燃戰鬥的那件事。'] }
+    ], (d, b, r) => {
+      if (built || b.disabled) return;
+      if (d.ok){
+        built = true; b.classList.add('ok');
+        [...r.children].forEach(x => x.disabled = true);
+        const ns = document.createElement('p'); ns.className = 'sentbox built';
+        ns.innerHTML = '<span class="cx">When</span> the dark army appeared, Cole shouted, “Let’s go! Ninjas and Baymax!”';
+        out.appendChild(ns);
+        const p = document.createElement('p');
+        p.innerHTML = 'Compare it with your original up there. What changed?' + Z('跟上面你原本的開場比一比。改變的是什麼呢？');
+        out.appendChild(p);
+        const r2 = document.createElement('div'); r2.className = 'row';
+        [['The shout now has a moment to happen in — the reader sees what set it off', '吶喊有了它發生的那一刻——讀者看得到是什麼點燃它', true],
+         ['It only got longer', '只是變長了而已', false]].forEach(s => {
+          const sb = document.createElement('button');
+          sb.type = 'button'; sb.className = 'btn sm ghost'; sb.innerHTML = s[0] + Z(s[1]);
+          sb.addEventListener('click', () => {
+            if (stamped) return;
+            if (s[2]){
+              stamped = true;
+              ns.className = 'sentbox trueok';
+              [...r2.children].forEach(x => x.disabled = true);
+              setMsg(msg, 'Openings with a When-moment pull the reader straight into the scene. 🎬' + Z('帶著 When 時刻的開場，會把讀者直接拉進場景裡。'), 'good');
+              setTimeout(round3, 500);
+            } else {
+              setMsg(msg, 'Look at the first five words — what do they hand the reader that “Let’s go!” alone didn’t?' + Z('看看前五個字——它們交給讀者的，是原本光喊「Let’s go!」少了的什麼呢？'), 'warn');
+            }
+          });
+          r2.appendChild(sb);
+        });
+        out.appendChild(r2);
+      } else {
+        b.classList.add('no');
+        setTimeout(() => b.classList.remove('no'), 600);
+        setMsg(msg, d.no[0] + Z(d.no[1]), 'warn');
+      }
+    });
+    box.appendChild(row); box.appendChild(out); box.appendChild(msg);
+    host.appendChild(box);
+    box.scrollIntoView({block:'center'});
+  }
+
+  /* ---- round 3: forge a brand-new combo, no quest asking ---- */
+  function round3(){
+    const box = document.createElement('div');
+    box.innerHTML = '<p class="steplbl">Round 3 of 3 · forge a brand-new combo</p>'
+      + '<p>No quest is asking this time. Pick an opener:' + Z('這次沒有關卡在要求囉。挑一個開場字：') + '</p>';
+    const msg = document.createElement('div'); msg.className = 'msg'; msg.hidden = true;
+    const frame = document.createElement('p');
+    const out = document.createElement('div');
+    let opener = null;
+    const picked = [];
+    function paint(cls){
+      frame.className = 'sentbox' + (cls ? ' ' + cls : '');
+      frame.innerHTML = '<span class="cx">' + (opener || '______') + '</span> <u>' + (picked[0] || '______') + '</u>, <u>' + (picked[1] || '______') + '</u>, <span class="cx">so</span> <u>' + (picked[2] || '______') + '</u>.';
+    }
+    paint();
+    const openRow = chips([
+      { t: 'When', ok: true }, { t: 'Because', ok: true },
+      { t: 'and', no: ['and can’t open a combo — it only lines moves up. Pick a real connector.', 'and 開不了連招——它只會把招式排成一排。挑一個真正的連接詞吧。'] }
+    ], (d, b, r) => {
+      if (opener || b.disabled) return;
+      if (d.ok){
+        opener = d.t; b.classList.add('ok');
+        [...r.children].forEach(x => x.disabled = true);
+        paint();
+        setMsg(msg, d.t + ' it is — ' + (d.t === 'When' ? 'a timing opener.' : 'a cause opener.') + ' Now pick move 1, the stage-setter.' + Z('就用 ' + d.t + '——' + (d.t === 'When' ? '時機型開場。' : '因果型開場。') + '現在挑第 1 招：搭舞台的那招。'), 'good');
+        box.appendChild(moveRow);
+      } else {
+        b.classList.add('no');
+        setTimeout(() => b.classList.remove('no'), 600);
+        setMsg(msg, d.no[0] + Z(d.no[1]), 'warn');
+      }
+    });
+    const NEXT = [
+      ['Move 2 — what lands in that same moment?', '第 2 招——就在那個瞬間落下的是哪招？'],
+      ['so… move 3 — the finish those two make possible:', 'so……第 3 招——被前兩招鋪出來的收尾：'],
+      ['', '']
+    ];
+    const moveRow = chips([
+      { t: 'Zane froze the whole bridge' },
+      { t: 'Kai blasted a wall of fire' },
+      { t: 'Nya sent a wave over the wall' },
+      { t: 'Cole smashed the ground open' },
+      { t: 'Baymax scanned the battlefield' }
+    ], (d, b) => {
+      if (b.disabled || picked.length >= 3) return;
+      b.classList.add('ok'); b.disabled = true;
+      picked.push(d.t);
+      paint(picked.length === 3 ? 'built' : '');
+      if (picked.length < 3){
+        setMsg(msg, NEXT[picked.length - 1][0] + Z(NEXT[picked.length - 1][1]), 'good');
+      } else {
+        [...moveRow.children].forEach(x => x.disabled = true);
+        setMsg(msg, 'Your combo is built. Last strike: <b>tap the 2 connectors</b> inside it.' + Z('你的連招組好了。最後一擊：點出裡面的 2 個連接詞。'), 'good');
+        finale();
+      }
+    });
+    function finale(){
+      const names = [picked[0].split(' ')[0], picked[2].split(' ')[0]];
+      const r = document.createElement('div'); r.className = 'row';
+      let lit = 0, done = false;
+      [[opener, true], [names[0], false], ['so', true], [names[1], false]].forEach(w => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'cxbtn'; b.textContent = w[0];
+        b.addEventListener('click', () => {
+          if (done || b.disabled) return;
+          if (w[1]){
+            b.classList.add('lit'); b.disabled = true; lit++;
+            if (lit === 2){
+              done = true;
+              [...r.children].forEach(x => x.disabled = true);
+              paint('trueok');
+              setMsg(msg, opener + ' + so — <mark>two connectors, and nobody asked</mark>. That’s the black-belt move. 🥋 Machine mastered!' + Z(opener + ' 加 so——兩個連接詞，而且沒有人要求。這就是黑帶等級的那一招。重組機大師誕生！'), 'good');
+              openGate('s1model');
+            }
+          } else {
+            b.classList.add('no');
+            setTimeout(() => b.classList.remove('no'), 600);
+            setMsg(msg, w[0] + ' is a fighter, not a joiner. Which words are doing the connecting?' + Z(w[0] + ' 是出招的忍者，不是連接的字。真正在做連接工作的是哪兩個字呢？'), 'warn');
+          }
+        });
+        r.appendChild(b);
+      });
+      out.appendChild(r);
+    }
+    box.appendChild(frame); box.appendChild(openRow); box.appendChild(out); box.appendChild(msg);
+    host.appendChild(box);
+    box.scrollIntoView({block:'center'});
+  }
+
+  round1();
+})();
+
+/* ================= SECTION 2 ================= */
+choice('s2ask', {
+  opts: [['said', 'said'], ['says', 'says'], ['Both work', '兩個都可以']],
+  ans: 0,
+  good: ['said — finished actions wear the past form. The battle is over; the telling comes after.', 'said——做完的動作要穿過去式。戰鬥結束了，說故事是在那之後。'],
+  h1: ['Is the battle happening right now as you tell it — or is it already over?', '你講故事的這一刻，戰鬥是正在發生，還是已經結束了呢？'],
+  h2: ['shouted, screamed, yelled — your other tags are all past forms. Which of says / said matches them?', 'shouted、screamed、yelled——你其他的標籤全是過去式。says 和 said，哪個跟它們同隊呢？'],
+  tell: ['said. A story about the past keeps its tags in the past — says is the present form.', '是 said。講過去的故事，標籤要留在過去式裡——says 是現在式。'],
+  retest: {
+    q: ['Yesterday Kai hurt his leg. “Ow!” he ___.', '昨天 Kai 傷到腳。「Ow!」he ___。'],
+    opts: [['said', 'said'], ['says', 'says']],
+    ans: 0,
+    why: ['Yesterday → past form. Locked.', '昨天的事→過去式。鎖定！']
+  },
+  pass: () => openGate('s2exp')
+});
+
+/* step 1 — tap the speech tag */
+tapWords('s2a1', 's2m1', [
+  ['“Let’s go!”', false, 'That’s the shout itself — the words inside the quotes. Where’s the label saying WHO?', '那是吶喊本身——引號裡面的話。標出「是誰」的標籤在哪呢？'],
+  ['“Ninjas and Baymax!”', false, 'Still inside the quotation marks — still the shout. Hunt outside the quotes.', '還在引號裡面——還是吶喊的內容。去引號外面找找看。'],
+  ['Cole shouted', true]
+], (msg) => {
+  setMsg(msg, '<mark>Cole shouted</mark> — outside the quotes, telling us whose mouth it came from. That’s the speech tag.' + Z('Cole shouted——在引號外面，告訴我們這句話從誰嘴裡出來。這就是 speech tag。'), 'good');
+  $('s2st2').hidden = false;
+});
+
+/* step 2 — stamp two verbs with their time (resettable) */
+const s2a2 = (function(){
+  const host = $('s2a2'), msg = $('s2m2');
+  const VERBS = [
+    ['shouted', 'past', 'It ends in -ed and the shout is over — that’s the past form.', '字尾 -ed，而且那一喊已經結束了——這就是過去式。',
+      'Is the shout still ringing right now — or did it already happen?', '那一喊現在還在響嗎——還是已經喊完了呢？'],
+    ['says', 'now', 'says is happening as we speak — the present form. Remember this one.', 'says 是「正在說」——現在式。記住這一個。',
+      'says has no -ed and no “already over” feel. Which stamp fits a happening-now word?', 'says 沒有 -ed，也沒有「已經結束」的感覺。正在發生的字該蓋哪個章呢？']
+  ];
+  let done = 0, built = false;
+  function build(){
+    host.innerHTML = ''; done = 0; built = true;
+    VERBS.forEach(v => {
+      const row = document.createElement('div'); row.className = 'srow';
+      const ph = document.createElement('span'); ph.className = 'ph'; ph.textContent = v[0];
+      const ops = document.createElement('span'); ops.className = 'ops';
+      const why = document.createElement('span'); why.className = 'why';
+      [['⏪ BACK THEN', 'past'], ['▶ RIGHT NOW', 'now']].forEach(o => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'opb wide'; b.textContent = o[0];
+        b.setAttribute('aria-label', v[0] + ' → ' + o[1]);
+        b.addEventListener('click', () => {
+          if (row.classList.contains('done')) return;
+          if (o[1] === v[1]){
+            b.classList.add('ok');
+            [...ops.children].forEach(x => x.disabled = true);
+            row.classList.add('done');
+            why.innerHTML = v[2] + Z(v[3]);
+            done++;
+            if (done === VERBS.length){
+              setMsg(msg, 'Two stamps down — and notice: one of your five tags is stamped RIGHT NOW, inside a story that already happened.' + Z('兩個章蓋完了——注意到了嗎：你的五個標籤裡，有一個蓋的是「現在」，卻站在一個已經發生完的故事裡。'), 'good');
+              $('s2st3').hidden = false;
+            }
+          } else {
+            b.classList.add('no');
+            setTimeout(() => b.classList.remove('no'), 600);
+            setMsg(msg, v[4] + Z(v[5]), 'warn');
+          }
+        });
+        ops.appendChild(b);
+      });
+      row.appendChild(ph); row.appendChild(ops); row.appendChild(why);
+      host.appendChild(row);
+    });
+  }
+  build();
+  return { reset: build };
+})();
+
+/* step 3 — say it your way */
+choice('s2a3', {
+  opts: [
+    ['Because the battle already happened — the telling comes after it', '因為戰鬥已經發生過了——說故事是在那之後'],
+    ['Because past forms are longer words', '因為過去式的字比較長'],
+    ['Because shouted sounds angrier than shouts', '因為 shouted 聽起來比 shouts 更生氣']
+  ],
+  ans: 0,
+  good: ['That’s the rule in your own words: one story, one time. Now go sweep the radar.', '你用自己的話把規則說出來了：一個故事，一個時間。去掃雷達吧。'],
+  h1: ['Back one step — I’ve reset the two time stamps. Stamp them again and watch what makes them different.', '退回上一步囉——兩個時間章我重置了。再蓋一次，注意它們差在哪。'],
+  h2: ['said isn’t longer than says, and loudness isn’t tense. WHEN did the battle happen — and when are you telling it?', 'said 沒有比 says 長，大小聲也不是時態。戰鬥是「什麼時候」發生的——你又是什麼時候在講它呢？'],
+  tell: ['Because the story already happened. Telling comes after — so every tag wears the past form.', '因為故事已經發生過了。講述在事情之後——所以每個標籤都穿過去式。'],
+  retest: {
+    q: ['Tomorrow you tell today’s battle to a friend. Your tags wear…', '明天你跟朋友講今天的戰鬥。你的標籤要穿……'],
+    opts: [['the past form — the battle will be over', '過去式——那時戰鬥已經結束了'], ['the present form', '現在式']],
+    ans: 0,
+    why: ['Telling always comes after. Past form it is.', '講述永遠在事情之後。就是過去式。']
+  },
+  firstWrong: () => { s2a2.reset(); $('s2st2').classList.add('redo'); $('s2st2').scrollIntoView({block:'center'}); },
+  pass: () => { openGate('s2try'); $('s2try').scrollIntoView({block:'center'}); }
+});
+
+/* Try it — the tense radar, two sweeps */
+(function(){
+  const host = $('s2radar');
+
+  /* sweep 1: his own five tags */
+  function sweep1(){
+    const box = document.createElement('div');
+    box.innerHTML = '<p class="steplbl">Sweep 1 of 2 · your five tags</p>'
+      + '<p>Tap the tag living in RIGHT NOW.' + Z('點出住在「現在」的那個標籤。') + '</p>';
+    const msg = document.createElement('div'); msg.className = 'msg'; msg.hidden = true;
+    const row = document.createElement('div'); row.className = 'row';
+    const out = document.createElement('div');
+    let found = false, fixed = false;
+    const TAGS = [
+      ['shouted', false, 'shouted — past form. It matches a finished battle.', 'shouted——過去式。跟打完的戰鬥是一隊的。'],
+      ['says', true],
+      ['said', false, 'said — that IS the past form. It’s exactly where it belongs.', 'said——它就是過去式本人，站得好好的。'],
+      ['screamed', false, 'screamed — past form. That “Ow!” already happened.', 'screamed——過去式。那聲「Ow!」已經喊完了。'],
+      ['yelled', false, 'yelled — past form, safely in the story’s time.', 'yelled——過去式，好好待在故事的時間裡。']
+    ];
+    TAGS.forEach(t => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'opb wide'; b.textContent = t[0];
+      b.addEventListener('click', () => {
+        if (found || b.disabled) return;
+        if (t[1]){
+          found = true; b.classList.add('no');
+          [...row.children].forEach(x => x.disabled = true);
+          setMsg(msg, 'Radar hit! <b>says</b> is the present form — the only tag living in NOW. Fix it:' + Z('雷達命中！says 是現在式——唯一住在「現在」的標籤。修好它：'), 'good');
+          fixRow();
+        } else {
+          b.classList.add('ok');
+          setTimeout(() => b.classList.remove('ok'), 700);
+          setMsg(msg, t[2] + Z(t[3]), 'warn');
+        }
+      });
+      row.appendChild(b);
+    });
+    function fixRow(){
+      const r = document.createElement('div'); r.className = 'row';
+      [['said', true],
+       ['sayed', false, 'say is a shape-shifter: say → said. No -ed on this one.', 'say 是變形金剛：say → said。這個字不加 -ed 喔。'],
+       ['saying', false, '-ing is a happening-now form — still stuck in NOW.', '-ing 是「正在進行」的形——還是卡在現在呀。']].forEach(o => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'opb wide'; b.textContent = o[0];
+        b.addEventListener('click', () => {
+          if (fixed || b.disabled) return;
+          if (o[1]){
+            fixed = true; b.classList.add('ok');
+            [...r.children].forEach(x => x.disabled = true);
+            const ns = document.createElement('p'); ns.className = 'sentbox trueok';
+            ns.innerHTML = 'shouted · <b>said</b> · said · screamed · yelled';
+            out.appendChild(ns);
+            setMsg(msg, 'All five in the past — one story, one time. Now sweep a whole scene.' + Z('五個全在過去式——一個故事，一個時間。現在來掃一整段戰鬥。'), 'good');
+            setTimeout(sweep2, 500);
+          } else {
+            b.classList.add('no');
+            setTimeout(() => b.classList.remove('no'), 600);
+            setMsg(msg, o[2] + Z(o[3]), 'warn');
+          }
+        });
+        r.appendChild(b);
+      });
+      out.appendChild(r);
+    }
+    box.appendChild(row); box.appendChild(out); box.appendChild(msg);
+    host.appendChild(box);
+  }
+
+  /* sweep 2: a whole battle scene with two jumpers hiding in it */
+  function sweep2(){
+    const box = document.createElement('div');
+    box.innerHTML = '<p class="steplbl">Sweep 2 of 2 · full scene scan</p>'
+      + '<div class="ev"><span class="lbl">A fresh battle scene — read it out loud</span>'
+      + 'The dark army <b>burst</b> through the gate. “Zane, freeze the bridge!” Lloyd <b>shouted</b>. '
+      + '“On it,” Zane <b>says</b>. “Ow!” Kai <b>screamed</b>. '
+      + '“Are you satisfied with your care?” Baymax <b>asks</b>. “Yes, thank you,” Kai <b>said</b>.'
+      + Z('一段新的戰鬥場景——唸出聲來掃。') + '</div>'
+      + '<p>Stamp every tag. The two jumpers need a fix on the spot.' + Z('幫每個標籤蓋時間章。跳出去的那兩個要當場修好。') + '</p>';
+    const msg = document.createElement('div'); msg.className = 'msg'; msg.hidden = true;
+    const grid = document.createElement('div'); grid.className = 'sorter';
+    const count = document.createElement('p'); count.className = 'counter';
+    let done = 0, fixes = 0;
+    const NEED = 5;
+    count.innerHTML = '0 / ' + NEED + ' tags stamped' + '<span class="zhi"> ・已蓋章</span>';
+    const ROWS = [
+      ['Lloyd shouted', 'past', null, 'The shout is over — past form, correctly placed.', '那一喊結束了——過去式，站得正確。',
+        'Did Lloyd’s shout already happen in this scene?', 'Lloyd 那一喊在這個場景裡是不是已經發生完了呢？'],
+      ['Zane says', 'now', ['said', 'sayed'], 'Caught — says is the present form inside a past-time story.', '抓到了——says 是現在式，卻站在過去時間的故事裡。',
+        'says has no “already over” feel. Read the scene’s first line again — what time is this story in?', 'says 沒有「已經結束」的感覺。再讀一次場景第一句——這個故事住在哪個時間呢？'],
+      ['Kai screamed', 'past', null, 'That “Ow!” already rang out — past form.', '那聲「Ow!」已經喊出去了——過去式。',
+        'Is Kai still screaming right now — or did it happen already?', 'Kai 現在還在慘叫嗎——還是已經叫完了呢？'],
+      ['Baymax asks', 'now', ['asked', 'asking'], 'Caught the second jumper — asks is a NOW word.', '第二個跳時態的也抓到了——asks 是「現在」的字。',
+        'Compare: screamed, said, shouted… and asks. Which one isn’t wearing the past?', '比比看：screamed、said、shouted……和 asks。哪一個沒穿過去式呢？'],
+      ['Kai said', 'past', null, 'said — the past form standing right where it should.', 'said——過去式本人，站在該站的位置。',
+        'said is the past shape of say. Does it match the story’s time?', 'said 就是 say 的過去形。它跟故事的時間是一隊的嗎？']
+    ];
+    ROWS.forEach(v => {
+      const row = document.createElement('div'); row.className = 'srow';
+      const ph = document.createElement('span'); ph.className = 'ph'; ph.textContent = v[0];
+      const ops = document.createElement('span'); ops.className = 'ops';
+      const why = document.createElement('span'); why.className = 'why';
+      [['⏪', 'past'], ['▶', 'now']].forEach(o => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'opb'; b.textContent = o[0];
+        b.setAttribute('aria-label', v[0] + ' → ' + (o[1] === 'past' ? 'back then' : 'right now'));
+        b.addEventListener('click', () => {
+          if (row.classList.contains('done')) return;
+          if (o[1] === v[1]){
+            b.classList.add(v[2] ? 'no' : 'ok');
+            [...ops.children].forEach(x => x.disabled = true);
+            row.classList.add('done');
+            why.innerHTML = v[3] + Z(v[4]);
+            if (v[2]){
+              const fr = document.createElement('span');
+              fr.style.display = 'inline-flex'; fr.style.gap = '.3rem'; fr.style.marginTop = '.3rem';
+              const okW = v[2][0], badW = v[2][1];
+              [[okW, true], [badW, false]].forEach(f => {
+                const fb = document.createElement('button');
+                fb.type = 'button'; fb.className = 'opb wide'; fb.textContent = '→ ' + f[0];
+                fb.addEventListener('click', () => {
+                  if (fb.disabled) return;
+                  if (f[1]){
+                    fb.classList.add('ok');
+                    [...fr.children].forEach(x => x.disabled = true);
+                    fixes++;
+                    tick();
+                  } else {
+                    fb.classList.add('no');
+                    setTimeout(() => fb.classList.remove('no'), 600);
+                    setMsg(msg, badW === 'sayed' ? 'say shape-shifts: say → said. No -ed.' + Z('say 會變形：say → said，不加 -ed。') : '-ing keeps it in NOW. You need the already-happened form.' + Z('-ing 會把它留在現在。你需要「已經發生」的那個形。'), 'warn');
+                  }
+                });
+                fr.appendChild(fb);
+              });
+              why.appendChild(document.createElement('br'));
+              why.appendChild(fr);
+            }
+            done++;
+            tick();
+          } else {
+            b.classList.add('no');
+            setTimeout(() => b.classList.remove('no'), 600);
+            setMsg(msg, v[5] + Z(v[6]), 'warn');
+          }
+        });
+        ops.appendChild(b);
+      });
+      row.appendChild(ph); row.appendChild(ops); row.appendChild(why);
+      grid.appendChild(row);
+    });
+    function tick(){
+      count.innerHTML = done + ' / ' + NEED + ' tags stamped' + '<span class="zhi"> ・已蓋章</span>';
+      if (done === NEED && fixes === 2){
+        setMsg(msg, 'Radar clean — every tag in the past. 🟢 Try This unlocked: read your own story out loud and check every said-word is in the same tense.' + Z('雷達乾淨了——每個標籤都在過去式。解鎖練習：把你自己的故事唸出聲，檢查每個「說」字是不是同一個時態。'), 'good');
+        openGate('s2model');
+      }
+    }
+    box.appendChild(grid); box.appendChild(count); box.appendChild(msg);
+    host.appendChild(box);
+    box.scrollIntoView({block:'center'});
+  }
+
+  sweep1();
+})();
+
+/* ================= SECTION 3 ================= */
+choice('s3ask', {
+  opts: [['u — buuurst', 'u——buuurst'], ['r — brrrust', 'r——brrrust']],
+  ans: 0,
+  good: ['u before r — your mouth already knows: it says buuurst.', 'u 在 r 前面——你的嘴巴其實早就知道了：它唸的是 buuurst。'],
+  h1: ['Stretch it like slow motion: b…u…r…s…t. What did your mouth do right after the b?', '像慢動作一樣拉長：b…u…r…s…t。b 之後你的嘴巴先做了什麼呢？'],
+  h2: ['brrrust would growl like “brr”. burst hums “buuur”. Which letter makes that hum?', 'brrrust 會像「brr」一樣打顫。burst 是「buuur」的低鳴。發出那個鳴聲的是哪個字母呢？'],
+  tell: ['u first: b-u-r-s-t. Slow-say it and the order falls out by itself.', 'u 先來：b-u-r-s-t。慢慢唸，順序自己就掉出來了。'],
+  retest: {
+    q: ['So the letter order in burst is…', '所以 burst 的字母順序是……'],
+    opts: [['b-u-r-s-t', 'b-u-r-s-t'], ['b-r-u-s-t', 'b-r-u-s-t']],
+    ans: 0,
+    why: ['Locked. Now hammer it in for real.', '鎖定！現在去真的把它敲進手裡。']
+  },
+  pass: () => openGate('s3exp')
+});
+
+/* the forge widget: letter slots + a bank hiding his own trap letters */
+function forge(mount, cfg, onDone){
+  const box = document.createElement('div');
+  if (cfg.lbl) box.innerHTML = '<p class="forgeword">' + cfg.lbl + '</p>';
+  const slots = document.createElement('div'); slots.className = 'slots';
+  const word = cfg.word;
+  const sl = [];
+  for (let i = 0; i < word.length; i++){
+    const s = document.createElement('span'); s.className = 'slot';
+    slots.appendChild(s); sl.push(s);
+  }
+  if (cfg.tail){
+    const t = document.createElement('span'); t.className = 'tail'; t.textContent = cfg.tail;
+    slots.appendChild(t);
+  }
+  const bank = document.createElement('div'); bank.className = 'bank';
+  const msg = document.createElement('div'); msg.className = 'msg'; msg.hidden = true;
+  let pos = 0;
+  sl[0].classList.add('next');
+  const letters = word.split('').concat((cfg.decoys || []).filter(d => d.extra).map(d => d.ch));
+  for (let i = letters.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    const tmp = letters[i]; letters[i] = letters[j]; letters[j] = tmp;
+  }
+  letters.forEach(ch => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'opb'; b.textContent = ch;
+    b.setAttribute('aria-label', 'letter ' + ch);
+    b.addEventListener('click', () => {
+      if (b.disabled || pos >= word.length) return;
+      if (ch === word[pos]){
+        sl[pos].textContent = ch;
+        sl[pos].classList.remove('next');
+        sl[pos].classList.add('fill');
+        b.disabled = true;
+        pos++;
+        if (pos < word.length){
+          sl[pos].classList.add('next');
+        } else {
+          [...bank.children].forEach(x => x.disabled = true);
+          setMsg(msg, cfg.done[0] + Z(cfg.done[1]), 'good');
+          if (onDone) onDone();
+        }
+      } else {
+        b.classList.add('no');
+        setTimeout(() => b.classList.remove('no'), 600);
+        const d = (cfg.decoys || []).find(d2 => d2.ch === ch);
+        if (d && d.at === pos && d.msg){
+          setMsg(msg, d.msg[0] + Z(d.msg[1]), 'warn');
+        } else if (d && d.msgElse){
+          setMsg(msg, d.msgElse[0] + Z(d.msgElse[1]), 'warn');
+        } else {
+          setMsg(msg, 'Slow-say it up to here: “' + word.slice(0, pos) + '…” — which sound does your mouth make next?' + Z('慢慢唸到這裡：「' + word.slice(0, pos) + '…」——你的嘴巴接下來發出哪個音呢？'), 'warn');
+        }
+      }
+    });
+    bank.appendChild(b);
+  });
+  box.appendChild(slots); box.appendChild(bank); box.appendChild(msg);
+  mount.appendChild(box);
+}
+
+/* step 1 — burst, strike 1 of 3 */
+forge($('s3f1'), {
+  word: 'burst',
+  decoys: [{ ch: 'r', at: 1, msg: ['brust! That’s the old order. Slow-motion it: buuurst — the u rides first.', 'brust！那是舊的順序。慢動作再唸一次：buuurst——u 先上。'] }],
+  done: ['Strike 1 rings true — your mouth led, and the letters followed.', '第 1 擊成功——嘴巴帶路，字母跟上。']
+}, () => { $('s3st2').hidden = false; });
+
+/* step 2 — the onion ending */
+choice('s3a2', {
+  opts: [['ian', 'ian'], ['ion', 'ion'], ['ien', 'ien']],
+  ans: 1,
+  good: ['compan + ion = companion — same landing as onion.', 'compan＋ion＝companion——跟 onion 用同一個著陸點。'],
+  h1: ['Check the helper word: o-n-i-o-n. Which three letters end it?', '看看幫手字：o-n-i-o-n。它的最後三個字母是哪三個呢？'],
+  h2: ['ian is the one your pencil reached for last time — companian. The onion ending is i-o-n. So which chip?', 'ian 是上次鉛筆伸手去拿的那個——companian。洋蔥的結尾是 i-o-n。那要選哪一片呢？'],
+  tell: ['ion — companion ends like onion: …n-i-o-n.', '是 ion——companion 的結尾跟 onion 一樣：…n-i-o-n。'],
+  retest: {
+    q: ['companion ends with the same three letters as…', 'companion 的結尾三個字母跟哪個字一樣呢……'],
+    opts: [['onion', 'onion'], ['ninja', 'ninja']],
+    ans: 0,
+    why: ['Onion buddies — that’s your memory hook.', '洋蔥兄弟——這就是你的記憶掛鉤。']
+  },
+  pass: () => { $('s3st3').hidden = false; }
+});
+
+/* step 3 — the dose, then the name tag */
+choice('s3a3a', {
+  opts: [['so', 'so'], ['some', 'some'], ['sum', 'sum']],
+  ans: 1,
+  good: ['some medicine — an amount. The m-e makes it a different word from so.', 'some medicine——講份量的字。有了 m、e，它就跟 so 是完全不同的字。'],
+  h1: ['Read it out loud: “Baymax gave Kai so medicine.” Does “so” — meaning “therefore” — fit there?', '唸出聲看看：「Baymax gave Kai so medicine.」意思是「所以」的 so，放在那裡通嗎？'],
+  h2: ['sum is math — 2 + 3. Kai needs an amount word that ends in m-e. Which chip?', 'sum 是數學——2＋3。Kai 需要的是結尾 m-e 的份量字。哪一片呢？'],
+  tell: ['some — so means “therefore”, sum is math. Kai needs some medicine.', '是 some——so 是「所以」，sum 是數學。Kai 需要 some medicine。'],
+  retest: {
+    q: ['“Kai was hurt, ___ Baymax helped him.” Which word fits HERE?', '「Kai was hurt, ___ Baymax helped him.」這裡要用哪個字呢？'],
+    opts: [['so', 'so'], ['some', 'some']],
+    ans: 0,
+    why: ['There “therefore” fits — that’s so’s real job, and you already used it in Quest 3.', '這裡「所以」就通了——這才是 so 的本職，而且你在 Quest 3 早就用對過。']
+  },
+  pass: () => openGate('s3a3bwrap')
+});
+
+const s3b3 = choice('s3a3b', {
+  opts: [['Lloyd', 'Lloyd'], ['Lloyed', 'Lloyed'], ['Loyd', 'Loyd']],
+  ans: 0,
+  good: ['Lloyd — double L at the door, d lands last, no stray e.', 'Lloyd——門口站兩個 L，最後 d 著地，沒有多出來的 e。'],
+  h1: ['You wrote Lloyed that day. Say the name out loud — do you hear any sound between the y and the d?', '那天你寫的是 Lloyed。把名字唸出聲——y 和 d 之間有聽到任何聲音嗎？'],
+  h2: ['Loyd lost a doorman — Lloyd opens with TWO Ls. And nothing squeezes between y and d. Which chip has both things right?', 'Loyd 少了一個守門員——Lloyd 開頭有兩個 L。而且 y 和 d 之間擠不進任何字母。哪一片兩個都對呢？'],
+  tell: ['Lloyd: L-l-o-y-d. Two Ls up front, no e before the d.', 'Lloyd：L-l-o-y-d。前面兩個 L，d 前面沒有 e。'],
+  retest: {
+    q: ['Lloyd’s name ends with…', 'Lloyd 的名字結尾是……'],
+    opts: [['…y-d', '…y-d'], ['…y-e-d', '…y-e-d']],
+    ans: 0,
+    why: ['-yd — clean landing. Name tag mastered.', '-yd——乾淨落地。名牌搞定。']
+  },
+  pass: () => { $('s3st4').hidden = false; }
+});
+
+/* step 4 — say it your way */
+choice('s3a4', {
+  opts: [
+    ['Say it slowly, write what my mouth builds — then look back after writing', '慢慢唸、照嘴巴組出來的順序寫——寫完再回頭看一次'],
+    ['Write faster so the letters can’t escape', '寫快一點，字母就來不及逃走'],
+    ['Only use short words from now on', '以後只用短短的字']
+  ],
+  ans: 0,
+  good: ['That’s the forge habit, in your own words. Now fire it up on all four words.', '你用自己的話講出鍛造習慣了。現在去把四個字全部鍛一遍吧。'],
+  h1: ['Which of those did we actually DO in steps 1–3?', '這三個選項裡，我們在 Step 1–3 真正「做過」的是哪一個呢？'],
+  h2: ['The letters got scrambled mid-battle — and burst is already a short word. Which move actually catches them?', '字母在戰鬥中被打散了——而且 burst 本來就是短字。真正接住它們的是哪一招呢？'],
+  tell: ['Slow-say while you write, then one look back after — that habit catches all four.', '邊寫邊慢唸，寫完回頭看一次——這個習慣把四個字全接住。'],
+  retest: {
+    q: ['Mid-story, a word feels wobbly. You…', '故事寫到一半，有個字感覺搖搖晃晃的。你要……'],
+    opts: [['finish the battle, then slow-say it in the read-back', '先打完這場仗，回讀的時候再慢慢唸它'], ['stop the whole story and worry', '整個故事停下來煩惱']],
+    ans: 0,
+    why: ['Keep the battle hot; catch letters after. That’s the writer’s way.', '讓戰鬥保持火熱，字母留到之後再抓。作家都是這樣做的。']
+  },
+  firstWrong: () => { s3b3.reset(); $('s3st3').classList.add('redo'); $('s3st3').scrollIntoView({block:'center'}); },
+  pass: () => { openGate('s3try'); $('s3try').scrollIntoView({block:'center'}); }
+});
+
+/* Try it — the spelling forge, all four words */
+(function(){
+  const mount = $('s3forge'), count = $('s3count'), fmsg = $('s3fmsg');
+  let forged = 0, i = 0;
+  const R_MSG = ['brust! That’s the old order. Slow-motion it: buuurst — the u rides first.', 'brust！那是舊的順序。慢動作再唸一次：buuurst——u 先上。'];
+  const ROUNDS = [
+    { lbl: 'burst · strike 2 of 3', word: 'burst',
+      decoys: [{ ch: 'r', at: 1, msg: R_MSG }],
+      done: ['Strike 2 — the order is settling into your hand.', '第 2 擊——順序開始住進你的手裡了。'], counts: false },
+    { lbl: 'burst · strike 3 of 3 — say it first, eyes off the bank', word: 'burst',
+      decoys: [{ ch: 'r', at: 1, msg: R_MSG }],
+      done: ['Strike 3 of 3 — drill complete, burst is yours.', '第 3 擊完成——三連擊打滿，burst 是你的了。'], counts: true },
+    { lbl: 'companion — remember the onion', word: 'companion',
+      decoys: [{ ch: 'a', at: 7, msg: ['companian again! Check the onion: the ending is i-o-n.', '又要變成 companian 啦！看看洋蔥：結尾是 i-o-n。'], extra: true }],
+      done: ['companion — ends like onion, forged clean.', 'companion——結尾跟 onion 一樣，鍛得乾乾淨淨。'], counts: true },
+    { lbl: 'some — Kai needs the full dose', word: 'some', tail: ' medicine',
+      decoys: [{ ch: '␣', at: 2, msg: ['Stop there and it says “so” — that means “therefore”. Kai still needs the m and e!', '停在這裡就只剩 so——「所以」的意思。Kai 還需要 m 和 e！'], msgElse: ['No stopping mid-dose — the word isn’t finished.', '藥量不能停在一半——這個字還沒拼完喔。'], extra: true }],
+      done: ['some medicine — the full dose this time.', 'some medicine——這次是完整的藥量。'], counts: true },
+    { lbl: 'Lloyd — check the name tag', word: 'Lloyd',
+      decoys: [{ ch: 'e', at: 4, msg: ['Lloyed strikes again! The d lands last — there’s no e in Lloyd.', 'Lloyed 又想混進來了！最後落地的是 d——Lloyd 裡沒有 e。'], msgElse: ['No e anywhere in Lloyd — it’s L-l-o-y-d.', 'Lloyd 裡完全沒有 e——是 L-l-o-y-d。'], extra: true }],
+      done: ['Lloyd — name tag correct, no stray e.', 'Lloyd——名牌正確，沒有多出來的 e。'], counts: true }
+  ];
+  function next(){
+    if (i >= ROUNDS.length){
+      setMsg(fmsg, 'Forge complete: burst ×3 · companion · some · Lloyd 🔨 Now carry them back into the story.' + Z('鍛造完成：burst ×3、companion、some、Lloyd。現在把它們帶回故事裡吧。'), 'good');
+      openGate('s3model');
+      return;
+    }
+    const R = ROUNDS[i]; i++;
+    forge(mount, R, () => {
+      if (R.counts){
+        forged++;
+        count.innerHTML = forged + ' / 4 words forged<span class="zhi"> ・已鍛成</span>';
+      }
+      setTimeout(next, 400);
+    });
+  }
+  next();
+})();
+
+/* ================= QUIZ ================= */
+(function(){
+  const QUIZ = [
+    { q: 'Which one is the combo sentence?', zh: '哪一句是連招句？',
+      opts: [['Kai punched an enemy and Cole kicked one and Zane iced one.', 'Kai punched an enemy and Cole kicked one and Zane iced one.'],
+             ['When Lloyd lifted an enemy, Nya blasted two more, so Cole and Kai could finish them off.', 'When Lloyd lifted an enemy, Nya blasted two more, so Cole and Kai could finish them off.'],
+             ['The enemies were many and strong and fast.', 'The enemies were many and strong and fast.']],
+      ans: 1, why: 'when + so link the moves. The other two are and-lists.', whyzh: 'when 加 so 把招式連起來。另外兩句是 and 清單。', go: '#s1' },
+    { q: '“When Lloyd lifted an enemy into the air, Nya blasted two more.” — when tells the reader…', zh: '「When Lloyd lifted an enemy into the air, Nya blasted two more.」——when 告訴讀者……',
+      opts: [['the two moves share the same moment', '兩招共用同一個瞬間'], ['why Nya blasted', 'Nya 開砲的原因'], ['that the battle is over', '戰鬥已經結束了']],
+      ans: 0, why: 'when = timing: the lift and the blast land together.', whyzh: 'when＝時機：舉起和轟炸同時落下。', go: '#s1' },
+    { q: '“…, so Cole and Kai could finish them off.” — so shows…', zh: '「…, so Cole and Kai could finish them off.」——so 表示……',
+      opts: [['the first moves made the finish possible', '前面的招讓收尾變得可能'], ['the finish happened first', '收尾最先發生'], ['nothing — it’s decoration', '沒什麼——裝飾用']],
+      ans: 0, why: 'so = cause: the door the first two moves opened.', whyzh: 'so＝因果：前兩招打開的那扇門。', go: '#s1' },
+    { q: 'Your story is about the past. Pick the tag:', zh: '你的故事講的是過去。挑出合身的標籤：',
+      opts: [['“Let’s go!” Cole says.', '“Let’s go!” Cole says.'], ['“Let’s go!” Cole said.', '“Let’s go!” Cole said.'], ['“Let’s go!” Cole saying.', '“Let’s go!” Cole saying.']],
+      ans: 1, why: 'Past story → past tag: said.', whyzh: '過去的故事→過去式標籤：said。', go: '#s2' },
+    { q: 'Find the time-jumper:', zh: '找出跳時態的那個：',
+      opts: [['shouted', 'shouted'], ['says', 'says'], ['screamed', 'screamed'], ['yelled', 'yelled']],
+      ans: 1, why: 'says is the present form — the only tag living in NOW.', whyzh: 'says 是現在式——唯一住在「現在」的標籤。', go: '#s2' },
+    { q: 'The dark army ___ through the gate.', zh: 'The dark army ___ through the gate.',
+      opts: [['burst', 'burst'], ['brust', 'brust'], ['bursted', 'bursted']],
+      ans: 0, why: 'b-u-r-s-t — the u rides before the r. And burst stays burst in the past.', whyzh: 'b-u-r-s-t——u 在 r 前面。而且 burst 的過去式還是 burst。', go: '#s3' },
+    { q: 'Baymax gave Kai ___ medicine.', zh: 'Baymax gave Kai ___ medicine.',
+      opts: [['so', 'so'], ['some', 'some'], ['sum', 'sum']],
+      ans: 1, why: 'An amount → some. so = therefore; sum = math.', whyzh: '份量→some。so 是「所以」；sum 是數學。', go: '#s3' },
+    { q: 'Baymax is Kai’s loyal ___.', zh: 'Baymax 是 Kai 忠實的 ___。',
+      opts: [['companian', 'companian'], ['companion', 'companion'], ['companien', 'companien']],
+      ans: 1, why: 'It ends like onion: …n-i-o-n.', whyzh: '結尾跟 onion 一樣：…n-i-o-n。', go: '#s3' }
+  ];
+  const dots = $('qdots'), body = $('qbody');
+  function start(){
+    let i = 0, score = 0;
+    const marks = [];
+    dots.innerHTML = QUIZ.map(() => '<i></i>').join('');
+    function paint(){
+      [...dots.children].forEach((d, k) => {
+        d.className = marks[k] === true ? 'ok' : marks[k] === false ? 'no' : (k === i ? 'cur' : '');
+      });
+    }
+    function show(){
+      paint();
+      const Q = QUIZ[i];
+      body.innerHTML = '';
+      const q = document.createElement('p');
+      q.className = 'qq';
+      q.innerHTML = 'Q' + (i + 1) + '. ' + Q.q + Z(Q.zh);
+      const wrap = document.createElement('div'); wrap.className = 'choices';
+      const msg = document.createElement('div'); msg.className = 'msg'; msg.hidden = true;
+      let answered = false;
+      Q.opts.forEach((o, k) => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'choice';
+        b.innerHTML = o[0] + (o[1] !== o[0] ? Z(o[1]) : '');
+        b.addEventListener('click', () => {
+          if (answered) return;
+          answered = true;
+          [...wrap.children].forEach(x => x.disabled = true);
+          wrap.children[Q.ans].classList.add('ok');
+          if (k === Q.ans){ score++; marks[i] = true; setMsg(msg, 'Correct! ' + Q.why + Z(Q.whyzh), 'good'); }
+          else { marks[i] = false; b.classList.add('no'); setMsg(msg, Q.why + Z(Q.whyzh) + ' <a href="' + Q.go + '">Go back and walk it again</a>', 'bad'); }
+          paint();
+          const next = document.createElement('button');
+          next.type = 'button'; next.className = 'btn';
+          next.style.marginTop = '.6rem';
+          next.textContent = (i + 1 < QUIZ.length) ? 'Next ▸' : 'See my stars ★';
+          next.addEventListener('click', () => { i++; if (i < QUIZ.length) show(); else end(); });
+          body.appendChild(next);
+        });
+        wrap.appendChild(b);
+      });
+      body.appendChild(q); body.appendChild(wrap); body.appendChild(msg);
+    }
+    function end(){
+      paint();
+      const stars = score >= 7 ? '★★★' : score >= 5 ? '★★☆' : '★☆☆';
+      const line = score === QUIZ.length ? 'Every trap beaten. Your next story doesn’t stand a chance!'
+        : score >= 6 ? 'Strong. Peek at the wobbly ones, then go level up the story.'
+        : 'Good try — walk the three sections again. The forge stays hot.';
+      const zh = score === QUIZ.length ? '每個陷阱都被你打敗了。下一篇故事毫無勝算！'
+        : score >= 6 ? '很強喔。看一下還不穩的那幾題，然後去把故事升級吧。'
+        : '不錯的嘗試喔——三個段落再走一次，鍛造爐一直是熱的。';
+      body.innerHTML = '';
+      const box = document.createElement('div'); box.className = 'qresult';
+      box.innerHTML = '<div class="stars">' + stars + '</div><div class="sc">' + score + ' / ' + QUIZ.length + '</div><p>' + line + Z(zh) + '</p>';
+      const missed = QUIZ.map((Q, k) => marks[k] === false ? '<a href="' + Q.go + '">Q' + (k + 1) + '</a>' : null).filter(Boolean);
+      if (missed.length){
+        const p = document.createElement('p');
+        p.innerHTML = 'Worth another walk: ' + missed.join(' · ') + Z('這幾題值得再走一次喔。');
+        box.appendChild(p);
+      }
+      const again = document.createElement('button');
+      again.type = 'button'; again.className = 'btn ghost';
+      again.textContent = '↻ Play again';
+      again.addEventListener('click', start);
+      box.appendChild(again);
+      body.appendChild(box);
+    }
+    show();
+  }
+  start();
+})();
+
+/* ================= CORRECTION LIST ================= */
+(function(){
+  const FIXES = [
+    ['<b>Quest 4, opening</b> — rewrite it with When: <b>When the dark army appeared, Cole shouted, “Let’s go! Ninjas and Baymax!”</b>', 'the pattern: When ___ , ___', 'Quest 4 開場——用 When 改寫：When the dark army appeared, Cole shouted, “Let’s go! Ninjas and Baymax!”（句型：When ___ , ___）'],
+    ['<b>Quest 4, battle line</b> — write in your rebuilt combo: <b>When Lloyd lifted an enemy into the air, Nya blasted two more, so Cole and Kai could finish them off.</b>', 'the pattern: When ___ , ___ , so ___', 'Quest 4 戰鬥句——把重組好的連招寫回去：When Lloyd lifted an enemy into the air, Nya blasted two more, so Cole and Kai could finish them off.（句型：When ___ , ___ , so ___）'],
+    ['<b>Speech tags</b> — change <b>says → said</b>, then read all five out loud: shouted, said, said, screamed, yelled.', 'one story, one time', '說話標籤——把 says 改成 said，然後五個唸出聲：shouted、said、said、screamed、yelled（一個故事，一個時間）'],
+    ['<b>Four words</b> — fix them to <b>burst · companion · some medicine · Lloyd</b>.', 'slow-say it, then look back', '四個拼字——改成 burst、companion、some medicine、Lloyd（慢慢唸，寫完回頭看）'],
+    ['💡 <b>Next story</b> — 2 connectors (when / because / although / so) before anyone asks.', 'that’s the black belt', '加分題：下一篇故事——沒人要求也自己放進 2 個連接詞（when／because／although／so），那就是黑帶。']
+  ];
+  const host = $('fixlist'), msg = $('fixmsg');
+  let done = 0;
+  FIXES.forEach(f => {
+    const lab = document.createElement('label');
+    const inp = document.createElement('input');
+    inp.type = 'checkbox';
+    const txt = document.createElement('span');
+    txt.className = 'txt';
+    txt.innerHTML = f[0] + '<span class="w">' + f[1] + '</span>' + Z(f[2]);
+    inp.addEventListener('change', () => {
+      lab.classList.toggle('done', inp.checked);
+      done += inp.checked ? 1 : -1;
+      if (done === FIXES.length){
+        setMsg(msg, '🎉 Story leveled up! Hand it back with a grin — and your notebook just got one page thicker. <a href="index.html">📒 See how many you have now</a>.' + Z('故事升級完成！帶著笑容交回去吧——你的筆記本又厚了一頁囉。<a href="index.html">📒 看看現在有幾課了</a>。'), 'good');
+      } else {
+        msg.hidden = true;
+      }
+    });
+    lab.appendChild(inp); lab.appendChild(txt);
+    host.appendChild(lab);
+  });
+})();
+
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>William's Correction Notes — Estimate First</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Huninn&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html{font-size:clamp(16px, 0.6vw + 13.3px, 23px);-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:#E4E5E8;color:#2E3037;font-family:'Fredoka',system-ui,sans-serif;line-height:1.5;
+  --ink:#2E3037;--pencil:#6B6E76;--gray:#9C9EA5;--line:#E3E4E8;--line2:#D9DADF;--soft:#F4F4F6;--soft2:#F1F1F3;
+  --red:#E2463B;--green:#2FA36B;--hl:#FFF0A0;--paper:#FAFAFA;--rule:#D9DCE1;--margin:#F0A6B0;
+  --tb:#3E6FD9;--tb-soft:#E8EEFC;--tb-deep:#2B52AE;--rl:#F08A2C;--rl-soft:#FFF1E1;--rl-deep:#C4680F;
+  --accent:#3E6FD9;--accent-soft:#E8EEFC;--accent-deep:#2B52AE;
+  --ruleh:1.875rem;
+}
+body[data-mode="reallife"]{--accent:#F08A2C;--accent-soft:#FFF1E1;--accent-deep:#C4680F}
+
+/* ---------- notebook page ---------- */
+.notebook{
+  position:relative;width:100%;margin:0 auto;background-color:var(--paper);min-height:100vh;
+  box-shadow:0 0 0 1px #d6d7db,0 .6rem 2rem rgba(40,42,50,.14);
+  background-image:
+    linear-gradient(to right,transparent 2.875rem,var(--margin) 2.875rem,var(--margin) calc(2.875rem + 2px),transparent calc(2.875rem + 2px)),
+    repeating-linear-gradient(to bottom,transparent 0,transparent calc(var(--ruleh) - 1px),var(--rule) calc(var(--ruleh) - 1px),var(--rule) var(--ruleh));
+}
+@media(min-width:1200px){.notebook{max-width:80vw;margin:1.5rem auto}}
+.holes{position:absolute;top:0;bottom:0;left:0;width:2.2rem;pointer-events:none;
+  background:radial-gradient(circle at 1rem 50%,#E4E5E8 0 .36rem,#cfd0d5 .36rem .42rem,transparent .46rem) 0 1.2rem/2.2rem 3.75rem repeat-y}
+.page{padding:1.25rem 1rem 3rem 3.6rem}
+@media(min-width:760px){.page{padding:2rem 2.5rem 4rem 4.5rem}}
+
+/* ---------- text basics ---------- */
+.hand{font-family:'Caveat',cursive;color:var(--pencil)}
+.date{font-size:1.35rem;margin:0 0 .2rem;line-height:1.2}
+h1{font-size:2.1rem;line-height:1.15;margin:.15rem 0 .7rem;font-weight:700;letter-spacing:-.01em}
+h1 .zh{font-size:.5em;font-weight:400;margin-top:.25rem;letter-spacing:0}
+mark{background:linear-gradient(transparent 38%,var(--hl) 38%,var(--hl) 92%,transparent 92%);color:inherit;padding:0 .12em;border-radius:.15em}
+.lead{font-size:1.05rem;margin:0 0 1.1rem;max-width:46rem}
+p{margin:.4rem 0}
+b{font-weight:600}
+a{color:var(--accent-deep)}
+
+/* Chinese layer */
+.zh{display:none;font-family:'Huninn','Zen Maru Gothic','PingFang TC','Noto Sans TC',sans-serif;color:var(--pencil);font-size:.88em;line-height:1.55;font-weight:400}
+body.zh-on .zh{display:block}
+.zhi{display:none;font-family:'Huninn','Zen Maru Gothic','PingFang TC','Noto Sans TC',sans-serif;color:inherit;font-size:.92em;font-weight:400}
+body.zh-on .zhi{display:inline}
+.pill .zhi,.tag .zhi{color:#fff}
+
+/* vocab */
+.vocab{display:grid;grid-template-columns:repeat(auto-fill,minmax(9.5rem,1fr));gap:.5rem;margin:0 0 1.2rem;max-width:60rem}
+.vcard{background:#fff;border:1px solid var(--line);border-radius:.75rem;padding:.45rem .7rem .5rem;font-size:.84rem;box-shadow:0 1px 0 var(--line2);line-height:1.4}
+.vcard b{display:block;font-size:.98rem;color:var(--ink)}
+.vcard .def{color:var(--pencil)}
+
+/* ---------- sticky toolbar ---------- */
+.toolbar{position:sticky;top:0;z-index:30;background:var(--paper);margin:0 -.5rem 1.2rem;padding:.6rem .5rem .5rem;border-bottom:1px solid var(--line2);box-shadow:0 6px 10px -8px rgba(0,0,0,.18)}
+.tools{display:flex;align-items:center;justify-content:space-between;gap:.6rem .9rem;flex-wrap:wrap}
+.seg{display:inline-flex;background:#fff;border:1px solid var(--line2);border-radius:2rem;padding:.2rem;gap:.2rem}
+.seg button{border:0;background:transparent;border-radius:2rem;padding:.42rem .85rem;font:inherit;font-size:.88rem;font-weight:600;color:var(--pencil);cursor:pointer;transition:background-color .25s,color .25s;white-space:nowrap}
+.seg button:hover{background:var(--soft)}
+.seg button.tb[aria-pressed="true"]{background:var(--tb);color:#fff}
+.seg button.rl[aria-pressed="true"]{background:var(--rl);color:#fff}
+.zhtoggle{display:inline-flex;align-items:center;gap:.45rem;border:0;background:transparent;font:inherit;cursor:pointer;padding:.25rem .35rem;border-radius:1rem}
+.zhtoggle .lbl{font-family:'Huninn','Zen Maru Gothic','PingFang TC','Noto Sans TC',sans-serif;font-size:.95rem;color:var(--pencil)}
+.sw{width:2.6rem;height:1.45rem;border-radius:1rem;background:#D9DADF;position:relative;transition:background-color .25s;flex:0 0 auto}
+.sw::after{content:'';position:absolute;top:.15rem;left:.15rem;width:1.15rem;height:1.15rem;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .25s}
+.zhtoggle[aria-pressed="true"] .sw{background:var(--accent)}
+.zhtoggle[aria-pressed="true"] .sw::after{transform:translateX(1.15rem)}
+.modeline{font-size:.8rem;color:var(--gray);margin:.45rem 0 0;line-height:1.4}
+.modeline .zh{display:inline;font-size:.8rem}
+@media(max-width:520px){.seg button{font-size:.8rem;padding:.4rem .5rem}.long{display:none}.tools{gap:.4rem}.zhtoggle{padding:.2rem .1rem}}
+body:not(.zh-on) .modeline .zh{display:none}
+
+/* jump chips */
+.jumps{display:flex;flex-wrap:wrap;gap:.45rem;margin:0 0 1.3rem;align-items:center}
+.jumps .lab{font-size:.8rem;color:var(--gray);margin-right:.15rem}
+.jumps a{display:inline-flex;align-items:center;justify-content:center;min-width:2rem;height:2rem;padding:0 .65rem;border-radius:1rem;background:var(--ink);color:#fff;text-decoration:none;font-weight:600;font-size:.9rem;transition:transform .1s}
+.jumps a:hover{transform:translateY(-1px)}
+.jumps a.q{background:#fff;color:var(--ink);border:1px solid var(--line2)}
+
+/* big idea */
+.bigidea{border-left:.35rem solid var(--accent);background:var(--accent-soft);border-radius:.6rem;padding:.9rem 1rem .9rem 1.1rem;margin:0 0 2.2rem;max-width:48rem;transition:background-color .3s,border-color .3s}
+.bigidea h3{margin:0 0 .35rem;font-size:1.1rem}
+.bigidea ol{margin:.5rem 0 0;padding-left:1.35rem}
+.wn-hi{display:flex;align-items:flex-start;gap:.7rem;margin:.7rem 0 1.1rem;max-width:44rem}
+.wn-hi img{width:3.2rem;height:3.2rem;flex:0 0 auto}
+.wn-hi .bubble{position:relative;background:#fff;border:1px solid var(--line2);border-radius:.9rem;padding:.6rem .9rem .5rem}
+.wn-hi .bubble::before{content:"";position:absolute;left:-.4rem;top:1rem;width:.75rem;height:.75rem;background:#fff;border-left:1px solid var(--line2);border-bottom:1px solid var(--line2);transform:rotate(45deg)}
+.wn-hi .say{margin:0;font-size:.95rem;line-height:1.45}
+.wn-hi .who{font-family:'Caveat',cursive;font-size:1.1rem;color:var(--pencil)}
+.bigidea .play{margin:.9rem 0 0}
+.bigidea .gate{animation:fadein .35s;margin:.9rem 0 0}
+.bigidea .gate>p{margin:0}
+.bigidea li{margin:.3rem 0}
+.bigidea li::marker{color:var(--accent-deep);font-weight:600}
+
+/* ---------- sections ---------- */
+.sec{margin:0 0 2.8rem;scroll-margin-top:5.5rem}
+.sec h2{display:flex;align-items:flex-start;gap:.6rem;font-size:1.35rem;margin:0 0 1rem;line-height:1.25}
+.sec h2 .num{flex:0 0 auto;width:1.9rem;height:1.9rem;border-radius:50%;background:var(--ink);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:1rem;font-weight:700;margin-top:.05rem}
+.sec h2 .num.emoji{background:transparent;font-size:1.45rem;width:auto;min-width:1.9rem}
+.sec h2 .ttl{flex:1 1 12rem}
+.sec h2 .ttl .zh{font-size:.68em;margin-top:.2rem;font-weight:400}
+
+/* cutout (worksheet clipping) */
+.cutout{position:relative;background:#fff;border:1px solid var(--line);box-shadow:0 2px 6px rgba(0,0,0,.08),0 1px 0 var(--line2);padding:1.15rem 1rem 1.7rem;margin:1rem 0 1.3rem;transform:rotate(-.6deg);max-width:46rem;font-size:.95rem;line-height:1.55;color:#333}
+.cutout::before{content:'';position:absolute;top:-.65rem;left:50%;width:6rem;height:1.3rem;background:rgba(255,236,150,.55);transform:translateX(-50%) rotate(-2deg);border-left:1px dashed rgba(0,0,0,.07);border-right:1px dashed rgba(0,0,0,.07)}
+.cutout.alt{transform:rotate(.5deg)}
+.tape{position:absolute;top:-.7rem;left:1.375rem;width:4.9rem;height:1.375rem;background:rgba(255,224,130,.75);transform:rotate(-4deg);border-left:2px dashed rgba(255,255,255,.75);border-right:2px dashed rgba(255,255,255,.75)}
+.cutout .q{font-size:.95rem;color:#2A2C33;line-height:1.7;font-weight:400}
+.cutout .q b{font-weight:600;background:#5D6069;color:#fff;border-radius:50%;width:1.5rem;height:1.5rem;display:inline-grid;place-items:center;font-size:.75rem;margin-right:.375rem;vertical-align:middle}
+.ans{font-family:'Caveat',cursive;font-size:1.4rem;color:var(--pencil);border-bottom:1.5px solid #979AA2;padding:0 .25rem;line-height:1.2}
+.work{margin:.55rem 0 0 1.9rem;line-height:2}
+.work .ans{border-bottom:0}
+.wrong{position:relative;display:inline-block;padding:0 .2rem}
+.wrong::after{content:"";position:absolute;inset:-.2rem -.25rem;border:2.5px solid var(--red);border-radius:50%;transform:rotate(-8deg)}
+.redu{text-decoration:none;border-bottom:2px solid var(--red);padding-bottom:.02em}
+.okpen{font-family:'Caveat',cursive;color:var(--green);font-size:1.25rem;font-weight:600}
+.redpen{font-family:'Caveat',cursive;color:var(--red);font-size:1.3rem;line-height:1.2;margin:.7rem 0 0 1.9rem;font-weight:600}
+.graypen{font-family:'Caveat',cursive;color:var(--pencil);font-size:1.3rem;line-height:1.2;margin:.7rem 0 0 1.9rem;font-weight:600}
+.pageref{position:absolute;right:.7rem;bottom:.35rem;font-size:.72rem;color:var(--gray)}
+.recon{position:absolute;left:.8rem;bottom:.35rem;font-size:.68rem;color:var(--gray);letter-spacing:.03em}
+@media(max-width:640px){.cutout{padding-bottom:2.6rem}.recon{bottom:1.35rem}}
+/* correct but not doing any work: quiet dotted frame, no red anywhere (science page vocabulary) */
+.small{position:relative;display:inline-block;padding:0 .2rem}
+.small::after{content:"";position:absolute;inset:-.18rem -.22rem;border:2px dotted var(--gray);border-radius:.45rem}
+.estchips{display:flex;flex-wrap:wrap;gap:.7rem 1.4rem;margin:.7rem 0 .2rem 1.9rem}
+
+/* explain box */
+.explain{position:relative;border-left:.35rem solid var(--accent);background:var(--accent-soft);border-radius:.6rem;padding:1rem 1rem .8rem 1.1rem;margin:0 0 1.2rem;max-width:48rem;transition:background-color .3s,border-color .3s;animation:fadein .35s}
+.explain .pill{position:absolute;top:-.75rem;right:.8rem;background:var(--accent);color:#fff;border-radius:1rem;padding:.15rem .7rem;font-size:.72rem;font-weight:600;letter-spacing:.02em;transition:background-color .3s;white-space:nowrap}
+.explain ul{margin:.2rem 0 0;padding-left:1.15rem}
+.explain li{margin:.45rem 0}
+.explain li::marker{color:var(--accent)}
+body[data-mode="textbook"] .v-rl{display:none}
+body[data-mode="reallife"] .v-tb{display:none}
+.pill.auto::before{content:"📘 Textbook version"}
+body[data-mode="reallife"] .pill.auto::before{content:"🍎 Real-life version"}
+body.zh-on .pill.auto::before{content:"📘 Textbook version · 課本理論版"}
+body.zh-on[data-mode="reallife"] .pill.auto::before{content:"🍎 Real-life version · 生活應用版"}
+
+/* try-it box */
+.play{position:relative;background:#fff;border:2px dashed var(--line2);border-radius:.9rem;padding:1.15rem 1rem 1rem;margin:0 0 1.1rem;max-width:48rem}
+.play .tag{position:absolute;top:-.75rem;left:.9rem;background:var(--accent);color:#fff;border-radius:1rem;padding:.15rem .65rem;font-size:.72rem;font-weight:700;letter-spacing:.03em;transition:background-color .3s}
+.play h4{margin:0 0 .25rem;font-size:1.05rem}
+.play .hint{margin:0 0 .6rem;color:var(--pencil);font-size:.9rem}
+.play.ask{border-style:solid;border-color:var(--accent);transition:border-color .3s}
+.row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.55rem 0}
+.steplbl{font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--gray);font-weight:600;margin:.8rem 0 .1rem}
+.steplbl:first-of-type{margin-top:.2rem}
+
+/* buttons */
+.btn{font:inherit;font-weight:600;font-size:.92rem;color:#fff;background:var(--accent);border:0;border-radius:.7rem;padding:.55rem .95rem;cursor:pointer;box-shadow:0 3px 0 var(--accent-deep);transition:transform .08s,box-shadow .08s,background-color .3s,filter .15s;touch-action:manipulation;line-height:1.25}
+.btn:hover{filter:brightness(1.06)}
+.btn:active{transform:translateY(3px);box-shadow:0 0 0 var(--accent-deep)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:0 3px 0 var(--accent-deep);filter:none}
+.btn.ghost{background:#fff;color:var(--pencil);border:1px solid var(--line2);box-shadow:0 3px 0 var(--line2)}
+.btn.ghost:active{box-shadow:0 0 0 var(--line2)}
+.btn.ghost:disabled{box-shadow:0 3px 0 var(--line2)}
+.btn.sm{font-size:.82rem;padding:.4rem .7rem;border-radius:.6rem}
+
+/* messages */
+.msg{margin:.75rem 0 0;padding:.65rem .85rem;border-radius:.6rem;background:var(--soft);color:var(--ink);font-size:.93rem;line-height:1.45;border:1px solid var(--line);animation:fadein .25s}
+.msg.good{background:#E6F5EC;border-color:#BFE4CD}
+.msg.bad{background:#FDEAE8;border-color:#F5C2BC}
+.msg.warn{background:#FFF7D6;border-color:#F0E0A0}
+.msg[hidden]{display:none}
+
+/* choice buttons */
+.choices{display:grid;gap:.45rem;margin:.5rem 0}
+.choice{font:inherit;text-align:left;background:#fff;border:2px solid var(--line2);border-radius:.7rem;padding:.55rem .8rem;cursor:pointer;font-size:.95rem;color:var(--ink);transition:border-color .15s,background-color .15s;line-height:1.35}
+.choice:hover{border-color:var(--accent)}
+.choice.ok{border-color:var(--green);background:#E6F5EC}
+.choice.no{border-color:var(--red);background:#FDEAE8}
+.choice.dim{opacity:.55}
+.choice:disabled{cursor:default}
+.choice:disabled:hover{border-color:var(--line2)}
+.choice.ok:disabled:hover{border-color:var(--green)}
+.choice.no:disabled:hover{border-color:var(--red)}
+
+/* small option buttons (chips) */
+.opb{font:inherit;font-weight:700;min-width:2.3rem;height:2rem;padding:0 .45rem;border-radius:.5rem;border:2px solid var(--line2);background:#fff;cursor:pointer;color:var(--ink);font-size:1rem;transition:border-color .15s,background-color .15s}
+.opb:hover{border-color:var(--accent)}
+.opb.ok{background:#E6F5EC;border-color:var(--green)}
+.opb.no{background:#FDEAE8;border-color:var(--red)}
+.opb:disabled{cursor:default}
+.opb.wide{min-width:0;padding:.25rem .7rem;font-size:.9rem;font-weight:600;height:auto;min-height:2rem;line-height:1.3;white-space:normal;text-align:left}
+
+/* stamp rows (the showdown) */
+.srow{display:flex;align-items:center;justify-content:space-between;gap:.5rem;background:var(--soft);border:1px solid var(--line);border-radius:.7rem;padding:.4rem .65rem;flex-wrap:wrap;margin:.4rem 0;max-width:40rem}
+.srow .ph{font-weight:600;font-size:.92rem;flex:1 1 12rem;line-height:1.35}
+.srow .ph .zh{font-weight:400}
+.srow .ops{flex:0 0 auto;display:inline-flex;gap:.3rem}
+.srow .why{flex-basis:100%;font-size:.82rem;color:var(--pencil);display:none;line-height:1.35}
+.srow.done .why{display:block}
+.counter{font-size:.85rem;color:var(--pencil);margin:.3rem 0 0}
+
+/* model answer */
+.model{background:#fff;border:2px dashed var(--line2);border-radius:.7rem;padding:.7rem .9rem;margin:0 0 .6rem;max-width:48rem;font-size:.95rem}
+.model .lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--gray);display:block;margin-bottom:.25rem;font-weight:600}
+.model .line{font-weight:600;font-size:1.02rem;line-height:1.5;display:flex;flex-wrap:wrap;gap:.1rem 1.1rem}
+.model .line span{white-space:nowrap}
+.model .line .ans-hi{color:var(--accent-deep);font-weight:700}
+.model .line.sentence{display:block}
+.model .line.sentence span{white-space:normal}
+
+/* long division on squared paper (bar-models vocabulary) */
+.ldwrap{overflow-x:auto;padding:.15rem 0 .3rem}
+.ld{display:grid;grid-template-columns:repeat(var(--c),1.5rem);grid-auto-rows:1.65rem;justify-content:start;
+  font-size:1.05rem;font-weight:600;color:var(--ink);margin:.4rem 0 .1rem}
+.ld .c{display:grid;place-items:center;animation:fadein .3s}
+.ld .c.faded{color:var(--gray)}
+.ld .c.slot{border:1.5px dashed var(--red);border-radius:.25rem;color:transparent}
+.ld .c.slotb{border:1.5px dashed var(--accent);border-radius:.25rem;color:transparent}
+.ld .c.fresh{background:#E6F5EC;border-radius:.25rem;color:#1D7A4E;animation:pop .35s}
+.ld .c.pred{background:var(--accent-soft);border-radius:.25rem;color:var(--accent-deep);animation:pop .35s}
+.ld .rule{align-self:start;height:0;border-top:2px solid var(--ink);width:100%}
+.ldcap{font-size:.8rem;color:var(--gray);margin:.1rem 0 0}
+
+/* quiz */
+.quizbox{background:#fff;border:2px dashed var(--line2);border-radius:.9rem;padding:1rem;max-width:48rem}
+.qdots{display:flex;gap:.35rem;margin:0 0 .7rem;flex-wrap:wrap}
+.qdots i{width:.6rem;height:.6rem;border-radius:50%;background:var(--line2);display:block}
+.qdots i.cur{background:var(--accent);transform:scale(1.25)}
+.qdots i.ok{background:var(--green)}
+.qdots i.no{background:var(--red)}
+.qq{font-size:1.05rem;font-weight:600;margin:0 0 .6rem;line-height:1.4}
+.qq .zh{font-weight:400}
+.qresult{text-align:center;padding:1rem 0 .3rem}
+.qresult .stars{font-size:2.3rem;letter-spacing:.1em;animation:pop .5s}
+.qresult .sc{font-size:1.5rem;font-weight:700;margin:.2rem 0}
+
+/* tips */
+.tips{display:grid;gap:.6rem;max-width:48rem}
+.tipcard{background:#fff;border:1px solid var(--line);border-left:.35rem solid var(--hl);border-radius:.6rem;padding:.7rem .9rem;font-size:.95rem}
+.tipcard b.t{display:block;margin-bottom:.15rem}
+
+/* correction list */
+.fixlist{list-style:none;padding:0;margin:0;max-width:48rem;display:grid;gap:.45rem}
+.fixlist label{display:flex;gap:.7rem;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:.7rem;padding:.6rem .75rem;cursor:pointer;transition:background-color .2s}
+.fixlist input{appearance:none;-webkit-appearance:none;width:1.35rem;height:1.35rem;border:2px solid var(--line2);border-radius:.4rem;flex:0 0 auto;margin:.15rem 0 0;position:relative;cursor:pointer;background:#fff;transition:background-color .15s,border-color .15s}
+.fixlist input:checked{background:var(--green);border-color:var(--green)}
+.fixlist input:checked::after{content:'';position:absolute;left:.36rem;top:.08rem;width:.35rem;height:.72rem;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg)}
+.fixlist label.done{background:var(--soft)}
+.fixlist label.done .txt{text-decoration:line-through;color:var(--gray)}
+.fixlist .txt{font-size:.95rem;line-height:1.4}
+.fixlist .txt b{font-weight:600}
+.fixlist .txt .w{display:block;font-size:.86rem;color:var(--pencil)}
+.fixlist label.done .txt .w{color:var(--gray)}
+
+.foot{font-size:1.5rem;margin:2.5rem 0 0;line-height:1.25}
+.foot .zh{font-size:.65em;margin-top:.2rem}
+
+/* explanation cut into steps; each one unlocks the next */
+.step{background:#fff;border:1px solid var(--line);border-radius:.7rem;padding:.7rem .85rem;margin:.7rem 0 0;animation:fadein .35s}
+.step[hidden]{display:none}
+.gate[hidden]{display:none}
+.gate{animation:fadein .35s}
+.redo{animation:pop .4s}
+
+/* hint channels — collapsed, smallest possible nudge (2026-08-24 rules) */
+.hintfold{margin:.9rem 0 0;max-width:48rem}
+.hintfold details{border-radius:.6rem;border:1px solid var(--line2);background:#fff;overflow:hidden;margin:.4rem 0}
+.hintfold details.bk{border-color:#B9CBF2;background:#F3F7FE}
+.hintfold details.pc{border-color:#F2CBA4;background:#FFF8F0}
+.hintfold summary{cursor:pointer;font-weight:600;font-size:.88rem;padding:.45rem .7rem;list-style:none}
+.hintfold summary::-webkit-details-marker{display:none}
+.hintfold summary::before{content:'▸ '}
+.hintfold details[open] summary::before{content:'▾ '}
+.hintfold details.bk summary{color:#2B52AE}
+.hintfold details.pc summary{color:#C4680F}
+.hintfold .hb{padding:0 .8rem .6rem;font-size:.9rem;line-height:1.55}
+.hintfold .hb p{margin:.25rem 0}
+
+/* motion + a11y */
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.pop{animation:pop .35s}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+<body data-mode="textbook">
+<style>
+.wn-back{position:fixed;right:.8rem;bottom:.8rem;z-index:999;display:inline-flex;align-items:center;gap:.3rem;
+ background:#fff;color:#2E3037;border:1px solid #D9DADF;border-radius:999px;padding:.4rem .8rem;
+ font-family:'Fredoka',system-ui,sans-serif;font-size:.85rem;font-weight:600;text-decoration:none;
+ box-shadow:0 2px 8px rgba(0,0,0,.14)}
+.wn-back:hover{border-color:#2E3037}
+@media print{.wn-back{display:none}}
+</style>
+<a href="index.html" class="wn-back" aria-label="Back to the index">📒 Index</a>
+
+<div class="notebook">
+<div class="holes" aria-hidden="true"></div>
+<main class="page">
+
+<!-- ================= HEADER ================= -->
+<header class="top">
+  <div class="hand date">6/21 · Extra Practice 4A · Chapter 2 Activity 3 · Dividing by a 1-Digit Number</div>
+  <h1>William's <mark>Correction</mark> Notes<span class="zh">William 的訂正筆記 — 一位數除法</span></h1>
+
+  <div class="wn-hi">
+    <img id="wnHiImg" src="img/skzoo-puppym.png" alt="Your study buddy" width="150" height="150">
+    <div class="bubble">
+      <p class="say">Hi William! I found the trap question — 9,036 ÷ 3 — and your <b>3,012</b> put that sneaky 0 exactly where it belongs. 19 of your 20 answers are already right. Let's go get the last one.<span class="zh">William 嗨！我找到陷阱題了——9,036 ÷ 3——你的 <b>3,012</b> 把那個愛躲的 0 放得剛剛好耶。20 題裡你已經拿下 19 題囉。我們去把最後一題接回家吧！</span></p>
+      <span class="who" id="wnHiName">Puppy M</span>
+    </div>
+  </div>
+
+  <p class="lead">Three pages of long division, and this notebook stays short: <mark>one question on p.45</mark> to reopen, and <mark>one upgrade</mark> that gives your ≈ lines a brand-new job.
+    <span class="zh">三頁長除法，這本筆記卻很短：p.45 有一題要重新打開，另外還有一個升級——要給你那些 ≈ 換一份全新的工作喔。</span></p>
+
+  <div class="vocab" aria-label="Words to know">
+    <div class="vcard"><b>quotient</b><span class="def">the answer you get when you divide</span><span class="zh">商：除法算出來的答案</span></div>
+    <div class="vcard"><b>divisor</b><span class="def">the number you divide by</span><span class="zh">除數：拿來除的那個數</span></div>
+    <div class="vcard"><b>place value</b><span class="def">what a digit is worth because of where it sits</span><span class="zh">位值：數字因為「坐在哪裡」而有的價值</span></div>
+    <div class="vcard"><b>estimate</b><span class="def">a careful guess made before you know the answer</span><span class="zh">估算：知道答案「之前」做的聰明猜測</span></div>
+    <div class="vcard"><b>reasonable</b><span class="def">close enough to make sense</span><span class="zh">合理：夠接近、說得通</span></div>
+    <div class="vcard"><b>friendly number</b><span class="def">a number from your divisor’s times table, wearing zeros — easy to divide in your head</span><span class="zh">好朋友數：除數乘法表裡的數字穿上零——可以直接心算</span></div>
+    <div class="vcard"><b>remainder</b><span class="def">what is left over after dividing</span><span class="zh">餘數：除完之後剩下來的</span></div>
+  </div>
+
+</header>
+
+<!-- ================= TOOLBAR ================= -->
+<div class="toolbar" id="toolbar">
+  <div class="tools">
+    <div class="seg" role="group" aria-label="Choose a version">
+      <button type="button" class="tb" data-mode="textbook" aria-pressed="true">📘 Textbook<span class="long"> version</span></button>
+      <button type="button" class="rl" data-mode="reallife" aria-pressed="false">🍎 Real-life<span class="long"> version</span></button>
+    </div>
+    <button type="button" class="zhtoggle" id="zhbtn" aria-pressed="false" aria-label="中文 translation on or off"><span class="lbl">中文</span><span class="sw" aria-hidden="true"></span></button>
+  </div>
+  <p class="modeline" id="modeline"></p>
+</div>
+
+<nav class="jumps" aria-label="Jump to">
+  <span class="lab">Jump to</span>
+  <a href="#s1">1</a><a href="#s2">2</a>
+  <a href="#tips" class="q">💡 Tips</a><a href="#quiz" class="q">🎯 Quiz</a><a href="#fix" class="q">✍️ List</a>
+</nav>
+
+<!-- ================= BIG IDEA ================= -->
+<section class="bigidea" aria-label="The big idea">
+  <h3>🔑 Two spots, straight off your pages<span class="zh">兩個地方，從你的作業原封不動搬下來</span></h3>
+  <p>Nothing added, nothing judged — this is exactly what you wrote:<span class="zh">什麼都沒加、什麼都還沒判斷——就是你自己寫下來的東西：</span></p>
+  <ol>
+    <li>p.45 #3 — line 1: <b>24 hundreds ÷ 6</b> · line 2: <b>2 hundreds</b> · answer: <b>200</b>.<span class="zh">p.45 第 3 題——第一行：24 hundreds ÷ 6。第二行：2 hundreds。答案：200。</span></li>
+    <li>Your four estimate lines: <b>32 ≈ 30 · 2,341 ≈ 2,000 · 123 ≈ 100 · 921 ≈ 900</b>.<span class="zh">你的四行估算：32 ≈ 30 · 2,341 ≈ 2,000 · 123 ≈ 100 · 921 ≈ 900。</span></li>
+  </ol>
+
+  <div class="play ask">
+    <span class="tag">🔎 You first</span>
+    <h4>Before this page says anything — what do you remember about that day?<span class="zh">在這一頁開口之前——關於那一天，你記得的是什麼呢？</span></h4>
+    <p class="hint">Pick the closest one. <mark>There's no wrong answer here</mark> — you were there, this page wasn't.<span class="zh">挑最接近的那個吧。這題沒有錯的答案喔——當時在場的是你，這頁又不在。</span></p>
+    <div id="bigask"></div>
+  </div>
+
+  <div class="gate" id="bigexp" hidden>
+    <p>Here's everything this page can actually see — no more, no less: the one slip sits <b>right under a perfect first line</b>, and all four ≈ lines are <b>true</b>. So this notebook only adds three small checks:<span class="zh">這一頁真正看得到的就這些——不多也不少：唯一的滑倒就躺在一行完美算式的正下方，而四行 ≈ 全部都是真的。所以這本筆記只加三個小檢查：</span></p>
+    <ol>
+      <li>Say the place-value line <b>out loud</b>: "24 hundreds divided by 6 is __ hundreds." Ears catch what eyes slide past.<span class="zh">把位值那一行「唸出來」：24 hundreds divided by 6 is __ hundreds。耳朵抓得到眼睛滑過去的東西。</span></li>
+      <li><b>Multiply back</b>: answer × divisor must land exactly on the big number.<span class="zh">乘回去：答案 × 除數，必須正好落回那個大數字。</span></li>
+      <li>Estimate <b>before</b> you divide, written above the box — section 2 shows why the order matters.<span class="zh">在「除之前」先估算，寫在除法框上面——第 2 段會讓你看到順序為什麼重要。</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= SECTION 1 ================= -->
+<section class="sec" id="s1">
+  <h2><span class="num">1</span><span class="ttl">24 ÷ 6 = 4 — but 4 <i>what</i>?<span class="zh">24 ÷ 6 = 4——但是 4 個「什麼」？</span></span></h2>
+
+  <div class="cutout">
+    <span class="tape"></span>
+    <div class="q"><b>3</b> 2,400 ÷ 6 = <span class="ans"><span class="wrong">200</span></span></div>
+    <div class="work">
+      <span class="ans">24 hundreds ÷ 6</span><br>
+      <span class="ans">= <span class="redu">2 hundreds</span></span>
+    </div>
+    <p class="redpen">Line 1 says 24 hundreds ÷ 6. Line 2 says 2 hundreds. What happened in between?<span class="zh">第一行寫 24 hundreds ÷ 6。第二行寫 2 hundreds。這中間發生了什麼事？</span></p>
+    <span class="recon">Question reconstruction<span class="zhi">・原題重現</span></span>
+    <span class="pageref">Extra Practice 4A · p.45 · #3</span>
+  </div>
+
+  <div class="cutout alt">
+    <span class="tape"></span>
+    <div class="q"><b>4</b> 4,900 ÷ 7 = <span class="ans">700</span> <span class="okpen">✓</span></div>
+    <div class="work">
+      <span class="ans">49 hundreds ÷ 7 = 7 hundreds = 700</span>
+    </div>
+    <p class="redpen" style="color:var(--green)">Same move, one question later — you ran it perfectly, top to bottom.<span class="zh">同一招，下一題——你自己就從頭到尾跑得漂漂亮亮。</span></p>
+    <span class="recon">Question reconstruction<span class="zhi">・原題重現</span></span>
+    <span class="pageref">Extra Practice 4A · p.45 · #4</span>
+  </div>
+
+  <div class="play ask">
+    <span class="tag">🔎 You first</span>
+    <h4>Your own line 1 says: 24 hundreds ÷ 6. So — 24 ÷ 6 = ?<span class="zh">你自己的第一行寫著：24 hundreds ÷ 6。那——24 ÷ 6 = ？</span></h4>
+    <div id="s1ask"></div>
+  </div>
+
+  <div class="gate" id="s1exp" hidden>
+    <div class="explain">
+      <span class="pill auto"></span>
+
+      <div class="step" id="s1st1">
+        <p class="steplbl">Step 1 · how many hundreds hide in 2,400?</p>
+        <p class="v-tb">2,400 is 2 thousands and 4 hundreds. Each thousand holds <mark>10 hundreds</mark> — so that's 20 hundreds, plus 4 more. Your line 1 already knew this.<span class="zh">2,400 是 2 個千和 4 個百。每個千裡面藏著 10 個百——所以是 20 個百，再加 4 個。你的第一行早就知道這件事囉。</span></p>
+        <p class="v-rl">$2,400, paid out in $100 bills. Two thousand dollars is a stack of 20 bills — then 4 more bills on top.<span class="zh">$2,400，全部用百元鈔付。兩千元是 20 張一疊——上面再放 4 張。</span></p>
+        <p>👉 So 2,400 = ___ hundreds.<span class="zh">所以 2,400 = ___ 個 hundred。</span></p>
+        <div id="s1a1"></div>
+      </div>
+
+      <div class="step" id="s1st2" hidden>
+        <p class="steplbl">Step 2 · divide the hundreds, keep the name</p>
+        <p class="v-tb">Share 24 hundreds among 6: the <mark>24</mark> gets divided, but the name <mark>hundreds</mark> stays stuck on. 24 hundreds ÷ 6 = 4 <mark>hundreds</mark> — never a bare 4.<span class="zh">把 24 個百分給 6：被除的是 24，但「hundreds」這個名字是黏在上面的。24 hundreds ÷ 6 = 4 個「百」——絕對不是光溜溜的 4。</span></p>
+        <p class="v-rl">Share 24 bills among 6 friends. Each friend walks away with 4 <mark>bills</mark> — and every single bill is still worth $100. Nobody's bill shrinks.<span class="zh">24 張百元鈔分給 6 個朋友。每人拿走 4 「張」——而且每一張都還是 $100。沒有人的鈔票會縮水。</span></p>
+        <p>👉 So the 4 in 24 ÷ 6 = 4 counts…<span class="zh">所以 24 ÷ 6 = 4 裡的那個 4，數的是……</span></p>
+        <div id="s1a2"></div>
+      </div>
+
+      <div class="step" id="s1st3" hidden>
+        <p class="steplbl">Step 3 · say it out loud</p>
+        <p class="v-tb">Now your book's own check: read the whole line <mark>out loud</mark> — "24 hundreds divided by 6 is 4 hundreds." Hearing it catches slips that reading doesn't. Say it, then write 4 hundreds as a number:<span class="zh">現在用課本自己的檢查法：整行「唸出來」——24 hundreds divided by 6 is 4 hundreds。用唸的抓得到用看的抓不到的滑倒。唸完，把 4 個百寫成一個數字：</span></p>
+        <p class="v-rl">Say it like you're handing out the money: "twenty-four bills, six friends — four bills each." Four $100 bills is how much?<span class="zh">像發錢一樣唸出來：「24 張鈔票、6 個朋友——一人 4 張。」4 張百元鈔是多少錢呢？</span></p>
+        <div id="s1a3"></div>
+      </div>
+
+      <div class="step" id="s1st4" hidden>
+        <p class="steplbl">Step 4 · make the answer prove itself</p>
+        <p class="v-tb">One more check — the strongest one: <mark>multiply back</mark>. If 400 really is 2,400 ÷ 6, then 400 × 6 has to land exactly on 2,400. No landing, no answer.<span class="zh">再一個檢查——而且是最強的那個：「乘回去」。如果 400 真的是 2,400 ÷ 6，那 400 × 6 就必須正好落在 2,400 上。沒落上去，就不算答案。</span></p>
+        <p class="v-rl">Six friends put their $400 back in the pot. If the pot doesn't hold $2,400 again, somebody's share was wrong.<span class="zh">6 個朋友把各自的 $400 放回鍋子裡。如果鍋子裡湊不回 $2,400，就表示有人分到的錢不對。</span></p>
+        <p>👉 400 × 6 = ?<span class="zh">400 × 6 = ？</span></p>
+        <div id="s1a4"></div>
+      </div>
+
+      <div class="step" id="s1st5" hidden>
+        <p class="steplbl">Step 5 · say it your way</p>
+        <p>Your page said 2 hundreds. Why is the answer 4 hundreds instead?<span class="zh">用你自己的話選選看：你的作業寫 2 個百。為什麼答案其實是 4 個百呢？</span></p>
+        <div id="s1a5"></div>
+      </div>
+    </div>
+
+    <div class="hintfold">
+      <details class="bk">
+        <summary>📘 Book hint<span class="zhi">・課本提示</span></summary>
+        <div class="hb">
+          <p>24 hundreds ÷ 6 = 4 <mark>hundreds</mark> — the unit stays the same.<span class="zh">24 個百 ÷ 6 = 4 個「百」——單位不變。</span></p>
+          <p>Rule: <mark>divide the count, keep the name</mark>.<span class="zh">規則：除的是個數，名字要留著。</span></p>
+          <p>Check: read the line out loud — "…is 4 hundreds."<span class="zh">檢查法：整行唸出來——「…is 4 hundreds.」</span></p>
+        </div>
+      </details>
+      <details class="pc">
+        <summary>🍎 Picture hint<span class="zhi">・生活提示</span></summary>
+        <div class="hb">
+          <p>24 hundred-dollar bills, shared by 6 friends → 4 bills each.<span class="zh">24 張百元鈔，分給 6 個朋友→一人 4 張。</span></p>
+          <p>Look: did any bill change its value while you shared them?<span class="zh">觀察看看：分的時候，有任何一張鈔票變薄了嗎？</span></p>
+          <p>Same rule: divide the count, keep the name.<span class="zh">同一條規則：除的是個數，名字要留著。</span></p>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <div class="gate" id="s1try" hidden>
+    <div class="play">
+      <span class="tag">Try it</span>
+      <h4>Run the whole move yourself — twice<span class="zh">整套自己跑——跑兩次</span></h4>
+      <p class="hint">Start to finish each time: count the hundreds · divide · keep the name · write the number · multiply back.<span class="zh">每次都從頭走到尾喔：數出幾個百 → 除 → 名字留著 → 寫成數字 → 乘回去。</span></p>
+      <div id="s1walk"></div>
+      <div class="msg" id="s1wmsg" hidden></div>
+    </div>
+  </div>
+
+  <div class="gate" id="s1model" hidden>
+    <div class="model">
+      <span class="lbl">✍️ Copy this into your workbook — p.45 #3</span>
+      <div class="line sentence"><span>2,400 ÷ 6 = 24 hundreds ÷ 6 = <span class="ans-hi">4 hundreds</span> = <span class="ans-hi">400</span></span></div>
+      <div class="line sentence"><span>Check: <span class="ans-hi">400 × 6 = 2,400</span> ✓</span></div>
+      <span class="zh">範例答案——抄回作業本。</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 2 ================= -->
+<section class="sec" id="s2">
+  <h2><span class="num">2</span><span class="ttl">Estimate first — turn it into a prediction<span class="zh">先估算——把它變成「預測」</span></span></h2>
+
+  <div class="cutout">
+    <span class="tape"></span>
+    <div class="q">Estimate to check that each answer is reasonable.</div>
+    <p style="margin:.5rem 0 0 .2rem">Your four ≈ lines, one for each answer:<span class="zh">你的四行 ≈，一行對一個答案：</span></p>
+    <div class="estchips">
+      <span class="small ans">32 ≈ 30</span>
+      <span class="small ans">2,341 ≈ 2,000</span>
+      <span class="small ans">123 ≈ 100</span>
+      <span class="small ans">921 ≈ 900</span>
+    </div>
+    <p class="graypen">All four are true. Rounded — but rounded <i>what</i>?<span class="zh">四行全是真的。都四捨五入了——但捨的是「什麼」呢？</span></p>
+    <span class="recon">Question reconstruction<span class="zhi">・原題重現</span></span>
+    <span class="pageref">Extra Practice 4A · p.45–47 · estimate lines</span>
+  </div>
+
+  <div class="play ask">
+    <span class="tag">🔎 You first</span>
+    <h4>A check's job: catch wrong answers.<span class="zh">「檢查」的工作：抓到錯的答案。</span></h4>
+    <p class="hint">Your #3 said 200 — a wrong answer (section 1 has that story). Round it: 200 ≈ 200. Did the ≈ line notice?<span class="zh">你的第 3 題寫了 200——那是個錯的答案（完整故事在第 1 段）。把它四捨五入：200 ≈ 200。這行 ≈ 有發現不對勁嗎？</span></p>
+    <div id="s2ask"></div>
+  </div>
+
+  <div class="gate" id="s2exp" hidden>
+    <div class="explain">
+      <span class="pill auto"></span>
+
+      <div class="step" id="s2st1">
+        <p class="steplbl">Step 1 · why round-after can never argue</p>
+        <p class="v-tb">Look at what got rounded: <mark>the answer you had just written</mark>. Rounding a number only makes a tidier copy of it — and a copy <mark>always agrees</mark> with its original. Right answer → tidy. Wrong answer → still tidy.<span class="zh">看看被四捨五入的是什麼：是「你剛剛才寫下來的答案」。把一個數四捨五入，只會做出它比較整齊的複本——而複本永遠同意本尊。答案對→很整齊。答案錯→還是很整齊。</span></p>
+        <p class="v-rl">Shout 200 into a canyon — the echo says <mark>200</mark>. Shout a wrong number, and the echo repeats that too. An echo can't argue with you.<span class="zh">對著山谷大喊 200——回音就喊 200。喊一個錯的數字，回音也照樣重複。回音沒辦法跟你唱反調呀。</span></p>
+        <p>👉 Test it once more. Someone writes 813 (truly 913), then checks by rounding: 813 ≈ 800. Alarm?<span class="zh">再試一次。有人寫了 813（其實是 913），然後用「把答案四捨五入」來檢查：813 ≈ 800。警報有響嗎？</span></p>
+        <div id="s2a1"></div>
+      </div>
+
+      <div class="step" id="s2st2" hidden>
+        <p class="steplbl">Step 2 · flip the order: predict first</p>
+        <p class="v-tb">The instruction wanted an estimate that <mark>checks</mark>. A check must be able to argue — so it has to come from somewhere <mark>other than your answer</mark>: from the BIG number, <mark>before</mark> you divide. And 2,400 is already friendly with 6 — think <mark>24 ÷ 6</mark>.<span class="zh">題目要的是「能檢查」的估算。檢查必須有能力唱反調——所以它得來自你的答案「以外」的地方：來自那個大數字，而且要在除「之前」。2,400 本來就跟 6 是好朋友——想 24 ÷ 6 就好。</span></p>
+        <p class="v-rl">A weather forecast says "rain tomorrow" <mark>before</mark> tomorrow. Written after the rain, it isn't a forecast any more — it's a diary. Predictions only count before.<span class="zh">天氣預報是在明天「之前」說明天會下雨。等雨下完才寫的，就不叫預報了——那叫日記。預測只有在事情之前才算數。</span></p>
+        <p>👉 Build the prediction for 2,400 ÷ 6. First 24 ÷ 6 = 4, so the answer should be near…<span class="zh">幫 2,400 ÷ 6 蓋一個預測。先算 24 ÷ 6 = 4，所以答案應該在哪附近呢……</span></p>
+        <div id="s2a2"></div>
+      </div>
+
+      <div class="step" id="s2st3" hidden>
+        <p class="steplbl">Step 3 · the showdown — one mistake, two checks</p>
+        <p class="v-tb">Now hold the page's 200 next to the prediction 400. Two numbers from two <mark>different places</mark> — now an argument is possible. Stamp what each check really did:<span class="zh">現在把作業上的 200 和預測的 400 擺在一起。兩個數字來自兩個「不同的地方」——這下子才吵得起來。幫兩個檢查蓋上它們真正的表現：</span></p>
+        <p class="v-rl">The forecast said "near 400". The page claims 200. Two witnesses who disagree — <mark>now</mark> the detective has a case. Stamp each witness:<span class="zh">預報說「400 附近」。作業卻說 200。兩個證人說法不合——「這下」偵探才有案子可辦。幫兩位證人蓋章：</span></p>
+        <div id="s2duel"></div>
+        <div class="msg" id="s2dmsg" hidden></div>
+      </div>
+
+      <div class="step" id="s2st4" hidden>
+        <p class="steplbl">Step 4 · pick friendly numbers</p>
+        <p class="v-tb">The recipe: ① round the big number to a <mark>friendly number</mark> — one straight from your divisor’s times table, wearing zeros ② divide it in your head ③ compare with the real answer. For ÷ 7 think 7,000 or 4,900; for ÷ 4 think 8,000 or 3,200.<span class="zh">食譜是：① 把大數字圓整成「好朋友數」——除數乘法表裡的數穿上零的那種 ② 心算除一下 ③ 拿來跟真正的答案比。÷7 就想 7,000 或 4,900；÷4 就想 8,000 或 3,200。</span></p>
+        <p class="v-rl">A friendly number is one from your divisor's times table, wearing zeros. 7's friends: 7,000 · 4,900 · 2,800. Invite friends, not strangers.<span class="zh">好朋友數就是除數乘法表裡的數字，穿上幾個零。7 的朋友：7,000、4,900、2,800。要請朋友，不要請陌生人喔。</span></p>
+        <p>👉 Two picks, both from your own page:<span class="zh">選兩題，都是你自己那頁的題目：</span></p>
+        <div id="s2a4"></div>
+      </div>
+
+      <div class="step" id="s2st5" hidden>
+        <p class="steplbl">Step 5 · say it your way</p>
+        <p>Why must the estimate happen BEFORE the divide?<span class="zh">用你自己的話選選看：估算為什麼一定要在「除之前」做呢？</span></p>
+        <div id="s2a5"></div>
+      </div>
+    </div>
+
+    <div class="hintfold">
+      <details class="bk">
+        <summary>📘 Book hint<span class="zhi">・課本提示</span></summary>
+        <div class="hb">
+          <p>"Estimate to check that each answer is reasonable."<span class="zh">課本原句：「Estimate to check that each answer is reasonable.」</span></p>
+          <p>Rule: round the <mark>big number</mark>, before you divide.<span class="zh">規則：先圓整那個「大數字」，再動手除。</span></p>
+          <p>Check: prediction and answer should live in the same neighbourhood.<span class="zh">檢查法：預測和答案要住在同一個街區。</span></p>
+        </div>
+      </details>
+      <details class="pc">
+        <summary>🍎 Picture hint<span class="zhi">・生活提示</span></summary>
+        <div class="hb">
+          <p>A weather forecast only counts <mark>before</mark> the weather.<span class="zh">天氣預報只有在天氣「之前」才算數。</span></p>
+          <p>Look: written after the rain, what would you call it?<span class="zh">觀察看看：等雨下完才寫的那種，你會叫它什麼？</span></p>
+          <p>Same rule: estimate before, so it can still argue.<span class="zh">同一條規則：先估算，它才有機會唱反調。</span></p>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <div class="gate" id="s2try" hidden>
+    <div class="play">
+      <span class="tag">Try it</span>
+      <h4>The Next Challenge — four fresh ones, full habit<span class="zh">新的挑戰——四題，完整跑一次新習慣</span></h4>
+      <p class="hint">Each one, three moves: friendly number → predict → divide &amp; compare. The box is drawn for you — your estimate goes <b>on top</b> of it. Divide in your notebook margin, then pick what you got.<span class="zh">每一題三個動作：挑好朋友數 → 預測 → 除完比對。除法框畫好了——你的估算要寫在框「上面」。除法在筆記本空白處自己算，算完回來選你算到的答案。</span></p>
+      <div id="s2walk"></div>
+      <div class="msg" id="s2wmsg" hidden></div>
+    </div>
+  </div>
+
+  <div class="gate" id="s2model" hidden>
+    <div class="model">
+      <span class="lbl">✍️ The line to write above every box — copy this shape</span>
+      <div class="line sentence"><span>6,127 ÷ 3 — Estimate first: <span class="ans-hi">6,000 ÷ 3 = 2,000</span>. Now divide: <span class="ans-hi">2,042 r1</span>. Close? <span class="ans-hi">Yes.</span></span></div>
+      <span class="zh">寫在每個除法框上面的那一行——照這個樣子寫。</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TIPS ================= -->
+<section class="sec" id="tips">
+  <h2><span class="num emoji">💡</span><span class="ttl">Tips — these aren't mistakes<span class="zh">小提醒——這些都不算錯喔</span></span></h2>
+  <div class="tips">
+    <div class="tipcard"><b class="t">⭐ 9,036 ÷ 3 = 3,012 — you beat the trap question</b>The 0 in the middle of the quotient is exactly where most people drop a digit and write 312. Yours sits exactly where it belongs.<span class="zh">9,036 ÷ 3 = 3,012——你打敗了整份的陷阱題。商中間那個 0 正是大家最容易掉的地方（掉了就變 312）。你的 0 放得剛剛好。</span></div>
+    <div class="tipcard"><b class="t">⭐ Four digits, clean work</b>4,682 ÷ 2 = 2,341 · 7,504 ÷ 7 = 1,072 · 8,492 ÷ 4 = 2,123. Every subtraction lined up, every digit correct.<span class="zh">四位數除法乾乾淨淨：4,682 ÷ 2 = 2,341、7,504 ÷ 7 = 1,072、8,492 ÷ 4 = 2,123。每一次減法都對得整整齊齊，每個數字都對。</span></div>
+    <div class="tipcard"><b class="t">⭐ 480 ÷ 4 — split smartly</b>You broke 480 into <mark>400 + 80</mark>, then 100 + 20 = 120. Choosing friendly parts is the whole skill of an area model, and you chose well.<span class="zh">480 ÷ 4 的面積模型你把 480 拆成 400 + 80，再 100 + 20 = 120。挑「好拆的部分」就是這個方法的全部功夫，而你挑得很漂亮。</span></div>
+    <div class="tipcard"><b class="t">⭐ Six remainder questions, six wins</b>94 ÷ 3 = 31 r1 · 357 ÷ 5 = 71 r2 · 3,685 ÷ 4 = 921 r1 · 96 ÷ 7 = 13 r5 · 602 ÷ 8 = 75 r2… every remainder smaller than the divisor — which means you kept dividing until you truly couldn't.<span class="zh">六題餘數題全對：94÷3=31 r1、357÷5=71 r2、3,685÷4=921 r1、96÷7=13 r5、602÷8=75 r2……每個餘數都比除數小——表示你每次都除到真的不能再除為止。</span></div>
+    <div class="tipcard"><b class="t">💡 The estimate kit — four habits to keep</b>① Write the estimate <mark>above</mark> the division box, before you start. ② Round to the divisor's friendly number: ÷ 7 → 7,000 or 4,900; ÷ 4 → 8,000 or 3,200. ③ Far apart? Don't erase anything yet — check the quotient's first digit. ④ Say place-value lines out loud.<span class="zh">估算工具包——四個要帶走的習慣：① 動筆除之前，先把估算寫在除法框「上面」。② 圓整成除數的好朋友數：÷7 想 7,000 或 4,900；÷4 想 8,000 或 3,200。③ 差很遠？先什麼都別擦——只檢查商的第一位數。④ 位值那種句子用唸的。</span></div>
+  </div>
+</section>
+
+<!-- ================= QUIZ ================= -->
+<section class="sec" id="quiz">
+  <h2><span class="num emoji">🎯</span><span class="ttl">Quiz — no traps left standing<span class="zh">小測驗——讓陷阱一個都站不住</span></span></h2>
+  <div class="quizbox">
+    <div class="qdots" id="qdots" aria-hidden="true"></div>
+    <div id="qbody"></div>
+  </div>
+</section>
+
+<!-- ================= CORRECTION LIST ================= -->
+<section class="sec" id="fix">
+  <h2><span class="num emoji">✍️</span><span class="ttl">Back to the workbook: correction list<span class="zh">回到作業本，訂正清單</span></span></h2>
+  <div class="fixlist" id="fixlist"></div>
+  <div class="msg" id="fixmsg" hidden></div>
+</section>
+
+<style>
+.wn-buddy{display:flex;align-items:center;gap:.8rem;margin:2rem 0 .6rem;padding:.9rem 1rem;
+ background:#fff;border:1px dashed #D9DADF;border-radius:.7rem;max-width:34rem}
+.wn-buddy img{width:3.6rem;height:3.6rem;flex:0 0 auto}
+.wn-buddy .t{display:flex;flex-direction:column;gap:.15rem}
+.wn-buddy .line{font-family:'Caveat',cursive;font-size:1.3rem;color:#6B6E76;line-height:1.15}
+.wn-buddy .sign{font-family:'Fredoka',system-ui,sans-serif;font-size:.95rem;font-weight:700;color:#2E3037}
+</style>
+
+<div class="wn-buddy">
+  <img id="wnBuddyImg" src="img/skzoo-puppym.png" alt="Your study buddy" width="150" height="150">
+  <div class="t">
+    <em class="line">Your 900 landed two away from 902 — keep predicting.</em>
+    <b class="sign">Your study buddy, <span id="wnBuddyName">Puppy M</span></b>
+  </div>
+</div>
+<script>
+/* study buddy: one of the eight, picked fresh on every visit */
+(function(){
+  var CREW = [["wolfchan","Wolf Chan"],["leebit","Leebit"],["dwaekki","Dwaekki"],["jiniret","Jiniret"],
+              ["hanquokka","Han Quokka"],["bbokari","BbokAri"],["puppym","Puppy M"],["foxiny","FoxI.Ny"]];
+  var pick = CREW[Math.floor(Math.random() * CREW.length)];
+  /* same character greets him at the top and signs off at the bottom */
+  [["wnHiImg","wnHiName"],["wnBuddyImg","wnBuddyName"]].forEach(function(ids){
+    var img = document.getElementById(ids[0]), name = document.getElementById(ids[1]);
+    if (!img || !name) return;
+    img.src = "img/skzoo-" + pick[0] + ".png";
+    img.alt = pick[1] + ", your study buddy";
+    name.textContent = pick[1];
+  });
+})();
+</script>
+<footer class="hand foot">Extra Practice 4A · Chapter 2 Activity 3 · Dividing by a 1-Digit Number · p.45–47<span class="zh">Extra Practice 4A · 第 2 章 活動 3 · 一位數除法 · 第 45–47 頁</span></footer>
+
+</main>
+</div>
+
+<script>
+(function(){
+'use strict';
+const $ = id => document.getElementById(id);
+const Z = s => '<span class="zh">' + s + '</span>';
+function setMsg(el, html, cls){ el.className = 'msg' + (cls ? ' ' + cls : ''); el.innerHTML = html; el.hidden = false; }
+function openGate(id){ const el = $(id); if (el) el.hidden = false; }
+/* send him back to a step he has already finished — replay the nudge, put it on screen */
+function sendBack(stepId){
+  const el = $(stepId);
+  if (!el) return;
+  el.classList.remove('redo');
+  void el.offsetWidth;
+  el.classList.add('redo');
+  el.scrollIntoView({ block: 'center' });
+}
+function mkBtn(html, cls){
+  const b = document.createElement('button');
+  b.type = 'button'; b.className = cls || 'btn';
+  b.innerHTML = html;
+  return b;
+}
+/* Fisher-Yates, in place. Options are shuffled ONCE per page load (四之二 #5):
+   reset / send-back / Play again all reuse the order decided here; only a full
+   page reload deals a new one. State lives in memory only. */
+function shuffle(a){
+  for (let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+/* ---------- toolbar ---------- */
+const MODELINE = {
+  textbook: 'Place value, quotients and estimates, in your book’s own words.' + Z('用課本自己的說法：位值、商、估算。'),
+  reallife: 'Same maths, told with $100 bills, echoes and weather forecasts.' + Z('同樣的數學，換成百元鈔、回音和天氣預報來講。')
+};
+function setMode(m){
+  document.body.dataset.mode = m;
+  document.querySelectorAll('.seg button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.mode === m)));
+  $('modeline').innerHTML = MODELINE[m];
+}
+document.querySelectorAll('.seg button').forEach(b =>
+  b.addEventListener('click', () => setMode(b.dataset.mode)));
+$('zhbtn').addEventListener('click', function(){
+  const on = document.body.classList.toggle('zh-on');
+  this.setAttribute('aria-pressed', String(on));
+});
+setMode('textbook');
+
+/* ---------- shared choice widget ----------
+   Socratic rule: a wrong answer gets a question back, not the answer.
+   Two nudges max; the third time we tell, then immediately re-test. */
+function choice(hostId, cfg){
+  const host = typeof hostId === 'string' ? $(hostId) : hostId;
+  let tries = 0, settled = false, wrap, msg;
+  /* deal the option order once; reset() rebuilds with this same order */
+  const keep = cfg.opts[cfg.ans];
+  shuffle(cfg.opts);
+  cfg.ans = cfg.opts.indexOf(keep);
+  if (cfg.retest){
+    const rkeep = cfg.retest.opts[cfg.retest.ans];
+    shuffle(cfg.retest.opts);
+    cfg.retest.ans = cfg.retest.opts.indexOf(rkeep);
+  }
+  function build(){
+    tries = 0; settled = false;
+    host.innerHTML = '';
+    wrap = document.createElement('div');
+    wrap.className = 'choices';
+    cfg.opts.forEach((o, i) => {
+      const b = mkBtn(o[0] + Z(o[1]), 'choice');
+      b.addEventListener('click', () => pick(i, b));
+      wrap.appendChild(b);
+    });
+    msg = document.createElement('div');
+    msg.className = 'msg'; msg.hidden = true;
+    host.appendChild(wrap); host.appendChild(msg);
+  }
+  function lock(){ [...wrap.children].forEach(b => { b.disabled = true; if (!b.classList.contains('ok') && !b.classList.contains('no')) b.classList.add('dim'); }); }
+  function pick(i, b){
+    if (settled) return;
+    if (i === cfg.ans){
+      settled = true; b.classList.add('ok'); lock();
+      setMsg(msg, cfg.good[0] + Z(cfg.good[1]), 'good');
+      if (cfg.pass) cfg.pass();
+      return;
+    }
+    b.classList.add('no');
+    tries++;
+    if (tries === 1){
+      setMsg(msg, cfg.h1[0] + Z(cfg.h1[1]), 'warn');
+      if (cfg.firstWrong) cfg.firstWrong();
+    } else if (tries === 2){
+      setMsg(msg, cfg.h2[0] + Z(cfg.h2[1]), 'warn');
+    } else {
+      settled = true;
+      wrap.children[cfg.ans].classList.add('ok');
+      lock();
+      setMsg(msg, cfg.tell[0] + Z(cfg.tell[1]), 'bad');
+      if (cfg.retest) retest(); else if (cfg.pass) cfg.pass();
+    }
+  }
+  /* told the answer → prove it once on a same-shape question before moving on */
+  function retest(){
+    const c = cfg.retest;
+    const box = document.createElement('div');
+    box.className = 'step';
+    box.innerHTML = '<p class="steplbl">One more, same idea<span class="zh">再一題，同樣的想法</span></p><p>' + c.q[0] + Z(c.q[1]) + '</p>';
+    const cw = document.createElement('div'); cw.className = 'choices';
+    const cm = document.createElement('div'); cm.className = 'msg'; cm.hidden = true;
+    let done = false;
+    c.opts.forEach((o, i) => {
+      const b = mkBtn(o[0] + Z(o[1]), 'choice');
+      b.addEventListener('click', () => {
+        if (done) return;
+        if (i === c.ans){
+          done = true; b.classList.add('ok');
+          [...cw.children].forEach(x => x.disabled = true);
+          setMsg(cm, c.why[0] + Z(c.why[1]), 'good');
+          if (cfg.pass) cfg.pass();
+        } else {
+          b.classList.add('no');
+          setMsg(cm, 'Take another look at the answer just above, then have another go.' + Z('再看一次上面那句答案，然後再選一次看看喔。'), 'warn');
+        }
+      });
+      cw.appendChild(b);
+    });
+    box.appendChild(cw); box.appendChild(cm); host.appendChild(box);
+  }
+  build();
+  return { reset: build };
+}
+
+/* ---------- self-report widget ----------
+   No right answer. He was there and the page was not, so every option is
+   taken at face value and routed to the help that answer actually implies. */
+function branch(hostId, cfg){
+  const host = $(hostId);
+  const wrap = document.createElement('div');
+  wrap.className = 'choices';
+  const msg = document.createElement('div');
+  msg.className = 'msg'; msg.hidden = true;
+  const extra = document.createElement('div');
+  let settled = false;
+  cfg.opts.forEach(o => {
+    const b = mkBtn(o.label[0] + Z(o.label[1]), 'choice');
+    b.addEventListener('click', () => {
+      if (settled) return;
+      settled = true;
+      b.classList.add('ok');
+      [...wrap.children].forEach(x => { x.disabled = true; if (x !== b) x.classList.add('dim'); });
+      setMsg(msg, o.reply[0] + Z(o.reply[1]), 'good');
+      if (o.follow) followUp(o.follow); else if (cfg.pass) cfg.pass();
+    });
+    wrap.appendChild(b);
+  });
+  /* the warm-up rides the full choice() ladder: two nudges, then tell,
+     then a same-shape re-test — same rules as every other question. */
+  function followUp(f){
+    const box = document.createElement('div');
+    box.className = 'step';
+    box.innerHTML = '<p class="steplbl">' + f.lbl[0] + Z(f.lbl[1]) + '</p><p>' + f.q[0] + Z(f.q[1]) + '</p>';
+    const slot = document.createElement('div');
+    box.appendChild(slot);
+    extra.appendChild(box);
+    f.cfg.pass = cfg.pass;
+    choice(slot, f.cfg);
+  }
+  host.appendChild(wrap); host.appendChild(msg); host.appendChild(extra);
+}
+
+/* ---------- start-to-finish walk ----------
+   A chain of small picks: every wrong chip answers with a question, and the
+   next move only appears once the current one is truly done. opts item:
+   [english, chinese, isRight, nudgeEn, nudgeZh] */
+function walk(host, seq, onDone){
+  let idx = 0;
+  seq.forEach(it => shuffle(it.opts));   /* the true-flag rides along with its option */
+  function runOne(){
+    const it = seq[idx];
+    const box = document.createElement('div');
+    box.className = 'step';
+    box.innerHTML = (it.lbl ? '<p class="steplbl">' + it.lbl[0] + Z(it.lbl[1]) + '</p>' : '') +
+                    '<p>' + it.q[0] + Z(it.q[1]) + '</p>';
+    const row = document.createElement('div'); row.className = 'row';
+    const msg = document.createElement('div'); msg.className = 'msg'; msg.hidden = true;
+    let done = false, tries = 0;
+    function advance(delay){
+      idx++;
+      if (idx < seq.length) setTimeout(runOne, delay); else onDone();
+    }
+    it.opts.forEach(o => {
+      const b = mkBtn(o[0] + '<span class="zhi">（' + o[1] + '）</span>', 'opb wide');
+      if (o[0] === o[1]) b.innerHTML = o[0];   /* numbers need no translation bubble */
+      b.addEventListener('click', () => {
+        if (done) return;
+        if (o[2]){
+          done = true; b.classList.add('ok');
+          [...row.children].forEach(x => x.disabled = true);
+          if (it.ok) setMsg(msg, it.ok[0] + Z(it.ok[1]), 'good'); else msg.hidden = true;
+          if (it.onOk) it.onOk();
+          advance(450);
+        } else {
+          b.classList.add('no');
+          tries++;
+          if (tries >= 3){
+            /* two nudges spent — show this one, then hand the next move back to him */
+            done = true;
+            const okIdx = it.opts.findIndex(x => x[2]);
+            [...row.children].forEach((x, k) => { x.disabled = true; if (k === okIdx) x.classList.add('ok'); });
+            const okOpt = it.opts[okIdx];
+            setMsg(msg, 'The answer here is <b>' + okOpt[0] + '</b> — look at it once, and the next move is all yours.' +
+                        Z('這一步的答案是 ' + okOpt[1] + '——看它一眼，下一步就完全交給你囉。'), 'bad');
+            if (it.onOk) it.onOk();
+            advance(1600);
+          } else {
+            setTimeout(() => b.classList.remove('no'), 650);
+            setMsg(msg, o[3] + Z(o[4]), 'warn');
+          }
+        }
+      });
+      row.appendChild(b);
+    });
+    box.appendChild(row); box.appendChild(msg); host.appendChild(box);
+  }
+  runOne();
+}
+
+/* ---------- long division on squared paper (bar-models vocabulary) ----------
+   cells: [text, col, row, cls] · rules: [row, fromCol, toCol]
+   slots: lines he is about to write — dashed blue until he earns them. */
+function drawLD(parent, cfg){
+  const wrap = document.createElement('div');
+  wrap.className = 'ldwrap';
+  const g = document.createElement('div');
+  g.className = 'ld';
+  g.style.setProperty('--c', cfg.cols);
+  wrap.appendChild(g); parent.appendChild(wrap);
+  const slotRows = {};
+  function put(text, x, y, cls){
+    const c = document.createElement('span');
+    c.className = 'c' + (cls ? ' ' + cls : '');
+    c.textContent = text;
+    c.style.gridColumn = String(x);
+    c.style.gridRow = String(y);
+    g.appendChild(c);
+    return c;
+  }
+  (cfg.cells || []).forEach(c => put(c[0], c[1], c[2], c[3]));
+  (cfg.rules || []).forEach(r => {
+    const el = document.createElement('span');
+    el.className = 'rule';
+    el.style.gridRow = String(r[0]);
+    el.style.gridColumn = r[1] + ' / ' + (r[2] + 1);
+    g.appendChild(el);
+  });
+  (cfg.slots || []).forEach(s => {
+    const c = put(s[0], s[1], s[2], 'slotb');
+    c.setAttribute('aria-hidden', 'true');      /* an unwritten line should not be read out either */
+    (slotRows[s[2]] = slotRows[s[2]] || []).push(c);
+  });
+  return {
+    reveal(y, cls){
+      (slotRows[y] || []).forEach(c => { c.className = 'c ' + (cls || 'fresh'); c.removeAttribute('aria-hidden'); });
+    }
+  };
+}
+
+/* ================= BIG IDEA ================= */
+branch('bigask', {
+  opts: [
+    {
+      label: ['The 200 — I still can’t see what happened there', '那個 200——我到現在還看不出發生了什麼事'],
+      reply: ['Totally fair — it hides well: it sits right under a line you got perfectly right. Slips that hide from re-reading get caught by your ears and by multiplying back, and section 1 hands you both tools. First, warm up the key fact:',
+              '很合理呀——它躲得很好：它就躲在一行你寫得完全正確的算式下面。重讀抓不到的滑倒，要用耳朵和「乘回去」來抓，第 1 段會把這兩個工具都交給你。先來暖身一下關鍵事實：'],
+      follow: {
+        lbl: ['Warm-up', '暖身'],
+        q: ['24 ÷ 6 = ?', '24 ÷ 6 = ？'],
+        cfg: {
+          opts: [['4', '4'], ['3', '3']],
+          ans: 0,
+          good: ['Keep that 4 warm — section 1 is all about what that 4 is really worth.', '把這個 4 記在心上喔——第 1 段整段都在講：這個 4 到底值多少。'],
+          h1: ['Count by sixes: 6, 12, 18, 24 — how many counts was that?', '用 6 來數數看：6、12、18、24——數了幾次呢？'],
+          h2: ['6 × 3 = 18, 6 × 4 = 24. Which one lands on 24?', '6 × 3 = 18、6 × 4 = 24。哪一個落在 24 上呢？'],
+          tell: ['24 ÷ 6 = 4 — four sixes make 24. Section 1 shows what that 4 is worth.', '24 ÷ 6 = 4——四個 6 湊成 24。第 1 段會告訴你這個 4 值多少。'],
+          retest: {
+            q: ['18 ÷ 6 = ?', '18 ÷ 6 = ？'],
+            opts: [['3', '3'], ['4', '4']],
+            ans: 0,
+            why: ['Three sixes make 18 — same counting.', '三個 6 湊成 18——同一種數法。']
+          }
+        }
+      }
+    },
+    {
+      label: ['I thought "estimate to check" meant: round the answer so it looks tidy', '我以為「估算檢查」就是把答案四捨五入，寫得整齊一點'],
+      reply: ['A completely fair reading of that instruction — and all four of your ≈ lines really are true. Section 2 runs an experiment on them, and YOU get to decide what a real check has to be able to do.',
+              '這樣讀那行指令完全合理呀——而且你的四行 ≈ 每一行都是真的。第 2 段會拿它們做一個實驗，然後由「你」來決定：真正的檢查必須做得到什麼。']
+    },
+    {
+      label: ['I was moving fast that day', '那天我寫得很快'],
+      reply: ['Good news, then: nothing here asks you to slow down much. The upgrade costs one small line before each divide — and section 2 shows you exactly what that line buys.',
+              '那有個好消息喔：這裡沒有要你慢下來多少。這個升級只花你「每題除之前多寫一小行」——第 2 段會讓你看到，這一行能換到什麼。']
+    }
+  ],
+  pass: () => openGate('bigexp')
+});
+
+/* ================= SECTION 1 ================= */
+choice('s1ask', {
+  opts: [['4', '4'], ['3', '3'], ['6', '6']],
+  ans: 0,
+  good: ['4 — no doubt about it. Now look at your line 2: it says 2. Somewhere between those two lines, a 4 turned into a 2. Let’s find out what that 4 was really worth.',
+         '是 4——毫無疑問。現在看你的第二行：上面寫著 2。就在這兩行中間的某個地方，4 變成了 2。我們來查清楚：那個 4 到底值多少。'],
+  h1: ['Count by sixes: 6, 12, 18, 24. How many counts?', '用 6 數數看：6、12、18、24。數了幾次？'],
+  h2: ['6 × 4 = 24. So 24 ÷ 6 = ?', '6 × 4 = 24。那 24 ÷ 6 = ？'],
+  tell: ['24 ÷ 6 = 4. Four sixes make 24.', '24 ÷ 6 = 4。四個 6 湊成 24。'],
+  retest: {
+    q: ['48 ÷ 6 = ?', '48 ÷ 6 = ？'],
+    opts: [['8', '8'], ['6', '6']],
+    ans: 0,
+    why: ['Six times eight is 48 — same move.', '六八四十八——同一招。']
+  },
+  pass: () => openGate('s1exp')
+});
+
+const s1c1 = choice('s1a1', {
+  opts: [['24', '24'], ['240', '240'], ['204', '204']],
+  ans: 0,
+  good: ['24 hundreds — exactly what your line 1 said. That line was never the problem.', '24 個百——跟你第一行寫的一模一樣。那一行從頭到尾都沒有問題。'],
+  h1: ['Each thousand hides 10 hundreds. So 2 thousands hide how many?', '每個千裡藏著 10 個百。那 2 個千藏著幾個？'],
+  h2: ['20 hundreds from the thousands, plus 4 more = ?', '千的部分有 20 個百，再加 4 個 = ？'],
+  tell: ['24 — twenty from the two thousands, four more on top.', '24 個——兩個千給了 20 個，上面再加 4 個。'],
+  retest: {
+    q: ['5,300 = how many hundreds?', '5,300 = 幾個百？'],
+    opts: [['53', '53'], ['503', '503']],
+    ans: 0,
+    why: ['50 + 3 = 53 hundreds.', '50 + 3 = 53 個百。']
+  },
+  pass: () => { $('s1st2').hidden = false; }
+});
+
+const s1c2 = choice('s1a2', {
+  opts: [['4 hundreds', '4 個百'], ['4 ones', '4 個一'], ['4 thousands', '4 個千']],
+  ans: 0,
+  good: ['4 hundreds. You divided hundreds, so the pieces are still hundreds — the name never fell off.', '是 4 個「百」。你除的是百，所以分出來的每一份還是百——名字從來沒有掉下來過。'],
+  h1: ['What did you share out — 24 loose ones, or 24 hundreds?', '你分出去的是什麼——24 個散裝的一，還是 24 個百？'],
+  h2: ['Each friend gets 4 bills. What’s printed on every single bill?', '每個朋友拿到 4 張鈔票。每一張上面印的是多少呢？'],
+  tell: ['4 hundreds — dividing the 24 never changes what each piece is worth.', '4 個百——被除的是那個 24，每一份的身價從頭到尾沒變過。'],
+  retest: {
+    q: ['35 tens ÷ 5 = 7 … what?', '35 個十 ÷ 5 = 7 個……什麼？'],
+    opts: [['tens', '十'], ['ones', '一']],
+    ans: 0,
+    why: ['Tens went in, tens come out. The name rides along.', '進去的是十，出來的就是十。名字會一路跟著。']
+  },
+  pass: () => { $('s1st3').hidden = false; }
+});
+
+const s1c3 = choice('s1a3', {
+  opts: [['400', '400'], ['40', '40'], ['4,000', '4,000']],
+  ans: 0,
+  good: ['400. And did you hear it? "…is 4 hundreds." Said out loud, that sentence would never let a 200 sneak through.', '是 400。你聽到了嗎？「…is 4 hundreds」。只要唸出來，這個句子絕不會讓 200 偷溜過去。'],
+  h1: ['4 hundreds — four copies of 100. Count them out loud: 100, 200, …', '4 個百——四份 100。大聲數數看：100、200……'],
+  h2: ['100 + 100 + 100 + 100 = ?', '100 + 100 + 100 + 100 = ？'],
+  tell: ['4 hundreds = 400.', '4 個百 = 400。'],
+  retest: {
+    q: ['7 hundreds = ?', '7 個百 = ？'],
+    opts: [['700', '700'], ['70', '70']],
+    ans: 0,
+    why: ['Seven copies of 100 — 700. Same as your own #4.', '七份 100——700。跟你自己的第 4 題一模一樣。']
+  },
+  pass: () => { $('s1st4').hidden = false; }
+});
+
+const s1c4 = choice('s1a4', {
+  opts: [['2,400', '2,400'], ['1,200', '1,200'], ['240', '240']],
+  ans: 0,
+  good: ['It lands exactly on 2,400 — proof. And look: 200 could never do that. 200 × 6 = 1,200, only half the pot.', '正好落在 2,400 上——證明完成。再看一眼：200 永遠辦不到這件事。200 × 6 = 1,200，只有鍋子的一半。'],
+  h1: ['4 × 6 = 24, then the hundreds come back on. 24 hundreds is…?', '4 × 6 = 24，然後把「百」穿回去。24 個百是……？'],
+  h2: ['Skip-count it: 400, 800, 1,200, 1,600, 2,000, …', '跳著數：400、800、1,200、1,600、2,000……'],
+  tell: ['400 × 6 = 2,400 — it lands exactly on the big number.', '400 × 6 = 2,400——正好落回那個大數字。'],
+  retest: {
+    q: ['Which line PROVES that 700 = 4,900 ÷ 7?', '哪一行能「證明」700 = 4,900 ÷ 7？'],
+    opts: [['700 × 7 = 4,900', '700 × 7 = 4,900'], ['700 is a tidy number', '700 是個整齊的數字']],
+    ans: 0,
+    why: ['Only multiplying back lands on the big number. Tidiness proves nothing.', '只有乘回去會落在大數字上。整齊什麼都證明不了。']
+  },
+  pass: () => { $('s1st5').hidden = false; }
+});
+
+choice('s1a5', {
+  opts: [
+    ['Because 24 ÷ 6 = 4, and dividing hundreds doesn’t change their name', '因為 24 ÷ 6 = 4，而且「百」被拿去除，名字也不會變'],
+    ['Because bigger answers are usually the right ones', '因為比較大的答案通常才是對的'],
+    ['Because ÷ 6 always gives an answer ending in 00', '因為 ÷ 6 的答案一定用 00 結尾']
+  ],
+  ans: 0,
+  good: ['That’s the whole section, in your own words. Now go run it yourself below.', '整段的重點被你用自己的話講完了。現在到下面自己跑一次吧。'],
+  h1: ['Back one step — I’ve reset Step 2. Walk it again and watch what happens to the word "hundreds", then come back.', '退回上一步囉——Step 2 我重置了。再走一次，盯著 hundreds 這個字發生什麼事，然後回來。'],
+  h2: ['400 isn’t right because it’s big — 40,000 is bigger and still wrong. What made the 4 worth hundreds?', '400 對，可不是因為它大——40,000 更大，但還是錯的呀。到底是什麼讓那個 4 值「百」呢？'],
+  tell: ['24 ÷ 6 = 4, and the pieces stay hundreds: 4 hundreds = 400.', '24 ÷ 6 = 4，而且每一份還是百：4 個百 = 400。'],
+  retest: {
+    q: ['4,200 ÷ 7 — line 1 is "42 hundreds ÷ 7". The answer is…', '4,200 ÷ 7——第一行是「42 個百 ÷ 7」。答案是……'],
+    opts: [['6 hundreds = 600', '6 個百 = 600'], ['just 6', '就是 6']],
+    ans: 0,
+    why: ['42 ÷ 7 = 6, and the name rides along: 600.', '42 ÷ 7 = 6，名字跟著走：600。']
+  },
+  firstWrong: () => { s1c2.reset(); sendBack('s1st2'); },
+  pass: () => { openGate('s1try'); $('s1try').scrollIntoView({block:'center'}); }
+});
+
+/* Try it — the whole move, start to finish, twice */
+walk($('s1walk'), [
+  { lbl: ['Round 1 of 2 · 3,600 ÷ 4 · move 1', '第 1 回合（共 2 回）· 3,600 ÷ 4 · 動作 1'],
+    q: ['3,600 = ___ hundreds.', '3,600 = ___ 個百。'],
+    opts: [['36', '36', true],
+           ['306', '306', false, 'Three thousands hide 30 hundreds. 30 + 6 = ?', '3 個千藏著 30 個百。30 + 6 = ？'],
+           ['3', '3', false, '3 counts the thousands. How many HUNDREDS live inside 3,600?', '3 數的是千。3,600 裡面住著幾個「百」呢？']] },
+  { lbl: ['Move 2', '動作 2'],
+    q: ['36 ÷ 4 = ?', '36 ÷ 4 = ？'],
+    opts: [['9', '9', true],
+           ['8', '8', false, '4 × 8 = 32 — not there yet. One more four?', '4 × 8 = 32——還沒到耶。再加一個 4 呢？'],
+           ['6', '6', false, '4 × 6 = 24. Keep climbing: 28, 32, …', '4 × 6 = 24。繼續往上爬：28、32……']] },
+  { lbl: ['Move 3', '動作 3'],
+    q: ['So that 9 counts…', '所以那個 9 數的是……'],
+    opts: [['9 hundreds', '9 個百', true],
+           ['9 ones', '9 個一', false, 'You just divided 36 HUNDREDS. Did the pieces stop being hundreds?', '你剛剛除的是 36 個「百」。分出來的每一份會突然不是百嗎？'],
+           ['9 tens', '9 個十', false, 'Where would tens come from? What did you put in?', '「十」是從哪裡冒出來的呀？你放進去的是什麼？']] },
+  { lbl: ['Move 4', '動作 4'],
+    q: ['Write it as a number:', '把它寫成數字：'],
+    opts: [['900', '900', true],
+           ['90', '90', false, '90 is 9 TENS. You’re holding 9 hundreds.', '90 是 9 個「十」。你手上抱著的是 9 個「百」喔。'],
+           ['9,000', '9,000', false, '9,000 is 9 THOUSANDS. Count yours out loud: 100, 200, …', '9,000 是 9 個「千」。把你手上的大聲數一次：100、200……']] },
+  { lbl: ['Move 5', '動作 5'],
+    q: ['Prove it — 900 × 4 = ?', '證明它——900 × 4 = ？'],
+    opts: [['3,600', '3,600', true],
+           ['360', '360', false, '9 × 4 = 36, then the hundreds come back on…', '9 × 4 = 36，然後把「百」穿回去……'],
+           ['2,700', '2,700', false, 'That’s 900 × 3. One more 900?', '那是 900 × 3。再加一個 900 呢？']],
+    ok: ['Landed exactly on 3,600 — round 1 complete!', '正好落在 3,600 上——第 1 回合完成！'] },
+  { lbl: ['Round 2 of 2 · 4,500 ÷ 9 · move 1', '第 2 回合（共 2 回）· 4,500 ÷ 9 · 動作 1'],
+    q: ['4,500 = ___ hundreds.', '4,500 = ___ 個百。'],
+    opts: [['45', '45', true],
+           ['405', '405', false, '4 thousands give 40 hundreds. 40 + 5 = ?', '4 個千給 40 個百。40 + 5 = ？'],
+           ['450', '450', false, '450 hundreds would be 45,000. Count again — 10 hundreds per thousand.', '450 個百會是 45,000 耶。再數一次——每個千是 10 個百。']] },
+  { lbl: ['Move 2', '動作 2'],
+    q: ['Say it out loud: "45 hundreds divided by 9 is ___ hundreds."', '大聲唸出來：「45 hundreds divided by 9 is ___ hundreds.」'],
+    opts: [['5', '5', true],
+           ['6', '6', false, '9 × 6 = 54 — too far. Step back one nine?', '9 × 6 = 54——衝過頭了。退一個 9 呢？'],
+           ['4', '4', false, '9 × 4 = 36. Keep going: 45 is how many nines?', '9 × 4 = 36。繼續：45 是幾個 9？']] },
+  { lbl: ['Move 3', '動作 3'],
+    q: ['So 4,500 ÷ 9 = ?', '所以 4,500 ÷ 9 = ？'],
+    opts: [['500', '500', true],
+           ['50', '50', false, '5 HUNDREDS. Put the worth back on the 5.', '是 5 個「百」。把身價穿回 5 的身上。'],
+           ['5', '5', false, 'That 5 counts hundreds — say the whole sentence again.', '那個 5 數的是百——把整句再唸一次。']] },
+  { lbl: ['Move 4', '動作 4'],
+    q: ['Prove it — 500 × 9 = ?', '證明它——500 × 9 = ？'],
+    opts: [['4,500', '4,500', true],
+           ['450', '450', false, '5 × 9 = 45, then the hundreds come back…', '5 × 9 = 45，然後「百」回來了……'],
+           ['5,400', '5,400', false, 'That’s 600 × 9. Try 5 × 9 first, then dress it in hundreds.', '那是 600 × 9。先算 5 × 9，再幫它穿上「百」。']] }
+], () => {
+  setMsg($('s1wmsg'), 'Two rounds, zero slips — the name never fell off once. That’s the whole fix for #3. 🎉' + Z('兩回合、零滑倒——名字一次都沒掉下來。第 3 題的訂正就是這麼一回事。'), 'good');
+  openGate('s1model'); $('s1model').scrollIntoView({block:'center'});
+});
+
+/* ================= SECTION 2 ================= */
+choice('s2ask', {
+  opts: [['Yes — it caught the mistake', '有——它抓到錯了'],
+         ['No — 200 ≈ 200 looks perfectly fine', '沒有——200 ≈ 200 看起來完全沒問題']],
+  ans: 1,
+  good: ['Right — a wrong answer walked straight past the check, whistling. Time to find out why it always will.', '對——一個錯的答案吹著口哨，大搖大擺走過了檢查站。該查清楚為什麼「每次都會這樣」了。'],
+  h1: ['Look at the two sides of 200 ≈ 200. Do they disagree anywhere?', '看看 200 ≈ 200 的左右兩邊。它們有哪裡吵起來了嗎？'],
+  h2: ['A caught mistake looks like an argument — two numbers that don’t match. Any argument inside 200 ≈ 200?', '被抓到的錯，看起來像一場爭吵——兩個對不上的數字。200 ≈ 200 裡面有在吵架嗎？'],
+  tell: ['It noticed nothing — 200 ≈ 200 stays perfectly tidy even though 200 is wrong.', '它什麼都沒發現——就算 200 是錯的，200 ≈ 200 還是整整齊齊。'],
+  retest: {
+    q: ['A check that can never say "something’s wrong" is…', '一個永遠說不出「有問題」的檢查，是……'],
+    opts: [['not really a check', '算不上檢查'], ['still a good check', '還是很好的檢查']],
+    ans: 0,
+    why: ['A check earns its name by being able to catch. This one can’t.', '檢查要抓得到錯，才配叫檢查。這一種抓不到。']
+  },
+  pass: () => openGate('s2exp')
+});
+
+const s2c1 = choice('s2a1', {
+  opts: [['Silent — 800 looks tidy too', '沒反應——800 看起來也很整齊'],
+         ['Alarm! 800 shouts "wrong!"', '警報大響！800 大喊「錯了」']],
+  ans: 0,
+  good: ['Silent again. Round-the-answer says yes to everything — it was born from the answer, so it can never disagree with it.', '又是一片安靜。「把答案四捨五入」對什麼都點頭——它是從答案生出來的，所以永遠沒辦法跟答案唱反調。'],
+  h1: ['Where did that 800 come from — from the true answer 913, or from the mistake itself?', '那個 800 是從哪裡來的——從真正的答案 913，還是從那個錯誤本身？'],
+  h2: ['Can a copy disagree with the thing it was copied from?', '複本有可能跟自己的本尊唱反調嗎？'],
+  tell: ['Silent. 800 came from 813, so it agrees with 813 — wrong and all.', '安靜無聲。800 是從 813 來的，所以它同意 813——連錯的部分也一起同意。'],
+  retest: {
+    q: ['Rounding your own answer can catch a mistake…', '把自己的答案四捨五入，能抓到錯……'],
+    opts: [['never — it always agrees with the answer', '永遠不能——它永遠同意答案'], ['sometimes, on lucky days', '有時候可以，看運氣']],
+    ans: 0,
+    why: ['Never — a copy has no voice of its own.', '永遠不能——複本沒有自己的聲音。']
+  },
+  pass: () => { $('s2st2').hidden = false; }
+});
+
+const s2c2 = choice('s2a2', {
+  opts: [['about 400', '大概 400 附近'], ['about 40', '大概 40 附近'], ['about 4,000', '大概 4,000 附近']],
+  ans: 0,
+  good: ['Near 400 — and notice: you built that WITHOUT dividing 2,400 first. That’s exactly what makes it a prediction.', '400 附近——注意喔：你蓋這個預測的時候，根本還沒真的去除 2,400。這正是它配叫「預測」的原因。'],
+  h1: ['You built this in section 1: 24 hundreds ÷ 6 = 4 hundreds. And 4 hundreds is…', '這個你在第 1 段蓋過了：24 個百 ÷ 6 = 4 個百。那 4 個百是……'],
+  h2: ['The prediction keeps the place value — 4 HUNDREDS, not 4 tens.', '預測會把位值留著——是 4 個「百」，不是 4 個十。'],
+  tell: ['Near 400 — 24 ÷ 6 = 4, and the hundreds stay on.', '400 附近——24 ÷ 6 = 4，「百」還穿在身上。'],
+  retest: {
+    q: ['Predict 3,208 ÷ 4 the same way: 32 ÷ 4 = 8, so…', '用同一招預測 3,208 ÷ 4：32 ÷ 4 = 8，所以……'],
+    opts: [['about 800', '大概 800'], ['about 80', '大概 80']],
+    ans: 0,
+    why: ['32 hundreds ÷ 4 = 8 hundreds.', '32 個百 ÷ 4 = 8 個百。']
+  },
+  pass: () => { $('s2st3').hidden = false; }
+});
+
+/* the showdown — stamp what each check really did */
+(function(){
+  const host = $('s2duel'), msg = $('s2dmsg');
+  const ROWS = [
+    { name: 'Check A — round the answer afterwards: <b>200 ≈ 200</b>', zh: '檢查 A——事後把答案四捨五入：200 ≈ 200', missed: true,
+      why: ['No argument possible — this ≈ line was born from the 200 itself.', '吵不起來——這行 ≈ 就是從 200 本人生出來的。'],
+      nudge: ['Did anything inside 200 ≈ 200 disagree with anything? Look again.', '200 ≈ 200 裡面有任何東西跟任何東西吵架嗎？再看一次。'] },
+    { name: 'Check B — predict first: <b>near 400</b> · the page says <b>200</b>', zh: '檢查 B——先預測：400 附近 · 作業卻寫 200', missed: false,
+      why: ['400 expected, 200 delivered — the alarm went off instantly.', '說好 400 附近，結果來了個 200——警報馬上響。'],
+      nudge: ['Prediction 400, page 200 — is that quiet, or is that loud?', '預測 400、作業 200——這是安靜，還是很大聲？'] }
+  ];
+  let done = 0;
+  const STAMP = shuffle([['🚨 Caught it', false], ['😴 Missed it', true]]);
+  ROWS.forEach(r => {
+    const row = document.createElement('div'); row.className = 'srow';
+    const ph = document.createElement('span'); ph.className = 'ph'; ph.innerHTML = r.name + Z(r.zh);
+    const ops = document.createElement('span'); ops.className = 'ops';
+    const why = document.createElement('span'); why.className = 'why';
+    STAMP.forEach(o => {
+      const b = mkBtn(o[0], 'opb wide');
+      b.setAttribute('aria-label', (o[1] ? 'missed' : 'caught'));
+      b.addEventListener('click', () => {
+        if (row.classList.contains('done')) return;
+        if (o[1] === r.missed){
+          b.classList.add('ok');
+          [...ops.children].forEach(x => x.disabled = true);
+          row.classList.add('done');
+          why.innerHTML = r.why[0] + Z(r.why[1]);
+          done++;
+          if (done === ROWS.length){
+            setMsg(msg, 'One mistake. Check A slept straight through it; Check B caught it instantly. Same maths — opposite order.' + Z('同一個錯。檢查 A 睡到打呼，檢查 B 一秒抓到。同樣的數學——只是順序相反。'), 'good');
+            $('s2st4').hidden = false;
+          }
+        } else {
+          b.classList.add('no');
+          setTimeout(() => b.classList.remove('no'), 650);
+          setMsg(msg, r.nudge[0] + Z(r.nudge[1]), 'warn');
+        }
+      });
+      ops.appendChild(b);
+    });
+    row.appendChild(ph); row.appendChild(ops); row.appendChild(why);
+    host.appendChild(row);
+  });
+})();
+
+/* step 4 — friendly-number picks, both from his own page */
+walk($('s2a4'), [
+  { lbl: ['Pick 1', '選擇 1'],
+    q: ['For 7,504 ÷ 7, round 7,504 to…', '7,504 ÷ 7：把 7,504 圓整成……'],
+    opts: [['7,000', '7,000', true],
+           ['7,500', '7,500', false, 'Is 75 in the 7 times table? Say the sevens: 7, 14, 21…', '75 在 7 的乘法表裡嗎？唸唸看：7、14、21……'],
+           ['8,000', '8,000', false, '8 ÷ 7 doesn’t come out clean — is 8,000 really one of 7’s friends?', '8 ÷ 7 除不乾淨——8,000 真的是 7 的朋友嗎？']],
+    ok: ['7,000 ÷ 7 = 1,000, straight from your head — and your own answer 1,072 sits right next to it.', '7,000 ÷ 7 = 1,000，心算就出來——而你自己算的 1,072 就坐在它旁邊。'] },
+  { lbl: ['Pick 2', '選擇 2'],
+    q: ['For 8,492 ÷ 4, round 8,492 to…', '8,492 ÷ 4：把 8,492 圓整成……'],
+    opts: [['8,000', '8,000', true],
+           ['8,900', '8,900', false, 'True, 4 divides 8,900 — but 89 ÷ 4 in one breath? Friendly numbers come straight from 4’s table.', '8,900 除以 4 也除得盡——但 89 ÷ 4 能一口氣說出來嗎？好朋友數要直接來自 4 的乘法表喔。'],
+           ['9,000', '9,000', false, '90 ÷ 4 leaves leftovers. Try a number from 4’s own table, wearing zeros.', '90 ÷ 4 會有剩。找一個 4 自己乘法表裡的數，幫它穿上零。']],
+    ok: ['8,000 ÷ 4 = 2,000 — and your own 2,123 is comfortably close.', '8,000 ÷ 4 = 2,000——你自己算的 2,123 舒舒服服地貼在旁邊。'] }
+], () => { $('s2st5').hidden = false; });
+
+choice('s2a5', {
+  opts: [
+    ['Before, it’s a prediction that can argue; after, it’s a copy that always agrees', '先做，它是能唱反調的預測；後做，它只是永遠點頭的複本'],
+    ['Because the teacher reads the top line first', '因為老師會先看最上面那一行'],
+    ['Because estimating afterwards takes more time', '因為之後才估比較花時間']
+  ],
+  ans: 0,
+  good: ['That’s the whole upgrade in one sentence. Now take it to the four challenges below.', '整個升級被你一句話講完了。帶著它去下面的四題挑戰吧。'],
+  h1: ['Back one step — I’ve reset Step 1. Run the 813 test again and watch WHO the ≈ agrees with, then come back.', '退回上一步囉——Step 1 我重置了。把 813 那個測試再跑一次，盯著 ≈ 到底同意「誰」，然後回來。'],
+  h2: ['Speed and teachers aside — which order lets the estimate DISAGREE with a wrong answer?', '先不管速度和老師——哪一種順序，能讓估算跟錯的答案「唱反調」？'],
+  tell: ['Before the divide, it’s a prediction that can argue; after, it’s a copy that can only agree.', '除之前，它是能唱反調的預測；除之後，它只是只會點頭的複本。'],
+  retest: {
+    q: ['Your friend divides first, then writes "2,123 ≈ 2,000" as their check. That line…', '朋友先除完，才寫「2,123 ≈ 2,000」當檢查。那一行……'],
+    opts: [['can never catch a mistake — it copies the answer', '永遠抓不到錯——它是答案的複本'], ['proves the answer is right', '證明答案是對的']],
+    ans: 0,
+    why: ['It agrees with whatever was written — right or wrong.', '不管寫的是對是錯，它都照單全收地同意。']
+  },
+  firstWrong: () => { s2c1.reset(); sendBack('s2st1'); },
+  pass: () => { openGate('s2try'); $('s2try').scrollIntoView({block:'center'}); }
+});
+
+/* Try it — the four Next Challenge questions, estimate drawn ON TOP of the box */
+(function(){
+  const host = $('s2walk'), msg = $('s2wmsg');
+  const PROBS = [
+    { head: ['Question 1 of 4 · 5,412 ÷ 6', '第 1 題（共 4 題）· 5,412 ÷ 6'],
+      ld: { cols: 6,
+        cells: [['6',1,3,'faded'], [')',2,3,'faded'], ['5',3,3], ['4',4,3], ['1',5,3], ['2',6,3]],
+        rules: [[3,3,6]],
+        slots: [['≈',3,1], ['9',4,1], ['0',5,1], ['0',6,1], ['9',4,2], ['0',5,2], ['2',6,2]] },
+      moves: [
+        { lbl: ['Move 1 · friendly number', '動作 1 · 好朋友數'],
+          q: ['Round 5,412 to…', '把 5,412 圓整成……'],
+          opts: [['5,400', '5,400', true],
+                 ['5,000', '5,000', false, 'Is 50 in the 6 times table? Say the sixes…', '50 在 6 的乘法表裡嗎？唸唸看 6 的乘法……'],
+                 ['5,410', '5,410', false, '541 ÷ 6 — does that come out clean?', '541 ÷ 6——除得乾淨嗎？']] },
+        { lbl: ['Move 2 · predict', '動作 2 · 預測'],
+          q: ['5,400 ÷ 6 = ? Write it above the box.', '5,400 ÷ 6 = ？把它寫在框上面。'],
+          opts: [['900', '900', true],
+                 ['90', '90', false, '54 hundreds ÷ 6 = 9 HUNDREDS. Write that as a number.', '54 個百 ÷ 6 = 9 個「百」。把它寫成數字。'],
+                 ['800', '800', false, '54 ÷ 6 — count the sixes: how many to reach 54?', '54 ÷ 6——數 6 的乘法：到 54 要幾個？']],
+          est: true },
+        { lbl: ['Move 3 · divide, then pick what you got', '動作 3 · 自己除，回來選'],
+          q: ['Divide in your margin. What did you get?', '在空白處除除看。你算到多少？'],
+          opts: [['902', '902', true],
+                 ['92', '92', false, 'Hold 92 next to your prediction 900. Anywhere near?', '把 92 貼到你的預測 900 旁邊。有接近嗎？'],
+                 ['892', '892', false, '892 × 6 = 5,352 — does that land on 5,412?', '892 × 6 = 5,352——有落在 5,412 上嗎？']],
+          quot: true },
+        { lbl: ['Move 4 · close?', '動作 4 · 接近嗎？'],
+          q: ['Prediction 900, answer 902 — close?', '預測 900、答案 902——接近嗎？'],
+          opts: [['Yes — the prediction is happy', '接近——預測很滿意', true],
+                 ['No — too far apart', '不接近——差太遠', false, 'They differ by 2. Next to 900, is 2 far?', '只差 2 耶。跟 900 比起來，2 算遠嗎？']] }
+      ] },
+    { head: ['Question 2 of 4 · 3,208 ÷ 4', '第 2 題（共 4 題）· 3,208 ÷ 4'],
+      ld: { cols: 6,
+        cells: [['4',1,3,'faded'], [')',2,3,'faded'], ['3',3,3], ['2',4,3], ['0',5,3], ['8',6,3]],
+        rules: [[3,3,6]],
+        slots: [['≈',3,1], ['8',4,1], ['0',5,1], ['0',6,1], ['8',4,2], ['0',5,2], ['2',6,2]] },
+      moves: [
+        { lbl: ['Move 1 · friendly number', '動作 1 · 好朋友數'],
+          q: ['Round 3,208 to…', '把 3,208 圓整成……'],
+          opts: [['3,200', '3,200', true],
+                 ['3,000', '3,000', false, 'True — 4 does divide 3,000. But is 30 in 4’s times table? Pick the neighbour that is.', '沒錯——3,000 除以 4 除得盡。但 30 在 4 的乘法表裡嗎？挑那個真的在表裡的鄰居吧。'],
+                 ['3,300', '3,300', false, 'Also divisible — but can you say 33 ÷ 4 in one breath? Friendly means head-easy.', '這個也除得盡——但 33 ÷ 4 能一口氣說出來嗎？好朋友數要好心算才行。']] },
+        { lbl: ['Move 2 · predict', '動作 2 · 預測'],
+          q: ['3,200 ÷ 4 = ?', '3,200 ÷ 4 = ？'],
+          opts: [['800', '800', true],
+                 ['80', '80', false, '32 hundreds ÷ 4 = 8 hundreds — as a number?', '32 個百 ÷ 4 = 8 個百——寫成數字是？'],
+                 ['700', '700', false, '32 ÷ 4 — say the fours: 4, 8, … how many to 32?', '32 ÷ 4——唸 4 的乘法：到 32 要幾個？']],
+          est: true },
+        { lbl: ['Move 3 · divide, then pick what you got', '動作 3 · 自己除，回來選'],
+          q: ['Divide in your margin. What did you get?', '在空白處除除看。你算到多少？'],
+          opts: [['802', '802', true],
+                 ['82', '82', false, 'Prediction says 800. Is 82 even in the neighbourhood?', '預測說 800。82 有住在那附近嗎？'],
+                 ['820', '820', false, '820 × 4 = 3,280 — is that your big number?', '820 × 4 = 3,280——那是你的大數字嗎？']],
+          quot: true },
+        { lbl: ['Move 4 · close?', '動作 4 · 接近嗎？'],
+          q: ['Prediction 800, answer 802 — close?', '預測 800、答案 802——接近嗎？'],
+          opts: [['Yes', '接近', true],
+                 ['No', '不接近', false, '802 and 800 — how far apart, really?', '802 跟 800——到底差多遠呀？']] }
+      ] },
+    { head: ['Question 3 of 4 · 6,345 ÷ 5', '第 3 題（共 4 題）· 6,345 ÷ 5'],
+      ld: { cols: 6,
+        cells: [['5',1,3,'faded'], [')',2,3,'faded'], ['6',3,3], ['3',4,3], ['4',5,3], ['5',6,3]],
+        rules: [[3,3,6]],
+        slots: [['≈',2,1], ['1',3,1], ['2',4,1], ['0',5,1], ['0',6,1], ['1',3,2], ['2',4,2], ['6',5,2], ['9',6,2]] },
+      moves: [
+        { lbl: ['Move 1 · friendly number', '動作 1 · 好朋友數'],
+          q: ['Round 6,345 to…', '把 6,345 圓整成……'],
+          opts: [['6,000', '6,000', true],
+                 ['6,345', '6,345', false, 'That’s the whole number, un-rounded. A prediction needs a rounder, friendlier one.', '那是原本的數字，還沒圓整耶。預測需要一個更圓、更友善的數。'],
+                 ['6,340', '6,340', false, 'True, 5 divides 6,340 — but 634 ÷ 5 in your head? Which choice comes straight from 5’s table, wearing zeros?', '沒錯，6,340 除以 5 除得盡——但 634 ÷ 5 心算得出來嗎？哪個選項是 5 的乘法表直接穿上零的呢？']] },
+        { lbl: ['Move 2 · predict', '動作 2 · 預測'],
+          q: ['6,000 ÷ 5 = ?', '6,000 ÷ 5 = ？'],
+          opts: [['1,200', '1,200', true],
+                 ['120', '120', false, '60 hundreds ÷ 5 = 12 hundreds. As a number?', '60 個百 ÷ 5 = 12 個百。寫成數字是？'],
+                 ['1,000', '1,000', false, 'Think 60 ÷ 5 = 12, then the hundreds come back on.', '想 60 ÷ 5 = 12，然後把「百」穿回去。']],
+          est: true },
+        { lbl: ['Move 3 · divide, then pick what you got', '動作 3 · 自己除，回來選'],
+          q: ['Divide in your margin. What did you get?', '在空白處除除看。你算到多少？'],
+          opts: [['1,269', '1,269', true],
+                 ['269', '269', false, 'Your prediction said about 1,200. Does 269 stand a chance?', '你的預測說 1,200 附近。269 有機會嗎？'],
+                 ['1,169', '1,169', false, '1,169 × 5 = 5,845 — does it land on 6,345?', '1,169 × 5 = 5,845——有落在 6,345 上嗎？']],
+          quot: true },
+        { lbl: ['Move 4 · close?', '動作 4 · 接近嗎？'],
+          q: ['Prediction 1,200, answer 1,269 — close?', '預測 1,200、答案 1,269——接近嗎？'],
+          opts: [['Yes — same neighbourhood', '接近——住同一區', true],
+                 ['No', '不接近', false, 'Both live between 1,000 and 1,300. Same street, almost.', '兩個都住在 1,000 到 1,300 之間耶。幾乎是同一條街了。']] }
+      ] },
+    { head: ['Question 4 of 4 · 2,914 ÷ 7 — this one has a remainder', '第 4 題（共 4 題）· 2,914 ÷ 7——這題有餘數'],
+      ld: { cols: 7,
+        cells: [['7',1,3,'faded'], [')',2,3,'faded'], ['2',3,3], ['9',4,3], ['1',5,3], ['4',6,3]],
+        rules: [[3,3,6]],
+        slots: [['≈',3,1], ['4',4,1], ['0',5,1], ['0',6,1], ['4',4,2], ['1',5,2], ['6',6,2], ['r2',7,2]] },
+      moves: [
+        { lbl: ['Move 1 · friendly number', '動作 1 · 好朋友數'],
+          q: ['Round 2,914 to…', '把 2,914 圓整成……'],
+          opts: [['2,800', '2,800', true],
+                 ['2,900', '2,900', false, '29 ÷ 7 — say the sevens: 7, 14, 21, 28… does 29 show up?', '29 ÷ 7——唸 7 的乘法：7、14、21、28……29 有出現嗎？'],
+                 ['3,000', '3,000', false, '30 ÷ 7 leaves leftovers. Which neighbour is in 7’s table?', '30 ÷ 7 會有剩。哪個鄰居在 7 的乘法表裡？']] },
+        { lbl: ['Move 2 · predict', '動作 2 · 預測'],
+          q: ['2,800 ÷ 7 = ?', '2,800 ÷ 7 = ？'],
+          opts: [['400', '400', true],
+                 ['40', '40', false, '28 hundreds ÷ 7 = 4 hundreds. As a number?', '28 個百 ÷ 7 = 4 個百。寫成數字是？'],
+                 ['300', '300', false, '28 ÷ 7 — how many sevens make 28?', '28 ÷ 7——幾個 7 湊成 28？']],
+          est: true },
+        { lbl: ['Move 3 · divide, then pick what you got', '動作 3 · 自己除，回來選'],
+          q: ['Divide in your margin — expect a remainder. What did you get?', '在空白處除除看——會有餘數喔。你算到多少？'],
+          opts: [['416 r2', '416 r2', true],
+                 ['46 r2', '46 r2', false, 'Prediction: about 400. Where does 46 sit?', '預測說 400 附近。46 坐在哪裡呀？'],
+                 ['426 r2', '426 r2', false, '426 × 7 = 2,982 — already past 2,914.', '426 × 7 = 2,982——已經衝過 2,914 了。']],
+          quot: true },
+        { lbl: ['Move 4 · close?', '動作 4 · 接近嗎？'],
+          q: ['Prediction 400, answer 416 r2 — close?', '預測 400、答案 416 r2——接近嗎？'],
+          opts: [['Yes — and the r2 changes nothing; the estimate only checks the size', '接近——而且 r2 完全不影響；估算只管「大小」', true],
+                 ['No — the remainder ruins it', '不接近——餘數把它毀了', false, 'The estimate never promised the exact answer — only the size. 416 next to 400: size OK?', '估算從來沒答應給你精準答案——它只管大小。416 站在 400 旁邊：大小合理嗎？']] }
+      ] }
+  ];
+  let pi = 0;
+  function runProb(){
+    const P = PROBS[pi];
+    const box = document.createElement('div');
+    box.innerHTML = '<p class="steplbl">' + P.head[0] + Z(P.head[1]) + '</p>';
+    const ld = drawLD(box, P.ld);
+    const cap = document.createElement('p');
+    cap.className = 'ldcap';
+    cap.innerHTML = 'Dashed blue = the two lines you are about to earn: the prediction on top, the quotient inside.' + Z('藍色虛線＝你等一下會賺到的兩行：上面是預測，裡面是商。');
+    box.appendChild(cap);
+    const walkHost = document.createElement('div');
+    box.appendChild(walkHost);
+    host.appendChild(box);
+    const seq = P.moves.map(m => {
+      const it = { lbl: m.lbl, q: m.q, opts: m.opts, ok: m.ok };
+      if (m.est) it.onOk = () => ld.reveal(1, 'pred');
+      if (m.quot) it.onOk = () => ld.reveal(2, 'fresh');
+      return it;
+    });
+    walk(walkHost, seq, () => {
+      pi++;
+      if (pi < PROBS.length){
+        setTimeout(runProb, 500);
+      } else {
+        setMsg(msg, 'Four predictions, four honest checks — and every single one was written BEFORE the divide. That’s the habit. 🎉' + Z('四個預測、四次誠實的檢查——而且每一個都寫在「除之前」。這就是那個新習慣。'), 'good');
+        openGate('s2model'); $('s2model').scrollIntoView({block:'center'});
+      }
+    });
+  }
+  runProb();
+})();
+
+/* ================= QUIZ ================= */
+(function(){
+  const QUIZ = [
+    { q: '2,400 ÷ 6 = ?', zh: '2,400 ÷ 6 = ？',
+      opts: [['400', '400'], ['200', '200'], ['40', '40']],
+      ans: 0, why: '24 ÷ 6 = 4, and the 4 counts hundreds: 400.', whyzh: '24 ÷ 6 = 4，而且那個 4 數的是「百」：400。', go: '#s1' },
+    { q: '3,500 ÷ 7 = ? Think hundreds.', zh: '3,500 ÷ 7 = ？用「百」來想。',
+      opts: [['500', '500'], ['50', '50'], ['5,000', '5,000']],
+      ans: 0, why: '35 hundreds ÷ 7 = 5 hundreds = 500.', whyzh: '35 個百 ÷ 7 = 5 個百 = 500。', go: '#s1' },
+    { q: 'Which line PROVES 400 = 2,400 ÷ 6?', zh: '哪一行能「證明」400 = 2,400 ÷ 6？',
+      opts: [['400 × 6 = 2,400', '400 × 6 = 2,400'], ['400 ≈ 400', '400 ≈ 400'], ['400 is a tidy number', '400 是個整齊的數']],
+      ans: 0, why: 'Multiplying back lands on the big number — that’s proof. The other two just look nice.', whyzh: '乘回去會落在大數字上——這才是證明。另外兩個只是好看而已。', go: '#s1' },
+    { q: 'Which one is a real CHECK for 5,238 ÷ 6?', zh: '哪一個才是 5,238 ÷ 6 的真檢查？',
+      opts: [['Divide, then round your answer', '先除，再把答案四捨五入'], ['Estimate first: 5,400 ÷ 6 = 900', '先估算：5,400 ÷ 6 = 900'], ['Do it twice, fast', '快快地做兩次']],
+      ans: 1, why: 'Only a prediction made BEFORE can argue with a wrong answer.', whyzh: '只有「事前」做的預測，才有能力跟錯的答案唱反調。', go: '#s2' },
+    { q: 'A friendly number for 4,832 ÷ 7 is…', zh: '4,832 ÷ 7 的好朋友數是……',
+      opts: [['4,900', '4,900'], ['4,800', '4,800'], ['5,000', '5,000']],
+      ans: 0, why: '49 ÷ 7 = 7, perfectly clean — 4,900 is in 7’s table, wearing zeros.', whyzh: '49 ÷ 7 = 7，乾乾淨淨——4,900 就在 7 的乘法表裡，只是穿了零。', go: '#s2' },
+    { q: 'Your answer says 132; your estimate said about 900. What now?', zh: '答案算出 132；估算卻說 900 附近。現在怎麼辦？',
+      opts: [['Erase all the working immediately', '馬上把整題擦掉'], ['Don’t erase yet — check the quotient’s first digit', '先不要擦——只檢查商的第一位數'], ['Trust the answer and move on', '相信答案，繼續往下寫']],
+      ans: 1, why: 'Far apart means LOOK, not panic: the first digit of the quotient finds the slip fastest.', whyzh: '差很遠的意思是「去看」，不是慌張：商的第一位數最快找到滑倒的地方。', go: '#tips' },
+    { q: 'You wrote "921 ≈ 900" AFTER dividing. What does that line check?', zh: '你在除完「之後」寫下 921 ≈ 900。那一行檢查了什麼？',
+      opts: [['Nothing — it just copies your answer', '什麼都沒有——它只是答案的複本'], ['It proves 921 is right', '它證明 921 是對的'], ['It checks the remainder', '它檢查了餘數']],
+      ans: 0, why: 'Born from the answer, it can only agree with the answer — right or wrong.', whyzh: '它是從答案生出來的，只會同意答案——不管答案是對是錯。', go: '#s2' },
+    { q: 'Estimate first: 2,914 ÷ 7 should land near…', zh: '先估算：2,914 ÷ 7 應該落在哪附近……',
+      opts: [['400', '400'], ['40', '40'], ['4,000', '4,000']],
+      ans: 0, why: '2,914 rounds to 2,800, and 28 hundreds ÷ 7 = 4 hundreds.', whyzh: '2,914 圓整成 2,800，而 28 個百 ÷ 7 = 4 個百。', go: '#s2' }
+  ];
+  /* deal each question's option order once per page load — Play again keeps it */
+  QUIZ.forEach(Q => { const a = Q.opts[Q.ans]; shuffle(Q.opts); Q.ans = Q.opts.indexOf(a); });
+  const dots = $('qdots'), body = $('qbody');
+  function start(){
+    let i = 0, score = 0;
+    const marks = [];
+    dots.innerHTML = QUIZ.map(() => '<i></i>').join('');
+    function paint(){
+      [...dots.children].forEach((d, k) => {
+        d.className = marks[k] === true ? 'ok' : marks[k] === false ? 'no' : (k === i ? 'cur' : '');
+      });
+    }
+    function show(){
+      paint();
+      const Q = QUIZ[i];
+      body.innerHTML = '';
+      const q = document.createElement('p');
+      q.className = 'qq';
+      q.innerHTML = 'Q' + (i + 1) + '. ' + Q.q + Z(Q.zh);
+      const wrap = document.createElement('div'); wrap.className = 'choices';
+      const msg = document.createElement('div'); msg.className = 'msg'; msg.hidden = true;
+      let answered = false;
+      Q.opts.forEach((o, k) => {
+        const b = mkBtn(o[0] + Z(o[1]), 'choice');
+        b.addEventListener('click', () => {
+          if (answered) return;
+          answered = true;
+          [...wrap.children].forEach(x => x.disabled = true);
+          wrap.children[Q.ans].classList.add('ok');
+          if (k === Q.ans){ score++; marks[i] = true; setMsg(msg, 'Correct! ' + Q.why + Z(Q.whyzh), 'good'); }
+          else { marks[i] = false; b.classList.add('no'); setMsg(msg, Q.why + Z(Q.whyzh) + ' <a href="' + Q.go + '">Go back and walk it again</a>', 'bad'); }
+          paint();
+          const next = mkBtn((i + 1 < QUIZ.length) ? 'Next ▸' : 'See my stars ★', 'btn');
+          next.style.marginTop = '.6rem';
+          next.addEventListener('click', () => { i++; if (i < QUIZ.length) show(); else end(); });
+          body.appendChild(next);
+        });
+        wrap.appendChild(b);
+      });
+      body.appendChild(q); body.appendChild(wrap); body.appendChild(msg);
+    }
+    function end(){
+      paint();
+      const stars = score >= 7 ? '★★★' : score >= 5 ? '★★☆' : '★☆☆';
+      const line = score === QUIZ.length ? 'Every trap beaten — the estimate habit is officially yours!'
+        : score >= 6 ? 'Strong. Peek at the wobbly ones, then go write some predictions.'
+        : 'Good try — walk the two sections again. Predictions get easier every single time.';
+      const zh = score === QUIZ.length ? '每個陷阱都被你打敗了——估算習慣正式歸你所有！'
+        : score >= 6 ? '很強喔。看一下還不穩的那幾題，然後去寫幾個預測吧。'
+        : '不錯的嘗試喔——兩個段落再走一次。預測這件事，每做一次就更簡單一點。';
+      body.innerHTML = '';
+      const box = document.createElement('div'); box.className = 'qresult';
+      box.innerHTML = '<div class="stars">' + stars + '</div><div class="sc">' + score + ' / ' + QUIZ.length + '</div><p>' + line + Z(zh) + '</p>';
+      const missed = QUIZ.map((Q, k) => marks[k] === false ? '<a href="' + Q.go + '">Q' + (k + 1) + '</a>' : null).filter(Boolean);
+      if (missed.length){
+        const p = document.createElement('p');
+        p.innerHTML = 'Worth another walk: ' + missed.join(' · ') + Z('這幾題值得再走一次喔。');
+        box.appendChild(p);
+      }
+      const again = mkBtn('↻ Play again', 'btn ghost');
+      again.addEventListener('click', start);
+      box.appendChild(again);
+      body.appendChild(box);
+    }
+    show();
+  }
+  start();
+})();
+
+/* ================= CORRECTION LIST ================= */
+(function(){
+  const FIXES = [
+    ['<b>p.45 #3</b> — cross out 200 and write <b>400</b>.', 'check on the page: 400 × 6 = 2,400', 'p.45 第 3 題——劃掉 200，改寫 400（在旁邊寫上驗算：400 × 6 = 2,400）。'],
+    ['<b>p.45–47</b> — write each estimate <b>above</b> the division box, as a prediction. Or run the four Next Challenge ones: 5,412 ÷ 6 · 3,208 ÷ 4 · 6,345 ÷ 5 · 2,914 ÷ 7.', 'estimate first, divide second', 'p.45–47——把估算改寫在除法框「上面」、當成預測。或直接做四題新挑戰：5,412÷6、3,208÷4、6,345÷5、2,914÷7。']
+  ];
+  const host = $('fixlist'), msg = $('fixmsg');
+  let done = 0;
+  FIXES.forEach(f => {
+    const lab = document.createElement('label');
+    const inp = document.createElement('input');
+    inp.type = 'checkbox';
+    const txt = document.createElement('span');
+    txt.className = 'txt';
+    txt.innerHTML = f[0] + '<span class="w">' + f[1] + '</span>' + Z(f[2]);
+    inp.addEventListener('change', () => {
+      lab.classList.toggle('done', inp.checked);
+      done += inp.checked ? 1 : -1;
+      if (done === FIXES.length){
+        setMsg(msg, '🎉 Workbook fixed! Take it back with a smile — and your notebook just got one page thicker. <a href="index.html">📒 See how many you have now</a>.' + Z('作業本修好了！帶著微笑交回去吧——你的筆記本又厚了一頁囉。<a href="index.html">📒 看看現在有幾課了</a>。'), 'good');
+      } else {
+        msg.hidden = true;
+      }
+    });
+    lab.appendChild(inp); lab.appendChild(txt);
+    host.appendChild(lab);
+  });
+})();
+
+})();
+</script>
+</body>
+</html>
