@@ -28,7 +28,7 @@ button:focus-visible,a:focus-visible{outline:.18rem solid var(--highlight);outli
   box-shadow:0 0 1.8rem rgba(35,38,48,.13);overflow:hidden}
 .notebook:before{content:"";position:absolute;left:3.2rem;top:0;bottom:0;width:.1rem;background:var(--margin)}
 .holes{position:absolute;left:.7rem;top:3rem;bottom:2rem;width:1rem;background:radial-gradient(circle at center,#C8CBD2 0 .28rem,transparent .31rem) center top/1rem 6.3rem repeat-y;opacity:.75}
-.back{position:absolute;right:1rem;top:.85rem;text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line2);border-radius:999px;padding:.35rem .65rem;font-weight:600}
+.back{position:fixed;right:.8rem;bottom:.8rem;top:auto;z-index:999;display:inline-flex;align-items:center;gap:.3rem;text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line2);border-radius:999px;padding:.4rem .8rem;font-weight:600;box-shadow:0 .12rem .5rem rgba(0,0,0,.14)}
 .eyebrow{color:var(--pencil);font-size:.76rem;letter-spacing:.04em;text-transform:uppercase;margin:0 0 .25rem}
 h1{font-size:clamp(1.75rem,4vw,3rem);line-height:1.05;margin:.15rem 0 .65rem;max-width:44rem}
 h1 mark{background:linear-gradient(transparent 55%,var(--highlight) 55%);padding:0 .08em}
@@ -85,7 +85,8 @@ h1 mark{background:linear-gradient(transparent 55%,var(--highlight) 55%);padding
 .footer-buddy{margin-top:2rem}.footer-buddy .say{font-size:1.15rem}
 @keyframes fade{from{opacity:.2;transform:translateY(.2rem)}to{opacity:1;transform:none}}
 @media(min-width:75rem){.notebook{max-width:80vw}.notebook:before{left:4rem}.holes{left:1.1rem}}
-@media(max-width:42rem){.notebook{padding:3.1rem .85rem 2.5rem 3.4rem}.notebook:before{left:2.75rem}.holes{left:.45rem}.back{top:.5rem}.flow-stages{gap:.22rem}.flow-stage{font-size:.62rem}.source-option.picked:after{content:"✗"}.match-grid{grid-template-columns:1fr}.lesson h2{font-size:1.28rem}}
+@media(max-width:42rem){.notebook{padding:3.1rem .85rem 2.5rem 3.4rem}.notebook:before{left:2.75rem}.holes{left:.45rem}.back{top:auto}.flow-stages{gap:.22rem}.flow-stage{font-size:.62rem}.source-option.picked:after{content:"✗"}.match-grid{grid-template-columns:1fr}.lesson h2{font-size:1.28rem}}
+@media print{.back{display:none}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -128,6 +129,7 @@ h1 mark{background:linear-gradient(transparent 55%,var(--highlight) 55%);padding
 var $=function(id){return document.getElementById(id)};
 function Z(t){return '<span class="zhi">'+t+'</span>'}
 function F(n,d){return '<span aria-label="'+n+' over '+d+'" style="display:inline-flex;flex-direction:column;align-items:center;line-height:.9;vertical-align:middle;margin:0 .08em"><span style="border-bottom:1px solid currentColor;padding:0 .12em">'+n+'</span><span style="padding:0 .12em">'+d+'</span></span>'}
+function M(w,n,d){return '<span style="display:inline-flex;align-items:center;gap:.24em;vertical-align:middle;white-space:nowrap"><span>'+w+'</span>'+F(n,d)+'</span>'}
 function setMsg(el,html,type){el.className='msg '+type;el.innerHTML=html}
 
 function mathSource(file,question,zhQuestion,options){
@@ -185,7 +187,7 @@ var lessons=[
       prove:{life:{title:'New problem: counters'+Z('新題：圓片'),story:'A box has 11 equal counters. Ali takes 3; Bea takes 7. What fraction is the difference?'+Z('盒中有 11 個相同圓片。Ali 拿 3 個，Bea 拿 7 個。分數相差多少？'),steps:[{q:'Choose the two fractions.'+Z('選兩個分數。'),yes:'Both fractions use the whole set of 11.'+Z('兩個分數都以整體 11 為分母。'),o:[{h:F(3,11)+' and '+F(7,11),ok:true},{h:F(3,7)+' and '+F(7,3),no:'What is the size of the whole set?'+Z('整體共有多少？')},{h:F(8,11)+' and '+F(4,11),no:'Do these show the amounts taken?'+Z('這是拿走的數量嗎？')}]},{q:'Choose and solve the difference.'+Z('選算式並計算。'),yes:'7/11 − 3/11 = 4/11.'+Z('7/11 − 3/11 = 4/11。'),o:[{h:F(7,11)+' − '+F(3,11)+' = '+F(4,11),ok:true},{h:F(7,11)+' + '+F(3,11)+' = '+F(10,11),no:'Does “difference” ask you to combine?'+Z('difference 是要合起來嗎？')},{h:F(4,0),no:'Do equal-size elevenths stop being elevenths?'+Z('相同大小的十一分之一會失去分母嗎？')}]}]},textbook:{title:'New like-fraction subtraction'+Z('新同分母減法'),story:F(7,11)+' − '+F(3,11)+'.'+Z('7/11 − 3/11。'),steps:[{q:'Keep the unit, subtract the counts.'+Z('保留單位，片數相減。'),yes:'Elevenths stay elevenths; 7 − 3 = 4.'+Z('十一分之一保持不變；7 − 3 = 4。'),o:[{h:F(4,11),ok:true},{h:F(10,11),no:'Did you add instead?'+Z('是不是做成加法？')},{h:F(4,0),no:'Should the denominator be subtracted?'+Z('分母要相減嗎？')}]},{q:'Is 4/11 already simplest?'+Z('4/11 已經是最簡分數嗎？'),yes:'4 and 11 share no common factor except 1.'+Z('4 和 11 除了 1 沒有公因數。'),o:[{h:'Yes'+Z('是'),ok:true},{h:'No, divide by 2'+Z('不是，要除以 2'),no:'Can 11 be divided by 2?'+Z('11 可以除以 2 嗎？')},{h:'No, divide by 4'+Z('不是，要除以 4'),no:'Can 11 be divided by 4?'+Z('11 可以除以 4 嗎？')}]}]}},result:F(5,9)+' − '+F(2,9)+' = '+F(3,9)+' (= '+F(1,3)+'). The listed source answer is '+F(3,9)+'.'+Z('5/9 − 2/9 = 3/9（= 1/3）；來源選項答案是 3/9。')}
   },
   {
-    id:'mixed-numbers',path:'Math · Fractions',title:'Mixed Numbers: What Is Left?',zhTitle:'帶分數：最後剩多少',source:mathSource('IMG_0591.PNG','Aanya has 5 cups of flour. She uses 1 2/3 to make a cake and 2 1/4 to make cookies. Then she uses 1/6 cup for bread. How much flour does Aanya have left?','Aanya 有 5 杯麵粉。蛋糕用 1 又 2/3 杯，餅乾用 2 又 1/4 杯，麵包再用 1/6 杯。還剩多少？',[
+    id:'mixed-numbers',path:'Math · Fractions',title:'Mixed Numbers: What Is Left?',zhTitle:'帶分數：最後剩多少',source:mathSource('IMG_0591.PNG','Aanya has 5 cups of flour. She uses '+M(1,2,3)+' to make a cake and '+M(2,1,4)+' to make cookies. Then she uses '+F(1,6)+' cup for bread. How much flour does Aanya have left?','Aanya 有 5 杯麵粉。蛋糕用 '+M(1,2,3)+' 杯，餅乾用 '+M(2,1,4)+' 杯，麵包再用 '+F(1,6)+' 杯。還剩多少？',[
       {l:'A',h:'4 '+F(1,12)+' cups of flour'},{l:'B',h:'1 '+F(11,12)+' cups of flour',picked:true},{l:'C',h:F(1,12)+' cup of flour'},{l:'D',h:F(11,12)+' cup of flour'}]),
     flow:{notice:{q:'How many used amounts must be removed from 5 cups?'+Z('要從 5 杯中扣掉幾個使用量？'),yes:'Cake, cookies, and bread make three used amounts.'+Z('蛋糕、餅乾、麵包，共三個使用量。'),o:[{h:'Three'+Z('三個'),ok:true},{h:'Two'+Z('兩個'),no:'What about the bread amount?'+Z('麵包的用量呢？')},{h:'Five'+Z('五個'),no:'Is 5 a number of uses or the starting amount?'+Z('5 是使用次數還是原有總量？')}]},
       do:{life:{title:'Flour used and left'+Z('麵粉使用量與剩餘量'),story:'Start with 5 cups. Remove 1 2/3, 2 1/4, and 1/6 cup.'+Z('從 5 杯開始，扣掉 1 又 2/3、2 又 1/4、1/6 杯。'),steps:[{q:'Choose the equation that matches the story.'+Z('選符合故事的算式。'),yes:'All three used amounts are removed from the starting 5 cups.'+Z('三個使用量都要從原有 5 杯扣掉。'),o:[{h:'5 − (1 '+F(2,3)+' + 2 '+F(1,4)+' + '+F(1,6)+')',ok:true},{h:'5 + 1 '+F(2,3)+' + 2 '+F(1,4)+' + '+F(1,6),no:'Is flour being added or used?'+Z('麵粉是在增加還是被使用？')},{h:'5 − (1 '+F(2,3)+' + 2 '+F(1,4)+')',no:'Where is the bread amount?'+Z('麵包的用量在哪裡？')}]},{q:'Use twelfths. What is the total used?'+Z('通分成十二分之一。總共用了多少？'),yes:'1 8/12 + 2 3/12 + 2/12 = 4 1/12.'+Z('1 又 8/12 + 2 又 3/12 + 2/12 = 4 又 1/12。'),o:[{h:'4 '+F(1,12),ok:true},{h:'3 '+F(11,12),no:'What is 8 + 3 + 2 twelfths?'+Z('8 + 3 + 2 個十二分之一是多少？')},{h:'4 '+F(11,12),no:'After 13/12, how many twelfths make one whole?'+Z('13/12 中，幾個十二分之一會換成一個整體？')}]},{q:'Now find 5 − 4 1/12.'+Z('現在算 5 − 4 又 1/12。'),yes:'Rename 5 as 4 12/12; the remainder is 11/12.'+Z('把 5 改寫成 4 又 12/12；剩下 11/12。'),o:[{h:F(11,12)+' cup',ok:true},{h:'1 '+F(11,12)+' cups',no:'If 4 1/12 was used from 5, is more than one whole cup left?'+Z('5 杯用掉 4 又 1/12，還會剩超過 1 杯嗎？')},{h:F(1,12)+' cup',no:'What is 12/12 − 1/12?'+Z('12/12 − 1/12 是多少？')}]}]},textbook:{title:'Combine, then subtract'+Z('先合計，再相減'),story:'5 − (1 2/3 + 2 1/4 + 1/6).'+Z('5 −（1 又 2/3 + 2 又 1/4 + 1/6）。'),steps:[{q:'Choose the common denominator.'+Z('選公分母。'),yes:'12 is divisible by 3, 4, and 6.'+Z('12 可以被 3、4、6 整除。'),o:[{h:'12',ok:true},{h:'6',no:'Can fourths be renamed exactly as sixths?'+Z('四分之一可以完整換成六分之一嗎？')},{h:'24',no:'24 works, but which smaller common denominator works too?'+Z('24 可以，但還有哪個較小公分母？')}]},{q:'Choose the total used.'+Z('選總使用量。'),yes:'The three amounts total 4 1/12.'+Z('三個量合計 4 又 1/12。'),o:[{h:'4 '+F(1,12),ok:true},{h:'3 '+F(11,12),no:'Regroup 13/12.'+Z('把 13/12 重新組合。')},{h:'4 '+F(11,12),no:'Check the fraction sum 8/12 + 3/12 + 2/12.'+Z('檢查 8/12 + 3/12 + 2/12。')}]},{q:'Subtract from 5.'+Z('從 5 扣除。'),yes:'5 − 4 1/12 = 11/12.'+Z('5 − 4 又 1/12 = 11/12。'),o:[{h:F(11,12),ok:true},{h:'1 '+F(11,12),no:'How much more than 4 cups was used?'+Z('使用量比 4 杯多多少？')},{h:F(1,12),no:'Rename the remaining whole as 12/12.'+Z('把剩下的一個整體改寫成 12/12。')}]}]}},
@@ -201,6 +203,18 @@ var lessons=[
   }
 ];
 
+var patternLesson=lessons.find(function(l){return l.id==='patterns'});
+if(patternLesson){
+  patternLesson.flow.prove={
+    life:{title:'New pattern: growing trays'+Z('新規律：成長托盤'),story:'Each tray holds four times as many seeds as the tray before: 2, 8, 32, 128...'+Z('每個托盤的種子數是前一個的 4 倍：2、8、32、128……'),steps:[
+      {q:'What is the rule?'+Z('規律是什麼？'),yes:'Each number is four times the previous one.'+Z('每個數都是前一個的 4 倍。'),o:[{h:'×4',ok:true},{h:'+6',no:'Does +6 work from 8 to 32?'+Z('+6 能讓 8 變 32 嗎？')},{h:'×3',no:'Does tripling 8 make 32?'+Z('8 的三倍是 32 嗎？')}]},
+      {q:'Choose the next three terms.'+Z('選接下來三項。'),yes:'128 × 4 = 512, then 2048, then 8192.'+Z('128 × 4 = 512，再來 2048、8192。'),o:[{h:'512, 2048, 8192',ok:true},{h:'134, 140, 146',no:'Did you switch to +6?'+Z('是不是改成 +6 了？')},{h:'384, 1152, 3456',no:'Which multiplier did this choice use?'+Z('這個選項用了乘幾？')}]}]},
+    textbook:{title:'New numerical pattern'+Z('新數列'),story:'2, 8, 32, 128, __, __, __.'+Z('2、8、32、128、__、__、__。'),steps:[
+      {q:'Select the repeated operation.'+Z('選重複運算。'),yes:'All adjacent terms use ×4.'+Z('相鄰兩項都使用 ×4。'),o:[{h:'×4',ok:true},{h:'+6',no:'Check 8 to 32.'+Z('檢查 8 到 32。')},{h:'×3',no:'Check 2 to 8.'+Z('檢查 2 到 8。')}]},
+      {q:'Complete the pattern.'+Z('完成數列。'),yes:'Continuing ×4 gives 512, 2048, 8192.'+Z('持續 ×4 得到 512、2048、8192。'),o:[{h:'512, 2048, 8192',ok:true},{h:'512, 1024, 2048',no:'Did the multiplier change after 512?'+Z('512 之後乘數改變了嗎？')},{h:'134, 140, 146',no:'Is the rule +6 or ×4?'+Z('規律是 +6 還是 ×4？')}]}]}
+  };
+}
+
 var lessonMeta={
   expressions:{subject:'math',file:'IMG_0592.PNG',eyebrow:'Math · ZOZECK MAP Test · Math G5',buddy:'One question. We can make every pack visible.'+Z('一次一題，把每一包都看清楚。'),vocab:[['expression','numbers and operation signs that show a calculation','表示計算的數字與運算符號'],['equal groups','groups with the same number in each','每組數量相同']]},
   division:{subject:'math',file:'IMG_0589.PNG',eyebrow:'Math · ZOZECK MAP Test · Math G5',buddy:'Four sharers, whole dolls, one careful choice.'+Z('四個人、完整娃娃，慢慢選一次。'),vocab:[['remainder','what is left after equal sharing','平均分完後剩下的量'],['whole item','an object that is not cut into parts','不切開的完整物品']]},
@@ -214,12 +228,20 @@ var currentLesson=null;
 function recordPass(){document.body.classList.add('all-passed');$('afterGate').innerHTML='✓ Prove passed. This correction is unlocked.'+Z('Prove 已通過，這一題的訂正已解鎖。');$('correctionText').innerHTML='<b>'+lessonMeta[currentLesson.id].file+':</b> '+currentLesson.flow.result}
 
 function fourStageFlow(shell,data){
-  var stage=0,step=0,names=[['Notice','先看'],['Do','動手'],['Why','說原因'],['Prove','換題驗收']];
+  var stage=0,step=0,names=[['Notice','先看'],['Do','動手'],['Why','說原因'],['Prove','換題驗收']],optionOrders=new WeakMap();
+  function randomizedOptions(item){
+    var saved=optionOrders.get(item);if(saved)return saved;
+    var choices=item.o.slice();
+    for(var i=choices.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),temp=choices[i];choices[i]=choices[j];choices[j]=temp}
+    optionOrders.set(item,choices);
+    return choices
+  }
   function bar(){return '<div class="flow-stages">'+names.map(function(n,i){var c='flow-stage'+(stage===i?' active':stage>i?' done':'');return '<div class="'+c+'"><b>'+(stage>i?'✓ ':'')+n[0]+'</b><span class="zh">'+n[1]+'</span></div>'}).join('')+'</div>'}
   function choose(panel,item,prefix,nextLabel,onNext,onWrong){
-    panel.innerHTML=prefix+'<p class="flow-question">'+item.q+'</p><div class="opts">'+item.o.map(function(o,i){return '<button type="button" class="opt" data-i="'+i+'">'+o.h+'</button>'}).join('')+'</div><div class="msg"></div>';
+    var choices=randomizedOptions(item);
+    panel.innerHTML=prefix+'<p class="flow-question">'+item.q+'</p><div class="opts">'+choices.map(function(o,i){return '<button type="button" class="opt" data-i="'+i+'">'+o.h+'</button>'}).join('')+'</div><div class="msg"></div>';
     var opts=panel.querySelector('.opts'),msg=panel.querySelector('.msg');
-    opts.addEventListener('click',function(e){var b=e.target.closest('.opt');if(!b||b.disabled)return;var o=item.o[+b.dataset.i];if(o.ok){b.classList.add('good');opts.querySelectorAll('.opt').forEach(function(x){x.disabled=true});setMsg(msg,'✓ '+(o.yes||item.yes||''),'good');var row=document.createElement('div');row.className='row';row.innerHTML='<button type="button" class="btn">'+nextLabel+'</button>';row.querySelector('button').addEventListener('click',onNext);panel.appendChild(row)}else{b.classList.add('bad');b.disabled=true;if(onWrong){opts.querySelectorAll('.opt').forEach(function(x){x.disabled=true});onWrong(o.no)}else setMsg(msg,o.no,'bad')}})
+    opts.addEventListener('click',function(e){var b=e.target.closest('.opt');if(!b||b.disabled)return;var o=choices[+b.dataset.i];if(o.ok){b.classList.add('good');opts.querySelectorAll('.opt').forEach(function(x){x.disabled=true});setMsg(msg,'✓ '+(o.yes||item.yes||''),'good');var row=document.createElement('div');row.className='row';row.innerHTML='<button type="button" class="btn">'+nextLabel+'</button>';row.querySelector('button').addEventListener('click',onNext);panel.appendChild(row)}else{b.classList.add('bad');b.disabled=true;if(onWrong){opts.querySelectorAll('.opt').forEach(function(x){x.disabled=true});onWrong(o.no)}else setMsg(msg,o.no,'bad')}})
   }
   function render(){
     if(stage===4){recordPass();shell.innerHTML=bar()+'<div class="flow-result"><span class="lbl">Passed · correction unlocked</span><span class="ans">'+data.result+'</span></div><button type="button" class="btn alt flow-reset">Start over</button>';shell.querySelector('.flow-reset').addEventListener('click',function(){stage=0;step=0;render()});return}
@@ -249,7 +271,7 @@ function renderLesson(l){
   $('buddySay').innerHTML=m.buddy;$('vocabHost').innerHTML=vocabHtml(m.vocab);
   var s=document.createElement('section');s.className='lesson';s.id='lesson-'+l.id;s.innerHTML=l.source+'<div class="flow-shell" id="flow-'+l.id+'"></div>';host.appendChild(s);fourStageFlow($('flow-'+l.id),l.flow);
 }
-var publicPages={'zozeck-balloon-expression.html':'expressions','zozeck-whole-dolls.html':'division','zozeck-times-three-pattern.html':'patterns','zozeck-fraction-difference.html':'like-fractions','zozeck-mixed-number-flour.html':'mixed-numbers','living-systems.html':'living-systems'},fileName=decodeURIComponent(location.pathname.split('/').pop()),wanted=publicPages[fileName]||new URLSearchParams(location.search).get('lesson');if(publicPages[fileName])$('topBack').href='index.html';currentLesson=lessons.find(function(l){return l.id===wanted})||null;if(currentLesson)renderLesson(currentLesson);else renderShelf();
+var publicPages={'zozeck-balloon-expression.html':'expressions','zozeck-whole-dolls.html':'division','zozeck-times-three-pattern.html':'patterns','zozeck-fraction-difference.html':'like-fractions','zozeck-mixed-number-flour.html':'mixed-numbers','living-systems.html':'living-systems'},fileName=decodeURIComponent(location.pathname.split('/').pop()),wanted=publicPages[fileName]||new URLSearchParams(location.search).get('lesson');if(publicPages[fileName]){$('topBack').href='index.html';$('topBack').textContent='📒 Index';$('topBack').setAttribute('aria-label','Back to the index')}currentLesson=lessons.find(function(l){return l.id===wanted})||null;if(currentLesson)renderLesson(currentLesson);else renderShelf();
 
 function setMode(m){body.dataset.mode=m;document.querySelectorAll('.segbtn').forEach(function(b){b.classList.toggle('active',b.dataset.mode===m)});$('modeLine').innerHTML=modeLines[m];document.dispatchEvent(new CustomEvent('lessonmodechange',{detail:m}))}
 $('btnLife').addEventListener('click',function(){setMode('life')});$('btnTextbook').addEventListener('click',function(){setMode('textbook')});
