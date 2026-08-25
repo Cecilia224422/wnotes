@@ -166,6 +166,41 @@ body[data-mode="life"] .lesson-track.life{display:block}
 .life-transfer .transfer-q{font-weight:600;margin:.2rem 0 .4rem}
 .life-transfer .model{margin-top:.8rem}
 
+/* ---------- Four-stage lesson flow ---------- */
+.sec>.lesson-track,.sec>details.explain{display:none!important}
+.source-exercises{margin:.55rem 0 0;padding:0;list-style:none}
+.source-exercises li{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .65rem;padding:.42rem 0;border-top:1px dashed var(--line)}
+.source-exercises .ref{font-size:.72rem;color:var(--gray);min-width:5.2rem}
+.answer-blank{display:inline-block;min-width:3.4rem;border-bottom:2px solid var(--pencil);height:1.2em;vertical-align:bottom}
+.flow-shell{background:#fff;border:2px solid var(--accent);border-radius:.8rem;padding:.85rem;margin:1rem 0;max-width:44rem;transition:border-color .25s}
+.flow-stages{display:grid;grid-template-columns:repeat(4,1fr);gap:.35rem;margin-bottom:.85rem}
+.flow-stage{border-radius:.55rem;background:#F1F2F5;color:var(--gray);padding:.4rem .25rem;text-align:center;font-size:.72rem;line-height:1.15}
+.flow-stage b{display:block;font-size:.82rem;color:inherit}
+.flow-stage.active{background:var(--accent);color:#fff}
+.flow-stage.active b{color:#fff}
+.flow-stage.done{background:#E6F6EE;color:var(--green)}
+.flow-panel{animation:fade .25s ease}
+.flow-kicker{font-size:.72rem;color:var(--accent);font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin:0 0 .25rem}
+.flow-title{font-size:1.08rem;font-weight:600;margin:.15rem 0 .55rem}
+.flow-story{background:var(--accent-soft);border-left:.3rem solid var(--accent);border-radius:.45rem;padding:.65rem .8rem;margin:.35rem 0 .75rem}
+.flow-question{font-weight:600;margin:.45rem 0}
+.flow-mode{display:inline-block;font-size:.7rem;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:.12rem .45rem;margin-bottom:.35rem}
+.flow-result{background:#E6F6EE;border:2px solid #9BD3B7;border-radius:.65rem;padding:.8rem;margin-top:.65rem}
+.flow-result .lbl{display:block;font-size:.7rem;color:var(--green);letter-spacing:.04em;text-transform:uppercase;margin-bottom:.25rem}
+.flow-result .ans{font-weight:600}
+.flow-result-list{margin:.4rem 0 0;padding-left:1.25rem}
+.flow-reset{margin-top:.7rem}
+.after-gate{background:#fff;border:2px dashed var(--line2);border-radius:.7rem;padding:.75rem .9rem;margin:1rem 0;max-width:44rem;color:var(--pencil)}
+body:not(.all-flows-passed) #tip,body:not(.all-flows-passed) #quiz,body:not(.all-flows-passed) #list{display:none}
+body:not(.all-flows-passed) .jump .wide{display:none}
+body.all-flows-passed .after-gate{display:none}
+@media(max-width:620px){
+  .flow-shell{padding:.7rem .65rem}
+  .flow-stages{gap:.2rem}
+  .flow-stage{font-size:.62rem;padding:.35rem .1rem}
+  .flow-stage b{font-size:.72rem}
+}
+
 /* ---------- Model answer ---------- */
 .model{background:#fff;border:2px dashed var(--line2);border-radius:.5rem;padding:.6rem .9rem;margin:.8rem 0;max-width:44rem;font-size:1.02rem}
 .model .lbl{display:block;font-size:.7rem;color:var(--gray);letter-spacing:.04em;text-transform:uppercase;margin-bottom:.15rem}
@@ -369,6 +404,8 @@ html{scroll-behavior:smooth}
       <span class="redpen">check</span></p>
   </div>
 
+  <div class="flow-shell" id="s1flow"></div>
+
   <div class="play lesson-track textbook">
     <h4><span class="try">Step 1</span>Choose one bottom for both fractions<span class="zhi">選一個兩邊都能用的分母</span></h4>
     <div class="step" id="s1step1">
@@ -431,6 +468,8 @@ html{scroll-behavior:smooth}
       <span class="redpen">check</span></p>
   </div>
 
+  <div class="flow-shell" id="s2flow"></div>
+
   <div class="play lesson-track textbook">
     <h4><span class="try">Step 1</span>Reveal what is missing<span class="zhi">先找出少掉的部分</span></h4>
     <div class="pies" id="s2pies">
@@ -488,16 +527,18 @@ html{scroll-behavior:smooth}
     </div>
     <p class="q">Add / Subtract. <b>Write each answer in simplest form.</b></p>
     <span class="worklabel">William wrote</span>
-    <ul class="spots">
-      <li><span class="ref">p254 · Q1</span><span class="ok"><span class="fr">5/8</span> + <span class="fr">1/8</span> =</span><span class="wrong"><span class="hw"><span class="fr">6/8</span></span></span></li>
-      <li><span class="ref">p254 · Q3a</span><span class="ok"><span class="fr">2/10</span> + <span class="fr">4/10</span> =</span><span class="wrong"><span class="hw"><span class="fr">6/10</span></span></span></li>
-      <li><span class="ref">p254 · Q3b</span><span class="ok"><span class="fr">2/6</span> + <span class="fr">2/6</span> =</span><span class="wrong"><span class="hw"><span class="fr">4/6</span></span></span></li>
-      <li><span class="ref">p255 · Q3</span><span class="ok"><span class="fr">2/6</span> + <span class="fr">1/6</span> =</span><span class="wrong"><span class="hw"><span class="fr">3/6</span></span></span></li>
-      <li><span class="ref">p255 · Q4</span><span class="ok"><span class="fr">1/12</span> + <span class="fr">3/12</span> =</span><span class="wrong"><span class="hw"><span class="fr">4/12</span></span></span></li>
-      <li><span class="ref">p257 · Q1</span><span class="ok"><span class="fr">3/8</span> − <span class="fr">1/8</span> =</span><span class="wrong"><span class="hw"><span class="fr">2/8</span></span></span></li>
-      <li><span class="ref">p258 · Q3</span><span class="ok"><span class="fr">9/10</span> − <span class="fr">5/10</span> =</span><span class="wrong"><span class="hw"><span class="fr">4/10</span></span></span></li>
+    <ul class="source-exercises">
+      <li><span class="ref">p254 · Q1</span><span><span class="fr">5/8</span> + <span class="fr">1/8</span> = <span class="wrong"><span class="hw"><span class="fr">6/8</span></span></span> <span class="redpen">= <span class="fr">3/4</span></span></span></li>
+      <li><span class="ref">p254 · Q3a</span><span><span class="fr">2/10</span> + <span class="fr">4/10</span> = <span class="wrong"><span class="hw"><span class="fr">6/10</span></span></span> <span class="redpen">= <span class="fr">3/5</span></span></span></li>
+      <li><span class="ref">p254 · Q3b</span><span><span class="fr">2/6</span> + <span class="fr">2/6</span> = <span class="wrong"><span class="hw"><span class="fr">4/6</span></span></span> <span class="redpen">= <span class="fr">2/3</span></span></span></li>
+      <li><span class="ref">p255 · Q3</span><span><span class="fr">2/6</span> + <span class="fr">1/6</span> = <span class="wrong"><span class="hw"><span class="fr">3/6</span></span></span> <span class="redpen">= <span class="fr">1/2</span></span></span></li>
+      <li><span class="ref">p255 · Q4</span><span><span class="fr">1/12</span> + <span class="fr">3/12</span> = <span class="wrong"><span class="hw"><span class="fr">4/12</span></span></span> <span class="redpen">= <span class="fr">1/3</span></span></span></li>
+      <li><span class="ref">p257 · Q1</span><span><span class="fr">3/8</span> − <span class="fr">1/8</span> = <span class="wrong"><span class="hw"><span class="fr">2/8</span></span></span> <span class="redpen">= <span class="fr">1/4</span></span></span></li>
+      <li><span class="ref">p258 · Q3</span><span><span class="fr">9/10</span> − <span class="fr">5/10</span> = <span class="wrong"><span class="hw"><span class="fr">4/10</span></span></span> <span class="redpen">= <span class="fr">2/5</span></span></span></li>
     </ul>
   </div>
+
+  <div class="flow-shell" id="s3flow"></div>
 
   <div class="play lesson-track textbook">
     <h4><span class="try">Step 1</span>Read the instruction again<span class="zhi">再看一次作答要求</span></h4>
@@ -569,9 +610,12 @@ html{scroll-behavior:smooth}
       <span class="sourcekind">Question reconstruction<span class="zh">原題重現</span></span>
       <span class="source">Math in Focus 4A · Chapter 3 · page 258 · Q4</span>
     </div>
+    <span class="worklabel">William wrote</span>
     <p class="q"><span class="qnum">4</span>1 − <span class="fr">11/12</span> = <span class="fr"><span><span class="wrong"><span class="hw">1</span></span></span><span>12</span></span> − <span class="fr">11/12</span> = <span class="hw"><span class="fr">1/12</span></span> <span style="color:var(--green);font-weight:700">✓</span>
-      <span class="redpen">check the box</span></p>
+      <span class="redpen">box = 12 &nbsp;(1 = <span class="fr">12/12</span>) — your answer <span class="fr">1/12</span> is right!</span></p>
   </div>
+
+  <div class="flow-shell" id="s4flow"></div>
 
   <div class="play lesson-track textbook">
     <h4><span class="try">Step 1</span>Fill the whole<span class="zhi">把整體填滿</span></h4>
@@ -612,6 +656,8 @@ html{scroll-behavior:smooth}
   <div class="model hidden lesson-track textbook" id="s4model"><span class="lbl">Model answer · write this in the book</span>
     <span class="ans">1 − <span class="fr">4/8</span> = <span class="fr">8/8</span> − <span class="fr">4/8</span> = <span class="fr">4/8</span> = <span class="fr">1/2</span></span></div>
 </section>
+
+<div class="after-gate" id="afterGate">🔒 Prove: 0 of 4 passed. Finish all four to unlock the review and correction list.<span class="zh">Prove：4 區完成 0 區。全部通過後，才會解鎖複習和訂正清單。</span></div>
 <!-- ================= TIP ================= -->
 <section class="sec" id="tip">
   <h2><span class="num emoji">💡</span><span>Tip — not wrong, just tidier<span class="zh">小提醒——不算錯，但可以更精準</span></span></h2>
@@ -773,6 +819,89 @@ function lifeTransfer(box,steps,answer){
   render();
 }
 
+/* ---------- Notice → Do → Why → Prove ---------- */
+var fourStagePassed={};
+function recordFourStagePass(id){
+  fourStagePassed[id]=true;
+  var n=Object.keys(fourStagePassed).length, gate=$('afterGate');
+  if(gate) gate.innerHTML='🔒 Prove: '+n+' of 4 passed. Finish all four to unlock the review and correction list.'+Z('Prove：4 區完成 '+n+' 區。全部通過後，才會解鎖複習和訂正清單。');
+  document.body.classList.toggle('all-flows-passed',n===4);
+}
+function fourStageFlow(shell,data){
+  var stage=0, taskStep=0;
+  var names=[['Notice','先看'],['Do','動手'],['Why','說原因'],['Prove','換題驗收']];
+  function stageBar(){
+    return '<div class="flow-stages">'+names.map(function(n,i){
+      var cls='flow-stage'+(stage===i?' active':stage>i?' done':'');
+      return '<div class="'+cls+'"><b>'+(stage>i?'✓ ':'')+n[0]+'</b><span class="zh">'+n[1]+'</span></div>';
+    }).join('')+'</div>';
+  }
+  function choose(panel,item,prefix,nextLabel,onNext,onWrong){
+    panel.innerHTML=prefix+'<p class="flow-question">'+item.q+'</p><div class="opts">'+item.o.map(function(o,j){return '<button type="button" class="opt" data-j="'+j+'">'+o.h+'</button>';}).join('')+'</div><div class="msg"></div>';
+    var opts=panel.querySelector('.opts'), msg=panel.querySelector('.msg');
+    opts.addEventListener('click',function(e){
+      var b=e.target.closest('.opt'); if(!b||b.disabled) return;
+      var o=item.o[+b.getAttribute('data-j')];
+      if(o.ok){
+        b.classList.add('good'); opts.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
+        var correctNote=o.yes||item.yes||'';
+        setMsg(msg,'✓'+(correctNote?' '+correctNote:''),'good');
+        var row=document.createElement('div'); row.className='row';
+        row.innerHTML='<button type="button" class="btn">'+nextLabel+'</button>';
+        row.querySelector('button').addEventListener('click',onNext);
+        panel.appendChild(row);
+      } else {
+        b.classList.add('bad'); b.disabled=true;
+        if(onWrong){
+          opts.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
+          onWrong(o.no);
+        } else {
+          setMsg(msg,o.no,'bad');
+        }
+      }
+    });
+  }
+  function render(){
+    if(stage===4){
+      recordFourStagePass(shell.id);
+      shell.innerHTML=stageBar()+'<div class="flow-result"><span class="lbl">Passed · correction unlocked</span><span class="ans">'+data.result+'</span></div><button type="button" class="btn alt sm flow-reset">Start over</button>';
+      shell.querySelector('.flow-reset').addEventListener('click',function(){stage=0;taskStep=0;render();});
+      return;
+    }
+    shell.innerHTML=stageBar()+'<div class="flow-panel"></div>';
+    var panel=shell.querySelector('.flow-panel');
+    if(stage===0){
+      choose(panel,data.notice,'<p class="flow-kicker">One question only'+Z('只看一個問題')+'</p>','Go to Do',function(){stage=1;taskStep=0;render();});
+      return;
+    }
+    if(stage===2){
+      choose(panel,data.why,'<p class="flow-kicker">Choose the reason'+Z('選出原因')+'</p>','Go to Prove',function(){stage=3;taskStep=0;render();},function(question){
+        stage=1; taskStep=0; render();
+        var doPanel=shell.querySelector('.flow-panel'), note=document.createElement('div');
+        note.className='msg bad';
+        note.innerHTML=question+'<br><b>↩ Back to Do: try the action once more.</b>'+Z('回到「動手」：再做一次剛才的動作。');
+        var doQuestion=doPanel.querySelector('.flow-question');
+        doPanel.insertBefore(note,doQuestion);
+      });
+      return;
+    }
+    var mode=document.body.getAttribute('data-mode')||'life';
+    var track=(stage===1?data.do:data.prove)[mode];
+    var item=track.steps[taskStep], last=taskStep===track.steps.length-1;
+    var label=mode==='life'?'🍎 Real-life':'📘 Textbook';
+    var prefix='<span class="flow-mode">'+label+'</span><p class="flow-title">'+track.title+'</p>'+(track.story?'<div class="flow-story">'+track.story+'</div>':'')+'<p class="flow-kicker">Step '+(taskStep+1)+' of '+track.steps.length+Z('第 '+(taskStep+1)+' 步，共 '+track.steps.length+' 步')+'</p>';
+    var nextLabel=last?(stage===1?'Go to Why':'See correction'):'Next';
+    choose(panel,item,prefix,nextLabel,function(){
+      if(last){stage++;taskStep=0;}else{taskStep++;}
+      render();
+    });
+  }
+  document.addEventListener('lessonmodechange',function(){
+    if(stage===1||stage===3){taskStep=0;render();}
+  });
+  render();
+}
+
 /* ---------- Mode & Chinese toggle ---------- */
 var body=document.body;
 var modelines={
@@ -783,6 +912,7 @@ function setMode(m){
   body.setAttribute('data-mode',m);
   document.querySelectorAll('.segbtn').forEach(function(b){ b.classList.toggle('active',b.getAttribute('data-mode')===m); });
   $('modeline').innerHTML=modelines[m];
+  document.dispatchEvent(new CustomEvent('lessonmodechange',{detail:m}));
 }
 $('btnTextbook').addEventListener('click',function(){setMode('textbook');});
 $('btnLife').addEventListener('click',function(){setMode('life');});
@@ -845,6 +975,167 @@ lifeTransfer($('s4lifebox'),[
     {h:F(6,8),no:'If four of eight slices were eaten, how many slices remain?'+Z('8 片吃掉 4 片，還剩幾片？')}
   ]}
 ],F(1,2)+' of the pizza is left.'+Z('披薩剩下 1/2。'));
+
+/* ---------- Four-stage prototypes ---------- */
+fourStageFlow($('s1flow'),{
+  notice:{q:'Before comparing '+F(3,4)+' and '+F(2,3)+', what should you check first?'+Z('比較 3/4 和 2/3 之前，第一個要檢查什麼？'),o:[
+    {h:'Which top number is bigger?'+Z('哪個分子比較大？'),no:'Can you compare the tops while the bottoms are different?'+Z('分母不同時，可以直接比分子嗎？')},
+    {h:'Are the bottoms the same?'+Z('分母一樣嗎？'),ok:true,yes:'The bottoms are 4 and 3, so they must be matched before comparing.'+Z('分母是 4 和 3，還不一樣；要先把它們變成相同分母。')},
+    {h:'Should I add all four numbers?'+Z('要把四個數字全部相加嗎？'),no:'Does the question ask you to add or compare?'+Z('題目要你相加，還是比較？')}
+  ]},
+  do:{
+    life:{title:'Water bottles'+Z('水瓶問題'),story:'Lina drank '+F(3,4)+' L. Ben drank '+F(2,3)+' L. Who drank more?'+Z('Lina 喝了 3/4 公升，Ben 喝了 2/3 公升。誰喝得比較多？'),steps:[
+      {q:'What should you do before comparing?'+Z('比較之前要先做什麼？'),yes:'Renaming both fractions gives equal-size parts to compare.'+Z('把兩個分數換成相同分母，才會得到一樣大的單位。'),o:[
+        {h:'Compare 3 and 2'+Z('比較 3 和 2'),no:'Are fourths and thirds the same-size units?'+Z('四分之一和三分之一是相同大小的單位嗎？')},
+        {h:'Subtract the two amounts'+Z('把兩個量相減'),no:'Does the question ask for the difference or who drank more?'+Z('題目要找相差多少，還是誰喝得多？')},
+        {h:'Rename both with the same bottom'+Z('把兩個分數換成相同分母'),ok:true}
+      ]},
+      {q:'Which common denominator works?'+Z('哪個公分母可以用？'),yes:'12 works because both 4 and 3 divide evenly into it.'+Z('12 可以用，因為 4 和 3 都能整除 12。'),o:[
+        {h:'8',no:'Can 3 divide evenly into 8?'+Z('8 可以被 3 整除嗎？')},
+        {h:'12',ok:true},
+        {h:'6',no:'Can 4 divide evenly into 6?'+Z('6 可以被 4 整除嗎？')}
+      ]},
+      {q:'Complete both amounts.'+Z('完成兩個分數。'),yes:F(3,4)+' becomes '+F(9,12)+' and '+F(2,3)+' becomes '+F(8,12)+' without changing either amount.'+Z('3/4 換成 9/12，2/3 換成 8/12，兩個量都沒有改變。'),o:[
+        {h:F(3,4)+' = '+F(9,12)+'; '+F(2,3)+' = '+F(8,12),ok:true},
+        {h:F(3,4)+' = '+F(6,12)+'; '+F(2,3)+' = '+F(8,12),no:'If 4 becomes 12, what must 3 be multiplied by?'+Z('4 變成 12 時，3 要乘幾？')},
+        {h:F(3,4)+' = '+F(9,12)+'; '+F(2,3)+' = '+F(6,12),no:'If 3 becomes 12, what must 2 be multiplied by?'+Z('3 變成 12 時，2 要乘幾？')}
+      ]}
+    ]},
+    textbook:{title:'Compare '+F(3,4)+' and '+F(2,3),story:'Use equivalent fractions. Write each step the way the book expects.'+Z('用等值分數，照課本方式寫出每一步。'),steps:[
+      {q:'Choose the common denominator.'+Z('選公分母。'),yes:'12 is divisible by both 4 and 3.'+Z('12 可以同時被 4 和 3 整除。'),o:[{h:'6',no:'Can 4 divide evenly into 6?'+Z('6 可以被 4 整除嗎？')},{h:'12',ok:true},{h:'8',no:'Can 3 divide evenly into 8?'+Z('8 可以被 3 整除嗎？')}]},
+      {q:'Choose the correct equivalent fractions.'+Z('選出正確的等值分數。'),yes:'Multiplying each top and bottom by the same number gives '+F(9,12)+' and '+F(8,12)+'.'+Z('分子分母同乘一個數，得到 9/12 和 8/12。'),o:[{h:F(3,4)+' = '+F(9,12)+'; '+F(2,3)+' = '+F(8,12),ok:true},{h:F(3,4)+' = '+F(6,12)+'; '+F(2,3)+' = '+F(8,12),no:'Was the numerator multiplied by the same number as its denominator?'+Z('分子和分母有乘同一個數嗎？')},{h:F(3,4)+' = '+F(9,12)+'; '+F(2,3)+' = '+F(6,12),no:'Was the numerator multiplied by the same number as its denominator?'+Z('分子和分母有乘同一個數嗎？')}]},
+      {q:'Choose the comparison.'+Z('選出比較結果。'),yes:'Nine twelfths is greater than eight twelfths.'+Z('9 個十二分之一比 8 個十二分之一多。'),o:[{h:F(3,4)+' &lt; '+F(2,3),no:'With the same bottom, is 9 smaller than 8?'+Z('分母相同時，9 比 8 小嗎？')},{h:F(3,4)+' &gt; '+F(2,3),ok:true},{h:F(3,4)+' = '+F(2,3),no:'Are 9 twelfths and 8 twelfths equal?'+Z('9/12 和 8/12 一樣嗎？')}]}]
+    }
+  },
+  why:{q:'Why can you compare 9 and 8 now?'+Z('為什麼現在可以比較 9 和 8？'),yes:'A shared denominator means equal-size parts, so the numerators can be compared.'+Z('分母相同表示每份一樣大，這時才能比分子。'),o:[
+    {h:'Both fractions now use equal-size twelfths.'+Z('兩個分數現在都用相同大小的十二分之一。'),ok:true},
+    {h:'Twelve is the largest number.'+Z('因為 12 是最大的數字。'),no:'Does a larger denominator always mean a larger fraction?'+Z('分母比較大，分數就一定比較大嗎？')},
+    {h:'Nine is an odd number.'+Z('因為 9 是奇數。'),no:'Does being odd tell you which fraction is larger?'+Z('奇數能決定哪個分數比較大嗎？')}
+  ]},
+  prove:{
+    life:{title:'New problem: paint'+Z('新題：顏料'),story:'Ava used '+F(2,5)+' L of paint. Noah used '+F(1,2)+' L. Who used more?'+Z('Ava 用了 2/5 公升顏料，Noah 用了 1/2 公升。誰用得比較多？'),steps:[
+      {q:'Choose a common denominator.'+Z('選一個公分母。'),yes:'10 works because both 5 and 2 divide evenly into it.'+Z('10 可以用，因為 5 和 2 都能整除 10。'),o:[{h:'5',no:'Can 2 divide evenly into 5?'+Z('5 可以被 2 整除嗎？')},{h:'10',ok:true},{h:'7',no:'Can both 5 and 2 divide evenly into 7?'+Z('7 可以同時被 5 和 2 整除嗎？')}]},
+      {q:'Rename both amounts.'+Z('換寫兩個量。'),yes:F(2,5)+' is '+F(4,10)+' and '+F(1,2)+' is '+F(5,10)+'.'+Z('2/5 是 4/10，1/2 是 5/10。'),o:[{h:F(2,5)+' = '+F(4,10)+'; '+F(1,2)+' = '+F(5,10),ok:true},{h:F(2,5)+' = '+F(2,10)+'; '+F(1,2)+' = '+F(5,10),no:'If 5 doubles to 10, what happens to 2?'+Z('5 乘 2 變成 10 時，2 也要怎麼變？')},{h:F(2,5)+' = '+F(4,10)+'; '+F(1,2)+' = '+F(2,10),no:'If 2 is multiplied by 5, what happens to 1?'+Z('2 乘 5 時，1 也要怎麼變？')}]},
+      {q:'Who used more: Ava ('+F(2,5)+' = '+F(4,10)+' L) or Noah ('+F(1,2)+' = '+F(5,10)+' L)?'+Z('誰用得比較多：Ava（2/5 = 4/10 公升）還是 Noah（1/2 = 5/10 公升）？'),yes:'Five tenths is greater than four tenths, so Noah used more.'+Z('5/10 比 4/10 大，所以 Noah 用得比較多。'),o:[{h:'Ava',no:'With the same bottom, is 4 greater than 5?'+Z('分母相同時，4 比 5 大嗎？')},{h:'Noah',ok:true},{h:'They used the same amount'+Z('兩人一樣多'),no:'Are 4 tenths and 5 tenths equal?'+Z('4/10 和 5/10 一樣嗎？')}]}]
+    },
+    textbook:{title:'New problem: compare '+F(2,5)+' and '+F(1,2),story:'Show the common denominator and the final comparison.'+Z('寫出公分母和最後的比較結果。'),steps:[
+      {q:'Choose a common denominator.'+Z('選公分母。'),yes:'10 is a common multiple of 5 and 2.'+Z('10 是 5 和 2 的公倍數。'),o:[{h:'5',no:'Can 2 divide evenly into 5?'+Z('5 可以被 2 整除嗎？')},{h:'10',ok:true},{h:'7',no:'Can 5 and 2 both divide evenly into 7?'+Z('7 可以同時被 5 和 2 整除嗎？')}]},
+      {q:'Choose the equivalent fractions.'+Z('選等值分數。'),yes:'The values stay the same: '+F(2,5)+' = '+F(4,10)+' and '+F(1,2)+' = '+F(5,10)+'.'+Z('分數大小不變：2/5 = 4/10，1/2 = 5/10。'),o:[{h:F(2,5)+' = '+F(4,10)+'; '+F(1,2)+' = '+F(5,10),ok:true},{h:F(2,5)+' = '+F(2,10)+'; '+F(1,2)+' = '+F(5,10),no:'Did both numbers in 2/5 get multiplied by 2?'+Z('2/5 的分子分母都有乘 2 嗎？')},{h:F(2,5)+' = '+F(4,10)+'; '+F(1,2)+' = '+F(2,10),no:'Did both numbers in 1/2 get multiplied by 5?'+Z('1/2 的分子分母都有乘 5 嗎？')}]},
+      {q:'Choose the comparison.'+Z('選比較結果。'),yes:'Four tenths is less than five tenths, so '+F(2,5)+' &lt; '+F(1,2)+'.'+Z('4/10 小於 5/10，所以 2/5 < 1/2。'),o:[{h:F(2,5)+' &gt; '+F(1,2),no:'Is 4 tenths greater than 5 tenths?'+Z('4/10 比 5/10 大嗎？')},{h:F(2,5)+' &lt; '+F(1,2),ok:true},{h:F(2,5)+' = '+F(1,2),no:'Are 4 tenths and 5 tenths equal?'+Z('4/10 和 5/10 一樣嗎？')}]}]
+    }
+  },
+  result:F(3,4)+' = '+F(9,12)+', '+F(2,3)+' = '+F(8,12)+'. '+F(3,4)+' is greater than '+F(2,3)+'.'+Z('3/4 = 9/12，2/3 = 8/12，所以 3/4 比 2/3 大。')
+});
+
+fourStageFlow($('s2flow'),{
+  notice:{q:'What is the same about '+F(5,6)+' and '+F(7,8)+'?'+Z('5/6 和 7/8 有什麼相同的地方？'),o:[
+    {h:'Both are one part short of 1.'+Z('兩個都只差一份就到 1。'),ok:true,yes:'The missing parts are '+F(1,6)+' and '+F(1,8)+'.'+Z('兩個分數分別少了 1/6 和 1/8 就到 1。')},
+    {h:'They have the same denominator.'+Z('分母相同。'),no:'Are 6 and 8 the same denominator?'+Z('6 和 8 是相同的分母嗎？')},
+    {h:'They have the same numerator.'+Z('分子相同。'),no:'Are 5 and 7 the same numerator?'+Z('5 和 7 是相同的分子嗎？')}
+  ]},
+  do:{
+    life:{title:'Two pizzas'+Z('兩個披薩'),story:'Two equal pizzas each lose one slice. Pizza A is cut into 6; Pizza B is cut into 8. Which has more left?'+Z('兩個一樣大的披薩都吃掉一片。A 切 6 片，B 切 8 片。哪個剩得比較多？'),steps:[
+      {q:'Which fractions show what is left?'+Z('哪組分數表示剩下的披薩？'),yes:F(5,6)+' and '+F(7,8)+' show the slices left after one slice is eaten.'+Z('各吃掉一片後，剩下的量是 5/6 和 7/8。'),o:[{h:F(1,6)+' and '+F(1,8),no:'Do these show what was eaten or what remains?'+Z('這組表示吃掉的，還是剩下的？')},{h:F(5,6)+' and '+F(7,8),ok:true},{h:F(6,5)+' and '+F(8,7),no:'Can the amount left be more than one whole pizza?'+Z('剩下的量會超過一整個披薩嗎？')}]},
+      {q:'Which missing slice is smaller?'+Z('少掉的哪一片比較小？'),yes:F(1,8)+' is smaller because the same whole was divided into more pieces.'+Z('同一個整體切得越多片，每片越小，所以 1/8 比較小。'),o:[{h:F(1,6),no:'When the same pizza is cut into fewer pieces, is each piece smaller?'+Z('同一個披薩切得比較少片時，每片會比較小嗎？')},{h:F(1,8),ok:true},{h:'They are equal'+Z('一樣大'),no:'Are sixths and eighths equal-size pieces?'+Z('六分之一和八分之一一樣大嗎？')}]},
+      {q:'Which pizza has more left?'+Z('哪個披薩剩得比較多？'),yes:'Pizza B lost the smaller slice, so it has more left.'+Z('B 少掉的那片比較小，所以剩得比較多。'),o:[{h:'Pizza B',ok:true},{h:'Pizza A',no:'Which pizza lost the smaller slice?'+Z('哪個披薩少掉的那片比較小？')},{h:'They are equal'+Z('一樣多'),no:'Did the two pizzas lose equal-size slices?'+Z('兩個披薩少掉的片一樣大嗎？')}]}]
+    },
+    textbook:{title:'Compare '+F(5,6)+' and '+F(7,8),story:'Use the missing-part strategy.'+Z('使用「差一份到 1」的方法。'),steps:[
+      {q:'What part is missing from each fraction?'+Z('兩個分數各少了多少？'),yes:F(5,6)+' is missing '+F(1,6)+'; '+F(7,8)+' is missing '+F(1,8)+'.'+Z('5/6 少了 1/6；7/8 少了 1/8。'),o:[{h:F(1,6)+' and '+F(1,8),ok:true},{h:F(5,6)+' and '+F(7,8),no:'Are these the missing parts or the parts present?'+Z('這些是少掉的部分，還是已有的部分？')},{h:F(1,5)+' and '+F(1,7),no:'Which numbers are the denominators?'+Z('哪些數字才是分母？')}]},
+      {q:'Which missing part is smaller?'+Z('哪個少掉的部分比較小？'),yes:F(1,8)+' is smaller than '+F(1,6)+' because eighths are smaller pieces.'+Z('八分之一每份比較小，所以 1/8 小於 1/6。'),o:[{h:F(1,6),no:'For unit fractions, does a larger bottom make a larger or smaller piece?'+Z('單位分數的分母越大，每份會比較大還是比較小？')},{h:F(1,8),ok:true},{h:'Equal'+Z('一樣大'),no:'Are sixths and eighths equal-size pieces?'+Z('六分之一和八分之一一樣大嗎？')}]},
+      {q:'Choose the comparison.'+Z('選比較結果。'),yes:F(7,8)+' is closer to 1, so '+F(5,6)+' &lt; '+F(7,8)+'.'+Z('7/8 比較接近 1，所以 5/6 < 7/8。'),o:[{h:F(5,6)+' &lt; '+F(7,8),ok:true},{h:F(5,6)+' &gt; '+F(7,8),no:'Which fraction is missing the smaller part?'+Z('哪個分數少掉的部分比較小？')},{h:F(5,6)+' = '+F(7,8),no:'Do they miss equal-size parts?'+Z('它們少掉的部分一樣大嗎？')}]}]
+    }
+  },
+  why:{q:'Why does '+F(7,8)+' have more left?'+Z('為什麼 7/8 剩得比較多？'),yes:'A fraction missing the smaller piece is closer to one whole.'+Z('少掉的部分越小，留下的分數就越接近一個整體。'),o:[
+    {h:'Because 8 is greater than 6.'+Z('因為 8 比 6 大。'),no:'Does a larger denominator alone always make a larger fraction?'+Z('只看分母比較大，就能說分數比較大嗎？')},
+    {h:'Because 7 is greater than 5.'+Z('因為 7 比 5 大。'),no:'Can you compare numerators while the denominators differ?'+Z('分母不同時，可以直接比分子嗎？')},
+    {h:'It is missing the smaller piece, '+F(1,8)+'.'+Z('它少掉的是比較小的 1/8。'),ok:true}
+  ]},
+  prove:{
+    life:{title:'New problem: chocolate bars'+Z('新題：巧克力'),story:'Two equal bars each lose one piece. Bar A has '+F(4,5)+' left. Bar B has '+F(3,4)+' left. Which has more?'+Z('兩條一樣大的巧克力都少一塊。A 剩 4/5，B 剩 3/4。哪個剩得比較多？'),steps:[
+      {q:'What is each bar missing?'+Z('兩條各少了多少？'),yes:'Bar A is missing '+F(1,5)+'; Bar B is missing '+F(1,4)+'.'+Z('A 少了 1/5；B 少了 1/4。'),o:[{h:F(4,5)+' and '+F(3,4),no:'Are these the missing parts or the parts left?'+Z('這些是少掉的，還是剩下的？')},{h:F(1,5)+' and '+F(1,4),ok:true},{h:F(1,4)+' and '+F(1,3),no:'Which denominators appear in the problem?'+Z('題目中的分母是哪兩個？')}]},
+      {q:'Which missing piece is smaller?'+Z('哪個少掉的部分比較小？'),yes:F(1,5)+' is smaller because fifths are smaller than fourths.'+Z('五分之一每份比較小，所以 1/5 小於 1/4。'),o:[{h:F(1,4),no:'For unit fractions, does the larger denominator make a smaller piece?'+Z('單位分數的分母比較大時，每份是不是比較小？')},{h:F(1,5),ok:true},{h:'Equal'+Z('一樣大'),no:'Are fourths and fifths equal-size pieces?'+Z('四分之一和五分之一一樣大嗎？')}]},
+      {q:'Which bar has more left?'+Z('哪條剩得比較多？'),yes:'Bar A is missing the smaller piece, so it has more left.'+Z('A 少掉的部分比較小，所以剩得比較多。'),o:[{h:'Bar A',ok:true},{h:'Bar B',no:'Which bar is missing the smaller piece?'+Z('哪條少掉的部分比較小？')},{h:'Equal'+Z('一樣多'),no:'Are '+F(1,5)+' and '+F(1,4)+' equal?'+Z('1/5 和 1/4 一樣大嗎？')}]}]
+    },
+    textbook:{title:'New problem: compare '+F(4,5)+' and '+F(3,4),story:'Use how far each fraction is from 1.'+Z('比較兩個分數各差多少到 1。'),steps:[
+      {q:'What is each fraction missing?'+Z('兩個分數各少多少？'),yes:F(4,5)+' is missing '+F(1,5)+'; '+F(3,4)+' is missing '+F(1,4)+'.'+Z('4/5 少了 1/5；3/4 少了 1/4。'),o:[{h:F(1,5)+' and '+F(1,4),ok:true},{h:F(4,5)+' and '+F(3,4),no:'Are these the missing parts?'+Z('這些是少掉的部分嗎？')},{h:F(1,4)+' and '+F(1,3),no:'Which denominators are in the problem?'+Z('題目裡的分母是哪兩個？')}]},
+      {q:'Which missing part is smaller?'+Z('哪個少掉的部分比較小？'),yes:F(1,5)+' is smaller than '+F(1,4)+'.'+Z('1/5 小於 1/4。'),o:[{h:F(1,4),no:'Which unit fraction has the larger denominator?'+Z('哪個單位分數的分母比較大？')},{h:F(1,5),ok:true},{h:'Equal'+Z('一樣大'),no:'Are fourths and fifths equal-size parts?'+Z('四分之一和五分之一一樣大嗎？')}]},
+      {q:'Choose the comparison.'+Z('選比較結果。'),yes:F(4,5)+' is missing less, so '+F(4,5)+' &gt; '+F(3,4)+'.'+Z('4/5 少掉得比較少，所以 4/5 > 3/4。'),o:[{h:F(4,5)+' &gt; '+F(3,4),ok:true},{h:F(4,5)+' &lt; '+F(3,4),no:'Which fraction is missing the smaller part?'+Z('哪個分數少掉的部分比較小？')},{h:F(4,5)+' = '+F(3,4),no:'Do they miss equal-size parts?'+Z('它們少掉的部分一樣大嗎？')}]}]
+    }
+  },
+  result:F(5,6)+' &lt; '+F(7,8)+'.'+Z('5/6 < 7/8。')
+});
+
+fourStageFlow($('s3flow'),{
+  notice:{q:'Which instruction applies to all seven questions?'+Z('這七題都要遵守哪一個作答要求？'),o:[
+    {h:'Use a different denominator.'+Z('換成不同的分母。'),no:'Does the instruction ask for different denominators?'+Z('題目有要求換成不同的分母嗎？')},
+    {h:'Stop after adding or subtracting.'+Z('加減完就停。'),no:'What do the bold words “simplest form” still require?'+Z('粗體的「最簡分數」還要求做什麼？')},
+    {h:'Write every answer in simplest form.'+Z('每個答案都要寫成最簡分數。'),ok:true,yes:'The bold instruction applies to every answer, even when the calculation is correct.'+Z('粗體要求適用於每個答案；計算正確後仍要檢查是否最簡。')}
+  ]},
+  do:{
+    life:{title:'Orange slices'+Z('橘子切片'),story:'An orange has 8 equal pieces. Mia eats 2. What fraction is left in simplest form?'+Z('一顆橘子分成 8 片，Mia 吃了 2 片。剩下的部分化成最簡分數是多少？'),steps:[
+      {q:'Choose the equation for what is left.'+Z('選出表示剩下部分的算式。'),yes:'Eight pieces minus two eaten pieces leaves six: '+F(8,8)+' − '+F(2,8)+' = '+F(6,8)+'.'+Z('8 片減掉吃掉的 2 片，剩下 6 片：8/8 − 2/8 = 6/8。'),o:[{h:F(8,8)+' − '+F(2,8)+' = '+F(6,8),ok:true},{h:F(2,8)+' + '+F(8,8)+' = '+F(10,8),no:'Are pieces being added, or are two pieces eaten?'+Z('現在是增加橘子，還是吃掉兩片？')},{h:F(8,8)+' − '+F(6,8)+' = '+F(2,8),no:'Does this result show the part eaten or the part left?'+Z('這個結果表示吃掉的，還是剩下的？')}]},
+      {q:'Write '+F(6,8)+' in simplest form.'+Z('把 6/8 化成最簡分數。'),yes:'Divide both 6 and 8 by 2: '+F(6,8)+' = '+F(3,4)+'.'+Z('6 和 8 同時除以 2：6/8 = 3/4。'),o:[{h:F(6,8),no:'Can both 6 and 8 still be divided by 2?'+Z('6 和 8 還能同時除以 2 嗎？')},{h:F(3,4),ok:true},{h:F(4,6),no:'Were the top and bottom divided by the same number?'+Z('分子和分母有同時除以同一個數嗎？')}]}]
+    },
+    textbook:{title:F(5,8)+' + '+F(1,8),story:'Calculate, then obey the instruction “simplest form.”'+Z('先計算，再遵守「最簡分數」的要求。'),steps:[
+      {q:'What is the sum before simplifying?'+Z('化簡前的和是多少？'),yes:'Like fractions keep the denominator: 5 + 1 = 6, so the sum is '+F(6,8)+'.'+Z('同分母分數保留分母：5 + 1 = 6，所以和是 6/8。'),o:[{h:F(6,16),no:'For like fractions, do you add the denominators?'+Z('同分母分數相加時，分母也要相加嗎？')},{h:F(6,8),ok:true},{h:F(5,8),no:'Was '+F(1,8)+' added?'+Z('有把 1/8 加進去嗎？')}]},
+      {q:'What is the answer in simplest form?'+Z('最簡分數是多少？'),yes:'Dividing the top and bottom by 2 gives '+F(3,4)+'.'+Z('分子分母同時除以 2，得到 3/4。'),o:[{h:F(6,8),no:'Can both 6 and 8 still be divided by 2?'+Z('6 和 8 還能同時除以 2 嗎？')},{h:F(3,4),ok:true},{h:F(2,4),no:'Does '+F(2,4)+' equal '+F(6,8)+'?'+Z('2/4 和 6/8 一樣大嗎？')}]}]
+    }
+  },
+  why:{q:'Why must you divide the numerator and denominator by the same number?'+Z('為什麼分子和分母要同時除以同一個數？'),yes:'Changing the top and bottom by the same factor keeps the fraction equal.'+Z('分子分母同除一個因數，分數的大小才會保持不變。'),o:[
+    {h:'So the denominator becomes even.'+Z('讓分母變成偶數。'),no:'Is an even denominator the goal of simplest form?'+Z('最簡分數的目標是讓分母變偶數嗎？')},
+    {h:'So the numerator becomes smaller.'+Z('讓分子變小。'),no:'May you change only the numerator and keep the same value?'+Z('只改分子，分數的值還會一樣嗎？')},
+    {h:'So the value stays the same while the numbers get simpler.'+Z('讓分數大小不變，但數字變簡單。'),ok:true}
+  ]},
+  prove:{
+    life:{title:'New problem: berries'+Z('新題：莓果'),story:'A bowl has 10 berries. Four are eaten. What fraction is left in simplest form?'+Z('碗裡有 10 顆莓果，吃掉 4 顆。剩下的部分化成最簡分數是多少？'),steps:[
+      {q:'Choose the equation for what is left.'+Z('選出表示剩下部分的算式。'),yes:'Ten berries minus four eaten berries leaves six: '+F(10,10)+' − '+F(4,10)+' = '+F(6,10)+'.'+Z('10 顆減掉吃掉的 4 顆，剩下 6 顆：10/10 − 4/10 = 6/10。'),o:[{h:F(10,10)+' − '+F(4,10)+' = '+F(6,10),ok:true},{h:F(4,10)+' + '+F(10,10)+' = '+F(14,10),no:'Are berries being added or eaten?'+Z('莓果是增加，還是被吃掉？')},{h:F(10,10)+' − '+F(6,10)+' = '+F(4,10),no:'Does this result show what was eaten or what is left?'+Z('這個結果表示吃掉的，還是剩下的？')}]},
+      {q:'Write '+F(6,10)+' in simplest form.'+Z('把 6/10 化成最簡分數。'),yes:'Divide both numbers by 2: '+F(6,10)+' = '+F(3,5)+'.'+Z('分子分母同時除以 2：6/10 = 3/5。'),o:[{h:F(6,10),no:'Can both 6 and 10 still be divided by 2?'+Z('6 和 10 還能同時除以 2 嗎？')},{h:F(3,5),ok:true},{h:F(4,8),no:'Does '+F(4,8)+' equal '+F(6,10)+'?'+Z('4/8 和 6/10 一樣大嗎？')}]}]
+    },
+    textbook:{title:'New problem: '+F(3,10)+' + '+F(3,10),story:'Give the final answer in simplest form.'+Z('最後答案要寫成最簡分數。'),steps:[
+      {q:'What is the sum before simplifying?'+Z('化簡前的和是多少？'),yes:'The denominator stays 10 and 3 + 3 = 6, so the sum is '+F(6,10)+'.'+Z('分母保留 10，3 + 3 = 6，所以和是 6/10。'),o:[{h:F(6,20),no:'For like fractions, do you add the denominators?'+Z('同分母分數相加時，分母也要相加嗎？')},{h:F(6,10),ok:true},{h:F(3,10),no:'Was the second '+F(3,10)+' added?'+Z('第二個 3/10 有加進去嗎？')}]},
+      {q:'What is the simplest form?'+Z('最簡分數是多少？'),yes:F(6,10)+' simplifies to '+F(3,5)+' after dividing both numbers by 2.'+Z('6/10 的分子分母同除以 2，化成 3/5。'),o:[{h:F(6,10),no:'Can both 6 and 10 still be divided by 2?'+Z('6 和 10 還能同時除以 2 嗎？')},{h:F(3,5),ok:true},{h:F(2,5),no:'What is 6 divided by 2?'+Z('6 除以 2 是多少？')}]}]
+    }
+  },
+  result:'<ul class="flow-result-list"><li>'+F(6,8)+' = '+F(3,4)+'</li><li>'+F(6,10)+' = '+F(3,5)+'</li><li>'+F(4,6)+' = '+F(2,3)+'</li><li>'+F(3,6)+' = '+F(1,2)+'</li><li>'+F(4,12)+' = '+F(1,3)+'</li><li>'+F(2,8)+' = '+F(1,4)+'</li><li>'+F(4,10)+' = '+F(2,5)+'</li></ul>'
+});
+
+fourStageFlow($('s4flow'),{
+  notice:{q:'To subtract a fraction from 1, what must 1 become first?'+Z('要從 1 減去一個分數，第一步要把 1 變成什麼？'),o:[
+    {h:'A fraction with any denominator'+Z('任意分母的分數'),no:'Will different denominators let you subtract the numerators?'+Z('分母不同時，可以直接相減分子嗎？')},
+    {h:'A fraction with the same denominator'+Z('分母相同的分數'),ok:true,yes:'Use the denominator in the question: '+F(8,8)+' here and '+F(12,12)+' in Q4.'+Z('要跟著題目的分母：這題用 8/8，Q4 用 12/12。')},
+    {h:'Zero'+Z('變成 0'),no:'Does one whole become zero before anything is removed?'+Z('還沒拿走任何東西前，一個整體會變成 0 嗎？')}
+  ]},
+  do:{
+    life:{title:'Pizza after lunch'+Z('午餐後的披薩'),story:'A pizza has 8 slices. Four are eaten. What fraction is left in simplest form?'+Z('一個披薩有 8 片，吃掉 4 片。剩下的部分化成最簡分數是多少？'),steps:[
+      {q:'Which equation matches the story?'+Z('哪個算式符合情境？'),yes:'Start with one whole pizza and subtract the four eighths that were eaten.'+Z('從一整個披薩減去吃掉的 4/8。'),o:[{h:'1 − '+F(4,8),ok:true},{h:'1 + '+F(4,8),no:'Were four slices added or eaten?'+Z('這四片是加上去，還是被吃掉？')},{h:F(4,8)+' − 1',no:'Can one whole be removed from only four slices?'+Z('只有四片時，能拿走一整個披薩嗎？')}]},
+      {q:'Write 1 in eighths.'+Z('把 1 寫成八分之幾。'),yes:'All eight eighths fill the whole pizza, so 1 = '+F(8,8)+'.'+Z('8 個八分之一填滿整個披薩，所以 1 = 8/8。'),o:[{h:F(1,8),no:'Is one slice the whole pizza?'+Z('一片就是整個披薩嗎？')},{h:F(8,8),ok:true},{h:F(4,8),no:'How many slices were there before any were eaten?'+Z('還沒吃之前，一共有幾片？')}]},
+      {q:'What is left in simplest form?'+Z('剩下的最簡分數是多少？'),yes:F(8,8)+' − '+F(4,8)+' = '+F(4,8)+', and '+F(4,8)+' simplifies to '+F(1,2)+'.'+Z('8/8 − 4/8 = 4/8，再化簡成 1/2。'),o:[{h:F(4,8),no:'Can both 4 and 8 still be divided by 2?'+Z('4 和 8 還能同時除以 2 嗎？')},{h:F(6,8),no:'If four of eight slices were eaten, how many remain?'+Z('8 片吃掉 4 片，還剩幾片？')},{h:F(1,2),ok:true}]}]
+    },
+    textbook:{title:'Subtract '+F(4,8)+' from 1',story:'Write 1 with the same denominator, subtract, then simplify.'+Z('把 1 寫成相同分母，再相減、化簡。'),steps:[
+      {q:'Write 1 in eighths.'+Z('把 1 寫成八分之幾。'),yes:'One whole contains eight eighths, so 1 = '+F(8,8)+'.'+Z('一個整體包含 8 個八分之一，所以 1 = 8/8。'),o:[{h:F(1,8),no:'How many eighths make one whole?'+Z('幾個八分之一才是一個整體？')},{h:F(8,8),ok:true},{h:F(4,8),no:'Is half a whole the same as one whole?'+Z('半個整體和一個整體一樣嗎？')}]},
+      {q:'Subtract.'+Z('相減。'),yes:'Like fractions keep the denominator: 8 − 4 = 4, so the result is '+F(4,8)+'.'+Z('同分母分數保留分母：8 − 4 = 4，所以結果是 4/8。'),o:[{h:F(8,8)+' − '+F(4,8)+' = '+F(4,8),ok:true},{h:F(8,8)+' − '+F(4,8)+' = '+F(6,8),no:'What is 8 minus 4?'+Z('8 減 4 是多少？')},{h:F(8,8)+' − '+F(4,8)+' = '+F(4,0),no:'Do like fractions keep the denominator?'+Z('同分母分數相減時，分母要保留嗎？')}]},
+      {q:'Simplify the result.'+Z('化簡結果。'),yes:'Divide 4 and 8 by 4: '+F(4,8)+' = '+F(1,2)+'.'+Z('4 和 8 同時除以 4：4/8 = 1/2。'),o:[{h:F(4,8),no:'Can both 4 and 8 still be divided by 2?'+Z('4 和 8 還能同時除以 2 嗎？')},{h:F(1,2),ok:true},{h:F(2,8),no:'If both numbers are divided, should only the numerator change?'+Z('分子分母都要除時，只有分子改變嗎？')}]}]
+    }
+  },
+  why:{q:'Why is 1 equal to '+F(8,8)+'?'+Z('為什麼 1 等於 8/8？'),yes:'When the numerator equals the denominator, every equal part is filled, so the fraction is one whole.'+Z('分子和分母相同，表示所有等份都填滿，所以是一個整體。'),o:[
+    {h:'Because 8 is an even number.'+Z('因為 8 是偶數。'),no:'Would any even number automatically equal one whole?'+Z('任何偶數都會自動等於一個整體嗎？')},
+    {h:'Because eight eighths fill all eight equal parts.'+Z('因為 8 個八分之一填滿了全部 8 份。'),ok:true},
+    {h:'Because the numerator should always match the question number.'+Z('因為分子要和題號相同。'),no:'Does the question number decide the value of a fraction?'+Z('題號會決定分數的大小嗎？')}
+  ]},
+  prove:{
+    life:{title:'New problem: cake'+Z('新題：蛋糕'),story:'A cake has 6 equal slices. Two are eaten. What fraction is left in simplest form?'+Z('一個蛋糕分成 6 片，吃掉 2 片。剩下的部分化成最簡分數是多少？'),steps:[
+      {q:'Write the subtraction.'+Z('寫出減法算式。'),yes:'Two sixths were eaten from one whole cake, so the equation is 1 − '+F(2,6)+'.'+Z('從一整個蛋糕吃掉 2/6，所以算式是 1 − 2/6。'),o:[{h:'1 − '+F(2,6),ok:true},{h:'1 + '+F(2,6),no:'Were two slices added or eaten?'+Z('這兩片是加上去，還是被吃掉？')},{h:F(2,6)+' − 1',no:'Can one whole be removed from only two slices?'+Z('只有兩片時，能拿走一整個蛋糕嗎？')}]},
+      {q:'Rename 1 and subtract.'+Z('把 1 換寫後相減。'),yes:'One whole is '+F(6,6)+', and '+F(6,6)+' − '+F(2,6)+' = '+F(4,6)+'.'+Z('一個整體是 6/6，而且 6/6 − 2/6 = 4/6。'),o:[{h:F(6,6)+' − '+F(2,6)+' = '+F(4,6),ok:true},{h:F(1,6)+' − '+F(2,6)+' = '+F(1,6),no:'How many sixths make one whole?'+Z('幾個六分之一才是一個整體？')},{h:F(6,6)+' − '+F(2,6)+' = '+F(8,6),no:'Does subtraction make the numerator larger?'+Z('相減會讓分子變大嗎？')}]},
+      {q:'Write '+F(4,6)+' in simplest form.'+Z('把 4/6 化成最簡分數。'),yes:'Divide both 4 and 6 by 2: '+F(4,6)+' = '+F(2,3)+'. The new problem is complete.'+Z('4 和 6 同時除以 2：4/6 = 2/3。新題完成。'),o:[{h:F(4,6),no:'Can both 4 and 6 still be divided by 2?'+Z('4 和 6 還能同時除以 2 嗎？')},{h:F(2,3),ok:true},{h:F(2,6),no:'If both 4 and 6 are divided by 2, what happens to the denominator?'+Z('4 和 6 同時除以 2 時，分母會變成多少？')}]}]
+    },
+    textbook:{title:'New problem: 1 − '+F(2,6),story:'Show the equivalent fraction, subtraction, and simplest form.'+Z('寫出等值分數、減法和最簡分數。'),steps:[
+      {q:'Write 1 in sixths.'+Z('把 1 寫成六分之幾。'),yes:'Six sixths make one whole, so 1 = '+F(6,6)+'.'+Z('6 個六分之一是一個整體，所以 1 = 6/6。'),o:[{h:F(1,6),no:'How many sixths make one whole?'+Z('幾個六分之一才是一個整體？')},{h:F(6,6),ok:true},{h:F(2,6),no:'Is one third the same as one whole?'+Z('三分之一和一個整體一樣嗎？')}]},
+      {q:'Subtract.'+Z('相減。'),yes:'Keep the denominator 6 and subtract 2 from 6: '+F(6,6)+' − '+F(2,6)+' = '+F(4,6)+'.'+Z('分母保留 6，分子 6 − 2 = 4，所以得到 4/6。'),o:[{h:F(6,6)+' − '+F(2,6)+' = '+F(4,6),ok:true},{h:F(6,6)+' − '+F(2,6)+' = '+F(8,6),no:'Does subtraction make the numerator larger?'+Z('相減會讓分子變大嗎？')},{h:F(6,6)+' − '+F(2,6)+' = '+F(4,0),no:'Do like fractions keep their denominator?'+Z('同分母分數相減時，分母要保留嗎？')}]},
+      {q:'Choose the simplest form.'+Z('選出最簡分數。'),yes:F(4,6)+' simplifies to '+F(2,3)+'. The new problem is complete.'+Z('4/6 化簡成 2/3。新題完成。'),o:[{h:F(4,6),no:'Can both 4 and 6 still be divided by 2?'+Z('4 和 6 還能同時除以 2 嗎？')},{h:F(2,3),ok:true},{h:F(2,6),no:'What is 6 divided by 2?'+Z('6 除以 2 是多少？')}]}]
+    }
+  },
+  result:'1 − '+F(4,8)+' = '+F(8,8)+' − '+F(4,8)+' = '+F(4,8)+' = '+F(1,2)+'.<br>1 − '+F(11,12)+' = '+F(12,12)+' − '+F(11,12)+' = '+F(1,12)+'.'+Z('1 − 4/8 = 8/8 − 4/8 = 4/8 = 1/2。1 − 11/12 = 12/12 − 11/12 = 1/12。')
+});
 
 /* ---------- Section 1: same bottom first ---------- */
 (function(){
