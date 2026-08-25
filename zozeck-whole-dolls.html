@@ -15,7 +15,7 @@
   --red:#E2463B;--green:#2FA36B;--highlight:#FFF0A0;--blue:#3E6FD9;--blue-soft:#E8EEFC;
   --blue-deep:#2B52AE;--orange:#F08A2C;--orange-soft:#FFF1E1;--orange-deep:#C4680F;
   --accent:var(--orange);--accent-soft:var(--orange-soft);--accent-deep:var(--orange-deep);
-  --hand:'Caveat',cursive;--body:'Fredoka',system-ui,sans-serif;
+  --hand:'Caveat',cursive;--body:'Fredoka',system-ui,sans-serif;--zh:'Huninn','PingFang TC','Noto Sans TC',sans-serif;
 }
 *{box-sizing:border-box}
 html{font-size:clamp(16px,.6vw + 13.3px,23px);scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -40,12 +40,18 @@ h1 mark{background:linear-gradient(transparent 55%,var(--highlight) 55%);padding
 .vocab{display:flex;gap:.55rem;max-width:44rem;overflow:auto;padding:.15rem 0 .7rem;scroll-snap-type:x proximity}
 .vcard{flex:0 0 10rem;scroll-snap-align:start;background:#fff;border:1px solid var(--line2);border-radius:.55rem;padding:.5rem .65rem}
 .vcard b{display:block;font-size:.82rem}.vcard span{font-size:.72rem;color:var(--pencil)}
-.toolbar{position:sticky;top:0;z-index:8;display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;max-width:44rem;background:rgba(250,250,250,.94);backdrop-filter:blur(.4rem);padding:.55rem 0;margin:.15rem 0 .8rem}
+.toolbar{position:sticky;top:0;z-index:8;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem;max-width:44rem;background:rgba(250,250,250,.94);backdrop-filter:blur(.4rem);padding:.55rem 0;margin:.15rem 0 0;border-bottom:1px solid var(--line)}
 .seg{display:flex;border:1px solid var(--line2);border-radius:999px;padding:.16rem;background:#fff}
-.segbtn,.zhbtn{border:0;background:transparent;color:var(--pencil);font-weight:600;border-radius:999px;padding:.38rem .75rem;cursor:pointer}
-.segbtn.active{background:var(--accent);color:#fff}.zhbtn{border:1px solid var(--line2);background:#fff}
-.mode-line{font-size:.8rem;color:var(--pencil);flex:1 1 14rem;margin:0}
-.zh,.zhi{display:none}body.zh-on .zh{display:block}body.zh-on .zhi{display:inline}
+.segbtn{border:0;background:transparent;color:var(--pencil);font-weight:600;border-radius:999px;padding:.38rem .75rem;cursor:pointer}
+.segbtn.active{background:var(--accent);color:#fff}
+.switch{display:inline-flex;align-items:center;gap:.45rem;border:1px solid var(--line2);background:#fff;border-radius:999px;padding:.25rem .7rem .25rem .3rem;cursor:pointer;font-size:.88rem;font-weight:600;color:var(--pencil);font-family:var(--zh)}
+.switch .track{width:2.3rem;height:1.3rem;border-radius:999px;background:#CFD1D7;position:relative;transition:background .3s}
+.switch .track:after{content:"";position:absolute;top:.15rem;left:.15rem;width:1rem;height:1rem;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .25s}
+.switch[aria-checked="true"] .track{background:var(--accent)}
+.switch[aria-checked="true"] .track:after{transform:translateX(1rem)}
+.switch[aria-checked="true"]{color:var(--ink);border-color:var(--accent)}
+.mode-line{font-size:.8rem;color:var(--pencil);max-width:44rem;margin:.45rem 0 .8rem}
+.zh,.zhi{display:none;font-family:var(--zh)}body.zh-on .zh{display:block}body.zh-on .zhi{display:inline}
 .shelf{max-width:44rem;margin:1rem 0 1.5rem}.shelf-section{margin:1.25rem 0}.shelf-head{display:flex;align-items:center;gap:.6rem;margin:0 0 .65rem}.shelf-head h2{font-size:1.2rem;margin:0}.shelf-head:after{content:"";height:2px;flex:1;background:var(--line2)}
 .shelf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(13rem,1fr));gap:.75rem}.source-card{display:block;text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line2);border-radius:.65rem;padding:.75rem .85rem;box-shadow:.12rem .18rem .45rem rgba(30,33,42,.06)}.source-card:hover,.source-card:focus-visible{border-color:var(--blue);transform:translateY(-.08rem)}.source-card b{display:block;line-height:1.2}.source-card .zh{font-size:.78rem;color:var(--pencil);font-weight:400;margin-top:.12rem}.source-card small{display:block;margin-top:.45rem;color:var(--gray)}
 .shelf-view .seg,.shelf-view .mode-line,.shelf-view .vocab,.shelf-view .back,.shelf-view .after-gate,.shelf-view .review,.shelf-view .footer-buddy{display:none}.lesson-view #shelfHost{display:none}
@@ -85,7 +91,7 @@ h1 mark{background:linear-gradient(transparent 55%,var(--highlight) 55%);padding
 .footer-buddy{margin-top:2rem}.footer-buddy .say{font-size:1.15rem}
 @keyframes fade{from{opacity:.2;transform:translateY(.2rem)}to{opacity:1;transform:none}}
 @media(min-width:75rem){.notebook{max-width:80vw}.notebook:before{left:4rem}.holes{left:1.1rem}}
-@media(max-width:42rem){.notebook{padding:3.1rem .85rem 2.5rem 3.4rem}.notebook:before{left:2.75rem}.holes{left:.45rem}.back{top:auto}.flow-stages{gap:.22rem}.flow-stage{font-size:.62rem}.source-option.picked:after{content:"✗"}.match-grid{grid-template-columns:1fr}.lesson h2{font-size:1.28rem}}
+@media(max-width:42rem){.notebook{padding:3.1rem .85rem 2.5rem 3.4rem}.notebook:before{left:2.75rem}.holes{left:.45rem}.back{top:auto}.toolbar{gap:.4rem}.seg{flex:1 1 auto;min-width:0}.segbtn{flex:1;padding:.38rem .4rem;font-size:.82rem;text-align:center}.switch{padding:.2rem .5rem .2rem .22rem;font-size:.82rem;gap:.3rem;flex:none}.switch .track{width:2rem;height:1.15rem}.switch .track:after{width:.85rem;height:.85rem}.switch[aria-checked="true"] .track:after{transform:translateX(.85rem)}.flow-stages{gap:.22rem}.flow-stage{font-size:.62rem}.source-option.picked:after{content:"✗"}.match-grid{grid-template-columns:1fr}.lesson h2{font-size:1.28rem}}
 @media print{.back{display:none}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 </style>
@@ -106,9 +112,9 @@ h1 mark{background:linear-gradient(transparent 55%,var(--highlight) 55%);padding
       <button type="button" class="segbtn active" id="btnLife" data-mode="life">🍎 Real-life</button>
       <button type="button" class="segbtn" id="btnTextbook" data-mode="textbook">📘 Textbook</button>
     </div>
-    <button type="button" class="zhbtn" id="zhToggle" role="switch" aria-checked="false">中文</button>
-    <p class="mode-line" id="modeLine"></p>
+    <button type="button" class="switch" id="zhToggle" role="switch" aria-checked="false"><span class="track" aria-hidden="true"></span>中文</button>
   </div>
+  <p class="mode-line" id="modeLine"></p>
 
   <div class="shelf" id="shelfHost"></div>
   <div id="lessonHost"></div>
