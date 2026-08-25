@@ -660,6 +660,35 @@ body[data-mode="reallife"] .explain.tb{display:none}
   </div>
 </div>
 <script>
+(function(global){
+  'use strict';
+  var orders=new WeakMap();
+  function entries(owner,options){
+    var saved=orders.get(owner);
+    if(saved&&saved.length===options.length)return saved.entries.slice();
+    var shuffled=options.map(function(value,index){return {value:value,index:index};});
+    for(var i=shuffled.length-1;i>0;i--){
+      var j=Math.floor(Math.random()*(i+1)),temp=shuffled[i];
+      shuffled[i]=shuffled[j];shuffled[j]=temp;
+    }
+    orders.set(owner,{length:options.length,entries:shuffled});
+    return shuffled.slice();
+  }
+  function values(owner,options){
+    return entries(owner,options).map(function(entry){return entry.value;});
+  }
+  function shuffleNodes(container,selector){
+    if(!container)return [];
+    var nodes=Array.prototype.filter.call(container.children,function(node){
+      return !selector||node.matches(selector);
+    });
+    entries(container,nodes).forEach(function(entry){container.appendChild(entry.value);});
+    return nodes;
+  }
+  global.WNotesChoiceOrder={entries:entries,values:values,shuffleNodes:shuffleNodes};
+})(window);
+</script>
+<script>
 /* study buddy: one of the eight, picked fresh on every visit */
 (function(){
   var CREW = [["wolfchan","Wolf Chan"],["leebit","Leebit"],["dwaekki","Dwaekki"],["jiniret","Jiniret"],
@@ -897,12 +926,13 @@ function quizEngine(root, items, cfg){
     const it = items[i];
     qbox.innerHTML = '<p class="qq">' + (cfg.label ? cfg.label + ' ' : 'Question ') + (i + 1) + ' / ' + items.length + ' · ' + it.q + (it.qz ? Z(it.qz) : '') + '</p><div class="choices"></div><div class="msg" hidden></div><div class="row"></div>';
     const ch = qbox.querySelector('.choices'), msg = qbox.querySelector('.msg'), row = qbox.querySelector('.row');
-    it.opts.forEach((o, k) => {
+    WNotesChoiceOrder.entries(it, it.opts).forEach(({ value: o, index: k }, position) => {
       const b = document.createElement('button'); b.type = 'button'; b.className = 'choice';
-      b.innerHTML = '<b>' + 'abc'[k] + '.</b> ' + o;
+      b.dataset.choiceIndex = k;
+      b.innerHTML = '<b>' + 'abc'[position] + '.</b> ' + o;
       b.addEventListener('click', () => {
         const ok = (k === it.a); results[i] = ok; if (ok) score++;
-        ch.querySelectorAll('.choice').forEach((x, j) => { x.disabled = true; if (j === it.a) x.classList.add('ok'); else if (j === k) x.classList.add('no'); else x.classList.add('dim'); });
+        ch.querySelectorAll('.choice').forEach(x => { const original = +x.dataset.choiceIndex; x.disabled = true; if (original === it.a) x.classList.add('ok'); else if (original === k) x.classList.add('no'); else x.classList.add('dim'); });
         setMsg(msg, (ok ? '✓ Correct! ' : '✗ Not quite. ') + it.why + (it.whyz ? Z(it.whyz) : ''), ok ? 'good' : 'bad');
         renderDots();
         const nb = document.createElement('button'); nb.type = 'button'; nb.className = 'btn';

@@ -718,6 +718,35 @@ body.zh-on[data-mode="reallife"] .pill.auto::before{content:"🍎 Real-life vers
   </div>
 </div>
 <script>
+(function(global){
+  'use strict';
+  var orders=new WeakMap();
+  function entries(owner,options){
+    var saved=orders.get(owner);
+    if(saved&&saved.length===options.length)return saved.entries.slice();
+    var shuffled=options.map(function(value,index){return {value:value,index:index};});
+    for(var i=shuffled.length-1;i>0;i--){
+      var j=Math.floor(Math.random()*(i+1)),temp=shuffled[i];
+      shuffled[i]=shuffled[j];shuffled[j]=temp;
+    }
+    orders.set(owner,{length:options.length,entries:shuffled});
+    return shuffled.slice();
+  }
+  function values(owner,options){
+    return entries(owner,options).map(function(entry){return entry.value;});
+  }
+  function shuffleNodes(container,selector){
+    if(!container)return [];
+    var nodes=Array.prototype.filter.call(container.children,function(node){
+      return !selector||node.matches(selector);
+    });
+    entries(container,nodes).forEach(function(entry){container.appendChild(entry.value);});
+    return nodes;
+  }
+  global.WNotesChoiceOrder={entries:entries,values:values,shuffleNodes:shuffleNodes};
+})(window);
+</script>
+<script>
 /* study buddy: one of the eight, picked fresh on every visit */
 (function(){
   var CREW = [["wolfchan","Wolf Chan"],["leebit","Leebit"],["dwaekki","Dwaekki"],["jiniret","Jiniret"],
@@ -789,8 +818,9 @@ function choice(hostId, cfg){
     host.innerHTML = '';
     wrap = document.createElement('div');
     wrap.className = 'choices';
-    cfg.opts.forEach((o, i) => {
+    WNotesChoiceOrder.entries(cfg, cfg.opts).forEach(({ value: o, index: i }) => {
       const b = mkBtn(o[0] + Z(o[1]), 'choice');
+      b.dataset.choiceIndex = i;
       b.addEventListener('click', () => pick(i, b));
       wrap.appendChild(b);
     });
@@ -819,7 +849,7 @@ function choice(hostId, cfg){
       setMsg(msg, cfg.h2[0] + Z(cfg.h2[1]), 'warn');
     } else {
       settled = true;
-      wrap.children[cfg.ans].classList.add('ok');
+      wrap.querySelector('[data-choice-index="' + cfg.ans + '"]').classList.add('ok');
       lock();
       setMsg(msg, cfg.tell[0] + Z(cfg.tell[1]), 'bad');
       if (cfg.retest) retest(); else if (cfg.pass) cfg.pass();
@@ -834,7 +864,7 @@ function choice(hostId, cfg){
     const cw = document.createElement('div'); cw.className = 'choices';
     const cm = document.createElement('div'); cm.className = 'msg'; cm.hidden = true;
     let done = false;
-    c.opts.forEach((o, i) => {
+    WNotesChoiceOrder.entries(c, c.opts).forEach(({ value: o, index: i }) => {
       const b = mkBtn(o[0] + Z(o[1]), 'choice');
       b.addEventListener('click', () => {
         if (done) return;
@@ -867,7 +897,7 @@ function branch(hostId, cfg){
   msg.className = 'msg'; msg.hidden = true;
   const extra = document.createElement('div');
   let settled = false;
-  cfg.opts.forEach(o => {
+  WNotesChoiceOrder.values(cfg, cfg.opts).forEach(o => {
     const b = mkBtn(o.label[0] + Z(o.label[1]), 'choice');
     b.addEventListener('click', () => {
       if (settled) return;
@@ -897,7 +927,7 @@ function branch(hostId, cfg){
       const rw = document.createElement('div'); rw.className = 'choices';
       const rm = document.createElement('div'); rm.className = 'msg'; rm.hidden = true;
       let rdone = false;
-      c.opts.forEach((o, i) => {
+      WNotesChoiceOrder.entries(c, c.opts).forEach(({ value: o, index: i }) => {
         const b = mkBtn(o[0] + Z(o[1]), 'choice');
         b.addEventListener('click', () => {
           if (rdone) return;
@@ -915,7 +945,7 @@ function branch(hostId, cfg){
       });
       rb.appendChild(rw); rb.appendChild(rm); extra.appendChild(rb);
     }
-    f.opts.forEach(o => {
+    WNotesChoiceOrder.values(f, f.opts).forEach(o => {
       const b = mkBtn(o.label[0] + Z(o.label[1]), 'choice');
       if (!o.again && !okBtn) okBtn = b;
       b.addEventListener('click', () => {
@@ -951,7 +981,7 @@ function branch(hostId, cfg){
 function tapWords(hostId, msgId, WORDS, need, doneMsg, onDone){
   const host = $(hostId), msg = $(msgId);
   let got = 0, finished = false;
-  WORDS.forEach(w => {
+  WNotesChoiceOrder.values(WORDS, WORDS).forEach(w => {
     const b = mkBtn(w[0], 'opb wide');
     b.addEventListener('click', () => {
       if (finished || b.disabled) return;
@@ -1405,7 +1435,7 @@ function barBuilder(hostId, ROUNDS, onAllDone){
     function pickStep(S){
       const row = document.createElement('div'); row.className = 'row';
       let done = false;
-      S.opts.forEach(o => {
+      WNotesChoiceOrder.values(S, S.opts).forEach(o => {
         const b = mkBtn(o[0], 'opb wide');
         b.addEventListener('click', () => {
           if (done) return;
@@ -1663,7 +1693,7 @@ function chipStep(hostId, msgId, OPTS, good, onOk){
     host.innerHTML = '';
     msg.hidden = true;
     let done = false;
-    OPTS.forEach(o => {
+    WNotesChoiceOrder.values(OPTS, OPTS).forEach(o => {
       const b = mkBtn(o[0], 'opb wide');
       b.addEventListener('click', () => {
         if (done) return;
@@ -1807,7 +1837,7 @@ s2a4 = choice('s2a4', {
       p.innerHTML = '<b>' + (si + 1) + '.</b> ' + S.prompt[0] + Z(S.prompt[1]);
       const row = document.createElement('div'); row.className = 'row';
       let done = false;
-      S.opts.forEach(o => {
+      WNotesChoiceOrder.values(S, S.opts).forEach(o => {
         const b = mkBtn(o[0], 'opb wide');
         b.addEventListener('click', () => {
           if (done) return;
@@ -2127,13 +2157,14 @@ s3a4 = choice('s3a4', {
       const wrap = document.createElement('div'); wrap.className = 'choices';
       const msg = document.createElement('div'); msg.className = 'msg'; msg.hidden = true;
       let answered = false;
-      Q.opts.forEach((o, k) => {
+      WNotesChoiceOrder.entries(Q, Q.opts).forEach(({ value: o, index: k }) => {
         const b = mkBtn(o[0] + Z(o[1]), 'choice');
+        b.dataset.choiceIndex = k;
         b.addEventListener('click', () => {
           if (answered) return;
           answered = true;
           [...wrap.children].forEach(x => x.disabled = true);
-          wrap.children[Q.ans].classList.add('ok');
+          wrap.querySelector('[data-choice-index="' + Q.ans + '"]').classList.add('ok');
           if (k === Q.ans){ score++; marks[i] = true; setMsg(msg, 'Correct! ' + Q.why + Z(Q.whyzh), 'good'); }
           else { marks[i] = false; b.classList.add('no'); setMsg(msg, Q.why + Z(Q.whyzh) + ' <a href="' + Q.go + '">Go back and walk it again</a>', 'bad'); }
           paint();

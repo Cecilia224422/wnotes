@@ -553,6 +553,35 @@ hr.dash{border:0;border-top:2px dashed #E3E4E8;margin:.875rem 0 .625rem}
   </div>
 </div>
 <script>
+(function(global){
+  'use strict';
+  var orders=new WeakMap();
+  function entries(owner,options){
+    var saved=orders.get(owner);
+    if(saved&&saved.length===options.length)return saved.entries.slice();
+    var shuffled=options.map(function(value,index){return {value:value,index:index};});
+    for(var i=shuffled.length-1;i>0;i--){
+      var j=Math.floor(Math.random()*(i+1)),temp=shuffled[i];
+      shuffled[i]=shuffled[j];shuffled[j]=temp;
+    }
+    orders.set(owner,{length:options.length,entries:shuffled});
+    return shuffled.slice();
+  }
+  function values(owner,options){
+    return entries(owner,options).map(function(entry){return entry.value;});
+  }
+  function shuffleNodes(container,selector){
+    if(!container)return [];
+    var nodes=Array.prototype.filter.call(container.children,function(node){
+      return !selector||node.matches(selector);
+    });
+    entries(container,nodes).forEach(function(entry){container.appendChild(entry.value);});
+    return nodes;
+  }
+  global.WNotesChoiceOrder={entries:entries,values:values,shuffleNodes:shuffleNodes};
+})(window);
+</script>
+<script>
 /* study buddy: one of the eight, picked fresh on every visit */
 (function(){
   var CREW = [["wolfchan","Wolf Chan"],["leebit","Leebit"],["dwaekki","Dwaekki"],["jiniret","Jiniret"],
@@ -578,6 +607,8 @@ hr.dash{border:0;border-top:2px dashed #E3E4E8;margin:.875rem 0 .625rem}
 const $=(s,r)=>(r||document).querySelector(s);
 const $$=(s,r)=>Array.from((r||document).querySelectorAll(s));
 const Z=t=>'<span class="zh">'+t+'</span>';
+WNotesChoiceOrder.shuffleNodes($('#q42c'),'.choice');
+WNotesChoiceOrder.shuffleNodes($('#cmc'),'.choice');
 const isPrime=n=>{if(n<2)return false;for(let i=2;i*i<=n;i++)if(n%i===0)return false;return true;};
 const factorsOf=n=>{const f=[];for(let i=1;i<=n;i++)if(n%i===0)f.push(i);return f;};
 const fmt=a=>a.length>8?a.slice(0,5).join(', ')+', …, '+a[a.length-1]:a.join(', ');
@@ -727,7 +758,7 @@ DRILL.forEach(d=>{
   const w=document.createElement('div');w.className='drill-q';
   w.innerHTML='<div class="dq">'+d.q+'</div><div class="choices"></div><div class="msg"></div>';
   const ch=$('.choices',w),fb=$('.msg',w),ans=d.n*d.k;
-  d.opts.forEach(o=>{const b=document.createElement('button');b.type='button';b.className='choice';b.textContent=o;
+  WNotesChoiceOrder.values(d,d.opts).forEach(o=>{const b=document.createElement('button');b.type='button';b.className='choice';b.textContent=o;
     b.addEventListener('click',()=>{
       $$('.choice',ch).forEach(x=>x.classList.remove('right','wrongpick'));
       const ok=o===ans;b.classList.add(ok?'right':'wrongpick');fb.className='msg '+(ok?'good':'bad');
@@ -791,10 +822,10 @@ function renderQ(){
   answered=false;const q=QUIZ[qi];qProg.textContent='Question '+(qi+1)+' / '+QUIZ.length;dots();
   qBody.innerHTML='<div class="qq">'+q.q+Z(q.zq)+'</div><div class="choices"></div><div class="msg"></div><div class="row qnav"></div>';
   const ch=$('.choices',qBody),fb=$('.msg',qBody),nav=$('.qnav',qBody);
-  q.opts.forEach((o,i)=>{const b=document.createElement('button');b.type='button';b.className='choice';b.textContent=o;
+  WNotesChoiceOrder.entries(q,q.opts).forEach(({value:o,index:i})=>{const b=document.createElement('button');b.type='button';b.className='choice';b.textContent=o;b.dataset.choiceIndex=i;
     b.addEventListener('click',()=>{
       if(answered)return;answered=true;const ok=i===q.a;q.r=ok;if(ok)score++;
-      $$('.choice',ch).forEach((x,j)=>{x.disabled=true;if(j===q.a)x.classList.add('right');else if(j===i)x.classList.add('wrongpick');});
+      $$('.choice',ch).forEach(x=>{const original=+x.dataset.choiceIndex;x.disabled=true;if(original===q.a)x.classList.add('right');else if(original===i)x.classList.add('wrongpick');});
       fb.className='msg '+(ok?'good':'bad');fb.innerHTML=(ok?'✅ Correct! ':'❌ Not quite. ')+q.why+Z(q.zw);
       const n=document.createElement('button');n.type='button';n.className='btn';n.textContent=qi<QUIZ.length-1?'Next →':'See my score 🎉';
       n.addEventListener('click',()=>{if(qi<QUIZ.length-1){qi++;renderQ();}else renderResult();});

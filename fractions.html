@@ -723,6 +723,35 @@ html{scroll-behavior:smooth}
   </div>
 </div>
 <script>
+(function(global){
+  'use strict';
+  var orders=new WeakMap();
+  function entries(owner,options){
+    var saved=orders.get(owner);
+    if(saved&&saved.length===options.length)return saved.entries.slice();
+    var shuffled=options.map(function(value,index){return {value:value,index:index};});
+    for(var i=shuffled.length-1;i>0;i--){
+      var j=Math.floor(Math.random()*(i+1)),temp=shuffled[i];
+      shuffled[i]=shuffled[j];shuffled[j]=temp;
+    }
+    orders.set(owner,{length:options.length,entries:shuffled});
+    return shuffled.slice();
+  }
+  function values(owner,options){
+    return entries(owner,options).map(function(entry){return entry.value;});
+  }
+  function shuffleNodes(container,selector){
+    if(!container)return [];
+    var nodes=Array.prototype.filter.call(container.children,function(node){
+      return !selector||node.matches(selector);
+    });
+    entries(container,nodes).forEach(function(entry){container.appendChild(entry.value);});
+    return nodes;
+  }
+  global.WNotesChoiceOrder={entries:entries,values:values,shuffleNodes:shuffleNodes};
+})(window);
+</script>
+<script>
 /* study buddy: one of the eight, picked fresh on every visit */
 (function(){
   var CREW = [["wolfchan","Wolf Chan"],["leebit","Leebit"],["dwaekki","Dwaekki"],["jiniret","Jiniret"],
@@ -752,6 +781,9 @@ function convertFr(root){
     var m=el.textContent.trim().split('/'); if(m.length===2){ el.innerHTML='<span>'+m[0].trim()+'</span><span>'+m[1].trim()+'</span>'; } }
 }
 convertFr();
+['s1opts','s1opts3','s2opts2','s2opts3','s3gateopts'].forEach(function(id){
+  WNotesChoiceOrder.shuffleNodes($(id),'.opt');
+});
 function setMsg(el,html,kind){ el.className='msg'+(kind?' '+kind:''); el.innerHTML=html; }
 function show(id){ $(id).classList.remove('hidden'); }
 function hide(id){ $(id).classList.add('hidden'); }
@@ -775,14 +807,15 @@ function quickFire(box,items){
   box.innerHTML='';
   items.forEach(function(it){
     var wrap=document.createElement('div');
+    var choices=WNotesChoiceOrder.values(it,it.o);
     var h='<p class="qfq">'+it.q+'</p><div class="opts">';
-    it.o.forEach(function(o,j){ h+='<button type="button" class="opt" data-j="'+j+'">'+o.h+'</button>'; });
+    choices.forEach(function(o,j){ h+='<button type="button" class="opt" data-j="'+j+'">'+o.h+'</button>'; });
     h+='</div><div class="msg"></div>';
     wrap.innerHTML=h;
     var msg=wrap.querySelector('.msg');
     wrap.querySelector('.opts').addEventListener('click',function(e){
       var b=e.target.closest('.opt'); if(!b||b.disabled) return;
-      var o=it.o[+b.getAttribute('data-j')];
+      var o=choices[+b.getAttribute('data-j')];
       if(o.ok){ b.classList.add('good'); wrap.querySelectorAll('.opt').forEach(function(x){x.disabled=true;}); setMsg(msg,'✓ '+it.why,'good'); }
       else { b.classList.add('bad'); b.disabled=true; setMsg(msg,(o.no||'Not this one — try again.'+Z('不是這個——再試一次。')),'bad'); }
     });
@@ -795,11 +828,12 @@ function lifeTransfer(box,steps,answer){
   var i=0;
   function render(){
     var s=steps[i], last=i===steps.length-1;
-    box.innerHTML='<div class="transfer-step"><span class="transfer-count">Step '+(i+1)+' of '+steps.length+'</span><p class="transfer-q">'+s.q+'</p><div class="opts">'+s.o.map(function(o,j){return '<button type="button" class="opt" data-j="'+j+'">'+o.h+'</button>';}).join('')+'</div><div class="msg"></div></div>';
+    var choices=WNotesChoiceOrder.values(s,s.o);
+    box.innerHTML='<div class="transfer-step"><span class="transfer-count">Step '+(i+1)+' of '+steps.length+'</span><p class="transfer-q">'+s.q+'</p><div class="opts">'+choices.map(function(o,j){return '<button type="button" class="opt" data-j="'+j+'">'+o.h+'</button>';}).join('')+'</div><div class="msg"></div></div>';
     var step=box.querySelector('.transfer-step'), opts=step.querySelector('.opts'), msg=step.querySelector('.msg');
     opts.addEventListener('click',function(e){
       var b=e.target.closest('.opt'); if(!b||b.disabled) return;
-      var o=s.o[+b.getAttribute('data-j')];
+      var o=choices[+b.getAttribute('data-j')];
       if(o.ok){
         b.classList.add('good'); opts.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
         setMsg(msg,'✓ '+o.why,'good');
@@ -837,11 +871,12 @@ function fourStageFlow(shell,data){
     }).join('')+'</div>';
   }
   function choose(panel,item,prefix,nextLabel,onNext,onWrong){
-    panel.innerHTML=prefix+'<p class="flow-question">'+item.q+'</p><div class="opts">'+item.o.map(function(o,j){return '<button type="button" class="opt" data-j="'+j+'">'+o.h+'</button>';}).join('')+'</div><div class="msg"></div>';
+    var choices=WNotesChoiceOrder.values(item,item.o);
+    panel.innerHTML=prefix+'<p class="flow-question">'+item.q+'</p><div class="opts">'+choices.map(function(o,j){return '<button type="button" class="opt" data-j="'+j+'">'+o.h+'</button>';}).join('')+'</div><div class="msg"></div>';
     var opts=panel.querySelector('.opts'), msg=panel.querySelector('.msg');
     opts.addEventListener('click',function(e){
       var b=e.target.closest('.opt'); if(!b||b.disabled) return;
-      var o=item.o[+b.getAttribute('data-j')];
+      var o=choices[+b.getAttribute('data-j')];
       if(o.ok){
         b.classList.add('good'); opts.querySelectorAll('.opt').forEach(function(x){x.disabled=true;});
         var correctNote=o.yes||item.yes||'';
@@ -1300,14 +1335,15 @@ fourStageFlow($('s4flow'),{
   function render(){
     if(i>=Q.length){ return finish(); }
     var q=Q[i];
-    var h=dots()+'<p class="qq">'+(i+1)+'. '+q.q+'</p><div class="opts">'+q.o.map(function(o,j){ return '<button type="button" class="opt" data-j="'+j+'">'+o.h+'</button>'; }).join('')+'</div><div class="msg" id="qmsg"></div><div class="row" id="qnext" style="display:none"><button type="button" class="btn" id="qnextbtn">'+(i===Q.length-1?'See my score':'Next')+'</button></div>';
+    var choices=WNotesChoiceOrder.values(q,q.o);
+    var h=dots()+'<p class="qq">'+(i+1)+'. '+q.q+'</p><div class="opts">'+choices.map(function(o,j){ return '<button type="button" class="opt" data-j="'+j+'">'+o.h+'</button>'; }).join('')+'</div><div class="msg" id="qmsg"></div><div class="row" id="qnext" style="display:none"><button type="button" class="btn" id="qnextbtn">'+(i===Q.length-1?'See my score':'Next')+'</button></div>';
     box.innerHTML=h;
     box.querySelector('.opts').addEventListener('click',function(e){
       var b=e.target.closest('.opt'); if(!b||b.disabled) return;
-      var o=q.o[+b.getAttribute('data-j')];
+      var o=choices[+b.getAttribute('data-j')];
       box.querySelectorAll('.opt').forEach(function(x){ x.disabled=true; });
       if(o.ok){ b.classList.add('good'); score++; results[i]=true; setMsg($('qmsg'),'✓ Correct! '+q.why,'good'); }
-      else { b.classList.add('bad'); results[i]=false; box.querySelectorAll('.opt').forEach(function(x,j){ if(q.o[j].ok) x.classList.add('good'); }); setMsg($('qmsg'),'Not quite. '+q.why,'bad'); }
+      else { b.classList.add('bad'); results[i]=false; box.querySelectorAll('.opt').forEach(function(x,j){ if(choices[j].ok) x.classList.add('good'); }); setMsg($('qmsg'),'Not quite. '+q.why,'bad'); }
       $('qnext').style.display='flex';
       $('qnextbtn').addEventListener('click',function(){ i++; render(); window.scrollTo({top:box.getBoundingClientRect().top+window.pageYOffset-90,behavior:'smooth'}); });
     });

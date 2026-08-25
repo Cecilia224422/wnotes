@@ -136,6 +136,35 @@ h1 mark{background:linear-gradient(transparent 55%,var(--highlight) 55%);padding
 </main>
 
 <script>
+(function(global){
+  'use strict';
+  var orders=new WeakMap();
+  function entries(owner,options){
+    var saved=orders.get(owner);
+    if(saved&&saved.length===options.length)return saved.entries.slice();
+    var shuffled=options.map(function(value,index){return {value:value,index:index};});
+    for(var i=shuffled.length-1;i>0;i--){
+      var j=Math.floor(Math.random()*(i+1)),temp=shuffled[i];
+      shuffled[i]=shuffled[j];shuffled[j]=temp;
+    }
+    orders.set(owner,{length:options.length,entries:shuffled});
+    return shuffled.slice();
+  }
+  function values(owner,options){
+    return entries(owner,options).map(function(entry){return entry.value;});
+  }
+  function shuffleNodes(container,selector){
+    if(!container)return [];
+    var nodes=Array.prototype.filter.call(container.children,function(node){
+      return !selector||node.matches(selector);
+    });
+    entries(container,nodes).forEach(function(entry){container.appendChild(entry.value);});
+    return nodes;
+  }
+  global.WNotesChoiceOrder={entries:entries,values:values,shuffleNodes:shuffleNodes};
+})(window);
+</script>
+<script>
 var $=function(id){return document.getElementById(id)};
 function Z(t){return '<span class="zhi">'+t+'</span>'}
 function B(p,t,z){return '<span class="bookline"><b>📖 Book p.'+p+'</b><span class="bookquote">“'+t+'”</span>'+Z(z)+'</span>'}
@@ -239,14 +268,8 @@ var currentLesson=null;
 function recordPass(){document.body.classList.add('all-passed');$('afterGate').innerHTML='✓ Prove passed. This correction is unlocked.'+Z('Prove 已通過，這一題的訂正已解鎖。');$('correctionText').innerHTML='<b>'+lessonMeta[currentLesson.id].file+':</b> '+currentLesson.flow.result}
 
 function fourStageFlow(shell,data){
-  var stage=0,step=0,names=[['Notice','先看'],['Do','動手'],['Why','說原因'],['Prove','換題驗收']],optionOrders=new WeakMap();
-  function randomizedOptions(item){
-    var saved=optionOrders.get(item);if(saved)return saved;
-    var choices=item.o.slice();
-    for(var i=choices.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),temp=choices[i];choices[i]=choices[j];choices[j]=temp}
-    optionOrders.set(item,choices);
-    return choices
-  }
+  var stage=0,step=0,names=[['Notice','先看'],['Do','動手'],['Why','說原因'],['Prove','換題驗收']];
+  function randomizedOptions(item){return WNotesChoiceOrder.values(item,item.o)}
   function bar(){return '<div class="flow-stages">'+names.map(function(n,i){var c='flow-stage'+(stage===i?' active':stage>i?' done':'');return '<div class="'+c+'"><b>'+(stage>i?'✓ ':'')+n[0]+'</b><span class="zh">'+n[1]+'</span></div>'}).join('')+'</div>'}
   function choose(panel,item,prefix,nextLabel,onNext,onWrong){
     var choices=randomizedOptions(item);

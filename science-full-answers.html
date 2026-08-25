@@ -836,6 +836,35 @@ body.zh-on[data-mode="reallife"] .pill.auto::before{content:"🍎 Real-life vers
   </div>
 </div>
 <script>
+(function(global){
+  'use strict';
+  var orders=new WeakMap();
+  function entries(owner,options){
+    var saved=orders.get(owner);
+    if(saved&&saved.length===options.length)return saved.entries.slice();
+    var shuffled=options.map(function(value,index){return {value:value,index:index};});
+    for(var i=shuffled.length-1;i>0;i--){
+      var j=Math.floor(Math.random()*(i+1)),temp=shuffled[i];
+      shuffled[i]=shuffled[j];shuffled[j]=temp;
+    }
+    orders.set(owner,{length:options.length,entries:shuffled});
+    return shuffled.slice();
+  }
+  function values(owner,options){
+    return entries(owner,options).map(function(entry){return entry.value;});
+  }
+  function shuffleNodes(container,selector){
+    if(!container)return [];
+    var nodes=Array.prototype.filter.call(container.children,function(node){
+      return !selector||node.matches(selector);
+    });
+    entries(container,nodes).forEach(function(entry){container.appendChild(entry.value);});
+    return nodes;
+  }
+  global.WNotesChoiceOrder={entries:entries,values:values,shuffleNodes:shuffleNodes};
+})(window);
+</script>
+<script>
 /* study buddy: one of the eight, picked fresh on every visit */
 (function(){
   var CREW = [["wolfchan","Wolf Chan"],["leebit","Leebit"],["dwaekki","Dwaekki"],["jiniret","Jiniret"],
@@ -893,9 +922,10 @@ function choice(hostId, cfg){
     host.innerHTML = '';
     wrap = document.createElement('div');
     wrap.className = 'choices';
-    cfg.opts.forEach((o, i) => {
+    WNotesChoiceOrder.entries(cfg, cfg.opts).forEach(({ value: o, index: i }) => {
       const b = document.createElement('button');
       b.type = 'button'; b.className = 'choice';
+      b.dataset.choiceIndex = i;
       b.innerHTML = o[0] + Z(o[1]);
       b.addEventListener('click', () => pick(i, b));
       wrap.appendChild(b);
@@ -926,7 +956,7 @@ function choice(hostId, cfg){
       setMsg(msg, cfg.h2[0] + Z(cfg.h2[1]), 'warn');
     } else {
       settled = true;
-      wrap.children[cfg.ans].classList.add('ok');
+      wrap.querySelector('[data-choice-index="' + cfg.ans + '"]').classList.add('ok');
       lock();
       setMsg(msg, cfg.tell[0] + Z(cfg.tell[1]), 'bad');
       if (cfg.retest) retest(); else if (cfg.pass) cfg.pass();
@@ -941,7 +971,7 @@ function choice(hostId, cfg){
     const cw = document.createElement('div'); cw.className = 'choices';
     const cm = document.createElement('div'); cm.className = 'msg'; cm.hidden = true;
     let done = false;
-    c.opts.forEach((o, i) => {
+    WNotesChoiceOrder.entries(c, c.opts).forEach(({ value: o, index: i }) => {
       const b = document.createElement('button');
       b.type = 'button'; b.className = 'choice';
       b.innerHTML = o[0] + Z(o[1]);
@@ -976,7 +1006,7 @@ function branch(hostId, cfg){
   msg.className = 'msg'; msg.hidden = true;
   const extra = document.createElement('div');
   let settled = false;
-  cfg.opts.forEach(o => {
+  WNotesChoiceOrder.values(cfg, cfg.opts).forEach(o => {
     const b = document.createElement('button');
     b.type = 'button'; b.className = 'choice';
     b.innerHTML = o.label[0] + Z(o.label[1]);
@@ -997,7 +1027,7 @@ function branch(hostId, cfg){
     const cw = document.createElement('div'); cw.className = 'choices';
     const cm = document.createElement('div'); cm.className = 'msg'; cm.hidden = true;
     let done = false, tries = 0;
-    f.opts.forEach(o => {
+    WNotesChoiceOrder.values(f, f.opts).forEach(o => {
       const b = document.createElement('button');
       b.type = 'button'; b.className = 'choice';
       b.innerHTML = o.label[0] + Z(o.label[1]);
@@ -1047,7 +1077,7 @@ function steps(hostId, cfg){
     row.className = R.stack ? 'choices' : 'row';
     const msg = document.createElement('div'); msg.className = 'msg'; msg.hidden = true;
     let done = false, tries = 0;
-    R.opts.forEach(o => {
+    WNotesChoiceOrder.values(R, R.opts).forEach(o => {
       const b = document.createElement('button');
       b.type = 'button';
       b.className = R.stack ? 'choice' : 'opb wide';
@@ -1194,7 +1224,7 @@ choice('s1ask', {
     ['die out', false, 'That is the ending. Which word asks you for the road that leads there?', '那是結局。哪個字要你寫出「通到那裡的那條路」？']
   ];
   let done = false;
-  WORDS.forEach(w => {
+  WNotesChoiceOrder.values(WORDS, WORDS).forEach(w => {
     const b = document.createElement('button');
     b.type = 'button'; b.className = 'opb wide';
     b.textContent = w[0];
@@ -1411,7 +1441,7 @@ choice('s2ask', {
     ['together', false, '"Together" tells you HOW they do it. What is the doing word itself?', 'together 講的是「怎麼做」。真正的動作字是哪一個？']
   ];
   let got = 0, done = false;
-  WORDS.forEach(w => {
+  WNotesChoiceOrder.values(WORDS, WORDS).forEach(w => {
     const b = document.createElement('button');
     b.type = 'button'; b.className = 'opb wide';
     b.textContent = w[0];
@@ -1873,7 +1903,7 @@ choice('s4ask', {
     ph.innerHTML = r[0] + '<span class="zhi">（' + r[1] + '）</span>';
     const ops = document.createElement('span'); ops.className = 'ops';
     const why = document.createElement('span'); why.className = 'why';
-    [['🌫️ vague', false], ['🔍 exact', true]].forEach(o => {
+    WNotesChoiceOrder.values(r, [['🌫️ vague', false], ['🔍 exact', true]]).forEach(o => {
       const b = document.createElement('button');
       b.type = 'button'; b.className = 'opb wide'; b.textContent = o[0];
       b.setAttribute('aria-label', r[0] + (o[1] ? ' is exact' : ' is vague'));
@@ -2345,15 +2375,16 @@ const s5a4 = choice('s5a4', {
       const wrap = document.createElement('div'); wrap.className = 'choices';
       const msg = document.createElement('div'); msg.className = 'msg'; msg.hidden = true;
       let answered = false;
-      Q.opts.forEach((o, k) => {
+      WNotesChoiceOrder.entries(Q, Q.opts).forEach(({ value: o, index: k }) => {
         const b = document.createElement('button');
         b.type = 'button'; b.className = 'choice';
+        b.dataset.choiceIndex = k;
         b.innerHTML = o[0] + Z(o[1]);
         b.addEventListener('click', () => {
           if (answered) return;
           answered = true;
           [...wrap.children].forEach(x => x.disabled = true);
-          wrap.children[Q.ans].classList.add('ok');
+          wrap.querySelector('[data-choice-index="' + Q.ans + '"]').classList.add('ok');
           if (k === Q.ans){ score++; marks[i] = true; setMsg(msg, 'Correct! ' + Q.why + Z(Q.whyzh), 'good'); }
           else { marks[i] = false; b.classList.add('no'); setMsg(msg, Q.why + Z(Q.whyzh) + ' <a href="' + Q.go + '">Go back and walk it again</a>', 'bad'); }
           paint();
