@@ -180,6 +180,15 @@ const LESSONS = [
     href:"math-estimate-multiply.html?v=20260828-split-step-1"
   },
   {
+    subject:"social", date:"2026-08-26",
+    title:"A Changing World: Use the Evidence", zh:"變動的世界：用課本證據作答",
+    desc:"Support the map and navigation-tool answers with textbook details, then separate shared traits from one-kingdom traits.",
+    zhDesc:"用課本細節支持地圖與航海工具的答案，再分清三個王國的共同特徵與單一王國特徵。",
+    source:"Networks · Exploring the Americas · Lesson 1 · pp. 28–33 · Guided Reading",
+    fixes:2, thumb:"changing-world",
+    href:"changing-world-evidence.html?v=20260828-evidence-1"
+  },
+  {
     subject:"math", date:"2026-06-21",
     title:"Estimate First, Then Divide", zh:"先估算，再動手除",
     desc:"19 of 20 right, including the trap question 9,036 ÷ 3 — the 0 in 3,012 placed exactly where it belongs. Two fixes: one place-value slip on p.45, and every ≈ line moves to before the divide so it can finally catch a mistake.",
@@ -475,6 +484,23 @@ const THUMBS = {
       <path d="M18 48 H86" stroke="#2E3037" stroke-width="1.4"/>
       <text x="52" y="62" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="8" font-weight="600" fill="#2FA36B">2,772,800</text>
       <path d="M75 58 l4 4 l8 -10" fill="none" stroke="#2FA36B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>`;
+  },
+  /* evidence links navigation tools to a three-kingdom comparison */
+  "changing-world"(){
+    return `<svg viewBox="0 0 104 78" role="img" aria-label="Navigation evidence above Ghana, Mali, and Songhai comparison cards">
+      <circle cx="17" cy="18" r="9" fill="#E8EEFC" stroke="#3E6FD9"/>
+      <path d="M17 10 V26 M9 18 H25" stroke="#3E6FD9" stroke-width="1" opacity=".55"/>
+      <path d="M17 18 L22 13" stroke="#E2463B" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M32 18 H88" stroke="#C9CBD2" stroke-width="1.4"/>
+      <path d="M88 18 l-4 -3 v6 z" fill="#C9CBD2"/>
+      <text x="60" y="13" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="6" fill="#6B6E76">source detail</text>
+      <g font-family="Fredoka,sans-serif" font-size="6.5" text-anchor="middle">
+        <rect x="8" y="38" width="25" height="23" rx="4" fill="#E8EEFC" stroke="#3E6FD9"/><text x="20.5" y="48" fill="#2B52AE">Ghana</text><text x="20.5" y="57" fill="#2FA36B">✓</text>
+        <rect x="39.5" y="38" width="25" height="23" rx="4" fill="#E8EEFC" stroke="#3E6FD9"/><text x="52" y="48" fill="#2B52AE">Mali</text><text x="52" y="57" fill="#2FA36B">✓</text>
+        <rect x="71" y="38" width="25" height="23" rx="4" fill="#E8EEFC" stroke="#3E6FD9"/><text x="83.5" y="48" fill="#2B52AE">Songhai</text><text x="83.5" y="57" fill="#2FA36B">✓</text>
+      </g>
+      <text x="52" y="72" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="6.5" fill="#6B6E76">true for all three?</text>
     </svg>`;
   },
   /* fallback: blank ruled page */
