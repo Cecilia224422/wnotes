@@ -171,15 +171,6 @@ const SUBJECTS = {
    thumb: "sieve" | "fraction" | "numberline" | "artifact" | "grid"  (see THUMBS below)      */
 const LESSONS = [
   {
-    subject:"math", date:"2026-08-29",
-    title:"Math Check-Up · Round 1", zh:"數學總複習測驗 · 第 1 回",
-    desc:"One question from every math page in this notebook — same traps, new numbers. Wrong picks just ask you a question back.",
-    zhDesc:"每一頁數學筆記各出一題——同樣的陷阱、全新的數字。選錯不會怎麼樣，它只會反問你一個問題。",
-    source:"All 11 math pages · fresh numbers",
-    fixes:0, thumb:"checkup",
-    href:"math-checkup-01.html"
-  },
-  {
     subject:"math", date:"2026-08-26",
     title:"Estimate, Then Multiply", zh:"先估算，再算精確乘積",
     desc:"Keep the estimate separate from the exact product, add every partial product, read the carry digits, and finish the method you name.",
@@ -511,24 +502,6 @@ const THUMBS = {
       </g>
       <text x="52" y="72" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="6.5" fill="#6B6E76">true for all three?</text>
     </svg>`;
-  },
-  /* eleven question cards, one per math page, under a magnifying glass */
-  checkup(){
-    const marks=["?","?","✓","?","⭐","?","?","✓","?","?","?"];
-    let cells="";
-    for(let n=0;n<11;n++){
-      const c=n%6, r=Math.floor(n/6);
-      const x=8+c*15, y=12+r*16;
-      const star=marks[n]==="⭐", tick=marks[n]==="✓";
-      cells+=`<rect x="${x}" y="${y}" width="12" height="12" rx="2.5" fill="${star?"#FFF0A0":tick?"#E6F6EE":"#E8EEFC"}" stroke="${star?"#E5C94E":tick?"#2FA36B":"#3E6FD9"}" stroke-width="1"/>`
-        + `<text x="${x+6}" y="${y+8.8}" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="7" fill="${star?"#C4680F":tick?"#2FA36B":"#2B52AE"}">${marks[n]}</text>`;
-    }
-    return `<svg viewBox="0 0 104 78" role="img" aria-label="Eleven question cards, one per math page, with a magnifying glass looking for new numbers">${cells}`
-      + `<circle cx="84" cy="46" r="11" fill="rgba(255,241,225,.55)" stroke="#F08A2C" stroke-width="2"/>`
-      + `<path d="M92 54 L100 62" stroke="#F08A2C" stroke-width="3" stroke-linecap="round"/>`
-      + `<text x="84" y="50" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="9" fill="#C4680F">?</text>`
-      + `<text x="40" y="72" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="6.5" fill="#6B6E76">same traps · new numbers</text>`
-      + `</svg>`;
   },
   /* fallback: blank ruled page */
   grid(){
