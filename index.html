@@ -764,6 +764,9 @@ mappre: [
   {n:91,en:"What should we review first today? The notebook and I are both ready!",zh:"今天想先複習哪一科呀？我跟筆記本都準備好了！"},
   {n:92,en:"MAP week is getting close! Want to review something, or just sit with me for a bit? Either is good with me.",zh:"MAP 那週快到了耶！今天想複習一課，還是只想來坐一下？都可以呀！"}
 ],
+mapnow: [
+  {n:91,en:"What should we review first today? The notebook and I are both ready!",zh:"今天想先複習哪一科呀？我跟筆記本都準備好了！"}
+],
 mappost: [
   {n:93,en:"It's over! Finally! {SKZOO} and I both let out a huge sigh!",zh:"考完啦！終於！我跟{SKZOO}一起鬆了一大口氣！"},
   {n:94,en:"It's finished! {SKZOO} and I cheered so loudly that we scared ourselves!",zh:"結束啦！我跟{SKZOO}剛剛一起歡呼，差點把自己嚇一跳！"}
@@ -815,7 +818,10 @@ const NO_SCHOOL = ["2026-09-25","2026-09-28","2026-10-09","2026-10-26","2026-10-
 const NO_SCHOOL_RANGES = [["2026-12-21","2027-01-01"],["2027-02-04","2027-02-10"],["2027-04-05","2027-04-09"]];
 const HALF_DAY = ["2026-11-25","2026-12-15","2026-12-18","2027-05-25","2027-06-01","2027-06-02"];
 const SCHOOL_ON_HOLIDAY = ["2026-11-22","2027-03-07"];
-const MAP_PRE = [["2026-08-10","2026-09-04"],["2026-11-16","2026-12-04"],["2027-04-05","2027-04-23"]];
+/* 句庫〈MAP 前兩週〉的標題範圍含測驗期間,但四句全是「快到了」的語氣。
+   測驗中不能說「快到了」——所以拆成 考前／考試中／考完 三段(真相源:TAAS 校曆的測驗日期)。 */
+const MAP_PRE = [["2026-08-10","2026-08-23"],["2026-11-16","2026-11-29"],["2027-04-05","2027-04-18"]];
+const MAP_NOW = [["2026-08-24","2026-09-04"],["2026-11-30","2026-12-04"],["2027-04-19","2027-04-23"]];
 const MAP_POST = [["2026-09-05","2026-09-08"],["2026-12-05","2026-12-08"],["2027-04-24","2027-04-27"]];
 
 /* Cecilia fills this in when there is one: {name:{en:"Sport Day",zh:"運動會"}, date:"2027-04-29"} */
@@ -884,6 +890,7 @@ function layer(d, off){
   /* 半天(一年 6 天)比 MAP 視窗(一年 3 段)更specific,先講今天的事 */
   if (!off && HALF_DAY.indexOf(s) >= 0 && h >= 13 && h < 18) return {pool:"halfday"};
   if (MAP_POST.some(r => within(s, r)) && h >= 12 && h < 22) return {pool:"mappost"};
+  if (MAP_NOW.some(r => within(s, r)) && h >= 12 && h < 22) return {pool:"mapnow", soft:1};
   if (MAP_PRE.some(r => within(s, r)) && h >= 12 && h < 22) return {pool:"mappre"};
   if (off) return null;
   const mins = h * 60 + d.getMinutes(), home = homeHour(d, off) * 60;
