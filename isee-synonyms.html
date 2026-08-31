@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>William's Correction Notes — Synonyms: Check the Direction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Huninn&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--desk:#E4E5E8;--paper:#FAFAFA;--rule:#D9DCE1;--margin:#F0A6B0;--ink:#2E3037;--pencil:#6B6E76;--gray:#9C9EA5;--line:#E3E4E8;--line2:#D9DADF;--soft:#F4F4F6;--soft2:#F1F1F3;--red:#E2463B;--green:#2FA36B;--hl:#FFF0A0;--blue:#3E6FD9;--blue-soft:#E8EEFC;--blue-deep:#2B52AE;--orange:#F08A2C;--orange-soft:#FFF1E1;--orange-deep:#C4680F;--accent:var(--orange);--accent-soft:var(--orange-soft);--accent-deep:var(--orange-deep);--zh:'Huninn','Zen Maru Gothic','PingFang TC','Noto Sans TC',sans-serif;--hand:'Caveat','Comic Sans MS',cursive}
+body[data-mode="textbook"]{--accent:var(--blue);--accent-soft:var(--blue-soft);--accent-deep:var(--blue-deep)}
+html{font-size:clamp(16px,0.6vw + 13.3px,23px);-webkit-text-size-adjust:100%}*,*:before,*:after{box-sizing:border-box}body{margin:0;background:var(--desk);color:var(--ink);font-family:'Fredoka',var(--zh),sans-serif;line-height:1.5}.zh,.zhi{color:var(--pencil);font-family:var(--zh);font-size:.88em;font-weight:400}.zh{display:block;margin-top:.08em;line-height:1.45}.zhi{display:inline;margin-left:.35em}body:not(.zh-on) .zh,body:not(.zh-on) .zhi{display:none!important}button{font:inherit}mark{background:var(--hl);color:inherit;padding:0 .14em;border-radius:.16em}.hidden{display:none!important}
+.notebook{position:relative;width:100%;min-height:100vh;margin:0 auto;padding:1.4rem 1.1rem 4rem 3.7rem;background-color:var(--paper);background-image:repeating-linear-gradient(to bottom,transparent 0,transparent calc(1.875rem - 1px),var(--rule) calc(1.875rem - 1px),var(--rule) 1.875rem);background-position:0 .5rem;box-shadow:0 .6rem 2.2rem rgba(40,42,50,.1)}.notebook:before{content:"";position:absolute;inset:0 auto 0 2.875rem;width:2px;background:var(--margin)}.notebook:after{content:"";position:absolute;inset:0 auto 0 .55rem;width:1.1rem;pointer-events:none;background:radial-gradient(circle,#D2D4DA 0 .3rem,#E9EAEE .32rem .38rem,transparent .42rem) 0 1.4rem/1.1rem 4.8rem repeat-y}@media(min-width:1200px){.notebook{max-width:80vw;margin:1.6rem auto;border-radius:.3rem}}
+.wn-back{position:fixed;right:1rem;bottom:1rem;z-index:60;text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line2);border-radius:999px;padding:.45rem .8rem;box-shadow:0 .2rem .7rem rgba(0,0,0,.12);font-weight:600}.wn-back:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--hl);outline-offset:2px}
+h1{font-size:clamp(1.8rem,1.2rem + 2vw,2.5rem);line-height:1.15;margin:.2rem 0 .45rem}h1 mark{padding:0 .28rem}.subline{color:var(--pencil);margin:0 0 .7rem}.buddy-hi,.buddy-out{display:flex;align-items:center;gap:.75rem;max-width:44rem}.buddy-hi{background:#fff;border:1px solid var(--line);border-radius:.8rem;padding:.7rem .85rem;margin:.8rem 0}.buddy-hi img,.buddy-out img{width:3.5rem;height:3.5rem;object-fit:contain}.buddy-hi .say{font-family:var(--hand);font-size:1.15rem;font-weight:600}.buddy-hi .who,.buddy-out .who{font-size:.78rem;color:var(--pencil);font-weight:600}.buddy-out{margin:2.2rem 0 .5rem}.buddy-out .line{font-family:var(--hand);font-size:1.2rem;color:var(--pencil);font-weight:600}
+.vocab{display:flex;flex-wrap:wrap;gap:.5rem;max-width:50rem;margin:.85rem 0}.vcard{flex:1 1 10rem;max-width:15rem;background:#fff;border:1px solid var(--line);border-radius:.58rem;padding:.45rem .65rem;font-size:.84rem}.vcard b{display:block}.vcard span{color:var(--pencil)}
+.toolbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:.5rem;flex-wrap:wrap;margin:1rem -1.1rem 0;padding:.55rem 1.1rem;background:rgba(250,250,250,.95);border-bottom:1px solid var(--line);backdrop-filter:blur(6px)}.seg{display:flex;gap:.12rem;padding:.2rem;background:var(--soft2);border:1px solid var(--line2);border-radius:999px}.segbtn{border:0;background:transparent;color:var(--pencil);border-radius:999px;padding:.38rem .75rem;font-weight:600;cursor:pointer}.segbtn.active{color:#fff}.segbtn[data-mode="life"].active{background:var(--orange)}.segbtn[data-mode="textbook"].active{background:var(--blue)}.switch{display:flex;align-items:center;gap:.35rem;border:1px solid var(--line2);background:#fff;border-radius:999px;padding:.25rem .65rem .25rem .28rem;color:var(--pencil);font-family:var(--zh);font-weight:600;cursor:pointer}.track{position:relative;width:2.2rem;height:1.2rem;border-radius:999px;background:#CFD1D7}.track:after{content:"";position:absolute;left:.14rem;top:.14rem;width:.92rem;height:.92rem;background:#fff;border-radius:50%;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:.2s}.switch[aria-checked="true"] .track{background:var(--accent)}.switch[aria-checked="true"] .track:after{transform:translateX(.98rem)}.modeline{max-width:44rem;color:var(--pencil);font-size:.82rem;margin:.55rem 0}
+.jump{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap;margin:.8rem 0}.jump span{font-size:.78rem;color:var(--gray)}.jump a{display:inline-flex;align-items:center;justify-content:center;min-width:1.9rem;height:1.9rem;padding:0 .55rem;border:1px solid var(--line2);background:#fff;border-radius:999px;color:var(--ink);text-decoration:none;font-weight:600}
+.sec{margin:2.6rem 0 0;scroll-margin-top:5rem}.sec h2{display:flex;align-items:flex-start;gap:.6rem;margin:0 0 .35rem;font-size:1.38rem;line-height:1.25}.num{display:inline-flex;align-items:center;justify-content:center;flex:none;width:1.9rem;height:1.9rem;border-radius:50%;background:var(--ink);color:#fff;font-size:.95rem}.lead{max-width:44rem;margin:.25rem 0 .55rem}
+.cutout{position:relative;max-width:44rem;background:#fff;border:1px solid var(--line);border-radius:.6rem;padding:1rem 1rem 1.35rem;margin:.75rem 0 1rem;box-shadow:0 2px 8px rgba(0,0,0,.07)}.cutout:before{content:"";position:absolute;top:-.62rem;left:50%;width:5.7rem;height:1.2rem;transform:translateX(-50%) rotate(1deg);background:rgba(255,240,160,.72)}.sourcebar{display:flex;justify-content:space-between;gap:.5rem;flex-wrap:wrap;padding-bottom:.5rem;margin-bottom:.65rem;border-bottom:1px dashed var(--line)}.sourcekind{font-size:.7rem;font-weight:700;text-transform:uppercase}.source{font-size:.72rem;color:var(--gray)}.source-note{background:#FFF8D6;border:1px solid #F2E29A;color:#7A6300;border-radius:.45rem;padding:.45rem .65rem;font-size:.82rem}.prompt{font-weight:600;margin:.65rem 0}.worklabel{display:block;margin-top:.65rem;font-size:.7rem;color:var(--gray);text-transform:uppercase}.hw{font-family:var(--hand);font-size:1.28rem;color:var(--pencil);font-weight:600}.red{color:var(--red);font-family:var(--hand);font-size:1.15rem}.booktable{width:100%;border-collapse:collapse;margin:.65rem 0;font-size:.86rem}.booktable th,.booktable td{border:1px solid var(--line2);padding:.38rem .42rem;text-align:center}.booktable th{background:var(--soft)}.booktable td:first-child{text-align:left;font-weight:600}
+.qword{font-size:1.3rem;font-weight:600;letter-spacing:.08em;margin:.2rem 0 .45rem}.qlist{display:flex;flex-direction:column;gap:.32rem;margin:.35rem 0;max-width:22rem}.qrow{display:flex;align-items:center;gap:.55rem;border:1px solid var(--line2);border-radius:.5rem;padding:.32rem .6rem;background:#fff}.qrow .letter{display:inline-flex;align-items:center;justify-content:center;flex:none;width:1.35rem;height:1.35rem;border-radius:50%;border:1px solid var(--line2);color:var(--pencil);font-size:.78rem}.qrow.mine{border-color:#F0B9B4;background:#FDF1F0}.qrow .xmark{margin-left:auto;color:var(--red);font-family:var(--hand);font-size:1.25rem;font-weight:700;line-height:1}.qrow .rednote{color:var(--red);font-family:var(--hand);font-size:.95rem}
+.flow-shell{max-width:44rem;background:#fff;border:2px solid var(--accent);border-radius:.85rem;padding:.85rem;margin:1rem 0;transition:border-color .25s}.flow-shell.proving{border-style:dashed}.stages{display:grid;grid-template-columns:repeat(4,1fr);gap:.35rem;margin-bottom:.85rem}.stage{background:#F1F2F5;color:var(--gray);border-radius:.55rem;padding:.38rem .2rem;text-align:center;font-size:.7rem;line-height:1.15}.stage b{display:block;font-size:.8rem}.stage.active{background:var(--accent);color:#fff}.stage.done{background:#E6F6EE;color:var(--green)}.panel{animation:fade .2s ease}.kicker{font-size:.72rem;color:var(--accent);font-weight:700;text-transform:uppercase}.modechip{display:inline-block;border:1px solid var(--accent);color:var(--accent);border-radius:999px;padding:.1rem .42rem;font-size:.68rem;margin:.25rem 0}.story{background:var(--accent-soft);border-left:.3rem solid var(--accent);border-radius:.45rem;padding:.62rem .75rem;margin:.45rem 0 .7rem}.question{font-weight:600;margin:.55rem 0 .35rem}.opts{display:flex;flex-wrap:wrap;gap:.48rem;margin:.42rem 0}.opt{border:2px solid var(--line2);background:#fff;color:var(--ink);border-radius:.6rem;padding:.42rem .8rem;cursor:pointer;text-align:left}.opt.good{border-color:var(--green);background:#E6F6EE}.opt.bad{border-color:var(--red);background:#FDEAE8}.opt:disabled{cursor:default}.msg{margin-top:.65rem;padding:.55rem .75rem;border:1px solid var(--line);background:var(--soft);border-radius:.5rem;font-size:.92rem}.msg:empty{display:none}.msg.good{background:#E6F6EE;border-color:#B9E3CB;color:#1E6E48}.msg.bad{background:#FDEAE8;border-color:#F5BDB7;color:#A83128}.msg.warn{background:#FFF8D6;border-color:#F2E29A;color:#7A6300}.btn{border:0;border-radius:.6rem;background:var(--accent);color:#fff;padding:.48rem .88rem;box-shadow:0 .22rem 0 var(--accent-deep);font-weight:600;cursor:pointer;margin-top:.55rem}.btn:active{transform:translateY(.16rem);box-shadow:0 .05rem 0 var(--accent-deep)}.btn.alt{background:#fff;color:var(--ink);border:1px solid var(--line2);box-shadow:0 .2rem 0 var(--line2);margin-left:.35rem}.model{margin:.8rem 0 0;padding:.65rem .8rem;border:2px dashed var(--line2);border-radius:.55rem;background:#fff}.model .label{font-size:.68rem;color:var(--gray);font-weight:700;text-transform:uppercase}.model .answer{font-weight:600}.hint{margin:.7rem 0 0;border-left:.32rem solid var(--accent);background:var(--accent-soft);border-radius:.45rem}.hint summary{cursor:pointer;padding:.5rem .7rem;color:var(--accent);font-weight:600}.hint .inside{padding:0 .75rem .65rem;font-size:.9rem}
+.after-gate{max-width:44rem;margin:1.2rem 0;padding:.7rem .85rem;border:2px dashed var(--line2);border-radius:.65rem;background:#fff;color:var(--pencil)}body:not(.all-passed) .review{display:none}.review{max-width:44rem}.quizbox,.checklist,.tipbox{background:#fff;border:1px solid var(--line);border-radius:.7rem;padding:.85rem;margin:.8rem 0}.quizdots{color:var(--gray);font-size:.8rem}.checkrow{display:flex;gap:.55rem;align-items:flex-start;padding:.45rem 0;border-top:1px dashed var(--line)}.checkrow:first-child{border-top:0}.checkrow input{width:1.15rem;height:1.15rem;accent-color:var(--green);margin-top:.18rem}.donebox{background:#E6F6EE;color:#1E6E48;border:1px solid #B9E3CB;border-radius:.5rem;padding:.6rem .75rem;margin-top:.65rem}.evidence{border-left:.3rem solid var(--blue);background:var(--blue-soft);border-radius:.45rem;padding:.55rem .75rem;margin:.45rem 0;font-size:.9rem}.foot{color:var(--gray);font-size:.75rem;margin-top:1rem}
+.worktrail{margin:.8rem 0;padding:.6rem .7rem;border:1px solid #F2D2A9;border-radius:.55rem;background:#FFF9F1}.worktrail-title{font-size:.68rem;color:var(--accent-deep);font-weight:700;text-transform:uppercase;margin-bottom:.28rem}.trail-row{display:flex;gap:.45rem;align-items:flex-start;padding:.28rem 0;border-top:1px dashed #E8D8C4;font-size:.88rem;line-height:1.35}.trail-row:first-of-type{border-top:0}.trail-check{flex:none;color:var(--green);font-weight:700}.trail-row.switch{margin:.28rem -.15rem 0;padding:.42rem .5rem;border:1px solid #B9C9F0;border-radius:.42rem;background:var(--blue-soft);color:var(--blue-deep);font-weight:600}
+@keyframes fade{from{opacity:.25;transform:translateY(.15rem)}to{opacity:1;transform:none}}@media(max-width:620px){.notebook{padding-left:3.35rem}.notebook:before{left:2.55rem}.toolbar{margin-left:-.8rem;padding-left:.8rem}.seg{flex:1}.segbtn{flex:1;padding:.35rem .35rem;font-size:.8rem}.vocab{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x proximity;margin-right:-1.1rem;padding-bottom:.3rem}.vcard{flex:0 0 11rem;scroll-snap-align:start}.stages{gap:.2rem}.stage{font-size:.6rem}.stage b{font-size:.7rem}.booktable{font-size:.72rem}.booktable th,.booktable td{padding:.3rem .22rem}}
+@media print{.wn-back,.toolbar{display:none}.notebook{max-width:none;box-shadow:none}}
+</style>
+</head>
+<body data-mode="life">
+<main class="notebook">
+<a class="wn-back" href="index.html">📒 Index</a>
+<div class="subline">VERBAL REASONING · ISEE LOWER · ZOZECK TEST-01</div>
+<h1><mark>Synonyms: Check the Direction</mark><span class="zh">同義詞：先確認方向</span></h1>
+<div class="buddy-hi"><img id="hiImg" alt="Study buddy"><div><div class="say">Hi, William. You got 21 of the first 25 questions right.<span class="zh">嗨，William！這份測驗的前 25 題，你答對了 21 題。</span></div><div class="who" id="hiName"></div></div></div>
+<div class="vocab">
+  <div class="vcard"><b>serenity</b><span>calm, peace</span><span class="zh">寧靜</span></div>
+  <div class="vcard"><b>oppress</b><span>to hold down cruelly</span><span class="zh">壓迫</span></div>
+  <div class="vcard"><b>gallant</b><span>brave, noble</span><span class="zh">英勇的</span></div>
+  <div class="vcard"><b>emerge</b><span>to come out</span><span class="zh">浮現、脫離而出</span></div>
+</div>
+<div class="toolbar">
+  <div class="seg" aria-label="Learning mode"><button type="button" class="segbtn active" data-mode="life">🍎 Real-life</button><button type="button" class="segbtn" data-mode="textbook">📘 Textbook</button></div>
+  <button type="button" class="switch" id="zhSwitch" role="switch" aria-checked="false"><span class="track"></span>中文</button>
+</div>
+<p class="modeline" id="modeLine">Feel each word in a small story first, then match the direction.<span class="zh">先在小故事裡感覺單字，再對準方向。</span></p>
+<nav class="jump"><span>Jump to</span><a href="#s1">1</a><a href="#s2">2</a><a href="#s3">3</a><a href="#s4">4</a><a href="#review">🎯</a></nav>
+<div id="lesson"></div>
+<div class="after-gate" id="gate">🔒 Finish Prove in all four sections to unlock the review.<span class="zh">四區都完成 Prove 後，才會解鎖複習。</span></div>
+<section class="review" id="review">
+  <div class="sec"><h2><span class="num">📘</span><span>The habit<span class="zh">要養成的習慣</span></span></h2>
+    <div class="tipbox"><p>Three rules you built yourself — one per trap. Open only the one you need.</p><p class="zh">三條你親手推出來的規則，一種陷阱一條。需要哪條再點開哪條。</p>
+      <details class="hint"><summary>The direction rule<span class="zh">方向規則</span></summary><div class="inside"><div class="evidence">Fix the word’s + or − before you read the options.<span class="zh">先確定單字的＋或−，再去看選項。</span></div><p>Check: did you tag the word first?<span class="zh">檢查：你先給單字貼標籤了嗎？</span></p></div></details>
+      <details class="hint"><summary>The look-alike rule<span class="zh">雙胞胎字規則</span></summary><div class="inside"><div class="evidence">Split look-alike twins first; answer the word that is printed.<span class="zh">先拆開雙胞胎字，回答題目印的那一個。</span></div><p>Check: two letters apart? Stop and split.<span class="zh">檢查：只差一兩個字母？先停下來拆開。</span></p></div></details>
+      <details class="hint"><summary>The picture rule<span class="zh">畫面規則</span></summary><div class="inside"><div class="evidence">Picture the motion before you match any word.<span class="zh">先在腦中畫出移動方向，再配單字。</span></div><p>Check: does your word move the same way as the sentence?<span class="zh">檢查：你選的字和句子移動的方向相同嗎？</span></p></div></details>
+    </div>
+  </div>
+  <div class="sec"><h2><span class="num">🎯</span><span>Quick quiz<span class="zh">小測驗</span></span></h2><div class="quizbox" id="quiz"></div></div>
+  <div class="sec"><h2><span class="num">✍️</span><span>Correction list<span class="zh">紙本訂正清單</span></span></h2><div class="checklist" id="checklist"></div></div>
+</section>
+<div class="buddy-out"><img id="outImg" alt="Study buddy"><div><div class="line">I ran the wrong way once today. Turned around. Best part of my walk!<span class="zh">我今天走錯方向一次，轉個身——變成散步最棒的一段！</span></div><div class="who" id="outName"></div></div></div>
+<div class="foot">ZOZECK · ISEE Lower Pastpaper · TEST-01 · Verbal · 2026-08-30</div>
+</main>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);let mode='life';
+const Z=z=>'<span class="zh">'+z+'</span>';
+const RECON=(q,body,rows,note)=>`<div class="sourcebar"><span class="sourcekind">Question reconstruction｜原題重現</span><span class="source">ZOZECK · ISEE Lower Pastpaper · TEST-01 · ${q}</span></div><div class="source-note">${note}</div>${body}${rows}`;
+const OPTROW=(l,t,mine)=>`<div class="qrow${mine?' mine':''}"><span class="letter">${l}</span><span>${t}</span>${mine?'<span class="xmark">✗</span>':''}</div>`;
+const XNOTE='The red ✗ is the mark ZOZECK put on the answer you chose.'+Z('紅色 ✗ 是 ZOZECK 標在你所選答案上的記號。');
+
+const LESSON={corrections:[
+{
+ id:'s1',title:'Ease — tag the word first',zhTitle:'Ease — 先給單字貼標籤',
+ recon:RECON('Q3','<p class="prompt">Choose the word closest in meaning.</p><div class="qword">Ease</div>',
+  '<div class="qlist">'+OPTROW('A','Poverty')+OPTROW('B','Hardship',1)+OPTROW('C','Serenity')+OPTROW('D','Trouble')+'</div>',XNOTE),
+ notice:{q:'Three of these four choices point the same way. Which one does not belong with the other three?',zh:'四個選項裡有三個方向相同。哪一個和其他三個不同？',
+  options:[
+   ['Serenity','寧靜',1],
+   ['Poverty','貧窮',0,'Is poverty a calm thing or a hard thing?','貧窮是平靜的事，還是艱難的事？'],
+   ['Hardship','艱難',0,'Is hardship a calm thing or a hard thing?','艱難是平靜的事，還是艱難的事？'],
+   ['Trouble','麻煩',0,'Is trouble a calm thing or a hard thing?','麻煩是平靜的事，還是艱難的事？']],
+  yes:'✓ Serenity is the only calm one. The other three are hard.',zhYes:'✓ 只有 Serenity 是平靜的，另外三個都是艱難的。'},
+ do:{
+  life:{title:'Tag the word first',zh:'先給單字貼標籤',
+   story:'Your mum says: “She finished the whole test with ease.”',zhStory:'媽媽說：「她輕輕鬆鬆就把整份考卷寫完了。」',
+   steps:[
+    {q:'Was that an easy day or a hard day for her?',zh:'那對她來說是輕鬆的一天，還是辛苦的一天？',
+     options:[['An easy day','輕鬆的一天',1],['A hard day','辛苦的一天',0,'Does “with ease” sound like struggling?','「with ease」聽起來像很吃力嗎？'],['You cannot tell','看不出來',0,'What does the word ease add to the sentence?','ease 這個字為句子加上了什麼感覺？']],
+     yes:'✓ With ease means no struggle at all.',zhYes:'✓ with ease 是完全不費力。',
+     result:'Ease in a sentence → <b>easy, no struggle</b>',resultZh:'Ease 放進句子 → 輕鬆、不費力'},
+    {q:'So tag the word Ease. Plus or minus?',zh:'那麼給 Ease 貼標籤：＋ 還是 −？',
+     options:[['+ (good, calm)','＋（好的、平靜的）',1],['− (hard, bad)','−（艱難的、不好的）',0,'Would you complain about finishing work with ease?','「輕鬆做完」你會抱怨嗎？'],['Neither','兩者皆非',0,'Pick the closer one — does ease feel good or bad?','選比較接近的：ease 感覺是好還是不好？']],
+     yes:'✓ Ease is a plus word.',zhYes:'✓ Ease 是 ＋ 的字。',
+     result:'Ease = <b>+</b>',resultZh:'Ease ＝ ＋'},
+    {q:'Now tag Hardship the same way.',zh:'現在用同樣方法給 Hardship 貼標籤。',
+     options:[['−','−',1],['+','＋',0,'Would you want a life full of hardship?','你會想要充滿 hardship 的生活嗎？'],['The same tag as Ease','和 Ease 同一個標籤',0,'Does hardship mean things are easy?','hardship 是說事情很輕鬆嗎？']],
+     yes:'✓ Hardship is a minus word.',zhYes:'✓ Hardship 是 − 的字。',
+     result:'Hardship = <b>−</b>',resultZh:'Hardship ＝ −'},
+    {q:'A synonym must carry the same tag. Can a + word match a − word?',zh:'同義字必須帶相同標籤。＋ 的字能配 − 的字嗎？',
+     options:[['No','不行',1],['Yes','可以',0,'Do “calm” and “painful” mean the same thing?','「平靜」和「痛苦」意思一樣嗎？'],['Only sometimes','有時候可以',0,'Name one + word that means the same as a − word.','舉一個和 − 字同義的 ＋ 字看看？']],
+     yes:'✓ Same meaning needs the same tag.',zhYes:'✓ 意思相同，標籤就要相同。',
+     result:'Rule: <b>the tag must match</b>',resultZh:'規則：標籤必須一致',resultClass:'switch'},
+    {q:'Which choice is + and means calm?',zh:'哪一個選項是 ＋ 而且意思是平靜？',
+     options:[['Serenity','寧靜',1],['Poverty','貧窮',0,'Is poverty calm, or hard?','poverty 是平靜還是艱難？'],['Hardship','艱難',0,'You tagged hardship − one step ago.','你上一步才把 hardship 標成 −。'],['Trouble','麻煩',0,'Does trouble feel calm?','trouble 感覺平靜嗎？']],
+     yes:'✓ Serenity: calm and peaceful.',zhYes:'✓ Serenity：平靜、安寧。',
+     result:'Ease → <b>Serenity</b> ✓',resultZh:'Ease → Serenity ✓'}]},
+  textbook:{title:'Direction before matching',zh:'先定方向，再配對',
+   story:'A synonym question asks for the closest match in meaning — and direction is part of meaning.',zhStory:'同義詞題要找意思最接近的字——方向也是意思的一部分。',
+   steps:[
+    {q:'Ease means freedom from difficulty. Positive or negative?',zh:'Ease 的意思是沒有困難。正向還是負向？',
+     options:[['Positive','正向',1],['Negative','負向',0,'Is “freedom from difficulty” a problem?','「沒有困難」是一種問題嗎？'],['Neutral','中性',0,'Would you rather have ease or not?','你會想要 ease 還是不想要？']],
+     yes:'✓ Positive. Write the sign before reading on.',zhYes:'✓ 正向。先寫下符號再往下讀。',
+     result:'Ease = <b>positive</b>',resultZh:'Ease ＝ 正向'},
+    {q:'Mark the sign of Poverty, Hardship and Trouble.',zh:'標出 Poverty、Hardship、Trouble 的符號。',
+     options:[['All three negative','三個都是負向',1],['All three positive','三個都是正向',0,'Is poverty something people want?','貧窮是人們想要的東西嗎？'],['Two positive, one negative','兩個正向一個負向',0,'Which of the three would you call positive?','這三個當中你會說哪一個是正向？']],
+     yes:'✓ All three are negative.',zhYes:'✓ 三個都是負向。',
+     result:'Poverty, Hardship, Trouble = <b>negative</b>',resultZh:'Poverty、Hardship、Trouble ＝ 負向'},
+    {q:'How many choices are left after you cross out every negative one?',zh:'把負向的都劃掉之後，還剩幾個選項？',
+     options:[['One','一個',1],['Three','三個',0,'You just marked three as negative. Cross them out.','你剛剛標了三個負向，把它們劃掉。'],['None','零個',0,'Are all four choices negative?','四個選項全是負向嗎？']],
+     yes:'✓ One survives the sign check.',zhYes:'✓ 只有一個通過符號檢查。',
+     result:'Cross out 3 negatives → <b>1 left</b>',resultZh:'劃掉 3 個負向 → 剩 1 個',resultClass:'switch'},
+    {q:'Confirm it: does Serenity mean calm?',zh:'確認一下：Serenity 的意思是平靜嗎？',
+     options:[['Yes — calm and peaceful','是——平靜、安寧',1],['No — it means poor','不是——它是貧窮的意思',0,'Which choice already means poor?','哪一個選項本來就是貧窮的意思？'],['No — it means noisy','不是——它是吵鬧的意思',0,'Is a serene lake noisy?','平靜的湖面會吵嗎？']],
+     yes:'✓ Sign matched, meaning confirmed.',zhYes:'✓ 符號對上，意思也確認了。',
+     result:'Ease → <b>Serenity</b> ✓',resultZh:'Ease → Serenity ✓'}]}},
+ why:{q:'Why is Hardship such a strong trap here?',zh:'為什麼 Hardship 在這裡是很強的陷阱？',
+  options:[
+   ['It sits on the same topic as Ease but points the opposite way.','它和 Ease 在同一個主題上，但方向相反。',1],
+   ['It is a much rarer word than Ease.','它比 Ease 罕見得多。',0,'Does being rare make a word an opposite?','罕見會讓一個字變成反義詞嗎？'],
+   ['It has nothing to do with Ease.','它和 Ease 完全無關。',0,'If it were unrelated, would it tempt you at all?','如果完全無關，它還會讓你想選嗎？'],
+   ['It starts with the same letter as Ease.','它和 Ease 開頭字母相同。',0,'Do H and E start the same?','H 和 E 是同一個字母嗎？']],
+  yes:'✓ Same topic, opposite pole — that is why it feels close.',zhYes:'✓ 同一個主題、相反的極——所以它感覺很接近。'},
+ prove:{
+  life:{title:'New word, same method',zh:'新的字，同一套方法',
+   story:'New question. The word is Joy. Choices: Sorrow, Grief, Delight, Pain.',zhStory:'新題目。單字是 Joy，選項：Sorrow、Grief、Delight、Pain。',
+   steps:[
+    {q:'Tag the word Joy.',zh:'給 Joy 貼標籤。',
+     options:[['+','＋',1],['−','−',0,'Is joy a happy feeling or a sad one?','joy 是開心還是難過的感覺？'],['Neither','兩者皆非',0,'Would you like a day full of joy?','你會想要充滿 joy 的一天嗎？']],
+     yes:'✓ Joy is a plus word.',zhYes:'✓ Joy 是 ＋ 的字。',
+     result:'Joy = <b>+</b>',resultZh:'Joy ＝ ＋'},
+    {q:'Tag Sorrow.',zh:'給 Sorrow 貼標籤。',
+     options:[['−','−',1],['+','＋',0,'Sorrow is deep sadness. Is that a plus?','sorrow 是深深的悲傷，那是 ＋ 嗎？'],['The same tag as Joy','和 Joy 同一個標籤',0,'Is sadness the same as happiness?','悲傷和快樂一樣嗎？']],
+     yes:'✓ Sorrow is a minus word.',zhYes:'✓ Sorrow 是 − 的字。',
+     result:'Sorrow = <b>−</b>',resultZh:'Sorrow ＝ −'},
+    {q:'Tag Grief and Pain.',zh:'給 Grief 和 Pain 貼標籤。',
+     options:[['Both −','兩個都是 −',1],['Both +','兩個都是 ＋',0,'Is pain something you enjoy?','pain 是你享受的東西嗎？'],['One + and one −','一個 ＋ 一個 −',0,'Which of the two would you call happy?','這兩個裡你會說哪一個是快樂的？']],
+     yes:'✓ Both are minus words.',zhYes:'✓ 兩個都是 − 的字。',
+     result:'Grief, Pain = <b>−</b>',resultZh:'Grief、Pain ＝ −'},
+    {q:'One choice is left. Which word matches Joy?',zh:'只剩一個選項。哪個字和 Joy 相配？',
+     options:[['Delight','喜悅',1],['Grief','悲痛',0,'You tagged grief − a step ago.','你上一步把 grief 標成 − 了。'],['Pain','痛苦',0,'Does pain feel like joy?','pain 感覺像 joy 嗎？'],['Sorrow','悲傷',0,'Sorrow was your first minus tag.','sorrow 是你標的第一個 −。']],
+     yes:'✓ Joy → Delight. Same method, new word.',zhYes:'✓ Joy → Delight。同一套方法，新的字。',
+     result:'Joy → <b>Delight</b> ✓',resultZh:'Joy → Delight ✓'}]},
+  textbook:{title:'Run the sign check again',zh:'再跑一次符號檢查',
+   story:'New item. Word: Joy. Choices: Sorrow, Grief, Delight, Pain.',zhStory:'新題目。單字：Joy，選項：Sorrow、Grief、Delight、Pain。',
+   steps:[
+    {q:'Step one of the method — what do you do before reading the choices?',zh:'方法的第一步——看選項之前你要做什麼？',
+     options:[['Mark the sign of the given word','標出題目字的符號',1],['Pick the longest choice','選最長的選項',0,'Does length carry meaning?','長度和意思有關嗎？'],['Cross out the first choice','劃掉第一個選項',0,'Why would position A be wrong?','為什麼 A 的位置就會是錯的？']],
+     yes:'✓ Sign first, always.',zhYes:'✓ 永遠先標符號。',
+     result:'Method step 1: <b>sign the given word</b>',resultZh:'方法第一步：先標題目字的符號'},
+    {q:'Joy is which sign?',zh:'Joy 是什麼符號？',
+     options:[['Positive','正向',1],['Negative','負向',0,'Is joy a hard feeling?','joy 是難受的感覺嗎？'],['Neutral','中性',0,'Would you choose joy or avoid it?','你會選擇 joy 還是避開它？']],
+     yes:'✓ Positive.',zhYes:'✓ 正向。',
+     result:'Joy = <b>positive</b>',resultZh:'Joy ＝ 正向'},
+    {q:'How many of the four choices are negative?',zh:'四個選項裡有幾個是負向？',
+     options:[['Three','三個',1],['One','一個',0,'Check sorrow, grief and pain one at a time.','把 sorrow、grief、pain 一個一個檢查。'],['All four','四個都是',0,'Is delight a sad word?','delight 是難過的字嗎？']],
+     yes:'✓ Three negatives, one positive.',zhYes:'✓ 三個負向，一個正向。',
+     result:'3 negative, <b>1 positive left</b>',resultZh:'3 個負向，剩 1 個正向',resultClass:'switch'},
+    {q:'Name the answer.',zh:'說出答案。',
+     options:[['Delight','喜悅',1],['Sorrow','悲傷',0,'Sorrow failed the sign check.','sorrow 沒通過符號檢查。'],['Pain','痛苦',0,'Pain failed the sign check.','pain 沒通過符號檢查。'],['Grief','悲痛',0,'Grief failed the sign check.','grief 沒通過符號檢查。']],
+     yes:'✓ Delight — the only positive left.',zhYes:'✓ Delight——唯一剩下的正向字。',
+     result:'Joy → <b>Delight</b> ✓',resultZh:'Joy → Delight ✓'}]}},
+ model:'Q3: C Serenity. Ease means calm and comfort — Serenity points the same way. Hardship is the opposite direction.'
+},
+{
+ id:'s2',title:'Persecute — split the twins',zhTitle:'Persecute — 先拆開雙胞胎字',
+ recon:RECON('Q5','<p class="prompt">Choose the word closest in meaning.</p><div class="qword">Persecute</div>',
+  '<div class="qlist">'+OPTROW('A','Oppress')+OPTROW('B','Charge',1)+OPTROW('C','Reach')+OPTROW('D','Mar')+'</div>',XNOTE),
+ notice:{q:'Read these two words: persecute and prosecute. How many letters are different?',zh:'讀這兩個字：persecute 和 prosecute。有幾個字母不一樣？',
+  options:[
+   ['Two','兩個',1],
+   ['None — they are the same word','沒有——它們是同一個字',0,'Look at letters 2 and 3 in each word.','看看兩個字的第 2、3 個字母。'],
+   ['Five','五個',0,'Count from the start: p-e-r versus p-r-o.','從頭數：p-e-r 對 p-r-o。'],
+   ['All of them','全部都不同',0,'Do both words end in the same six letters?','兩個字最後六個字母相同嗎？']],
+  yes:'✓ Only two letters — but two different worlds.',zhYes:'✓ 只差兩個字母——但是兩個完全不同的世界。'},
+ do:{
+  life:{title:'Two words, two worlds',zh:'兩個字，兩個世界',
+   story:'In an old story, a king persecuted a village: he punished the same people again and again for their beliefs.',zhStory:'在一個古老的故事裡，國王 persecuted 一個村莊：他因為村民的信仰，一次又一次地懲罰同一群人。',
+   steps:[
+    {q:'In that story, was the village treated kindly or cruelly?',zh:'在那個故事裡，村民是被善待還是被殘酷對待？',
+     options:[['Cruelly, over and over','殘酷對待，一次又一次',1],['Kindly','善待',0,'Does punishing people again and again sound kind?','一次又一次懲罰人，聽起來像善待嗎？'],['They were paid money','他們拿到錢',0,'Where in the story is there money?','故事裡哪裡出現錢？']],
+     yes:'✓ That is what persecute means.',zhYes:'✓ 這就是 persecute 的意思。',
+     result:'Persecute → <b>treat cruelly, again and again</b>',resultZh:'Persecute → 一次又一次殘酷對待'},
+    {q:'Now the twin. In court, a lawyer prosecutes a thief. What is the lawyer doing?',zh:'換雙胞胎字。在法庭上，律師 prosecutes 一個小偷。律師在做什麼？',
+     options:[['Taking the thief to court','把小偷告上法庭',1],['Punishing a village for its beliefs','因信仰懲罰整個村莊',0,'That was the other word. Which one?','那是另一個字。是哪一個？'],['Helping the thief escape','幫小偷逃跑',0,'Would a prosecutor help a thief get away?','起訴的律師會幫小偷逃走嗎？']],
+     yes:'✓ Prosecute belongs to the courtroom.',zhYes:'✓ Prosecute 屬於法庭。',
+     result:'Prosecute → <b>take someone to court</b>',resultZh:'Prosecute → 把人告上法庭'},
+    {q:'Which choice means to accuse someone in court?',zh:'哪一個選項的意思是在法庭上指控某人？',
+     options:[['Charge','控告',1],['Oppress','壓迫',0,'Does oppress happen in a courtroom?','oppress 是發生在法庭裡的事嗎？'],['Reach','抵達',0,'Does reach accuse anyone?','reach 有指控誰嗎？'],['Mar','損壞',0,'Mar means to spoil a surface. Is that a court word?','mar 是弄壞表面，那是法庭用字嗎？']],
+     yes:'✓ Charge answers prosecute — the twin.',zhYes:'✓ Charge 回答的是 prosecute——那個雙胞胎字。',
+     result:'Charge answers <b>prosecute</b>, not persecute',resultZh:'Charge 回答的是 prosecute，不是 persecute',resultClass:'switch'},
+    {q:'Look back at the question. Which word is actually printed?',zh:'回頭看題目。實際印出來的是哪一個字？',
+     options:[['Persecute','迫害',1],['Prosecute','起訴',0,'Check letters 2 and 3 in the question word.','檢查題目那個字的第 2、3 個字母。'],['Both of them','兩個都有',0,'How many words are printed above the choices?','選項上方印了幾個字？']],
+     yes:'✓ The question says persecute.',zhYes:'✓ 題目印的是 persecute。',
+     result:'The question word is <b>Persecute</b>',resultZh:'題目的字是 Persecute'},
+    {q:'So which choice means to hold people down cruelly?',zh:'那麼哪一個選項的意思是殘酷地壓制人？',
+     options:[['Oppress','壓迫',1],['Charge','控告',0,'You just showed charge belongs to the other word.','你剛剛才說明 charge 屬於另一個字。'],['Reach','抵達',0,'Does reaching a place hurt anyone?','抵達某地會傷害誰嗎？'],['Mar','損壞',0,'Mar spoils a surface, not a people.','mar 是弄壞表面，不是壓迫一群人。']],
+     yes:'✓ Oppress: to hold people down cruelly.',zhYes:'✓ Oppress：殘酷地壓制人。',
+     result:'Persecute → <b>Oppress</b> ✓',resultZh:'Persecute → Oppress ✓'}]},
+  textbook:{title:'Answer the printed word',zh:'回答題目印出來的那個字',
+   story:'Look-alike pairs are built into vocabulary tests. The trap answers the twin, not the word on the page.',zhStory:'字彙測驗會故意放形近字對。陷阱選項回答的是雙胞胎字，不是頁面上那個字。',
+   steps:[
+    {q:'Persecute carries which root idea?',zh:'Persecute 帶的是哪一個核心概念？',
+     options:[['Cruel treatment repeated over time','長期反覆的殘酷對待',1],['A legal accusation','法律上的指控',0,'Which twin lives in court?','哪一個雙胞胎住在法庭裡？'],['Reaching a destination','抵達目的地',0,'Which choice means arrive?','哪一個選項是抵達的意思？']],
+     yes:'✓ Persecution is repeated cruelty.',zhYes:'✓ Persecution 是反覆的殘酷。',
+     result:'Persecute = <b>repeated cruelty</b>',resultZh:'Persecute ＝ 反覆的殘酷'},
+    {q:'Prosecute carries which root idea?',zh:'Prosecute 帶的是哪一個核心概念？',
+     options:[['A legal accusation','法律上的指控',1],['Repeated cruelty','反覆的殘酷',0,'That belongs to the other twin.','那是另一個雙胞胎的。'],['Spoiling a surface','弄壞表面',0,'Which choice means to spoil?','哪一個選項是弄壞的意思？']],
+     yes:'✓ Prosecution happens in court.',zhYes:'✓ Prosecution 發生在法庭。',
+     result:'Prosecute = <b>legal accusation</b>',resultZh:'Prosecute ＝ 法律指控'},
+    {q:'Charge is a synonym for which of the two?',zh:'Charge 是這兩個字裡哪一個的同義字？',
+     options:[['Prosecute','起訴',1],['Persecute','迫害',0,'Does one court charge equal years of cruelty?','一次法庭指控等於多年的殘酷嗎？'],['Both equally','兩個一樣',0,'If both, why are they different words?','如果兩個都是，為什麼是兩個不同的字？']],
+     yes:'✓ Charge is the twin’s synonym — the trap.',zhYes:'✓ Charge 是雙胞胎那個字的同義字——就是陷阱。',
+     result:'Charge → matches <b>the twin</b>',resultZh:'Charge → 對到的是雙胞胎那個字',resultClass:'switch'},
+    {q:'Select the synonym for the printed word, Persecute.',zh:'選出題目印的字 Persecute 的同義字。',
+     options:[['Oppress','壓迫',1],['Charge','控告',0,'Charge matched the twin, not this word.','charge 對到的是雙胞胎字，不是這個字。'],['Reach','抵達',0,'Does reach involve cruelty?','reach 和殘酷有關嗎？'],['Mar','損壞',0,'Mar damages objects, not people.','mar 是損壞物品，不是對人。']],
+     yes:'✓ Oppress matches persecute.',zhYes:'✓ Oppress 對應 persecute。',
+     result:'Persecute → <b>Oppress</b> ✓',resultZh:'Persecute → Oppress ✓'}]}},
+ why:{q:'Why did Charge feel like the right answer?',zh:'為什麼 Charge 感覺像是對的答案？',
+  options:[
+   ['It answers the twin word prosecute, not the word printed.','它回答的是雙胞胎字 prosecute，不是題目印的字。',1],
+   ['Charge and persecute mean exactly the same thing.','Charge 和 persecute 意思完全相同。',0,'Does one court charge equal years of cruelty?','一次法庭指控等於多年的殘酷嗎？'],
+   ['Charge is the shortest choice.','Charge 是最短的選項。',0,'Count the letters — is Mar shorter?','數數字母——Mar 不是更短嗎？'],
+   ['The question was about money.','題目在講錢。',0,'Where in the question do you see money?','題目哪裡出現錢？']],
+  yes:'✓ Right answer, wrong word. Split the twins first.',zhYes:'✓ 答案沒錯，但回答錯字。先拆開雙胞胎。'},
+ prove:{
+  life:{title:'A new pair of twins',zh:'新的一對雙胞胎',
+   story:'New question. The word is Accept. Choices: Leave out, Receive, Argue, Hurry.',zhStory:'新題目。單字是 Accept，選項：Leave out、Receive、Argue、Hurry。',
+   steps:[
+    {q:'Say the twins out loud: accept and except. Which one means “to leave out”?',zh:'把雙胞胎唸出來：accept 和 except。哪一個是「排除在外」？',
+     options:[['Except','except',1],['Accept','accept',0,'If you accept a gift, do you leave it out?','如果你 accept 一份禮物，是把它排除在外嗎？'],['Both','兩個都是',0,'Then why are they two words?','那為什麼是兩個字？']],
+     yes:'✓ Except leaves things out.',zhYes:'✓ Except 是把東西排除在外。',
+     result:'Except → <b>leave out</b>',resultZh:'Except → 排除在外'},
+    {q:'Which word is printed in this question?',zh:'這一題印出來的是哪一個字？',
+     options:[['Accept','accept',1],['Except','except',0,'Check the first two letters again.','再檢查一次前兩個字母。'],['Neither','都不是',0,'Read the word above the choices.','讀選項上方那個字。']],
+     yes:'✓ Accept is the printed word.',zhYes:'✓ 印出來的是 accept。',
+     result:'Printed word: <b>Accept</b>',resultZh:'題目印的字：Accept'},
+    {q:'Which choice belongs to the twin, Except?',zh:'哪一個選項屬於雙胞胎字 Except？',
+     options:[['Leave out','排除在外',1],['Receive','接收',0,'Does except mean to take something in?','except 是把東西收進來嗎？'],['Argue','爭辯',0,'Does except mean to argue?','except 是爭辯的意思嗎？'],['Hurry','趕快',0,'Does except mean speed?','except 和速度有關嗎？']],
+     yes:'✓ That is the trap for this pair.',zhYes:'✓ 那就是這一對的陷阱選項。',
+     result:'“Leave out” answers <b>Except</b> — the trap',resultZh:'「Leave out」回答的是 Except——陷阱',resultClass:'switch'},
+    {q:'Now answer the printed word. Accept means:',zh:'現在回答題目印的字。Accept 的意思是：',
+     options:[['Receive','接收',1],['Leave out','排除在外',0,'That belonged to the twin.','那是雙胞胎字的。'],['Argue','爭辯',0,'Is accepting a gift the same as arguing?','接受禮物和爭辯一樣嗎？'],['Hurry','趕快',0,'Does accepting mean going fast?','接受等於動作很快嗎？']],
+     yes:'✓ Accept → Receive. Twins split, right word answered.',zhYes:'✓ Accept → Receive。雙胞胎拆開了，回答的是對的字。',
+     result:'Accept → <b>Receive</b> ✓',resultZh:'Accept → Receive ✓'}]},
+  textbook:{title:'Split, then answer',zh:'先拆開，再作答',
+   story:'New item. Word: Accept. Choices: Leave out, Receive, Argue, Hurry.',zhStory:'新題目。單字：Accept，選項：Leave out、Receive、Argue、Hurry。',
+   steps:[
+    {q:'What is the first move when a word has a look-alike twin?',zh:'當一個字有形近雙胞胎時，第一個動作是什麼？',
+     options:[['Write both twins and their meanings','把兩個字和意思都寫下來',1],['Pick the choice that sounds hardest','選聽起來最難的選項',0,'Does difficulty mark the answer?','難度可以標出答案嗎？'],['Skip the question','跳過這一題',0,'Does skipping teach you the difference?','跳過能讓你分清差別嗎？']],
+     yes:'✓ Write both. Then answer only one.',zhYes:'✓ 兩個都寫下來，然後只回答其中一個。',
+     result:'Method: <b>write both twins first</b>',resultZh:'方法：先把兩個雙胞胎都寫下來'},
+    {q:'Accept means to receive. Except means to:',zh:'Accept 是接收。Except 的意思是：',
+     options:[['Exclude','排除',1],['Welcome','歡迎',0,'Which twin welcomes something in?','哪一個雙胞胎是把東西迎進來？'],['Repeat','重複',0,'Where does repetition come in?','重複是從哪裡來的？']],
+     yes:'✓ Exclude — the opposite move.',zhYes:'✓ 排除——相反的動作。',
+     result:'Except = <b>exclude</b>',resultZh:'Except ＝ 排除'},
+    {q:'Which choice is planted for Except?',zh:'哪一個選項是為 Except 埋的？',
+     options:[['Leave out','排除在外',1],['Receive','接收',0,'Receive matches the printed word.','receive 對應的是題目印的字。'],['Hurry','趕快',0,'Is hurry about excluding?','hurry 和排除有關嗎？']],
+     yes:'✓ Identified. Now ignore it.',zhYes:'✓ 認出來了，現在忽略它。',
+     result:'Trap identified: <b>Leave out</b>',resultZh:'陷阱已認出：Leave out',resultClass:'switch'},
+    {q:'Give the answer for Accept.',zh:'寫出 Accept 的答案。',
+     options:[['Receive','接收',1],['Leave out','排除在外',0,'You just marked that as the trap.','你剛把那個標成陷阱了。'],['Argue','爭辯',0,'Argue is unrelated to either twin.','argue 和兩個雙胞胎都無關。'],['Hurry','趕快',0,'Hurry is unrelated to either twin.','hurry 和兩個雙胞胎都無關。']],
+     yes:'✓ Receive.',zhYes:'✓ Receive。',
+     result:'Accept → <b>Receive</b> ✓',resultZh:'Accept → Receive ✓'}]}},
+ model:'Q5: A Oppress. Persecute means to treat someone cruelly, again and again. Charge belongs to prosecute — the look-alike twin.'
+},
+{
+ id:'s3',title:'Gallant — the flip, twice',zhTitle:'Gallant — 第二次選到相反',
+ recon:RECON('Q16','<p class="prompt">Choose the word closest in meaning.</p><div class="qword">Gallant</div>',
+  '<div class="qlist">'+OPTROW('A','Unmannered')+OPTROW('B','Rude')+OPTROW('C','Heroic')+OPTROW('D','Cowardly',1)+'</div>',XNOTE),
+ notice:{q:'Here are two of your picks. Q3: Ease → Hardship. Q16: Gallant → Cowardly. What do the two picks have in common?',zh:'這是你的兩次作答。Q3：Ease → Hardship。Q16：Gallant → Cowardly。這兩次有什麼共同點？',
+  options:[
+   ['Each pick is the opposite of the question word.','兩次選的都是題目字的相反詞。',1],
+   ['Each pick was the longest choice.','兩次選的都是最長的選項。',0,'Is Cowardly longer than Unmannered?','Cowardly 比 Unmannered 長嗎？'],
+   ['Each pick was the last choice on the list.','兩次選的都是清單上最後一個。',0,'Where was Hardship on the Q3 list?','Q3 的 Hardship 排在第幾個？'],
+   ['Nothing — the two are unrelated.','沒有共同點——兩題無關。',0,'Read both pairs again: easy and hard, brave and afraid.','再讀一次兩組：輕鬆與艱難、勇敢與害怕。']],
+  yes:'✓ Both times the pick was the flip.',zhYes:'✓ 兩次選的都是相反的那一邊。'},
+ do:{
+  life:{title:'Picture the person',zh:'先想像那個人',
+   story:'A gallant knight turns his horse around and rides back into the fire to carry a child out.',zhStory:'一位 gallant 的騎士掉轉馬頭，衝回火場把一個孩子抱出來。',
+   steps:[
+    {q:'Is that a hero story or a coward story?',zh:'那是英雄的故事還是懦夫的故事？',
+     options:[['A hero story','英雄的故事',1],['A coward story','懦夫的故事',0,'Would a coward ride back into fire?','懦夫會衝回火場嗎？'],['Neither','都不是',0,'What did the knight actually do?','那位騎士實際上做了什麼？']],
+     yes:'✓ Riding back in is brave.',zhYes:'✓ 衝回去是勇敢。',
+     result:'Gallant knight → <b>brave, noble</b>',resultZh:'Gallant 的騎士 → 勇敢、高尚'},
+    {q:'So tag Gallant.',zh:'那麼給 Gallant 貼標籤。',
+     options:[['+','＋',1],['−','−',0,'Is bravery a bad quality?','勇敢是不好的特質嗎？'],['Neither','兩者皆非',0,'Would you want to be called gallant?','你會想被稱為 gallant 嗎？']],
+     yes:'✓ Gallant is a plus word.',zhYes:'✓ Gallant 是 ＋ 的字。',
+     result:'Gallant = <b>+</b>',resultZh:'Gallant ＝ ＋'},
+    {q:'Tag Cowardly.',zh:'給 Cowardly 貼標籤。',
+     options:[['−','−',1],['+','＋',0,'Is running away from fire brave?','逃離火場是勇敢嗎？'],['The same tag as Gallant','和 Gallant 同一個標籤',0,'Can brave and afraid share one tag?','勇敢和害怕能共用一個標籤嗎？']],
+     yes:'✓ Cowardly is the flip of gallant.',zhYes:'✓ Cowardly 是 gallant 的相反。',
+     result:'Cowardly = <b>−</b>',resultZh:'Cowardly ＝ −'},
+    {q:'Tag Rude and Unmannered.',zh:'給 Rude 和 Unmannered 貼標籤。',
+     options:[['Both −','兩個都是 −',1],['Both +','兩個都是 ＋',0,'Is being rude a compliment?','沒禮貌是稱讚嗎？'],['One + and one −','一個 ＋ 一個 −',0,'Which of the two would you call polite?','這兩個裡你會說哪一個有禮貌？']],
+     yes:'✓ Three minus words now.',zhYes:'✓ 現在有三個 − 的字了。',
+     result:'Rude, Unmannered = <b>−</b>',resultZh:'Rude、Unmannered ＝ −'},
+    {q:'Only one choice still carries a + tag. Which?',zh:'只剩一個選項還帶著 ＋ 標籤。是哪一個？',
+     options:[['Heroic','英勇的',1],['Cowardly','膽小的',0,'You tagged cowardly − two steps ago.','你兩步前把 cowardly 標成 − 了。'],['Rude','無禮的',0,'Rude was one of your minus tags.','rude 是你標的 − 之一。'],['Unmannered','沒教養的',0,'Unmannered was one of your minus tags.','unmannered 是你標的 − 之一。']],
+     yes:'✓ Heroic — the only plus left.',zhYes:'✓ Heroic——唯一剩下的 ＋。',
+     result:'Gallant → <b>Heroic</b> ✓',resultZh:'Gallant → Heroic ✓'}]},
+  textbook:{title:'Eliminate by sign',zh:'用符號刪去法',
+   story:'Gallant describes character. Sort every choice by sign before you compare meanings.',zhStory:'Gallant 描述的是人的品格。比較意思之前，先把每個選項依符號分類。',
+   steps:[
+    {q:'Gallant means brave and noble. Which sign?',zh:'Gallant 是勇敢、高尚。哪個符號？',
+     options:[['Positive','正向',1],['Negative','負向',0,'Is noble a criticism?','高尚是一種批評嗎？'],['Neutral','中性',0,'Would gallant appear in praise or in blame?','gallant 會出現在稱讚還是責備裡？']],
+     yes:'✓ Positive.',zhYes:'✓ 正向。',
+     result:'Gallant = <b>positive</b>',resultZh:'Gallant ＝ 正向'},
+    {q:'Sort the four choices. How many are negative?',zh:'把四個選項分類。有幾個是負向？',
+     options:[['Three','三個',1],['Two','兩個',0,'Check unmannered, rude and cowardly one at a time.','把 unmannered、rude、cowardly 一個一個檢查。'],['All four','四個都是',0,'Is heroic a criticism?','heroic 是批評嗎？']],
+     yes:'✓ Three negatives leave one candidate.',zhYes:'✓ 三個負向，只剩一個候選。',
+     result:'3 negative → <b>1 candidate</b>',resultZh:'3 個負向 → 剩 1 個候選',resultClass:'switch'},
+    {q:'Does the surviving choice also match the meaning?',zh:'剩下的那個選項意思也對得上嗎？',
+     options:[['Yes — heroic means brave and noble','對——heroic 就是勇敢高尚',1],['No — heroic means polite','不對——heroic 是有禮貌',0,'Which choices were about manners?','哪些選項在講禮貌？'],['No — heroic means afraid','不對——heroic 是害怕',0,'Which choice means afraid?','哪一個選項是害怕的意思？']],
+     yes:'✓ Sign and meaning both check out.',zhYes:'✓ 符號和意思都對上了。',
+     result:'Gallant → <b>Heroic</b> ✓',resultZh:'Gallant → Heroic ✓'}]}},
+ why:{q:'Why do opposite words make such strong traps?',zh:'為什麼反義詞會是這麼強的陷阱？',
+  options:[
+   ['They live on the same topic, so they feel connected.','它們在同一個主題上，所以感覺相關。',1],
+   ['They are always spelled alike.','它們拼法總是相似。',0,'Do gallant and cowardly look alike?','gallant 和 cowardly 看起來像嗎？'],
+   ['Test writers always put them first.','出題者總是把它們排在第一個。',0,'Where was Cowardly on the list?','Cowardly 排在第幾個？'],
+   ['They mean the same thing.','它們意思相同。',0,'Can brave and afraid mean the same thing?','勇敢和害怕能是同一個意思嗎？']],
+  yes:'✓ Same topic, opposite pole. Tag first, then match.',zhYes:'✓ 同一個主題、相反的極。先貼標籤，再配對。'},
+ prove:{
+  life:{title:'Third word, same tag test',zh:'第三個字，同一套標籤測試',
+   story:'New question. The word is Generous. Choices: Stingy, Giving, Careless, Quiet.',zhStory:'新題目。單字是 Generous，選項：Stingy、Giving、Careless、Quiet。',
+   steps:[
+    {q:'A generous friend shares her snacks with everyone. Tag Generous.',zh:'一位 generous 的朋友把零食分給大家。給 Generous 貼標籤。',
+     options:[['+','＋',1],['−','−',0,'Is sharing a bad thing?','分享是壞事嗎？'],['Neither','兩者皆非',0,'Would you thank a generous friend?','你會謝謝一個 generous 的朋友嗎？']],
+     yes:'✓ Generous is a plus word.',zhYes:'✓ Generous 是 ＋ 的字。',
+     result:'Generous = <b>+</b>',resultZh:'Generous ＝ ＋'},
+    {q:'Stingy means keeping everything for yourself. Tag it.',zh:'Stingy 是什麼都留給自己。給它貼標籤。',
+     options:[['−','−',1],['+','＋',0,'Is keeping everything a kind act?','什麼都留給自己是好心嗎？'],['The same tag as Generous','和 Generous 同一個標籤',0,'Is sharing the same as keeping?','分享和留著一樣嗎？']],
+     yes:'✓ Stingy is the flip of generous.',zhYes:'✓ Stingy 是 generous 的相反。',
+     result:'Stingy = <b>−</b> (the flip)',resultZh:'Stingy ＝ −（相反的那一邊）'},
+    {q:'Careless and Quiet — does either one mean sharing?',zh:'Careless 和 Quiet——這兩個有哪一個是分享的意思嗎？',
+     options:[['No, neither one','都不是',1],['Yes, Careless does','有，Careless 是',0,'Does careless mean giving things away?','careless 是把東西送人嗎？'],['Yes, Quiet does','有，Quiet 是',0,'Does being quiet mean being generous?','安靜等於慷慨嗎？']],
+     yes:'✓ Neither one matches the meaning.',zhYes:'✓ 兩個意思都對不上。',
+     result:'Careless, Quiet → <b>wrong meaning</b>',resultZh:'Careless、Quiet → 意思不對',resultClass:'switch'},
+    {q:'Name the answer for Generous.',zh:'說出 Generous 的答案。',
+     options:[['Giving','慷慨給予的',1],['Stingy','小氣的',0,'You just tagged stingy as the flip.','你剛把 stingy 標成相反的那一邊。'],['Careless','粗心的',0,'Careless failed the meaning check.','careless 沒通過意思檢查。'],['Quiet','安靜的',0,'Quiet failed the meaning check.','quiet 沒通過意思檢查。']],
+     yes:'✓ Generous → Giving. You did not take the flip.',zhYes:'✓ Generous → Giving。你沒有選相反的那一個。',
+     result:'Generous → <b>Giving</b> ✓',resultZh:'Generous → Giving ✓'}]},
+  textbook:{title:'Sign check, third run',zh:'符號檢查，第三次',
+   story:'New item. Word: Generous. Choices: Stingy, Giving, Careless, Quiet.',zhStory:'新題目。單字：Generous，選項：Stingy、Giving、Careless、Quiet。',
+   steps:[
+    {q:'Mark the sign of Generous.',zh:'標出 Generous 的符號。',
+     options:[['Positive','正向',1],['Negative','負向',0,'Is generosity a fault?','慷慨是缺點嗎？'],['Neutral','中性',0,'Is generous used to praise or to blame?','generous 是用來稱讚還是責備？']],
+     yes:'✓ Positive.',zhYes:'✓ 正向。',
+     result:'Generous = <b>positive</b>',resultZh:'Generous ＝ 正向'},
+    {q:'Which choice is the planted opposite?',zh:'哪一個選項是埋好的反義詞？',
+     options:[['Stingy','小氣的',1],['Giving','慷慨給予的',0,'Is giving the opposite of generous?','giving 是 generous 的相反嗎？'],['Quiet','安靜的',0,'Is quiet the opposite of generous?','quiet 是 generous 的相反嗎？']],
+     yes:'✓ Spotted before it could catch you.',zhYes:'✓ 在它抓到你之前就先認出來了。',
+     result:'Planted opposite: <b>Stingy</b>',resultZh:'埋好的反義詞：Stingy',resultClass:'switch'},
+    {q:'Select the synonym.',zh:'選出同義字。',
+     options:[['Giving','慷慨給予的',1],['Stingy','小氣的',0,'That is the opposite you just spotted.','那是你剛認出的反義詞。'],['Careless','粗心的',0,'Careless is about attention, not sharing.','careless 講的是注意力，不是分享。'],['Quiet','安靜的',0,'Quiet is about sound, not sharing.','quiet 講的是聲音，不是分享。']],
+     yes:'✓ Giving.',zhYes:'✓ Giving。',
+     result:'Generous → <b>Giving</b> ✓',resultZh:'Generous → Giving ✓'}]}},
+ model:'Q16: C Heroic. Gallant means brave and noble — the plus word. Cowardly is its flip.'
+},
+{
+ id:'s4',title:'Emerge — picture the motion',zhTitle:'Emerge — 先在腦中畫出移動方向',
+ recon:RECON('Q23','<p class="prompt">Once the runners passed the two-mile marker, the leaders of the race began to____from the pack.</p>',
+  '<div class="qlist">'+OPTROW('A','Recede',1)+OPTROW('B','Bestow')+OPTROW('C','Plead')+OPTROW('D','Emerge')+'</div>',XNOTE),
+ notice:{q:'In this sentence, who are “the leaders of the race”?',zh:'在這個句子裡，「the leaders of the race」是誰？',
+  options:[
+   ['The runners at the front','跑在最前面的人',1],
+   ['The runners at the back','跑在最後面的人',0,'Does the word leader mean first or last?','leader 這個字是第一還是最後？'],
+   ['The people watching','觀眾',0,'Are the leaders running or watching?','領先的人是在跑還是在看？'],
+   ['The coaches','教練',0,'Read it again: leaders of the race.','再讀一次：leaders of the race。']],
+  yes:'✓ Leaders are the ones out in front.',zhYes:'✓ Leaders 就是跑在最前面的人。'},
+ do:{
+  life:{title:'Draw the arrow first',zh:'先畫出那支箭頭',
+   story:'Picture the pack: a tight bunch of runners moving together past the two-mile marker.',zhStory:'想像那個 pack：一群跑者擠成一團，一起經過兩英里標記。',
+   steps:[
+    {q:'After the marker, the leaders speed up. Do they move ahead of the pack, or back into it?',zh:'過了標記後，領先者加速。他們是跑到 pack 的前面，還是退回 pack 裡面？',
+     options:[['Ahead of the pack','跑到 pack 的前面',1],['Back into the pack','退回 pack 裡面',0,'If you speed up, do you fall behind?','如果你加速，會落後嗎？'],['They stop','他們停下來',0,'Where does the sentence say they stop?','句子哪裡說他們停下來？']],
+     yes:'✓ Speeding up moves them forward.',zhYes:'✓ 加速就是往前。',
+     result:'Leaders move <b>ahead, out of the pack</b>',resultZh:'領先者往前、離開 pack'},
+    {q:'Recede is what the tide does when it goes out. Which direction is that?',zh:'Recede 是退潮時海水做的事。那是哪個方向？',
+     options:[['Backward, away from you','向後，離你而去',1],['Forward, toward you','向前，朝你而來',0,'Does the tide going out come closer?','退潮是靠近你嗎？'],['Straight up','直直往上',0,'Does the tide climb into the sky?','海水會爬上天空嗎？']],
+     yes:'✓ Recede means to move back.',zhYes:'✓ Recede 是往後退。',
+     result:'Recede = <b>move back</b>',resultZh:'Recede ＝ 往後退'},
+    {q:'Emerge is what the sun does when it comes out of the clouds. Which direction?',zh:'Emerge 是太陽從雲後露臉時做的事。那是哪個方向？',
+     options:[['Out, into view','出來，進入視線',1],['Back, out of view','退回，離開視線',0,'When the sun emerges, do you see less of it?','太陽 emerge 時，你看到的是變少嗎？'],['Downward','往下',0,'Does emerging mean sinking?','emerge 是下沉的意思嗎？']],
+     yes:'✓ Emerge means to come out.',zhYes:'✓ Emerge 是出來。',
+     result:'Emerge = <b>come out</b>',resultZh:'Emerge ＝ 出來'},
+    {q:'Both recede and emerge can be followed by “from”. Does that tell you which one is right?',zh:'recede 和 emerge 後面都能接 from。這能告訴你哪一個才對嗎？',
+     options:[['No — the grammar fits both','不能——文法上兩個都接得上',1],['Yes — only one can take “from”','能——只有一個能接 from',0,'Say both out loud with “from the pack”.','把兩個都配上「from the pack」唸唸看。'],['Yes — “from” means backward','能——from 就是往後的意思',0,'Does “the sun emerged from the clouds” move backward?','「太陽 emerged from 雲層」是往後嗎？']],
+     yes:'✓ Grammar fit is not meaning fit.',zhYes:'✓ 文法接得上，不代表意思對。',
+     result:'“from” fits both → <b>grammar is not meaning</b>',resultZh:'兩個都接得上 from → 文法不等於意思',resultClass:'switch'},
+    {q:'Your arrow points ahead. Which word matches the arrow?',zh:'你的箭頭指向前方。哪一個字符合這支箭頭？',
+     options:[['Emerge','浮現、脫離而出',1],['Recede','後退',0,'Your arrow points ahead. Which way does recede point?','你的箭頭指向前方，recede 指向哪邊？'],['Plead','懇求',0,'Is pleading a way of moving?','懇求是一種移動方式嗎？'],['Bestow','授予',0,'Does bestow describe motion in a race?','bestow 有描述比賽中的移動嗎？']],
+     yes:'✓ Emerge — the leaders come out ahead.',zhYes:'✓ Emerge——領先者往前脫離而出。',
+     result:'Sentence → <b>Emerge</b> ✓',resultZh:'句子 → Emerge ✓'}]},
+  textbook:{title:'Direction before collocation',zh:'先看方向，再看搭配',
+   story:'In sentence completion, decide the direction the sentence needs before testing which word sounds natural.',zhStory:'做句子填空時，先決定句子需要的方向，再去測哪個字唸起來順。',
+   steps:[
+    {q:'What direction does the sentence require of the leaders?',zh:'句子要求領先者往哪個方向？',
+     options:[['Away from the pack, forward','離開 pack，往前',1],['Toward the back of the pack','往 pack 的後方',0,'Are leaders falling behind in this sentence?','這個句子裡領先者是在落後嗎？'],['No direction at all','完全沒有方向',0,'What does “from the pack” describe?','「from the pack」在描述什麼？']],
+     yes:'✓ The sentence needs forward motion.',zhYes:'✓ 句子需要向前的移動。',
+     result:'Required direction: <b>forward, out</b>',resultZh:'需要的方向：向前、向外'},
+    {q:'Recede carries which direction?',zh:'Recede 帶的是哪個方向？',
+     options:[['Backward','向後',1],['Forward','向前',0,'A receding hairline — is it advancing?','髮線 receding，是在前進嗎？'],['Sideways','橫向',0,'Which way does a receding tide go?','退潮的海水往哪走？']],
+     yes:'✓ Backward — the wrong direction here.',zhYes:'✓ 向後——在這裡是錯的方向。',
+     result:'Recede = <b>backward</b>, wrong for this sentence',resultZh:'Recede ＝ 向後，不合這個句子',resultClass:'switch'},
+    {q:'Bestow means to give something formally. Does it describe motion?',zh:'Bestow 是正式授予某物。它描述移動嗎？',
+     options:[['No','不描述',1],['Yes, forward motion','有，向前的移動',0,'Does giving a medal move the giver?','頒獎牌會讓頒獎的人移動嗎？'],['Yes, backward motion','有，向後的移動',0,'Where is the movement in bestow?','bestow 的移動在哪裡？']],
+     yes:'✓ Bestow is out on meaning.',zhYes:'✓ Bestow 在意思上就被刪掉。',
+     result:'Bestow, Plead → <b>not motion words</b>',resultZh:'Bestow、Plead → 不是移動的字'},
+    {q:'Which word carries forward, outward motion?',zh:'哪一個字帶有向前、向外的移動？',
+     options:[['Emerge','浮現、脫離而出',1],['Recede','後退',0,'You marked recede as backward.','你標了 recede 是向後。'],['Plead','懇求',0,'Plead is a request, not a move.','plead 是請求，不是移動。']],
+     yes:'✓ Emerge matches the required direction.',zhYes:'✓ Emerge 符合句子要求的方向。',
+     result:'Sentence → <b>Emerge</b> ✓',resultZh:'句子 → Emerge ✓'}]}},
+ why:{q:'Why did Recede feel right in that blank?',zh:'為什麼 Recede 填進那個空格時感覺很對？',
+  options:[
+   ['It also fits the words “from the pack” grammatically.','它在文法上也接得上「from the pack」。',1],
+   ['Recede and emerge mean the same thing.','recede 和 emerge 意思相同。',0,'Does the tide going out mean the sun coming out?','退潮和太陽露臉是同一件事嗎？'],
+   ['Recede is the shortest choice.','recede 是最短的選項。',0,'Compare it with plead.','和 plead 比比看。'],
+   ['The sentence never says who is in front.','句子沒說誰在前面。',0,'What does the word “leaders” tell you?','「leaders」這個字告訴你什麼？']],
+  yes:'✓ Grammar fit is not meaning fit. Picture it first.',zhYes:'✓ 文法接得上不等於意思對。先畫出畫面。'},
+ prove:{
+  life:{title:'Same skill, other direction',zh:'同一個技巧，反過來用',
+   story:'New sentence: “As the tide went out, the water began to ____ from the rocks.” Choices: Emerge, Recede, Plead, Bestow.',zhStory:'新句子：「As the tide went out, the water began to ____ from the rocks.」選項：Emerge、Recede、Plead、Bestow。',
+   steps:[
+    {q:'The tide is going out. Is the water coming toward the rocks or away from them?',zh:'退潮中。海水是靠近岩石還是離開岩石？',
+     options:[['Away from them','離開岩石',1],['Toward them','靠近岩石',0,'Does going out mean coming closer?','退出去是靠近嗎？'],['Staying still','停在原地',0,'Is a tide that goes out standing still?','退潮的海水是停著不動嗎？']],
+     yes:'✓ The water pulls back.',zhYes:'✓ 海水往回退。',
+     result:'Water moves <b>back, away</b>',resultZh:'海水往後、離開'},
+    {q:'Which word means to move back and away?',zh:'哪一個字的意思是往後、往外退？',
+     options:[['Recede','後退',1],['Emerge','浮現',0,'Emerge means to come out. Is the water arriving?','emerge 是出來。海水是正在來嗎？'],['Plead','懇求',0,'Can water beg?','海水會懇求嗎？'],['Bestow','授予',0,'Is the water giving a gift?','海水在送禮物嗎？']],
+     yes:'✓ Recede is the backward word.',zhYes:'✓ Recede 就是向後的那個字。',
+     result:'Backward word = <b>Recede</b>',resultZh:'向後的字 ＝ Recede'},
+    {q:'Would Emerge also fit the grammar of this blank?',zh:'Emerge 在文法上也接得上這個空格嗎？',
+     options:[['Yes, but it points the wrong way','接得上，但方向相反',1],['No, it is not a real word','不行，那不是真的字',0,'You used emerge correctly one section ago.','你上一區才正確用過 emerge。'],['Yes, and it is the answer','接得上，而且它就是答案',0,'Is the water arriving at the rocks or leaving them?','海水是來到岩石還是離開岩石？']],
+     yes:'✓ Same trap, other direction — you caught it.',zhYes:'✓ 同一個陷阱、反過來——你抓到了。',
+     result:'Grammar fits both again → <b>check direction</b>',resultZh:'文法又是兩個都接得上 → 要檢查方向',resultClass:'switch'},
+    {q:'Fill the blank.',zh:'把空格填上。',
+     options:[['Recede','後退',1],['Emerge','浮現',0,'That is the forward word.','那是向前的字。'],['Plead','懇求',0,'Plead is not a motion word.','plead 不是移動的字。'],['Bestow','授予',0,'Bestow is not a motion word.','bestow 不是移動的字。']],
+     yes:'✓ Recede. This time it is the right direction.',zhYes:'✓ Recede。這一次它就是對的方向。',
+     result:'New sentence → <b>Recede</b> ✓',resultZh:'新句子 → Recede ✓'}]},
+  textbook:{title:'Direction check, reversed',zh:'方向檢查，反向題',
+   story:'New item: “As the tide went out, the water began to ____ from the rocks.” Choices: Emerge, Recede, Plead, Bestow.',zhStory:'新題目：「As the tide went out, the water began to ____ from the rocks.」選項：Emerge、Recede、Plead、Bestow。',
+   steps:[
+    {q:'What direction does this sentence require?',zh:'這個句子需要哪個方向？',
+     options:[['Backward, away','向後、離開',1],['Forward, out','向前、向外',0,'Is an outgoing tide arriving?','退去的潮水是正在抵達嗎？'],['Upward','向上',0,'Where does the sentence mention height?','句子哪裡提到高度？']],
+     yes:'✓ Backward this time.',zhYes:'✓ 這次是向後。',
+     result:'Required direction: <b>backward</b>',resultZh:'需要的方向：向後'},
+    {q:'Eliminate the two words that are not about motion.',zh:'刪掉兩個不是在講移動的字。',
+     options:[['Plead and Bestow','Plead 和 Bestow',1],['Recede and Emerge','Recede 和 Emerge',0,'Both of those describe movement.','那兩個都在描述移動。'],['Emerge and Plead','Emerge 和 Plead',0,'Does emerge describe movement?','emerge 有描述移動嗎？']],
+     yes:'✓ Two candidates left, both motion words.',zhYes:'✓ 剩兩個候選，兩個都是移動的字。',
+     result:'Left: <b>Recede versus Emerge</b>',resultZh:'剩下：Recede 對 Emerge',resultClass:'switch'},
+    {q:'Match the direction and answer.',zh:'對上方向並作答。',
+     options:[['Recede','後退',1],['Emerge','浮現',0,'Emerge points forward; the tide goes back.','emerge 指向前；潮水是往後。'],['Plead','懇求',0,'You already eliminated plead.','你已經刪掉 plead 了。']],
+     yes:'✓ Recede — backward matches backward.',zhYes:'✓ Recede——向後對上向後。',
+     result:'New sentence → <b>Recede</b> ✓',resultZh:'新句子 → Recede ✓'}]}},
+ model:'Q23: D Emerge. The leaders come out of the pack and move ahead. Recede would send them backward.'
+}],
+quiz:[
+ {q:'Tag it: is Frail a plus word or a minus word?',zh:'貼標籤：Frail 是 ＋ 還是 −？',
+  options:[['Minus','−',1,'✓ Frail means weak and easily broken.'],['Plus','＋',0,'Frail means weak — that is not a plus.'],['Neither','兩者皆非',0,'Pick the closer one: weak is a minus.']]},
+ {q:'Which pair are look-alike twins with different meanings?',zh:'哪一對是意思不同的形近雙胞胎？',
+  options:[['accept / except','accept／except',1,'✓ Receive versus leave out.'],['big / large','big／large',0,'Those are synonyms, not twins.'],['run / ran','run／ran',0,'Same word, different tense.'],['cat / dog','cat／dog',0,'Different animals, not look-alikes.']]},
+ {q:'Serene is closest in meaning to:',zh:'Serene 的意思最接近：',
+  options:[['Calm','平靜的',1,'✓ Same family as serenity.'],['Angry','生氣的',0,'That is the opposite direction.'],['Crowded','擁擠的',0,'Serene is about peace, not numbers.'],['Loud','大聲的',0,'A serene lake is quiet.']]},
+ {q:'After the storm, the stars began to ____ from behind the clouds.',zh:'暴風雨過後，星星開始從雲後 ____。',
+  options:[['Emerge','浮現',1,'✓ They come into view.'],['Recede','後退',0,'That would hide them again.'],['Plead','懇求',0,'Stars do not beg.'],['Bestow','授予',0,'Stars are not handing out gifts.']]},
+ {q:'A synonym for a plus word must be:',zh:'＋ 的字，它的同義字一定是：',
+  options:[['Also a plus word','也是 ＋ 的字',1,'✓ Same meaning, same tag.'],['A minus word','− 的字',0,'That would be an antonym.'],['A longer word','更長的字',0,'Length is not meaning.'],['A rarer word','更罕見的字',0,'Rarity is not meaning.']]}],
+checks:[
+ 'TEST-01 Q3: Ease is the calm word — write C Serenity, not the flip.',
+ 'TEST-01 Q5: Persecute means treat cruelly — write A Oppress. Charge belongs to prosecute.',
+ 'TEST-01 Q16: Gallant is the plus word — write C Heroic, not Cowardly.',
+ 'TEST-01 Q23: The leaders move ahead — write D Emerge, not Recede.']};
+
+function shuffled(a){const x=a.slice();for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x}
+function prep(){LESSON.corrections.forEach(c=>{c.notice.options=shuffled(c.notice.options);c.why.options=shuffled(c.why.options);['life','textbook'].forEach(m=>{c.do[m].steps.forEach(s=>s.options=shuffled(s.options));c.prove[m].steps.forEach(s=>s.options=shuffled(s.options))})});LESSON.quiz.forEach(q=>q.options=shuffled(q.options))}prep();
+
+const states=Object.fromEntries(LESSON.corrections.map(c=>[c.id,{stage:0,step:0,passed:false,rewind:''}]));
+function ztxt(en,zh){return en+(zh?Z(zh):'')}
+function optionButtons(options){return '<div class="opts">'+options.map((o,i)=>`<button type="button" class="opt" data-i="${i}">${o[0]}${o[1]?Z(o[1]):''}</button>`).join('')+'</div>'}
+function workTrail(d,upto){const solved=d.steps.slice(0,upto).filter(x=>x.result);if(!solved.length)return'';return `<div class="worktrail"><div class="worktrail-title">Clues so far${Z('目前收集到的線索')}</div>${solved.map(x=>`<div class="trail-row ${x.resultClass||''}"><span class="trail-check">✓</span><div>${x.result}${x.resultZh?Z(x.resultZh):''}</div></div>`).join('')}</div>`}
+function sourceSection(c,n){return `<section class="sec" id="${c.id}"><h2><span class="num">${n}</span><span>${c.title}${Z(c.zhTitle)}</span></h2><div class="cutout">${c.recon}</div><div class="flow-shell" id="${c.id}flow"></div></section>`}
+function renderAll(){const root=$('lesson');root.innerHTML=LESSON.corrections.map((c,i)=>sourceSection(c,i+1)).join('');LESSON.corrections.forEach(renderFlow);updateGate()}
+function stageBar(s){const names=[['Notice','先看'],['Do','動手'],['Why','說原因'],['Prove','換題驗收']];return '<div class="stages">'+names.map((n,i)=>`<div class="stage ${s.passed||i<s.stage?'done':i===s.stage?'active':''}"><b>${s.passed||i<s.stage?'✓ ':''}${n[0]}</b><span class="zh">${n[1]}</span></div>`).join('')+'</div>'}
+function bindChoice(box,options,onOk,onBad){box.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>{if(b.disabled)return;const o=options[+b.dataset.i],msg=box.querySelector('.msg');if(o[2]){b.classList.add('good');box.querySelectorAll('.opt').forEach(x=>x.disabled=true);msg.className='msg good';msg.innerHTML=onOk(o)}else{b.classList.add('bad');b.disabled=true;msg.className='msg bad';msg.innerHTML=onBad(o)}}))}
+const closePanel=html=>html+'</div>';
+function renderFlow(c){const s=states[c.id],box=$(c.id+'flow');let html=stageBar(s)+'<div class="panel">';if(s.passed){html+=`<div class="model"><span class="label">Model answer unlocked</span>${Z('解鎖的範例答案')}<div class="answer">${c.model}</div></div><button type="button" class="btn alt reset">Start again${Z('重新開始')}</button>`;box.innerHTML=closePanel(html);box.querySelector('.reset').onclick=()=>{Object.assign(s,{stage:0,step:0,passed:false,rewind:''});renderFlow(c);updateGate()};return}
+ if(s.stage===0){const d=c.notice;html+=`<div class="kicker">Notice · one question${Z('先看 · 只問一件事')}</div><div class="question">${ztxt(d.q,d.zh)}</div>${optionButtons(d.options)}<div class="msg"></div>`;box.innerHTML=closePanel(html);bindChoice(box,d.options,()=>{setTimeout(()=>{s.stage=1;s.step=0;renderFlow(c)},450);return ztxt(d.yes,d.zhYes)},o=>ztxt(o[3],o[4]));return}
+ if(s.stage===1||s.stage===3){const phase=s.stage===1?'do':'prove',d=c[phase][mode],step=d.steps[s.step];html+=`<span class="modechip">${mode==='life'?'🍎 Real-life':'📘 Textbook'}</span><div class="kicker">${phase==='do'?'Do · one action':'Prove · new problem'}${Z(phase==='do'?'動手 · 一次一個動作':'換題驗收 · 新題')}</div><div class="flow-title"><b>${ztxt(d.title,d.zh)}</b></div><div class="story">${ztxt(d.story,d.zhStory)}</div>`;if(s.rewind){html+=`<div class="msg warn">↩ ${s.rewind}</div>`;s.rewind=''}html+=workTrail(d,s.step);html+=`<div class="kicker">Step ${s.step+1} of ${d.steps.length}${Z('第 '+(s.step+1)+' 步，共 '+d.steps.length+' 步')}</div><div class="question">${ztxt(step.q,step.zh)}</div>${optionButtons(step.options)}<div class="msg"></div>`;box.innerHTML=closePanel(html);bindChoice(box,step.options,()=>{const last=s.step===d.steps.length-1;setTimeout(()=>{if(last){if(phase==='do'){s.stage=2;s.step=0}else{s.passed=true}}else s.step++;renderFlow(c);updateGate()},500);return ztxt(step.yes,step.zhYes)},o=>ztxt(o[3],o[4]));return}
+ const d=c.why;html+=`<div class="kicker">Why · choose the reason${Z('說原因 · 選出理由')}</div><div class="question">${ztxt(d.q,d.zh)}</div>${optionButtons(d.options)}<div class="msg"></div>`;box.innerHTML=closePanel(html);bindChoice(box,d.options,()=>{setTimeout(()=>{s.stage=3;s.step=0;renderFlow(c)},500);return ztxt(d.yes,d.zhYes)},o=>{const ask=ztxt(o[3],o[4]);setTimeout(()=>{s.stage=1;s.step=0;s.rewind=ask;renderFlow(c)},850);return ask+'<br><b>↩ Back to Do.</b>'+Z('回到 Do。')})}
+function updateGate(){const passed=LESSON.corrections.every(c=>states[c.id].passed);document.body.classList.toggle('all-passed',passed);if(passed){renderQuiz();renderChecklist()}}
+document.querySelectorAll('.segbtn').forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.mode;document.body.dataset.mode=mode;document.querySelectorAll('.segbtn').forEach(x=>x.classList.toggle('active',x===b));$('modeLine').innerHTML=mode==='life'?'Feel each word in a small story first, then match the direction.'+Z('先在小故事裡感覺單字，再對準方向。'):'Mark the sign, cross out the mismatches, then confirm the meaning.'+Z('標出符號、劃掉不合的，再確認意思。');LESSON.corrections.forEach(c=>{const s=states[c.id];if(!s.passed){s.stage=0;s.step=0;s.rewind=''}renderFlow(c)})}));
+$('zhSwitch').addEventListener('click',e=>{const on=!document.body.classList.contains('zh-on');document.body.classList.toggle('zh-on',on);e.currentTarget.setAttribute('aria-checked',String(on))});
+let qi=0,score=0,qAnswered=false;function renderQuiz(){const box=$('quiz'),q=LESSON.quiz[qi];if(!q){box.innerHTML=`<div class="donebox">★ ${score} / ${LESSON.quiz.length} · Every answer now has a reason.${Z('每一題現在都有理由。')}</div><button type="button" class="btn alt" id="replay">Play again${Z('再玩一次')}</button>`;$('replay').onclick=()=>{qi=0;score=0;qAnswered=false;renderQuiz()};return}box.innerHTML=`<div class="quizdots">${qi+1} / ${LESSON.quiz.length}</div><div class="question">${ztxt(q.q,q.zh)}</div>${optionButtons(q.options)}<div class="msg"></div>`;bindChoice(box,q.options,o=>{if(!qAnswered){score++;qAnswered=true}setTimeout(()=>{qi++;qAnswered=false;renderQuiz()},650);return o[3]},o=>o[3])}
+function renderChecklist(){const box=$('checklist');box.innerHTML=LESSON.checks.map((x,i)=>`<label class="checkrow"><input type="checkbox" data-i="${i}"><span>${x}</span></label>`).join('')+'<div id="paperDone"></div>';box.querySelectorAll('input').forEach(x=>x.addEventListener('change',()=>{const all=[...box.querySelectorAll('input')].every(i=>i.checked);$('paperDone').innerHTML=all?`<div class="donebox">Your notebook is one page thicker. <a href="index.html">Back to Index.</a>${Z('你的筆記本又厚了一頁。回首頁。')}</div>`:''}))}
+const buddies=[['wolfchan','Wolf Chan'],['leebit','Leebit'],['dwaekki','Dwaekki'],['jiniret','Jiniret'],['hanquokka','Han Quokka'],['bbokari','BbokAri'],['puppym','Puppy M'],['foxiny','FoxI.Ny']],pick=buddies[Math.floor(Math.random()*buddies.length)];$('hiImg').src=$('outImg').src='img/skzoo-'+pick[0]+'.png';$('hiName').textContent=$('outName').textContent='Your study buddy, '+pick[1];
+renderAll();
+</script>
+</body>
+</html>

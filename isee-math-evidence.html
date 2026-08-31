@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>William's Correction Notes — Test the Choices Against the Evidence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Huninn&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--desk:#E4E5E8;--paper:#FAFAFA;--rule:#D9DCE1;--margin:#F0A6B0;--ink:#2E3037;--pencil:#6B6E76;--gray:#9C9EA5;--line:#E3E4E8;--line2:#D9DADF;--soft:#F4F4F6;--soft2:#F1F1F3;--red:#E2463B;--green:#2FA36B;--hl:#FFF0A0;--blue:#3E6FD9;--blue-soft:#E8EEFC;--blue-deep:#2B52AE;--orange:#F08A2C;--orange-soft:#FFF1E1;--orange-deep:#C4680F;--accent:var(--orange);--accent-soft:var(--orange-soft);--accent-deep:var(--orange-deep);--zh:'Huninn','Zen Maru Gothic','PingFang TC','Noto Sans TC',sans-serif;--hand:'Caveat','Comic Sans MS',cursive}
+body[data-mode="textbook"]{--accent:var(--blue);--accent-soft:var(--blue-soft);--accent-deep:var(--blue-deep)}
+html{font-size:clamp(16px,0.6vw + 13.3px,23px);-webkit-text-size-adjust:100%}*,*:before,*:after{box-sizing:border-box}body{margin:0;background:var(--desk);color:var(--ink);font-family:'Fredoka',var(--zh),sans-serif;line-height:1.5}.zh,.zhi{color:var(--pencil);font-family:var(--zh);font-size:.88em;font-weight:400}.zh{display:block;margin-top:.08em;line-height:1.45}.zhi{display:inline;margin-left:.35em}body:not(.zh-on) .zh,body:not(.zh-on) .zhi{display:none!important}button{font:inherit}mark{background:var(--hl);color:inherit;padding:0 .14em;border-radius:.16em}.hidden{display:none!important}
+.notebook{position:relative;width:100%;min-height:100vh;margin:0 auto;padding:1.4rem 1.1rem 4rem 3.7rem;background-color:var(--paper);background-image:repeating-linear-gradient(to bottom,transparent 0,transparent calc(1.875rem - 1px),var(--rule) calc(1.875rem - 1px),var(--rule) 1.875rem);background-position:0 .5rem;box-shadow:0 .6rem 2.2rem rgba(40,42,50,.1)}.notebook:before{content:"";position:absolute;inset:0 auto 0 2.875rem;width:2px;background:var(--margin)}.notebook:after{content:"";position:absolute;inset:0 auto 0 .55rem;width:1.1rem;pointer-events:none;background:radial-gradient(circle,#D2D4DA 0 .3rem,#E9EAEE .32rem .38rem,transparent .42rem) 0 1.4rem/1.1rem 4.8rem repeat-y}@media(min-width:1200px){.notebook{max-width:80vw;margin:1.6rem auto;border-radius:.3rem}}
+.wn-back{position:fixed;right:1rem;bottom:1rem;z-index:60;text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line2);border-radius:999px;padding:.45rem .8rem;box-shadow:0 .2rem .7rem rgba(0,0,0,.12);font-weight:600}.wn-back:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--hl);outline-offset:2px}
+h1{font-size:clamp(1.8rem,1.2rem + 2vw,2.5rem);line-height:1.15;margin:.2rem 0 .45rem}h1 mark{padding:0 .28rem}.subline{color:var(--pencil);margin:0 0 .7rem}.buddy-hi,.buddy-out{display:flex;align-items:center;gap:.75rem;max-width:44rem}.buddy-hi{background:#fff;border:1px solid var(--line);border-radius:.8rem;padding:.7rem .85rem;margin:.8rem 0}.buddy-hi img,.buddy-out img{width:3.5rem;height:3.5rem;object-fit:contain}.buddy-hi .say{font-family:var(--hand);font-size:1.15rem;font-weight:600}.buddy-hi .who,.buddy-out .who{font-size:.78rem;color:var(--pencil);font-weight:600}.buddy-out{margin:2.2rem 0 .5rem}.buddy-out .line{font-family:var(--hand);font-size:1.2rem;color:var(--pencil);font-weight:600}
+.vocab{display:flex;flex-wrap:wrap;gap:.5rem;max-width:50rem;margin:.85rem 0}.vcard{flex:1 1 10rem;max-width:15rem;background:#fff;border:1px solid var(--line);border-radius:.58rem;padding:.45rem .65rem;font-size:.84rem}.vcard b{display:block}.vcard span{color:var(--pencil)}
+.toolbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:.5rem;flex-wrap:wrap;margin:1rem -1.1rem 0;padding:.55rem 1.1rem;background:rgba(250,250,250,.95);border-bottom:1px solid var(--line);backdrop-filter:blur(6px)}.seg{display:flex;gap:.12rem;padding:.2rem;background:var(--soft2);border:1px solid var(--line2);border-radius:999px}.segbtn{border:0;background:transparent;color:var(--pencil);border-radius:999px;padding:.38rem .75rem;font-weight:600;cursor:pointer}.segbtn.active{color:#fff}.segbtn[data-mode="life"].active{background:var(--orange)}.segbtn[data-mode="textbook"].active{background:var(--blue)}.switch{display:flex;align-items:center;gap:.35rem;border:1px solid var(--line2);background:#fff;border-radius:999px;padding:.25rem .65rem .25rem .28rem;color:var(--pencil);font-family:var(--zh);font-weight:600;cursor:pointer}.track{position:relative;width:2.2rem;height:1.2rem;border-radius:999px;background:#CFD1D7}.track:after{content:"";position:absolute;left:.14rem;top:.14rem;width:.92rem;height:.92rem;background:#fff;border-radius:50%;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:.2s}.switch[aria-checked="true"] .track{background:var(--accent)}.switch[aria-checked="true"] .track:after{transform:translateX(.98rem)}.modeline{max-width:44rem;color:var(--pencil);font-size:.82rem;margin:.55rem 0}
+.jump{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap;margin:.8rem 0}.jump span{font-size:.78rem;color:var(--gray)}.jump a{display:inline-flex;align-items:center;justify-content:center;min-width:1.9rem;height:1.9rem;padding:0 .55rem;border:1px solid var(--line2);background:#fff;border-radius:999px;color:var(--ink);text-decoration:none;font-weight:600}
+.sec{margin:2.6rem 0 0;scroll-margin-top:5rem}.sec h2{display:flex;align-items:flex-start;gap:.6rem;margin:0 0 .35rem;font-size:1.38rem;line-height:1.25}.num{display:inline-flex;align-items:center;justify-content:center;flex:none;width:1.9rem;height:1.9rem;border-radius:50%;background:var(--ink);color:#fff;font-size:.95rem}.lead{max-width:44rem;margin:.25rem 0 .55rem}
+.cutout{position:relative;max-width:44rem;background:#fff;border:1px solid var(--line);border-radius:.6rem;padding:1rem 1rem 1.35rem;margin:.75rem 0 1rem;box-shadow:0 2px 8px rgba(0,0,0,.07)}.cutout:before{content:"";position:absolute;top:-.62rem;left:50%;width:5.7rem;height:1.2rem;transform:translateX(-50%) rotate(1deg);background:rgba(255,240,160,.72)}.sourcebar{display:flex;justify-content:space-between;gap:.5rem;flex-wrap:wrap;padding-bottom:.5rem;margin-bottom:.65rem;border-bottom:1px dashed var(--line)}.sourcekind{font-size:.7rem;font-weight:700;text-transform:uppercase}.source{font-size:.72rem;color:var(--gray)}.source-note{background:#FFF8D6;border:1px solid #F2E29A;color:#7A6300;border-radius:.45rem;padding:.45rem .65rem;font-size:.82rem}.prompt{font-weight:600;margin:.65rem 0}.worklabel{display:block;margin-top:.65rem;font-size:.7rem;color:var(--gray);text-transform:uppercase}.hw{font-family:var(--hand);font-size:1.28rem;color:var(--pencil);font-weight:600}.red{color:var(--red);font-family:var(--hand);font-size:1.15rem}.booktable{width:100%;border-collapse:collapse;margin:.65rem 0;font-size:.86rem}.booktable th,.booktable td{border:1px solid var(--line2);padding:.38rem .42rem;text-align:center}.booktable th{background:var(--soft)}.booktable td:first-child{text-align:left;font-weight:600}.vertical{display:inline-grid;grid-template-columns:repeat(6,1.1em);font-family:'Fredoka',sans-serif;font-size:1.15rem;text-align:right;line-height:1.35;margin:.55rem 0}.vertical span{min-height:1.35em}.vertical .rule{grid-column:1/-1;border-top:2px solid var(--ink)}.vertical .carry{font-size:.72em;color:var(--pencil)}
+.flow-shell{max-width:44rem;background:#fff;border:2px solid var(--accent);border-radius:.85rem;padding:.85rem;margin:1rem 0;transition:border-color .25s}.stages{display:grid;grid-template-columns:repeat(4,1fr);gap:.35rem;margin-bottom:.85rem}.stage{background:#F1F2F5;color:var(--gray);border-radius:.55rem;padding:.38rem .2rem;text-align:center;font-size:.7rem;line-height:1.15}.stage b{display:block;font-size:.8rem}.stage.active{background:var(--accent);color:#fff}.stage.done{background:#E6F6EE;color:var(--green)}.panel{animation:fade .2s ease}.kicker{font-size:.72rem;color:var(--accent);font-weight:700;text-transform:uppercase}.modechip{display:inline-block;border:1px solid var(--accent);color:var(--accent);border-radius:999px;padding:.1rem .42rem;font-size:.68rem;margin:.25rem 0}.story{background:var(--accent-soft);border-left:.3rem solid var(--accent);border-radius:.45rem;padding:.62rem .75rem;margin:.45rem 0 .7rem}.question{font-weight:600;margin:.55rem 0 .35rem}.opts{display:flex;flex-wrap:wrap;gap:.48rem;margin:.42rem 0}.opt{border:2px solid var(--line2);background:#fff;color:var(--ink);border-radius:.6rem;padding:.42rem .8rem;cursor:pointer}.opt.good{border-color:var(--green);background:#E6F6EE}.opt.bad{border-color:var(--red);background:#FDEAE8}.opt:disabled{cursor:default}.msg{margin-top:.65rem;padding:.55rem .75rem;border:1px solid var(--line);background:var(--soft);border-radius:.5rem;font-size:.92rem}.msg:empty{display:none}.msg.good{background:#E6F6EE;border-color:#B9E3CB;color:#1E6E48}.msg.bad{background:#FDEAE8;border-color:#F5BDB7;color:#A83128}.msg.warn{background:#FFF8D6;border-color:#F2E29A;color:#7A6300}.btn{border:0;border-radius:.6rem;background:var(--accent);color:#fff;padding:.48rem .88rem;box-shadow:0 .22rem 0 var(--accent-deep);font-weight:600;cursor:pointer;margin-top:.55rem}.btn:active{transform:translateY(.16rem);box-shadow:0 .05rem 0 var(--accent-deep)}.btn.alt{background:#fff;color:var(--ink);border:1px solid var(--line2);box-shadow:0 .2rem 0 var(--line2);margin-left:.35rem}.model{margin:.8rem 0 0;padding:.65rem .8rem;border:2px dashed var(--line2);border-radius:.55rem;background:#fff}.model .label{font-size:.68rem;color:var(--gray);font-weight:700;text-transform:uppercase}.model .answer{font-weight:600}.hint{margin:.7rem 0 0;border-left:.32rem solid var(--accent);background:var(--accent-soft);border-radius:.45rem}.hint summary{cursor:pointer;padding:.5rem .7rem;color:var(--accent);font-weight:600}.hint .inside{padding:0 .75rem .65rem;font-size:.9rem}
+.after-gate{max-width:44rem;margin:1.2rem 0;padding:.7rem .85rem;border:2px dashed var(--line2);border-radius:.65rem;background:#fff;color:var(--pencil)}body:not(.all-passed) .review{display:none}.review{max-width:44rem}.quizbox,.checklist,.tipbox{background:#fff;border:1px solid var(--line);border-radius:.7rem;padding:.85rem;margin:.8rem 0}.quizdots{color:var(--gray);font-size:.8rem}.checkrow{display:flex;gap:.55rem;align-items:flex-start;padding:.45rem 0;border-top:1px dashed var(--line)}.checkrow:first-child{border-top:0}.checkrow input{width:1.15rem;height:1.15rem;accent-color:var(--green);margin-top:.18rem}.donebox{background:#E6F6EE;color:#1E6E48;border:1px solid #B9E3CB;border-radius:.5rem;padding:.6rem .75rem;margin-top:.65rem}.evidence{border-left:.3rem solid var(--blue);background:var(--blue-soft);border-radius:.45rem;padding:.55rem .75rem;margin:.45rem 0;font-size:.9rem}.foot{color:var(--gray);font-size:.75rem;margin-top:1rem}
+@keyframes fade{from{opacity:.25;transform:translateY(.15rem)}to{opacity:1;transform:none}}@media(max-width:620px){.notebook{padding-left:3.35rem}.notebook:before{left:2.55rem}.toolbar{margin-left:-.8rem;padding-left:.8rem}.seg{flex:1}.segbtn{flex:1;padding:.35rem .35rem;font-size:.8rem}.vocab{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x proximity;margin-right:-1.1rem;padding-bottom:.3rem}.vcard{flex:0 0 11rem;scroll-snap-align:start}.stages{gap:.2rem}.stage{font-size:.6rem}.stage b{font-size:.7rem}.booktable{font-size:.72rem}.booktable th,.booktable td{padding:.3rem .22rem}}
+@media print{.wn-back,.toolbar{display:none}.notebook{max-width:none;box-shadow:none}}
+.worktrail{margin:.8rem 0;padding:.6rem .7rem;border:1px solid #F2D2A9;border-radius:.55rem;background:#FFF9F1}.worktrail-title{font-size:.68rem;color:var(--accent-deep);font-weight:700;text-transform:uppercase;margin-bottom:.28rem}.trail-row{display:flex;gap:.45rem;align-items:flex-start;padding:.28rem 0;border-top:1px dashed #E8D8C4;font-size:.88rem;line-height:1.35}.trail-row:first-of-type{border-top:0}.trail-check{flex:none;color:var(--green);font-weight:700}.trail-row.switch{margin:.28rem -.15rem 0;padding:.42rem .5rem;border:1px solid #B9C9F0;border-radius:.42rem;background:var(--blue-soft);color:var(--blue-deep);font-weight:600}
+.setline{font-size:1.2rem;font-weight:600;letter-spacing:.05em;margin:.45rem 0}.optrow{padding:.12rem 0}.optrow b{display:inline-block;min-width:1.3rem}.tablecap{font-weight:600;text-align:center;font-size:.9rem;margin:.6rem 0 .1rem}.chart{width:100%;height:auto;display:block;margin:.6rem 0}
+.chartwrap{overflow-x:auto;margin:.65rem 0}.chartwrap svg{width:100%;min-width:21rem;height:auto;display:block}.booktable caption{caption-side:top;font-size:.78rem;font-weight:600;padding-bottom:.28rem}
+</style>
+</head>
+<body data-mode="life">
+<main class="notebook">
+<a class="wn-back" href="index.html">📒 Index</a>
+<div class="subline">MATHEMATICS · ISEE LOWER · ZOZECK TEST-01</div>
+<h1><mark>Test the Choices Against the Evidence</mark><span class="zh">用證據驗證每個選項</span></h1>
+<div class="buddy-hi"><img id="hiImg" alt="Study buddy"><div><div class="say">Hi, William. You got 22 of the last 25 questions on this test right.<span class="zh">嗨，William。這份測驗的最後 25 題，你答對了 22 題。</span></div><div class="who" id="hiName"></div></div></div>
+<div class="vocab">
+  <div class="vcard"><b>composite number</b><span>more than 2 factors</span><span class="zh">合數：因數多於 2 個</span></div>
+  <div class="vcard"><b>factor</b><span>divides evenly, no remainder</span><span class="zh">因數：能整除、沒有餘數</span></div>
+  <div class="vcard"><b>constant rate</b><span>same change each time</span><span class="zh">固定變化率：每次變化相同</span></div>
+  <div class="vcard"><b>difference</b><span>how many more — subtract</span><span class="zh">相差：多多少，用減法</span></div>
+</div>
+<div class="toolbar">
+  <div class="seg" aria-label="Learning mode"><button type="button" class="segbtn active" data-mode="life">🍎 Real-life</button><button type="button" class="segbtn" data-mode="textbook">📘 Textbook</button></div>
+  <button type="button" class="switch" id="zhSwitch" role="switch" aria-checked="false"><span class="track"></span>中文</button>
+</div>
+<p class="modeline" id="modeLine">Test each choice against real things: lockers, stopwatches, ticket counts.<span class="zh">用真實的東西驗證每個選項：置物櫃、碼表、票數。</span></p>
+<nav class="jump"><span>Jump to</span><a href="#s1">1</a><a href="#s2">2</a><a href="#s3">3</a><a href="#review">🎯</a></nav>
+<div id="lesson"></div>
+<div class="after-gate" id="gate">🔒 Finish Prove in all three sections to unlock the review.<span class="zh">三區都完成 Prove 後，才會解鎖複習。</span></div>
+<section class="review" id="review">
+  <div class="sec"><h2><span class="num">📘</span><span>The habit<span class="zh">這次的習慣</span></span></h2>
+    <div class="tipbox"><p>Three habits carried every correction. One rule and one check each.</p><p class="zh">三個習慣撐起了這次全部訂正，每個習慣一條規則加一個檢查。</p>
+      <details class="hint"><summary>Test every member · Q35<span class="zh">每個成員都要驗證</span></summary><div class="inside"><div class="evidence">A “type of number” claim must fit <mark>every member</mark>. One counterexample kills it.<span class="zh">「哪一種數」的說法必須符合每一個成員，一個反例就能推翻它。</span></div><div class="evidence">Check: before picking, hunt for the member that breaks each choice.<span class="zh">檢查：作答前，先找找哪個成員能推翻各選項。</span></div></div></details>
+      <details class="hint"><summary>Walk to the named month · Q37<span class="zh">走到題目指名的那個月</span></summary><div class="inside"><div class="evidence">Find the rate, then <mark>walk to the month the question names</mark> — not where the table stops.<span class="zh">找出變化率後，要走到題目指名的月份，不是表格停下的地方。</span></div><div class="evidence">Check: circle the target month first, then count your steps to it.<span class="zh">檢查：先圈出目標月份，再數自己走了幾步。</span></div></div></details>
+      <details class="hint"><summary>Sum the groups first · Q50<span class="zh">先算每組總和</span></summary><div class="inside"><div class="evidence">Comparing two groups? <mark>Total each group first</mark>, then subtract once.<span class="zh">比較兩組時，先算出每組總和，最後只減一次。</span></div><div class="evidence">Check: your paper should show two additions, then one subtraction.<span class="zh">檢查：紙上應該有兩個加法，再一個減法。</span></div></div></details>
+    </div>
+  </div>
+  <div class="sec"><h2><span class="num">🎯</span><span>Quick quiz<span class="zh">小測驗</span></span></h2><div class="quizbox" id="quiz"></div></div>
+  <div class="sec"><h2><span class="num">✍️</span><span>Correction list<span class="zh">紙本訂正清單</span></span></h2><div class="checklist" id="checklist"></div></div>
+</section>
+<div class="buddy-out"><img id="outImg" alt="Study buddy"><div><div class="line">I taste-tested every dumpling. Twice. Being careful is delicious!<span class="zh">每顆小籠包我都試吃過了，還試了兩輪。認真檢查真好吃！</span></div><div class="who" id="outName"></div></div></div>
+<div class="foot">ZOZECK · ISEE Lower Pastpaper · TEST-01 · Math · 2026-08-30</div>
+</main>
+<script>
+'use strict';
+const Z=z=>'<span class="zh">'+z+'</span>';
+const $=id=>document.getElementById(id);let mode='life';
+const CHART='<div class="chartwrap"><svg viewBox="0 0 430 262" role="img" aria-label="Line graph of movie tickets sold each day: Sunday 240, Monday 60, Tuesday 72, Wednesday 80, Thursday 160, Friday 216, Saturday 288"><text x="215" y="16" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="11" fill="#2E3037">Movie Tickets Sold by Day</text><line x1="45" y1="210.0" x2="415" y2="210.0" stroke="#E3E4E8" stroke-width="1"/><text x="40" y="212.6" text-anchor="end" font-family="Fredoka,sans-serif" font-size="7.5" fill="#9C9EA5">0</text><line x1="45" y1="184.3" x2="415" y2="184.3" stroke="#E3E4E8" stroke-width="1"/><text x="40" y="186.9" text-anchor="end" font-family="Fredoka,sans-serif" font-size="7.5" fill="#9C9EA5">50</text><line x1="45" y1="158.6" x2="415" y2="158.6" stroke="#E3E4E8" stroke-width="1"/><text x="40" y="161.2" text-anchor="end" font-family="Fredoka,sans-serif" font-size="7.5" fill="#9C9EA5">100</text><line x1="45" y1="132.9" x2="415" y2="132.9" stroke="#E3E4E8" stroke-width="1"/><text x="40" y="135.5" text-anchor="end" font-family="Fredoka,sans-serif" font-size="7.5" fill="#9C9EA5">150</text><line x1="45" y1="107.1" x2="415" y2="107.1" stroke="#E3E4E8" stroke-width="1"/><text x="40" y="109.7" text-anchor="end" font-family="Fredoka,sans-serif" font-size="7.5" fill="#9C9EA5">200</text><line x1="45" y1="81.4" x2="415" y2="81.4" stroke="#E3E4E8" stroke-width="1"/><text x="40" y="84.0" text-anchor="end" font-family="Fredoka,sans-serif" font-size="7.5" fill="#9C9EA5">250</text><line x1="45" y1="55.7" x2="415" y2="55.7" stroke="#E3E4E8" stroke-width="1"/><text x="40" y="58.3" text-anchor="end" font-family="Fredoka,sans-serif" font-size="7.5" fill="#9C9EA5">300</text><line x1="45" y1="30.0" x2="415" y2="30.0" stroke="#E3E4E8" stroke-width="1"/><text x="40" y="32.6" text-anchor="end" font-family="Fredoka,sans-serif" font-size="7.5" fill="#9C9EA5">350</text><line x1="45" y1="30" x2="45" y2="210" stroke="#C9CBD2" stroke-width="1.2"/><line x1="45" y1="210" x2="415" y2="210" stroke="#C9CBD2" stroke-width="1.2"/><text x="14" y="120" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="7.5" fill="#6B6E76" transform="rotate(-90 14 120)">Number of Movie Tickets Sold</text><polyline fill="none" stroke="#3E6FD9" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" points="60,86.6 115,179.1 170,173.0 225,168.9 280,127.7 335,98.9 390,61.9"/><circle cx="60" cy="86.6" r="3.2" fill="#3E6FD9"/><text x="60" y="79.6" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="8" font-weight="600" fill="#2B52AE">240</text><text x="60" y="224" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="7.5" fill="#6B6E76">Sunday</text><circle cx="115" cy="179.1" r="3.2" fill="#3E6FD9"/><text x="115" y="172.1" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="8" font-weight="600" fill="#2B52AE">60</text><text x="115" y="224" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="7.5" fill="#6B6E76">Monday</text><circle cx="170" cy="173.0" r="3.2" fill="#3E6FD9"/><text x="170" y="166.0" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="8" font-weight="600" fill="#2B52AE">72</text><text x="170" y="224" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="7.5" fill="#6B6E76">Tuesday</text><circle cx="225" cy="168.9" r="3.2" fill="#3E6FD9"/><text x="225" y="161.9" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="8" font-weight="600" fill="#2B52AE">80</text><text x="225" y="224" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="7.5" fill="#6B6E76">Wednesday</text><circle cx="280" cy="127.7" r="3.2" fill="#3E6FD9"/><text x="280" y="120.7" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="8" font-weight="600" fill="#2B52AE">160</text><text x="280" y="224" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="7.5" fill="#6B6E76">Thursday</text><circle cx="335" cy="98.9" r="3.2" fill="#3E6FD9"/><text x="335" y="91.9" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="8" font-weight="600" fill="#2B52AE">216</text><text x="335" y="224" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="7.5" fill="#6B6E76">Friday</text><circle cx="390" cy="61.9" r="3.2" fill="#3E6FD9"/><text x="390" y="54.9" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="8" font-weight="600" fill="#2B52AE">288</text><text x="390" y="224" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="7.5" fill="#6B6E76">Saturday</text><text x="230" y="243" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="8" fill="#6B6E76">Day of the Week</text></svg></div>';
+const LESSON={corrections:[
+{
+ id:'s1',title:'Test the claim on every member',zhTitle:'每個成員都要驗證',
+ recon:`<div class="sourcebar"><span class="sourcekind">Question reconstruction｜原題重現</span><span class="source">ZOZECK · ISEE Lower Pastpaper · TEST-01 · Q35</span></div><div class="source-note">The red ✗ is ZOZECK’s own mark on William’s choice.${Z('紅色 ✗ 是 ZOZECK 平台的批改記號。')}</div><p class="prompt">Which type of number is represented in the set below?</p>${Z('下面的集合代表哪一種數？')}<div class="setline">{4, 6, 8, 9, 10, 12, . . .}</div><div class="optrow"><b>A</b> Composite numbers${Z('合數')}</div><div class="optrow"><b>B</b> Even numbers${Z('偶數')}</div><div class="optrow"><b>C</b> Factors of 36${Z('36 的因數')}</div><div class="optrow"><b>D</b> Multiples of 2${Z('2 的倍數')}</div><span class="worklabel">William’s choice</span><div class="hw">C Factors of 36 <span class="red">✗</span></div>`,
+ notice:{q:'Before any math: what did you do with the four choices that day?',zh:'先不算數學：那天你是怎麼處理這四個選項的？',options:[['I tested a few members, and C fit them','我試了幾個成員，C 都符合',1],['I picked the choice that looked most familiar','我挑了看起來最眼熟的選項',1],['I was not sure what “composite” meant','我那時不太確定 composite 是什麼意思',1]],yes:'✓ Got it. Now we test all four claims, one member at a time.',zhYes:'✓ 了解。現在一個成員一個成員，驗證四個說法。'},
+ do:{life:{title:'The locker rack test',zh:'置物櫃標籤驗證',story:'Lockers 4, 6, 8, 9, 10, 12. A rack label must fit every locker.',zhStory:'置物櫃 4、6、8、9、10、12。架上的標籤必須符合每一個櫃號。',steps:[
+  {q:'Label C says “factors of 36.” Does locker 8 pass — does 8 divide 36 evenly?',zh:'標籤 C 寫「36 的因數」。櫃號 8 過關嗎——8 能整除 36 嗎？',options:[['No — 8 × 4 = 32, 8 × 5 = 40; 36 is skipped',null,1],['Yes — 36 ÷ 8 = 4',null,0,'What is 8 × 4?','8×4 是多少？'],['Yes — 36 ÷ 8 = 4.5 is close enough',null,0,'Does a factor leave leftovers?','因數可以留餘數嗎？']],yes:'✓ 8 fails, so label C comes off the rack.',zhYes:'✓ 8 不過關，標籤 C 出局。',result:'C vs 8: 8 × 4 = 32, 8 × 5 = 40 → <b>8 is not a factor of 36 → C ✗</b>',resultZh:'用 8 驗 C：跳過 36 → C 出局'},
+  {q:'Locker 10, same label C: does 10 divide 36 evenly?',zh:'櫃號 10，同一張標籤 C：10 能整除 36 嗎？',options:[['No — 10 × 3 = 30, 10 × 4 = 40',null,1],['Yes — 36 ÷ 10 = 3.6',null,0,'Is 3.6 a whole number?','3.6 是整數嗎？'],['Yes — 36 ends in 6, close to 10',null,0,'Count by tens: 10, 20, 30, 40 — where is 36?','十個十個數：10、20、30、40——36 在哪？']],yes:'✓ 10 fails too — C broke twice.',zhYes:'✓ 10 也不過關——C 被推翻兩次。',result:'C vs 10: 10 × 3 = 30, 10 × 4 = 40 → <b>10 fails too</b>',resultZh:'用 10 驗 C：也跳過 36'},
+  {q:'Label B says “even numbers.” Is locker 9 even?',zh:'標籤 B 寫「偶數」。櫃號 9 是偶數嗎？',options:[['No — 9 ends in an odd digit',null,1],['Yes — 9 sits between 8 and 10',null,0,'Can 9 split into two equal whole teams?','9 能平分成兩隊一樣多嗎？'],['Yes — 2 × 4.5 = 9',null,0,'Do even numbers allow halves?','偶數可以用一半嗎？']],yes:'✓ 9 is odd — label B is out.',zhYes:'✓ 9 是奇數——標籤 B 出局。',result:'<b>9 is odd</b> → B ✗',resultZh:'9 是奇數 → B 出局'},
+  {q:'Label D says “multiples of 2.” Every multiple of 2 is —',zh:'標籤 D 寫「2 的倍數」。2 的倍數一定是——',options:[['even — so the odd 9 breaks D too','偶數——所以奇數 9 也推翻 D',1],['sometimes odd','有時是奇數',0,'Say them: 2, 4, 6, 8 — any odd ones?','唸唸看：2、4、6、8——有奇數嗎？'],['any number bigger than 2','只要比 2 大都算',0,'Is 9 equal to 2 × a whole number?','9 等於 2×某個整數嗎？']],yes:'✓ Same counterexample, two labels down.',zhYes:'✓ 同一個反例，打掉兩張標籤。',result:'Multiples of 2 are even → <b>9 kills D too → D ✗</b>',resultZh:'2 的倍數都是偶數 → 9 也推翻 D'},
+  {q:'Three labels down. Which label is still on the rack?',zh:'三張標籤出局了。架上還剩哪一張？',options:[['A Composite numbers',null,1],['C Factors of 36',null,0,'Which two lockers already broke C?','哪兩個櫃號已經推翻 C？'],['B Even numbers',null,0,'Which locker broke B?','哪個櫃號推翻了 B？']],yes:'✓ Only A survives — now it must fit all six.',zhYes:'✓ 只剩 A——現在它必須符合全部六個。',result:'B ✗ C ✗ D ✗ → <b>only A left</b> — test it on every locker',resultZh:'只剩 A——還要逐櫃驗證',resultClass:'switch'},
+  {q:'Label A says every locker number is composite. Composite means —',zh:'標籤 A 說每個櫃號都是合數。合數的意思是——',options:[['more than 2 factors','因數多於 2 個',1],['an even number','就是偶數',0,'Is 9 composite? Is 9 even?','9 是合數嗎？9 是偶數嗎？'],['a number inside a times table','出現在乘法表裡的數',0,'7 is in the 7 times table — is 7 composite?','7 在七的乘法表裡——7 是合數嗎？']],yes:'✓ Composite = more than 2 factors.',zhYes:'✓ 合數＝因數多於 2 個。',result:'Composite = <b>more than 2 factors</b>',resultZh:'合數＝因數多於 2 個'},
+  {q:'Riskiest locker: 9. Its factors are —',zh:'最可疑的櫃號：9。它的因數是——',options:[['1, 3, 9 — three factors, so composite',null,1],['1 and 9 only',null,0,'What is 3 × 3?','3×3 是多少？'],['1, 3, 6, 9',null,0,'Does 6 divide 9 evenly?','6 能整除 9 嗎？']],yes:'✓ And 4, 6, 8, 10, 12 all split too — A fits all six.',zhYes:'✓ 4、6、8、10、12 也都拆得開——A 六個全過。',result:'9 → 1, 3, 9 (composite ✓) → <b>A fits every locker</b>',resultZh:'9 的因數 1、3、9（合數）→ A 全部通過'}]},
+ textbook:{title:'{4, 6, 8, 9, 10, 12, …}',zh:'集合 {4, 6, 8, 9, 10, 12, …}',story:'Each option is a claim about every member. Hunt the counterexample.',zhStory:'每個選項都是「每個成員都如此」的主張，去找反例。',steps:[
+  {q:'Test option C on the member 8: is 8 a factor of 36?',zh:'用成員 8 驗證選項 C：8 是 36 的因數嗎？',options:[['No — 36 ÷ 8 = 4 remainder 4',null,1],['Yes — 8 × 4 = 36',null,0,'Compute 8 × 4.','算算看 8×4。'],['Yes — 36 ÷ 8 = 4.5 counts',null,0,'Must a factor divide with remainder 0?','因數必須整除、餘 0 嗎？']],yes:'✓ Remainder 4 — C has a counterexample.',zhYes:'✓ 餘 4——C 有反例了。',result:'C vs 8: 36 ÷ 8 = 4 r 4 → <b>C ✗</b>',resultZh:'36÷8＝4 餘 4 → C 出局'},
+  {q:'Test C on 10: is 10 a factor of 36?',zh:'再用 10 驗 C：10 是 36 的因數嗎？',options:[['No — 36 ÷ 10 = 3 remainder 6',null,1],['Yes — 10 × 3.6 = 36',null,0,'Do factors use decimals?','因數會用小數嗎？'],['Yes — 36 ends in 6',null,0,'Multiples of 10 end in which digit?','10 的倍數結尾是哪個數字？']],yes:'✓ Two counterexamples against C.',zhYes:'✓ C 已經有兩個反例。',result:'C vs 10: 36 ÷ 10 = 3 r 6 → <b>C fails again</b>',resultZh:'36÷10＝3 餘 6 → C 再次不成立'},
+  {q:'Test option B on 9: is 9 even?',zh:'用 9 驗證選項 B：9 是偶數嗎？',options:[['No — 9 = 2 × 4 + 1',null,1],['Yes — it sits between 8 and 10',null,0,'Even numbers end in 0, 2, 4, 6, 8 — does 9?','偶數結尾是 0、2、4、6、8——9 是嗎？'],['Yes — 9 is in the set',null,0,'Does being in the set make a number even?','在集合裡就會變偶數嗎？']],yes:'✓ 9 is odd — B is rejected.',zhYes:'✓ 9 是奇數——B 被否決。',result:'<b>9 is odd</b> → B ✗',resultZh:'9 是奇數 → B 出局'},
+  {q:'Option D, multiples of 2: the value 2 × n is always —',zh:'選項 D「2 的倍數」：2×n 一定是——',options:[['even — so 9 rejects D',null,1],['odd when n is odd',null,0,'2 × 3 = ? Even or odd?','2×3 是多少？偶數還是奇數？'],['eventually bigger than 9',null,0,'Is 9 = 2 × n for any whole n?','9 等於 2×某個整數嗎？']],yes:'✓ One odd member rejects both B and D.',zhYes:'✓ 一個奇數成員，同時否決 B 和 D。',result:'Multiples of 2 are even → <b>D ✗</b>',resultZh:'2 的倍數必為偶數 → D 出局'},
+  {q:'Which option has no counterexample so far?',zh:'目前哪個選項還沒有反例？',options:[['A Composite numbers',null,1],['C Factors of 36',null,0,'Which members gave C a remainder?','哪些成員讓 C 出現餘數？'],['D Multiples of 2',null,0,'Which member is odd?','哪個成員是奇數？']],yes:'✓ A is the last claim standing.',zhYes:'✓ A 是最後還站著的主張。',result:'Only <b>A</b> remains — verify it on every member',resultZh:'只剩 A——還要逐一驗證每個成員',resultClass:'switch'},
+  {q:'A composite number has —',zh:'合數的定義是——',options:[['more than 2 factors','因數多於 2 個',1],['exactly 2 factors','恰好 2 個因數',0,'Which type has exactly 2 — prime or composite?','恰好 2 個因數的是質數還是合數？'],['no factors at all','沒有任何因數',0,'Does 1 divide every number?','1 能整除每個數嗎？']],yes:'✓ More than 2 factors.',zhYes:'✓ 因數多於 2 個。',result:'Composite = <b>more than 2 factors</b>',resultZh:'合數＝因數多於 2 個'},
+  {q:'Verify the risky member 9: list its factors.',zh:'驗證可疑成員 9：列出它的因數。',options:[['1, 3, 9',null,1],['1, 9',null,0,'What is 3 × 3?','3×3 是多少？'],['1, 3, 5, 9',null,0,'Does 5 divide 9 evenly?','5 能整除 9 嗎？']],yes:'✓ 4, 6, 8, 10, 12 are composite too — A fits every member.',zhYes:'✓ 4、6、8、10、12 也都是合數——A 全員通過。',result:'9 → 1, 3, 9 (composite ✓) → <b>A fits all six</b>',resultZh:'9 的因數 1、3、9 → A 通過全部成員'}]}},
+ why:{q:'Why must a “type of number” fit every member of the set?',zh:'為什麼「哪一種數」必須符合集合裡的每個成員？',options:[['One counterexample is enough to reject the whole claim.','一個反例就足以推翻整個主張。',1],['Most members fitting is enough.','大部分成員符合就夠了。',0,'C fit 4, 6, 9, and 12 — did C survive locker 8?','C 符合 4、6、9、12——那 8 有放過 C 嗎？'],['The first member decides the type.','第一個成員決定答案。',0,'4 fits all four choices — can 4 alone pick one?','4 四個選項都符合——單靠 4 選得出來嗎？']],yes:'✓ The set is the jury: every member gets a vote.',zhYes:'✓ 集合就是陪審團：每個成員都有一票。'},
+ prove:{life:{title:'A brand-new rack',zh:'全新的一排置物櫃',story:'New lockers: 2, 3, 5, 7, 11. Labels: Odd · Prime · Factors of 30 · Multiples of 3.',zhStory:'新櫃號：2、3、5、7、11。標籤：奇數、質數、30 的因數、3 的倍數。',steps:[
+  {q:'Test “Odd numbers” on locker 2: is 2 odd?',zh:'用櫃號 2 驗「奇數」：2 是奇數嗎？',options:[['No — 2 is even',null,1],['Yes — 2 is small',null,0,'Can 2 split into two equal teams of 1?','2 能分成兩隊、每隊 1 個嗎？'],['Yes — primes are always odd',null,0,'Is 2 prime? Is 2 odd?','2 是質數嗎？是奇數嗎？']],yes:'✓ 2 is even — “Odd numbers” is out.',zhYes:'✓ 2 是偶數——「奇數」出局。',result:'<b>2 is even</b> → Odd numbers ✗',resultZh:'2 是偶數 → 「奇數」出局'},
+  {q:'Test “Multiples of 3” on 2: is 2 = 3 × a whole number?',zh:'用 2 驗「3 的倍數」：2 等於 3×整數嗎？',options:[['No — 3 × 1 = 3 already passes 2',null,1],['Yes — 2 × 3 = 6',null,0,'Is the locker number 6, or 2?','櫃號是 6 還是 2？'],['Yes — every number is',null,0,'Say them: 3, 6, 9 — is 2 on the list?','唸唸看：3、6、9——有 2 嗎？']],yes:'✓ 2 rejects “Multiples of 3.”',zhYes:'✓ 2 否決了「3 的倍數」。',result:'2 ≠ 3 × n → <b>Multiples of 3 ✗</b>',resultZh:'2 不是 3 的倍數 → 出局'},
+  {q:'“Factors of 30”: do 2, 3, and 5 all divide 30?',zh:'「30 的因數」：2、3、5 都能整除 30 嗎？',options:[['Yes — 15, 10, 6, no remainders',null,1],['No — 5 fails',null,0,'What is 5 × 6?','5×6 是多少？'],['No — 2 fails',null,0,'What is 2 × 15?','2×15 是多少？']],yes:'✓ Alive so far — this is where stopping feels safe.',zhYes:'✓ 目前還成立——這正是最想停下來的地方。',result:'2, 3, 5 all divide 30 → <b>Factors of 30 still alive… keep testing</b>',resultZh:'2、3、5 都整除 30 → 先別停，繼續驗'},
+  {q:'Keep walking: does 7 divide 30 evenly?',zh:'繼續走：7 能整除 30 嗎？',options:[['No — 7 × 4 = 28, 7 × 5 = 35',null,1],['Yes — 30 ÷ 7 = 4 with a bit left',null,0,'Does “a bit left” still count as evenly?','「剩一點點」還算整除嗎？'],['Skip 7 — three passes is enough',null,0,'Does “every member” allow skipping one?','「每個成員」可以跳過一個嗎？']],yes:'✓ 7 kills the label that almost fooled us.',zhYes:'✓ 7 推翻了那張差點騙到我們的標籤。',result:'7 × 4 = 28, 7 × 5 = 35 → <b>7 breaks “Factors of 30”</b>',resultZh:'7 整除不了 30 → 「30 的因數」出局',resultClass:'switch'},
+  {q:'Last label, “Prime numbers.” Prime means —',zh:'最後一張標籤「質數」。質數的意思是——',options:[['exactly 2 factors: 1 and itself','恰好 2 個因數：1 和自己',1],['an odd number','就是奇數',0,'Is 2 prime? Is 2 odd?','2 是質數嗎？是奇數嗎？'],['a number that cannot be small','不能太小的數',0,'How many factors does 2 have?','2 有幾個因數？']],yes:'✓ Exactly 2 factors.',zhYes:'✓ 恰好 2 個因數。',result:'Prime = <b>exactly 2 factors</b>',resultZh:'質數＝恰好 2 個因數'},
+  {q:'Final sweep: does any of 2, 3, 5, 7, 11 have a third factor?',zh:'最後掃一遍：2、3、5、7、11 有誰有第三個因數？',options:[['No — every one is prime',null,1],['Yes — 11 = 2 × 5.5',null,0,'Do factors use halves?','因數可以用一半嗎？'],['Yes — 9 divides one of them',null,0,'Is 9 even in this set?','9 有在這個集合裡嗎？']],yes:'✓ “Prime numbers” fits every member.',zhYes:'✓ 「質數」符合每一個成員。',result:'2, 3, 5, 7, 11 all prime → <b>answer: Prime numbers ✓</b>',resultZh:'全員都是質數 → 答案：質數'}]},
+ textbook:{title:'{2, 3, 5, 7, 11, …}',zh:'集合 {2, 3, 5, 7, 11, …}',story:'Same method: one counterexample rejects a claim; the answer survives all.',zhStory:'同一套方法：一個反例就否決主張，答案要通過全部成員。',steps:[
+  {q:'Option “Odd numbers” vs the member 2:',zh:'「奇數」對上成員 2：',options:[['2 is even → rejected',null,1],['2 is odd',null,0,'2 = 2 × 1 — even or odd?','2＝2×1——偶數還是奇數？'],['2 is odd because it is prime',null,0,'Are prime and odd the same thing?','質數和奇數是同一件事嗎？']],yes:'✓ Rejected by the very first member.',zhYes:'✓ 第一個成員就否決它。',result:'<b>2 is even</b> → Odd numbers ✗',resultZh:'2 是偶數 → 「奇數」出局'},
+  {q:'“Multiples of 3” vs 2:',zh:'「3 的倍數」對上 2：',options:[['2 is not a multiple of 3 → rejected',null,1],['2 is — because 3 × 2 = 6',null,0,'Is the member 6, or 2?','成員是 6 還是 2？'],['cannot tell',null,0,'List them: 3, 6, 9 — is 2 listed?','列出來：3、6、9——有 2 嗎？']],yes:'✓ Rejected. Two claims left.',zhYes:'✓ 否決。剩兩個主張。',result:'2 ≠ 3 × n → <b>Multiples of 3 ✗</b>',resultZh:'2 不是 3 的倍數 → 出局'},
+  {q:'“Factors of 30” vs 2, 3, 5:',zh:'「30 的因數」對上 2、3、5：',options:[['all three divide 30 — still alive',null,1],['3 fails',null,0,'What is 3 × 10?','3×10 是多少？'],['5 fails',null,0,'What is 5 × 6?','5×6 是多少？']],yes:'✓ Alive after three members — the trap point.',zhYes:'✓ 過了三個成員還活著——陷阱就在這裡。',result:'2, 3, 5 all divide 30 → <b>still alive… keep testing</b>',resultZh:'2、3、5 都通過 → 尚未定案，繼續驗'},
+  {q:'“Factors of 30” vs 7:',zh:'「30 的因數」對上 7：',options:[['7 does not divide 30 → rejected',null,1],['7 divides 30',null,0,'7 × 4 = ? And 7 × 5 = ?','7×4、7×5 各是多少？'],['skip 7 — three passes is enough',null,0,'Does “every member” allow skipping one?','「每個成員」可以跳過一個嗎？']],yes:'✓ The fourth member ends the claim.',zhYes:'✓ 第四個成員終結了這個主張。',result:'30 ÷ 7 leaves a remainder → <b>Factors of 30 ✗</b>',resultZh:'30÷7 有餘數 → 出局',resultClass:'switch'},
+  {q:'Define prime:',zh:'質數的定義：',options:[['exactly 2 factors','恰好 2 個因數',1],['more than 2 factors','因數多於 2 個',0,'Which type is that — prime or composite?','那是質數還是合數？'],['no factors','沒有因數',0,'Does 1 × n = n always work?','1×n＝n 永遠成立嗎？']],yes:'✓ 1 and itself, nothing else.',zhYes:'✓ 只有 1 和自己。',result:'Prime = <b>exactly 2 factors</b>',resultZh:'質數＝恰好 2 個因數'},
+  {q:'Final check — 2, 3, 5, 7, 11:',zh:'最後檢查——2、3、5、7、11：',options:[['every member is prime → answer: Prime numbers',null,1],['11 is composite',null,0,'Besides 1 × 11, which whole numbers multiply to 11?','除了 1×11，還有哪組整數相乘等於 11？'],['5 is composite',null,0,'Besides 1 × 5, what makes 5?','除了 1×5，還有什麼相乘等於 5？']],yes:'✓ The claim survives all five members.',zhYes:'✓ 這個主張通過全部五個成員。',result:'All five prime → <b>answer: Prime numbers ✓</b>',resultZh:'五個成員全是質數 → 答案：質數'}]}},
+ model:'Q35: A Composite numbers. 8 is not a factor of 36, and 9 is not even — every member is composite.'
+},
+{
+ id:'s2',title:'Walk to the month the question names',zhTitle:'走到題目指名的那個月',
+ recon:`<div class="sourcebar"><span class="sourcekind">Question reconstruction｜原題重現</span><span class="source">ZOZECK · ISEE Lower Pastpaper · TEST-01 · Q37</span></div><div class="source-note">The red ✗ is ZOZECK’s own mark on William’s choice.${Z('紅色 ✗ 是 ZOZECK 平台的批改記號。')}</div><p class="prompt">How much faster will Mickey run the mile than Daisy in Month 6, assuming that they both show a constant rate of improvement?</p>${Z('假設 Mickey 和 Daisy 的進步速度都固定，在第 6 個月，Mickey 跑一英里會比 Daisy 快多少？')}<table class="booktable"><caption>1 Mile Running Time (in minutes)</caption><tr><th></th><th>Minnie</th><th>Mickey</th><th>Daisy</th><th>Goofy</th></tr><tr><td>Month 1</td><td>20.0</td><td>16.0</td><td>14.0</td><td>16.0</td></tr><tr><td>Month 2</td><td>18.0</td><td>14.0</td><td>12.5</td><td>15.0</td></tr><tr><td>Month 3</td><td>16.0</td><td>12.0</td><td>11.0</td><td>14.0</td></tr><tr><td>Month 4</td><td>14.0</td><td>10.0</td><td>9.5</td><td>13.0</td></tr></table><div class="optrow"><b>A</b> 1.0 minute</div><div class="optrow"><b>B</b> 0.75 minute</div><div class="optrow"><b>C</b> 0.5 minute</div><div class="optrow"><b>D</b> 0.25 minute</div><span class="worklabel">William’s choice</span><div class="hw">D 0.25 minute <span class="red">✗</span></div>`,
+ notice:{q:'The question asks about Month 6. What is the last month printed in the table?',zh:'題目問的是第 6 個月。表格上印到第幾個月？',
+  options:[
+   ['Month 4','第 4 個月',1],
+   ['Month 6','第 6 個月',0,'Count the rows under the header.','數數看標題下面有幾列。'],
+   ['Month 12','第 12 個月',0,'How many rows does the table have?','表格有幾列？']],
+  yes:'✓ The table stops two months short of the question.',zhYes:'✓ 表格比題目要的少了兩個月。'},
+ do:{
+  life:{title:'The running club stopwatch',zh:'跑步社的碼表',
+   story:'Mickey and Daisy both joined the running club. The coach wrote down their mile times for four months.',zhStory:'Mickey 和 Daisy 都加入了跑步社。教練記下他們四個月的一英里成績。',
+   steps:[
+    {q:'Mickey ran 16.0 in Month 1 and 14.0 in Month 2. How much time did he cut?',zh:'Mickey 第 1 個月 16.0，第 2 個月 14.0。他減掉多少時間？',
+     options:[['2.0 minutes','2.0 分鐘',1],['1.0 minute','1.0 分鐘',0,'Count down from 16.0 to 14.0.','從 16.0 往下數到 14.0。'],['30.0 minutes','30.0 分鐘',0,'Did you add the two times instead?','你是不是把兩個時間相加了？']],
+     yes:'✓ He cut 2.0 minutes.',zhYes:'✓ 他減掉 2.0 分鐘。',
+     result:'Mickey M1 → M2: 16.0 − 14.0 = <b>2.0 min faster</b>',resultZh:'Mickey 第 1→2 個月：快了 2.0 分鐘'},
+    {q:'Check that it repeats. Month 2 to Month 3 is 14.0 to 12.0 — same cut?',zh:'檢查它會不會重複。第 2 到第 3 個月是 14.0 到 12.0——一樣嗎？',
+     options:[['Yes, also 2.0','是，也是 2.0',1],['No, it changed to 1.5','不是，變成 1.5',0,'What is 14.0 − 12.0?','14.0 − 12.0 是多少？'],['No, it changed to 3.0','不是，變成 3.0',0,'What is 14.0 − 12.0?','14.0 − 12.0 是多少？']],
+     yes:'✓ Same every month — that is the constant rate.',zhYes:'✓ 每個月都一樣——這就是固定變化率。',
+     result:'M2 → M3 also <b>−2.0</b> → constant rate confirmed',resultZh:'第 2→3 個月也是 −2.0 → 固定變化率成立'},
+    {q:'Mickey is 10.0 in Month 4. What is Month 5?',zh:'Mickey 第 4 個月是 10.0。第 5 個月呢？',
+     options:[['8.0','8.0',1],['12.0','12.0',0,'Is he getting faster or slower each month?','他每個月是變快還是變慢？'],['9.0','9.0',0,'How much does he cut each month?','他每個月減多少？']],
+     yes:'✓ 10.0 minus 2.0.',zhYes:'✓ 10.0 減 2.0。',
+     result:'Mickey M5 = 10.0 − 2.0 = <b>8.0</b>',resultZh:'Mickey 第 5 個月 ＝ 8.0'},
+    {q:'One more month. Mickey in Month 6?',zh:'再走一個月。Mickey 第 6 個月是多少？',
+     options:[['6.0','6.0',1],['7.0','7.0',0,'8.0 minus how much?','8.0 減多少？'],['4.0','4.0',0,'How many months from 5 to 6?','從第 5 到第 6 是幾個月？']],
+     yes:'✓ Mickey reaches 6.0 in Month 6.',zhYes:'✓ Mickey 第 6 個月來到 6.0。',
+     result:'Mickey M6 = 8.0 − 2.0 = <b>6.0</b>',resultZh:'Mickey 第 6 個月 ＝ 6.0'},
+    {q:'Now Daisy. She went 14.0 then 12.5. How much does she cut each month?',zh:'換 Daisy。她從 14.0 到 12.5。她每個月減多少？',
+     options:[['1.5 minutes','1.5 分鐘',1],['2.0 minutes','2.0 分鐘',0,'That is Mickey’s rate. What is 14.0 − 12.5?','那是 Mickey 的。14.0 − 12.5 是多少？'],['0.5 minute','0.5 分鐘',0,'Count from 12.5 up to 14.0.','從 12.5 往上數到 14.0。']],
+     yes:'✓ Daisy improves more slowly than Mickey.',zhYes:'✓ Daisy 進步得比 Mickey 慢。',
+     result:'Daisy rate = <b>−1.5 per month</b>',resultZh:'Daisy 的變化率 ＝ 每月 −1.5'},
+    {q:'Daisy is 9.5 in Month 4. Walk her to Month 5, then Month 6.',zh:'Daisy 第 4 個月是 9.5。走到第 5、再走到第 6 個月。',
+     options:[['M5 = 8.0, M6 = 6.5','第 5 個月 8.0，第 6 個月 6.5',1],['M5 = 8.0, M6 = 7.0','第 5 個月 8.0，第 6 個月 7.0',0,'What is 8.0 − 1.5?','8.0 − 1.5 是多少？'],['M5 = 7.5, M6 = 6.0','第 5 個月 7.5，第 6 個月 6.0',0,'What is 9.5 − 1.5?','9.5 − 1.5 是多少？']],
+     yes:'✓ In Month 5 they are level at 8.0 — then they split.',zhYes:'✓ 第 5 個月兩人都是 8.0——之後就分開了。',
+     result:'Daisy M5 = 8.0, M6 = <b>6.5</b>',resultZh:'Daisy 第 5 個月 8.0、第 6 個月 6.5'},
+    {q:'Faster means fewer minutes. Mickey 6.0, Daisy 6.5 — how much faster is Mickey?',zh:'比較快就是時間比較少。Mickey 6.0、Daisy 6.5——Mickey 快多少？',
+     options:[['0.5 minute','0.5 分鐘',1],['0.25 minute','0.25 分鐘',0,'How many halves are there between 6.0 and 6.5?','6.0 到 6.5 之間有幾個 0.5？'],['1.0 minute','1.0 分鐘',0,'What is 6.5 − 6.0?','6.5 − 6.0 是多少？'],['12.5 minutes','12.5 分鐘',0,'Did you add their two times?','你是不是把兩人的時間相加了？']],
+     yes:'✓ 6.5 − 6.0 = 0.5 minute.',zhYes:'✓ 6.5 − 6.0 ＝ 0.5 分鐘。',
+     result:'6.5 − 6.0 = <b>0.5 minute</b> ✓',resultZh:'6.5 − 6.0 ＝ 0.5 分鐘 ✓',resultClass:'switch'}]},
+  textbook:{title:'Constant rate, then extend',zh:'先求變化率，再往後延伸',
+   story:'A constant rate means the same change every step. Find the rate, then extend the table to the month named.',zhStory:'固定變化率就是每一步變化相同。先求變化率，再把表格延伸到題目指名的月份。',
+   steps:[
+    {q:'Mickey: 16.0, 14.0, 12.0, 10.0. What is the common difference?',zh:'Mickey：16.0、14.0、12.0、10.0。公差是多少？',
+     options:[['−2.0 per month','每月 −2.0',1],['−1.5 per month','每月 −1.5',0,'That is the other runner. Subtract 16.0 − 14.0.','那是另一位。算 16.0 − 14.0。'],['−4.0 per month','每月 −4.0',0,'Is that one step or two?','那是走一步還是兩步？']],
+     yes:'✓ Constant difference of −2.0.',zhYes:'✓ 固定公差 −2.0。',
+     result:'Mickey rate = <b>−2.0 / month</b>',resultZh:'Mickey 變化率 ＝ 每月 −2.0'},
+    {q:'How many steps from Month 4 to Month 6?',zh:'從第 4 個月到第 6 個月要走幾步？',
+     options:[['Two','兩步',1],['One','一步',0,'Count: 4 to 5, then 5 to 6.','數：4 到 5，再 5 到 6。'],['Six','六步',0,'Are you counting months or steps?','你在數月份還是步數？']],
+     yes:'✓ Two steps to take, for each runner.',zhYes:'✓ 每一位都要走兩步。',
+     result:'M4 → M6 = <b>2 steps</b>',resultZh:'第 4 → 第 6 個月 ＝ 走 2 步',resultClass:'switch'},
+    {q:'Mickey Month 6 = 10.0 − 2.0 − 2.0 =',zh:'Mickey 第 6 個月 ＝ 10.0 − 2.0 − 2.0 ＝',
+     options:[['6.0','6.0',1],['8.0','8.0',0,'That is only one step taken.','那只走了一步。'],['4.0','4.0',0,'How many twos did you subtract?','你減了幾個 2？']],
+     yes:'✓ Mickey Month 6 is 6.0.',zhYes:'✓ Mickey 第 6 個月是 6.0。',
+     result:'Mickey M6 = <b>6.0</b>',resultZh:'Mickey 第 6 個月 ＝ 6.0'},
+    {q:'Daisy: 14.0, 12.5, 11.0, 9.5. Common difference?',zh:'Daisy：14.0、12.5、11.0、9.5。公差是多少？',
+     options:[['−1.5 per month','每月 −1.5',1],['−2.0 per month','每月 −2.0',0,'That is Mickey’s. Subtract 12.5 − 11.0.','那是 Mickey 的。算 12.5 − 11.0。'],['−0.5 per month','每月 −0.5',0,'Subtract 11.0 − 9.5.','算 11.0 − 9.5。']],
+     yes:'✓ Daisy improves by 1.5 each month.',zhYes:'✓ Daisy 每個月進步 1.5。',
+     result:'Daisy rate = <b>−1.5 / month</b>',resultZh:'Daisy 變化率 ＝ 每月 −1.5'},
+    {q:'Daisy Month 6 = 9.5 − 1.5 − 1.5 =',zh:'Daisy 第 6 個月 ＝ 9.5 − 1.5 − 1.5 ＝',
+     options:[['6.5','6.5',1],['8.0','8.0',0,'That is Month 5, one step short.','那是第 5 個月，還差一步。'],['7.0','7.0',0,'What is 8.0 − 1.5?','8.0 − 1.5 是多少？']],
+     yes:'✓ Daisy Month 6 is 6.5.',zhYes:'✓ Daisy 第 6 個月是 6.5。',
+     result:'Daisy M6 = <b>6.5</b>',resultZh:'Daisy 第 6 個月 ＝ 6.5'},
+    {q:'Find the difference. Fewer minutes is faster.',zh:'求相差。時間少的比較快。',
+     options:[['Mickey by 0.5 minute','Mickey 快 0.5 分鐘',1],['Daisy by 0.5 minute','Daisy 快 0.5 分鐘',0,'Which number is smaller, 6.0 or 6.5?','6.0 和 6.5 哪個小？'],['Mickey by 0.25 minute','Mickey 快 0.25 分鐘',0,'Compute 6.5 − 6.0.','算 6.5 − 6.0。']],
+     yes:'✓ Mickey is 0.5 minute faster in Month 6.',zhYes:'✓ 第 6 個月 Mickey 快 0.5 分鐘。',
+     result:'6.5 − 6.0 = <b>0.5 minute</b> ✓',resultZh:'6.5 − 6.0 ＝ 0.5 分鐘 ✓',resultClass:'switch'}]}},
+ why:{q:'Why can this question not be answered from the Month 4 row?',zh:'為什麼這一題不能只看第 4 個月那一列就回答？',
+  options:[
+   ['The question names Month 6, and the gap changes every month.','題目指名第 6 個月，而且兩人的差距每個月都在變。',1],
+   ['Month 4 is the last row, so it is the answer.','第 4 列是最後一列，所以它就是答案。',0,'Does the table stopping mean the months stop?','表格停了，月份就停了嗎？'],
+   ['Their rates are the same, so any month works.','兩人的變化率相同，所以哪個月都可以。',0,'Mickey cuts 2.0 — what does Daisy cut?','Mickey 減 2.0——Daisy 減多少？'],
+   ['Minnie’s row should be used instead.','應該改用 Minnie 那一列。',0,'Which two names does the question ask about?','題目問的是哪兩個人？']],
+  yes:'✓ In Month 4 Daisy is ahead; by Month 6 Mickey is. Walk to the named month.',zhYes:'✓ 第 4 個月 Daisy 領先，到第 6 個月換 Mickey。要走到題目指名的月份。'},
+ prove:{
+  life:{title:'Same table, a different pair',zh:'同一張表，換一對人',
+   story:'New question on the same coach’s table: how much faster will Mickey run than Goofy in Month 6?',zhStory:'同一張教練的表格、新的問題：第 6 個月，Mickey 會比 Goofy 快多少？',
+   steps:[
+    {q:'Goofy went 16.0, 15.0, 14.0, 13.0. How much does he cut each month?',zh:'Goofy 是 16.0、15.0、14.0、13.0。他每個月減多少？',
+     options:[['1.0 minute','1.0 分鐘',1],['2.0 minutes','2.0 分鐘',0,'That is Mickey’s rate. What is 16.0 − 15.0?','那是 Mickey 的。16.0 − 15.0 是多少？'],['1.5 minutes','1.5 分鐘',0,'That is Daisy’s rate. Check 15.0 − 14.0.','那是 Daisy 的。算 15.0 − 14.0。']],
+     yes:'✓ Goofy cuts 1.0 each month.',zhYes:'✓ Goofy 每個月減 1.0。',
+     result:'Goofy rate = <b>−1.0 / month</b>',resultZh:'Goofy 變化率 ＝ 每月 −1.0'},
+    {q:'Goofy is 13.0 in Month 4. Month 5?',zh:'Goofy 第 4 個月是 13.0。第 5 個月呢？',
+     options:[['12.0','12.0',1],['14.0','14.0',0,'Is he getting faster or slower?','他是變快還是變慢？'],['11.0','11.0',0,'How much does he cut in one month?','他一個月減多少？']],
+     yes:'✓ 13.0 minus 1.0.',zhYes:'✓ 13.0 減 1.0。',
+     result:'Goofy M5 = <b>12.0</b>',resultZh:'Goofy 第 5 個月 ＝ 12.0'},
+    {q:'And Goofy in Month 6?',zh:'Goofy 第 6 個月呢？',
+     options:[['11.0','11.0',1],['10.0','10.0',0,'12.0 minus 1.0 — count once.','12.0 減 1.0——只減一次。'],['12.0','12.0',0,'That was Month 5. Take one more step.','那是第 5 個月，再走一步。']],
+     yes:'✓ Goofy reaches 11.0.',zhYes:'✓ Goofy 來到 11.0。',
+     result:'Goofy M6 = <b>11.0</b>',resultZh:'Goofy 第 6 個月 ＝ 11.0'},
+    {q:'You already walked Mickey to Month 6. What was his time?',zh:'你已經把 Mickey 走到第 6 個月了。他的時間是多少？',
+     options:[['6.0','6.0',1],['10.0','10.0',0,'That was Month 4, before the two steps.','那是第 4 個月，還沒走那兩步。'],['8.0','8.0',0,'That was Month 5.','那是第 5 個月。']],
+     yes:'✓ Mickey Month 6 is 6.0.',zhYes:'✓ Mickey 第 6 個月是 6.0。',
+     result:'Mickey M6 = <b>6.0</b> (from before)',resultZh:'Mickey 第 6 個月 ＝ 6.0（前面算過）'},
+    {q:'How much faster is Mickey than Goofy in Month 6?',zh:'第 6 個月，Mickey 比 Goofy 快多少？',
+     options:[['5.0 minutes','5.0 分鐘',1],['17.0 minutes','17.0 分鐘',0,'Did you add 11.0 and 6.0?','你是不是把 11.0 和 6.0 相加了？'],['1.0 minute','1.0 分鐘',0,'That is Goofy’s monthly cut, not the gap.','那是 Goofy 每月減的量，不是兩人的差距。'],['3.0 minutes','3.0 分鐘',0,'Compute 11.0 − 6.0.','算 11.0 − 6.0。']],
+     yes:'✓ 11.0 − 6.0 = 5.0. Both walked all the way to Month 6.',zhYes:'✓ 11.0 − 6.0 ＝ 5.0。兩個人都一路走到第 6 個月。',
+     result:'11.0 − 6.0 = <b>5.0 minutes</b> ✓',resultZh:'11.0 − 6.0 ＝ 5.0 分鐘 ✓',resultClass:'switch'}]},
+  textbook:{title:'Extend, then compare',zh:'先延伸，再比較',
+   story:'Same table. Find how much faster Mickey runs than Goofy in Month 6.',zhStory:'同一張表。求第 6 個月 Mickey 比 Goofy 快多少。',
+   steps:[
+    {q:'Goofy: 16.0, 15.0, 14.0, 13.0. Common difference?',zh:'Goofy：16.0、15.0、14.0、13.0。公差是多少？',
+     options:[['−1.0 per month','每月 −1.0',1],['−2.0 per month','每月 −2.0',0,'Subtract 16.0 − 15.0.','算 16.0 − 15.0。'],['−3.0 per month','每月 −3.0',0,'Is that one step or three?','那是走一步還是三步？']],
+     yes:'✓ −1.0 each month.',zhYes:'✓ 每個月 −1.0。',
+     result:'Goofy rate = <b>−1.0 / month</b>',resultZh:'Goofy 變化率 ＝ 每月 −1.0'},
+    {q:'Goofy Month 6 = 13.0 − 1.0 − 1.0 =',zh:'Goofy 第 6 個月 ＝ 13.0 − 1.0 − 1.0 ＝',
+     options:[['11.0','11.0',1],['12.0','12.0',0,'That is one step only.','那只走了一步。'],['13.0','13.0',0,'That is where the table stopped.','那是表格停下的地方。']],
+     yes:'✓ Two steps taken.',zhYes:'✓ 兩步都走完了。',
+     result:'Goofy M6 = <b>11.0</b>',resultZh:'Goofy 第 6 個月 ＝ 11.0'},
+    {q:'Mickey Month 6 was found earlier. State it.',zh:'Mickey 第 6 個月前面算過了，說出來。',
+     options:[['6.0','6.0',1],['8.0','8.0',0,'8.0 was Month 5.','8.0 是第 5 個月。'],['10.0','10.0',0,'10.0 was Month 4.','10.0 是第 4 個月。']],
+     yes:'✓ 6.0.',zhYes:'✓ 6.0。',
+     result:'Mickey M6 = <b>6.0</b>',resultZh:'Mickey 第 6 個月 ＝ 6.0'},
+    {q:'Compute the difference.',zh:'算出相差。',
+     options:[['5.0 minutes','5.0 分鐘',1],['4.0 minutes','4.0 分鐘',0,'Compute 11.0 − 6.0 again.','再算一次 11.0 − 6.0。'],['17.0 minutes','17.0 分鐘',0,'Difference means subtract, not add.','相差是用減法，不是加法。']],
+     yes:'✓ Mickey is 5.0 minutes faster.',zhYes:'✓ Mickey 快 5.0 分鐘。',
+     result:'11.0 − 6.0 = <b>5.0 minutes</b> ✓',resultZh:'11.0 − 6.0 ＝ 5.0 分鐘 ✓',resultClass:'switch'}]}},
+ model:'Q37: C 0.5 minute. Mickey Month 6 = 10.0 − 2.0 − 2.0 = 6.0. Daisy Month 6 = 9.5 − 1.5 − 1.5 = 6.5. 6.5 − 6.0 = 0.5.'
+},
+{
+ id:'s3',title:'Total each group, then subtract once',zhTitle:'先算每組總和，最後只減一次',
+ recon:`<div class="sourcebar"><span class="sourcekind">Question reconstruction｜原題重現</span><span class="source">ZOZECK · ISEE Lower Pastpaper · TEST-01 · Q50</span></div><div class="source-note">The red ✗ is ZOZECK’s own mark on William’s choice.${Z('紅色 ✗ 是 ZOZECK 平台的批改記號。')}</div><p class="prompt">Cassie works at the local movie theater selling movie tickets. Refer to the chart to see how many tickets were sold each day of last week:</p>${Z('Cassie 在當地電影院賣票。看圖表了解上週每天賣出多少張票：')}${CHART}<p class="prompt">How many more tickets sold on Friday and Saturday than on Monday and Tuesday?</p>${Z('星期五加星期六賣出的票，比星期一加星期二多多少張？')}<div class="optrow"><b>A</b> 372</div><div class="optrow"><b>B</b> 362</div><div class="optrow"><b>C</b> 204</div><div class="optrow"><b>D</b> 76</div><span class="worklabel">William’s choice</span><div class="hw">D 76 <span class="red">✗</span></div>`,
+ notice:{q:'The question names some days. How many days does it name in total?',zh:'題目指名了幾個星期幾？總共幾天？',
+  options:[
+   ['Four','四天',1],
+   ['Two','兩天',0,'Read it again: Friday and Saturday, Monday and Tuesday.','再讀一次：星期五和星期六、星期一和星期二。'],
+   ['Seven','七天',0,'The chart shows seven. How many does the question name?','圖上有七天，題目指名幾天？']],
+  yes:'✓ Four days, in two groups of two.',zhYes:'✓ 四天，分成兩組、每組兩天。'},
+ do:{
+  life:{title:'Cassie’s ticket window',zh:'Cassie 的售票窗口',
+   story:'Cassie sold tickets all week. The graph puts one dot above each day.',zhStory:'Cassie 賣了一整週的票。圖上每個星期幾都有一個點。',
+   steps:[
+    {q:'Find Friday on the graph. How many tickets?',zh:'在圖上找到星期五。賣出幾張票？',
+     options:[['216','216',1],['288','288',0,'That dot is one step further right. Which day is that?','那個點在更右邊一格，那是星期幾？'],['160','160',0,'That is Thursday. Slide one dot to the right.','那是星期四，往右一格。']],
+     yes:'✓ Friday: 216 tickets.',zhYes:'✓ 星期五：216 張。',
+     result:'Friday = <b>216</b>',resultZh:'星期五 ＝ 216'},
+    {q:'Now Saturday, the last dot.',zh:'現在找星期六，最後一個點。',
+     options:[['288','288',1],['216','216',0,'That was Friday. Saturday is one more to the right.','那是星期五，星期六在右邊一格。'],['240','240',0,'240 is the very first dot. Which day is first?','240 是第一個點，第一個點是星期幾？']],
+     yes:'✓ Saturday: 288 tickets.',zhYes:'✓ 星期六：288 張。',
+     result:'Saturday = <b>288</b>',resultZh:'星期六 ＝ 288'},
+    {q:'Add the first group: 216 + 288.',zh:'把第一組加起來：216 + 288。',
+     options:[['504','504',1],['404','404',0,'Add the hundreds first: 200 + 200. Then the rest.','先加百位：200 + 200，再加剩下的。'],['72','72',0,'Did you subtract instead of adding?','你是不是相減了？']],
+     yes:'✓ Friday and Saturday together: 504.',zhYes:'✓ 星期五加星期六：504 張。',
+     result:'Friday + Saturday = <b>504</b>',resultZh:'星期五 ＋ 星期六 ＝ 504'},
+    {q:'Now the other group. Find Monday.',zh:'換另一組。找到星期一。',
+     options:[['60','60',1],['72','72',0,'That is Tuesday. Monday is one dot to the left.','那是星期二，星期一在左邊一格。'],['80','80',0,'That is Wednesday. Count back to Monday.','那是星期三，往回數到星期一。']],
+     yes:'✓ Monday: 60 tickets — the lowest day.',zhYes:'✓ 星期一：60 張——最低的一天。',
+     result:'Monday = <b>60</b>',resultZh:'星期一 ＝ 60'},
+    {q:'And Tuesday?',zh:'星期二呢？',
+     options:[['72','72',1],['60','60',0,'That was Monday. Tuesday is the next dot.','那是星期一，星期二是下一個點。'],['80','80',0,'80 is Wednesday, one dot further.','80 是星期三，再過去一格。']],
+     yes:'✓ Tuesday: 72 tickets.',zhYes:'✓ 星期二：72 張。',
+     result:'Tuesday = <b>72</b>',resultZh:'星期二 ＝ 72'},
+    {q:'Add the second group: 60 + 72.',zh:'把第二組加起來：60 + 72。',
+     options:[['132','132',1],['122','122',0,'Add 60 + 70 first, then two more.','先算 60 + 70，再加 2。'],['12','12',0,'Did you subtract instead of adding?','你是不是相減了？']],
+     yes:'✓ Monday and Tuesday together: 132.',zhYes:'✓ 星期一加星期二：132 張。',
+     result:'Monday + Tuesday = <b>132</b>',resultZh:'星期一 ＋ 星期二 ＝ 132'},
+    {q:'You have 504 and 132. “How many more” tells you to do what?',zh:'你有 504 和 132 了。「多多少」要你做什麼？',
+     options:[['Subtract one total from the other','把一組總和減掉另一組',1],['Add all four days together','把四天全部加起來',0,'Would that give the difference, or the whole week’s part?','那算出來的是相差，還是那幾天的總和？'],['Multiply the two totals','把兩組總和相乘',0,'Does “how many more” mean times?','「多多少」是乘法嗎？']],
+     yes:'✓ One subtraction, at the very end.',zhYes:'✓ 最後只做一次減法。',
+     result:'“How many more” → <b>subtract, once</b>',resultZh:'「多多少」→ 減一次',resultClass:'switch'},
+    {q:'Last step: 504 − 132.',zh:'最後一步：504 − 132。',
+     options:[['372','372',1],['432','432',0,'Take away 100 first, then 32.','先減 100，再減 32。'],['76','76',0,'That is fewer than one single day’s sales. Try 504 − 132 again.','那比單獨一天的銷量還少。再算一次 504 − 132。'],['362','362',0,'Check the tens column: 0 minus 3 needs a regroup.','檢查十位：0 減 3 要退位。']],
+     yes:'✓ 372 more tickets on Friday and Saturday.',zhYes:'✓ 星期五加星期六多賣了 372 張。',
+     result:'504 − 132 = <b>372</b> ✓',resultZh:'504 − 132 ＝ 372 ✓'}]},
+  textbook:{title:'Two totals, one difference',zh:'兩個總和，一次相減',
+   story:'When a question compares two groups, total each group before subtracting.',zhStory:'題目比較兩組時，先各自求總和，再相減。',
+   steps:[
+    {q:'Which two days form the first group?',zh:'第一組是哪兩天？',
+     options:[['Friday and Saturday','星期五和星期六',1],['Monday and Tuesday','星期一和星期二',0,'Which group does the question name first?','題目先講哪一組？'],['Saturday and Sunday','星期六和星期日',0,'Does the question mention Sunday?','題目有提到星期日嗎？']],
+     yes:'✓ Friday and Saturday.',zhYes:'✓ 星期五和星期六。',
+     result:'Group 1 = <b>Friday, Saturday</b>',resultZh:'第一組 ＝ 星期五、星期六'},
+    {q:'Read both values from the graph and total them.',zh:'從圖上讀出兩個數值並加總。',
+     options:[['216 + 288 = 504','216 + 288 ＝ 504',1],['216 + 240 = 456','216 + 240 ＝ 456',0,'240 is Sunday. Which dot is Saturday?','240 是星期日。星期六是哪個點？'],['160 + 216 = 376','160 + 216 ＝ 376',0,'160 is Thursday. The question names Friday and Saturday.','160 是星期四。題目要的是星期五和星期六。']],
+     yes:'✓ Group 1 totals 504.',zhYes:'✓ 第一組總和 504。',
+     result:'Group 1 total = <b>504</b>',resultZh:'第一組總和 ＝ 504'},
+    {q:'Now total Monday and Tuesday.',zh:'現在算星期一和星期二的總和。',
+     options:[['60 + 72 = 132','60 + 72 ＝ 132',1],['72 + 80 = 152','72 + 80 ＝ 152',0,'80 is Wednesday. Which dot is Monday?','80 是星期三。星期一是哪個點？'],['60 + 80 = 140','60 + 80 ＝ 140',0,'80 is Wednesday, not Tuesday.','80 是星期三，不是星期二。']],
+     yes:'✓ Group 2 totals 132.',zhYes:'✓ 第二組總和 132。',
+     result:'Group 2 total = <b>132</b>',resultZh:'第二組總和 ＝ 132'},
+    {q:'“How many more” asks for which operation, and how many times?',zh:'「多多少」要用哪種運算？做幾次？',
+     options:[['Subtraction, once','減法，一次',1],['Addition, twice more','加法，再兩次',0,'You already did the additions. What is left?','加法已經做完了，還剩什麼？'],['Subtraction, twice','減法，兩次',0,'How many pairs of totals do you have?','你手上有幾組總和？']],
+     yes:'✓ One subtraction closes it.',zhYes:'✓ 一次減法就結束。',
+     result:'Operation: <b>one subtraction</b>',resultZh:'運算：減一次',resultClass:'switch'},
+    {q:'Compute 504 − 132.',zh:'計算 504 − 132。',
+     options:[['372','372',1],['362','362',0,'Regroup the tens: 0 − 3 needs help from the hundreds.','十位要退位：0 − 3 得跟百位借。'],['432','432',0,'Subtract 100, then 32.','先減 100，再減 32。'],['636','636',0,'Difference means subtract, not add.','相差是減法，不是加法。']],
+     yes:'✓ 372.',zhYes:'✓ 372。',
+     result:'504 − 132 = <b>372</b> ✓',resultZh:'504 − 132 ＝ 372 ✓'}]}},
+ why:{q:'Why total each group before you subtract?',zh:'為什麼要先算每組總和，再相減？',
+  options:[
+   ['The question compares two groups of days, not two single days.','題目比較的是兩組日子，不是兩個單獨的日子。',1],
+   ['Because subtraction always comes last.','因為減法一定放在最後。',0,'Is that a rule, or is it what this question asks?','那是通則，還是這一題的要求？'],
+   ['Because the graph is a line, not bars.','因為這是折線圖不是長條圖。',0,'Would bars change what the question asks?','換成長條圖，題目問的會變嗎？'],
+   ['Because Friday and Saturday are next to each other.','因為星期五和星期六相鄰。',0,'Are Monday and Tuesday also next to each other?','星期一和星期二也相鄰嗎？']],
+  yes:'✓ Two groups → two totals → one subtraction.',zhYes:'✓ 兩組 → 兩個總和 → 減一次。'},
+ prove:{
+  life:{title:'Same graph, new pair of groups',zh:'同一張圖，換兩組日子',
+   story:'New question on the same chart: how many more tickets sold on Sunday and Thursday than on Tuesday and Wednesday?',zhStory:'同一張圖的新問題：星期日加星期四賣出的票，比星期二加星期三多多少張？',
+   steps:[
+    {q:'Read Sunday and Thursday from the graph.',zh:'從圖上讀出星期日和星期四。',
+     options:[['240 and 160','240 和 160',1],['240 and 216','240 和 216',0,'216 is Friday. Which dot is Thursday?','216 是星期五。星期四是哪個點？'],['60 and 160','60 和 160',0,'60 is Monday. Sunday is the first dot.','60 是星期一。星期日是第一個點。']],
+     yes:'✓ Sunday 240, Thursday 160.',zhYes:'✓ 星期日 240、星期四 160。',
+     result:'Sunday = 240, Thursday = <b>160</b>',resultZh:'星期日 240、星期四 160'},
+    {q:'Total the first group.',zh:'算第一組的總和。',
+     options:[['400','400',1],['300','300',0,'Add 240 + 160: 240 + 60 is 300, then 100 more.','算 240 + 160：240 + 60 是 300，再加 100。'],['80','80',0,'Did you subtract instead of adding?','你是不是相減了？']],
+     yes:'✓ Group 1 is 400.',zhYes:'✓ 第一組是 400。',
+     result:'Sunday + Thursday = <b>400</b>',resultZh:'星期日 ＋ 星期四 ＝ 400'},
+    {q:'Now total Tuesday and Wednesday.',zh:'現在算星期二和星期三的總和。',
+     options:[['152','152',1],['132','132',0,'132 was Monday plus Tuesday. Which two days now?','132 是星期一加星期二。現在要哪兩天？'],['142','142',0,'Add 72 + 80: 72 + 80 is 70 + 80 plus 2.','算 72 + 80：70 + 80 再加 2。']],
+     yes:'✓ Group 2 is 152.',zhYes:'✓ 第二組是 152。',
+     result:'Tuesday + Wednesday = <b>152</b>',resultZh:'星期二 ＋ 星期三 ＝ 152'},
+    {q:'Finish it: 400 − 152.',zh:'完成它：400 − 152。',
+     options:[['248','248',1],['258','258',0,'Take 152 from 400: 400 − 150 is 250, then 2 more.','從 400 減 152：400 − 150 是 250，再減 2。'],['552','552',0,'Difference means subtract, not add.','相差是減法，不是加法。'],['352','352',0,'Did you only subtract the 52?','你是不是只減了 52？']],
+     yes:'✓ 248 more. Two totals, one subtraction, all the way to the end.',zhYes:'✓ 多 248 張。兩個總和、一次減法，一路走到最後。',
+     result:'400 − 152 = <b>248</b> ✓',resultZh:'400 − 152 ＝ 248 ✓',resultClass:'switch'}]},
+  textbook:{title:'Run the same method',zh:'再跑一次同樣的方法',
+   story:'Same chart. How many more tickets sold on Sunday and Thursday than on Tuesday and Wednesday?',zhStory:'同一張圖。星期日加星期四比星期二加星期三多賣幾張？',
+   steps:[
+    {q:'Total group one: Sunday and Thursday.',zh:'算第一組總和：星期日和星期四。',
+     options:[['240 + 160 = 400','240 + 160 ＝ 400',1],['240 + 80 = 320','240 + 80 ＝ 320',0,'80 is Wednesday. Which dot is Thursday?','80 是星期三。星期四是哪個點？'],['288 + 160 = 448','288 + 160 ＝ 448',0,'288 is Saturday. Sunday is the first dot.','288 是星期六。星期日是第一個點。']],
+     yes:'✓ 400.',zhYes:'✓ 400。',
+     result:'Group 1 = <b>400</b>',resultZh:'第一組 ＝ 400'},
+    {q:'Total group two: Tuesday and Wednesday.',zh:'算第二組總和：星期二和星期三。',
+     options:[['72 + 80 = 152','72 + 80 ＝ 152',1],['60 + 72 = 132','60 + 72 ＝ 132',0,'That pair was the last question. Which days now?','那是上一題的組合。現在是哪兩天？'],['80 + 160 = 240','80 + 160 ＝ 240',0,'160 is Thursday, already in group one.','160 是星期四，已經在第一組了。']],
+     yes:'✓ 152.',zhYes:'✓ 152。',
+     result:'Group 2 = <b>152</b>',resultZh:'第二組 ＝ 152'},
+    {q:'Subtract once.',zh:'減一次。',
+     options:[['400 − 152 = 248','400 − 152 ＝ 248',1],['400 − 152 = 258','400 − 152 ＝ 258',0,'400 − 150 is 250. Then take 2 more.','400 − 150 是 250，再減 2。'],['152 − 400','152 − 400',0,'Which group is the bigger one?','哪一組比較大？']],
+     yes:'✓ 248 more tickets.',zhYes:'✓ 多 248 張。',
+     result:'400 − 152 = <b>248</b> ✓',resultZh:'400 − 152 ＝ 248 ✓',resultClass:'switch'}]}},
+ model:'Q50: A 372. Friday + Saturday = 216 + 288 = 504. Monday + Tuesday = 60 + 72 = 132. 504 − 132 = 372.'
+}],
+quiz:[
+ {q:'A set is {9, 15, 21, 26}. Which claim survives every member?',zh:'集合是 {9, 15, 21, 26}。哪個說法通過每一個成員？',
+  options:[['Composite numbers','合數',1,'✓ Each one has more than 2 factors.'],['Odd numbers','奇數',0,'26 is even — one counterexample is enough.'],['Multiples of 3','3 的倍數',0,'26 is not a multiple of 3.'],['Factors of 90','90 的因數',0,'21 does not divide 90 evenly.']]},
+ {q:'A plant is 12, 15, 18, 21 cm in weeks 1 to 4. At the same rate, how tall in week 6?',zh:'一株植物第 1 到第 4 週是 12、15、18、21 公分。以相同速度，第 6 週多高？',
+  options:[['27 cm','27 公分',1,'✓ 21 + 3 + 3.'],['24 cm','24 公分',0,'That is week 5 — walk one more week.'],['21 cm','21 公分',0,'That is where the table stops, not week 6.'],['30 cm','30 公分',0,'That would be week 7.']]},
+ {q:'Is 8 a factor of 36?',zh:'8 是 36 的因數嗎？',
+  options:[['No','不是',1,'✓ 8 × 4 = 32 and 8 × 5 = 40, so 36 is skipped.'],['Yes','是',0,'36 ÷ 8 leaves a remainder of 4.'],['Only if you round','四捨五入的話就是',0,'A factor must divide with no remainder.']]},
+ {q:'Group A sold 45 and 55. Group B sold 30 and 20. How many more did A sell?',zh:'A 組賣了 45 和 55，B 組賣了 30 和 20。A 比 B 多賣幾個？',
+  options:[['50','50',1,'✓ 100 − 50.'],['10','10',0,'That compares one pair only. Total each group first.'],['150','150',0,'That adds all four — the question asks how many more.'],['25','25',0,'Group A totals 100 and group B totals 50.']]},
+ {q:'A number with exactly two factors is called:',zh:'恰好只有兩個因數的數叫做：',
+  options:[['Prime','質數',1,'✓ Just 1 and itself.'],['Composite','合數',0,'Composite has more than two factors.'],['Even','偶數',0,'Even is about dividing by 2.'],['A multiple','倍數',0,'That describes a times table.']]}],
+checks:[
+ 'TEST-01 Q35: test 8 against “factors of 36” — the set is A Composite numbers.',
+ 'TEST-01 Q37: walk both runners to Month 6 — Mickey 6.0, Daisy 6.5, so C 0.5 minute.',
+ 'TEST-01 Q50: total each pair first — 504 − 132 = A 372.']};
+
+function shuffled(a){const x=a.slice();for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]]}return x}
+function prep(){LESSON.corrections.forEach(c=>{c.notice.options=shuffled(c.notice.options);c.why.options=shuffled(c.why.options);['life','textbook'].forEach(m=>{c.do[m].steps.forEach(s=>s.options=shuffled(s.options));c.prove[m].steps.forEach(s=>s.options=shuffled(s.options))})});LESSON.quiz.forEach(q=>q.options=shuffled(q.options))}prep();
+
+const states=Object.fromEntries(LESSON.corrections.map(c=>[c.id,{stage:0,step:0,passed:false,rewind:''}]));
+function ztxt(en,zh){return en+(zh?Z(zh):'')}
+function optionButtons(options){return '<div class="opts">'+options.map((o,i)=>`<button type="button" class="opt" data-i="${i}">${o[0]}${o[1]?Z(o[1]):''}</button>`).join('')+'</div>'}
+function workTrail(d,upto){const solved=d.steps.slice(0,upto).filter(x=>x.result);if(!solved.length)return'';return `<div class="worktrail"><div class="worktrail-title">Work so far${Z('目前完成的算式')}</div>${solved.map(x=>`<div class="trail-row ${x.resultClass||''}"><span class="trail-check">✓</span><div>${x.result}${x.resultZh?Z(x.resultZh):''}</div></div>`).join('')}</div>`}
+function sourceSection(c,n){return `<section class="sec" id="${c.id}"><h2><span class="num">${n}</span><span>${c.title}${Z(c.zhTitle)}</span></h2><div class="cutout">${c.recon}</div><div class="flow-shell" id="${c.id}flow"></div></section>`}
+function renderAll(){const root=$('lesson');root.innerHTML=LESSON.corrections.map((c,i)=>sourceSection(c,i+1)).join('');LESSON.corrections.forEach(renderFlow);updateGate()}
+function stageBar(s){const names=[['Notice','先看'],['Do','動手'],['Why','說原因'],['Prove','換題驗收']];return '<div class="stages">'+names.map((n,i)=>`<div class="stage ${s.passed||i<s.stage?'done':i===s.stage?'active':''}"><b>${s.passed||i<s.stage?'✓ ':''}${n[0]}</b><span class="zh">${n[1]}</span></div>`).join('')+'</div>'}
+function bindChoice(box,options,onOk,onBad){box.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>{if(b.disabled)return;const o=options[+b.dataset.i],msg=box.querySelector('.msg');if(o[2]){b.classList.add('good');box.querySelectorAll('.opt').forEach(x=>x.disabled=true);msg.className='msg good';msg.innerHTML=onOk(o)}else{b.classList.add('bad');b.disabled=true;msg.className='msg bad';msg.innerHTML=onBad(o)}}))}
+const closePanel=html=>html+'</div>';
+function renderFlow(c){const s=states[c.id],box=$(c.id+'flow');let html=stageBar(s)+'<div class="panel">';if(s.passed){html+=`<div class="model"><span class="label">Model answer unlocked</span>${Z('解鎖的範例答案')}<div class="answer">${c.model}</div></div><button type="button" class="btn alt reset">Start again${Z('重新開始')}</button>`;box.innerHTML=closePanel(html);box.querySelector('.reset').onclick=()=>{Object.assign(s,{stage:0,step:0,passed:false,rewind:''});renderFlow(c);updateGate()};return}
+ if(s.stage===0){const d=c.notice;html+=`<div class="kicker">Notice · one question${Z('先看 · 只問一件事')}</div><div class="question">${ztxt(d.q,d.zh)}</div>${optionButtons(d.options)}<div class="msg"></div>`;box.innerHTML=closePanel(html);bindChoice(box,d.options,()=>{setTimeout(()=>{s.stage=1;s.step=0;renderFlow(c)},450);return ztxt(d.yes,d.zhYes)},o=>ztxt(o[3],o[4]));return}
+ if(s.stage===1||s.stage===3){const phase=s.stage===1?'do':'prove',d=c[phase][mode],step=d.steps[s.step];html+=`<span class="modechip">${mode==='life'?'🍎 Real-life':'📘 Textbook'}</span><div class="kicker">${phase==='do'?'Do · one action':'Prove · new problem'}${Z(phase==='do'?'動手 · 一次一個動作':'換題驗收 · 新題')}</div><div class="flow-title"><b>${ztxt(d.title,d.zh)}</b></div><div class="story">${ztxt(d.story,d.zhStory)}</div>`;if(s.rewind){html+=`<div class="msg warn">↩ ${s.rewind}</div>`;s.rewind=''}html+=workTrail(d,s.step);html+=`<div class="kicker">Step ${s.step+1} of ${d.steps.length}${Z('第 '+(s.step+1)+' 步，共 '+d.steps.length+' 步')}</div><div class="question">${ztxt(step.q,step.zh)}</div>${optionButtons(step.options)}<div class="msg"></div>`;box.innerHTML=closePanel(html);bindChoice(box,step.options,()=>{const last=s.step===d.steps.length-1;setTimeout(()=>{if(last){if(phase==='do'){s.stage=2;s.step=0}else{s.passed=true}}else s.step++;renderFlow(c);updateGate()},500);return ztxt(step.yes,step.zhYes)},o=>ztxt(o[3],o[4]));return}
+ const d=c.why;html+=`<div class="kicker">Why · choose the reason${Z('說原因 · 選出理由')}</div><div class="question">${ztxt(d.q,d.zh)}</div>${optionButtons(d.options)}<div class="msg"></div>`;box.innerHTML=closePanel(html);bindChoice(box,d.options,()=>{setTimeout(()=>{s.stage=3;s.step=0;renderFlow(c)},500);return ztxt(d.yes,d.zhYes)},o=>{const ask=ztxt(o[3],o[4]);setTimeout(()=>{s.stage=1;s.step=0;s.rewind=ask;renderFlow(c)},850);return ask+'<br><b>↩ Back to Do.</b>'+Z('回到 Do。')})}
+function updateGate(){const passed=LESSON.corrections.every(c=>states[c.id].passed);document.body.classList.toggle('all-passed',passed);if(passed){renderQuiz();renderChecklist()}}
+document.querySelectorAll('.segbtn').forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.mode;document.body.dataset.mode=mode;document.querySelectorAll('.segbtn').forEach(x=>x.classList.toggle('active',x===b));$('modeLine').innerHTML=mode==='life'?'Test each choice against real things: lockers, stopwatches, ticket counts.'+Z('用真實的東西驗證每個選項：置物櫃、碼表、票數。'):'Name the claim, hunt the counterexample, then finish every step.'+Z('說出這個主張、去找反例，然後把每一步走完。');LESSON.corrections.forEach(c=>{const s=states[c.id];if(!s.passed){s.stage=0;s.step=0;s.rewind=''}renderFlow(c)})}));
+$('zhSwitch').addEventListener('click',e=>{const on=!document.body.classList.contains('zh-on');document.body.classList.toggle('zh-on',on);e.currentTarget.setAttribute('aria-checked',String(on))});
+let qi=0,score=0,qAnswered=false;function renderQuiz(){const box=$('quiz'),q=LESSON.quiz[qi];if(!q){box.innerHTML=`<div class="donebox">★ ${score} / ${LESSON.quiz.length} · Every answer now has a reason.${Z('每一題現在都有理由。')}</div><button type="button" class="btn alt" id="replay">Play again${Z('再玩一次')}</button>`;$('replay').onclick=()=>{qi=0;score=0;qAnswered=false;renderQuiz()};return}box.innerHTML=`<div class="quizdots">${qi+1} / ${LESSON.quiz.length}</div><div class="question">${ztxt(q.q,q.zh)}</div>${optionButtons(q.options)}<div class="msg"></div>`;bindChoice(box,q.options,o=>{if(!qAnswered){score++;qAnswered=true}setTimeout(()=>{qi++;qAnswered=false;renderQuiz()},650);return o[3]},o=>o[3])}
+function renderChecklist(){const box=$('checklist');box.innerHTML=LESSON.checks.map((x,i)=>`<label class="checkrow"><input type="checkbox" data-i="${i}"><span>${x}</span></label>`).join('')+'<div id="paperDone"></div>';box.querySelectorAll('input').forEach(x=>x.addEventListener('change',()=>{const all=[...box.querySelectorAll('input')].every(i=>i.checked);$('paperDone').innerHTML=all?`<div class="donebox">Your notebook is one page thicker. <a href="index.html">Back to Index.</a>${Z('你的筆記本又厚了一頁。回首頁。')}</div>`:''}))}
+const buddies=[['wolfchan','Wolf Chan'],['leebit','Leebit'],['dwaekki','Dwaekki'],['jiniret','Jiniret'],['hanquokka','Han Quokka'],['bbokari','BbokAri'],['puppym','Puppy M'],['foxiny','FoxI.Ny']],pick=buddies[Math.floor(Math.random()*buddies.length)];$('hiImg').src=$('outImg').src='img/skzoo-'+pick[0]+'.png';$('hiName').textContent=$('outName').textContent='Your study buddy, '+pick[1];
+renderAll();
+</script>
+</body>
+</html>

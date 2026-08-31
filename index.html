@@ -171,6 +171,24 @@ const SUBJECTS = {
    thumb: "sieve" | "fraction" | "numberline" | "artifact" | "grid"  (see THUMBS below)      */
 const LESSONS = [
   {
+    subject:"english", date:"2026-08-30",
+    title:"Synonyms: Check the Direction", zh:"同義詞：先確認方向",
+    desc:"Fix each word's plus or minus before reading the options — two antonym traps, one look-alike pair, and one motion word read backward.",
+    zhDesc:"先定這個字的正負方向再看選項——兩題反義詞陷阱、一題形近字、一題方向讀反的動作字。",
+    source:"ZOZECK · ISEE Lower Pastpaper · TEST-01 · Verbal",
+    fixes:4, thumb:"synonym-direction",
+    href:"isee-synonyms.html?v=20260830-launch-1"
+  },
+  {
+    subject:"math", date:"2026-08-30",
+    title:"Test the Choices Against the Evidence", zh:"用證據驗證每個選項",
+    desc:"Treat every choice as a claim and test it against all the evidence — then walk each multi-step chain to the last step.",
+    zhDesc:"把每個選項當成待驗證的主張，逐一對上全部數據——多步驟的題要一路走到最後一步。",
+    source:"ZOZECK · ISEE Lower Pastpaper · TEST-01 · Math",
+    fixes:3, thumb:"evidence-check",
+    href:"isee-math-evidence.html?v=20260830-launch-1"
+  },
+  {
     subject:"math", date:"2026-08-26",
     title:"Estimate, Then Multiply", zh:"先估算，再算精確乘積",
     desc:"Keep the estimate separate from the exact product, add every partial product, read the carry digits, and finish the method you name.",
@@ -318,6 +336,44 @@ const LESSONS = [
 
 /* ===== 3. Thumbnails — drawn with SVG, no photo files needed ===== */
 const THUMBS = {
+  /* a word's direction fixed first: minus arrow to the trap, plus arrow to the match */
+  "synonym-direction"(){
+    return `<svg viewBox="0 0 104 78" role="img" aria-label="The word ease with a plus sign, an arrow to the antonym trap crossed out and an arrow to the matching synonym checked">
+      <rect x="36" y="8" width="32" height="16" rx="8" fill="#E8EEFC" stroke="#3E6FD9"/>
+      <text x="52" y="19" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="8" fill="#2B52AE">ease</text>
+      <circle cx="68" cy="10" r="6" fill="#FFF1E1" stroke="#F08A2C"/>
+      <text x="68" y="13" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="8" fill="#C4680F">+</text>
+      <path d="M42 28 Q30 36 24 44" fill="none" stroke="#C9CBD2" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M24 44 l1 -5 l4 4 z" fill="#C9CBD2"/>
+      <path d="M62 28 Q74 36 80 44" fill="none" stroke="#3E6FD9" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M80 44 l-5 -1 l4 -4 z" fill="#3E6FD9"/>
+      <rect x="6" y="48" width="42" height="15" rx="4" fill="#F4F4F6" stroke="#E3E4E8"/>
+      <text x="23" y="58.5" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="7" fill="#6B6E76">hardship</text>
+      <text x="42" y="59" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="8" fill="#E2463B">✗</text>
+      <rect x="56" y="48" width="42" height="15" rx="4" fill="#E8EEFC" stroke="#3E6FD9"/>
+      <text x="73" y="58.5" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="7" fill="#2B52AE">serenity</text>
+      <path d="M89 56 l3 3 l6 -7" fill="none" stroke="#2FA36B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="14" y="42" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="7" fill="#6B6E76">−</text>
+      <text x="90" y="42" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="7" fill="#6B6E76">+</text>
+    </svg>`;
+  },
+  /* a claim card tested against every member of the set; one counterexample kills it */
+  "evidence-check"(){
+    const cell=(x,t,bad)=>`<rect x="${x}" y="8" width="13" height="13" rx="2.5" fill="${bad?"#FFF1E1":"#F4F4F6"}" stroke="${bad?"#F08A2C":"#C9CBD2"}" stroke-width="1"/><text x="${x+6.5}" y="17.5" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="7" fill="${bad?"#C4680F":"#6B6E76"}">${t}</text>`;
+    let s="";
+    ["4","6","8","9","10","12"].forEach((t,i)=>s+=cell(11+i*14,t,t==="8"));
+    return `<svg viewBox="0 0 104 78" role="img" aria-label="A number set tested against two claims: factors of 36 fails at 8, composite numbers passes every member">`
+      + s
+      + `<path d="M33 40 Q37 32 39 24" fill="none" stroke="#E2463B" stroke-width="1.2" stroke-linecap="round"/>`
+      + `<rect x="6" y="42" width="40" height="15" rx="4" fill="#F4F4F6" stroke="#E3E4E8"/>`
+      + `<text x="26" y="52.4" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="6" fill="#6B6E76">factors of 36</text>`
+      + `<text x="51" y="53" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="8" fill="#E2463B">✗</text>`
+      + `<rect x="57" y="42" width="41" height="15" rx="4" fill="#E8EEFC" stroke="#3E6FD9"/>`
+      + `<text x="72" y="52.4" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="6" fill="#2B52AE">composite</text>`
+      + `<path d="M88 50 l2.6 2.8 l5.4 -6.4" fill="none" stroke="#2FA36B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>`
+      + `<text x="52" y="70" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="6.5" fill="#6B6E76">true for every member?</text>`
+      + `</svg>`;
+  },
   /* an estimate written above the division box, catching the wrong 200 */
   "estimate-first"(){
     const cell=(x,y,t,b)=>`<rect x="${x}" y="${y}" width="12" height="12" rx="2.5" fill="${b?"#E8EEFC":"#F4F4F6"}" stroke="${b?"#3E6FD9":"#C9CBD2"}" stroke-width="1"/><text x="${x+6}" y="${y+8.8}" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="7" fill="${b?"#2B52AE":"#6B6E76"}">${t}</text>`;
