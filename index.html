@@ -131,7 +131,7 @@ body.zh-on .chip .zh{display:inline}
   <div class="wn-hi">
     <img id="wnHiImg" src="img/skzoo-puppym.png" alt="Your study buddy" width="150" height="150">
     <div class="bubble">
-      <p class="say" id="wnHiLine"><b>Hi William!</b> Good to see you — pick any card.<span class="zh"><b>William 嗨！</b>看到你真好——隨便挑一張卡。</span></p>
+      <p class="say" id="wnHiLine"><b>You're back!</b> Yay!<span class="zh"><b>你回來啦！</b>太好了！</span></p>
       <span class="who" id="wnHiName">Puppy M</span>
     </div>
   </div>
@@ -623,58 +623,337 @@ function stats(){
 }
 
 /* ===== 5. Study buddy — one of the eight, picked fresh on every visit ===== */
+const CREW = [["wolfchan","Wolf Chan"],["leebit","Leebit"],["dwaekki","Dwaekki"],["jiniret","Jiniret"],
+              ["hanquokka","Han Quokka"],["bbokari","BbokAri"],["puppym","Puppy M"],["foxiny","FoxI.Ny"]];
 function buddy(){
-  const CREW = [["wolfchan","Wolf Chan"],["leebit","Leebit"],["dwaekki","Dwaekki"],["jiniret","Jiniret"],
-                ["hanquokka","Han Quokka"],["bbokari","BbokAri"],["puppym","Puppy M"],["foxiny","FoxI.Ny"]];
-  const pick = CREW[Math.floor(Math.random() * CREW.length)];
+  const chosen = CREW[Math.floor(Math.random() * CREW.length)];
   const img = $("#wnHiImg"), name = $("#wnHiName");
-  if(!img || !name) return;
-  img.src = "img/skzoo-" + pick[0] + ".png";
-  img.alt = pick[1] + ", your study buddy";
-  name.textContent = pick[1];
+  if(!img || !name) return chosen;
+  img.src = "img/skzoo-" + chosen[0] + ".png";
+  img.alt = chosen[1] + ", your study buddy";
+  name.textContent = chosen[1];
+  return chosen;
 }
 
-/* ===== 6. The greeting =====
-   Coming to this page at all means he chose to review or to chase a question
-   down. So the friend is simply glad he came. No counting, no scoring, and no
-   guessing why he is here — the page cannot know that, and does not need to.
-   The one thing it can honestly notice is the time of day. */
-function helloFor(h){
-  if(h >= 22 || h < 5) return ["Still up?",                    "還沒睡啊？"];
-  if(h < 11)           return ["Morning, William!",            "William 早安！"];
-  if(h < 14)           return ["Hi William!",                  "William 嗨！"];
-  if(h < 18)           return ["Hey William — school is done.", "William 嗨——放學囉。"];
-  return                      ["Evening, William.",            "William 晚上好。"];
+/* ---------- the animal's voice ----------
+   Every line below comes from 互動式教學-小動物句庫.md (Cecilia-approved, 2026-08-31).
+   English is the main line; the Chinese layer is the .zh translation.
+   Do not write new lines here — add them to the library file first. */
+const SAY = {
+sd0612: [
+  {n:1,en:"Good morning! You're up early. I just woke up, and I'm still a tiny bit fuzzy.",zh:"早安！你今天好早呀！我才剛醒，還有一點點迷糊。"},
+  {n:2,en:"Good morning! You're heading out soon, right? You came to see me first. That makes me so happy!",zh:"早安！等等就要出門了吧？你還先來看我，真開心！"},
+  {n:3,en:"School soon, right? Be safe on the way, and have a happy day!",zh:"等等要上學了吧？路上小心喔！今天也要開開心心的！"}
+],
+sd1216: [
+  {n:4,en:"You're back! Yay!",zh:"你回來啦！太好了！"},
+  {n:5,en:"You're here! Are you thirsty? Go have a sip of water first!",zh:"你來啦！今天有沒有很渴？先喝口水吧！"},
+  {n:6,en:"You're here! I was just wondering when you'd pop up!",zh:"你來啦！我剛剛還在猜你什麼時候會出現呢！"},
+  {n:7,en:"Welcome back! Put your backpack down and give your shoulders a little rest.",zh:"歡迎回來！書包先放下吧，肩膀也休息一下！"},
+  {n:8,en:"You're back! How was your day?",zh:"你回來啦！今天過得怎麼樣呀？"},
+  {n:9,en:"You're back! Sit for a minute. Take it nice and slow.",zh:"回來啦！先坐一下下吧，慢慢來就好！"},
+  {n:10,en:"I was just wondering when you'd show up. Then I looked up, and there you were!",zh:"我剛才還在想你什麼時候會出現。結果一抬頭，你就來啦！"},
+  {n:11,en:"You're back! Did anything fun happen today?",zh:"你回來了耶！今天有沒有發生什麼好玩的事？"}
+],
+sd1618: [
+  {n:12,en:"Perfect timing! Which lesson should we look at first?",zh:"你來得正好！今天想先看哪一課呀？"},
+  {n:13,en:"You're here! Did you have a snack yet? After that, let's review one lesson together.",zh:"你來啦！點心吃了嗎？吃完我們一起複習一課吧！"},
+  {n:14,en:"There's a little time before dinner. Which topic should we start with?",zh:"晚餐前還有一點時間呢。今天想從哪個主題開始？"},
+  {n:15,en:"You're here! I've been excited about this all afternoon!",zh:"你來啦！我從下午就開始期待了！"},
+  {n:16,en:"Should I find the shortest lesson, or do you want to choose?",zh:"今天先挑最短的那一課，還是你自己選？"},
+  {n:17,en:"Are you wide awake, or still floating around a little? When your brain comes back, pick a lesson!",zh:"你現在是醒醒的，還是還在放空呀？腦袋回來了，就來挑一課！"},
+  {n:18,en:"You're here! I feel wide awake now!",zh:"你來啦！我馬上精神都來了！"},
+  {n:19,en:"I was just thinking about you, and then you appeared. What perfect timing!",zh:"我剛剛才想到你，結果你就出現了！也太巧了吧！"},
+  {n:20,en:"Are you awake, or still daydreaming? I'll daydream with you for three seconds.",zh:"你現在是清醒的，還是在放空呀？我先陪你發呆三秒。"},
+  {n:21,en:"You're here! Easy lesson first, or shall we go straight for the hardest one?",zh:"你來啦！今天要先看簡單的，還是直接挑戰最難的？"},
+  {n:22,en:"I flipped through a few lessons, and now I want to see all of them. Which one first?",zh:"我剛剛翻了好幾課，結果每一課都想看。你想先挑哪一課？"},
+  {n:23,en:"You came at just the right time! One lesson now, and there's still time to daydream before dinner!",zh:"現在來剛剛好！複習一課，晚餐前還來得及發呆！"},
+  {n:24,en:"You're back! Just one lesson today. Then there's still loads of time to play!",zh:"你回來啦！今天複習一課就好，複習完還有好多時間可以玩！"},
+  {n:123,en:"What's the weather like outside? If it's nice, go for a walk after you finish reviewing!",zh:"外面天氣如何呢？天氣好的話，複習完出門走走吧！"}
+],
+sd1822: [
+  {n:25,en:"It's dark already! Finish reviewing, then go get some good rest!",zh:"天黑了耶，複習完快快休息吧！"},
+  {n:26,en:"Did everything go okay today? Tomorrow will be a great day too!",zh:"今天一切都好嗎？明天也會是很棒的一天！"},
+  {n:27,en:"Which one should we review before bed? The shortest one is allowed!",zh:"晚安前想複習哪個呀？挑最短的也可以！"},
+  {n:28,en:"What do you think about at night? I just wondered if stars are afraid of the dark.",zh:"你晚上都在想什麼呀？我剛剛突然想到：星星會不會怕黑？"},
+  {n:29,en:"Can you see the moon from there? I looked everywhere and found one cloud.",zh:"你那邊看得到月亮嗎？我剛剛找了半天，只看到一朵雲。"},
+  {n:30,en:"You're here! What do you feel like doing tonight?",zh:"你來啦！晚上的時間想怎麼過呀？"},
+  {n:31,en:"Did you eat yet? I had {FOOD}, and I'm still thinking about how good it was!",zh:"吃飽了嗎？我今天吃了{FOOD}，現在還在想它有多好吃！"},
+  {n:32,en:"It's dark already! Which lesson should we look at tonight?",zh:"天黑了耶！今晚想看哪一課？"},
+  {n:33,en:"You're here! I'm so happy I got to see you before bed. Sleep early!",zh:"你來啦！睡前還能看到你，真開心！早點睡喔！"},
+  {n:34,en:"You're here! Make sure the light is nice and bright when you read at night.",zh:"你來啦！晚上看東西要把燈開亮一點喔！"},
+  {n:35,en:"It's dark already. Which lesson tonight? After that, get some good rest!",zh:"天黑了耶。今晚想看哪一課？複習完就好好休息吧！"},
+  {n:36,en:"Did you have a happy day? I'm already excited about tomorrow!",zh:"今天過得開心嗎？我已經開始期待明天了！"}
+],
+sd2206: [
+  {n:37,en:"Still awake? Go get a big, cozy sleep. You'll need your energy tomorrow!",zh:"還沒睡呀？先去睡飽飽吧！明天才有精神喔！"},
+  {n:38,en:"You're still up at this hour! {SKZOO} fell asleep ages ago, but I couldn't sleep, so I came out for a little walk. You should get to bed too. A good sleep gives you lots of energy!",zh:"這個時間耶！{SKZOO}早就睡著了，不過我還睡不著，就出來走走。你也快去睡吧！睡飽飽，才有精神唷！"},
+  {n:39,en:"It's so late! Finish this page, then off to bed. You'll need all your energy tomorrow!",zh:"這麼晚了耶！看完這一頁就去睡飽飽吧，明天才有精神！"},
+  {n:40,en:"You're still awake? School is tomorrow, so go get a good night's sleep!",zh:"你還醒著呀？明天要上學，今晚先去睡飽飽吧！"}
+],
+hd0612: [
+  {n:41,en:"Holiday mornings are the best! What's the first thing you want to do today?",zh:"放假的早上最舒服了！你今天第一個想做什麼呀？"},
+  {n:42,en:"Good morning! It's a holiday morning! I woke up thinking about breakfast.",zh:"早安！放假的早上耶！我一醒來就開始想早餐要吃什麼了。"},
+  {n:43,en:"No class schedule today! What do you want to start with?",zh:"今天沒有課表耶！你想先從什麼開始？"},
+  {n:44,en:"Morning! Did you eat breakfast? {SKZOO} is today's breakfast captain. I hope he finds something yummy!",zh:"早。你吃早餐了嗎？{SKZOO}是今天的早餐隊長，希望他會找到好吃的食物！"},
+  {n:45,en:"Holiday mornings have so much time! Which lesson should we look at first?",zh:"假日早上有好多時間耶！今天想先看哪一課？"},
+  {n:46,en:"You're here so early! I'm going to be happy all day!",zh:"你這麼早就來啦！我今天一定會很開心！"},
+  {n:47,en:"Good morning. What should we review together today? I'm so excited!",zh:"早安。今天想一起複習哪一科呢？我好期待！"},
+  {n:48,en:"It's a holiday! Want to daydream for a while? I'll join you.",zh:"放假啦！想先發呆一下嗎？我也來。"}
+],
+hd1218: [
+  {n:49,en:"Holiday afternoons have so much time! Which lesson should we look at first?",zh:"假日下午有好多時間耶！今天想先看哪一課？"},
+  {n:50,en:"You're here! Which lesson do you feel like reviewing today?",zh:"你來了！今天想複習哪一課？"},
+  {n:51,en:"No school bell today. Whenever you come is the perfect time!",zh:"今天沒有放學鐘聲，什麼時候來都剛剛好！"},
+  {n:52,en:"Did you eat yet? Which lesson do you want to start with?",zh:"吃飽了嗎？你今天最想先看哪一課？"},
+  {n:53,en:"A holiday afternoon! One lesson, nice and slow. That feels just right!",zh:"假日下午呀！慢慢複習一課，剛剛好！"},
+  {n:54,en:"You came to play! Which lesson should we look at today?",zh:"你來這裡玩啦！今天想看哪一課呀？"},
+  {n:55,en:"What should we review today? I want to look too!",zh:"今天想複習哪一科呀？我也要一起看！"},
+  {n:56,en:"I flipped through a few lessons, and now I want to pick every one of them. I can't choose!",zh:"我剛剛翻了好幾課，結果每一課都想選。我選不出來啦！"},
+  {n:57,en:"You're here! Holiday review is the best. You reap what you sow!",zh:"你來啦！假日複習最棒了——要怎麼收穫先怎麼栽！"},
+  {n:58,en:"You're here! There are so many fun things outside, but you came to see me. I'm so happy!",zh:"你來了！外面那麼多好玩的，你選了來看我，真開心！"},
+  {n:123,en:"What's the weather like outside? If it's nice, go for a walk after you finish reviewing!",zh:"外面天氣如何呢？天氣好的話，複習完出門走走吧！"}
+],
+hd1822: [
+  {n:59,en:"No school tomorrow either! We can take our time tonight!",zh:"明天也不用上學耶！今晚可以慢慢來啦！",cond:"tomorrowOff"},
+  {n:60,en:"It's dark already! Did you do anything fun today?",zh:"天黑了耶！今天有沒有玩到什麼好玩的？"},
+  {n:61,en:"You're here! Which lesson tonight? This is the perfect time!",zh:"你來啦！今晚想看哪一課？這個時間剛剛好！"},
+  {n:62,en:"Holiday evenings are so cozy. What do you feel like doing now?",zh:"假日的晚上好舒服呀！你現在最想做什麼？"},
+  {n:63,en:"Did you go anywhere fun today? {SKZOO} and I tried to go out too. We walked a few steps, smelled {FOOD}, and forgot where we were going.",zh:"今天有出去玩嗎？我跟{SKZOO}本來也要出門，結果才走幾步就聞到{FOOD}，然後忘了原本要去哪裡。"},
+  {n:64,en:"You don't have to wake up early tomorrow! Get a good sleep anyway, so you'll have lots of energy to play!",zh:"明天不用早起耶！今晚也要睡飽飽，明天才有精神玩！",cond:"tomorrowOff"},
+  {n:65,en:"You're here! I feel wide awake now!",zh:"你來啦！我一看到你就精神了！"},
+  {n:66,en:"You're here! Now I'm happy!",zh:"你來了耶！那我今天就很開心了！"}
+],
+hd2206: [
+  {n:67,en:"Still awake? Tomorrow is a holiday, but you still need a good sleep!",zh:"還沒睡呀？明天雖然放假，也要睡飽飽才有精神喔！",cond:"tomorrowOff"},
+  {n:68,en:"It's so late! {SKZOO} is already snoring. I listened for too long, and now I'm sleepy too. Time for you to get some sleep. You'll need your energy tomorrow!",zh:"這個時間了耶！{SKZOO}已經睡到打呼，我聽著聽著也開始想睡了。你也快快去睡吧，明天才有精神！"},
+  {n:69,en:"Finish this page, then go get a good sleep. Tomorrow is another day for playing!",zh:"看完這一頁就去睡飽飽吧！明天又可以玩啦！"},
+  {n:70,en:"You're here so late! I'm happy to see you, but now it's time for a good, long sleep. You'll need your energy tomorrow!",zh:"你這麼晚還來呀！看到你我很開心，不過現在要去睡飽飽囉，明天才有精神！"}
+],
+monwed: [
+  {n:71,en:"You have Band today, right? I tried drumming too. After a while, {SKZOO} asked if I was fixing something.",zh:"今天有 Band 對吧？我剛剛也想打鼓，敲了半天，{SKZOO}問我是不是在修東西。"},
+  {n:72,en:"You have P.E. today, right? What did you play?",zh:"今天有 P.E. 對吧？都玩了什麼呀？"},
+  {n:73,en:"You have Band and P.E. today! Which one are you more excited for?",zh:"今天 Band 和 P.E. 都有耶！你比較期待哪一堂？"}
+],
+tuethu: [
+  {n:74,en:"You have Chinese today, right? Which character did you learn? I want to see!",zh:"今天有中文課對吧？今天學了哪一個字呀？我也想看看！"},
+  {n:75,en:"You have Technology today, right? What did you make this time?",zh:"今天有 Technology 課對吧？你們今天又做了什麼新東西呀？"},
+  {n:76,en:"Chinese and Technology are both today! Which one do you like more?",zh:"中文課跟 Technology 都在今天耶！你比較喜歡哪一堂？"}
+],
+friday: [
+  {n:77,en:"Friday! You get out at two thirty today! What will you do with that extra-long afternoon?",zh:"星期五！今天兩點半就放學耶！多出來的下午想做什麼呀？"},
+  {n:78,en:"You have Arts today, right? What did you draw? This is the one I really want to know!",zh:"星期五有 Arts 對吧？今天畫了什麼呀？我最想看這個！"},
+  {n:79,en:"It's Friday! Once school is over, the weekend officially begins!",zh:"星期五啦！今天放學，週末就正式開始了！"},
+  {n:80,en:"Arts and P.E. are the last two classes today! Are you more excited to draw or run around?",zh:"星期五最後是 Arts 和 P.E. 耶！你比較期待畫畫，還是動一動？"},
+  {n:81,en:"You're back, and it's Friday! Just thinking about the weekend makes me happy!",zh:"你回來啦，而且今天是星期五！我光想到週末就好開心！"},
+  {n:82,en:"It's Friday! The weekend starts now! Which lesson should we look at first?",zh:"星期五啦！週末開始！今天想先看哪一課？"}
+],
+halfday: [
+  {n:83,en:"It's a half day! A whole extra piece of afternoon just appeared. Yay!",zh:"今天是半天耶！下午突然多出一大段，真開心！"},
+  {n:84,en:"What do you want to do with those extra hours?",zh:"多出來的這幾個小時，你最想拿來做什麼呀？"},
+  {n:85,en:"You got out early today! I hadn't even noticed the time, and you were already back!",zh:"今天提早放學耶！我還沒反應過來，你就回來啦！"}
+],
+schoolonhol: [
+  {n:86,en:"It's Walk-a-thon today, right? Remember to drink water after you run! I'm already wondering how fun it'll be!",zh:"今天是 Walk-a-thon 對吧？跑完記得喝水喔！我已經開始好奇會有多好玩了！"},
+  {n:87,en:"It's a holiday, but you're still going to school, right? Did you pack your water bottle?",zh:"今天是假日，還是要去學校對吧？水壺帶了嗎？"},
+  {n:88,en:"School on a holiday? What do you think the best part will be?",zh:"假日還要去學校呀？今天最好玩的會是什麼呢？"}
+],
+mappre: [
+  {n:89,en:"MAP Test is coming up, right? I'm so nervous! Are you nervous too? (Why am I nervous? I'm not even taking it.) Anyway, you have me and your correction notebook. You're going to be just fine!",zh:"MAP Test 快到了對吧？我好緊張呀！你會嗎？（又不是我考，我在緊張什麼呢）無論如何，有我跟訂正筆記在這裡，你一定沒問題的！"},
+  {n:90,en:"MAP is getting close! {SKZOO} and I made a plan. He'll cheer for you, and I'll do the worrying!",zh:"MAP 快到了耶！我跟{SKZOO}剛剛說好：他幫你加油，我負責緊張！"},
+  {n:91,en:"What should we review first today? The notebook and I are both ready!",zh:"今天想先複習哪一科呀？我跟筆記本都準備好了！"},
+  {n:92,en:"MAP week is getting close! Want to review something, or just sit with me for a bit? Either is good with me.",zh:"MAP 那週快到了耶！今天想複習一課，還是只想來坐一下？都可以呀！"}
+],
+mappost: [
+  {n:93,en:"It's over! Finally! {SKZOO} and I both let out a huge sigh!",zh:"考完啦！終於！我跟{SKZOO}一起鬆了一大口氣！"},
+  {n:94,en:"It's finished! {SKZOO} and I cheered so loudly that we scared ourselves!",zh:"結束啦！我跟{SKZOO}剛剛一起歡呼，差點把自己嚇一跳！"}
+],
+event: [
+  {n:95,en:"Tomorrow is {活動}, right? I'm already nervous! {SKZOO} told me to take a deep breath.",zh:"明天有{活動}對吧？我已經開始緊張了！{SKZOO}叫我先深呼吸。",when:"eve"},
+  {n:96,en:"{活動} is tomorrow! Get a good sleep tonight, so you'll have lots of energy!",zh:"明天就是{活動}啦！今晚睡飽飽，明天才有精神喔！",when:"eve"},
+  {n:97,en:"Today's {活動}! I'll cheer for you from here, sitting up very straight!",zh:"今天就是{活動}！我會在這裡替你加油，用坐得很直的方式！",when:"morning"},
+  {n:98,en:"Is {活動} over? Come sit for a minute. I was just thinking I could use a rest too.",zh:"今天的{活動}結束了嗎？回來坐一下吧！我正好也想休息。",when:"night"},
+  {n:99,en:"Yesterday was {活動}, right? Did it make you happy?",zh:"昨天{活動}了對吧！你感覺開心嗎！？",when:"after"},
+  {n:100,en:"You moved around a lot at {活動} yesterday, right? Are you sore anywhere today? {SKZOO} and I got wobbly legs just thinking about it!",zh:"昨天{活動}動了好多吧？你今天有沒有哪裡痠痠的？我跟{SKZOO}光用想的，腿就軟了！",when:"after"}
+],
+free: [
+  {n:101,en:"What did you practice in Band today? {SKZOO} and I want to start a band too, but we both want to be the drummer.",zh:"今天 Band 練了什麼呀？我跟{SKZOO}也想組一團，可是我們兩個都搶著當鼓手。",subj:"monwed"},
+  {n:102,en:"What did you learn in Chinese today?",zh:"中文課今天教到哪裡了呀？",subj:"tuethu"},
+  {n:103,en:"What did you play in P.E.? I'm guessing dodgeball. Wait, or was it soccer?",zh:"P.E. 今天玩什麼呀？我先猜躲避球。等一下，還是足球？",subj:"pe"},
+  {n:104,en:"What did you draw in Arts today? I really want to know this one!",zh:"Arts 今天畫了什麼呀？我最想知道這個！",subj:"fri"},
+  {n:105,en:"What did you do in Technology today?",zh:"Technology 今天做了什麼呀？",subj:"tuethu"},
+  {n:106,en:"What was for lunch today? I wanted {FOOD}, but {SKZOO} wanted {FOOD}. Then {SKZOO} picked {FOOD}, and that looked the yummiest!",zh:"今天午餐吃甚麼呀？我想吃{FOOD}，但{SKZOO}想吃{FOOD}，最後發現還是{SKZOO}選的{FOOD}看起來最美味了！"},
+  {n:107,en:"Did anything funny happen today?",zh:"今天有沒有發生什麼好笑的事呀？"},
+  {n:108,en:"What did you play in P.E. today? {SKZOO} and I each made a guess. Now we're waiting for the answer!",zh:"今天 P.E. 玩什麼呀？我跟{SKZOO}各猜一個，現在等你公布答案！",subj:"pe"},
+  {n:109,en:"You're back! {SKZOO} and I were deciding who got to say hi first, so we said it together!",zh:"你回來啦！我跟{SKZOO}剛剛在排誰先跟你說嗨，結果我們一起說了！"},
+  {n:110,en:"What did you draw in Arts today? {SKZOO} wants to see too.",zh:"今天 Arts 畫了什麼呀？{SKZOO}說他也想看。",subj:"fri"},
+  {n:111,en:"What did you learn in Chinese today? {SKZOO} and I studied Chinese too. After all that work, we recognized exactly one character!",zh:"中文課教到哪裡了呀？我跟{SKZOO}剛剛也研究了半天，最後只認出一個字！",subj:"tuethu"},
+  {n:112,en:"It's dark already. {SKZOO} is asleep, but I couldn't sleep, so I came out to count the stars.",zh:"天黑了耶。{SKZOO}已經睡了，我還睡不著，就出來數星星。",night:1},
+  {n:124,en:"What did you do in Math today? Did any numbers try to be sneaky?",zh:"今天 Math 在做什麼呀？有沒有哪個數字偷偷搗蛋？",subj:"school"},
+  {n:125,en:"What did you do in Science today? I hope nothing exploded. Unless it was supposed to.",zh:"今天 Science 在做什麼呀？希望沒有東西爆炸。除非本來就要爆炸。",subj:"school"},
+  {n:126,en:"Where did Social Studies take you today? Somewhere far away?",zh:"今天 Social Studies 帶你去哪裡了呀？有沒有跑到很遠的地方？",subj:"school"},
+  {n:127,en:"Did you sing in Chapel today? I tried too. I came in one line late every time.",zh:"今天 Chapel 有唱歌嗎？我也試著唱了，結果每一段都慢一句。",subj:"fri"}
+],
+life: [
+  {n:113,en:"{SKZOO} and I raced to count to one hundred today. We both got somewhere into the sixties and forgot where we were. Did anything fun happen to you today?",zh:"我今天跟{SKZOO}比賽數到一百，結果我們兩個數到六十幾就一起忘了。你今天有沒有遇到什麼好玩的事？"},
+  {n:114,en:"{SKZOO} taught me to fold a paper crane today. I worked very hard, and mine came out looking like a triangle. What did you learn at school?",zh:"今天{SKZOO}教我摺紙鶴。我很認真地摺完，結果看起來像一塊三角形。你今天在學校學了什麼呀？",subj:"school"},
+  {n:115,en:"I hid some {FOOD} this morning to save for later. I've been looking all day, and I still can't find it.",zh:"我早上把{FOOD}藏起來，想留到下午吃。結果我找了一整天，現在還沒找到。"},
+  {n:116,en:"It rained today, so {SKZOO} and I sat under the eaves and watched the rain for a long time. We didn't do much, but it felt nice.",zh:"今天下雨，我跟{SKZOO}在屋簷下看了好久。什麼都沒做，可是很舒服。"},
+  {n:117,en:"{SKZOO} said he could whistle today. He tried for half an hour, but only air came out. He's still trying!",zh:"今天{SKZOO}說他會吹口哨，結果吹了半小時，只有風跑出來。可是他還在吹！"},
+  {n:118,en:"I lined up to buy {FOOD} today. Halfway through, I forgot what I was lining up for, but I stayed until the end.",zh:"我今天排隊買{FOOD}，排到一半忘記自己在排什麼，但還是排完了。"},
+  {n:119,en:"We counted stars today. We got to ten, then {SKZOO} sneezed and made everyone start over!",zh:"我們今天在數星星。才數到第十顆，{SKZOO}就打了一個噴嚏，大家只好重數！",night:1},
+  {n:120,en:"I learned a new word today, but now I can't remember it at all. What was it?",zh:"我今天學了一個新字，現在卻怎麼都想不起來。到底是哪個字呀？"},
+  {n:121,en:"{SKZOO} felt a little sad today, so I sat with him for a while. Later he smiled, and then I smiled too.",zh:"今天{SKZOO}心情不太好，我就陪他坐了一下。後來他笑了，我也跟著笑了。"}
+],
+};
+
+/* ---------- school facts (真相源: TAAS 2026-2027 校曆.md) ----------
+   資料事實零容錯: it must never ask about Band on a day school was closed. */
+const TERM = ["2026-08-10", "2027-06-02"];
+const NO_SCHOOL = ["2026-09-25","2026-09-28","2026-10-09","2026-10-26","2026-10-27",
+  "2026-11-02","2026-11-26","2026-11-27","2027-01-04","2027-03-01","2027-03-29","2027-04-30"];
+const NO_SCHOOL_RANGES = [["2026-12-21","2027-01-01"],["2027-02-04","2027-02-10"],["2027-04-05","2027-04-09"]];
+const HALF_DAY = ["2026-11-25","2026-12-15","2026-12-18","2027-05-25","2027-06-01","2027-06-02"];
+const SCHOOL_ON_HOLIDAY = ["2026-11-22","2027-03-07"];
+const MAP_PRE = [["2026-08-10","2026-09-04"],["2026-11-16","2026-12-04"],["2027-04-05","2027-04-23"]];
+const MAP_POST = [["2026-09-05","2026-09-08"],["2026-12-05","2026-12-08"],["2027-04-24","2027-04-27"]];
+
+/* Cecilia fills this in when there is one: {name:{en:"Sport Day",zh:"運動會"}, date:"2027-04-29"} */
+const EVENTS = [];
+
+const FOOD = [["potstickers","鍋貼"],["pork chop rice","排骨飯"],["braised pork rice","滷肉飯"],
+  ["a scallion pancake","蔥抓餅"],["popcorn chicken","鹽酥雞"],["xiao long bao","小籠包"],
+  ["a fried chicken cutlet","雞排"],["an oyster omelette","蚵仔煎"],["egg cakes","雞蛋糕"],
+  ["a wheel cake","車輪餅"],["bubble tea","珍珠奶茶"],["pizza","pizza"],["a burger","漢堡"],
+  ["fries","薯條"],["pasta","義大利麵"],["waffles","鬆餅"],["a croissant","可頌"],
+  ["pudding","布丁"],["ice cream","冰淇淋"],["cake","蛋糕"]];
+
+const iso = d => d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+const within = (s, r) => s >= r[0] && s <= r[1];
+const pick = a => a[Math.floor(Math.random() * a.length)];
+
+function offSchool(d){
+  const s = iso(d), dow = d.getDay();
+  if (s < TERM[0] || s > TERM[1]) return true;               // summer
+  if (dow === 0 || dow === 6) return true;                   // weekend
+  if (NO_SCHOOL.indexOf(s) >= 0) return true;
+  return NO_SCHOOL_RANGES.some(r => within(s, r));
 }
 
-const WARM = [
-  ["Good to see you. Reviewing something, or chasing one question down?",
-   "看到你真好。是來複習，還是來追一個卡住你的問題？"],
-  ["Coming back to look again is the whole trick — most people just shut the book.",
-   "回頭再看一次，訣竅就在這裡——大部分人是把書闔上就算了。"],
-  ["Pick any card. I have got nowhere else to be.",
-   "隨便挑一張卡。我反正哪裡也不去。"],
-  ["Every page in here is something you already beat once.",
-   "這裡每一頁，都是你已經打贏過一次的。"],
-  ["Take your time. Nothing in here is being timed.",
-   "慢慢來。這裡沒有一樣東西在計時。"],
-  ["If something is still bugging you, it is in here somewhere. Let us go find it.",
-   "如果還有什麼卡著你，它就在這裡面某個地方。我們去把它找出來。"],
-  ["The notebook is open whenever you are.",
-   "你什麼時候來，筆記本就什麼時候開著。"],
-  ["No test today. Just you and the pages you already know.",
-   "今天沒有考試。只有你，還有這些你已經認識的頁面。"]
-];
-
-function greet(){
-  const line = $("#wnHiLine");
-  if(!line) return;
-  const hi = helloFor(new Date().getHours());
-  const w  = WARM[Math.floor(Math.random() * WARM.length)];
-  line.innerHTML = `<b>${hi[0]}</b> ${w[0]}<span class="zh"><b>${hi[1]}</b>${w[1]}</span>`;
+/* which pool the clock lands in. Friday goes home an hour earlier,
+   so its golden hour starts at 15:00 (時段結構, 句庫). */
+function slot(d, off){
+  const h = d.getHours(), fri = d.getDay() === 5;
+  if (off) {
+    if (h >= 22 || h < 6) return "hd2206";
+    if (h < 12) return "hd0612";
+    if (h < 18) return "hd1218";
+    return "hd1822";
+  }
+  if (h >= 22 || h < 6) return "sd2206";
+  if (h < 12) return "sd0612";
+  if (h < (fri ? 15 : 16)) return "sd1216";
+  if (h < 18) return "sd1618";
+  return "sd1822";
 }
 
-renderFilters(); render(); stats(); buddy(); greet();
+/* 修飾層是覆蓋當格句子,不是另開時段 */
+function layer(d, off){
+  const s = iso(d), dow = d.getDay(), h = d.getHours();
+  for (const e of EVENTS){
+    const day = new Date(d); day.setDate(day.getDate() + 1);
+    if (iso(day) === e.date && h >= 12) return {pool:"event", when:"eve", ev:e};
+    if (s === e.date) return {pool:"event", when: h < 12 ? "morning" : "night", ev:e};
+    const prev = new Date(d); prev.setDate(prev.getDate() - 1);
+    if (iso(prev) === e.date) return {pool:"event", when:"after", ev:e};
+  }
+  if (SCHOOL_ON_HOLIDAY.indexOf(s) >= 0 && h >= 6 && h < 18) return {pool:"schoolonhol"};
+  if (MAP_POST.some(r => within(s, r)) && h >= 12 && h < 22) return {pool:"mappost"};
+  if (MAP_PRE.some(r => within(s, r)) && h >= 12 && h < 22) return {pool:"mappre"};
+  if (off) return null;
+  if (HALF_DAY.indexOf(s) >= 0 && h >= 12 && h < 18) return {pool:"halfday"};
+  if (dow === 5 && h >= 12 && h < 22) return {pool:"friday"};
+  if ((dow === 1 || dow === 3) && h >= 12 && h < 18) return {pool:"monwed"};
+  if ((dow === 2 || dow === 4) && h >= 12 && h < 18) return {pool:"tuethu"};
+  return null;
+}
+
+/* 一半帶門、一半純陪伴: the free questions and its own life are the companionship half */
+function companionPool(d, off){
+  const dow = d.getDay(), h = d.getHours(), night = (h >= 18 || h < 6);
+  const okSubj = tag => {
+    if (off) return false;
+    if (tag === "monwed") return dow === 1 || dow === 3;
+    if (tag === "tuethu") return dow === 2 || dow === 4;
+    if (tag === "fri")    return dow === 5;
+    if (tag === "pe")     return dow === 1 || dow === 3 || dow === 5;
+    return true;
+  };
+  return SAY.free.concat(SAY.life).filter(l => {
+    if (l.night && !night) return false;
+    if (l.subj) return okSubj(l.subj);
+    if (l.pool === "free" && off) return true;
+    return true;
+  });
+}
+
+function fill(line, speaker, ev){
+  const crewLeft = CREW.filter(c => c[1] !== speaker[1]).slice();
+  const foodLeft = FOOD.slice();
+  const takeCrew = () => {                 /* 同一句出現兩次要抽不同隻,且不同於講話者 */
+    const i = Math.floor(Math.random() * crewLeft.length);
+    return crewLeft.length ? crewLeft.splice(i, 1)[0] : pick(CREW);
+  };
+  const takeFood = () => {
+    const i = Math.floor(Math.random() * foodLeft.length);
+    return foodLeft.length ? foodLeft.splice(i, 1)[0] : pick(FOOD);
+  };
+  let en = line.en, zh = line.zh;
+  while (en.indexOf("{SKZOO}") >= 0 || zh.indexOf("{SKZOO}") >= 0){
+    const c = takeCrew();
+    en = en.replace("{SKZOO}", c[1]);
+    zh = zh.replace("{SKZOO}", c[1]);
+  }
+  while (en.indexOf("{FOOD}") >= 0 || zh.indexOf("{FOOD}") >= 0){
+    const f = takeFood();
+    en = en.replace("{FOOD}", f[0]);
+    zh = zh.replace("{FOOD}", f[1]);
+  }
+  if (ev){
+    en = en.split("{活動}").join(ev.name.en);
+    zh = zh.split("{活動}").join(ev.name.zh);
+  }
+  return [en, zh];
+}
+
+function say(speaker){
+  const el = $("#wnHiLine");
+  if (!el || !speaker) return;
+  const now = new Date();
+  const off = offSchool(now);
+  const tomorrow = new Date(now); tomorrow.setDate(tomorrow.getDate() + 1);
+  const tomorrowOff = offSchool(tomorrow);
+
+  const lay = layer(now, off);
+  let primary = lay ? SAY[lay.pool].slice() : SAY[slot(now, off)].slice();
+  if (lay && lay.pool === "event") primary = primary.filter(l => l.when === lay.when);
+  primary = primary.filter(l => l.cond !== "tomorrowOff" || tomorrowOff);
+  if (!primary.length) primary = SAY[slot(now, off)].filter(l => l.cond !== "tomorrowOff" || tomorrowOff);
+
+  const companions = companionPool(now, off);
+  const usable = (companions.length && Math.random() < 0.4) ? companions : primary;
+  const line = pick(usable.length ? usable : primary);
+  if (!line) return;
+
+  const said = fill(line, speaker, lay && lay.ev);
+  const lead = said[0].match(/^(.{1,34}?[!?])\s/);
+  const leadZh = said[1].match(/^(.{1,18}?[！？])/);
+  const en = lead ? "<b>" + lead[1] + "</b>" + said[0].slice(lead[1].length) : said[0];
+  const zh = leadZh ? "<b>" + leadZh[1] + "</b>" + said[1].slice(leadZh[1].length) : said[1];
+  el.innerHTML = en + '<span class="zh">' + zh + "</span>";
+}
+
+renderFilters(); render(); stats(); say(buddy());
 </script>
 </body>
 </html>
