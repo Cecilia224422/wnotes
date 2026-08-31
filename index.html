@@ -173,6 +173,15 @@ const SUBJECTS = {
    thumb: "sieve" | "fraction" | "numberline" | "artifact" | "grid"  (see THUMBS below)      */
 const LESSONS = [
   {
+    subject:"isee", date:"2026-08-31",
+    title:"Essential 1-1: Word Cards", zh:"Essential 1-1：ISEE 詞卡",
+    desc:"Learn ten Essential Deck 1 words through pictures, short examples, pronunciation, and easy synonym links.",
+    zhDesc:"用圖像、短例句、發音與簡單同義詞，先熟悉 Essential Deck 1 的 10 個單字。",
+    source:"Manhattan Review · ISEE Essential Deck 1 · Part 1 of 5",
+    thumb:"word-cards-1-1",
+    href:"isee-essential-1-1.html?v=20260831-essential-1-1-1"
+  },
+  {
     subject:"isee", date:"2026-08-30",
     title:"Synonyms: Check the Direction", zh:"同義詞：先確認方向",
     desc:"Fix each word's plus or minus before reading the options — two antonym traps, one look-alike pair, and one motion word read backward.",
@@ -338,6 +347,22 @@ const LESSONS = [
 
 /* ===== 3. Thumbnails — drawn with SVG, no photo files needed ===== */
 const THUMBS = {
+  /* three word cards linked to the easy synonyms that help unlock them */
+  "word-cards-1-1"(){
+    return `<svg viewBox="0 0 104 78" role="img" aria-label="Three vocabulary cards connecting difficult ISEE words to easy synonyms">
+      <rect x="17" y="8" width="58" height="42" rx="6" fill="#F4F4F6" stroke="#C9CBD2" transform="rotate(-6 46 29)"/>
+      <rect x="25" y="11" width="58" height="42" rx="6" fill="#FFF1E1" stroke="#F08A2C" transform="rotate(4 54 32)"/>
+      <rect x="22" y="14" width="60" height="43" rx="6" fill="#E8EEFC" stroke="#3E6FD9" stroke-width="1.4"/>
+      <text x="52" y="29" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="8.5" fill="#2B52AE">placate</text>
+      <path d="M52 34 V39" stroke="#3E6FD9" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M52 39 l-2.5 -3 h5 z" fill="#3E6FD9"/>
+      <rect x="34" y="41" width="36" height="10" rx="5" fill="#FFFFFF" stroke="#C9D5F2"/>
+      <text x="52" y="48.2" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="6.5" fill="#2B52AE">calm · soothe</text>
+      <circle cx="86" cy="19" r="8" fill="#FFF9D9" stroke="#E7C64B"/>
+      <path d="M82 19 l2.4 2.5 l5 -5.5" fill="none" stroke="#2FA36B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="52" y="70" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="6.5" fill="#6B6E76">10 words · part 1 of 5</text>
+    </svg>`;
+  },
   /* a word's direction fixed first: minus arrow to the trap, plus arrow to the match */
   "synonym-direction"(){
     return `<svg viewBox="0 0 104 78" role="img" aria-label="The word ease with a plus sign, an arrow to the antonym trap crossed out and an arrow to the matching synonym checked">
