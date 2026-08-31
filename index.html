@@ -78,6 +78,7 @@ body.zh-on .chip .zh{display:inline}
 .subject-head .count{color:var(--grey);font-size:.85rem}
 .subject-head .bar{flex:1;height:2px;background:var(--border)}
 .subject[data-subject="math"] .subject-head h2{color:var(--blue-deep)}
+.subject[data-subject="isee"] .subject-head h2{color:#7A4FB7}
 .subject[data-subject="english"] .subject-head h2{color:#C4680F}
 .subject[data-subject="science"] .subject-head h2{color:#1F8A5B}
 .subject[data-subject="social"] .subject-head h2{color:#6B4EA8}
@@ -160,6 +161,7 @@ document.getElementById("zhbtn").addEventListener("click",function(){
 
 /* ===== 1. Subjects (order = display order) ===== */
 const SUBJECTS = {
+  isee:    { en:"ISEE",           zh:"ISEE", icon:"🎯" },
   math:    { en:"Math",           zh:"數學", icon:"🔢" },
   english: { en:"English",        zh:"英文", icon:"📖" },
   science: { en:"Science",        zh:"自然", icon:"🔬" },
@@ -171,7 +173,7 @@ const SUBJECTS = {
    thumb: "sieve" | "fraction" | "numberline" | "artifact" | "grid"  (see THUMBS below)      */
 const LESSONS = [
   {
-    subject:"english", date:"2026-08-30",
+    subject:"isee", date:"2026-08-30",
     title:"Synonyms: Check the Direction", zh:"同義詞：先確認方向",
     desc:"Fix each word's plus or minus before reading the options — two antonym traps, one look-alike pair, and one motion word read backward.",
     zhDesc:"先定這個字的正負方向再看選項——兩題反義詞陷阱、一題形近字、一題方向讀反的動作字。",
@@ -180,7 +182,7 @@ const LESSONS = [
     href:"isee-synonyms.html?v=20260830-launch-1"
   },
   {
-    subject:"math", date:"2026-08-30",
+    subject:"isee", date:"2026-08-30",
     title:"Test the Choices Against the Evidence", zh:"用證據驗證每個選項",
     desc:"Treat every choice as a claim and test it against all the evidence — then walk each multi-step chain to the last step.",
     zhDesc:"把每個選項當成待驗證的主張，逐一對上全部數據——多步驟的題要一路走到最後一步。",
