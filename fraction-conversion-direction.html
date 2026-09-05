@@ -50,9 +50,9 @@ h1{font-size:clamp(1.8rem,1.2rem + 2vw,2.5rem);line-height:1.15;margin:.2rem 0 .
   <button type="button" class="switch" id="zhSwitch" role="switch" aria-checked="false"><span class="track"></span>中文</button>
 </div>
 <p class="modeline" id="modeLine">Build the pieces first, then put the answer in the form named by the question.<span class="zh">先把小份數量組好，再照題目指定的形式交答案。</span></p>
-<nav class="jump"><span>Jump to</span><a href="#s1">1</a><a href="#s2">2</a><a href="#s3">3</a><a href="#review">🎯</a></nav>
+<nav class="jump"><span>Jump to</span><a href="#s1">1</a><a href="#s2">2</a><a href="#review">🎯</a></nav>
 <div id="lesson"></div>
-<div class="after-gate" id="gate">🔒 Finish Prove in all three sections to unlock the review.<span class="zh">三區都完成 Prove 後，才會解鎖複習。</span></div>
+<div class="after-gate" id="gate">🔒 Finish Prove in both sections to unlock the review.<span class="zh">兩區都完成 Prove 後，才會解鎖複習。</span></div>
 <section class="review" id="review">
   <div class="sec"><h2><span class="num">📘</span><span>The two-way map<span class="zh">雙向轉換地圖</span></span></h2>
     <div class="tipbox"><p><b>Improper → mixed:</b> divide numerator by denominator; quotient is the whole, remainder is the numerator.</p><p class="zh"><b>假分數 → 帶分數：</b>分子÷分母；商是整數、餘數是新分子。</p><p><b>Mixed → improper:</b> whole × denominator + numerator; keep the denominator.</p><p class="zh"><b>帶分數 → 假分數：</b>整數×分母＋分子；分母保持不變。</p><p><b>Then simplify</b> without changing the requested form.</p><p class="zh"><b>最後化簡</b>，但不要把題目要的形式改掉。</p></div>
@@ -60,7 +60,7 @@ h1{font-size:clamp(1.8rem,1.2rem + 2vw,2.5rem);line-height:1.15;margin:.2rem 0 .
   <div class="sec"><h2><span class="num">🎯</span><span>Quick quiz<span class="zh">小測驗</span></span></h2><div class="quizbox" id="quiz"></div></div>
   <div class="sec"><h2><span class="num">✍️</span><span>Correction list<span class="zh">紙本訂正清單</span></span></h2><div class="checklist" id="checklist"></div></div>
 </section>
-<div class="buddy-out"><img id="outImg" alt="Study buddy"><div><div class="line">I kept the denominator. It tried to sneak into the numerator anyway.<span class="zh">我把分母留在原位；它還是想偷偷跑去分子那邊。</span></div><div class="who" id="outName"></div></div></div>
+<div class="buddy-out"><img id="outImg" alt="Study buddy"><div><div class="line">I checked the value, simplified it, and stopped in the form the question asked for.<span class="zh">我核對數值、完成化簡，並停在題目指定的形式。</span></div><div class="who" id="outName"></div></div></div>
 <div class="foot">Extra Practice and Homework Grade 4A · Chapter 3 · pp. 275–284 · paper dated 2026-09-04</div>
 </main>
 <script>
@@ -80,7 +80,7 @@ const MODE_LINES={
 const LESSON={corrections:[
 {
  id:'s1',title:'Q3: convert first, then simplify',zhTitle:'Q3：先轉換，再化簡',
- recon:`<div class="sourcebar"><span class="sourcekind">Question reconstruction｜原題重現</span><span class="source">Grade 4A · p.278 · Q3</span></div><div class="source-note">No teacher mark is visible on this paper. The correction comes from checking the printed direction and William’s written answer.${Z('紙上沒有老師批改記號；以下是依題目指示與 William 的手寫答案核對。')}</div><p class="prompt">Write the improper fraction as a mixed number in simplest form: 14/8.</p>${Z('把假分數 14/8 寫成最簡帶分數。')}<span class="worklabel">William’s answer</span><div class="hw">1 6/8</div><div class="screen-note">The conversion is correct, but 6/8 is not yet in simplest form.${Z('轉換正確，但 6/8 還不是最簡分數。')}</div>`,
+ recon:`<div class="sourcebar"><span class="sourcekind">Question reconstruction${Z('原題重現')}</span><span class="source">Grade 4A · p.278 · Q3</span></div><div class="source-note">No teacher mark is visible on this paper. The printed direction and William’s written answer are shown exactly as checked.${Z('紙上沒有老師批改記號；以下照核對結果呈現印刷指示與 William 的手寫答案。')}</div><p class="prompt">Write the improper fraction as a mixed number in simplest form: 14/8.</p>${Z('把假分數 14/8 寫成最簡帶分數。')}<span class="worklabel">William’s answer</span><div class="hw">1 6/8</div>`,
  notice:{q:'Which two instructions must the final answer satisfy?',zh:'最後答案要同時符合哪兩個指示？',options:[['mixed number and simplest form','帶分數，而且是最簡形式',1],['improper fraction only','只要假分數',0,'Read the full printed direction.','把整句題目指示讀完。'],['decimal and percent','小數和百分比',0,'Neither form appears in the direction.','題目沒有要求這兩種形式。']],yes:'✓ The form and the simplification both count.',zhYes:'✓ 形式與化簡都要做到。'},
  do:D('Share fourteen eighth-pieces','分十四個八分之一','Put eight pieces into one whole. Six pieces remain, and those six can be renamed more simply.','八小份先組成一個完整整數；剩六份，再把六份改成更簡單的名稱。',[
   {q:'Divide 14 by 8. What are the quotient and remainder?',zh:'14÷8 的商和餘數是多少？',options:[['1 remainder 6','商 1、餘 6',1],['1 remainder 8','商 1、餘 8',0,'A remainder must be smaller than the divisor.','餘數必須小於除數。'],['6 remainder 1','商 6、餘 1',0,'How many full groups of 8 fit inside 14?','14 裡有幾組完整的 8？']],yes:'✓ One whole, six eighths left.',zhYes:'✓ 一個整數，剩六個八分之一。',result:'14 ÷ 8 = <b>1 R6</b>'},
@@ -98,7 +98,7 @@ const LESSON={corrections:[
 },
 {
  id:'s2',title:'Q1–2: stop in improper-fraction form',zhTitle:'Q1–2：答案要停在假分數形式',
- recon:`<div class="sourcebar"><span class="sourcekind">Question reconstruction｜原題重現</span><span class="source">Grade 4A · p.280 · Q1–2</span></div><div class="source-note">No teacher mark is visible. Both working lines reach the correct unsimplified improper fraction, then return to a mixed number even though the direction asks for an improper fraction.${Z('沒有老師批改記號。兩題中間都算到正確的未化簡假分數，最後卻又改回帶分數；題目要求的是假分數。')}</div><p class="prompt">Write each mixed number as an improper fraction in simplest form.</p>${Z('把每個帶分數寫成最簡假分數。')}<div class="source-grid"><div class="source-cell"><b>Q1 · 2 4/6</b><div class="hw">12/6 + 4/6 = 16/6 → 2 4/6</div></div><div class="source-cell"><b>Q2 · 3 2/8</b><div class="hw">24/8 + 2/8 = 26/8 → 3 2/8</div></div></div>`,
+ recon:`<div class="sourcebar"><span class="sourcekind">Question reconstruction${Z('原題重現')}</span><span class="source">Grade 4A · p.280 · Q1–2</span></div><div class="source-note">No teacher mark is visible. The printed direction and both written working lines are shown exactly as checked.${Z('沒有老師批改記號；以下照核對結果呈現印刷指示與兩條手寫算式。')}</div><p class="prompt">Write each mixed number as an improper fraction in simplest form.</p>${Z('把每個帶分數寫成最簡假分數。')}<div class="source-grid"><div class="source-cell"><b>Q1 · 2 4/6</b><div class="hw">12/6 + 4/6 = 16/6 → 2 4/6</div></div><div class="source-cell"><b>Q2 · 3 2/8</b><div class="hw">24/8 + 2/8 = 26/8 → 3 2/8</div></div></div>`,
  notice:{q:'What answer form is named in the direction?',zh:'題目指定哪一種答案形式？',options:[['improper fraction in simplest form','最簡假分數',1],['mixed number in simplest form','最簡帶分數',0,'Read the noun after “as an.”','讀 as an 後面的名詞。'],['whole number only','只寫整數',0,'Both original values contain fractional parts.','兩個原數都有分數部分。']],yes:'✓ Do not convert back after reaching the requested form.',zhYes:'✓ 到達指定形式後，不要再轉回去。'},
  do:D('Count every sixth-piece','數完全部六分之一','Two wholes contain twelve sixths. Add four more sixths, then reduce while keeping an improper fraction.','兩個整數含十二個六分之一；再加四個六分之一，最後在假分數形式中約分。',[
   {q:'For 2 4/6, how many sixths are in the two wholes?',zh:'2 4/6 裡的兩個整數有幾個六分之一？',options:[['12 sixths','12 個六分之一',1],['8 sixths','8 個六分之一',0,'Multiply whole 2 by denominator 6.','整數 2 乘分母 6。'],['2 sixths','2 個六分之一',0,'Each whole contains six sixths.','每個整數有六個六分之一。']],yes:'✓ 2 × 6 = 12.',zhYes:'✓ 2×6＝12。',result:'2 wholes = <b>12/6</b>'},
@@ -111,22 +111,6 @@ const LESSON={corrections:[
   {q:'Reduce 46/10.',zh:'約分 46/10。',options:[['23/5',null,1],['4 3/5',null,0,'Equivalent, but the requested form is improper fraction.','數值等值，但題目要假分數。'],['23/10',null,0,'Divide both numerator and denominator by 2.','分子分母都要除以 2。']],yes:'✓ 23/5 is simplest and improper.',zhYes:'✓ 23/5 是最簡假分數。',result:'46/10 ÷ 2/2 = <b>23/5</b>'}
  ],'New denominator, same stop point','換分母，同一個停點','Convert, reduce, and stop in improper-fraction form.','轉換、約分，停在假分數形式。'),
  model:'p.280 Q1: 2 4/6 = 16/6 = 8/3. Q2: 3 2/8 = 26/8 = 13/4. Do not convert the simplified improper fractions back to mixed numbers.'
-},
-{
- id:'s3',title:'Q3: one whole is a full denominator',zhTitle:'Q3：一個整數等於完整的一個分母',
- recon:`<div class="sourcebar"><span class="sourcekind">Question reconstruction｜原題重現</span><span class="source">Grade 4A · p.281 · Q3</span></div><div class="source-note">No teacher mark is visible. The written fraction changes both numbers and loses the value of the whole.${Z('沒有老師批改記號；手寫答案把上下兩個數都改掉，也遺失了原本的一個整數。')}</div><p class="prompt">Convert 1 2/3 to an improper fraction.</p>${Z('把 1 2/3 轉成假分數。')}<span class="worklabel">William’s answer</span><div class="hw">2/5</div>`,
- notice:{q:'How many thirds make one whole?',zh:'幾個三分之一會組成一個整數？',options:[['3 thirds','3 個三分之一',1],['1 third','1 個三分之一',0,'The denominator says how many equal pieces make a whole.','分母代表幾等份組成一個整數。'],['5 thirds','5 個三分之一',0,'Do not add numerator and denominator.','不要把分子和分母相加。']],yes:'✓ One whole is 3/3.',zhYes:'✓ 一個整數就是 3/3。'},
- do:D('Trade the whole for thirds','把整數換成三分之一','Open the one whole into three thirds, then add the two thirds already beside it.','把一個整數拆成三個三分之一，再加上旁邊原有的兩個三分之一。',[
-  {q:'Rewrite the whole number 1 using thirds.',zh:'用三分之一改寫整數 1。',options:[['3/3',null,1],['1/3',null,0,'Three equal thirds fill the whole.','三個相等的三分之一才填滿一個整數。'],['3/1',null,0,'The piece size must remain thirds.','每一份的大小仍是三分之一。']],yes:'✓ 1 = 3/3.',zhYes:'✓ 1＝3/3。',result:'1 = <b>3/3</b>'},
-  {q:'Add the existing 2/3.',zh:'加上原有的 2/3。',options:[['5/3',null,1],['5/6',null,0,'Equal-size thirds keep denominator 3.','相同大小的三分之一，分母保持 3。'],['2/5',null,0,'Adding top and bottom separately changes the size of the pieces.','分子分母分開相加會改變小份大小。']],yes:'✓ Five thirds altogether.',zhYes:'✓ 合計五個三分之一。',result:'3/3 + 2/3 = <b>5/3</b>'},
-  {q:'Which shortcut records the same work?',zh:'哪個捷徑記錄同一段計算？',options:[['(1 × 3 + 2) / 3',null,1],['(1 + 2) / (3 + 2)',null,0,'Do not add the numerator into the denominator.','不要把分子加進分母。'],['(1 × 2) / 3',null,0,'The whole must be multiplied by the denominator.','整數要乘分母。']],yes:'✓ Whole × denominator + numerator; keep denominator.',zhYes:'✓ 整數×分母＋分子；分母保持。',result:'(1 × 3 + 2) / 3 = <b>5/3</b>'}
- ],'One whole becomes equal pieces','整數拆成相等小份','Keep the piece size fixed while counting every piece.','保持每一份大小不變，再數全部有幾份。'),
- why:{q:'Why does the denominator stay 3?',zh:'為什麼分母保持 3？',options:[['Every piece is still one third; only the number of pieces changes.','每一份仍是三分之一；改變的只有小份數量。',1],['The denominator is always the largest number.','分母永遠要是最大的數。',0,'In 5/3, which number is larger?','在 5/3 裡哪個數比較大？'],['Mixed numbers cannot use thirds.','帶分數不能使用三分之一。',0,'The original number already contains 2/3.','原本就有 2/3。']],yes:'✓ Numerator counts pieces; denominator names their size.',zhYes:'✓ 分子數小份，分母說明每份大小。'},
- prove:D('A new box of quarters','新的四分之一盒子','Convert 2 3/4 to an improper fraction.','把 2 3/4 轉成假分數。',[
-  {q:'How many quarters are in two wholes?',zh:'兩個整數裡有幾個四分之一？',options:[['8 quarters','8 個四分之一',1],['6 quarters','6 個四分之一',0,'Each whole contains four quarters.','每個整數有四個四分之一。'],['2 quarters','2 個四分之一',0,'Multiply two wholes by four pieces each.','兩個整數乘每個整數四小份。']],yes:'✓ 2 × 4 = 8.',zhYes:'✓ 2×4＝8。',result:'2 wholes = <b>8/4</b>'},
-  {q:'Add the three extra quarters.',zh:'加上另外三個四分之一。',options:[['11/4',null,1],['11/7',null,0,'The piece size remains quarters.','每一份仍是四分之一。'],['8/3',null,0,'The extra numerator is added to 8.','額外的分子要加到 8。']],yes:'✓ Eleven quarters.',zhYes:'✓ 合計十一個四分之一。',result:'8/4 + 3/4 = <b>11/4</b>'}
- ],'New whole, new denominator','換整數與分母','Whole × denominator + numerator; keep denominator.','整數×分母＋分子；分母保持。'),
- model:'p.281 Q3: 1 2/3 = 3/3 + 2/3 = 5/3. The denominator remains 3 because every piece is still one third.'
 }
 ],
 quiz:[
@@ -140,7 +124,6 @@ checks:[
  `p.278 Q3 — Change 1 6/8 to 1 3/4.${Z('把 1 6/8 化簡為 1 3/4。')}`,
  `p.280 Q1 — Keep the final answer as 8/3.${Z('最後答案保持假分數 8/3。')}`,
  `p.280 Q2 — Reduce 26/8 to 13/4 and stop.${Z('26/8 約成 13/4，停在假分數形式。')}`,
- `p.281 Q3 — Replace 2/5 with 5/3.${Z('把 2/5 訂正為 5/3。')}`,
  `Final check — underline “mixed number” or “improper fraction,” then circle “simplest form.”${Z('最後檢查：畫出「帶分數／假分數」，再圈出「最簡形式」。')}`
 ]};
 
