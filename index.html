@@ -173,6 +173,15 @@ const SUBJECTS = {
    thumb: "sieve" | "fraction" | "numberline" | "artifact" | "grid"  (see THUMBS below)      */
 const LESSONS = [
   {
+    subject:"isee", date:"2026-09-05",
+    title:"Essential 1-2: Word Cards", zh:"Essential 1-2：ISEE 詞卡",
+    desc:"Learn the next ten Essential Deck 1 words through pictures, short examples, pronunciation, and easy synonym links.",
+    zhDesc:"用圖像、短例句、發音與簡單同義詞，熟悉 Essential Deck 1 的下一組 10 個單字。",
+    source:"Manhattan Review · ISEE Essential Deck 1 · Part 2 of 5",
+    thumb:"word-cards-1-2",
+    href:"isee-essential-1-2.html?v=20260905-essential-1-2-1"
+  },
+  {
     subject:"isee", date:"2026-09-04",
     title:"Read the Evidence, Then Name Its Job", zh:"先讀證據，再說它在文章裡做什麼",
     desc:"Four confirmed reading corrections plus one partly obscured answer screen: infer cautiously from actions, then separate paragraph content from function.",
@@ -392,6 +401,22 @@ const LESSONS = [
 
 /* ===== 3. Thumbnails — drawn with SVG, no photo files needed ===== */
 const THUMBS = {
+  /* a new difficult word connected to the plain synonym William can retrieve */
+  "word-cards-1-2"(){
+    return `<svg viewBox="0 0 104 78" role="img" aria-label="The ISEE word cogent connected to the easy synonym convincing">
+      <rect x="16" y="8" width="62" height="43" rx="6" fill="#F4F4F6" stroke="#C9CBD2" transform="rotate(-5 47 29)"/>
+      <rect x="25" y="11" width="60" height="43" rx="6" fill="#FFF1E1" stroke="#F08A2C" transform="rotate(4 55 32)"/>
+      <rect x="21" y="14" width="62" height="43" rx="6" fill="#E8EEFC" stroke="#3E6FD9" stroke-width="1.4"/>
+      <text x="52" y="29" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="8.5" fill="#2B52AE">cogent</text>
+      <path d="M52 34 V39" stroke="#3E6FD9" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M52 39 l-2.5 -3 h5 z" fill="#3E6FD9"/>
+      <rect x="31" y="41" width="42" height="10" rx="5" fill="#FFFFFF" stroke="#C9D5F2"/>
+      <text x="52" y="48.2" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="6.5" fill="#2B52AE">convincing</text>
+      <circle cx="88" cy="19" r="8" fill="#FFF9D9" stroke="#E7C64B"/>
+      <path d="M84 19 l2.4 2.5 l5 -5.5" fill="none" stroke="#2FA36B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="52" y="70" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="6.5" fill="#6B6E76">10 words · part 2 of 5</text>
+    </svg>`;
+  },
   "paragraph-job"(){
     return `<svg viewBox="0 0 104 78" role="img" aria-label="Two paragraph cards changing from excitement to embarrassment">
       <rect x="6" y="9" width="40" height="48" rx="6" fill="#FFF8D6" stroke="#E7C64B"/>
