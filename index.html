@@ -173,6 +173,15 @@ const SUBJECTS = {
    thumb: "sieve" | "fraction" | "numberline" | "artifact" | "grid"  (see THUMBS below)      */
 const LESSONS = [
   {
+    subject:"english", topic:"english-writing", date:"2026-09-05",
+    title:"ISEE Essay Builder", zh:"ISEE 作文句子建構器",
+    desc:"Build an introduction, two body paragraphs, and a conclusion one sentence at a time, then email the finished essay.",
+    zhDesc:"一次寫一句，完成開頭、兩個主體段與結尾，再把完整文章寄到信箱。",
+    source:"ISEE Lower-style Writing Practice · 11-sentence guided essay",
+    thumb:"essay-stack",
+    href:"isee-essay-builder.html?v=20260906-1"
+  },
+  {
     subject:"isee", date:"2026-09-05",
     title:"Essential 1-2: Word Cards", zh:"Essential 1-2：ISEE 詞卡",
     desc:"Learn the next ten Essential Deck 1 words through pictures, short examples, pronunciation, and easy synonym links.",
@@ -401,6 +410,22 @@ const LESSONS = [
 
 /* ===== 3. Thumbnails — drawn with SVG, no photo files needed ===== */
 const THUMBS = {
+  "essay-stack"(){
+    return `<svg viewBox="0 0 104 78" role="img" aria-label="Four essay paragraphs built from eleven sentences">
+      <rect x="8" y="5" width="88" height="14" rx="3" fill="#E8EEFC" stroke="#3E6FD9"/>
+      <text x="13" y="13.5" font-family="Fredoka,sans-serif" font-size="6.5" font-weight="700" fill="#2B52AE">INTRO</text>
+      <path d="M43 9.5 H88 M43 13.5 H79 M43 16.5 H84" stroke="#3E6FD9" stroke-width="1.2" stroke-linecap="round"/>
+      <rect x="8" y="22" width="88" height="14" rx="3" fill="#FFF1E1" stroke="#F08A2C"/>
+      <text x="13" y="30.5" font-family="Fredoka,sans-serif" font-size="6.5" font-weight="700" fill="#C4680F">BODY 1</text>
+      <path d="M43 26.5 H88 M43 30.5 H81 M43 33.5 H86" stroke="#F08A2C" stroke-width="1.2" stroke-linecap="round"/>
+      <rect x="8" y="39" width="88" height="14" rx="3" fill="#E6F6EE" stroke="#2FA36B"/>
+      <text x="13" y="47.5" font-family="Fredoka,sans-serif" font-size="6.5" font-weight="700" fill="#1E6E48">BODY 2</text>
+      <path d="M43 43.5 H88 M43 47.5 H82 M43 50.5 H86" stroke="#2FA36B" stroke-width="1.2" stroke-linecap="round"/>
+      <rect x="8" y="56" width="88" height="14" rx="3" fill="#F4F4F6" stroke="#9C9EA5"/>
+      <text x="13" y="64.5" font-family="Fredoka,sans-serif" font-size="6.5" font-weight="700" fill="#6B6E76">CLOSE</text>
+      <path d="M43 60.5 H87 M43 65 H78" stroke="#6B6E76" stroke-width="1.2" stroke-linecap="round"/>
+    </svg>`;
+  },
   /* a new difficult word connected to the plain synonym William can retrieve */
   "word-cards-1-2"(){
     return `<svg viewBox="0 0 104 78" role="img" aria-label="The ISEE word cogent connected to the easy synonym convincing">

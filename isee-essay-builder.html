@@ -1,0 +1,962 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>William's Correction Notes — ISEE Essay Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fredoka:wght@500;600;700&family=Huninn&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#2d3038;--muted:#6d7180;--paper:#fffefa;--desk:#e8e1d4;
+  --line:#cfdcf1;--margin:#ef9aaa;--orange:#f08a2c;--orange-soft:#fff0df;
+  --blue:#3e6fd9;--blue-soft:#eaf0ff;--green:#2f9a65;--green-soft:#e8f7ef;
+  --red:#cf4f5f;--red-soft:#fff0f2;--yellow:#fff0a0;--purple:#7558c7;
+  --shadow:0 8px 25px rgba(55,45,30,.13);--radius:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;color:var(--ink);font-family:"Fredoka","Huninn",system-ui,sans-serif;
+  background:
+    radial-gradient(circle at 16% 7%,rgba(255,255,255,.48) 0 2px,transparent 3px),
+    linear-gradient(105deg,rgba(255,255,255,.2),transparent 55%),
+    var(--desk);
+  min-height:100vh;
+}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:4px solid rgba(62,111,217,.32);outline-offset:3px}
+.skip{position:absolute;left:-9999px;top:8px;background:#fff;padding:9px 12px;border-radius:8px;z-index:99}
+.skip:focus{left:8px}
+.page{
+  position:relative;max-width:1120px;margin:28px auto;padding:24px 34px 56px 76px;
+  background:
+    linear-gradient(90deg,transparent 0 47px,var(--margin) 47px 49px,transparent 49px),
+    repeating-linear-gradient(180deg,transparent 0 31px,var(--line) 31px 32px),
+    var(--paper);
+  border-radius:9px;box-shadow:var(--shadow);overflow:hidden;
+}
+.page:before{
+  content:"";position:absolute;left:16px;top:42px;width:20px;height:calc(100% - 82px);
+  background:radial-gradient(circle,#9d9589 0 7px,#d4ccbe 8px 10px,transparent 11px) center top/20px 78px repeat-y;
+}
+.tape{position:absolute;width:112px;height:28px;background:rgba(245,220,142,.62);transform:rotate(-3deg);top:8px;left:calc(50% - 56px);filter:drop-shadow(0 1px 1px rgba(0,0,0,.08))}
+.lesson-head{display:grid;grid-template-columns:1fr 150px;gap:18px;align-items:center;padding:26px 26px 18px;border:3px solid var(--ink);border-radius:24px;background:rgba(255,255,255,.87);position:relative}
+.eyebrow{font-size:.78rem;letter-spacing:.11em;text-transform:uppercase;color:var(--orange);font-weight:700}
+h1{font-size:clamp(2rem,5vw,4rem);line-height:.94;margin:8px 0 9px;letter-spacing:-.04em}
+h1 mark{background:linear-gradient(transparent 52%,var(--yellow) 52%);color:inherit}
+.hand{font-family:"Caveat",cursive;color:var(--blue);font-size:1.35rem;transform:rotate(-1deg);margin:2px 0}
+.buddy-wrap{text-align:center}
+.buddy{width:128px;height:128px;object-fit:contain;filter:drop-shadow(0 7px 3px rgba(0,0,0,.13))}
+.buddy-name{font-size:.78rem;color:var(--muted);margin-top:-5px}
+.greeting{margin:18px 0 0;padding:11px 14px;background:var(--green-soft);border-left:6px solid var(--green);border-radius:9px;font-size:1rem}
+.zh{font-family:"Huninn",sans-serif;color:#596173}
+body:not(.show-zh) .zh{display:none!important}
+.zh.block{display:block;margin-top:3px;font-size:.88em}
+body:not(.show-zh) .zh.block{display:none!important}
+.toolbar{position:sticky;top:8px;z-index:20;margin:16px 0 18px;display:flex;gap:10px;justify-content:space-between;align-items:center;padding:9px 12px;border:2px solid var(--ink);border-radius:14px;background:rgba(255,254,250,.95);box-shadow:0 4px 0 rgba(45,48,56,.12)}
+.model-pill{display:inline-flex;align-items:center;gap:7px;background:var(--orange-soft);padding:7px 12px;border-radius:999px;font-size:.88rem}
+.lang-btn{border:2px solid var(--ink);background:#fff;border-radius:999px;padding:7px 13px;font-weight:700}
+.lang-btn[aria-pressed="true"]{background:var(--blue);color:#fff}
+.vocab-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0}
+.vocab{background:#fff;border:2px solid var(--ink);border-radius:14px;padding:10px 12px;min-height:94px;box-shadow:3px 3px 0 var(--ink)}
+.vocab b{display:block;color:var(--blue);font-size:.94rem}
+.vocab span{font-size:.8rem;line-height:1.35}
+.prompt-card{position:relative;background:#fff;border:3px dashed var(--orange);border-radius:18px;padding:20px 22px;margin:16px 0 20px}
+.prompt-card:after{content:"NEW PRACTICE";position:absolute;right:14px;top:-13px;background:var(--orange);color:#fff;padding:5px 10px;border-radius:999px;font-size:.72rem;letter-spacing:.08em}
+.prompt-label{font-size:.78rem;color:var(--muted);margin-bottom:8px}
+.prompt-text{font-family:"Huninn","Fredoka",sans-serif;font-weight:700;font-size:clamp(1.08rem,2.2vw,1.38rem);line-height:1.45}
+.progress{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:12px 0 18px}
+.stage-chip{position:relative;border:2px solid #bfc2ca;background:#f6f6f4;color:#757984;border-radius:12px;padding:9px 6px;text-align:center;font-size:.78rem;font-weight:700}
+.stage-chip.active{background:var(--blue-soft);border-color:var(--blue);color:var(--blue);transform:translateY(-2px)}
+.stage-chip.done{background:var(--green-soft);border-color:var(--green);color:#207b4d}
+.learn-grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(300px,.88fr);gap:18px;align-items:start}
+.stage-card{background:rgba(255,255,255,.92);border:3px solid var(--ink);border-radius:var(--radius);padding:21px;min-height:440px}
+.stage-title{display:flex;align-items:center;gap:10px;margin:0 0 8px}
+.stage-num{display:inline-grid;place-items:center;min-width:36px;height:36px;border-radius:50%;background:var(--ink);color:#fff}
+.stage-title h2{font-size:1.45rem;margin:0}
+.stage-intro{margin:0 0 16px;color:var(--muted);line-height:1.45}
+.question{margin:13px 0;padding:13px 14px;border-radius:12px;background:var(--blue-soft);border-left:6px solid var(--blue);font-size:1.02rem;line-height:1.45}
+.step-tag{display:inline-block;background:var(--orange-soft);color:#b65b0b;padding:5px 9px;border-radius:999px;font-size:.74rem;margin-bottom:6px}
+.options{display:grid;gap:9px;margin:12px 0}
+.option{width:100%;text-align:left;border:2px solid #b8bbc4;background:#fff;border-radius:12px;padding:11px 13px;line-height:1.38;color:var(--ink)}
+.option:hover:not(:disabled){border-color:var(--blue);transform:translateY(-1px)}
+.option.correct{border-color:var(--green);background:var(--green-soft)}
+.option.wrong{border-color:var(--red);background:var(--red-soft)}
+.option:disabled{cursor:default;opacity:.76}
+.feedback{min-height:48px;padding:0;margin-top:8px;line-height:1.4}
+.feedback.ok,.feedback.try{padding:10px 12px;border-radius:10px}
+.feedback.ok{background:var(--green-soft);color:#186d43}
+.feedback.try{background:var(--red-soft);color:#963343}
+.next-btn,.primary-btn,.small-btn{
+  border:2px solid var(--ink);background:var(--orange);color:#fff;border-radius:12px;padding:9px 15px;font-weight:700;box-shadow:3px 3px 0 var(--ink)
+}
+.primary-btn{display:inline-flex;align-items:center;text-decoration:none}
+.primary-btn:disabled{opacity:.5;cursor:wait;transform:none;box-shadow:3px 3px 0 var(--ink)}
+.next-btn[hidden],.stage-panel[hidden],.unlock[hidden],.builder-done[hidden]{display:none}
+.next-btn:hover,.primary-btn:hover,.small-btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink)}
+.stack-card{position:sticky;top:74px;border:3px solid var(--ink);border-radius:var(--radius);background:#fffefa;padding:17px;box-shadow:6px 6px 0 rgba(45,48,56,.16)}
+.stack-head{display:flex;justify-content:space-between;gap:8px;align-items:center;border-bottom:2px dashed #bec0c7;padding-bottom:9px;margin-bottom:10px}
+.stack-head h3{margin:0;font-size:1.12rem}
+.stack-count{font-family:"Caveat",cursive;color:var(--orange);font-size:1.16rem}
+.empty-stack{color:var(--muted);font-family:"Caveat",cursive;font-size:1.22rem;padding:17px 6px;text-align:center}
+.para-block{margin:9px 0;padding:9px 10px;border-radius:10px;border:1px solid #d5d7dc;background:#fff}
+.para-block.intro{border-left:6px solid var(--blue)}
+.para-block.body1{border-left:6px solid var(--orange)}
+.para-block.body2{border-left:6px solid var(--green)}
+.para-block.close{border-left:6px solid var(--purple)}
+.para-name{font-size:.69rem;letter-spacing:.08em;color:var(--muted);font-weight:700;margin-bottom:5px}
+.sentence{font-family:"Huninn","Fredoka",sans-serif;font-size:.88rem;line-height:1.42;margin:4px 0}
+.sentence.new{animation:pop .32s ease}
+@keyframes pop{0%{transform:scale(.94);background:var(--yellow)}100%{transform:scale(1);background:transparent}}
+.rewind-note{padding:10px 12px;border-radius:10px;background:var(--yellow);margin-top:8px;color:#684f00}
+.unlock{margin-top:25px}
+.unlocked-banner{border:3px solid var(--green);background:var(--green-soft);border-radius:18px;padding:16px 18px;text-align:center}
+.unlocked-banner h2{margin:0 0 3px;color:#187249}
+.map{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}
+.map-card{border:2px solid var(--ink);border-radius:14px;padding:12px;background:#fff;min-height:114px}
+.map-card b{display:block;margin-bottom:6px}
+.map-card:nth-child(1){box-shadow:inset 0 7px var(--blue-soft)}
+.map-card:nth-child(2){box-shadow:inset 0 7px var(--orange-soft)}
+.map-card:nth-child(3){box-shadow:inset 0 7px var(--green-soft)}
+.map-card:nth-child(4){box-shadow:inset 0 7px #eee9ff}
+.model-answer{border:2px dashed var(--purple);border-radius:15px;background:#fbf9ff;padding:0 15px;margin:16px 0}
+.model-answer summary{cursor:pointer;font-weight:700;padding:12px 0;color:var(--purple)}
+.annotated-model{display:grid;gap:11px;padding:3px 0 15px}
+.model-paragraph{--model-accent:var(--blue);--model-soft:var(--blue-soft);border-left:6px solid var(--model-accent);border-radius:11px;background:var(--model-soft);padding:11px 13px}
+.model-paragraph.body1{--model-accent:var(--orange);--model-soft:var(--orange-soft)}
+.model-paragraph.body2{--model-accent:var(--green);--model-soft:var(--green-soft)}
+.model-paragraph.close{--model-accent:var(--purple);--model-soft:#eee9ff}
+.model-paragraph-name{font-size:.7rem;letter-spacing:.08em;color:var(--model-accent);font-weight:700;margin-bottom:7px}
+.model-sentence{font-family:"Huninn","Fredoka",sans-serif;line-height:1.58;margin:9px 0 13px}
+.model-sentence:last-child{margin-bottom:2px}
+.model-sentence-text{text-decoration-line:underline;text-decoration-color:var(--model-accent);text-decoration-thickness:3px;text-underline-offset:.22em;text-decoration-skip-ink:auto}
+.model-role{display:block;width:max-content;max-width:100%;margin-top:4px;color:var(--model-accent);font-family:"Fredoka","Huninn",sans-serif;font-size:.67rem;font-weight:700;letter-spacing:.055em;text-transform:uppercase}
+.your-turn{border:4px solid var(--orange);border-radius:22px;background:#fff;padding:21px;margin-top:20px}
+.your-turn h2{margin:0;font-size:1.75rem}
+.target-prompt{background:var(--orange-soft);border-radius:13px;padding:13px 15px;margin:13px 0;line-height:1.48}
+.builder-layout{display:grid;grid-template-columns:minmax(0,.92fr) minmax(300px,1.08fr);gap:16px}
+.write-card{background:#fff;border:2px solid var(--ink);border-radius:14px;padding:15px}
+.write-card label{font-weight:700;display:block;margin-bottom:6px}
+.write-card textarea{width:100%;min-height:94px;border:2px solid #aeb2bc;border-radius:10px;padding:10px 11px;resize:vertical;line-height:1.45}
+.write-help{font-size:.83rem;color:var(--muted);margin:5px 0 9px}
+.model-line{margin:0 0 13px;padding:9px 11px;border-left:5px solid var(--blue);border-radius:8px;background:var(--blue-soft);font-size:.84rem;line-height:1.42}
+.model-line b{color:var(--blue)}
+.button-row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+.ghost-btn{border:2px solid var(--ink);background:#fff;color:var(--ink);border-radius:11px;padding:8px 12px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center}
+.ghost-btn:disabled{opacity:.38;cursor:default}
+.export-box{margin:13px 0;padding:11px 12px;border:2px dashed var(--green);border-radius:11px;background:var(--green-soft)}
+.export-subject{font-size:.78rem;letter-spacing:.05em;color:#186d43;font-weight:700}
+.save-feedback{min-height:30px;margin-top:10px;font-size:.83rem}
+.own-essay{background:
+  repeating-linear-gradient(180deg,transparent 0 28px,#dde5f2 28px 29px),#fff;
+  border:2px solid var(--ink);border-radius:14px;padding:13px 15px;min-height:238px
+}
+.own-essay h3{margin:0 0 8px}
+.own-para{font-family:"Huninn","Fredoka",sans-serif;line-height:1.62;margin:7px 0 14px}
+.privacy-note{font-size:.78rem;color:var(--muted);margin-top:10px}
+.quick-check{margin-top:21px;border:3px solid var(--blue);border-radius:18px;padding:17px;background:var(--blue-soft)}
+.quick-check h2{margin:0 0 4px}
+.quiz-progress{display:flex;gap:6px;margin:9px 0}
+.dot{width:12px;height:12px;border-radius:50%;background:#c4c7ce;border:1px solid #999}
+.dot.done{background:var(--green);border-color:var(--green)}
+.quiz-end{padding:12px;background:var(--green-soft);border-radius:10px;color:#186d43}
+.footer{display:flex;align-items:center;justify-content:center;gap:16px;margin:30px 0 0;padding-top:18px;border-top:3px dashed #c9c9c5}
+.footer .buddy{width:88px;height:88px}
+.footer-line{font-family:"Caveat",cursive;font-size:1.45rem;max-width:440px}
+.back{display:inline-block;margin-top:15px;color:var(--blue);font-size:.82rem}
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+@media(max-width:790px){
+  .page{margin:0;padding:18px 15px 44px 42px;border-radius:0;background:
+    linear-gradient(90deg,transparent 0 27px,var(--margin) 27px 29px,transparent 29px),
+    repeating-linear-gradient(180deg,transparent 0 31px,var(--line) 31px 32px),var(--paper)}
+  .page:before{display:none}.lesson-head{grid-template-columns:1fr 92px;padding:17px 14px}.buddy{width:88px;height:88px}
+  .vocab-row{grid-template-columns:1fr 1fr}.learn-grid,.builder-layout{grid-template-columns:1fr}.stack-card{position:relative;top:auto;order:-1}
+  .map{grid-template-columns:1fr 1fr}.toolbar{top:3px}.progress{gap:4px}.stage-chip{font-size:.68rem;padding:8px 2px}
+}
+@media(max-width:460px){
+  .page{padding-left:37px}.lesson-head{grid-template-columns:1fr}.buddy-wrap{display:flex;flex-direction:column;align-items:flex-end}.buddy{width:78px;height:78px}
+  .vocab-row,.map{grid-template-columns:1fr}.stage-card,.your-turn{padding:15px}.prompt-card{padding:18px 14px}
+  .toolbar{align-items:center}.model-pill{font-size:.73rem;padding:6px 8px}.lang-btn{padding:6px 10px}
+  h1{font-size:2.25rem}.option{padding:10px}.footer{align-items:flex-end}.footer-line{font-size:1.22rem}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+@media print{
+  body{background:#fff}.page{margin:0;max-width:none;box-shadow:none}.toolbar,.progress,.learn-grid,.quick-check,.footer,.back,.model-answer,.unlocked-banner,.map{display:none!important}
+  .unlock{display:block!important}.your-turn{border:0;padding:0}.write-card,.button-row,.target-prompt,.privacy-note{display:none!important}.builder-layout{display:block}.own-essay{min-height:0;border:0}
+}
+</style>
+</head>
+<body data-mode="life">
+<a class="skip" href="#lesson">Skip to lesson</a>
+<main class="page" id="lesson">
+  <div class="tape" aria-hidden="true"></div>
+  <header class="lesson-head">
+    <div>
+      <div class="eyebrow">William's correction notes · new guided lesson</div>
+      <h1>ISEE Essay <mark>Builder</mark></h1>
+      <p class="hand">09/05 · How sentences become paragraphs</p>
+      <p class="greeting">
+        Hi William. You used <b>because</b> twice in your last story. Today, let’s stack sentences into an essay.
+        <span class="zh block">William，你上次的故事自己用了兩次 because。今天我們把句子一塊一塊疊成文章。</span>
+      </p>
+    </div>
+    <div class="buddy-wrap">
+      <img class="buddy" id="buddyTop" src="img/skzoo-puppym.png" alt="PuppyM study buddy">
+      <div class="buddy-name" id="buddyName">PuppyM is here.</div>
+    </div>
+  </header>
+
+  <div class="toolbar" aria-label="Lesson tools">
+    <div class="model-pill">🧱 Guided model <span class="zh">· 引導示範</span></div>
+    <button class="lang-btn" id="langBtn" type="button" aria-pressed="false">中文</button>
+  </div>
+
+  <section class="vocab-row" aria-label="Useful words">
+    <div class="vocab"><b>direct answer</b><span>Answer the prompt right away.</span><span class="zh block">一開始就直接回答題目。</span></div>
+    <div class="vocab"><b>point</b><span>One reason or main idea.</span><span class="zh block">一個理由或主要想法。</span></div>
+    <div class="vocab"><b>camera detail</b><span>An exact action or object a camera could catch.</span><span class="zh block">攝影機拍得到的動作或物品。</span></div>
+    <div class="vocab"><b>why it matters</b><span>Explain what the detail proves.</span><span class="zh block">說明細節證明了什麼。</span></div>
+  </section>
+
+  <section class="prompt-card" aria-labelledby="modelPromptLabel">
+    <div class="prompt-label" id="modelPromptLabel">New practice lesson · ISEE Lower-style prompt · 2026-09-05 <span class="zh">· 這是新練習，不是以前的作業</span></div>
+    <div class="prompt-text">If you could add one new class to your school, what would it be? How often would it meet? Explain your answer.</div>
+  </section>
+
+  <nav class="progress" aria-label="Four lesson stages">
+    <div class="stage-chip active" id="chipNotice">1 · NOTICE</div>
+    <div class="stage-chip" id="chipDo">2 · DO</div>
+    <div class="stage-chip" id="chipWhy">3 · WHY</div>
+    <div class="stage-chip" id="chipProve">4 · PROVE</div>
+  </nav>
+
+  <div class="learn-grid">
+    <section class="stage-card" aria-live="polite">
+      <div class="stage-panel" id="noticePanel"></div>
+      <div class="stage-panel" id="doPanel" hidden></div>
+      <div class="stage-panel" id="whyPanel" hidden></div>
+      <div class="stage-panel" id="provePanel" hidden></div>
+    </section>
+
+    <aside class="stack-card" aria-live="polite" aria-label="Essay sentence stack">
+      <div class="stack-head">
+        <h3 id="stackTitle">Model essay stack</h3>
+        <div class="stack-count" id="stackCount">0 sentences</div>
+      </div>
+      <div id="stackBody"><div class="empty-stack">Pick the first useful sentence.<br><span class="zh">先選出第一個有工作的句子。</span></div></div>
+    </aside>
+  </div>
+
+  <section class="unlock" id="unlock" hidden>
+    <div class="unlocked-banner" tabindex="-1" id="unlockBanner">
+      <h2>✓ You built two essays with choices.</h2>
+      <div>Now the structure can hold your own ideas. <span class="zh">現在換你把自己的想法放進同一個架構。</span></div>
+    </div>
+
+    <div class="map" aria-label="Essay map">
+      <div class="map-card"><b>INTRO</b>direct answer → frequency/how → preview<span class="zh block">直接回答 → 次數／方法 → 預告</span></div>
+      <div class="map-card"><b>BODY 1</b>point → camera detail → why it matters<span class="zh block">主旨 → 畫面細節 → 意義</span></div>
+      <div class="map-card"><b>BODY 2</b>point → camera detail → why it matters<span class="zh block">主旨 → 畫面細節 → 意義</span></div>
+      <div class="map-card"><b>CLOSE</b>add it up → restate your answer<span class="zh block">加總重點 → 重說答案</span></div>
+    </div>
+
+    <details class="model-answer">
+      <summary>See the finished cooking-class model <span class="zh">· 看完整示範文章</span></summary>
+      <div class="annotated-model" aria-label="Cooking-class model with sentence jobs">
+        <section class="model-paragraph intro" aria-labelledby="modelIntroLabel">
+          <div class="model-paragraph-name" id="modelIntroLabel">INTRO <span class="zh">· 開頭</span></div>
+          <div class="model-sentence"><span class="model-sentence-text">I would add a cooking class to our school.</span><span class="model-role">1 · direct answer <span class="zh">· 直接回答</span></span></div>
+          <div class="model-sentence"><span class="model-sentence-text">It should meet twice a week.</span><span class="model-role">2 · frequency <span class="zh">· 次數</span></span></div>
+          <div class="model-sentence"><span class="model-sentence-text">It would teach useful science and life skills.</span><span class="model-role">3 · preview <span class="zh">· 預告</span></span></div>
+        </section>
+        <section class="model-paragraph body1" aria-labelledby="modelBody1Label">
+          <div class="model-paragraph-name" id="modelBody1Label">BODY 1 <span class="zh">· 主體一</span></div>
+          <div class="model-sentence"><span class="model-sentence-text">First, cooking shows science in real life.</span><span class="model-role">4 · point <span class="zh">· 主旨</span></span></div>
+          <div class="model-sentence"><span class="model-sentence-text">Sugar turns brown in a hot pan.</span><span class="model-role">5 · camera detail <span class="zh">· 畫面細節</span></span></div>
+          <div class="model-sentence"><span class="model-sentence-text">That change would help me understand heat and chemistry.</span><span class="model-role">6 · why it matters <span class="zh">· 意義</span></span></div>
+        </section>
+        <section class="model-paragraph body2" aria-labelledby="modelBody2Label">
+          <div class="model-paragraph-name" id="modelBody2Label">BODY 2 <span class="zh">· 主體二</span></div>
+          <div class="model-sentence"><span class="model-sentence-text">Cooking is also a skill everyone needs.</span><span class="model-role">7 · point <span class="zh">· 主旨</span></span></div>
+          <div class="model-sentence"><span class="model-sentence-text">I once left a burnt pot in our sink.</span><span class="model-role">8 · camera detail <span class="zh">· 畫面細節</span></span></div>
+          <div class="model-sentence"><span class="model-sentence-text">A class would teach me to measure and watch the time.</span><span class="model-role">9 · why it matters <span class="zh">· 意義</span></span></div>
+        </section>
+        <section class="model-paragraph close" aria-labelledby="modelCloseLabel">
+          <div class="model-paragraph-name" id="modelCloseLabel">CLOSE <span class="zh">· 結尾</span></div>
+          <div class="model-sentence"><span class="model-sentence-text">Cooking would give students knowledge and independence.</span><span class="model-role">10 · add it up <span class="zh">· 加總重點</span></span></div>
+          <div class="model-sentence"><span class="model-sentence-text">The best school lessons are the ones we can use for years.</span><span class="model-role">11 · restate your answer <span class="zh">· 重說答案</span></span></div>
+        </section>
+      </div>
+    </details>
+
+    <section class="your-turn" id="builder">
+      <div class="eyebrow">Today's progressive prompt · your turn</div>
+      <h2>Teach One Skill</h2>
+      <div class="target-prompt"><b>If you could teach your classmates one skill that you know well, what would you teach? Describe how you would teach it and explain why the skill would be useful.</b><span class="zh block">如果你能教同學一項你很熟悉的技能，你會教什麼？描述你會怎麼教，並解釋它為什麼有用。</span></div>
+      <p>Write only <b>one sentence</b> at a time. This page will hold and sort the sentences for you. <span class="zh">一次只寫一句；頁面會幫你保留並分段。</span></p>
+      <div class="builder-layout">
+        <div class="write-card" id="writeCard"></div>
+        <div class="own-essay">
+          <h3>My growing essay <span class="zh">· 我的文章</span></h3>
+          <div id="ownEssay"><div class="empty-stack">Your first sentence will land here.</div></div>
+        </div>
+      </div>
+      <div class="privacy-note">Your writing stays in this browser page. Copy or print it before refreshing. <span class="zh">內容只留在這個頁面；重新整理前請複製或列印。</span></div>
+    </section>
+
+    <section class="quick-check" id="quickCheck">
+      <div class="eyebrow">Optional 5-card replay</div>
+      <h2>What job is this sentence doing?</h2>
+      <p>Use this after your essay if you want one fast review. <span class="zh">寫完後可以用五張卡快速複習。</span></p>
+      <div class="quiz-progress" id="quizDots" aria-label="Quiz progress"></div>
+      <div id="quizBody"></div>
+    </section>
+  </section>
+
+  <footer class="footer">
+    <img class="buddy" id="buddyBottom" src="img/skzoo-puppym.png" alt="">
+    <div class="footer-line">I packed eleven snacks. The essay ate none of them.</div>
+  </footer>
+  <a class="back" href="index.html">← Back to William's notes</a>
+</main>
+
+<script>
+(function(){
+  "use strict";
+
+  var buddies = [
+    ["bbokari","BbokAri"],["dwaekki","DWAEKKI"],["foxiny","FoxI.Ny"],["hanquokka","HAN QUOKKA"],
+    ["jiniret","Jiniret"],["leebit","Leebit"],["puppym","PuppyM"],["wolfchan","Wolf Chan"]
+  ];
+  var buddy = buddies[Math.floor(Math.random()*buddies.length)];
+  var buddyPath = "img/skzoo-" + buddy[0] + ".png";
+  document.getElementById("buddyTop").src = buddyPath;
+  document.getElementById("buddyTop").alt = buddy[1] + " study buddy";
+  document.getElementById("buddyBottom").src = buddyPath;
+  document.getElementById("buddyName").textContent = buddy[1] + " is here.";
+
+  var langBtn = document.getElementById("langBtn");
+  langBtn.addEventListener("click",function(){
+    var on = !document.body.classList.contains("show-zh");
+    document.body.classList.toggle("show-zh",on);
+    langBtn.setAttribute("aria-pressed",String(on));
+  });
+
+  function Z(en,zh){
+    return en + '<span class="zh block">' + zh + '</span>';
+  }
+  function escapeHtml(value){
+    return String(value).replace(/[&<>"']/g,function(ch){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[ch];
+    });
+  }
+
+  var stages = ["notice","do","why","prove"];
+  var activeStage = "notice";
+  var completed = {};
+  function setStage(name){
+    activeStage = name;
+    stages.forEach(function(s){
+      document.getElementById(s+"Panel").hidden = s !== name;
+      var chip = document.getElementById("chip"+s.charAt(0).toUpperCase()+s.slice(1));
+      chip.classList.toggle("active",s === name);
+      chip.classList.toggle("done",!!completed[s]);
+    });
+    var panel = document.getElementById(name+"Panel");
+    panel.scrollIntoView({behavior:"smooth",block:"center"});
+    var focusable = panel.querySelector("button");
+    if(focusable){focusable.focus({preventScroll:true});}
+  }
+
+  function stageHeading(number,name,subtitle,zh){
+    return '<div class="stage-title"><span class="stage-num">'+number+'</span><h2>'+name+'</h2></div>'+
+      '<p class="stage-intro">'+Z(subtitle,zh)+'</p>';
+  }
+
+  var lastCorrectSlot = -1;
+  function arrangeChoices(options){
+    var correct = options.filter(function(opt){return !!opt.ok;});
+    var others = options.filter(function(opt){return !opt.ok;});
+    for(var i=others.length-1;i>0;i--){
+      var j=Math.floor(Math.random()*(i+1));
+      var temp=others[i];others[i]=others[j];others[j]=temp;
+    }
+    if(correct.length!==1){return options.slice();}
+    var available=[];
+    for(var slot=0;slot<options.length;slot++){
+      if(slot!==lastCorrectSlot){available.push(slot);}
+    }
+    var correctSlot=available[Math.floor(Math.random()*available.length)];
+    others.splice(correctSlot,0,correct[0]);
+    lastCorrectSlot=correctSlot;
+    return others;
+  }
+
+  function renderSingleChoice(container,config,onCorrect,onWrong){
+    var html = "";
+    var displayOptions = arrangeChoices(config.options);
+    if(config.tag){html += '<div class="step-tag">'+config.tag+'</div>';}
+    html += '<div class="question">'+Z(config.question,config.zhQuestion)+'</div><div class="options">';
+    displayOptions.forEach(function(opt,index){
+      html += '<button type="button" class="option" data-choice="'+index+'">'+escapeHtml(opt.text)+
+        '<span class="zh block">'+escapeHtml(opt.zh)+'</span></button>';
+    });
+    html += '</div><div class="feedback" role="status"></div><button type="button" class="next-btn" hidden>Next →</button>';
+    container.innerHTML = config.heading + html;
+    var buttons = Array.prototype.slice.call(container.querySelectorAll(".option"));
+    var feedback = container.querySelector(".feedback");
+    var next = container.querySelector(".next-btn");
+    buttons.forEach(function(button,index){
+      button.addEventListener("click",function(){
+        var opt = displayOptions[index];
+        if(opt.ok){
+          buttons.forEach(function(b){b.disabled=true;});
+          button.classList.add("correct");
+          feedback.className = "feedback ok";
+          feedback.innerHTML = "✓ " + Z(opt.reason,opt.zhReason);
+          next.hidden = false;
+          next.focus();
+          if(onCorrect){onCorrect(opt,next);}
+        }else{
+          button.classList.add("wrong");
+          feedback.className = "feedback try";
+          feedback.innerHTML = Z(opt.hint,opt.zhHint);
+          if(onWrong){onWrong(opt);}
+        }
+      });
+    });
+  }
+
+  var modelItems = [];
+  var proveItems = [];
+  function renderStack(items,title){
+    document.getElementById("stackTitle").textContent = title;
+    document.getElementById("stackCount").textContent = items.length + (items.length===1 ? " sentence" : " sentences");
+    var body = document.getElementById("stackBody");
+    if(!items.length){
+      body.innerHTML = '<div class="empty-stack">Pick the first useful sentence.<br><span class="zh">先選出第一個有工作的句子。</span></div>';
+      return;
+    }
+    var order = ["intro","body1","body2","close"];
+    var names = {intro:"INTRO",body1:"BODY 1",body2:"BODY 2",close:"CLOSE"};
+    body.innerHTML = order.map(function(para){
+      var group = items.filter(function(item){return item.para===para;});
+      if(!group.length){return "";}
+      return '<div class="para-block '+para+'"><div class="para-name">'+names[para]+'</div>'+
+        group.map(function(item,i){return '<div class="sentence'+(i===group.length-1?" new":"")+'">'+escapeHtml(item.text)+'</div>';}).join("")+
+        '</div>';
+    }).join("");
+  }
+
+  var noticeConfig = {
+    heading:stageHeading(1,"NOTICE","Do not write yet. Read the prompt and find every job.","先不要寫。先找出題目要求的每一件事。"),
+    question:"What jobs must this writer answer?",
+    zhQuestion:"作者必須回答哪幾件事？",
+    options:[
+      {text:"Name the class, say how often it meets, and explain why.",zh:"課程名稱、多久上一次，以及為什麼。",ok:true,reason:"Those three parts match all three questions in the prompt.",zhReason:"這三部分剛好對應題目的三個要求。"},
+      {text:"Give only the name of the class.",zh:"只寫課程名稱。",ok:false,hint:"Look at the second and third sentences. What do they still ask?",zhHint:"再看題目的第二、第三句：它們還問了什麼？"},
+      {text:"Name the room and choose the teacher.",zh:"說明教室和老師。",ok:false,hint:"Point to the exact words in the prompt. Do you see room or teacher?",zhHint:"回到題目找原字：有問教室或老師嗎？"}
+    ]
+  };
+
+  renderSingleChoice(document.getElementById("noticePanel"),noticeConfig,function(opt,next){
+    next.addEventListener("click",function(){
+      completed.notice=true;renderDo();setStage("do");
+    },{once:true});
+  });
+
+  var doSteps = [
+    {
+      para:"intro",job:"INTRO · direct answer",question:"Which sentence answers the first question immediately?",zhQuestion:"哪一句立刻回答第一個問題？",
+      options:[
+        {text:"I would add a cooking class to our school.",zh:"我會在學校增加烹飪課。",ok:true,reason:"It names the class right away.",zhReason:"它一開始就清楚說出課程。"},
+        {text:"Schools can have many interesting classes.",zh:"學校可以有很多有趣的課。",hint:"Interesting is vague. Which choice names one exact class?",zhHint:"interesting 太模糊。哪個選項說出一門明確的課？"},
+        {text:"Yesterday I ate a sandwich after school.",zh:"昨天放學後我吃了三明治。",hint:"Ask: does this sentence answer what class to add?",zhHint:"問自己：這句有回答要增加什麼課嗎？"}
+      ]
+    },
+    {
+      para:"intro",job:"INTRO · frequency",question:"Which sentence completes the “how often” job?",zhQuestion:"哪一句完成「多久一次」的任務？",
+      options:[
+        {text:"It should meet twice a week.",zh:"它應該一週上兩次。",ok:true,reason:"Twice a week is exact and answers the prompt.",zhReason:"一週兩次很明確，也回答了題目。"},
+        {text:"It should meet sometimes.",zh:"它應該有時候上課。",hint:"Sometimes does not give the reader a schedule. Which choice does?",zhHint:"sometimes 沒有清楚的時間。哪句有？"},
+        {text:"The classroom should be big.",zh:"教室應該很大。",hint:"The prompt asks how often, not what size.",zhHint:"題目問多久一次，不是教室大小。"}
+      ]
+    },
+    {
+      para:"intro",job:"INTRO · preview",question:"Which sentence previews the two ideas the essay will explain?",zhQuestion:"哪一句預告文章接下來的兩個重點？",
+      options:[
+        {text:"It would teach useful science and life skills.",zh:"它會教實用的科學和生活技能。",ok:true,reason:"Science and life skills can each become a body paragraph.",zhReason:"科學和生活技能各自都能變成一個主體段。"},
+        {text:"Cooking is good and nice and fun.",zh:"烹飪很好、很棒、很好玩。",hint:"Which choice gives two clear ideas instead of three fuzzy words?",zhHint:"哪句提供兩個清楚的重點，而不是三個模糊的形容詞？"},
+        {text:"My favorite color is blue.",zh:"我最喜歡藍色。",hint:"Can this sentence lead to reasons about a cooking class?",zhHint:"這句能帶出烹飪課的理由嗎？"}
+      ]
+    },
+    {
+      para:"body1",job:"BODY 1 · point",question:"Body 1 is about science. Which sentence states that point?",zhQuestion:"第一個主體段要談科學。哪一句說出主旨？",
+      options:[
+        {text:"First, cooking shows science in real life.",zh:"首先，烹飪把科學帶進真實生活。",ok:true,reason:"It names the paragraph’s main idea.",zhReason:"它清楚說出這一段的主要想法。"},
+        {text:"First, I like food.",zh:"首先，我喜歡食物。",hint:"The preview promised science. Which sentence keeps that promise?",zhHint:"開頭預告了科學。哪句接得上？"},
+        {text:"My friend has a red backpack.",zh:"我朋友有一個紅色背包。",hint:"Which choice belongs under the science idea?",zhHint:"哪句屬於科學這個重點？"}
+      ]
+    },
+    {
+      para:"body1",job:"BODY 1 · camera detail",question:"Which detail could a camera catch during cooking?",zhQuestion:"哪個細節是攝影機在烹飪時拍得到的？",
+      options:[
+        {text:"Sugar turns brown in a hot pan.",zh:"糖在熱鍋裡變成棕色。",ok:true,reason:"The reader can see the pan and the color change.",zhReason:"讀者看得到鍋子和顏色變化。"},
+        {text:"Science is very important.",zh:"科學非常重要。",hint:"Can a camera photograph “important”? Look for an action or change.",zhHint:"攝影機能拍到「重要」嗎？找得到動作或變化的句子。"},
+        {text:"Learning can be amazing.",zh:"學習可以很神奇。",hint:"What exact object changes in the stronger choice?",zhHint:"比較強的選項裡，有哪個物品真的發生變化？"}
+      ]
+    },
+    {
+      para:"body1",job:"BODY 1 · why it matters",question:"Which sentence explains what the brown sugar detail proves?",zhQuestion:"哪一句解釋糖變色這個細節證明了什麼？",
+      options:[
+        {text:"That change would help me understand heat and chemistry.",zh:"那個變化會幫我理解熱和化學。",ok:true,reason:"It connects the visible detail back to science.",zhReason:"它把看得到的細節連回科學主旨。"},
+        {text:"The pan sits on the stove.",zh:"鍋子放在爐子上。",hint:"That adds another picture. Which choice explains the learning?",zhHint:"這只是多一個畫面。哪句解釋學到了什麼？"},
+        {text:"Brown is a color.",zh:"棕色是一種顏色。",hint:"Ask: why would this class help a student?",zhHint:"問自己：這門課為什麼能幫助學生？"}
+      ]
+    },
+    {
+      para:"body2",job:"BODY 2 · point",question:"Body 2 is about life skills. Which sentence starts that idea?",zhQuestion:"第二個主體段談生活技能。哪一句開啟這個重點？",
+      options:[
+        {text:"Cooking is also a skill everyone needs.",zh:"烹飪也是每個人都需要的技能。",ok:true,reason:"It clearly shifts to the second promised idea.",zhReason:"它清楚轉到開頭預告的第二個重點。"},
+        {text:"Sugar can become brown.",zh:"糖會變成棕色。",hint:"That belongs in Body 1. Which choice begins the life-skill idea?",zhHint:"這屬於第一段。哪句開始生活技能的重點？"},
+        {text:"There are many things in life.",zh:"生活中有很多事情。",hint:"Which choice names the exact skill?",zhHint:"哪句清楚說出那項技能？"}
+      ]
+    },
+    {
+      para:"body2",job:"BODY 2 · camera detail",question:"Which sentence gives one exact cooking problem?",zhQuestion:"哪一句給出一個明確的烹飪問題？",
+      options:[
+        {text:"I once left a burnt pot in our sink.",zh:"我曾經把燒焦的鍋子留在水槽裡。",ok:true,reason:"It gives a specific object, action, and result.",zhReason:"它有明確的物品、動作和結果。"},
+        {text:"Sometimes cooking is hard.",zh:"有時烹飪很難。",hint:"Hard is a judgment. Which choice shows what happened?",zhHint:"hard 是判斷。哪句讓人看見發生了什麼？"},
+        {text:"People make mistakes.",zh:"人都會犯錯。",hint:"Which choice shows one real mistake instead of a general statement?",zhHint:"哪句呈現一個真實錯誤，而不是一般說法？"}
+      ]
+    },
+    {
+      para:"body2",job:"BODY 2 · why it matters",question:"Which sentence explains how the class would solve that problem?",zhQuestion:"哪一句解釋這門課會怎麼改善那個問題？",
+      options:[
+        {text:"A class would teach me to measure and watch the time.",zh:"課堂會教我測量份量並注意時間。",ok:true,reason:"It explains the useful habits learned from the class.",zhReason:"它解釋能從課堂學到哪些實用習慣。"},
+        {text:"The sink is beside the counter.",zh:"水槽在流理台旁邊。",hint:"Location does not explain improvement. Which choice names new habits?",zhHint:"位置不能解釋進步。哪句說出新習慣？"},
+        {text:"The pot was metal.",zh:"鍋子是金屬做的。",hint:"Ask: how would the class help next time?",zhHint:"問自己：下次這門課能怎麼幫忙？"}
+      ]
+    },
+    {
+      para:"close",job:"CLOSE · add it up",question:"Which sentence adds the two body ideas together?",zhQuestion:"哪一句把兩個主體段的重點加總起來？",
+      options:[
+        {text:"Cooking would give students knowledge and independence.",zh:"烹飪會帶給學生知識和獨立能力。",ok:true,reason:"Knowledge matches science; independence matches life skills.",zhReason:"知識對應科學，獨立能力對應生活技能。"},
+        {text:"Cooking uses a kitchen.",zh:"烹飪會用到廚房。",hint:"Which choice combines what students learn from both body paragraphs?",zhHint:"哪句結合了兩個主體段裡學生學到的東西？"},
+        {text:"That is my essay.",zh:"這就是我的文章。",hint:"A conclusion should add up ideas, not announce the ending.",zhHint:"結尾要加總想法，不是宣布文章結束。"}
+      ]
+    },
+    {
+      para:"close",job:"CLOSE · final thought",question:"Which final sentence leaves the reader with the main answer?",zhQuestion:"哪個最後一句讓讀者記住主要答案？",
+      options:[
+        {text:"The best school lessons are the ones we can use for years.",zh:"最好的學校課程，是多年後仍能使用的課程。",ok:true,reason:"It returns to why this class belongs in school.",zhReason:"它回到這門課為什麼適合放進學校。"},
+        {text:"I have nothing else to say.",zh:"我沒有別的話要說了。",hint:"Which choice gives the reader an idea worth remembering?",zhHint:"哪句留下一個值得記住的想法？"},
+        {text:"Lunch comes after math on Tuesday.",zh:"星期二午餐在數學課後。",hint:"Does this return to the answer about a cooking class?",zhHint:"這句有回到烹飪課的答案嗎？"}
+      ]
+    }
+  ];
+  var doIndex = 0;
+  function renderDo(){
+    var step = doSteps[doIndex];
+    var panel = document.getElementById("doPanel");
+    var config = {
+      heading:stageHeading(2,"DO","Build the model one sentence at a time. Watch each choice land in a paragraph.","一次完成一個句子。看每個選擇落進正確段落。"),
+      tag:"Sentence "+(doIndex+1)+" of "+doSteps.length+" · "+step.job,
+      question:step.question,zhQuestion:step.zhQuestion,options:step.options
+    };
+    renderSingleChoice(panel,config,function(opt,next){
+      modelItems.push({para:step.para,text:opt.text});
+      renderStack(modelItems,"Cooking-class model");
+      next.addEventListener("click",function(){
+        doIndex++;
+        if(doIndex < doSteps.length){
+          renderDo();
+          panel.querySelector(".option").focus();
+        }else{
+          completed.do=true;renderWhy();setStage("why");
+        }
+      },{once:true});
+    });
+  }
+  function resetDo(){
+    doIndex=0;modelItems=[];renderStack(modelItems,"Cooking-class model");renderDo();
+  }
+
+  function renderWhy(){
+    var panel = document.getElementById("whyPanel");
+    var config = {
+      heading:stageHeading(3,"WHY","Explain why the body-paragraph stack works.","說明為什麼這個主體段架構有效。"),
+      question:"Why does point → camera detail → why it matters make a strong body paragraph?",
+      zhQuestion:"為什麼「主旨 → 畫面細節 → 意義」能組成有力的主體段？",
+      options:[
+        {text:"The point tells the idea, the detail lets the reader see it, and the last sentence explains what it proves.",zh:"主旨說想法，細節讓讀者看見，最後一句解釋它證明什麼。",ok:true,reason:"Each sentence has a different job, and the three jobs support one idea.",zhReason:"每一句工作不同，三句一起支持同一個想法。"},
+        {text:"It makes every paragraph exactly the same length.",zh:"它讓每一段字數完全相同。",ok:false,hint:"Think about sentence jobs, not sentence length. Which job gives evidence?",zhHint:"想句子的工作，不是長度。哪個工作提供證據？"},
+        {text:"It adds difficult words so the essay sounds older.",zh:"它加入困難單字，讓文章聽起來更成熟。",ok:false,hint:"A strong paragraph is clear and supported. Which choice explains support?",zhHint:"有力的段落要清楚、有支持。哪個選項說明了支持？"}
+      ]
+    };
+    renderSingleChoice(panel,config,function(opt,next){
+      next.addEventListener("click",function(){
+        completed.why=true;proveIndex=0;proveItems=[];renderProve();setStage("prove");
+      },{once:true});
+    },function(){
+      Array.prototype.slice.call(panel.querySelectorAll(".option")).forEach(function(button){button.disabled=true;});
+      var feedback = panel.querySelector(".feedback");
+      feedback.insertAdjacentHTML("beforeend",'<div class="rewind-note">Rewind: rebuild the sentence jobs once more. <span class="zh">倒帶：再走一次句子工作的順序。</span></div>');
+      setTimeout(function(){
+        completed.do=false;completed.why=false;resetDo();setStage("do");
+      },1100);
+    });
+  }
+
+  var proveSteps = [
+    {
+      para:null,job:"Find the jobs",question:"New prompt: add one after-school club. What three jobs must you answer?",zhQuestion:"新題目：增加一個課後社團。你必須回答哪三件事？",
+      options:[
+        {text:"What club, how often it meets, and why it is valuable.",zh:"什麼社團、多久一次，以及為什麼有價值。",ok:true,reason:"You found all three prompt jobs without the cooking model.",zhReason:"你沒有依靠烹飪示範，也找到了三個任務。"},
+        {text:"What club and what color its room is.",zh:"什麼社團，以及教室是什麼顏色。",hint:"The prompt does not ask about color. What time question does it ask?",zhHint:"題目沒問顏色。它問了哪一個時間問題？"},
+        {text:"Only why clubs are fun.",zh:"只回答社團為什麼好玩。",hint:"Which two direct questions would still be unanswered?",zhHint:"還有哪兩個直接問題沒有回答？"}
+      ]
+    },
+    {
+      para:"intro",job:"INTRO · complete stack",question:"Which introduction answers all prompt jobs and previews two ideas?",zhQuestion:"哪個開頭回答所有任務，並預告兩個重點？",
+      options:[
+        {text:"I would add a robotics club. It would meet twice a week. Students would learn science and teamwork.",zh:"我會增加機器人社。它一週聚會兩次。學生會學科學和團隊合作。",ok:true,reason:"It gives the club, frequency, and two reasons to explain.",zhReason:"它說出社團、次數，以及兩個能繼續解釋的理由。"},
+        {text:"Robots are cool. They are really cool. I like them.",zh:"機器人很酷。它們真的很酷。我喜歡它們。",hint:"Which choice answers how often and previews two useful ideas?",zhHint:"哪個選項回答多久一次，並預告兩個有用的重點？"},
+        {text:"There are clubs. Some meet after school. The end.",zh:"學校有社團。有些放學後聚會。結束。",hint:"Which exact club would the writer add?",zhHint:"作者到底要增加哪一個明確的社團？"}
+      ]
+    },
+    {
+      para:"body1",job:"BODY 1 · point",question:"The first promised idea is science. Which point starts Body 1?",zhQuestion:"第一個預告重點是科學。哪個主旨句開始第一段？",
+      options:[
+        {text:"First, robotics would turn science into something students can test.",zh:"首先，機器人社會把科學變成學生能測試的東西。",ok:true,reason:"It states one clear idea that the paragraph can prove.",zhReason:"它提出一個清楚、可用細節證明的想法。"},
+        {text:"First, our school has a gym.",zh:"首先，我們學校有體育館。",hint:"Which choice continues the science promise from the introduction?",zhHint:"哪句延續開頭預告的科學重點？"},
+        {text:"Robots have many parts and things.",zh:"機器人有很多零件和東西。",hint:"Which choice states what students would learn or do?",zhHint:"哪句清楚說出學生會學到或做到什麼？"}
+      ]
+    },
+    {
+      para:"body1",job:"BODY 1 · camera + why",question:"Which two-sentence stack shows a test and explains what it teaches?",zhQuestion:"哪兩句先呈現測試，再解釋學到了什麼？",
+      options:[
+        {text:"A robot might drive in circles until someone tightens a loose wheel. That test would make force and motion easy to see.",zh:"機器人可能一直繞圈，直到有人鎖緊鬆掉的輪子。那個測試讓力與運動變得看得見。",ok:true,reason:"The first sentence is visible evidence; the second explains the science.",zhReason:"第一句是看得到的證據，第二句解釋背後的科學。"},
+        {text:"Science is great. Robots are also great.",zh:"科學很棒。機器人也很棒。",hint:"Where is the exact action a camera could catch?",zhHint:"攝影機拍得到的明確動作在哪裡？"},
+        {text:"The wheel is round. Many wheels are round.",zh:"輪子是圓的。很多輪子都是圓的。",hint:"Which choice shows a problem, a fix, and what the test teaches?",zhHint:"哪個選項有問題、修正，以及測試教會的事？"}
+      ]
+    },
+    {
+      para:"body2",job:"BODY 2 · point",question:"The second promised idea is teamwork. Which point begins Body 2?",zhQuestion:"第二個預告重點是團隊合作。哪句開始第二段？",
+      options:[
+        {text:"The club would also teach students to work as a team.",zh:"這個社團也會教學生團隊合作。",ok:true,reason:"It clearly opens the second promised idea.",zhReason:"它清楚開啟第二個預告重點。"},
+        {text:"The wheel should not be loose.",zh:"輪子不應該鬆掉。",hint:"That repeats Body 1. Which choice shifts to teamwork?",zhHint:"這重複第一段。哪句轉到團隊合作？"},
+        {text:"After school can be late.",zh:"放學後可能很晚。",hint:"Which choice names what students would learn together?",zhHint:"哪句說出學生一起會學到什麼？"}
+      ]
+    },
+    {
+      para:"body2",job:"BODY 2 · camera + why",question:"Which stack shows teamwork and explains its value?",zhQuestion:"哪兩句呈現團隊合作，並解釋它的價值？",
+      options:[
+        {text:"One student could program while another builds the frame. Sharing jobs would help them solve harder problems.",zh:"一位學生可以寫程式，另一位組裝機架。分工能幫助他們解決更難的問題。",ok:true,reason:"The action shows teamwork, and the next sentence explains the result.",zhReason:"動作呈現合作，下一句解釋合作帶來的結果。"},
+        {text:"Students could sit near each other. The chairs might be blue.",zh:"學生可以坐得很近。椅子可能是藍色的。",hint:"Sitting near someone is not yet teamwork. Which choice shows shared jobs?",zhHint:"坐得近不等於合作。哪句真的呈現分工？"},
+        {text:"Teamwork is teamwork. It is a word.",zh:"團隊合作就是團隊合作。它是一個詞。",hint:"Which choice gives a visible example and a useful result?",zhHint:"哪個選項有看得到的例子和有用的結果？"}
+      ]
+    },
+    {
+      para:"close",job:"CLOSE · add up + restate",question:"Which conclusion adds the ideas and returns to the answer?",zhQuestion:"哪個結尾加總重點，並回到答案？",
+      options:[
+        {text:"A robotics club would build scientific thinking and cooperation. It would be a valuable way to learn after school.",zh:"機器人社會培養科學思考和合作。它會是一個很有價值的課後學習方式。",ok:true,reason:"It combines both body ideas and restates why the club is valuable.",zhReason:"它結合兩個主體重點，也重說社團的價值。"},
+        {text:"Robots can be large or small. Some have wheels.",zh:"機器人可能大或小。有些有輪子。",hint:"Which choice gathers science and teamwork into one final answer?",zhHint:"哪個選項把科學和團隊合作收進最後答案？"},
+        {text:"That is all about clubs.",zh:"社團就說到這裡。",hint:"A conclusion should leave the main answer, not just stop.",zhHint:"結尾要留下主要答案，不只是停止。"}
+      ]
+    }
+  ];
+  var proveIndex=0;
+  function renderProve(){
+    var step=proveSteps[proveIndex];
+    var panel=document.getElementById("provePanel");
+    var config={
+      heading:stageHeading(4,"PROVE","Use the same method with a new prompt. The cooking choices are gone.","換一個新題目使用同樣方法；這次沒有烹飪選項。"),
+      tag:"Transfer "+(proveIndex+1)+" of "+proveSteps.length+" · "+step.job,
+      question:step.question,zhQuestion:step.zhQuestion,options:step.options
+    };
+    renderStack(proveItems,"New robotics-club essay");
+    renderSingleChoice(panel,config,function(opt,next){
+      if(step.para){
+        var sentences=opt.text.split(/(?<=[.!?])\s+/);
+        sentences.forEach(function(sentence){proveItems.push({para:step.para,text:sentence});});
+        renderStack(proveItems,"New robotics-club essay");
+      }
+      next.addEventListener("click",function(){
+        proveIndex++;
+        if(proveIndex<proveSteps.length){
+          renderProve();
+          panel.querySelector(".option").focus();
+        }else{
+          completed.prove=true;
+          stages.forEach(function(s){
+            var chip=document.getElementById("chip"+s.charAt(0).toUpperCase()+s.slice(1));
+            chip.classList.remove("active");chip.classList.add("done");
+          });
+          panel.innerHTML=stageHeading(4,"PROVE","You used the structure on a different topic.","你把同一個架構用在不同主題上了。")+
+            '<div class="feedback ok">✓ The method transferred. Now build with your own ideas.</div>';
+          document.body.classList.add("all-flows-passed");
+          document.getElementById("unlock").hidden=false;
+          renderBuilder();
+          renderQuiz();
+          document.getElementById("unlockBanner").focus();
+          document.getElementById("unlock").scrollIntoView({behavior:"smooth",block:"start"});
+        }
+      },{once:true});
+    });
+  }
+
+  var builderSteps=[
+    {para:"intro",job:"INTRO · direct answer",ask:"What skill would you teach? Write one direct-answer sentence.",zh:"你會教什麼技能？寫一句直接答案。",example:"I would add a cooking class to our school."},
+    {para:"intro",job:"INTRO · how",ask:"How would you begin teaching it? Write one sentence.",zh:"你會怎麼開始教？寫一句。",example:"It should meet twice a week."},
+    {para:"intro",job:"INTRO · preview",ask:"Preview two reasons this skill would be useful.",zh:"預告這個技能有用的兩個理由。",example:"It would teach useful science and life skills."},
+    {para:"body1",job:"BODY 1 · point",ask:"State your first useful reason.",zh:"說出第一個有用的理由。",example:"First, cooking shows science in real life."},
+    {para:"body1",job:"BODY 1 · camera detail",ask:"Show one exact action, object, or moment a camera could catch.",zh:"寫一個攝影機拍得到的明確動作、物品或時刻。",example:"Sugar turns brown in a hot pan."},
+    {para:"body1",job:"BODY 1 · why it matters",ask:"Explain what that detail proves.",zh:"解釋那個細節證明了什麼。",example:"That change would help me understand heat and chemistry."},
+    {para:"body2",job:"BODY 2 · point",ask:"State your second useful reason.",zh:"說出第二個有用的理由。",example:"Cooking is also a skill everyone needs."},
+    {para:"body2",job:"BODY 2 · camera detail",ask:"Show a different exact moment.",zh:"寫另一個明確畫面。",example:"I once left a burnt pot in our sink."},
+    {para:"body2",job:"BODY 2 · why it matters",ask:"Explain why that moment matters.",zh:"解釋那個畫面為什麼重要。",example:"A class would teach me to measure and watch the time."},
+    {para:"close",job:"CLOSE · add it up",ask:"Add your two reasons together in one sentence.",zh:"用一句話加總兩個理由。",example:"Cooking would give students knowledge and independence."},
+    {para:"close",job:"CLOSE · restate",ask:"Restate why this skill is worth teaching.",zh:"重說這個技能為什麼值得教。",example:"The best school lessons are the ones we can use for years."}
+  ];
+  var ownItems=[];
+  var builderIndex=0;
+  function taipeiDateStamp(){
+    var values={};
+    new Intl.DateTimeFormat("en-US",{
+      timeZone:"Asia/Taipei",year:"numeric",month:"2-digit",day:"2-digit"
+    }).formatToParts(new Date()).forEach(function(part){
+      if(part.type!=="literal"){values[part.type]=part.value;}
+    });
+    return values.year+"-"+values.month+"-"+values.day;
+  }
+  var practiceDate=taipeiDateStamp();
+  var essaySubject="ISEE ESSAY PRACTICE — "+practiceDate;
+  var essayFileName="ISEE-ESSAY-PRACTICE-"+practiceDate+".txt";
+  var essayPrompt="If you could teach your classmates one skill that you know well, what would you teach? Describe how you would teach it and explain why the skill would be useful.";
+  var essaySenderUrl="https://script.google.com/macros/s/AKfycbwuB6agNy2ZU3GCb3TsVbDK5kMrLva9sfC5PuV4744AjxMuTmlNzXroVDROjUKuVWf8/exec";
+  var essaySendTimer=null;
+  function essayParagraphs(){
+    return ["intro","body1","body2","close"].map(function(para){
+      return ownItems.filter(function(item){return item.para===para;})
+        .map(function(item){return item.text;}).join(" ");
+    }).filter(Boolean);
+  }
+  function essayExportText(){
+    return "SUBJECT: "+essaySubject+"\n"+
+      "DATE: "+practiceDate+"\n\n"+
+      "PROMPT:\n"+essayPrompt+"\n\n"+
+      "ESSAY:\n"+essayParagraphs().join("\n\n")+"\n";
+  }
+  function emailDraftUrl(){
+    return "mailto:?subject="+encodeURIComponent(essaySubject)+
+      "&body="+encodeURIComponent(essayExportText());
+  }
+  function gmailDraftUrl(){
+    return "https://mail.google.com/mail/?view=cm&fs=1&tf=1&su="+
+      encodeURIComponent(essaySubject)+"&body="+encodeURIComponent(essayExportText());
+  }
+  function sendEssayDirect(){
+    var form=document.getElementById("essaySendForm");
+    var button=document.getElementById("sendEssayBtn");
+    var box=document.getElementById("saveFeedback");
+    if(!form||!button||ownItems.length!==11){return;}
+    form.elements.subject.value=essaySubject;
+    form.elements.date.value=practiceDate;
+    form.elements.prompt.value=essayPrompt;
+    form.elements.essay.value=essayParagraphs().join("\n\n");
+    form.elements.sentenceCount.value=String(ownItems.length);
+    button.disabled=true;
+    button.textContent="Sending…";
+    if(box){box.className="save-feedback";box.innerHTML=Z("Sending your four paragraphs…","正在寄出四段文章……");}
+    form.submit();
+    clearTimeout(essaySendTimer);
+    essaySendTimer=setTimeout(function(){
+      var currentButton=document.getElementById("sendEssayBtn");
+      if(!currentButton||currentButton.dataset.sent==="true"){return;}
+      currentButton.disabled=false;
+      currentButton.textContent="Send my essay";
+      saveMessage("The sender did not answer. Check the connection and try again.","寄件服務沒有回應，請檢查網路後再試。",true);
+    },20000);
+  }
+  window.addEventListener("message",function(event){
+    if(!/^https:\/\/(?:script\.google\.com|(?:[a-z0-9-]+-)?script\.googleusercontent\.com)$/.test(event.origin)){return;}
+    if(!event.data||event.data.type!=="william-essay-result"){return;}
+    clearTimeout(essaySendTimer);
+    var button=document.getElementById("sendEssayBtn");
+    if(!button){return;}
+    if(event.data.ok){
+      button.disabled=true;
+      button.dataset.sent="true";
+      button.textContent=event.data.message==="This essay was already sent."?"✓ Already sent":"✓ Essay sent";
+      saveMessage(event.data.message==="This essay was already sent."?"This exact essay was already emailed.":"Your essay was emailed.",event.data.message==="This essay was already sent."?"這一篇相同作文已經寄過了。":"作文已寄出。",false);
+    }else{
+      button.disabled=false;
+      button.textContent="Send my essay";
+      saveMessage("The essay could not be sent. Please try again later.","作文未能寄出，請稍後再試。",true);
+    }
+  });
+  function saveMessage(en,zh,isError){
+    var box=document.getElementById("saveFeedback");
+    if(!box){return;}
+    box.className="save-feedback "+(isError?"feedback try":"feedback ok");
+    box.innerHTML=(isError?"":"✓ ")+Z(en,zh);
+  }
+  async function saveEssayTxt(){
+    var text=essayExportText();
+    try{
+      if("showSaveFilePicker" in window){
+        var handle=await window.showSaveFilePicker({
+          suggestedName:essayFileName,
+          types:[{description:"Text file",accept:{"text/plain":[".txt"]}}]
+        });
+        var writable=await handle.createWritable();
+        await writable.write(text);
+        await writable.close();
+        saveMessage("The complete essay was saved as a TXT file.","完整文章已儲存成 TXT 檔。",false);
+      }else{
+        var blob=new Blob([text],{type:"text/plain;charset=utf-8"});
+        var url=URL.createObjectURL(blob);
+        var link=document.createElement("a");
+        link.href=url;link.download=essayFileName;
+        document.body.appendChild(link);link.click();link.remove();
+        setTimeout(function(){URL.revokeObjectURL(url);},1000);
+        saveMessage("The TXT download has started. Check the Downloads folder.","TXT 已開始下載，請查看下載資料夾。",false);
+      }
+    }catch(error){
+      if(error && error.name==="AbortError"){
+        saveMessage("No file was saved. Choose Save when you are ready.","尚未儲存；準備好時再按 Save。",true);
+      }else{
+        saveMessage("The file could not be saved. Try Copy full essay.","檔案無法儲存，請改用 Copy full essay。",true);
+      }
+    }
+  }
+  async function copyEssay(){
+    var text=essayExportText();
+    try{
+      await navigator.clipboard.writeText(text);
+      saveMessage("The prompt and all eleven sentences were copied.","題目和全部十一句已複製。",false);
+    }catch(error){
+      var area=document.createElement("textarea");
+      area.value=text;area.setAttribute("readonly","");area.style.position="fixed";area.style.opacity="0";
+      document.body.appendChild(area);area.select();
+      var copied=document.execCommand("copy");area.remove();
+      saveMessage(copied?"The prompt and all eleven sentences were copied.":"Copy did not work. Use Save full essay instead.",copied?"題目和全部十一句已複製。":"複製失敗，請改用 Save full essay。",!copied);
+    }
+  }
+  function renderBuilder(){
+    var card=document.getElementById("writeCard");
+    if(builderIndex>=builderSteps.length){
+      card.innerHTML='<div class="builder-done"><h3>✓ Four paragraphs are standing.</h3>'+
+        '<p>Read once for capitals, ending marks, and verb tense. <span class="zh">再讀一次，檢查大寫、句尾標點和動詞時態。</span></p>'+
+        '<div class="export-box"><div class="export-subject">EMAIL SUBJECT · '+escapeHtml(essaySubject)+'</div>'+
+        '<div>One tap emails the prompt and all four paragraphs. <span class="zh">按一次就會寄出題目與完整四段文章。</span></div></div>'+
+        '<form id="essaySendForm" method="post" action="'+escapeHtml(essaySenderUrl)+'" target="essaySendFrame" hidden>'+
+        '<input name="source" value="william-wnotes"><input name="subject"><input name="date"><input name="prompt"><input name="essay"><input name="sentenceCount"></form>'+
+        '<iframe id="essaySendFrame" name="essaySendFrame" title="Email delivery status" hidden></iframe>'+
+        '<div class="button-row"><button type="button" class="primary-btn" id="sendEssayBtn">Send my essay</button>'+
+        '<a class="ghost-btn" id="gmailEssayBtn" href="#" target="_blank" rel="noopener">Open Gmail draft</a>'+
+        '<a class="ghost-btn" id="emailEssayBtn" href="#">Use another mail app</a>'+
+        '<button type="button" class="ghost-btn" id="saveTxtBtn">Save backup (.txt)</button>'+
+        '<button type="button" class="ghost-btn" id="copyEssayBtn">Copy full essay</button>'+
+        '<button type="button" class="ghost-btn" id="printBtn">Print / save PDF</button>'+
+        '<button type="button" class="ghost-btn" id="editLastBtn">Edit the last sentence</button></div>'+
+        '<div class="save-feedback" id="saveFeedback" role="status"></div></div>';
+      document.getElementById("gmailEssayBtn").href=gmailDraftUrl();
+      document.getElementById("emailEssayBtn").href=emailDraftUrl();
+      document.getElementById("sendEssayBtn").addEventListener("click",sendEssayDirect);
+      document.getElementById("saveTxtBtn").addEventListener("click",saveEssayTxt);
+      document.getElementById("copyEssayBtn").addEventListener("click",copyEssay);
+      document.getElementById("printBtn").addEventListener("click",function(){window.print();});
+      document.getElementById("editLastBtn").addEventListener("click",function(){
+        builderIndex=Math.max(0,ownItems.length-1);ownItems.pop();renderOwnEssay();renderBuilder();
+      });
+      return;
+    }
+    var step=builderSteps[builderIndex];
+    card.innerHTML='<div class="step-tag">Sentence '+(builderIndex+1)+' of '+builderSteps.length+' · '+step.job+'</div>'+
+      '<label for="sentenceInput">'+Z(step.ask,step.zh)+'</label>'+
+      '<textarea id="sentenceInput" aria-describedby="writeHelp" placeholder="Write one complete English sentence."></textarea>'+
+      '<div class="write-help" id="writeHelp">Start with a capital. End with . ? or ! Use at least 3 words. <span class="zh">大寫開頭，用 . ? ! 結尾，至少三個字。</span></div>'+
+      '<div class="model-line"><b>Example from DO · different topic</b><br>'+escapeHtml(step.example)+'<span class="zh block">這是剛才 DO 的不同主題示範；借句型，不要照抄內容。</span></div>'+
+      '<div class="feedback" id="writeFeedback" role="status"></div>'+
+      '<div class="button-row"><button type="button" class="primary-btn" id="addSentence">Add this sentence</button>'+
+      '<button type="button" class="ghost-btn" id="undoSentence"'+(ownItems.length?"":" disabled")+'>Undo last</button></div>';
+    var input=document.getElementById("sentenceInput");
+    document.getElementById("addSentence").addEventListener("click",function(){
+      var value=input.value.trim().replace(/\s+/g," ");
+      var words=value ? value.split(" ").filter(Boolean) : [];
+      var feedback=document.getElementById("writeFeedback");
+      if(words.length<3){
+        feedback.className="feedback try";feedback.innerHTML=Z("Can the reader understand a complete thought? Add a subject and an action.","讀者能看懂完整想法嗎？加上主角和動作。");input.focus();return;
+      }
+      if(!/^[A-Z]/.test(value)){
+        feedback.className="feedback try";feedback.innerHTML=Z("Look at the first letter. How does an English sentence begin?","看看第一個字母。英文句子要怎麼開始？");input.focus();return;
+      }
+      if(!/[.!?]$/.test(value)){
+        feedback.className="feedback try";feedback.innerHTML=Z("How will the reader know this sentence is finished?","讀者怎麼知道這句結束了？");input.focus();return;
+      }
+      ownItems.push({para:step.para,text:value});
+      builderIndex++;renderOwnEssay();renderBuilder();
+      var nextInput=document.getElementById("sentenceInput");if(nextInput){nextInput.focus();}
+    });
+    document.getElementById("undoSentence").addEventListener("click",function(){
+      if(!ownItems.length){return;}ownItems.pop();builderIndex=Math.max(0,builderIndex-1);renderOwnEssay();renderBuilder();
+    });
+  }
+  function renderOwnEssay(){
+    var body=document.getElementById("ownEssay");
+    if(!ownItems.length){body.innerHTML='<div class="empty-stack">Your first sentence will land here.</div>';return;}
+    var order=["intro","body1","body2","close"];
+    body.innerHTML=order.map(function(para){
+      var group=ownItems.filter(function(item){return item.para===para;});
+      if(!group.length){return "";}
+      return '<p class="own-para">'+group.map(function(item){return escapeHtml(item.text);}).join(" ")+'</p>';
+    }).join("");
+  }
+
+  var quiz=[
+    {s:"I would teach my classmates how to dribble a basketball.",job:"direct answer",why:"It names the exact skill right away.",zh:"它立刻說出明確技能。"},
+    {s:"First, dribbling helps a player move past a defender.",job:"point",why:"It states one useful reason for the body paragraph.",zh:"它提出主體段的一個有用理由。"},
+    {s:"The ball bounced below my knee as I changed hands.",job:"camera detail",why:"A camera could catch the ball, height, and hand change.",zh:"攝影機拍得到球、高度和換手。"},
+    {s:"That control would help a player keep the ball safe.",job:"why it matters",why:"It explains what the visible detail proves.",zh:"它解釋畫面細節證明了什麼。"},
+    {s:"Dribbling would build control and confidence, so it is worth teaching.",job:"close",why:"It adds up the value and restates the answer.",zh:"它加總價值並重說答案。"}
+  ];
+  var quizIndex=0;
+  function renderQuiz(){
+    var dots=document.getElementById("quizDots");
+    dots.innerHTML=quiz.map(function(_,i){return '<span class="dot'+(i<quizIndex?" done":"")+'"></span>';}).join("");
+    var body=document.getElementById("quizBody");
+    if(quizIndex>=quiz.length){
+      body.innerHTML='<div class="quiz-end">✓ Replay complete. You named all five sentence jobs. <span class="zh">快速複習完成；你辨認了五種句子工作。</span></div>';return;
+    }
+    var q=quiz[quizIndex];
+    var jobs=["direct answer","point","camera detail","why it matters","close"];
+    var displayedJobs=arrangeChoices(jobs.map(function(job){return {text:job,ok:job===q.job};}));
+    body.innerHTML='<div class="question">“'+escapeHtml(q.s)+'”</div><div class="options">'+
+      displayedJobs.map(function(opt){return '<button type="button" class="option" data-job="'+opt.text+'">'+opt.text+'</button>';}).join("")+
+      '</div><div class="feedback" role="status"></div>';
+    Array.prototype.slice.call(body.querySelectorAll(".option")).forEach(function(btn){
+      btn.addEventListener("click",function(){
+        var feedback=body.querySelector(".feedback");
+        if(btn.getAttribute("data-job")===q.job){
+          Array.prototype.slice.call(body.querySelectorAll(".option")).forEach(function(b){b.disabled=true;});
+          btn.classList.add("correct");feedback.className="feedback ok";feedback.innerHTML="✓ "+Z(q.why,q.zh);
+          setTimeout(function(){quizIndex++;renderQuiz();},700);
+        }else{
+          btn.classList.add("wrong");feedback.className="feedback try";
+          feedback.innerHTML=Z("Ask what this sentence does for the reader. Is it an idea, a picture, an explanation, or an ending?","問這句為讀者做什麼：想法、畫面、解釋，還是結尾？");
+        }
+      });
+    });
+  }
+
+  renderStack([],"Cooking-class model");
+})();
+</script>
+</body>
+</html>
