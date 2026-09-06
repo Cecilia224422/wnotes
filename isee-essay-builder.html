@@ -877,7 +877,8 @@ body:not(.show-zh) .zh.block{display:none!important}
       saveMessage(event.data.message==="This essay was already sent."?"This exact essay was already emailed.":"Your essay was emailed.",event.data.message==="This essay was already sent."?"這一篇相同作文已經寄過了。":"作文已寄出。",false);
       activeSubmissionId="";
     }else{
-      resetSendButton("The backup was saved, but the essay could not be sent. Please try again later.","備份已下載，但作文未能寄出；請稍後再試。",true);
+      var detail=event.data.message||"The essay could not be sent.";
+      resetSendButton("The backup was saved, but delivery stopped: "+detail,"備份已下載，但寄送被後端檢查擋下；請依英文訊息修正後再試。",true);
     }
   });
   function saveMessage(en,zh,isError){
@@ -981,7 +982,7 @@ body:not(.show-zh) .zh.block{display:none!important}
     box.innerHTML=revisionMeter()+'<h3>✓ Three review passes are complete.</h3>'+Z("Your four paragraphs are ready to send.","三輪自修完成，四段文章可以送出了。")+
       '<div class="export-box"><div class="export-subject">EMAIL SUBJECT · '+escapeHtml(essaySubject)+'</div>'+Z("The button downloads a TXT backup first, then sends the prompt and all four revised paragraphs.","按鈕會先下載 TXT 備份，再寄出題目與四段修訂後的文章。")+'</div>'+
       '<form id="essaySendForm" hidden>'+
-      '<input name="source" value="william-wnotes"><input name="subject"><input name="date"><input name="prompt"><input name="essay"><input name="sentenceCount"><input name="mode"><input name="submissionId"></form>'+
+      '<input name="source" value="william-wnotes"><input name="subject"><input name="date"><textarea name="prompt"></textarea><textarea name="essay"></textarea><input name="sentenceCount"><input name="mode"><input name="submissionId"></form>'+
       '<iframe id="essayReceiptFrame" class="receipt-frame" title="Email delivery receipt"></iframe>'+
       '<div class="button-row"><button type="button" class="primary-btn" id="sendEssayBtn">Save backup + send my essay</button>'+
       '<a class="ghost-btn" id="gmailEssayBtn" href="#" target="_blank" rel="noopener">Open Gmail draft</a>'+
