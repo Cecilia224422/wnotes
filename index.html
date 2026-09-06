@@ -344,13 +344,13 @@ const TOPICS = [
     zhWeekend:"用一組新數列快問即可；獨立通過後再進到雙規則數列。"
   },
   {
-    id:"english-writing", subject:"english", next:"checkpoint",
-    title:"Writing Connections", zh:"寫作連接與句子組合",
-    desc:"Use connectors, stable tense, and accurate spelling to turn ideas into complete sentences.",
-    zhDesc:"用連接詞、穩定時態與正確拼字，把想法組成完整句子。",
-    skills:["Connectors","Tense","Spelling in context"], zhSkills:["連接詞","時態","語境拼字"],
-    weekend:"Begin with a worked example, then use one independent sentence before adding a more complex structure.",
-    zhWeekend:"先看一題示範，再獨立寫一句；成功後才加入更複雜句型。"
+    id:"english-writing", subject:"english", next:"foundation",
+    title:"Writing: Sentences to Essays", zh:"寫作：從句子到文章",
+    desc:"Connect ideas, develop each paragraph with exact details, and revise before sending.",
+    zhDesc:"連接想法、用具體細節展開段落，並在送出前完成自修。",
+    skills:["Connect ideas","Develop paragraphs","Revise before sending"], zhSkills:["連接想法","展開段落","送出前自修"],
+    weekend:"Use Short Builder until two new essays keep the four-part shape, zoom both bodies, and complete the revision gate independently.",
+    zhWeekend:"先用 Short Builder；連續兩篇新題都能保留四段、展開兩個主體並獨立完成自修後，再撤到關鍵字計畫。"
   },
   {
     id:"science-living", subject:"science", next:"checkpoint",
@@ -429,13 +429,22 @@ const TODAY_MISSIONS = {
    thumb: "sieve" | "fraction" | "numberline" | "artifact" | "grid"  (see THUMBS below)      */
 const LESSONS = [
   {
+    subject:"english", topic:"english-writing", date:"2026-09-06",
+    title:"ISEE Essay Short Builder", zh:"ISEE 作文短鷹架＋自修閘門",
+    desc:"Write one paragraph at a time with only job labels, zoom both body paragraphs, and finish three revision passes before Send appears.",
+    zhDesc:"一次完成一段，只保留工作標籤；展開兩個主體段，完成三輪自修後才會出現送出按鈕。",
+    source:"ISEE Lower Writing · Stage 2 scaffold fade",
+    thumb:"essay-stack",
+    href:"isee-essay-builder.html?v=20260906-3&mode=short#builder"
+  },
+  {
     subject:"english", topic:"english-writing", date:"2026-09-05",
     title:"ISEE Essay Builder", zh:"ISEE 作文句子建構器",
     desc:"Build an introduction, two body paragraphs, and a conclusion one sentence at a time, then email the finished essay.",
     zhDesc:"一次寫一句，完成開頭、兩個主體段與結尾，再把完整文章寄到信箱。",
     source:"ISEE Lower-style Writing Practice · 11-sentence guided essay",
     thumb:"essay-stack",
-    href:"isee-essay-builder.html?v=20260906-1"
+    href:"isee-essay-builder.html?v=20260906-3"
   },
   {
     subject:"isee", topic:"isee-vocabulary", date:"2026-09-05",

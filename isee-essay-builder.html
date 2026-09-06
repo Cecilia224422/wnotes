@@ -137,11 +137,20 @@ body:not(.show-zh) .zh.block{display:none!important}
 .model-role{display:block;width:max-content;max-width:100%;margin-top:4px;color:var(--model-accent);font-family:"Fredoka","Huninn",sans-serif;font-size:.67rem;font-weight:700;letter-spacing:.055em;text-transform:uppercase}
 .your-turn{border:4px solid var(--orange);border-radius:22px;background:#fff;padding:21px;margin-top:20px}
 .your-turn h2{margin:0;font-size:1.75rem}
+.level-switch{display:flex;gap:.55rem;flex-wrap:wrap;margin:.8rem 0 .35rem;padding:.55rem;border:2px solid var(--ink);border-radius:.9rem;background:#f4f4f6}
+.level-btn{flex:1 1 12rem;border:2px solid #b8bbc4;background:#fff;color:var(--ink);border-radius:.7rem;padding:.65rem .8rem;font-weight:700;text-align:left}
+.level-btn[aria-pressed="true"]{border-color:var(--orange);background:var(--orange-soft);box-shadow:inset 0 -.2rem var(--orange)}
+.level-btn small{display:block;margin-top:.18rem;color:var(--muted);font-weight:500;line-height:1.35}
+.level-note{margin:.35rem 0 .8rem;color:var(--muted);font-size:.84rem;line-height:1.45}
 .target-prompt{background:var(--orange-soft);border-radius:13px;padding:13px 15px;margin:13px 0;line-height:1.48}
 .builder-layout{display:grid;grid-template-columns:minmax(0,.92fr) minmax(300px,1.08fr);gap:16px}
 .write-card{background:#fff;border:2px solid var(--ink);border-radius:14px;padding:15px}
 .write-card label{font-weight:700;display:block;margin-bottom:6px}
 .write-card textarea{width:100%;min-height:94px;border:2px solid #aeb2bc;border-radius:10px;padding:10px 11px;resize:vertical;line-height:1.45}
+.write-card.short-mode textarea{min-height:11rem}
+.job-cues{display:flex;gap:.4rem;flex-wrap:wrap;margin:.55rem 0 .7rem}
+.job-cue{display:inline-flex;align-items:center;border:2px solid #c8cad1;border-radius:999px;background:#fff;padding:.3rem .6rem;font-size:.74rem;color:var(--muted)}
+.job-cue:before{content:"□";margin-right:.3rem;color:var(--orange);font-weight:700}
 .write-help{font-size:.83rem;color:var(--muted);margin:5px 0 9px}
 .model-line{margin:0 0 13px;padding:9px 11px;border-left:5px solid var(--blue);border-radius:8px;background:var(--blue-soft);font-size:.84rem;line-height:1.42}
 .model-line b{color:var(--blue)}
@@ -151,12 +160,32 @@ body:not(.show-zh) .zh.block{display:none!important}
 .export-box{margin:13px 0;padding:11px 12px;border:2px dashed var(--green);border-radius:11px;background:var(--green-soft)}
 .export-subject{font-size:.78rem;letter-spacing:.05em;color:#186d43;font-weight:700}
 .save-feedback{min-height:30px;margin-top:10px;font-size:.83rem}
+.receipt-frame{position:absolute;width:1px;height:1px;border:0;opacity:.01;pointer-events:none}
 .own-essay{background:
   repeating-linear-gradient(180deg,transparent 0 28px,#dde5f2 28px 29px),#fff;
   border:2px solid var(--ink);border-radius:14px;padding:13px 15px;min-height:238px
 }
 .own-essay h3{margin:0 0 8px}
 .own-para{font-family:"Huninn","Fredoka",sans-serif;line-height:1.62;margin:7px 0 14px}
+.revision-shell{display:grid;gap:.8rem}
+.revision-intro{padding:.7rem .8rem;border-left:.35rem solid var(--purple);border-radius:.55rem;background:#f4f1ff;line-height:1.45}
+.revision-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem}
+.revision-field{display:grid;gap:.28rem}
+.revision-field label{font-size:.72rem;letter-spacing:.06em;color:var(--muted)}
+.revision-field textarea{min-height:8.5rem}
+.revision-field.body textarea{min-height:11rem}
+.revision-pass{border:2px dashed var(--purple);border-radius:.8rem;padding:.8rem;background:#fbf9ff}
+.revision-pass h3{margin:0 0 .35rem}
+.review-jobs{display:grid;gap:.42rem;margin:.65rem 0}
+.review-check{display:flex;gap:.55rem;align-items:flex-start;border:2px solid #d4d5db;border-radius:.65rem;padding:.55rem .65rem;background:#fff;line-height:1.38}
+.review-check input{width:1.15rem;height:1.15rem;flex:0 0 auto;margin-top:.12rem;accent-color:var(--green)}
+.scan-list{display:grid;gap:.4rem;margin:.6rem 0}
+.scan-item{border-left:.32rem solid var(--orange);border-radius:.45rem;background:var(--orange-soft);padding:.5rem .65rem;font-size:.84rem;line-height:1.4}
+.scan-clear{border-left-color:var(--green);background:var(--green-soft)}
+.review-meter{display:flex;gap:.35rem;margin:.55rem 0}
+.review-dot{height:.55rem;flex:1;border-radius:999px;background:#d6d7dc}
+.review-dot.on{background:var(--purple)}
+.review-dot.done{background:var(--green)}
 .privacy-note{font-size:.78rem;color:var(--muted);margin-top:10px}
 .quick-check{margin-top:21px;border:3px solid var(--blue);border-radius:18px;padding:17px;background:var(--blue-soft)}
 .quick-check h2{margin:0 0 4px}
@@ -174,7 +203,7 @@ body:not(.show-zh) .zh.block{display:none!important}
     linear-gradient(90deg,transparent 0 27px,var(--margin) 27px 29px,transparent 29px),
     repeating-linear-gradient(180deg,transparent 0 31px,var(--line) 31px 32px),var(--paper)}
   .page:before{display:none}.lesson-head{grid-template-columns:1fr 92px;padding:17px 14px}.buddy{width:88px;height:88px}
-  .vocab-row{grid-template-columns:1fr 1fr}.learn-grid,.builder-layout{grid-template-columns:1fr}.stack-card{position:relative;top:auto;order:-1}
+  .vocab-row{grid-template-columns:1fr 1fr}.learn-grid,.builder-layout,.revision-grid{grid-template-columns:1fr}.stack-card{position:relative;top:auto;order:-1}
   .map{grid-template-columns:1fr 1fr}.toolbar{top:3px}.progress{gap:4px}.stage-chip{font-size:.68rem;padding:8px 2px}
 }
 @media(max-width:460px){
@@ -198,10 +227,10 @@ body:not(.show-zh) .zh.block{display:none!important}
     <div>
       <div class="eyebrow">William's correction notes · new guided lesson</div>
       <h1>ISEE Essay <mark>Builder</mark></h1>
-      <p class="hand">09/05 · How sentences become paragraphs</p>
+      <p class="hand">09/06 · Full steps → short paragraphs → revision</p>
       <p class="greeting">
-        Hi William. You used <b>because</b> twice in your last story. Today, let’s stack sentences into an essay.
-        <span class="zh block">William，你上次的故事自己用了兩次 because。今天我們把句子一塊一塊疊成文章。</span>
+        Hi William. Your Hawaii essay already had <b>four paragraphs</b>. Today, let’s zoom in and revise before Send.
+        <span class="zh block">William，你的 Hawaii 作文已經有四段。今天把細節放大，並在送出前完成自修。</span>
       </p>
     </div>
     <div class="buddy-wrap">
@@ -211,7 +240,7 @@ body:not(.show-zh) .zh.block{display:none!important}
   </header>
 
   <div class="toolbar" aria-label="Lesson tools">
-    <div class="model-pill">🧱 Guided model <span class="zh">· 引導示範</span></div>
+    <div class="model-pill">🧱 Full + Short Builder <span class="zh">· 完整＋短鷹架</span></div>
     <button class="lang-btn" id="langBtn" type="button" aria-pressed="false">中文</button>
   </div>
 
@@ -295,9 +324,14 @@ body:not(.show-zh) .zh.block{display:none!important}
 
     <section class="your-turn" id="builder">
       <div class="eyebrow">Today's progressive prompt · your turn</div>
-      <h2>Teach One Skill</h2>
+      <h2 id="builderTitle">Teach One Skill</h2>
+      <div class="level-switch" aria-label="Choose how much writing support you need">
+        <button class="level-btn" id="fullModeBtn" type="button" aria-pressed="true">Full Builder<small>One sentence at a time.</small><span class="zh block">完整引導：一次寫一句。</span></button>
+        <button class="level-btn" id="shortModeBtn" type="button" aria-pressed="false">Short Builder · next step<small>One paragraph at a time, with only job labels.</small><span class="zh block">下一階：一次寫一段，只保留句子工作。</span></button>
+      </div>
+      <p class="level-note" id="levelNote">Use Full Builder when you want every sentence job handed to you. <span class="zh">需要逐句提示時使用 Full Builder。</span></p>
       <div class="target-prompt"><b>If you could teach your classmates one skill that you know well, what would you teach? Describe how you would teach it and explain why the skill would be useful.</b><span class="zh block">如果你能教同學一項你很熟悉的技能，你會教什麼？描述你會怎麼教，並解釋它為什麼有用。</span></div>
-      <p>Write only <b>one sentence</b> at a time. This page will hold and sort the sentences for you. <span class="zh">一次只寫一句；頁面會幫你保留並分段。</span></p>
+      <p id="builderDirections">Write only <b>one sentence</b> at a time. This page will hold and sort the sentences for you. <span class="zh">一次只寫一句；頁面會幫你保留並分段。</span></p>
       <div class="builder-layout">
         <div class="write-card" id="writeCard"></div>
         <div class="own-essay">
@@ -710,7 +744,7 @@ body:not(.show-zh) .zh.block{display:none!important}
     });
   }
 
-  var builderSteps=[
+  var fullBuilderSteps=[
     {para:"intro",job:"INTRO · direct answer",ask:"What skill would you teach? Write one direct-answer sentence.",zh:"你會教什麼技能？寫一句直接答案。",example:"I would add a cooking class to our school."},
     {para:"intro",job:"INTRO · how",ask:"How would you begin teaching it? Write one sentence.",zh:"你會怎麼開始教？寫一句。",example:"It should meet twice a week."},
     {para:"intro",job:"INTRO · preview",ask:"Preview two reasons this skill would be useful.",zh:"預告這個技能有用的兩個理由。",example:"It would teach useful science and life skills."},
@@ -723,8 +757,19 @@ body:not(.show-zh) .zh.block{display:none!important}
     {para:"close",job:"CLOSE · add it up",ask:"Add your two reasons together in one sentence.",zh:"用一句話加總兩個理由。",example:"Cooking would give students knowledge and independence."},
     {para:"close",job:"CLOSE · restate",ask:"Restate why this skill is worth teaching.",zh:"重說這個技能為什麼值得教。",example:"The best school lessons are the ones we can use for years."}
   ];
+  var shortBuilderSteps=[
+    {para:"intro",job:"INTRO",ask:"Write your introduction as one short paragraph.",zh:"把開頭寫成一個短段落。",cues:["direct answer","how you would teach it","preview two reasons"],minWords:14,minSentences:2},
+    {para:"body1",job:"BODY 1 · zoom once",ask:"Develop your first reason. Let the reader see one exact example.",zh:"展開第一個理由，讓讀者看見一個具體例子。",cues:["point","exact event or example","why it supports your answer"],minWords:22,minSentences:3},
+    {para:"body2",job:"BODY 2 · zoom once",ask:"Develop a different reason with a different exact example.",zh:"用另一個具體例子展開第二個理由。",cues:["different point","different event or example","why it supports your answer"],minWords:22,minSentences:3},
+    {para:"close",job:"CLOSE",ask:"Write a conclusion that adds up the reasons without copying the introduction.",zh:"寫結尾，加總理由，但不要照抄開頭。",cues:["add up both reasons","restate the answer in a new way"],minWords:12,minSentences:2}
+  ];
+  var builderMode=new URLSearchParams(window.location.search).get("mode")==="short"?"short":"full";
   var ownItems=[];
   var builderIndex=0;
+  var revisionStep=0;
+  var revisionComplete=false;
+  function activeBuilderSteps(){return builderMode==="short"?shortBuilderSteps:fullBuilderSteps;}
+  function sentenceCount(text){return (String(text).match(/[.!?]+(?=\s|$)/g)||[]).length;}
   function taipeiDateStamp(){
     var values={};
     new Intl.DateTimeFormat("en-US",{
@@ -740,12 +785,15 @@ body:not(.show-zh) .zh.block{display:none!important}
   var essayPrompt="If you could teach your classmates one skill that you know well, what would you teach? Describe how you would teach it and explain why the skill would be useful.";
   var essaySenderUrl="https://script.google.com/macros/s/AKfycbwuB6agNy2ZU3GCb3TsVbDK5kMrLva9sfC5PuV4744AjxMuTmlNzXroVDROjUKuVWf8/exec";
   var essaySendTimer=null;
+  var essayReceiptTimer=null;
+  var activeSubmissionId="";
   function essayParagraphs(){
     return ["intro","body1","body2","close"].map(function(para){
       return ownItems.filter(function(item){return item.para===para;})
         .map(function(item){return item.text;}).join(" ");
     }).filter(Boolean);
   }
+  function essaySentenceCount(){return sentenceCount(essayParagraphs().join(" "));}
   function essayExportText(){
     return "SUBJECT: "+essaySubject+"\n"+
       "DATE: "+practiceDate+"\n\n"+
@@ -760,44 +808,76 @@ body:not(.show-zh) .zh.block{display:none!important}
     return "https://mail.google.com/mail/?view=cm&fs=1&tf=1&su="+
       encodeURIComponent(essaySubject)+"&body="+encodeURIComponent(essayExportText());
   }
+  function createSubmissionId(){
+    return "wn-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,12);
+  }
+  function downloadEssayBackup(){
+    var blob=new Blob([essayExportText()],{type:"text/plain;charset=utf-8"});
+    var url=URL.createObjectURL(blob);
+    var link=document.createElement("a");
+    link.href=url;link.download=essayFileName;
+    document.body.appendChild(link);link.click();link.remove();
+    setTimeout(function(){URL.revokeObjectURL(url);},1000);
+  }
+  function pollEssayReceipt(){
+    var frame=document.getElementById("essayReceiptFrame");
+    if(!frame||!activeSubmissionId){return;}
+    frame.src=essaySenderUrl+"?receipt="+encodeURIComponent(activeSubmissionId)+"&t="+Date.now();
+    clearTimeout(essayReceiptTimer);
+    essayReceiptTimer=setTimeout(pollEssayReceipt,1500);
+  }
+  function resetSendButton(messageEn,messageZh){
+    clearTimeout(essaySendTimer);clearTimeout(essayReceiptTimer);
+    var button=document.getElementById("sendEssayBtn");
+    if(button){button.disabled=false;button.textContent="Save backup + send my essay";}
+    activeSubmissionId="";
+    saveMessage(messageEn,messageZh,true);
+  }
   function sendEssayDirect(){
     var form=document.getElementById("essaySendForm");
     var button=document.getElementById("sendEssayBtn");
     var box=document.getElementById("saveFeedback");
-    if(!form||!button||ownItems.length!==11){return;}
+    if(!form||!button||!revisionComplete||essayParagraphs().length!==4){return;}
     form.elements.subject.value=essaySubject;
     form.elements.date.value=practiceDate;
     form.elements.prompt.value=essayPrompt;
     form.elements.essay.value=essayParagraphs().join("\n\n");
-    form.elements.sentenceCount.value=String(ownItems.length);
+    form.elements.sentenceCount.value=String(essaySentenceCount());
+    form.elements.mode.value=builderMode;
+    activeSubmissionId=createSubmissionId();
+    form.elements.submissionId.value=activeSubmissionId;
+    downloadEssayBackup();
     button.disabled=true;
     button.textContent="Sending…";
-    if(box){box.className="save-feedback";box.innerHTML=Z("Sending your four paragraphs…","正在寄出四段文章……");}
-    form.submit();
+    if(box){box.className="save-feedback";box.innerHTML=Z("Backup saved. Waiting for the email receipt…","備份已下載，正在等待寄信回條……");}
+    fetch(essaySenderUrl,{method:"POST",mode:"no-cors",body:new URLSearchParams(new FormData(form)),keepalive:true})
+      .then(function(){pollEssayReceipt();})
+      .catch(function(){resetSendButton("The backup was saved, but delivery did not start. Check the connection and try again.","備份已下載，但寄送沒有開始；請檢查網路後再試。");});
     clearTimeout(essaySendTimer);
     essaySendTimer=setTimeout(function(){
       var currentButton=document.getElementById("sendEssayBtn");
       if(!currentButton||currentButton.dataset.sent==="true"){return;}
       currentButton.disabled=false;
-      currentButton.textContent="Send my essay";
-      saveMessage("The sender did not answer. Check the connection and try again.","寄件服務沒有回應，請檢查網路後再試。",true);
-    },20000);
+       resetSendButton("The backup was saved, but email delivery was not confirmed. Please try again.","備份已下載，但尚未確認信件送達；請再試一次。",true);
+    },30000);
   }
   window.addEventListener("message",function(event){
     if(!/^https:\/\/(?:script\.google\.com|(?:[a-z0-9-]+-)?script\.googleusercontent\.com)$/.test(event.origin)){return;}
     if(!event.data||event.data.type!=="william-essay-result"){return;}
+    if(!activeSubmissionId||event.data.submissionId!==activeSubmissionId){return;}
+    if(event.data.state==="pending"){return;}
     clearTimeout(essaySendTimer);
+    clearTimeout(essayReceiptTimer);
     var button=document.getElementById("sendEssayBtn");
     if(!button){return;}
-    if(event.data.ok){
+    if(event.data.state==="sent"){
       button.disabled=true;
       button.dataset.sent="true";
       button.textContent=event.data.message==="This essay was already sent."?"✓ Already sent":"✓ Essay sent";
       saveMessage(event.data.message==="This essay was already sent."?"This exact essay was already emailed.":"Your essay was emailed.",event.data.message==="This essay was already sent."?"這一篇相同作文已經寄過了。":"作文已寄出。",false);
+      activeSubmissionId="";
     }else{
-      button.disabled=false;
-      button.textContent="Send my essay";
-      saveMessage("The essay could not be sent. Please try again later.","作文未能寄出，請稍後再試。",true);
+      resetSendButton("The backup was saved, but the essay could not be sent. Please try again later.","備份已下載，但作文未能寄出；請稍後再試。",true);
     }
   });
   function saveMessage(en,zh,isError){
@@ -839,59 +919,152 @@ body:not(.show-zh) .zh.block{display:none!important}
     var text=essayExportText();
     try{
       await navigator.clipboard.writeText(text);
-      saveMessage("The prompt and all eleven sentences were copied.","題目和全部十一句已複製。",false);
+      saveMessage("The prompt and complete essay were copied.","題目和完整文章已複製。",false);
     }catch(error){
       var area=document.createElement("textarea");
       area.value=text;area.setAttribute("readonly","");area.style.position="fixed";area.style.opacity="0";
       document.body.appendChild(area);area.select();
       var copied=document.execCommand("copy");area.remove();
-      saveMessage(copied?"The prompt and all eleven sentences were copied.":"Copy did not work. Use Save full essay instead.",copied?"題目和全部十一句已複製。":"複製失敗，請改用 Save full essay。",!copied);
+      saveMessage(copied?"The prompt and complete essay were copied.":"Copy did not work. Use Save full essay instead.",copied?"題目和完整文章已複製。":"複製失敗，請改用 Save full essay。",!copied);
     }
+  }
+  function updateModeUI(){
+    var full=document.getElementById("fullModeBtn");
+    var short=document.getElementById("shortModeBtn");
+    if(!full||!short){return;}
+    full.setAttribute("aria-pressed",String(builderMode==="full"));
+    short.setAttribute("aria-pressed",String(builderMode==="short"));
+    document.getElementById("builderTitle").textContent=builderMode==="short"?"Teach One Skill · Short Builder":"Teach One Skill";
+    document.getElementById("levelNote").innerHTML=builderMode==="short"?
+      Z("The sentence-by-sentence path is hidden. Build one complete paragraph at a time.","逐句路線已收起；一次完成一個完整段落。"):
+      Z("Use Full Builder when you want every sentence job handed to you.","需要逐句提示時使用 Full Builder。");
+    document.getElementById("builderDirections").innerHTML=builderMode==="short"?
+      Z("Use every job chip, but choose your own sentences. Each body paragraph must zoom in once.","使用每個工作標籤，但句子由你自己決定；兩個主體段都要放大一個具體畫面。"):
+      Z("Write only <b>one sentence</b> at a time. This page will hold and sort the sentences for you.","一次只寫一句；頁面會幫你保留並分段。");
+  }
+  function switchBuilderMode(mode,scrollAfter){
+    if(mode===builderMode&&ownItems.length){return;}
+    if(ownItems.length&&!window.confirm("Switching builders clears the essay on this page. Switch now?")){return;}
+    builderMode=mode;ownItems=[];builderIndex=0;revisionStep=0;revisionComplete=false;
+    document.getElementById("unlock").hidden=false;
+    updateModeUI();renderOwnEssay();renderBuilder();renderQuiz();
+    if(scrollAfter){document.getElementById("builder").scrollIntoView({behavior:"smooth",block:"start"});}
+  }
+  function revisionParagraphMap(){
+    var values={intro:"",body1:"",body2:"",close:""};
+    ["intro","body1","body2","close"].forEach(function(para){
+      values[para]=ownItems.filter(function(item){return item.para===para;}).map(function(item){return item.text;}).join(" ");
+    });
+    return values;
+  }
+  function syncRevisionEditors(){
+    var editors=Array.prototype.slice.call(document.querySelectorAll(".revision-text"));
+    if(!editors.length){return;}
+    ownItems=editors.map(function(area){return {para:area.getAttribute("data-para"),text:area.value.trim().replace(/\s+/g," ")};});
+    renderOwnEssay();
+  }
+  function languageScan(){
+    var text=essayParagraphs().join(" ");
+    var flags=[];
+    var thinkCount=(text.match(/\bI think\b/gi)||[]).length;
+    if(thinkCount>2){flags.push("“I think” appears "+thinkCount+" times. Can one sentence state the idea directly?");}
+    if(/\bit(?:'|’)s has\b/i.test(text)){flags.push("Read the “it’s has” verb pair aloud. Does that subject need one verb or two?");}
+    if(/\bif\b[^.!?]{0,120}\bwill\b/i.test(text)){flags.push("One if-sentence also uses “will.” Is this an imagined situation that needs the could/would pair?");}
+    if(/\ba little bit of\s+\w+s\b/i.test(text)){flags.push("Find “a little bit of” before a plural noun. Are you counting things or measuring an amount?");}
+    return flags;
+  }
+  function revisionMeter(){
+    return '<div class="review-meter" aria-label="Revision progress">'+[0,1,2].map(function(i){return '<span class="review-dot '+(i<revisionStep?'done':i===revisionStep?'on':'')+'"></span>';}).join("")+'</div>';
+  }
+  function renderSendControls(){
+    var box=document.getElementById("revisionPass");
+    box.innerHTML=revisionMeter()+'<h3>✓ Three review passes are complete.</h3>'+Z("Your four paragraphs are ready to send.","三輪自修完成，四段文章可以送出了。")+
+      '<div class="export-box"><div class="export-subject">EMAIL SUBJECT · '+escapeHtml(essaySubject)+'</div>'+Z("The button downloads a TXT backup first, then sends the prompt and all four revised paragraphs.","按鈕會先下載 TXT 備份，再寄出題目與四段修訂後的文章。")+'</div>'+
+      '<form id="essaySendForm" hidden>'+
+      '<input name="source" value="william-wnotes"><input name="subject"><input name="date"><input name="prompt"><input name="essay"><input name="sentenceCount"><input name="mode"><input name="submissionId"></form>'+
+      '<iframe id="essayReceiptFrame" class="receipt-frame" title="Email delivery receipt"></iframe>'+
+      '<div class="button-row"><button type="button" class="primary-btn" id="sendEssayBtn">Save backup + send my essay</button>'+
+      '<a class="ghost-btn" id="gmailEssayBtn" href="#" target="_blank" rel="noopener">Open Gmail draft</a>'+
+      '<a class="ghost-btn" id="emailEssayBtn" href="#">Use another mail app</a>'+
+      '<button type="button" class="ghost-btn" id="saveTxtBtn">Save backup (.txt)</button>'+
+      '<button type="button" class="ghost-btn" id="copyEssayBtn">Copy full essay</button>'+
+      '<button type="button" class="ghost-btn" id="printBtn">Print / save PDF</button>'+
+      '<button type="button" class="ghost-btn" id="reviewAgainBtn">Review again</button></div>'+
+      '<div class="save-feedback" id="saveFeedback" role="status"></div>';
+    document.getElementById("gmailEssayBtn").href=gmailDraftUrl();
+    document.getElementById("emailEssayBtn").href=emailDraftUrl();
+    document.getElementById("sendEssayBtn").addEventListener("click",sendEssayDirect);
+    document.getElementById("saveTxtBtn").addEventListener("click",saveEssayTxt);
+    document.getElementById("copyEssayBtn").addEventListener("click",copyEssay);
+    document.getElementById("printBtn").addEventListener("click",function(){window.print();});
+    document.getElementById("reviewAgainBtn").addEventListener("click",function(){revisionComplete=false;revisionStep=0;renderRevisionPass();});
+  }
+  function renderRevisionPass(){
+    var box=document.getElementById("revisionPass");
+    if(!box){return;}
+    if(revisionComplete){renderSendControls();return;}
+    if(revisionStep===0){
+      box.innerHTML=revisionMeter()+'<h3>Pass 1 · Prompt jobs</h3>'+Z("Point to where your essay answers each job.","指出文章在哪裡完成每個題目任務。")+
+        '<div class="review-jobs"><div class="review-check">□ Name the skill.</div><div class="review-check">□ Describe how you would teach it.</div><div class="review-check">□ Explain why it would be useful.</div></div>'+
+        '<div class="button-row"><button type="button" class="primary-btn" id="jobsDoneBtn">Every job is answered</button><button type="button" class="ghost-btn" id="jobsMissingBtn">I found a missing job</button></div><div class="feedback" id="jobsFeedback" role="status"></div>';
+      document.getElementById("jobsDoneBtn").addEventListener("click",function(){
+        syncRevisionEditors();
+        if(essayParagraphs().length!==4){var f=document.getElementById("jobsFeedback");f.className="feedback try";f.innerHTML=Z("Which paragraph is still empty? Add it before moving on.","哪一段還是空的？補完再往下。");return;}
+        revisionStep=1;renderRevisionPass();
+      });
+      document.getElementById("jobsMissingBtn").addEventListener("click",function(){var f=document.getElementById("jobsFeedback");f.className="feedback try";f.innerHTML=Z("Good catch. Add the missing answer in the paragraph boxes above, then check again.","有找到就好。先在上方段落框補上，再重新檢查。");});
+      return;
+    }
+    if(revisionStep===1){
+      box.innerHTML=revisionMeter()+'<h3>Pass 2 · Zoom twice</h3>'+Z("Check one exact example and one meaning sentence in each body.","檢查兩個主體段是否各有具體例子與意義句。")+
+        '<div class="review-jobs"><label class="review-check"><input type="checkbox">BODY 1 has an exact action, object, place, or moment.</label><label class="review-check"><input type="checkbox">BODY 1 explains why that detail supports my answer.</label><label class="review-check"><input type="checkbox">BODY 2 has a different exact example.</label><label class="review-check"><input type="checkbox">BODY 2 explains why that detail supports my answer.</label></div>'+
+        '<button type="button" class="primary-btn" id="depthDoneBtn">Finish the depth check</button><div class="feedback" id="depthFeedback" role="status"></div>';
+      document.getElementById("depthDoneBtn").addEventListener("click",function(){var checks=Array.prototype.slice.call(box.querySelectorAll('input[type="checkbox"]'));if(!checks.every(function(c){return c.checked;})){var f=document.getElementById("depthFeedback");f.className="feedback try";f.innerHTML=Z("Which body still needs a picture or a why sentence? Edit that paragraph first.","哪一個主體段還缺畫面或 why 句？先回上方補進去。");return;}syncRevisionEditors();revisionStep=2;renderRevisionPass();});
+      return;
+    }
+    var flags=languageScan();
+    box.innerHTML=revisionMeter()+'<h3>Pass 3 · Language hunt</h3>'+Z("These are questions to check, not red marks. Read the essay aloud once.","這些是檢查問題，不是紅筆判錯。把文章朗讀一次。")+
+      '<div class="scan-list">'+(flags.length?flags.map(function(flag){return '<div class="scan-item">'+escapeHtml(flag)+'</div>';}).join(""):'<div class="scan-item scan-clear">No repeated pattern jumped out. Still check every verb and ending mark.</div>')+'</div>'+
+      '<div class="review-jobs"><label class="review-check"><input type="checkbox">I read the whole essay aloud.</label><label class="review-check"><input type="checkbox">I checked could/would, has/have, singular/plural, capitals, and ending marks.</label></div>'+
+      '<button type="button" class="primary-btn" id="languageDoneBtn">Finish my review</button><div class="feedback" id="languageFeedback" role="status"></div>';
+    document.getElementById("languageDoneBtn").addEventListener("click",function(){var checks=Array.prototype.slice.call(box.querySelectorAll('input[type="checkbox"]'));if(!checks.every(function(c){return c.checked;})){var f=document.getElementById("languageFeedback");f.className="feedback try";f.innerHTML=Z("Which check have you not done yet? Do it before sending.","哪一項還沒檢查？完成後才能送出。");return;}syncRevisionEditors();revisionComplete=true;revisionStep=3;renderRevisionPass();});
+  }
+  function renderRevisionGate(){
+    var card=document.getElementById("writeCard");
+    var values=revisionParagraphMap();
+    card.className="write-card revision-mode";
+    card.innerHTML='<div class="revision-shell"><div class="step-tag">REVISION GATE · three passes before Send</div>'+
+      '<div class="revision-intro">'+Z("The ideas stay yours. Edit any paragraph, then complete three short review passes.","想法都是你的。先自由修改四段，再完成三輪短檢查。")+'</div>'+
+      '<div class="revision-grid">'+[
+        ["intro","INTRO",""],["body1","BODY 1","body"],["body2","BODY 2","body"],["close","CLOSE",""]
+      ].map(function(meta){return '<div class="revision-field '+meta[2]+'"><label for="rev-'+meta[0]+'">'+meta[1]+'</label><textarea class="revision-text" id="rev-'+meta[0]+'" data-para="'+meta[0]+'">'+escapeHtml(values[meta[0]])+'</textarea></div>';}).join("")+'</div>'+
+      '<div class="revision-pass" id="revisionPass"></div></div>';
+    Array.prototype.slice.call(card.querySelectorAll(".revision-text")).forEach(function(area){area.addEventListener("input",function(){syncRevisionEditors();if(revisionStep>0||revisionComplete){revisionStep=0;revisionComplete=false;renderRevisionPass();}});});
+    renderRevisionPass();
   }
   function renderBuilder(){
     var card=document.getElementById("writeCard");
-    if(builderIndex>=builderSteps.length){
-      card.innerHTML='<div class="builder-done"><h3>✓ Four paragraphs are standing.</h3>'+
-        '<p>Read once for capitals, ending marks, and verb tense. <span class="zh">再讀一次，檢查大寫、句尾標點和動詞時態。</span></p>'+
-        '<div class="export-box"><div class="export-subject">EMAIL SUBJECT · '+escapeHtml(essaySubject)+'</div>'+
-        '<div>One tap emails the prompt and all four paragraphs. <span class="zh">按一次就會寄出題目與完整四段文章。</span></div></div>'+
-        '<form id="essaySendForm" method="post" action="'+escapeHtml(essaySenderUrl)+'" target="essaySendFrame" hidden>'+
-        '<input name="source" value="william-wnotes"><input name="subject"><input name="date"><input name="prompt"><input name="essay"><input name="sentenceCount"></form>'+
-        '<iframe id="essaySendFrame" name="essaySendFrame" title="Email delivery status" hidden></iframe>'+
-        '<div class="button-row"><button type="button" class="primary-btn" id="sendEssayBtn">Send my essay</button>'+
-        '<a class="ghost-btn" id="gmailEssayBtn" href="#" target="_blank" rel="noopener">Open Gmail draft</a>'+
-        '<a class="ghost-btn" id="emailEssayBtn" href="#">Use another mail app</a>'+
-        '<button type="button" class="ghost-btn" id="saveTxtBtn">Save backup (.txt)</button>'+
-        '<button type="button" class="ghost-btn" id="copyEssayBtn">Copy full essay</button>'+
-        '<button type="button" class="ghost-btn" id="printBtn">Print / save PDF</button>'+
-        '<button type="button" class="ghost-btn" id="editLastBtn">Edit the last sentence</button></div>'+
-        '<div class="save-feedback" id="saveFeedback" role="status"></div></div>';
-      document.getElementById("gmailEssayBtn").href=gmailDraftUrl();
-      document.getElementById("emailEssayBtn").href=emailDraftUrl();
-      document.getElementById("sendEssayBtn").addEventListener("click",sendEssayDirect);
-      document.getElementById("saveTxtBtn").addEventListener("click",saveEssayTxt);
-      document.getElementById("copyEssayBtn").addEventListener("click",copyEssay);
-      document.getElementById("printBtn").addEventListener("click",function(){window.print();});
-      document.getElementById("editLastBtn").addEventListener("click",function(){
-        builderIndex=Math.max(0,ownItems.length-1);ownItems.pop();renderOwnEssay();renderBuilder();
-      });
-      return;
-    }
-    var step=builderSteps[builderIndex];
-    card.innerHTML='<div class="step-tag">Sentence '+(builderIndex+1)+' of '+builderSteps.length+' · '+step.job+'</div>'+
+    var steps=activeBuilderSteps();
+    updateModeUI();
+    if(builderIndex>=steps.length){renderRevisionGate();return;}
+    var step=steps[builderIndex];
+    var isShort=builderMode==="short";
+    card.className="write-card"+(isShort?" short-mode":"");
+    card.innerHTML='<div class="step-tag">'+(isShort?"Paragraph ":"Sentence ")+(builderIndex+1)+' of '+steps.length+' · '+step.job+'</div>'+
       '<label for="sentenceInput">'+Z(step.ask,step.zh)+'</label>'+
-      '<textarea id="sentenceInput" aria-describedby="writeHelp" placeholder="Write one complete English sentence."></textarea>'+
-      '<div class="write-help" id="writeHelp">Start with a capital. End with . ? or ! Use at least 3 words. <span class="zh">大寫開頭，用 . ? ! 結尾，至少三個字。</span></div>'+
-      '<div class="model-line"><b>Example from DO · different topic</b><br>'+escapeHtml(step.example)+'<span class="zh block">這是剛才 DO 的不同主題示範；借句型，不要照抄內容。</span></div>'+
+      '<textarea id="sentenceInput" aria-describedby="writeHelp" placeholder="'+(isShort?"Write the whole paragraph here.":"Write one complete English sentence.")+'"></textarea>'+
+      (isShort?'<div class="job-cues">'+step.cues.map(function(cue){return '<span class="job-cue">'+escapeHtml(cue)+'</span>';}).join("")+'</div>':"")+
+      '<div class="write-help" id="writeHelp">'+(isShort?Z("Use "+step.minSentences+" or more complete sentences. Choose your own words.","至少寫 "+step.minSentences+" 個完整句子，內容自己決定。"):'Start with a capital. End with . ? or ! Use at least 3 words. <span class="zh">大寫開頭，用 . ? ! 結尾，至少三個字。</span>')+'</div>'+
+      (isShort?"":'<div class="model-line"><b>Example from DO · different topic</b><br>'+escapeHtml(step.example)+'<span class="zh block">這是剛才 DO 的不同主題示範；借句型，不要照抄內容。</span></div>')+
       '<div class="feedback" id="writeFeedback" role="status"></div>'+
-      '<div class="button-row"><button type="button" class="primary-btn" id="addSentence">Add this sentence</button>'+
+      '<div class="button-row"><button type="button" class="primary-btn" id="addSentence">Add this '+(isShort?"paragraph":"sentence")+'</button>'+
       '<button type="button" class="ghost-btn" id="undoSentence"'+(ownItems.length?"":" disabled")+'>Undo last</button></div>';
     var input=document.getElementById("sentenceInput");
     document.getElementById("addSentence").addEventListener("click",function(){
       var value=input.value.trim().replace(/\s+/g," ");
       var words=value ? value.split(" ").filter(Boolean) : [];
       var feedback=document.getElementById("writeFeedback");
-      if(words.length<3){
+      if(words.length<(step.minWords||3)){
         feedback.className="feedback try";feedback.innerHTML=Z("Can the reader understand a complete thought? Add a subject and an action.","讀者能看懂完整想法嗎？加上主角和動作。");input.focus();return;
       }
       if(!/^[A-Z]/.test(value)){
@@ -899,6 +1072,9 @@ body:not(.show-zh) .zh.block{display:none!important}
       }
       if(!/[.!?]$/.test(value)){
         feedback.className="feedback try";feedback.innerHTML=Z("How will the reader know this sentence is finished?","讀者怎麼知道這句結束了？");input.focus();return;
+      }
+      if(step.minSentences&&sentenceCount(value)<step.minSentences){
+        feedback.className="feedback try";feedback.innerHTML=Z("Which job chip still needs its own complete sentence?","哪一個工作標籤還需要一個完整句子？");input.focus();return;
       }
       ownItems.push({para:step.para,text:value});
       builderIndex++;renderOwnEssay();renderBuilder();
@@ -918,6 +1094,9 @@ body:not(.show-zh) .zh.block{display:none!important}
       return '<p class="own-para">'+group.map(function(item){return escapeHtml(item.text);}).join(" ")+'</p>';
     }).join("");
   }
+
+  document.getElementById("fullModeBtn").addEventListener("click",function(){switchBuilderMode("full",true);});
+  document.getElementById("shortModeBtn").addEventListener("click",function(){switchBuilderMode("short",true);});
 
   var quiz=[
     {s:"I would teach my classmates how to dribble a basketball.",job:"direct answer",why:"It names the exact skill right away.",zh:"它立刻說出明確技能。"},
@@ -956,6 +1135,14 @@ body:not(.show-zh) .zh.block{display:none!important}
   }
 
   renderStack([],"Cooking-class model");
+  updateModeUI();
+  if(builderMode==="short"){
+    document.getElementById("unlock").hidden=false;
+    document.querySelector("#unlockBanner h2").textContent="Short Builder unlocked · fewer hints, stronger details.";
+    document.querySelector("#unlockBanner div").innerHTML=Z("Build one paragraph at a time, then pass three revision checks.","一次完成一段，再走完三輪自修檢查。");
+    renderOwnEssay();renderBuilder();renderQuiz();
+    setTimeout(function(){document.getElementById("builder").scrollIntoView({block:"start"});},0);
+  }
 })();
 </script>
 </body>

@@ -14,6 +14,7 @@ William 的互動式訂正筆記，發佈在 GitHub Pages 供他隨時複習。
 | `factors-multiples.html` | 2026-08-15 因數與倍數（Math in Focus 4A Ch.2） |
 | `fractions.html` | 2026-08-18 分數比較與加減（Math in Focus 4A Ch.3, p.251–258） |
 | `rounding.html` | 2026-08-19 四捨五入與估算（K5 Learning） |
+| `isee-essay-builder.html` | ISEE Lower 作文漸進工具：Full Builder、Short Builder、三輪 Revision Gate 與完成後寄送 |
 | `img/skzoo-*.png` | 8 隻 SKZOO 學習夥伴，頁尾隨機輪替 |
 | `robots.txt` | 擋搜尋引擎收錄 |
 | `.nojekyll` | 讓 GitHub Pages 直接吐靜態檔，不跑 Jekyll |
@@ -40,6 +41,14 @@ William 的互動式訂正筆記，發佈在 GitHub Pages 供他隨時複習。
 - 圈題或尚未獨立通過的能力持續留在佇列；只有後續不看筆記的換題驗收通過，才可移除。
 - William 的勾選只表示「今天已回去複習」，不是熟練證據；完成狀態只存在目前瀏覽器的 `localStorage`，不跨裝置同步，也不回寫 vault。
 - 換一批任務時更新 `date` 與每張卡的唯一 `id`，讓新一輪從未勾選開始。
+
+## ISEE Essay 升階
+
+- `?mode=short#builder` 直接進 Short Builder；首頁把它列為同一 `english-writing` 主題下的新一階，不另開重複能力主卡。
+- Full Builder 一次寫一句；Short Builder 一次寫一段，只保留 paragraph job chips。
+- 兩個 body 都要包含 point、exact event/example、why it supports the answer。
+- 完成四段後必須走完 Prompt jobs、Body depth、Language hunt 三輪 Revision Gate，寄送按鈕才出現；四段都能回頭修改。
+- 連續兩篇新題獨立通過 Short＋Revision，才升 Keyword Plan；不以 model answer 長度或逐字相同作為標準。
 
 ## 新增一課的流程
 
