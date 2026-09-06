@@ -52,12 +52,50 @@ h1{font-size:2rem;font-weight:700;margin:.15rem 0 .2rem;line-height:1.2}
 h1 mark{background:linear-gradient(transparent 45%,var(--hl) 45%);padding:0 .1em}
 h1 .zh{font-size:.9rem;font-weight:400}
 .intro{margin:.4rem 0 1.2rem;color:var(--ink);max-width:40rem}
+.home-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(22rem,.85fr);gap:1.25rem;align-items:start}
+.home-left{min-width:0}
 
 /* stats */
 .stats{display:flex;gap:.6rem;flex-wrap:wrap;margin:0 0 1.2rem;max-width:40rem}
 .stat{flex:1 1 7rem;background:#fff;border:1px solid var(--border);border-radius:.7rem;padding:.55rem .8rem;text-align:center}
 .stat b{display:block;font-size:1.5rem;line-height:1.1}
 .stat span{font-size:.75rem;color:var(--grey)}
+
+/* today's review portals */
+.mission-board{position:relative;min-width:0;margin:.7rem 0 1.35rem;padding:.85rem;background:#FFFBE8;
+  border:2px solid #E7C85A;border-radius:.85rem;box-shadow:0 .28rem 0 rgba(170,135,25,.13)}
+.mission-board::before{content:"";position:absolute;top:-.55rem;left:2rem;width:5rem;height:1.05rem;
+  background:rgba(255,236,150,.9);transform:rotate(-2deg);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.mission-head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:.75rem}
+.mission-kicker{display:block;color:#8A6B00;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.mission-head h2{margin:.08rem 0 .1rem;font-size:1.35rem;line-height:1.2}.mission-head h2 .zh{font-size:.78em;font-weight:400}
+.mission-head p{margin:.15rem 0 0;color:var(--pencil);font-size:.82rem;max-width:34rem}
+.mission-progress{flex:0 0 auto;min-width:5.6rem;background:#fff;border:1px solid #E5D48B;border-radius:.65rem;padding:.45rem .6rem;text-align:center}
+.mission-progress b{display:block;color:#8A6B00;font-size:1.05rem}.mission-progress span{font-size:.68rem;color:var(--pencil)}
+.mission-list{display:grid;gap:.55rem}.mission-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:.65rem;align-items:center;
+  background:#fff;border:1px solid #E6DAAA;border-radius:.65rem;padding:.65rem .7rem;transition:opacity .18s,background-color .18s}
+.mission-row.done{background:#F2F6EF;border-color:#C9DCC4}.mission-row.done .mission-copy strong{text-decoration:line-through;color:var(--pencil)}
+.mission-check{width:1.22rem;height:1.22rem;margin:0;accent-color:var(--green);cursor:pointer}
+.mission-copy{min-width:0;cursor:pointer}.mission-copy strong{display:block;font-size:.94rem;line-height:1.25}
+.mission-detail{display:block;margin-top:.12rem;color:var(--pencil);font-size:.76rem;line-height:1.35}.mission-detail .zh{font-size:.94em}
+.mission-meta{display:flex;gap:.3rem;align-items:center;flex-wrap:wrap;margin-bottom:.2rem}.mission-tag{display:inline-flex;align-items:center;
+  border-radius:999px;padding:.08rem .42rem;background:#E8EEFC;color:var(--blue-deep);font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.mission-tag.scan{background:#F0E9FA;color:#7047A4}.mission-tag.both{background:#FFF1E1;color:#A85C10}
+.mission-go{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;text-decoration:none;color:#fff;background:var(--blue);
+  border-radius:.55rem;padding:.42rem .65rem;font-size:.76rem;font-weight:700;box-shadow:0 .18rem 0 var(--blue-deep)}
+.mission-go:hover,.mission-go:focus-visible{background:var(--blue-deep);outline:3px solid var(--hl);outline-offset:2px}
+.mission-note{margin:.65rem 0 0;color:var(--pencil);font-size:.72rem}.mission-all{margin:.65rem 0 0;padding:.5rem .65rem;border-radius:.5rem;
+  background:#E6F6EE;color:#1E6E48;font-weight:600;font-size:.82rem}
+@media(min-width:961px){.mission-board{padding:.65rem}.mission-head{align-items:center;gap:.55rem;margin-bottom:.4rem}.mission-head h2{font-size:1.08rem}.mission-head p{display:none}
+  .mission-kicker{font-size:.58rem}.mission-progress{min-width:4.35rem;padding:.28rem .35rem}.mission-progress b{font-size:.88rem}.mission-progress span{font-size:.58rem}
+  .mission-list{grid-template-columns:1fr;gap:.3rem}.mission-row{gap:.4rem;padding:.32rem .42rem}.mission-check{width:1rem;height:1rem}.mission-meta{margin-bottom:.08rem}
+  .mission-copy{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.28rem;align-items:center}.mission-meta{display:block;margin:0}.mission-tag{font-size:.5rem;padding:.04rem .28rem}
+  .mission-copy strong{font-size:.76rem;line-height:1.12;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}.mission-detail{display:none}
+  .mission-go{padding:.28rem .42rem;font-size:.62rem}
+  .mission-note{font-size:.58rem;line-height:1.2;margin-top:.38rem}}
+@media(max-width:960px){.home-grid{display:block}.mission-board{max-width:54rem;margin:.2rem 0 1.35rem;padding:1rem}}
+@media(max-width:620px){.mission-head{align-items:center}.mission-head p{font-size:.78rem}.mission-progress{min-width:4.8rem}
+  .mission-row{grid-template-columns:auto minmax(0,1fr)}.mission-go{grid-column:2;justify-self:start}.mission-board{padding:.85rem}}
 
 /* subject filter */
 .filters{position:sticky;top:0;z-index:5;background:rgba(250,250,250,.94);backdrop-filter:blur(4px);
@@ -83,6 +121,37 @@ body.zh-on .chip .zh{display:inline}
 .subject[data-subject="science"] .subject-head h2{color:#1F8A5B}
 .subject[data-subject="social"] .subject-head h2{color:#6B4EA8}
 .subject[data-subject="chinese"] .subject-head h2{color:#B23A48}
+
+/* stable topic map — homework records live inside each topic */
+.map-lead{display:flex;align-items:flex-end;justify-content:space-between;gap:1.2rem;margin:.15rem 0 1rem}
+.map-kicker{display:block;color:var(--blue-deep);font-size:.68rem;font-weight:700;letter-spacing:.1em}
+.map-lead h2{margin:.08rem 0 0;font-size:1.55rem;line-height:1.15}.map-lead h2 .zh{font-size:.72em;font-weight:400}
+.map-lead p{max-width:34rem;margin:0;color:var(--pencil);font-size:.82rem}.map-lead p .zh{font-size:.94em}
+.topic-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem;align-items:start}
+.topic-card{position:relative;background:#fff;border:1px solid var(--border2);border-radius:.75rem;box-shadow:0 2px 6px rgba(0,0,0,.07);overflow:hidden}
+.topic-card::before{content:"";position:absolute;top:-.18rem;left:1.4rem;width:4.1rem;height:.7rem;background:rgba(255,236,150,.75);transform:rotate(-1.5deg);z-index:1}
+.topic-card[open]{box-shadow:0 .35rem .8rem rgba(0,0,0,.1)}
+.topic-card summary{position:relative;display:grid;grid-template-columns:5.4rem minmax(0,1fr) auto;gap:.65rem;align-items:start;padding:1rem .85rem .8rem;cursor:pointer;list-style:none}
+.topic-card summary::-webkit-details-marker{display:none}.topic-card summary::after{content:"+";position:absolute;right:.85rem;bottom:.55rem;color:var(--grey);font-size:1.05rem;font-weight:600}
+.topic-card[open] summary::after{content:"−"}.topic-card summary:focus-visible{outline:3px solid var(--blue);outline-offset:-3px}
+.topic-preview{position:relative;display:block;width:5.4rem;aspect-ratio:4/3;overflow:hidden;border:1px solid var(--border);border-radius:.42rem;background:#fff}.topic-preview svg{display:block;width:100%;height:100%}.topic-preview .preview-badge{position:absolute;right:.22rem;top:.22rem;border-radius:999px;background:var(--red);color:#fff;padding:.06rem .3rem;font-size:.52rem;font-weight:700;box-shadow:0 1px 2px rgba(0,0,0,.18)}
+.topic-copy{min-width:0}.topic-eyebrow{display:block;margin-bottom:.12rem;color:var(--grey);font-family:'Caveat',cursive;font-size:.95rem;line-height:1.1}
+.topic-copy strong{display:block;font-size:1.02rem;line-height:1.2}.topic-copy strong .zh{font-size:.78em;font-weight:400;margin-top:.08rem}
+.topic-desc{display:block;margin-top:.28rem;color:var(--pencil);font-size:.76rem;line-height:1.35}.topic-desc .zh{font-size:.92em}
+.topic-next{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;min-width:4.8rem;border-radius:.55rem;padding:.35rem .42rem;text-align:center;font-size:.62rem;font-weight:700;line-height:1.2}
+.topic-next.foundation{background:var(--orange-soft);color:#A85C10}.topic-next.checkpoint{background:var(--blue-soft);color:var(--blue-deep)}.topic-next.advanced{background:#E6F6EE;color:#1E6E48}
+.topic-next .zh{font-size:.9em;color:inherit;margin-top:.08rem}
+.topic-body{border-top:1px dashed var(--border2);padding:.72rem .85rem .82rem;background:#FCFCFD}
+.topic-skills{display:flex;gap:.3rem;flex-wrap:wrap}.skill-chip{display:inline-flex;border:1px solid var(--border2);border-radius:999px;background:#fff;padding:.14rem .48rem;font-size:.68rem;color:var(--pencil)}
+.topic-weekend{margin:.55rem 0;color:var(--ink);font-size:.73rem}.topic-weekend b{color:var(--blue-deep)}
+.topic-history-label{display:block;margin:.55rem 0 .28rem;color:var(--grey);font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.topic-history{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.55rem}.topic-history a{display:block;min-width:0;color:var(--ink);text-decoration:none;background:#fff;border:1px solid var(--border);border-radius:.52rem;padding:.38rem;transition:transform .15s,box-shadow .15s}
+.topic-history a:hover,.topic-history a:focus-visible{transform:translateY(-.1rem);border-color:var(--blue);outline:2px solid var(--blue-soft);outline-offset:1px;box-shadow:0 .25rem .55rem rgba(0,0,0,.08)}.topic-history-thumb{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;border:1px solid var(--border);border-radius:.35rem;background:#fff}.topic-history-thumb svg{display:block;width:100%;height:100%}.topic-history-thumb .badge{position:absolute;right:.25rem;top:.25rem;border-radius:999px;background:var(--red);color:#fff;padding:.06rem .32rem;font-size:.52rem;font-weight:700}
+.topic-history b{display:block;margin-top:.36rem;font-size:.74rem;line-height:1.2}.topic-history em{display:-webkit-box;overflow:hidden;margin-top:.12rem;color:var(--grey);font-family:'Caveat',cursive;font-size:.72rem;line-height:1.15;-webkit-box-orient:vertical;-webkit-line-clamp:2}.topic-history time{display:block;margin-top:.2rem;color:var(--pencil);font-size:.62rem;white-space:nowrap}
+.archive-shell{margin:2rem 0 0;border-top:2px dashed var(--border2);padding-top:.7rem}.archive-shell>summary{cursor:pointer;color:var(--pencil);font-weight:600;list-style:none;padding:.45rem 0}.archive-shell>summary::-webkit-details-marker{display:none}
+.archive-shell>summary::after{content:"  +";color:var(--blue)}.archive-shell[open]>summary::after{content:"  −"}.archive-shell>summary .zh{font-weight:400;margin-top:.15rem}.archive-shell #subjects{margin-top:1rem}
+@media(max-width:800px){.map-lead{display:block}.map-lead p{margin-top:.4rem}.topic-grid{grid-template-columns:1fr}}
+@media(max-width:520px){.topic-card summary{grid-template-columns:5rem minmax(0,1fr);padding-right:.7rem}.topic-preview{width:5rem}.topic-next{grid-column:2;justify-self:start;min-width:0;flex-direction:row;gap:.25rem}.topic-card summary::after{right:.7rem;bottom:.45rem}}
 
 /* grid */
 .grid{display:grid;gap:1.1rem;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr))}
@@ -128,26 +197,52 @@ body.zh-on .chip .zh{display:inline}
   <h1>William's <mark>Correction Notes</mark>
     <span class="zh">William 訂正筆記總目錄</span></h1>
 
-  <div class="wn-hi">
-    <img id="wnHiImg" src="img/skzoo-puppym.png" alt="Your study buddy" width="150" height="150">
-    <div class="bubble">
-      <p class="say" id="wnHiLine"><b>You're back!</b> Yay!<span class="zh"><b>你回來啦！</b>太好了！</span></p>
-      <span class="who" id="wnHiName">Puppy M</span>
+  <div class="home-grid">
+    <div class="home-left">
+      <div class="wn-hi">
+        <img id="wnHiImg" src="img/skzoo-puppym.png" alt="Your study buddy" width="150" height="150">
+        <div class="bubble">
+          <p class="say" id="wnHiLine"><b>You're back!</b> Yay!<span class="zh"><b>你回來啦！</b>太好了！</span></p>
+          <span class="who" id="wnHiName">Puppy M</span>
+        </div>
+      </div>
+
+      <p class="intro">Every correction joins a topic in this notebook. Each topic keeps the lesson pictures that help you find your way back.
+        <span class="zh">每一次訂正都會收進一個能力主題；每張課程首圖都會保留，讓你一眼找回那一課。</span></p>
+
+      <div class="stats">
+        <div class="stat"><b id="stTopics">0</b><span>topics<span class="zhi"> 個能力主題</span></span></div>
+        <div class="stat"><b id="stLessons">0</b><span>lesson records<span class="zhi"> 份課程紀錄</span></span></div>
+        <div class="stat"><b id="stSubjects">0</b><span>subjects<span class="zhi"> 科目</span></span></div>
+      </div>
     </div>
-  </div>
 
-  <p class="intro">Every homework you fix becomes one page in this notebook. Tap a card to open that lesson.
-    <span class="zh">每一次訂正的作業都是這本筆記的一頁。點卡片就能打開那一課。</span></p>
-
-  <div class="stats">
-    <div class="stat"><b id="stLessons">0</b><span>lessons<span class="zhi"> 課</span></span></div>
-    <div class="stat"><b id="stSubjects">0</b><span>subjects<span class="zhi"> 科目</span></span></div>
-    <div class="stat"><b id="stFixes">0</b><span>spots to beat<span class="zhi"> 個要打的</span></span></div>
+    <section class="mission-board" id="missionBoard" aria-labelledby="missionTitle">
+      <div class="mission-head">
+        <div><span class="mission-kicker" id="missionDate">TODAY</span>
+          <h2 id="missionTitle">Today's Mission<span class="zh">今日任務</span></h2>
+          <p>Latest feedback, one short route to the right chapter.<span class="zh">把最新回饋變成最短路線，直接回到該複習的章節。</span></p>
+        </div>
+        <div class="mission-progress" aria-live="polite"><b id="missionCount">0 / 0</b><span>reviewed<span class="zhi"> 已複習</span></span></div>
+      </div>
+      <div class="mission-list" id="missionList"></div>
+      <p class="mission-note">Checked = reviewed, not mastered. It stays here; no parent alert. Retest later.<span class="zh">勾選＝已複習，不等於已熟練；任務會留著，不會通知家長，之後仍要複測。</span></p>
+      <div class="mission-all" id="missionAll" hidden>✓ Today's portals are done. Future William still has to pass the no-notes retest.<span class="zh">今天的傳送門走完了；之後仍要通過不看筆記的獨立複測。</span></div>
+    </section>
   </div>
 
   <nav class="filters" id="filters" aria-label="Subject filter"></nav>
 
-  <div id="subjects"></div>
+  <section class="map-lead" aria-labelledby="mapTitle">
+    <div><span class="map-kicker">KNOWLEDGE MAP</span><h2 id="mapTitle">Learn by Topic<span class="zh">按能力主題整理</span></h2></div>
+    <p>One topic keeps every related correction together. Its newest picture stays on the cover; open it for the full lesson grid.<span class="zh">同一能力的訂正收在一張主題卡；封面保留最新課程首圖，打開後用圖卡 grid 查看全部歷次課程。</span></p>
+  </section>
+  <div id="topics"></div>
+
+  <details class="archive-shell">
+    <summary>📚 Homework History · <span id="archiveCount">0</span> lesson pages<span class="zh">作業歷史：保留每一份原始課程頁</span></summary>
+    <div id="subjects"></div>
+  </details>
 
 </div>
 </div>
@@ -169,6 +264,167 @@ const SUBJECTS = {
   chinese: { en:"Chinese",        zh:"國語", icon:"✍️" }
 };
 
+/* ===== Stable knowledge map — one topic can collect many homework records ===== */
+const TOPIC_STAGES = {
+  foundation:{en:"Next: foundation",zh:"下次：基礎"},
+  checkpoint:{en:"Next: quick check",zh:"下次：快問"},
+  advanced:{en:"Next: stretch",zh:"下次：進階"}
+};
+const TOPICS = [
+  {
+    id:"isee-vocabulary", subject:"isee", next:"foundation",
+    title:"Vocabulary & Synonym Strategy", zh:"詞彙與同義詞策略",
+    desc:"Build the word bank, connect synonym pairs, and check meaning direction before choosing.",
+    zhDesc:"累積單字庫、連起同義詞配對，並在選答案前確認字義方向。",
+    skills:["Word bank","Synonym pairs","Meaning direction"], zhSkills:["單字庫","同義詞配對","字義方向"],
+    weekend:"Use fresh basic pairs first; move to context and harder distractors only after an independent pass.",
+    zhWeekend:"週末先用新的基礎配對；獨立通過後，才進到語境題與更難干擾選項。"
+  },
+  {
+    id:"isee-reading", subject:"isee", next:"foundation",
+    title:"Reading Evidence & Paragraph Job", zh:"閱讀證據與段落功能",
+    desc:"Infer from actions, then separate a paragraph's feeling, cause, content, and function.",
+    zhDesc:"從動作做推論，再分清段落的感受、原因、內容與功能。",
+    skills:["Action clues","Cautious inference","Paragraph function"], zhSkills:["動作線索","不過度推論","段落功能"],
+    weekend:"Repeat the same evidence-to-function chain with a new passage before raising the reading load.",
+    zhWeekend:"週末先用新文章重走「證據→功能」；穩定後再增加文章與選項難度。"
+  },
+  {
+    id:"isee-math", subject:"isee", next:"foundation",
+    title:"ISEE Math Reasoning", zh:"ISEE 數學推理",
+    desc:"Translate relationships, test every choice, and verify each step instead of trusting the first answer.",
+    zhDesc:"翻譯題目關係、逐一驗證選項，並檢查每一步而不是相信第一個答案。",
+    skills:["Translate words","Test choices","Multi-step checks"], zhSkills:["文字轉數學","驗證選項","多步驟檢查"],
+    weekend:"Keep the next set at foundation level across the seven newly identified reasoning patterns.",
+    zhWeekend:"新辨識出的七種推理型態先維持基礎換題，逐項確認後才升階。"
+  },
+  {
+    id:"math-fractions", subject:"math", next:"foundation",
+    title:"Fractions & Mixed Numbers", zh:"分數與帶分數",
+    desc:"Compare, calculate, simplify, convert forms, and solve mixed-number stories in one place.",
+    zhDesc:"把比較、計算、約分、形式轉換與帶分數應用題收在同一個主題。",
+    skills:["Compare & calculate","Simplest form","Improper ↔ mixed","Word problems"], zhSkills:["比較與計算","最簡形式","假分數↔帶分數","應用題"],
+    weekend:"Retest reduce and requested form with new numbers; add a harder multi-step item only after both are independent.",
+    zhWeekend:"週末用新數字複測 reduce 與指定形式；兩者都能獨立完成後才加進階多步驟題。"
+  },
+  {
+    id:"math-estimation", subject:"math", next:"checkpoint",
+    title:"Rounding, Estimation & Calculation Checks", zh:"四捨五入、估算與計算檢查",
+    desc:"Estimate before multiplying or dividing, then use it to check the exact answer.",
+    zhDesc:"乘除前先估算，再用估算檢查精確答案是否合理。",
+    skills:["Rounding","Estimate first","Exact answer check"], zhSkills:["四捨五入","先估算","檢查精確答案"],
+    weekend:"Start with one no-notes checkpoint; a clean pass unlocks a longer real-world calculation.",
+    zhWeekend:"週末先做一題不看筆記的快問；乾淨通過就接較長的生活計算題。"
+  },
+  {
+    id:"math-word-problems", subject:"math", next:"checkpoint",
+    title:"Expressions & Real-World Problems", zh:"算式與生活應用題",
+    desc:"Turn a story into the right operations, keep every group, and interpret the final answer.",
+    zhDesc:"把故事翻成正確運算、保留每一組資料，並解釋最後答案。",
+    skills:["Build the expression","Multi-step totals","Models & remainders"], zhSkills:["建立算式","多步驟總量","模型與餘數"],
+    weekend:"Use one short translation check; pass means the next question can add an extra condition.",
+    zhWeekend:"先用一題短文字轉算式；通過後，下一題可增加一個條件。"
+  },
+  {
+    id:"math-factors", subject:"math", next:"checkpoint",
+    title:"Factors, Multiples & Prime Numbers", zh:"因數、倍數與質數",
+    desc:"Check divisibility, common multiples, and prime or composite status with evidence.",
+    zhDesc:"用證據檢查整除、公倍數，以及質數或合數。",
+    skills:["Factors","Multiples","Prime vs composite"], zhSkills:["因數","倍數","質數與合數"],
+    weekend:"One mixed checkpoint decides whether the next worksheet stays basic or moves to a proof-style question.",
+    zhWeekend:"用一題混合快問決定下次保留基礎，或升到需要說明理由的題目。"
+  },
+  {
+    id:"math-patterns", subject:"math", next:"checkpoint",
+    title:"Number Patterns", zh:"數字規律",
+    desc:"Name the repeating rule and keep it unchanged across every step.",
+    zhDesc:"說出重複規則，並在每一步維持同一個規律。",
+    skills:["Find the rule","Extend the sequence"], zhSkills:["找規律","延伸數列"],
+    weekend:"A quick new sequence is enough; an independent pass unlocks a two-rule pattern.",
+    zhWeekend:"用一組新數列快問即可；獨立通過後再進到雙規則數列。"
+  },
+  {
+    id:"english-writing", subject:"english", next:"checkpoint",
+    title:"Writing Connections", zh:"寫作連接與句子組合",
+    desc:"Use connectors, stable tense, and accurate spelling to turn ideas into complete sentences.",
+    zhDesc:"用連接詞、穩定時態與正確拼字，把想法組成完整句子。",
+    skills:["Connectors","Tense","Spelling in context"], zhSkills:["連接詞","時態","語境拼字"],
+    weekend:"Begin with a worked example, then use one independent sentence before adding a more complex structure.",
+    zhWeekend:"先看一題示範，再獨立寫一句；成功後才加入更複雜句型。"
+  },
+  {
+    id:"science-living", subject:"science", next:"checkpoint",
+    title:"Living Systems: Structure & Function", zh:"生物系統：構造與功能",
+    desc:"Connect cells, tissues, organs, structures, and the jobs they support.",
+    zhDesc:"連起細胞、組織、器官、構造，以及它們支持的功能。",
+    skills:["Cell structures","Levels of organization","Structure → function"], zhSkills:["細胞構造","組成層次","構造→功能"],
+    weekend:"Use one new structure-to-function example; a complete explanation unlocks comparison questions.",
+    zhWeekend:"用一個新的構造與功能例子快問；能完整說明後再做比較題。"
+  },
+  {
+    id:"science-answer-writing", subject:"science", next:"checkpoint",
+    title:"Science: Writing the Whole Answer", zh:"自然：把答案寫完整",
+    desc:"Turn correct science ideas into a complete cause-and-effect sentence.",
+    zhDesc:"把正確的自然概念寫成完整的因果句。",
+    skills:["Cause & effect","Evidence sentence","Complete response"], zhSkills:["因果","證據句","完整作答"],
+    weekend:"Use one short-response checkpoint; advance by requiring two linked pieces of evidence.",
+    zhWeekend:"先用一題簡答快問；通過後再要求串起兩個證據。"
+  },
+  {
+    id:"social-changing-world", subject:"social", next:"checkpoint",
+    title:"A Changing World: Use the Evidence", zh:"變動的世界：使用證據",
+    desc:"Support map and history answers with source details and compare shared versus unique traits.",
+    zhDesc:"用資料細節支持地圖與歷史答案，並比較共同與獨有特徵。",
+    skills:["Source evidence","Maps & tools","Compare civilizations"], zhSkills:["資料證據","地圖與工具","文明比較"],
+    weekend:"A new source-detail check comes first; a pass unlocks a compare-and-explain question.",
+    zhWeekend:"先做一題新的資料細節快問；通過後再做比較並說明理由。"
+  },
+  {
+    id:"social-first-americans", subject:"social", next:"checkpoint",
+    title:"The First Americans", zh:"第一批美洲人",
+    desc:"Check the text before naming artifacts, evidence, causes, and effects.",
+    zhDesc:"從課文查證文物、證據、原因與結果後再作答。",
+    skills:["Artifacts","Text evidence","Cause & effect"], zhSkills:["文物","課文證據","因果"],
+    weekend:"Start with one evidence lookup; an independent pass unlocks a short explanation without choices.",
+    zhWeekend:"先做一題證據查找；獨立通過後再做沒有選項的短答。"
+  }
+];
+
+/* ===== Today's review queue — update after worksheet or homework-scan feedback ===== */
+const TODAY_MISSIONS = {
+  date:"2026-09-06", label:"SEP 6 · 4 PORTALS",
+  tasks:[
+    {
+      id:"fraction-form-20260906", topic:"math-fractions", level:"foundation", tag:"Worksheet", zhTag:"完成卷", kind:"worksheet",
+      title:"Convert in the Form the Question Asks For", zh:"照題目指定的形式轉換",
+      detail:"Q2: understand reduce and stop in the requested form. Q6 was circled, so review it again.",
+      zhDetail:"Q2 要看懂 reduce 並停在指定形式；Q6 有圈題，所以仍要再複習。",
+      href:"fraction-conversion-direction.html?v=20260905-sourcefix-1#s2"
+    },
+    {
+      id:"reading-evidence-20260906", topic:"isee-reading", level:"foundation", tag:"Worksheet + scan", zhTag:"完成卷＋掃描", kind:"both",
+      title:"Read the Evidence, Then Name Its Job", zh:"先讀證據，再說它在文章裡做什麼",
+      detail:"Q7: opposite actions → uncertainty. Q8-Q10: separate feeling, cause, content, and function. Recheck Never Bird Q23.",
+      zhDetail:"Q7 練相反動作→不確定；Q8-Q10 分清感受、原因、內容與功能；再看 Never Bird Q23。",
+      href:"reading-paragraph-purpose.html?v=20260906-fulltext-1#s1"
+    },
+    {
+      id:"isee-math-20260906", topic:"isee-math", level:"foundation", tag:"Homework scan", zhTag:"作業掃描", kind:"scan",
+      title:"Read the Relationship, Then Check It", zh:"先讀關係，再逐步驗算",
+      detail:"Seven fixes: reflection, starting value, NOT a factor, prism formula, substitution, nested groups, and equality.",
+      zhDetail:"7 題回收：鏡射、起始值、NOT 因數、長方體公式、代入、多層括號與等式驗算。",
+      href:"isee-math-relationships-and-checks.html?v=20260906-1#s1"
+    },
+    {
+      id:"isee-verbal-20260906", topic:"isee-vocabulary", level:"foundation", tag:"Homework scan", zhTag:"作業掃描", kind:"scan",
+      title:"Five Synonym Pairs", zh:"五組同義字",
+      detail:"Connect grievance/complaint, trance/enchantment, yore/history, hoist/boost, and conspicuous/evident.",
+      zhDetail:"連起五組同義字：grievance、trance、yore、hoist、conspicuous 與它們的配對。",
+      href:"isee-verbal-synonym-set-2026-09-05.html?v=20260906-1#deckTitle"
+    }
+  ]
+};
+
 /* ===== 2. Lessons — add new ones here (sorted by date automatically) =====
    thumb: "sieve" | "fraction" | "numberline" | "artifact" | "grid"  (see THUMBS below)      */
 const LESSONS = [
@@ -182,7 +438,25 @@ const LESSONS = [
     href:"isee-essay-builder.html?v=20260906-1"
   },
   {
-    subject:"isee", date:"2026-09-05",
+    subject:"isee", topic:"isee-vocabulary", date:"2026-09-05",
+    title:"Five Synonym Pairs", zh:"五組同義字",
+    desc:"Study the five missed question-word pairs with pictures, short meanings, examples, pronunciation, and a one-at-a-time pair check.",
+    zhDesc:"用圖像、短義、例句與發音學五組錯題同義字，再逐題完成配對驗收。",
+    source:"ZOZECK · ISEE Lower Pastpaper · Verbal Reasoning · Q8, Q9, Q11, Q16, Q17",
+    fixes:5, thumb:"synonym-direction",
+    href:"isee-verbal-synonym-set-2026-09-05.html?v=20260906-1"
+  },
+  {
+    subject:"isee", topic:"isee-math", date:"2026-09-05",
+    title:"Read the Relationship, Then Check It", zh:"先讀關係，再逐步驗算",
+    desc:"Seven math corrections on reflection, formulas, factors, nested operations, substitution, and checking both sides of an equation.",
+    zhDesc:"7 個 ISEE 數學訂正：鏡射、公式、因數、多層括號、代入，以及等號兩邊分別驗算。",
+    source:"ZOZECK · ISEE Lower Pastpaper · Mathematics Achievement · Q2, Q3, Q10, Q17, Q23, Q26, Q29",
+    fixes:7, thumb:"translate-math",
+    href:"isee-math-relationships-and-checks.html?v=20260906-1"
+  },
+  {
+    subject:"isee", topic:"isee-vocabulary", date:"2026-09-05",
     title:"Essential 1-2: Word Cards", zh:"Essential 1-2：ISEE 詞卡",
     desc:"Learn the next ten Essential Deck 1 words through pictures, short examples, pronunciation, and easy synonym links.",
     zhDesc:"用圖像、短例句、發音與簡單同義詞，熟悉 Essential Deck 1 的下一組 10 個單字。",
@@ -191,16 +465,16 @@ const LESSONS = [
     href:"isee-essential-1-2.html?v=20260905-essential-1-2-1"
   },
   {
-    subject:"isee", date:"2026-09-04",
+    subject:"isee", topic:"isee-reading", date:"2026-09-04",
     title:"Read the Evidence, Then Name Its Job", zh:"先讀證據，再說它在文章裡做什麼",
-    desc:"Four confirmed reading corrections plus one partly obscured answer screen: infer cautiously from actions, then separate paragraph content from function.",
-    zhDesc:"4 個可確認錯答，加 1 張只能練方法的遮蔽畫面：從動作做不過度的推論，再分清段落內容與作用。",
+    desc:"Five confirmed reading corrections with full-passage evidence: infer cautiously from actions, then separate paragraph content from function.",
+    zhDesc:"5 個有全文證據的閱讀訂正：從動作做不過度的推論，再分清段落內容與作用。",
     source:"ZOZECK · ISEE Lower Pastpaper · Reading Comprehension · Never Bird and Gold passages",
-    fixes:4, thumb:"paragraph-job",
-    href:"reading-paragraph-purpose.html?v=20260905-sourcefix-1"
+    fixes:5, thumb:"paragraph-job",
+    href:"reading-paragraph-purpose.html?v=20260906-fulltext-1"
   },
   {
-    subject:"math", date:"2026-09-04",
+    subject:"math", topic:"math-fractions", date:"2026-09-04",
     title:"Convert in the Form the Question Asks For", zh:"照題目指定的形式轉換",
     desc:"Three corrections on improper fractions and mixed numbers: convert in the requested direction, simplify, and stop in the named form.",
     zhDesc:"3 個假分數與帶分數訂正：照指定方向轉換、化到最簡，並停在題目要求的形式。",
@@ -209,7 +483,7 @@ const LESSONS = [
     href:"fraction-conversion-direction.html?v=20260905-sourcefix-1"
   },
   {
-    subject:"math", date:"2026-08-31",
+    subject:"math", topic:"math-word-problems", date:"2026-08-31",
     title:"Multiply Each Part, Then Combine", zh:"每一部分先乘，再合起來",
     desc:"Two multi-step fixes: carry both archery subtotals into the total, then compare two complete store receipts before finding how much more.",
     zhDesc:"兩個多步驟訂正：射箭題的兩個小計都要進總分；商店題要先算兩張完整收據，再找多多少。",
@@ -218,7 +492,7 @@ const LESSONS = [
     href:"multiply-then-combine.html?v=20260831-launch-1"
   },
   {
-    subject:"isee", date:"2026-08-31",
+    subject:"isee", topic:"isee-math", date:"2026-08-31",
     title:"Translate the Words Before You Calculate", zh:"先把文字翻成數學，再開始算",
     desc:"Three new help-marked questions: build a seven-day mean, keep the whole sum inside parentheses, and reverse equal groups with division.",
     zhDesc:"三題新的求助圈題：算七日平均、把整個和放進括號，以及用除法倒推相同組合的組數。",
@@ -227,7 +501,7 @@ const LESSONS = [
     href:"isee-quantitative-translation.html?v=20260831-launch-1"
   },
   {
-    subject:"math", date:"2026-08-31",
+    subject:"math", topic:"math-fractions", date:"2026-08-31",
     title:"Keep the Whole, Fix the Fraction", zh:"整數留下來，分數部分再處理",
     desc:"Fourteen paper corrections collapse into five habits: count shaded parts, count number-line intervals, and obey mixed-number or simplest-form directions.",
     zhDesc:"14 個紙本訂正收斂成 5 個習慣：數塗色小份、數數線區間，以及照「帶分數／最簡形式」指示作答。",
@@ -236,7 +510,7 @@ const LESSONS = [
     href:"mixed-number-form.html?v=20260831-launch-1"
   },
   {
-    subject:"isee", date:"2026-08-31",
+    subject:"isee", topic:"isee-vocabulary", date:"2026-08-31",
     title:"Essential 1-1: Word Cards", zh:"Essential 1-1：ISEE 詞卡",
     desc:"Learn ten Essential Deck 1 words through pictures, short examples, pronunciation, and easy synonym links.",
     zhDesc:"用圖像、短例句、發音與簡單同義詞，先熟悉 Essential Deck 1 的 10 個單字。",
@@ -245,7 +519,7 @@ const LESSONS = [
     href:"isee-essential-1-1.html?v=20260831-essential-1-1-1"
   },
   {
-    subject:"isee", date:"2026-08-30",
+    subject:"isee", topic:"isee-vocabulary", date:"2026-08-30",
     title:"Synonyms: Check the Direction", zh:"同義詞：先確認方向",
     desc:"Fix each word's plus or minus before reading the options — two antonym traps, one look-alike pair, and one motion word read backward.",
     zhDesc:"先定這個字的正負方向再看選項——兩題反義詞陷阱、一題形近字、一題方向讀反的動作字。",
@@ -254,7 +528,7 @@ const LESSONS = [
     href:"isee-synonyms.html?v=20260831-word-cards-2"
   },
   {
-    subject:"isee", date:"2026-08-30",
+    subject:"isee", topic:"isee-math", date:"2026-08-30",
     title:"Test the Choices Against the Evidence", zh:"用證據驗證每個選項",
     desc:"Treat every choice as a claim and test it against all the evidence — then walk each multi-step chain to the last step.",
     zhDesc:"把每個選項當成待驗證的主張，逐一對上全部數據——多步驟的題要一路走到最後一步。",
@@ -263,7 +537,7 @@ const LESSONS = [
     href:"isee-math-evidence.html?v=20260830-launch-1"
   },
   {
-    subject:"math", date:"2026-08-26",
+    subject:"math", topic:"math-estimation", date:"2026-08-26",
     title:"Estimate, Then Multiply", zh:"先估算，再算精確乘積",
     desc:"Keep the estimate separate from the exact product, add every partial product, read the carry digits, and finish the method you name.",
     zhDesc:"把估算與精確乘積分開、完整加總部分積、看懂進位數字，並把說出的計算方法寫完。",
@@ -272,7 +546,7 @@ const LESSONS = [
     href:"math-estimate-multiply.html?v=20260828-split-step-1"
   },
   {
-    subject:"social", date:"2026-08-26",
+    subject:"social", topic:"social-changing-world", date:"2026-08-26",
     title:"A Changing World: Use the Evidence", zh:"變動的世界：用課本證據作答",
     desc:"Support the map and navigation-tool answers with textbook details, then separate shared traits from one-kingdom traits.",
     zhDesc:"用課本細節支持地圖與航海工具的答案，再分清三個王國的共同特徵與單一王國特徵。",
@@ -281,7 +555,7 @@ const LESSONS = [
     href:"changing-world-evidence.html?v=20260828-evidence-1"
   },
   {
-    subject:"math", date:"2026-06-21",
+    subject:"math", topic:"math-estimation", date:"2026-06-21",
     title:"Estimate First, Then Divide", zh:"先估算，再動手除",
     desc:"19 of 20 right, including the trap question 9,036 ÷ 3 — the 0 in 3,012 placed exactly where it belongs. Two fixes: one place-value slip on p.45, and every ≈ line moves to before the divide so it can finally catch a mistake.",
     zhDesc:"20 題對 19 題，連陷阱題 9,036÷3 的 0 都放對位置。兩個訂正：p.45 一個位值滑倒，以及把每一行 ≈ 搬到「除之前」，讓估算真的能抓錯。",
@@ -290,7 +564,7 @@ const LESSONS = [
     href:"estimate-first.html"
   },
   {
-    subject:"english", date:"2026-07-09",
+    subject:"english", topic:"english-writing", date:"2026-07-09",
     title:"Connectors & Story Combos", zh:"連接詞與故事連招",
     desc:"All 4 quests cleared, every element power right, and Baymax's line written from memory. The 3 fixes: carry your Quest 2 connectors into free writing, one time-jumping speech tag, and four scrambled spellings.",
     zhDesc:"四關全破，每個忍者的元素能力全對，杯麵的台詞還是憑記憶寫出來的。三個訂正：把 Quest 2 的連接詞帶進自由寫作、一個跳時態的說話標籤，還有四個拼錯的字。",
@@ -299,7 +573,7 @@ const LESSONS = [
     href:"story-connectors.html"
   },
   {
-    subject:"math", date:"2026-08-24",
+    subject:"math", topic:"math-word-problems", date:"2026-08-24",
     title:"Balloon Packs: Build the Expression", zh:"氣球包：把故事變成算式",
     desc:"Turn seven packs of 15 and one pack of 20 into one expression without treating all eight packs as equal.",
     zhDesc:"把 7 包各 15 顆和另 1 包 20 顆寫成同一個算式，不把 8 包誤當成相同數量。",
@@ -308,7 +582,7 @@ const LESSONS = [
     href:"zozeck-balloon-expression.html?v=20260825-controls-2"
   },
   {
-    subject:"math", date:"2026-08-24",
+    subject:"math", topic:"math-word-problems", date:"2026-08-24",
     title:"Sharing Whole Dolls", zh:"完整娃娃怎麼平均分",
     desc:"Count Jessica too, divide among four girls, and interpret the remainder as whole dolls.",
     zhDesc:"把 Jessica 本人也算進去，平均分給 4 個女孩，再按完整娃娃解釋餘數。",
@@ -317,7 +591,7 @@ const LESSONS = [
     href:"zozeck-whole-dolls.html?v=20260825-controls-2"
   },
   {
-    subject:"math", date:"2026-08-24",
+    subject:"math", topic:"math-patterns", date:"2026-08-24",
     title:"Patterns That Multiply", zh:"會一直乘下去的數列",
     desc:"Keep the same ×3 rule for every step: 27 becomes 81, then 243, then 729.",
     zhDesc:"每一步都維持同一個 ×3 規律：27 變 81，再變 243、729。",
@@ -326,7 +600,7 @@ const LESSONS = [
     href:"zozeck-times-three-pattern.html?v=20260825-controls-2"
   },
   {
-    subject:"math", date:"2026-08-24",
+    subject:"math", topic:"math-fractions", date:"2026-08-24",
     title:"Fractions: Find the Difference", zh:"分數：找出相差多少",
     desc:"Read difference as subtraction and keep the common denominator of 9.",
     zhDesc:"把 difference 讀成相減，並保留共同的分母 9。",
@@ -335,7 +609,7 @@ const LESSONS = [
     href:"zozeck-fraction-difference.html?v=20260825-controls-2"
   },
   {
-    subject:"math", date:"2026-08-24",
+    subject:"math", topic:"math-fractions", date:"2026-08-24",
     title:"Mixed Numbers: What Is Left?", zh:"帶分數：最後剩多少",
     desc:"Keep all three used amounts, combine them in twelfths, then subtract from 5 cups.",
     zhDesc:"三個使用量都要算進去，通分成十二分之一後，再從 5 杯扣除。",
@@ -344,7 +618,7 @@ const LESSONS = [
     href:"zozeck-mixed-number-flour.html?v=20260825-controls-2"
   },
   {
-    subject:"science", date:"2026-08-24",
+    subject:"science", topic:"science-living", date:"2026-08-24",
     title:"Living Systems: Structure & Function", zh:"生物系統：構造與功能",
     desc:"Q1–Q4 and Q8 are in place. Q5–Q7 focus on mitochondria, stomata, and how structure supports function.",
     zhDesc:"第 1–4 題與第 8 題已對上；第 5–7 題處理粒線體、氣孔，以及構造如何支持功能。",
@@ -353,7 +627,7 @@ const LESSONS = [
     href:"living-systems.html?v=20260825-controls-2"
   },
   {
-    subject:"math", date:"2026-07-18",
+    subject:"math", topic:"math-word-problems", date:"2026-07-18",
     title:"Bar Models & Real-World Problems", zh:"Bar model 與乘除應用題",
     desc:"All ten answers right — including the two carries in a row on 456 × 8 — so the five fixes are about the drawing p.49 asked for, the last line of two long divisions, and one missing dollar sign.",
     zhDesc:"十題答案全對，456×8 連續兩次進位都守住——五個訂正講的是 p.49 要求的那張圖、兩題長除法的最後一行，和一個沒寫的錢字號。",
@@ -362,7 +636,7 @@ const LESSONS = [
     href:"bar-models.html"
   },
   {
-    subject:"science", date:"2026-07-28",
+    subject:"science", topic:"science-answer-writing", date:"2026-07-28",
     title:"Writing the Whole Answer", zh:"把答案寫完整",
     desc:"35 objective answers all correct, Final Test included — every chapter at once, not one dropped. The 5 spots left are all the same kind: the ones you write out in your own sentence.",
     zhDesc:"35 題客觀題全對，含一次涵蓋七章的 Final Test，一題沒掉。剩下的 5 個地方都是同一種：要自己寫成句子的那種。",
@@ -371,7 +645,7 @@ const LESSONS = [
     href:"science-full-answers.html"
   },
   {
-    subject:"social", date:"2026-08-11",
+    subject:"social", topic:"social-first-americans", date:"2026-08-11",
     title:"The First Americans", zh:"第一批美洲人",
     desc:"7 of 10 right, and both cause-and-effect chains nailed. All three fixes come from one habit — check the text before you write.",
     zhDesc:"10 格對 7 格，兩題因果鏈都答對。三個訂正都出自同一個習慣——寫之前先查證課文。",
@@ -380,7 +654,7 @@ const LESSONS = [
     href:"first-americans.html"
   },
   {
-    subject:"math", date:"2026-08-19",
+    subject:"math", topic:"math-estimation", date:"2026-08-19",
     title:"Rounding & Estimation", zh:"四捨五入與估算",
     desc:"Rounding page was 27/27. The 5 blank word problems all use one trick: round first, then calculate.",
     zhDesc:"四捨五入那頁 27 題全對。5 題空白應用題用的都是同一招：先四捨五入，再計算。",
@@ -389,7 +663,7 @@ const LESSONS = [
     href:"rounding.html"
   },
   {
-    subject:"math", date:"2026-08-18",
+    subject:"math", topic:"math-fractions", date:"2026-08-18",
     title:"Fractions: Compare, Add, Subtract", zh:"分數比較與加減",
     desc:"15 of 16 calculations right. Most fixes are one habit — write the answer in simplest form.",
     zhDesc:"16 題計算對了 15 題。大部分要改的是同一個習慣——答案要寫成最簡分數。",
@@ -398,7 +672,7 @@ const LESSONS = [
     href:"fractions.html"
   },
   {
-    subject:"math", date:"2026-08-15",
+    subject:"math", topic:"math-factors", date:"2026-08-15",
     title:"Factors & Multiples", zh:"因數與倍數",
     desc:"Sieve for primes 1–50, prime vs composite, the nth multiple, common multiples.",
     zhDesc:"篩法找 1–50 的質數、質數與合數、第幾個倍數、公倍數。",
@@ -764,21 +1038,117 @@ let filter = "all";
 
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 
+function lessonThumb(l, className="thumb", tag="div"){
+  const draw = THUMBS[l.thumb] || THUMBS.grid;
+  return `<${tag} class="${className}">
+      ${draw()}
+      ${l.fixes ? `<span class="${className==="topic-preview" ? "preview-badge" : "badge"}">${l.fixes} to fix</span>` : ""}
+    </${tag}>`;
+}
+
 function cardHTML(l, i){
   const tilt = ((i % 3) - 1) * 0.6; // -0.6, 0, 0.6 deg
-  const draw = THUMBS[l.thumb] || THUMBS.grid;
   return `<a class="card" href="${esc(l.href)}" style="--tilt:${tilt}deg" data-subject="${esc(l.subject)}">
-    <div class="thumb">
-      ${draw()}
-      ${l.fixes ? `<span class="badge">${l.fixes} to fix</span>` : ""}
-    </div>
+    ${lessonThumb(l)}
     <h3>${esc(l.title)}<span class="zh">${esc(l.zh||"")}</span></h3>
     <p>${esc(l.desc||"")}<span class="zh">${esc(l.zhDesc||"")}</span></p>
     <div class="src">${esc(l.date)} · ${esc(l.source||"")}</div>
   </a>`;
 }
 
-function render(){
+function topicHTML(t){
+  const records = LESSONS.filter(l=>l.topic===t.id).sort((a,b)=>b.date.localeCompare(a.date));
+  const stage = TOPIC_STAGES[t.next] || TOPIC_STAGES.checkpoint;
+  const latest = records.length ? records[0].date : "—";
+  const recordWord = records.length===1 ? "record" : "records";
+  const skills = t.skills.map((skill,i)=>`<span class="skill-chip">${esc(skill)}<span class="zhi"> · ${esc(t.zhSkills[i]||"")}</span></span>`).join("");
+  const latestPreview = records.length ? lessonThumb(records[0],"topic-preview","span") : `<span class="topic-preview">${THUMBS.grid()}</span>`;
+  const history = records.map(l=>`<a href="${esc(l.href)}">
+      ${lessonThumb(l,"topic-history-thumb")}
+      <b>${esc(l.title)}<span class="zh">${esc(l.zh||"")}</span></b><em>${esc(l.source||"")}</em>
+      <time datetime="${esc(l.date)}">${esc(l.date)}</time>
+    </a>`).join("");
+  return `<details class="topic-card" id="topic-${esc(t.id)}" data-topic="${esc(t.id)}">
+    <summary>
+      ${latestPreview}
+      <span class="topic-copy">
+        <span class="topic-eyebrow">${records.length} ${recordWord} · latest ${esc(latest)}</span>
+        <strong>${esc(t.title)}<span class="zh">${esc(t.zh)}</span></strong>
+        <span class="topic-desc">${esc(t.desc)}<span class="zh">${esc(t.zhDesc)}</span></span>
+      </span>
+      <span class="topic-next ${esc(t.next)}">${esc(stage.en)}<span class="zh">${esc(stage.zh)}</span></span>
+    </summary>
+    <div class="topic-body">
+      <div class="topic-skills">${skills}</div>
+      <p class="topic-weekend"><b>Weekend path:</b> ${esc(t.weekend)}<span class="zh"><b>週末路線：</b>${esc(t.zhWeekend)}</span></p>
+      <span class="topic-history-label">Lesson grid<span class="zhi"> · 歷次課程圖卡</span></span>
+      <div class="topic-history">${history}</div>
+    </div>
+  </details>`;
+}
+
+const MISSION_STORE = "wnotes-missions:" + TODAY_MISSIONS.date;
+let missionDone = (()=>{
+  try{
+    const saved = JSON.parse(localStorage.getItem(MISSION_STORE) || "[]");
+    return new Set(Array.isArray(saved) ? saved : []);
+  }catch(_){ return new Set(); }
+})();
+
+function saveMissionDone(){
+  try{ localStorage.setItem(MISSION_STORE, JSON.stringify([...missionDone])); }catch(_){}
+}
+
+function updateMissionProgress(){
+  const total = TODAY_MISSIONS.tasks.length;
+  const done = TODAY_MISSIONS.tasks.filter(t=>missionDone.has(t.id)).length;
+  $("#missionCount").textContent = `${done} / ${total}`;
+  $("#missionAll").hidden = !total || done !== total;
+}
+
+function renderMissions(){
+  const list = $("#missionList");
+  $("#missionDate").textContent = TODAY_MISSIONS.label;
+  list.innerHTML = TODAY_MISSIONS.tasks.map((t,i)=>{
+    const checked = missionDone.has(t.id);
+    return `<div class="mission-row${checked?" done":""}" data-mission="${esc(t.id)}">
+      <input class="mission-check" type="checkbox" id="mission-${i}" ${checked?"checked":""} aria-label="Mark ${esc(t.title)} reviewed">
+      <label class="mission-copy" for="mission-${i}" title="${esc(t.detail)}">
+        <span class="mission-meta"><span class="mission-tag ${esc(t.kind)}">${esc(t.tag)}<span class="zhi"> · ${esc(t.zhTag)}</span></span></span>
+        <strong>${esc(t.title)}<span class="zh">${esc(t.zh)}</span></strong>
+        <span class="mission-detail">${esc(t.detail)}<span class="zh">${esc(t.zhDetail)}</span></span>
+      </label>
+      <a class="mission-go" href="${esc(t.href)}" aria-label="Open ${esc(t.title)}">Portal ↗<span class="zhi"> 傳送門</span></a>
+    </div>`;
+  }).join("");
+  list.querySelectorAll(".mission-check").forEach((box,i)=>box.addEventListener("change",()=>{
+    const task = TODAY_MISSIONS.tasks[i];
+    if(box.checked) missionDone.add(task.id); else missionDone.delete(task.id);
+    box.closest(".mission-row").classList.toggle("done",box.checked);
+    saveMissionDone(); updateMissionProgress();
+  }));
+  updateMissionProgress();
+}
+
+function renderTopics(){
+  const wrap = $("#topics");
+  const keys = Object.keys(SUBJECTS).filter(k=>filter==="all" || k===filter);
+  let html = "";
+  keys.forEach(k=>{
+    const list = TOPICS.filter(t=>t.subject===k);
+    if(!list.length && filter==="all") return;
+    const s = SUBJECTS[k];
+    html += `<section class="subject" data-subject="${k}">
+      <div class="subject-head"><h2>${s.icon} ${s.en} <span class="zhi" style="font-size:.8em">${s.zh}</span></h2>
+        <span class="count">${list.length} topic${list.length===1?"":"s"}</span><span class="bar"></span></div>
+      ${list.length ? `<div class="topic-grid">${list.map(topicHTML).join("")}</div>`
+                    : `<div class="empty">Nothing here yet · 還沒有這一科的主題</div>`}
+    </section>`;
+  });
+  wrap.innerHTML = html || `<div class="empty">No topics yet.</div>`;
+}
+
+function renderArchive(){
   const wrap = $("#subjects");
   const sorted = [...LESSONS].sort((a,b)=> b.date.localeCompare(a.date));
   const keys = Object.keys(SUBJECTS).filter(k => filter==="all" || k===filter);
@@ -797,8 +1167,13 @@ function render(){
   wrap.innerHTML = html || `<div class="empty">No lessons yet.</div>`;
 }
 
+function render(){
+  renderTopics();
+  renderArchive();
+}
+
 function renderFilters(){
-  const used = new Set(LESSONS.map(l=>l.subject));
+  const used = new Set(TOPICS.map(t=>t.subject));
   const items = [["all","All","全部"], ...Object.entries(SUBJECTS).map(([k,v])=>[k,v.icon+" "+v.en,v.zh])];
   $("#filters").innerHTML = items.map(([k,en,zh])=>
     `<button type="button" class="chip${k===filter?" on":""}" data-k="${k}" ${k!=="all"&&!used.has(k)?'style="opacity:.55"':""}>${en}<span class="zh">${zh}</span></button>`).join("");
@@ -806,9 +1181,10 @@ function renderFilters(){
 }
 
 function stats(){
+  $("#stTopics").textContent = TOPICS.length;
   $("#stLessons").textContent = LESSONS.length;
   $("#stSubjects").textContent = new Set(LESSONS.map(l=>l.subject)).size;
-  $("#stFixes").textContent = LESSONS.reduce((n,l)=>n+(l.fixes||0),0);
+  $("#archiveCount").textContent = LESSONS.length;
 }
 
 /* ===== 5. Study buddy — one of the eight, picked fresh on every visit ===== */
@@ -1194,7 +1570,7 @@ function say(speaker){
   el.innerHTML = en + '<span class="zh">' + zh + "</span>";
 }
 
-renderFilters(); render(); stats(); say(buddy());
+renderMissions(); renderFilters(); render(); stats(); say(buddy());
 </script>
 </body>
 </html>
