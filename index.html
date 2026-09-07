@@ -277,8 +277,8 @@ const TOPICS = [
     desc:"Build the word bank, connect synonym pairs, and check meaning direction before choosing.",
     zhDesc:"累積單字庫、連起同義詞配對，並在選答案前確認字義方向。",
     skills:["Word bank","Synonym pairs","Meaning direction"], zhSkills:["單字庫","同義詞配對","字義方向"],
-    weekend:"Use fresh basic pairs first; move to context and harder distractors only after an independent pass.",
-    zhWeekend:"週末先用新的基礎配對；獨立通過後，才進到語境題與更難干擾選項。"
+    weekend:"The five repaired pairs passed. Review the three highlighted 1-1 words, then begin 1-2; advance only after a fresh no-notes check.",
+    zhWeekend:"五組訂正配對已通過；先複習 1-1 三個黃色字，再開始 1-2，等新的不看筆記驗收通過後才升階。"
   },
   {
     id:"isee-reading", subject:"isee", next:"foundation",
@@ -286,8 +286,8 @@ const TOPICS = [
     desc:"Infer from actions, then separate a paragraph's feeling, cause, content, and function.",
     zhDesc:"從動作做推論，再分清段落的感受、原因、內容與功能。",
     skills:["Action clues","Cautious inference","Paragraph function"], zhSkills:["動作線索","不過度推論","段落功能"],
-    weekend:"Repeat the same evidence-to-function chain with a new passage before raising the reading load.",
-    zhWeekend:"週末先用新文章重走「證據→功能」；穩定後再增加文章與選項難度。"
+    weekend:"Retest content versus function with a new ending paragraph before raising the reading load.",
+    zhWeekend:"先用新的結尾段複測「內容 vs 功能」；穩定後再增加文章與選項難度。"
   },
   {
     id:"isee-math", subject:"isee", next:"foundation",
@@ -295,17 +295,17 @@ const TOPICS = [
     desc:"Translate relationships, test every choice, and verify each step instead of trusting the first answer.",
     zhDesc:"翻譯題目關係、逐一驗證選項，並檢查每一步而不是相信第一個答案。",
     skills:["Translate words","Test choices","Multi-step checks"], zhSkills:["文字轉數學","驗證選項","多步驟檢查"],
-    weekend:"Keep the next set at foundation level across the seven newly identified reasoning patterns.",
-    zhWeekend:"新辨識出的七種推理型態先維持基礎換題，逐項確認後才升階。"
+    weekend:"Retest reflection, the inverse prism formula, and nested groups; four other checks passed independently.",
+    zhWeekend:"複測鏡射、長方體公式逆推與多層括號；其餘四型已獨立通過。"
   },
   {
-    id:"math-fractions", subject:"math", next:"foundation",
+    id:"math-fractions", subject:"math", next:"advanced",
     title:"Fractions & Mixed Numbers", zh:"分數與帶分數",
     desc:"Compare, calculate, simplify, convert forms, and solve mixed-number stories in one place.",
     zhDesc:"把比較、計算、約分、形式轉換與帶分數應用題收在同一個主題。",
     skills:["Compare & calculate","Simplest form","Improper ↔ mixed","Word problems"], zhSkills:["比較與計算","最簡形式","假分數↔帶分數","應用題"],
-    weekend:"Retest reduce and requested form with new numbers; add a harder multi-step item only after both are independent.",
-    zhWeekend:"週末用新數字複測 reduce 與指定形式；兩者都能獨立完成後才加進階多步驟題。"
+    weekend:"Reduce and requested form passed independently; the next worksheet can add a harder multi-step conversion.",
+    zhWeekend:"reduce 與指定形式已獨立通過；下次可加入較難的多步驟轉換題。"
   },
   {
     id:"math-estimation", subject:"math", next:"checkpoint",
@@ -392,35 +392,35 @@ const TOPICS = [
 
 /* ===== Today's review queue — update after worksheet or homework-scan feedback ===== */
 const TODAY_MISSIONS = {
-  date:"2026-09-06", label:"SEP 6 · 4 PORTALS",
+  date:"2026-09-07", label:"SEP 7 · 4 PORTALS",
   tasks:[
     {
-      id:"fraction-form-20260906", topic:"math-fractions", level:"foundation", tag:"Worksheet", zhTag:"完成卷", kind:"worksheet",
-      title:"Convert in the Form the Question Asks For", zh:"照題目指定的形式轉換",
-      detail:"Q2: understand reduce and stop in the requested form. Q6 was circled, so review it again.",
-      zhDetail:"Q2 要看懂 reduce 並停在指定形式；Q6 有圈題，所以仍要再複習。",
-      href:"fraction-conversion-direction.html?v=20260905-sourcefix-1#s2"
-    },
-    {
-      id:"reading-evidence-20260906", topic:"isee-reading", level:"foundation", tag:"Worksheet + scan", zhTag:"完成卷＋掃描", kind:"both",
+      id:"reading-function-20260907", topic:"isee-reading", level:"foundation", tag:"Worksheet", zhTag:"驗收卷", kind:"worksheet",
       title:"Read the Evidence, Then Name Its Job", zh:"先讀證據，再說它在文章裡做什麼",
-      detail:"Q7: opposite actions → uncertainty. Q8-Q10: separate feeling, cause, content, and function. Recheck Never Bird Q23.",
-      zhDetail:"Q7 練相反動作→不確定；Q8-Q10 分清感受、原因、內容與功能；再看 Never Bird Q23。",
-      href:"reading-paragraph-purpose.html?v=20260906-fulltext-1#s1"
+      detail:"Q6 named what happened, but not the paragraph's job. Review content → function: resolve the problem or show the repair worked.",
+      zhDetail:"Q6 說了發生什麼，還沒說段落工作；重看「內容→功能」：解決問題或顯示修理成功。",
+      href:"reading-paragraph-purpose.html?v=20260907-ending-1#s5"
     },
     {
-      id:"isee-math-20260906", topic:"isee-math", level:"foundation", tag:"Homework scan", zhTag:"作業掃描", kind:"scan",
+      id:"isee-math-20260907", topic:"isee-math", level:"foundation", tag:"Worksheet", zhTag:"驗收卷", kind:"worksheet",
       title:"Read the Relationship, Then Check It", zh:"先讀關係，再逐步驗算",
-      detail:"Seven fixes: reflection, starting value, NOT a factor, prism formula, substitution, nested groups, and equality.",
-      zhDetail:"7 題回收：鏡射、起始值、NOT 因數、長方體公式、代入、多層括號與等式驗算。",
+      detail:"Q7 reflection and Q10 prism formula were circled; Q12 nested groups missed the outer ×4. Redo those three chains.",
+      zhDetail:"Q7 鏡射與 Q10 長方體公式有圈題；Q12 多層括號漏掉外層 ×4。重走這三條推理鏈。",
       href:"isee-math-relationships-and-checks.html?v=20260906-1#s1"
     },
     {
-      id:"isee-verbal-20260906", topic:"isee-vocabulary", level:"foundation", tag:"Homework scan", zhTag:"作業掃描", kind:"scan",
-      title:"Five Synonym Pairs", zh:"五組同義字",
-      detail:"Connect grievance/complaint, trance/enchantment, yore/history, hoist/boost, and conspicuous/evident.",
-      zhDetail:"連起五組同義字：grievance、trance、yore、hoist、conspicuous 與它們的配對。",
-      href:"isee-verbal-synonym-set-2026-09-05.html?v=20260906-1#deckTitle"
+      id:"essay-short-20260907", topic:"english-writing", level:"foundation", tag:"Writing practice", zhTag:"寫作練習", kind:"worksheet",
+      title:"ISEE Essay · Short Builder 1", zh:"ISEE 作文短鷹架第 1 次",
+      detail:"Write four paragraphs without sentence-by-sentence models. Zoom both bodies, then finish all three revision passes.",
+      zhDetail:"不看逐句範例完成四段；兩個主體都放大具體例子，再走完三輪自修。",
+      href:"isee-essay-builder.html?v=20260906-2&mode=short#builder"
+    },
+    {
+      id:"essential-cycle-20260907", topic:"isee-vocabulary", level:"foundation", tag:"Word cards", zhTag:"單字", kind:"worksheet",
+      title:"Essential 1-1 Review → 1-2", zh:"Essential 1-1 複習 → 1-2 新字",
+      detail:"Review only the three yellow cards: sage, extricate, and adverse. Then use Next deck to learn Essential 1-2.",
+      zhDetail:"只複習三張黃色卡：sage、extricate、adverse；再按 Next deck 學 Essential 1-2。",
+      href:"isee-essential-1-1.html?v=20260907-review-next-1#deckTitle"
     }
   ]
 };
@@ -476,11 +476,11 @@ const LESSONS = [
   {
     subject:"isee", topic:"isee-reading", date:"2026-09-04",
     title:"Read the Evidence, Then Name Its Job", zh:"先讀證據，再說它在文章裡做什麼",
-    desc:"Five confirmed reading corrections with full-passage evidence: infer cautiously from actions, then separate paragraph content from function.",
-    zhDesc:"5 個有全文證據的閱讀訂正：從動作做不過度的推論，再分清段落內容與作用。",
+    desc:"Five platform-marked corrections plus one worksheet repair: infer cautiously, then separate paragraph content from its job in the passage.",
+    zhDesc:"5 個平台訂正加 1 個驗收卷修正：從證據做不過度的推論，再分清段落內容與全文作用。",
     source:"ZOZECK · ISEE Lower Pastpaper · Reading Comprehension · Never Bird and Gold passages",
-    fixes:5, thumb:"paragraph-job",
-    href:"reading-paragraph-purpose.html?v=20260906-fulltext-1"
+    fixes:6, thumb:"paragraph-job",
+    href:"reading-paragraph-purpose.html?v=20260907-ending-1"
   },
   {
     subject:"math", topic:"math-fractions", date:"2026-09-04",
