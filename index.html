@@ -288,12 +288,12 @@ const TOPIC_STAGES = {
 const TOPICS = [
   {
     id:"isee-vocabulary", subject:"isee", next:"foundation",
-    title:"Vocabulary & Synonym Strategy", zh:"詞彙與同義詞策略",
-    desc:"Build the word bank, connect synonym pairs, and use sentence clues plus word partnerships before choosing.",
-    zhDesc:"累積單字庫、連起同義詞配對，並在選答案前用整句線索與常見搭配交叉確認。",
-    skills:["Word bank","Meaning direction","Sentence clues","Collocations"], zhSkills:["單字庫","字義方向","整句線索","常見搭配"],
-    weekend:"The five repaired synonym pairs passed. The new Q3–Q4 sentence-completion pair still needs a no-notes check of clue, direction, and word partnership.",
-    zhWeekend:"五組同義字訂正已通過；新的 Q3–Q4 句子填空仍要用新句、不看筆記驗收線索、語意方向與搭配。"
+    title:"ISEE Verbal: Words & Mistake Cards", zh:"ISEE Verbal：單字與錯題卡",
+    desc:"Keep every Verbal miss in one card deck, grouped by test set, while Essential decks stay beside it for word study.",
+    zhDesc:"把所有 Verbal 錯題依考卷收在同一副錯題卡；Essential 牌組則留在旁邊負責學習新字。",
+    skills:["Mistake cards","Meaning direction","Sentence clues","Collocations"], zhSkills:["錯題卡","字義方向","整句線索","常見搭配"],
+    weekend:"Open the latest two cards first. The five synonym cards already passed a fresh check; older TEST-01 cards stay available without replaying the whole lesson.",
+    zhWeekend:"先看最新兩張錯題卡；五張同義字卡已通過新題驗收，較早的 TEST-01 卡片保留查閱，不整課重播。"
   },
   {
     id:"isee-reading", subject:"isee", next:"foundation",
@@ -411,10 +411,10 @@ const TODAY_MISSIONS = {
   tasks:[
     {
       id:"isee-sentence-clues-20260908", topic:"isee-vocabulary", level:"foundation", tag:"Homework scan", zhTag:"作業掃描", kind:"scan",
-      title:"Use the Whole Sentence · Q3–Q4", zh:"讀完整句再選字 · Q3–Q4",
-      detail:"Mark the clue, name the blank's job, and check the word partnership. Then pass two fresh sentences without notes.",
-      zhDetail:"先標線索、說出空格的工作，再檢查常見搭配；最後用兩個新句不看筆記驗收。",
-      href:"isee-sentence-completion-context-2026-09-07.html?v=20260908-1#s1"
+      title:"Verbal Mistake Cards · Latest 2", zh:"Verbal 錯題卡 · 最新兩題",
+      detail:"Open the two yellow cards. Read the original choice, then flip for the correct word, clue, and word partnership.",
+      zhDetail:"打開兩張黃色卡；先看原題與原選，再翻開核對正解、線索與常見搭配。",
+      href:"isee-verbal-mistake-cards.html?v=20260908-1#set-20260907"
     }
   ]
 };
@@ -426,12 +426,12 @@ const MISSION_SUBJECT = "WILLIAM TODAY'S MISSION — " + TODAY_MISSIONS.date;
 const LESSONS = [
   {
     subject:"isee", topic:"isee-vocabulary", date:"2026-09-07",
-    title:"Use the Whole Sentence", zh:"讀完整句再選字",
-    desc:"Repair two sentence-completion choices by moving from the clue to the blank's job, then checking the word partnership in a fresh sentence.",
-    zhDesc:"用「線索→空格工作→常見搭配」訂正兩題句子填空，再換新句驗收。",
+    title:"Mistake Cards · Sentence Completion", zh:"錯題卡 · 句子填空",
+    desc:"Two new sentence-completion cards preserve the original choices, then reveal the correct word, clue, and word partnership.",
+    zhDesc:"兩張句子填空錯題卡先保留原題與原選，翻開後再看正解、線索與常見搭配。",
     source:"ZOZECK · ISEE Lower Pastpaper · Sentence Completion · Q3–Q4",
     fixes:2, thumb:"synonym-direction",
-    href:"isee-sentence-completion-context-2026-09-07.html?v=20260908-1#s1"
+    href:"isee-verbal-mistake-cards.html?v=20260908-1#set-20260907"
   },
   {
     subject:"english", topic:"english-writing", date:"2026-09-06",
@@ -453,12 +453,12 @@ const LESSONS = [
   },
   {
     subject:"isee", topic:"isee-vocabulary", date:"2026-09-05",
-    title:"Five Synonym Pairs", zh:"五組同義字",
-    desc:"Study the five missed question-word pairs with pictures, short meanings, examples, pronunciation, and a one-at-a-time pair check.",
-    zhDesc:"用圖像、短義、例句與發音學五組錯題同義字，再逐題完成配對驗收。",
+    title:"Mistake Cards · Five Synonym Pairs", zh:"錯題卡 · 五組同義字",
+    desc:"Five synonym misses share the same card deck; each front keeps the original choice and each back explains the repaired pair.",
+    zhDesc:"五題同義字錯題收進同一副牌；卡面保留原選，翻面說明修正後的配對。",
     source:"ZOZECK · ISEE Lower Pastpaper · Verbal Reasoning · Q8, Q9, Q11, Q16, Q17",
     fixes:5, thumb:"synonym-direction",
-    href:"isee-verbal-synonym-set-2026-09-05.html?v=20260906-1"
+    href:"isee-verbal-mistake-cards.html?v=20260908-1#set-20260905"
   },
   {
     subject:"isee", topic:"isee-math", date:"2026-09-05",
@@ -534,12 +534,12 @@ const LESSONS = [
   },
   {
     subject:"isee", topic:"isee-vocabulary", date:"2026-08-30",
-    title:"Synonyms: Check the Direction", zh:"同義詞：先確認方向",
-    desc:"Fix each word's plus or minus before reading the options — two antonym traps, one look-alike pair, and one motion word read backward.",
-    zhDesc:"先定這個字的正負方向再看選項——兩題反義詞陷阱、一題形近字、一題方向讀反的動作字。",
+    title:"Mistake Cards · TEST-01 Verbal", zh:"錯題卡 · TEST-01 Verbal",
+    desc:"Four earlier Verbal misses stay in the same deck for quick lookup without reopening a long lesson.",
+    zhDesc:"四題較早的 Verbal 錯題也留在同一副牌裡，需要時快速翻查，不必重走長課程。",
     source:"ZOZECK · ISEE Lower Pastpaper · TEST-01 · Verbal",
     fixes:4, thumb:"synonym-direction",
-    href:"isee-synonyms.html?v=20260831-word-cards-2"
+    href:"isee-verbal-mistake-cards.html?v=20260908-1#set-20260830"
   },
   {
     subject:"isee", topic:"isee-math", date:"2026-08-30",
