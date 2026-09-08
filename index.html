@@ -289,11 +289,11 @@ const TOPICS = [
   {
     id:"isee-vocabulary", subject:"isee", next:"foundation",
     title:"Vocabulary & Synonym Strategy", zh:"詞彙與同義詞策略",
-    desc:"Build the word bank, connect synonym pairs, and check meaning direction before choosing.",
-    zhDesc:"累積單字庫、連起同義詞配對，並在選答案前確認字義方向。",
-    skills:["Word bank","Synonym pairs","Meaning direction"], zhSkills:["單字庫","同義詞配對","字義方向"],
-    weekend:"The five repaired pairs passed. Review the three highlighted 1-1 words, then begin 1-2; advance only after a fresh no-notes check.",
-    zhWeekend:"五組訂正配對已通過；先複習 1-1 三個黃色字，再開始 1-2，等新的不看筆記驗收通過後才升階。"
+    desc:"Build the word bank, connect synonym pairs, and use sentence clues plus word partnerships before choosing.",
+    zhDesc:"累積單字庫、連起同義詞配對，並在選答案前用整句線索與常見搭配交叉確認。",
+    skills:["Word bank","Meaning direction","Sentence clues","Collocations"], zhSkills:["單字庫","字義方向","整句線索","常見搭配"],
+    weekend:"The five repaired synonym pairs passed. The new Q3–Q4 sentence-completion pair still needs a no-notes check of clue, direction, and word partnership.",
+    zhWeekend:"五組同義字訂正已通過；新的 Q3–Q4 句子填空仍要用新句、不看筆記驗收線索、語意方向與搭配。"
   },
   {
     id:"isee-reading", subject:"isee", next:"foundation",
@@ -407,35 +407,14 @@ const TOPICS = [
 
 /* ===== Today's review queue — update after worksheet or homework-scan feedback ===== */
 const TODAY_MISSIONS = {
-  date:"2026-09-07", label:"SEP 7 · 4 PORTALS",
+  date:"2026-09-08", label:"SEP 8 · 1 PORTAL",
   tasks:[
     {
-      id:"reading-function-20260907", topic:"isee-reading", level:"foundation", tag:"Worksheet", zhTag:"驗收卷", kind:"worksheet",
-      title:"Read the Evidence, Then Name Its Job", zh:"先讀證據，再說它在文章裡做什麼",
-      detail:"Q6 named what happened, but not the paragraph's job. Review content → function: resolve the problem or show the repair worked.",
-      zhDetail:"Q6 說了發生什麼，還沒說段落工作；重看「內容→功能」：解決問題或顯示修理成功。",
-      href:"reading-paragraph-purpose.html?v=20260907-ending-1#s5"
-    },
-    {
-      id:"isee-math-20260907", topic:"isee-math", level:"foundation", tag:"Worksheet", zhTag:"驗收卷", kind:"worksheet",
-      title:"Read the Relationship, Then Check It", zh:"先讀關係，再逐步驗算",
-      detail:"Q7 reflection and Q10 prism formula were circled; Q12 nested groups missed the outer ×4. Redo those three chains.",
-      zhDetail:"Q7 鏡射與 Q10 長方體公式有圈題；Q12 多層括號漏掉外層 ×4。重走這三條推理鏈。",
-      href:"isee-math-relationships-and-checks.html?v=20260906-1#s1"
-    },
-    {
-      id:"essay-short-20260907", topic:"english-writing", level:"foundation", tag:"Writing practice", zhTag:"寫作練習", kind:"worksheet",
-      title:"ISEE Essay · Short Builder 1", zh:"ISEE 作文短鷹架第 1 次",
-      detail:"Write four paragraphs without sentence-by-sentence models. Zoom both bodies, then finish all three revision passes.",
-      zhDetail:"不看逐句範例完成四段；兩個主體都放大具體例子，再走完三輪自修。",
-      href:"isee-essay-builder.html?v=20260906-2&mode=short#builder"
-    },
-    {
-      id:"essential-cycle-20260907", topic:"isee-vocabulary", level:"foundation", tag:"Word cards", zhTag:"單字", kind:"worksheet",
-      title:"Essential 1-1 Review → 1-2", zh:"Essential 1-1 複習 → 1-2 新字",
-      detail:"Review only the three yellow cards: sage, extricate, and adverse. Then use Next deck to learn Essential 1-2.",
-      zhDetail:"只複習三張黃色卡：sage、extricate、adverse；再按 Next deck 學 Essential 1-2。",
-      href:"isee-essential-1-1.html?v=20260907-review-next-1#deckTitle"
+      id:"isee-sentence-clues-20260908", topic:"isee-vocabulary", level:"foundation", tag:"Homework scan", zhTag:"作業掃描", kind:"scan",
+      title:"Use the Whole Sentence · Q3–Q4", zh:"讀完整句再選字 · Q3–Q4",
+      detail:"Mark the clue, name the blank's job, and check the word partnership. Then pass two fresh sentences without notes.",
+      zhDetail:"先標線索、說出空格的工作，再檢查常見搭配；最後用兩個新句不看筆記驗收。",
+      href:"isee-sentence-completion-context-2026-09-07.html?v=20260908-1#s1"
     }
   ]
 };
@@ -445,6 +424,15 @@ const MISSION_SUBJECT = "WILLIAM TODAY'S MISSION — " + TODAY_MISSIONS.date;
 /* ===== 2. Lessons — add new ones here (sorted by date automatically) =====
    thumb: "sieve" | "fraction" | "numberline" | "artifact" | "grid"  (see THUMBS below)      */
 const LESSONS = [
+  {
+    subject:"isee", topic:"isee-vocabulary", date:"2026-09-07",
+    title:"Use the Whole Sentence", zh:"讀完整句再選字",
+    desc:"Repair two sentence-completion choices by moving from the clue to the blank's job, then checking the word partnership in a fresh sentence.",
+    zhDesc:"用「線索→空格工作→常見搭配」訂正兩題句子填空，再換新句驗收。",
+    source:"ZOZECK · ISEE Lower Pastpaper · Sentence Completion · Q3–Q4",
+    fixes:2, thumb:"synonym-direction",
+    href:"isee-sentence-completion-context-2026-09-07.html?v=20260908-1#s1"
+  },
   {
     subject:"english", topic:"english-writing", date:"2026-09-06",
     title:"ISEE Essay Short Builder", zh:"ISEE 作文短鷹架＋自修閘門",

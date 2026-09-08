@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Use the Whole Sentence · William's Correction Notes</title>
+<style>
+:root{
+  --ink:#24212c;--paper:#fffdf7;--line:#d9e4f0;--blue:#3377bd;--blue-dark:#245887;
+  --yellow:#ffe98d;--green:#2f8b62;--green-soft:#e7f6ee;--red:#b4473d;--red-soft:#fff0ed;
+  --purple:#7653a6;--grey:#6d6a73;--shadow:0 .35rem 1.1rem rgba(45,57,78,.13)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font-family:"Trebuchet MS","Segoe UI",Arial,sans-serif;line-height:1.5;
+  background:repeating-linear-gradient(#f8fbff 0,#f8fbff 31px,#dce7f2 32px)}
+button,a{font:inherit}
+button{touch-action:manipulation}
+.zh{display:none;color:#595662;font-weight:400}
+body.zh-on .zh{display:block}
+.shell{width:min(980px,calc(100% - 2rem));margin:1rem auto 3rem;padding:1.15rem 1.2rem 2rem;background:rgba(255,253,247,.95);
+  border:1px solid #d7dbe3;border-radius:1rem;box-shadow:var(--shadow)}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:.8rem}
+.back{color:var(--blue-dark);font-weight:700;text-decoration:none}.back:hover{text-decoration:underline}
+.zh-toggle{border:1px solid #bfc7d2;border-radius:999px;background:#fff;padding:.35rem .8rem;cursor:pointer;font-weight:700}
+.zh-toggle[aria-pressed="true"]{background:var(--blue-dark);color:#fff;border-color:var(--blue-dark)}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 9rem;gap:1rem;align-items:center;margin-bottom:1.25rem}
+.eyebrow{margin:0;color:var(--purple);font-size:.75rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase}
+h1{font-size:clamp(2rem,6vw,3.25rem);line-height:1.02;margin:.25rem 0 .65rem}
+h1 mark{background:linear-gradient(transparent 62%,var(--yellow) 62%);padding:0 .08em}
+.hero p{margin:.3rem 0;color:var(--grey)}
+.buddy{width:9rem;height:9rem;object-fit:contain;filter:drop-shadow(0 .25rem .25rem rgba(0,0,0,.12))}
+.path{display:grid;grid-template-columns:repeat(4,1fr);gap:.45rem;margin:1rem 0 1.3rem}
+.path span{padding:.55rem .4rem;text-align:center;background:#fff;border:1px solid #ccd5df;border-radius:.6rem;font-size:.82rem;font-weight:800}
+.path b{display:block;color:var(--blue);font-size:.68rem;letter-spacing:.06em}
+.progress{position:sticky;top:.35rem;z-index:9;display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  margin:0 0 1rem;padding:.55rem .75rem;background:#fff;border:2px solid var(--yellow);border-radius:.7rem;box-shadow:0 .18rem .55rem rgba(0,0,0,.08)}
+.progress b{color:var(--blue-dark)}
+.dots{display:flex;gap:.4rem}.dot{width:.75rem;height:.75rem;border-radius:50%;background:#d6d9df}.dot.done{background:var(--green)}
+.lesson{scroll-margin-top:5rem;margin:0 0 1.25rem;background:var(--paper);border:1px solid #cbd5df;border-radius:.9rem;overflow:hidden;box-shadow:var(--shadow)}
+.lesson[hidden]{display:none}
+.lesson-head{display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;padding:1rem 1.05rem;background:#f1ecfa;border-bottom:1px solid #d6cae7}
+.lesson-head h2{margin:0;font-size:1.35rem}.qtag{flex:0 0 auto;padding:.25rem .55rem;border-radius:999px;background:var(--purple);color:#fff;font-size:.72rem;font-weight:800}
+.source{padding:1rem 1.05rem;border-bottom:1px dashed #ccd5df;background:#fff}
+.source-label{margin:0 0 .45rem;color:var(--grey);font-size:.7rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase}
+.stem{margin:.2rem 0 .75rem;font-size:1.06rem;font-weight:750}
+.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.45rem;margin:0;padding:0;list-style:none}
+.choices li{padding:.55rem .65rem;background:#f7f9fc;border:1px solid #d7dce4;border-radius:.55rem}
+.choices .picked{background:var(--red-soft);border-color:#e1aaa4}.picked strong{color:var(--red)}
+.source-note{margin:.65rem 0 0;color:var(--red);font-size:.8rem;font-weight:700}
+.stage{padding:1rem 1.05rem;border-top:1px solid #e1e4e9}
+.stage[hidden],.model[hidden]{display:none}
+.stage-title{display:flex;align-items:center;gap:.55rem;margin:0 0 .35rem;font-size:1.05rem}.stage-title b{display:inline-grid;place-items:center;width:1.65rem;height:1.65rem;border-radius:50%;background:var(--blue);color:#fff;font-size:.78rem}
+.question{margin:.25rem 0 .7rem;font-weight:700}.question .zh{margin-top:.15rem}
+.answer-grid{display:grid;gap:.5rem}
+.answer{width:100%;padding:.65rem .75rem;text-align:left;background:#fff;border:2px solid #cbd3dd;border-radius:.62rem;cursor:pointer;color:var(--ink)}
+.answer:hover,.answer:focus-visible{border-color:var(--blue);outline:3px solid rgba(51,119,189,.18);outline-offset:1px}
+.answer.correct{background:var(--green-soft);border-color:var(--green);color:#1c6445}.answer.wrong{background:var(--red-soft);border-color:var(--red)}
+.feedback{min-height:1.5rem;margin:.55rem 0 0;font-size:.86rem;font-weight:700;color:var(--grey)}
+.feedback.ok{color:#1c704c}.feedback.try{color:var(--red)}
+.why-box{margin:.55rem 0 .75rem;padding:.7rem .8rem;background:#fff9d8;border-left:.34rem solid #e1b800;border-radius:.35rem}
+.model{margin:0 1.05rem 1.05rem;padding:1rem;background:#eaf4ff;border:2px solid #91bce5;border-radius:.7rem}
+.model h3{margin:0 0 .4rem;color:var(--blue-dark)}.model p{margin:.3rem 0}
+.fix{font-size:1.05rem;font-weight:800}.chain{display:grid;grid-template-columns:repeat(4,1fr);gap:.35rem;margin:.75rem 0 0}
+.chain span{padding:.45rem .3rem;text-align:center;background:#fff;border:1px solid #bad0e4;border-radius:.45rem;font-size:.75rem;font-weight:800}
+.chain i{display:block;color:var(--grey);font-style:normal;font-weight:500}
+.finish{padding:1.1rem;background:var(--green-soft);border:2px solid #9fd0b6;border-radius:.8rem;text-align:center}
+.finish[hidden]{display:none}.finish h2{margin:0 0 .35rem;color:#226846}.finish p{margin:.25rem auto;max-width:42rem}
+.reset{margin-top:.75rem;border:0;border-radius:.55rem;background:var(--green);color:#fff;padding:.5rem .8rem;cursor:pointer;font-weight:800}
+@media(max-width:640px){
+  .shell{width:100%;margin:0;padding:1rem .75rem 2rem;border:0;border-radius:0}.hero{grid-template-columns:1fr 5rem}.buddy{width:5rem;height:5rem}
+  .path{grid-template-columns:repeat(2,1fr)}.choices{grid-template-columns:1fr}.lesson-head{padding:.85rem}.source,.stage{padding:.9rem}
+  .model{margin:0 .9rem .9rem}.chain{grid-template-columns:1fr 1fr}.progress{top:.15rem}.answer{padding:.72rem}
+}
+</style>
+</head>
+<body>
+<main class="shell">
+  <div class="topbar">
+    <a class="back" href="index.html">← Notebook index</a>
+    <button class="zh-toggle" id="zhToggle" type="button" aria-pressed="false">中文</button>
+  </div>
+
+  <header class="hero">
+    <div>
+      <p class="eyebrow">ISEE · Sentence Completion · 2026-09-07</p>
+      <h1>Use the <mark>Whole Sentence</mark><span class="zh">讀完整句再選字</span></h1>
+      <p><b>Hi, William. You solved 15 of 17.</b> Let’s use every clue in the last two.<span class="zh"><b>嗨 William，你完成了 17 題中的 15 題。</b>我們來把最後兩題的每一個線索都用上。</span></p>
+    </div>
+    <img class="buddy" src="img/skzoo-puppym.png" alt="Puppy M, William's study buddy" width="144" height="144">
+  </header>
+
+  <div class="path" aria-label="Lesson path">
+    <span><b>NOTICE</b>Find the clue<span class="zh">找線索</span></span>
+    <span><b>DO</b>Name the job<span class="zh">說出空格工作</span></span>
+    <span><b>WHY</b>Reject the distractor<span class="zh">排除干擾字</span></span>
+    <span><b>PROVE</b>Try a fresh sentence<span class="zh">換新句驗收</span></span>
+  </div>
+
+  <div class="progress" aria-live="polite"><span><b id="progressText">0 / 2</b> corrections proved<span class="zh">題已用新句證明</span></span><span class="dots"><i class="dot" id="dot1"></i><i class="dot" id="dot2"></i></span></div>
+
+  <article class="lesson" id="s1" data-lesson="1">
+    <header class="lesson-head"><h2>Response that makes sense<span class="zh">讓回答更清楚</span></h2><span class="qtag">Q3 / 17</span></header>
+    <section class="source" aria-label="Original question 3">
+      <p class="source-label">Source · ZOZECK · ISEE Lower Pastpaper · Sentence Completion</p>
+      <p class="stem">The teacher asked her to _____ on her response so that it would make sense to everyone.<span class="zh">老師請她在回答上再＿＿＿＿，好讓每個人都能理解。</span></p>
+      <ul class="choices">
+        <li>A. anticipate<span class="zh">預期</span></li>
+        <li class="picked"><strong>B. certify · William’s choice ✗</strong><span class="zh">證明／認證 · William 的選擇</span></li>
+        <li>C. defend<span class="zh">辯護</span></li>
+        <li>D. elaborate<span class="zh">詳加說明</span></li>
+      </ul>
+      <p class="source-note">The platform marked the choice incorrect. Earn the model answer after Prove.<span class="zh">平台判定這個選擇錯誤；完成 Prove 後才會顯示正確版本。</span></p>
+    </section>
+
+    <section class="stage" data-stage="notice">
+      <h3 class="stage-title"><b>1</b> Notice</h3>
+      <p class="question">What does the phrase “so that it would make sense to everyone” tell the missing word to do?<span class="zh">「好讓每個人都能理解」告訴你，空格裡的動作要做到什麼？</span></p>
+      <div class="answer-grid">
+        <button class="answer" type="button" data-correct="false">Officially confirm the response is true<span class="zh">正式證明這個回答是真的</span></button>
+        <button class="answer" type="button" data-correct="true">Add enough detail to make the response clearer<span class="zh">補上足夠細節，讓回答更清楚</span></button>
+        <button class="answer" type="button" data-correct="false">Predict what the class will say next<span class="zh">預測全班接下來會說什麼</span></button>
+      </div>
+      <p class="feedback" role="status"></p>
+    </section>
+
+    <section class="stage" data-stage="do" hidden>
+      <h3 class="stage-title"><b>2</b> Do</h3>
+      <p class="question">Now match that job to the standard word partnership.<span class="zh">現在把這個工作配上正確的常見搭配。</span></p>
+      <div class="answer-grid">
+        <button class="answer" type="button" data-correct="false">certify on a response<span class="zh">在回答上做正式認證</span></button>
+        <button class="answer" type="button" data-correct="true">elaborate on a response<span class="zh">針對回答補充說明</span></button>
+        <button class="answer" type="button" data-correct="false">anticipate on a response<span class="zh">在回答上預期</span></button>
+      </div>
+      <p class="feedback" role="status"></p>
+    </section>
+
+    <section class="stage" data-stage="why" hidden>
+      <h3 class="stage-title"><b>3</b> Why</h3>
+      <div class="why-box"><b>Certify</b> means to officially confirm that something is true. <b>Elaborate</b> means to add information or details.<span class="zh"><b>certify</b> 是正式確認某件事為真；<b>elaborate</b> 是增加資訊或細節。</span></div>
+      <p class="question">Why can’t <i>certify</i> do the job in the original sentence?<span class="zh">為什麼原句不能用 <i>certify</i>？</span></p>
+      <div class="answer-grid">
+        <button class="answer" type="button" data-correct="true">It checks truth, but the teacher is asking for more explanation.<span class="zh">它是在確認真假，但老師要的是更多說明。</span></button>
+        <button class="answer" type="button" data-correct="false">It means the response is too long.<span class="zh">它表示回答太長。</span></button>
+        <button class="answer" type="button" data-correct="false">It can only be used for weather.<span class="zh">它只能用在天氣。</span></button>
+      </div>
+      <p class="feedback" role="status"></p>
+    </section>
+
+    <section class="stage" data-stage="prove" hidden>
+      <h3 class="stage-title"><b>4</b> Prove</h3>
+      <p class="question">The guide was asked to _____ on the safety instructions so new hikers could follow them.<span class="zh">為了讓新手登山者能照著做，嚮導被要求針對安全指示再＿＿＿＿。</span></p>
+      <div class="answer-grid">
+        <button class="answer" type="button" data-correct="true">A. elaborate<span class="zh">詳加說明</span></button>
+        <button class="answer" type="button" data-correct="false">B. certify<span class="zh">正式證明</span></button>
+        <button class="answer" type="button" data-correct="false">C. retain<span class="zh">保留</span></button>
+        <button class="answer" type="button" data-correct="false">D. submit<span class="zh">提交</span></button>
+      </div>
+      <p class="feedback" role="status"></p>
+    </section>
+
+    <section class="model" data-model hidden>
+      <h3>Correct version unlocked<span class="zh">正確版本已解鎖</span></h3>
+      <p class="fix">D. elaborate</p>
+      <p>The teacher asked her to <b>elaborate on her response</b> so that it would make sense to everyone.<span class="zh">老師請她針對回答<b>再補充說明</b>，好讓每個人都能理解。</span></p>
+      <div class="chain"><span>CLUE<i>make sense</i><span class="zh">讓人理解</span></span><span>JOB<i>add details</i><span class="zh">增加細節</span></span><span>WORD<i>elaborate</i><span class="zh">詳加說明</span></span><span>PAIR<i>elaborate on</i><span class="zh">常見搭配</span></span></div>
+    </section>
+  </article>
+
+  <article class="lesson" id="s2" data-lesson="2" hidden>
+    <header class="lesson-head"><h2>Income from two jobs<span class="zh">兩份工作的收入</span></h2><span class="qtag">Q4 / 17</span></header>
+    <section class="source" aria-label="Original question 4">
+      <p class="source-label">Source · ZOZECK · ISEE Lower Pastpaper · Sentence Completion</p>
+      <p class="stem">Lulu had to _____ her weekly income with a part-time job on top of her full-time schedule at work.<span class="zh">Lulu 除了全職工作之外，還得靠一份兼職來＿＿＿＿她的每週收入。</span></p>
+      <ul class="choices">
+        <li>A. supplement<span class="zh">補充／增加</span></li>
+        <li>B. submit<span class="zh">提交</span></li>
+        <li class="picked"><strong>C. retain · William’s choice ✗</strong><span class="zh">保留 · William 的選擇</span></li>
+        <li>D. prove<span class="zh">證明</span></li>
+      </ul>
+      <p class="source-note">The platform marked the choice incorrect. Earn the model answer after Prove.<span class="zh">平台判定這個選擇錯誤；完成 Prove 後才會顯示正確版本。</span></p>
+    </section>
+
+    <section class="stage" data-stage="notice">
+      <h3 class="stage-title"><b>1</b> Notice</h3>
+      <p class="question">What does the part-time job do to Lulu’s full-time-job income?<span class="zh">這份兼職對 Lulu 原本全職工作的收入做了什麼？</span></p>
+      <div class="answer-grid">
+        <button class="answer" type="button" data-correct="false">Keeps exactly the same amount<span class="zh">讓金額完全維持不變</span></button>
+        <button class="answer" type="button" data-correct="true">Adds extra earnings to the amount she already has<span class="zh">在原有金額上再增加收入</span></button>
+        <button class="answer" type="button" data-correct="false">Proves that her schedule is full<span class="zh">證明她的行程很滿</span></button>
+      </div>
+      <p class="feedback" role="status"></p>
+    </section>
+
+    <section class="stage" data-stage="do" hidden>
+      <h3 class="stage-title"><b>2</b> Do</h3>
+      <p class="question">Which word partnership means “add extra earnings”?<span class="zh">哪一個搭配表示「增加額外收入」？</span></p>
+      <div class="answer-grid">
+        <button class="answer" type="button" data-correct="true">supplement income<span class="zh">補充／增加收入</span></button>
+        <button class="answer" type="button" data-correct="false">submit income<span class="zh">提交收入</span></button>
+        <button class="answer" type="button" data-correct="false">retain income with another job<span class="zh">用另一份工作保留收入</span></button>
+      </div>
+      <p class="feedback" role="status"></p>
+    </section>
+
+    <section class="stage" data-stage="why" hidden>
+      <h3 class="stage-title"><b>3</b> Why</h3>
+      <div class="why-box"><b>Retain</b> means to keep what is already there. <b>Supplement</b> means to add something extra to improve or complete it.<span class="zh"><b>retain</b> 是保留已經有的東西；<b>supplement</b> 是再加上一些，讓原本的東西更足夠或完整。</span></div>
+      <p class="question">Why is <i>retain</i> too weak for this sentence?<span class="zh">為什麼 <i>retain</i> 不符合這個句子的意思？</span></p>
+      <div class="answer-grid">
+        <button class="answer" type="button" data-correct="false">It means she stopped working full-time.<span class="zh">它表示她停止全職工作。</span></button>
+        <button class="answer" type="button" data-correct="true">It means keep, but the extra job is adding money.<span class="zh">它只是「保留」，可是額外的工作是在增加金錢。</span></button>
+        <button class="answer" type="button" data-correct="false">It means she submitted a schedule.<span class="zh">它表示她提交了一份行程表。</span></button>
+      </div>
+      <p class="feedback" role="status"></p>
+    </section>
+
+    <section class="stage" data-stage="prove" hidden>
+      <h3 class="stage-title"><b>4</b> Prove</h3>
+      <p class="question">Mina tutored on weekends to _____ her weekday earnings.<span class="zh">Mina 週末去當家教，想要＿＿＿＿她平日工作的收入。</span></p>
+      <div class="answer-grid">
+        <button class="answer" type="button" data-correct="false">A. retain<span class="zh">保留</span></button>
+        <button class="answer" type="button" data-correct="false">B. submit<span class="zh">提交</span></button>
+        <button class="answer" type="button" data-correct="true">C. supplement<span class="zh">補充／增加</span></button>
+        <button class="answer" type="button" data-correct="false">D. prove<span class="zh">證明</span></button>
+      </div>
+      <p class="feedback" role="status"></p>
+    </section>
+
+    <section class="model" data-model hidden>
+      <h3>Correct version unlocked<span class="zh">正確版本已解鎖</span></h3>
+      <p class="fix">A. supplement</p>
+      <p>Lulu had to <b>supplement her weekly income</b> with a part-time job on top of her full-time schedule at work.<span class="zh">Lulu 除了全職工作之外，還得靠一份兼職來<b>增加每週收入</b>。</span></p>
+      <div class="chain"><span>CLUE<i>part-time job</i><span class="zh">額外工作</span></span><span>JOB<i>add earnings</i><span class="zh">增加收入</span></span><span>WORD<i>supplement</i><span class="zh">補充／增加</span></span><span>PAIR<i>supplement income</i><span class="zh">常見搭配</span></span></div>
+    </section>
+  </article>
+
+  <section class="finish" id="finish" hidden>
+    <h2>Both corrections proved!<span class="zh">兩題都用新句證明了！</span></h2>
+    <p>Before choosing: point to the clue, say the blank’s job, then test the word partnership.<span class="zh">下次選答案前：先指出線索、說出空格的工作，再檢查這個字的常見搭配。</span></p>
+    <p><b>This means reviewed, not mastered.</b> A later no-notes check decides mastery.<span class="zh"><b>這表示已完成複習，不等於已熟練。</b>之後還要用不看筆記的新題驗收。</span></p>
+    <button class="reset" id="reset" type="button">Try the lesson again<span class="zh">再練一次</span></button>
+  </section>
+</main>
+
+<script>
+const lessons=[...document.querySelectorAll("[data-lesson]")];
+const complete=new Set();
+
+function feedback(stage,message,state){
+  const box=stage.querySelector(".feedback");
+  box.className="feedback "+state;
+  box.textContent=message;
+}
+
+function nextStage(stage){
+  const order=["notice","do","why","prove"];
+  const name=stage.dataset.stage;
+  const next=order[order.indexOf(name)+1];
+  if(next){
+    const target=stage.closest("[data-lesson]").querySelector('[data-stage="'+next+'"]');
+    target.hidden=false;
+  }
+}
+
+function finishLesson(stage){
+  const lesson=stage.closest("[data-lesson]");
+  const id=lesson.dataset.lesson;
+  lesson.querySelector("[data-model]").hidden=false;
+  complete.add(id);
+  document.getElementById("dot"+id).classList.add("done");
+  document.getElementById("progressText").textContent=complete.size+" / 2";
+  if(id==="1") lessons[1].hidden=false;
+  if(complete.size===2) document.getElementById("finish").hidden=false;
+}
+
+document.querySelectorAll(".answer").forEach(button=>{
+  button.addEventListener("click",()=>{
+    const stage=button.closest("[data-stage]");
+    if(stage.dataset.passed==="true") return;
+    stage.querySelectorAll(".answer").forEach(b=>b.classList.remove("wrong"));
+    if(button.dataset.correct==="true"){
+      stage.dataset.passed="true";
+      button.classList.add("correct");
+      stage.querySelectorAll(".answer").forEach(b=>b.disabled=true);
+      feedback(stage,"Yes — say the reason aloud, then continue. · 答對了；請把理由說出口，再繼續。","ok");
+      if(stage.dataset.stage==="prove") finishLesson(stage); else nextStage(stage);
+    }else{
+      button.classList.add("wrong");
+      feedback(stage,"Try again. Point to the words after the blank before choosing. · 再試一次；選之前先指出空格後面的線索。","try");
+    }
+  });
+});
+
+document.getElementById("zhToggle").addEventListener("click",function(){
+  const on=document.body.classList.toggle("zh-on");
+  this.setAttribute("aria-pressed",String(on));
+  this.textContent=on?"English":"中文";
+});
+
+document.getElementById("reset").addEventListener("click",()=>location.reload());
+</script>
+</body>
+</html>
