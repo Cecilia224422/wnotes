@@ -131,37 +131,6 @@ body.zh-on .chip .zh{display:inline}
 .subject[data-subject="social"] .subject-head h2{color:#6B4EA8}
 .subject[data-subject="chinese"] .subject-head h2{color:#B23A48}
 
-/* stable topic map — homework records live inside each topic */
-.map-lead{display:flex;align-items:flex-end;justify-content:space-between;gap:1.2rem;margin:.15rem 0 1rem}
-.map-kicker{display:block;color:var(--blue-deep);font-size:.68rem;font-weight:700;letter-spacing:.1em}
-.map-lead h2{margin:.08rem 0 0;font-size:1.55rem;line-height:1.15}.map-lead h2 .zh{font-size:.72em;font-weight:400}
-.map-lead p{max-width:34rem;margin:0;color:var(--pencil);font-size:.82rem}.map-lead p .zh{font-size:.94em}
-.topic-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem;align-items:start}
-.topic-card{position:relative;background:#fff;border:1px solid var(--border2);border-radius:.75rem;box-shadow:0 2px 6px rgba(0,0,0,.07);overflow:hidden}
-.topic-card::before{content:"";position:absolute;top:-.18rem;left:1.4rem;width:4.1rem;height:.7rem;background:rgba(255,236,150,.75);transform:rotate(-1.5deg);z-index:1}
-.topic-card[open]{box-shadow:0 .35rem .8rem rgba(0,0,0,.1)}
-.topic-card summary{position:relative;display:grid;grid-template-columns:5.4rem minmax(0,1fr) auto;gap:.65rem;align-items:start;padding:1rem .85rem .8rem;cursor:pointer;list-style:none}
-.topic-card summary::-webkit-details-marker{display:none}.topic-card summary::after{content:"+";position:absolute;right:.85rem;bottom:.55rem;color:var(--grey);font-size:1.05rem;font-weight:600}
-.topic-card[open] summary::after{content:"−"}.topic-card summary:focus-visible{outline:3px solid var(--blue);outline-offset:-3px}
-.topic-preview{position:relative;display:block;width:5.4rem;aspect-ratio:4/3;overflow:hidden;border:1px solid var(--border);border-radius:.42rem;background:#fff}.topic-preview svg{display:block;width:100%;height:100%}.topic-preview .preview-badge{position:absolute;right:.22rem;top:.22rem;border-radius:999px;background:var(--red);color:#fff;padding:.06rem .3rem;font-size:.52rem;font-weight:700;box-shadow:0 1px 2px rgba(0,0,0,.18)}
-.topic-copy{min-width:0}.topic-eyebrow{display:block;margin-bottom:.12rem;color:var(--grey);font-family:'Caveat',cursive;font-size:.95rem;line-height:1.1}
-.topic-copy strong{display:block;font-size:1.02rem;line-height:1.2}.topic-copy strong .zh{font-size:.78em;font-weight:400;margin-top:.08rem}
-.topic-desc{display:block;margin-top:.28rem;color:var(--pencil);font-size:.76rem;line-height:1.35}.topic-desc .zh{font-size:.92em}
-.topic-next{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;min-width:4.8rem;border-radius:.55rem;padding:.35rem .42rem;text-align:center;font-size:.62rem;font-weight:700;line-height:1.2}
-.topic-next.foundation{background:var(--orange-soft);color:#A85C10}.topic-next.checkpoint{background:var(--blue-soft);color:var(--blue-deep)}.topic-next.advanced{background:#E6F6EE;color:#1E6E48}
-.topic-next .zh{font-size:.9em;color:inherit;margin-top:.08rem}
-.topic-body{border-top:1px dashed var(--border2);padding:.72rem .85rem .82rem;background:#FCFCFD}
-.topic-skills{display:flex;gap:.3rem;flex-wrap:wrap}.skill-chip{display:inline-flex;border:1px solid var(--border2);border-radius:999px;background:#fff;padding:.14rem .48rem;font-size:.68rem;color:var(--pencil)}
-.topic-weekend{margin:.55rem 0;color:var(--ink);font-size:.73rem}.topic-weekend b{color:var(--blue-deep)}
-.topic-history-label{display:block;margin:.55rem 0 .28rem;color:var(--grey);font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
-.topic-history{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.55rem}.topic-history a{display:block;min-width:0;color:var(--ink);text-decoration:none;background:#fff;border:1px solid var(--border);border-radius:.52rem;padding:.38rem;transition:transform .15s,box-shadow .15s}
-.topic-history a:hover,.topic-history a:focus-visible{transform:translateY(-.1rem);border-color:var(--blue);outline:2px solid var(--blue-soft);outline-offset:1px;box-shadow:0 .25rem .55rem rgba(0,0,0,.08)}.topic-history-thumb{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;border:1px solid var(--border);border-radius:.35rem;background:#fff}.topic-history-thumb svg{display:block;width:100%;height:100%}.topic-history-thumb .badge{position:absolute;right:.25rem;top:.25rem;border-radius:999px;background:var(--red);color:#fff;padding:.06rem .32rem;font-size:.52rem;font-weight:700}
-.topic-history b{display:block;margin-top:.36rem;font-size:.74rem;line-height:1.2}.topic-history em{display:-webkit-box;overflow:hidden;margin-top:.12rem;color:var(--grey);font-family:'Caveat',cursive;font-size:.72rem;line-height:1.15;-webkit-box-orient:vertical;-webkit-line-clamp:2}.topic-history time{display:block;margin-top:.2rem;color:var(--pencil);font-size:.62rem;white-space:nowrap}
-.archive-shell{margin:2rem 0 0;border-top:2px dashed var(--border2);padding-top:.7rem}.archive-shell>summary{cursor:pointer;color:var(--pencil);font-weight:600;list-style:none;padding:.45rem 0}.archive-shell>summary::-webkit-details-marker{display:none}
-.archive-shell>summary::after{content:"  +";color:var(--blue)}.archive-shell[open]>summary::after{content:"  −"}.archive-shell>summary .zh{font-weight:400;margin-top:.15rem}.archive-shell #subjects{margin-top:1rem}
-@media(max-width:800px){.map-lead{display:block}.map-lead p{margin-top:.4rem}.topic-grid{grid-template-columns:1fr}}
-@media(max-width:520px){.topic-card summary{grid-template-columns:5rem minmax(0,1fr);padding-right:.7rem}.topic-preview{width:5rem}.topic-next{grid-column:2;justify-self:start;min-width:0;flex-direction:row;gap:.25rem}.topic-card summary::after{right:.7rem;bottom:.45rem}}
-
 /* grid */
 .grid{display:grid;gap:1.1rem;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr))}
 @media(min-width:1200px){.grid{grid-template-columns:repeat(auto-fill,minmax(15rem,1fr))}}
@@ -216,12 +185,11 @@ body.zh-on .chip .zh{display:inline}
         </div>
       </div>
 
-      <p class="intro">Every correction joins a topic in this notebook. Each topic keeps the lesson pictures that help you find your way back.
-        <span class="zh">每一次訂正都會收進一個能力主題；每張課程首圖都會保留，讓你一眼找回那一課。</span></p>
+      <p class="intro">Pick a picture card to open a lesson. ISEE has its own section below.
+        <span class="zh">每張課程卡片都在下方；ISEE 獨立一區，點圖卡就能進入那一課。</span></p>
 
       <div class="stats">
-        <div class="stat"><b id="stTopics">0</b><span>topics<span class="zhi"> 個能力主題</span></span></div>
-        <div class="stat"><b id="stLessons">0</b><span>lesson records<span class="zhi"> 份課程紀錄</span></span></div>
+        <div class="stat"><b id="stLessons">0</b><span>lessons<span class="zhi"> 份課程</span></span></div>
         <div class="stat"><b id="stSubjects">0</b><span>subjects<span class="zhi"> 科目</span></span></div>
       </div>
     </div>
@@ -248,16 +216,7 @@ body.zh-on .chip .zh{display:inline}
 
   <nav class="filters" id="filters" aria-label="Subject filter"></nav>
 
-  <section class="map-lead" aria-labelledby="mapTitle">
-    <div><span class="map-kicker">KNOWLEDGE MAP</span><h2 id="mapTitle">Learn by Topic<span class="zh">按能力主題整理</span></h2></div>
-    <p>One topic keeps every related correction together. Its newest picture stays on the cover; open it for the full lesson grid.<span class="zh">同一能力的訂正收在一張主題卡；封面保留最新課程首圖，打開後用圖卡 grid 查看全部歷次課程。</span></p>
-  </section>
-  <div id="topics"></div>
-
-  <details class="archive-shell">
-    <summary>📚 Homework History · <span id="archiveCount">0</span> lesson pages<span class="zh">作業歷史：保留每一份原始課程頁</span></summary>
-    <div id="subjects"></div>
-  </details>
+  <div id="subjects"></div>
 
 </div>
 </div>
@@ -279,12 +238,7 @@ const SUBJECTS = {
   chinese: { en:"Chinese",        zh:"國語", icon:"✍️" }
 };
 
-/* ===== Stable knowledge map — one topic can collect many homework records ===== */
-const TOPIC_STAGES = {
-  foundation:{en:"Next: foundation",zh:"下次：基礎"},
-  checkpoint:{en:"Next: quick check",zh:"下次：快問"},
-  advanced:{en:"Next: stretch",zh:"下次：進階"}
-};
+/* ===== Learning evidence metadata — lesson cards are displayed individually ===== */
 const TOPICS = [
   {
     id:"isee-vocabulary", subject:"isee", next:"foundation",
@@ -292,8 +246,8 @@ const TOPICS = [
     desc:"Keep every Verbal miss in one card deck, grouped by test set, while Essential decks stay beside it for word study.",
     zhDesc:"把所有 Verbal 錯題依考卷收在同一副錯題卡；Essential 牌組則留在旁邊負責學習新字。",
     skills:["Mistake cards","Meaning direction","Sentence clues","Collocations"], zhSkills:["錯題卡","字義方向","整句線索","常見搭配"],
-    weekend:"Open the latest two cards first. The five synonym cards already passed a fresh check; older TEST-01 cards stay available without replaying the whole lesson.",
-    zhWeekend:"先看最新兩張錯題卡；五張同義字卡已通過新題驗收，較早的 TEST-01 卡片保留查閱，不整課重播。"
+    weekend:"Open the elaborate and serenity cards. Other word answers were correct in the review; mark the sentence clue before a separate independent retest.",
+    zhWeekend:"先看 elaborate 與 serenity；其他字本輪選對。補畫句子線索，升階仍待另卷無提示驗收。"
   },
   {
     id:"isee-reading", subject:"isee", next:"foundation",
@@ -310,17 +264,17 @@ const TOPICS = [
     desc:"Translate relationships, test every choice, and verify each step instead of trusting the first answer.",
     zhDesc:"翻譯題目關係、逐一驗證選項，並檢查每一步而不是相信第一個答案。",
     skills:["Translate words","Test choices","Multi-step checks"], zhSkills:["文字轉數學","驗證選項","多步驟檢查"],
-    weekend:"Retest reflection, the inverse prism formula, and nested groups; four other checks passed independently.",
-    zhWeekend:"複測鏡射、長方體公式逆推與多層括號；其餘四型已獨立通過。"
+    weekend:"Retest equal distance and unchanged y in reflection. Prism division and the outer factor were correct in this review.",
+    zhWeekend:"鏡射還要說出等距與 y 不變；長方體逆推與外層倍數本輪已完成，先不重播。"
   },
   {
-    id:"math-fractions", subject:"math", next:"advanced",
+    id:"math-fractions", subject:"math", next:"foundation",
     title:"Fractions & Mixed Numbers", zh:"分數與帶分數",
     desc:"Compare, calculate, simplify, convert forms, and solve mixed-number stories in one place.",
     zhDesc:"把比較、計算、約分、形式轉換與帶分數應用題收在同一個主題。",
     skills:["Compare & calculate","Simplest form","Improper ↔ mixed","Word problems"], zhSkills:["比較與計算","最簡形式","假分數↔帶分數","應用題"],
-    weekend:"Reduce and requested form passed independently; the next worksheet can add a harder multi-step conversion.",
-    zhWeekend:"reduce 與指定形式已獨立通過；下次可加入較難的多步驟轉換題。"
+    weekend:"Review adding mixed numbers with unlike denominators. Earlier conversion and requested-form evidence stays valid.",
+    zhWeekend:"只補異分母帶分數相加；先前轉換、reduce 與指定形式的通過證據仍有效。"
   },
   {
     id:"math-estimation", subject:"math", next:"checkpoint",
@@ -407,14 +361,60 @@ const TOPICS = [
 
 /* ===== Today's review queue — update after worksheet or homework-scan feedback ===== */
 const TODAY_MISSIONS = {
-  date:"2026-09-08", label:"SEP 8 · 1 PORTAL",
-  tasks:[
+  "date": "2026-09-13",
+  "label": "SEP 13 · 4 PORTALS",
+  "tasks": [
     {
-      id:"isee-sentence-clues-20260908", topic:"isee-vocabulary", level:"foundation", tag:"Homework scan", zhTag:"作業掃描", kind:"scan",
-      title:"Verbal Mistake Cards · Latest 2", zh:"Verbal 錯題卡 · 最新兩題",
-      detail:"Open the two yellow cards. Read the original choice, then flip for the correct word, clue, and word partnership.",
-      zhDetail:"打開兩張黃色卡；先看原題與原選，再翻開核對正解、線索與常見搭配。",
-      href:"isee-verbal-mistake-cards.html?v=20260908-1#set-20260907"
+      "id": "reflection-distance-20260913",
+      "topic": "isee-math",
+      "level": "foundation",
+      "tag": "Worksheet",
+      "zhTag": "練習卷",
+      "kind": "worksheet",
+      "title": "Reflection: equal distance + unchanged y",
+      "zh": "鏡射：兩側等距＋y 不變",
+      "detail": "Review the reflection note first. Close it, then explain equal distance and unchanged y on the worksheet.",
+      "zhDetail": "先讀鏡射筆記，關閉後做練習卷，說明兩側等距及 y 不變。",
+      "href": "isee-math-relationships-and-checks.html#s1"
+    },
+    {
+      "id": "mixed-addition-20260913",
+      "topic": "math-fractions",
+      "level": "foundation",
+      "tag": "Worksheet",
+      "zhTag": "練習卷",
+      "kind": "worksheet",
+      "title": "Mixed-number addition: equal-sized units",
+      "zh": "帶分數相加：相同大小的分數單位",
+      "detail": "Review the mixed-number note first. Close it, then use a shared denominator and keep the requested form.",
+      "zhDetail": "先讀帶分數筆記，關閉後通分加總、保留指定形式；原轉換通過證據仍有效。",
+      "href": "zozeck-mixed-number-flour.html#lesson-mixed-numbers"
+    },
+    {
+      "id": "verbal-elaborate-20260913",
+      "topic": "isee-vocabulary",
+      "level": "foundation",
+      "tag": "Worksheet",
+      "zhTag": "練習卷",
+      "kind": "worksheet",
+      "title": "Verbal: elaborate",
+      "zh": "Verbal：elaborate",
+      "detail": "Review the sentence-completion lesson first. Close it, then try the worksheet and mark the clue.",
+      "zhDetail": "先完成句子填空訂正課，再關閉做練習卷、畫出 elaborate 的線索。",
+      "href": "isee-sentence-completion-context-2026-09-07.html?v=20260913-cards-1#s1"
+    },
+    {
+      "id": "verbal-serenity-20260913",
+      "topic": "isee-vocabulary",
+      "level": "foundation",
+      "tag": "Worksheet",
+      "zhTag": "練習卷",
+      "kind": "worksheet",
+      "title": "Verbal: serenity",
+      "zh": "Verbal：serenity",
+      "detail": "Review the serenity word cards in the synonym lesson. Close them, then explain the meaning on the worksheet.",
+      "zhDetail": "先讀同義詞訂正課的 serenity 詞卡，再關閉做練習卷、說明字義。",
+      "href": "isee-synonyms.html?v=20260831-word-cards-2#s1"
     }
   ]
 };
@@ -426,15 +426,15 @@ const MISSION_SUBJECT = "WILLIAM TODAY'S MISSION — " + TODAY_MISSIONS.date;
 const LESSONS = [
   {
     subject:"isee", topic:"isee-vocabulary", date:"2026-09-07",
-    title:"Mistake Cards · Sentence Completion", zh:"錯題卡 · 句子填空",
-    desc:"Two new sentence-completion cards preserve the original choices, then reveal the correct word, clue, and word partnership.",
-    zhDesc:"兩張句子填空錯題卡先保留原題與原選，翻開後再看正解、線索與常見搭配。",
+    title:"Use the Whole Sentence", zh:"讀完整句再選字",
+    desc:"Repair two sentence-completion choices by moving from the clue to the blank's job, then checking the word partnership in a fresh sentence.",
+    zhDesc:"用「線索→空格工作→常見搭配」訂正兩題句子填空，再換新句驗收。",
     source:"ZOZECK · ISEE Lower Pastpaper · Sentence Completion · Q3–Q4",
     fixes:2, thumb:"synonym-direction",
-    href:"isee-verbal-mistake-cards.html?v=20260908-1#set-20260907"
+    href:"isee-sentence-completion-context-2026-09-07.html?v=20260908-1#s1"
   },
   {
-    subject:"english", topic:"english-writing", date:"2026-09-06",
+    subject:"isee", topic:"english-writing", date:"2026-09-06",
     title:"ISEE Essay Short Builder", zh:"ISEE 作文短鷹架＋自修閘門",
     desc:"Write one paragraph at a time with only job labels, zoom both body paragraphs, and finish three revision passes before Send appears.",
     zhDesc:"一次完成一段，只保留工作標籤；展開兩個主體段，完成三輪自修後才會出現送出按鈕。",
@@ -443,7 +443,7 @@ const LESSONS = [
     href:"isee-essay-builder.html?v=20260906-4&mode=short#builder"
   },
   {
-    subject:"english", topic:"english-writing", date:"2026-09-05",
+    subject:"isee", topic:"english-writing", date:"2026-09-05",
     title:"ISEE Essay Builder", zh:"ISEE 作文句子建構器",
     desc:"Build an introduction, two body paragraphs, and a conclusion one sentence at a time, then email the finished essay.",
     zhDesc:"一次寫一句，完成開頭、兩個主體段與結尾，再把完整文章寄到信箱。",
@@ -453,12 +453,12 @@ const LESSONS = [
   },
   {
     subject:"isee", topic:"isee-vocabulary", date:"2026-09-05",
-    title:"Mistake Cards · Five Synonym Pairs", zh:"錯題卡 · 五組同義字",
-    desc:"Five synonym misses share the same card deck; each front keeps the original choice and each back explains the repaired pair.",
-    zhDesc:"五題同義字錯題收進同一副牌；卡面保留原選，翻面說明修正後的配對。",
+    title:"Five Synonym Pairs", zh:"五組同義字",
+    desc:"Study the five missed question-word pairs with pictures, short meanings, examples, pronunciation, and a one-at-a-time pair check.",
+    zhDesc:"用圖像、短義、例句與發音學五組錯題同義字，再逐題完成配對驗收。",
     source:"ZOZECK · ISEE Lower Pastpaper · Verbal Reasoning · Q8, Q9, Q11, Q16, Q17",
     fixes:5, thumb:"synonym-direction",
-    href:"isee-verbal-mistake-cards.html?v=20260908-1#set-20260905"
+    href:"isee-verbal-synonym-set-2026-09-05.html?v=20260906-1"
   },
   {
     subject:"isee", topic:"isee-math", date:"2026-09-05",
@@ -534,12 +534,12 @@ const LESSONS = [
   },
   {
     subject:"isee", topic:"isee-vocabulary", date:"2026-08-30",
-    title:"Mistake Cards · TEST-01 Verbal", zh:"錯題卡 · TEST-01 Verbal",
-    desc:"Four earlier Verbal misses stay in the same deck for quick lookup without reopening a long lesson.",
-    zhDesc:"四題較早的 Verbal 錯題也留在同一副牌裡，需要時快速翻查，不必重走長課程。",
+    title:"Synonyms: Check the Direction", zh:"同義詞：先確認方向",
+    desc:"Fix each word's plus or minus before reading the options — two antonym traps, one look-alike pair, and one motion word read backward.",
+    zhDesc:"先定這個字的正負方向再看選項——兩題反義詞陷阱、一題形近字、一題方向讀反的動作字。",
     source:"ZOZECK · ISEE Lower Pastpaper · TEST-01 · Verbal",
     fixes:4, thumb:"synonym-direction",
-    href:"isee-verbal-mistake-cards.html?v=20260908-1#set-20260830"
+    href:"isee-synonyms.html?v=20260831-word-cards-2"
   },
   {
     subject:"isee", topic:"isee-math", date:"2026-08-30",
@@ -1070,36 +1070,6 @@ function cardHTML(l, i){
   </a>`;
 }
 
-function topicHTML(t){
-  const records = LESSONS.filter(l=>l.topic===t.id).sort((a,b)=>b.date.localeCompare(a.date));
-  const stage = TOPIC_STAGES[t.next] || TOPIC_STAGES.checkpoint;
-  const latest = records.length ? records[0].date : "—";
-  const recordWord = records.length===1 ? "record" : "records";
-  const skills = t.skills.map((skill,i)=>`<span class="skill-chip">${esc(skill)}<span class="zhi"> · ${esc(t.zhSkills[i]||"")}</span></span>`).join("");
-  const latestPreview = records.length ? lessonThumb(records[0],"topic-preview","span") : `<span class="topic-preview">${THUMBS.grid()}</span>`;
-  const history = records.map(l=>`<a href="${esc(l.href)}">
-      ${lessonThumb(l,"topic-history-thumb")}
-      <b>${esc(l.title)}<span class="zh">${esc(l.zh||"")}</span></b><em>${esc(l.source||"")}</em>
-      <time datetime="${esc(l.date)}">${esc(l.date)}</time>
-    </a>`).join("");
-  return `<details class="topic-card" id="topic-${esc(t.id)}" data-topic="${esc(t.id)}">
-    <summary>
-      ${latestPreview}
-      <span class="topic-copy">
-        <span class="topic-eyebrow">${records.length} ${recordWord} · latest ${esc(latest)}</span>
-        <strong>${esc(t.title)}<span class="zh">${esc(t.zh)}</span></strong>
-        <span class="topic-desc">${esc(t.desc)}<span class="zh">${esc(t.zhDesc)}</span></span>
-      </span>
-      <span class="topic-next ${esc(t.next)}">${esc(stage.en)}<span class="zh">${esc(stage.zh)}</span></span>
-    </summary>
-    <div class="topic-body">
-      <div class="topic-skills">${skills}</div>
-      <p class="topic-weekend"><b>Weekend path:</b> ${esc(t.weekend)}<span class="zh"><b>週末路線：</b>${esc(t.zhWeekend)}</span></p>
-      <span class="topic-history-label">Lesson grid<span class="zhi"> · 歷次課程圖卡</span></span>
-      <div class="topic-history">${history}</div>
-    </div>
-  </details>`;
-}
 
 const MISSION_STORE = "wnotes-missions:" + TODAY_MISSIONS.date;
 const MISSION_SENT_STORE = MISSION_STORE + ":submitted";
@@ -1253,25 +1223,8 @@ function renderMissions(){
   updateMissionProgress();
 }
 
-function renderTopics(){
-  const wrap = $("#topics");
-  const keys = Object.keys(SUBJECTS).filter(k=>filter==="all" || k===filter);
-  let html = "";
-  keys.forEach(k=>{
-    const list = TOPICS.filter(t=>t.subject===k);
-    if(!list.length && filter==="all") return;
-    const s = SUBJECTS[k];
-    html += `<section class="subject" data-subject="${k}">
-      <div class="subject-head"><h2>${s.icon} ${s.en} <span class="zhi" style="font-size:.8em">${s.zh}</span></h2>
-        <span class="count">${list.length} topic${list.length===1?"":"s"}</span><span class="bar"></span></div>
-      ${list.length ? `<div class="topic-grid">${list.map(topicHTML).join("")}</div>`
-                    : `<div class="empty">Nothing here yet · 還沒有這一科的主題</div>`}
-    </section>`;
-  });
-  wrap.innerHTML = html || `<div class="empty">No topics yet.</div>`;
-}
 
-function renderArchive(){
+function renderLessons(){
   const wrap = $("#subjects");
   const sorted = [...LESSONS].sort((a,b)=> b.date.localeCompare(a.date));
   const keys = Object.keys(SUBJECTS).filter(k => filter==="all" || k===filter);
@@ -1291,12 +1244,11 @@ function renderArchive(){
 }
 
 function render(){
-  renderTopics();
-  renderArchive();
+  renderLessons();
 }
 
 function renderFilters(){
-  const used = new Set(TOPICS.map(t=>t.subject));
+  const used = new Set(LESSONS.map(l=>l.subject));
   const items = [["all","All","全部"], ...Object.entries(SUBJECTS).map(([k,v])=>[k,v.icon+" "+v.en,v.zh])];
   $("#filters").innerHTML = items.map(([k,en,zh])=>
     `<button type="button" class="chip${k===filter?" on":""}" data-k="${k}" ${k!=="all"&&!used.has(k)?'style="opacity:.55"':""}>${en}<span class="zh">${zh}</span></button>`).join("");
@@ -1304,10 +1256,8 @@ function renderFilters(){
 }
 
 function stats(){
-  $("#stTopics").textContent = TOPICS.length;
   $("#stLessons").textContent = LESSONS.length;
   $("#stSubjects").textContent = new Set(LESSONS.map(l=>l.subject)).size;
-  $("#archiveCount").textContent = LESSONS.length;
 }
 
 /* ===== 5. Study buddy — one of the eight, picked fresh on every visit ===== */
