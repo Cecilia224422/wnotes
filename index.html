@@ -81,7 +81,7 @@ h1 .zh{font-size:.9rem;font-weight:400}
 .mission-detail{display:block;margin-top:.12rem;color:var(--pencil);font-size:.76rem;line-height:1.35}.mission-detail .zh{font-size:.94em}
 .mission-meta{display:flex;gap:.3rem;align-items:center;flex-wrap:wrap;margin-bottom:.2rem}.mission-tag{display:inline-flex;align-items:center;
   border-radius:999px;padding:.08rem .42rem;background:#E8EEFC;color:var(--blue-deep);font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
-.mission-tag.scan{background:#F0E9FA;color:#7047A4}.mission-tag.both{background:#FFF1E1;color:#A85C10}
+.mission-tag.scan{background:#F0E9FA;color:#7047A4}.mission-tag.both{background:#FFF1E1;color:#A85C10}.mission-tag.training{background:#E6F6EE;color:#1E6E48}
 .mission-go{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;text-decoration:none;color:#fff;background:var(--blue);
   border-radius:.55rem;padding:.42rem .65rem;font-size:.76rem;font-weight:700;box-shadow:0 .18rem 0 var(--blue-deep)}
 .mission-go:hover,.mission-go:focus-visible{background:var(--blue-deep);outline:3px solid var(--hl);outline-offset:2px}
@@ -247,8 +247,8 @@ const TOPICS = [
     desc:"Keep every Verbal miss in one card deck, grouped by test set, while Essential decks stay beside it for word study.",
     zhDesc:"把所有 Verbal 錯題依考卷收在同一副錯題卡；Essential 牌組則留在旁邊負責學習新字。",
     skills:["Mistake cards","Meaning direction","Sentence clues","Collocations"], zhSkills:["錯題卡","字義方向","整句線索","常見搭配"],
-    weekend:"Elaborate passed in a new sentence. Keep only the serenity-versus-poverty meaning contrast in foundation practice.",
-    zhWeekend:"elaborate 已在新句獨立答對；本輪只保留 serenity（安寧）與 poverty（缺乏金錢／資源）的字義區分。"
+    weekend:"Elaborate passed in a new sentence. Keep the earlier serenity/poverty check pending; add the October synonym and sentence-context corrections. No new independent pass is recorded.",
+    zhWeekend:"elaborate 已在新句獨立答對；保留 serenity／poverty 待驗收，新增十月同義字與句中線索訂正，尚無新的獨立通過證據。"
   },
   {
     id:"isee-reading", subject:"isee", next:"foundation",
@@ -265,8 +265,8 @@ const TOPICS = [
     desc:"Translate relationships, test every choice, and verify each step instead of trusting the first answer.",
     zhDesc:"翻譯題目關係、逐一驗證選項，並檢查每一步而不是相信第一個答案。",
     skills:["Translate words","Test choices","Multi-step checks"], zhSkills:["文字轉數學","驗證選項","多步驟檢查"],
-    weekend:"Keep reflection in foundation: compare x to the vertical mirror line, then state equal distance and unchanged y.",
-    zhWeekend:"鏡射保留 foundation：垂直鏡線要先比較 x，再說兩側等距與 y 不變。"
+    weekend:"Keep the earlier reflection check pending. Add segment overlap, graph relationships, variable perimeter, totals and ratios from October screenshots; all await a separate no-hint retest.",
+    zhWeekend:"原鏡射待驗收保留；新增十月截圖的線段重疊、函數圖關係、含變數周長、合計與比例，均待另卷無提示驗收。"
   },
   {
     id:"math-fractions", subject:"math", next:"foundation",
@@ -274,8 +274,8 @@ const TOPICS = [
     desc:"Compare, calculate, simplify, convert forms, and solve mixed-number stories in one place.",
     zhDesc:"把比較、計算、約分、形式轉換與帶分數應用題收在同一個主題。",
     skills:["Compare & calculate","Simplest form","Improper ↔ mixed","Word problems"], zhSkills:["比較與計算","最簡形式","假分數↔帶分數","應用題"],
-    weekend:"The conversion and common denominator worked. Now reduce the exact sum and stop in the requested simplest improper form.",
-    zhWeekend:"轉換與通分已做到；本輪只補加總後約分，並停在題目指定的最簡假分數。"
+    weekend:"Keep the earlier simplest-form check pending. Add common-unit subtraction and decimal-to-fraction conversion; guided page completion is not mastery.",
+    zhWeekend:"原有最簡形式待驗收保留；新增同單位分數相減與小數轉分數，頁內引導完成不算熟練。"
   },
   {
     id:"math-estimation", subject:"math", next:"foundation",
@@ -283,8 +283,8 @@ const TOPICS = [
     desc:"Estimate before multiplying or dividing, then use it to check the exact answer.",
     zhDesc:"乘除前先估算，再用估算檢查精確答案是否合理。",
     skills:["Rounding","Estimate first","Exact answer check"], zhSkills:["四捨五入","先估算","檢查精確答案"],
-    weekend:"Use a nearby divisible total and distinguish an estimate from exact equality. HMH P17 #1 needs a later labeled no-hint retest.",
-    zhWeekend:"先選附近可整除的總量，分清估算與精確等號；HMH P17 第 1 題仍待另卷明標無提示驗收。"
+    weekend:"Keep Q1/Q3 compatible-number checks pending and preserve the correct long division. Also check decimal price scale when estimating a product; use a separate no-hint retest.",
+    zhWeekend:"原 Q1／Q3 配數與完整估值待驗收保留，已對直式不重做；新增估算乘積時的小數價格量級，仍待另卷無提示驗收。"
   },
   {
     id:"math-word-problems", subject:"math", next:"foundation",
@@ -292,8 +292,8 @@ const TOPICS = [
     desc:"Turn a story into the right operations, keep every group, and interpret the final answer.",
     zhDesc:"把故事翻成正確運算、保留每一組資料，並解釋最後答案。",
     skills:["Build the expression","Multi-step totals","Models & remainders"], zhSkills:["建立算式","多步驟總量","模型與餘數"],
-    weekend:"Keep each partial quotient, verify the remainder, and share leftover length as a fraction. P21 #6 already has the correct final answer; practice its full working without calling it an error.",
-    zhWeekend:"保留每個部分商、驗算餘數，把剩餘長度分成每組的分數；P21 第 6 題原答案正確，只練完整書寫，不列為答案錯誤。"
+    weekend:"Keep factor-change, select-all, distributive and remainder-reason checks pending. Add division-story roles and row/column missing-part reasoning from the October screenshots.",
+    zhWeekend:"原兩因數倍率、複選、分配律與餘數說理待驗收保留；新增十月截圖的除法故事角色與表格列／欄缺項推理。"
   },
   {
     id:"math-factors", subject:"math", next:"checkpoint",
@@ -305,13 +305,13 @@ const TOPICS = [
     zhWeekend:"用一題混合快問決定下次保留基礎，或升到需要說明理由的題目。"
   },
   {
-    id:"math-patterns", subject:"math", next:"checkpoint",
+    id:"math-patterns", subject:"math", next:"foundation",
     title:"Number Patterns", zh:"數字規律",
     desc:"Name the repeating rule and keep it unchanged across every step.",
     zhDesc:"說出重複規則，並在每一步維持同一個規律。",
     skills:["Find the rule","Extend the sequence"], zhSkills:["找規律","延伸數列"],
-    weekend:"A quick new sequence is enough; an independent pass unlocks a two-rule pattern.",
-    zhWeekend:"用一組新數列快問即可；獨立通過後再進到雙規則數列。"
+    weekend:"Keep the earlier sequence check pending. Also rebuild the new input-output rule across all rows before a separate no-hint retest.",
+    zhWeekend:"先前數列待驗收保留；新增輸入輸出規則需核全部列，再另做無提示換題驗收。"
   },
   {
     id:"english-writing", subject:"english", next:"foundation",
@@ -362,34 +362,177 @@ const TOPICS = [
 
 /* ===== Today's review queue — update after worksheet or homework-scan feedback ===== */
 const TODAY_MISSIONS = {
-  "date": "2026-10-09",
-  "label": "OCT 9 · 5 PORTALS",
+  "date": "2026-10-27",
+  "label": "OCT 27 · 16 PORTALS",
   "tasks": [
     {
-      "id": "hmh-estimation-20261009",
+      "id": "words-to-math-models-20261027",
+      "topic": "math-word-problems",
+      "level": "foundation",
+      "tag": "Training",
+      "zhTag": "技能訓練",
+      "kind": "training",
+      "title": "Words → Math Models",
+      "zh": "把文字翻成數學模型",
+      "detail": "Walk all four translation patterns, then print Practice 1 and do it with the page closed. Finishing the page is not mastery.",
+      "zhDetail": "走完四個翻譯型態，再印出 Practice 1、關掉頁面作答；做完頁面不等於熟練。",
+      "href": "words-to-math-models.html#find-the-model"
+    },
+    {
+      "id": "screenshot-oct-shapes-20261027",
+      "topic": "isee-math",
+      "level": "foundation",
+      "tag": "Screenshots",
+      "zhTag": "錯題截圖",
+      "kind": "homework",
+      "title": "Lengths, Graphs & Shape Names",
+      "zh": "線段、函數圖與形狀名稱",
+      "detail": "Rebuild the saved choice, finish the thinking steps, and use a new problem. Review is not independent mastery.",
+      "zhDetail": "核對原選、完成逐步思考並做新題；複習完成不代表獨立熟練。",
+      "href": "isee-shapes-and-graphs-2026-10.html#s01"
+    },
+    {
+      "id": "screenshot-oct-rules-20261027",
+      "topic": "isee-math",
+      "level": "foundation",
+      "tag": "Screenshots",
+      "zhTag": "錯題截圖",
+      "kind": "homework",
+      "title": "Rules & Combined Totals",
+      "zh": "規則與合計量",
+      "detail": "Rebuild the saved choice, finish the thinking steps, and use a new problem. Review is not independent mastery.",
+      "zhDetail": "核對原選、完成逐步思考並做新題；複習完成不代表獨立熟練。",
+      "href": "isee-rules-and-totals-2026-10.html#s05"
+    },
+    {
+      "id": "screenshot-oct-decimals-20261027",
+      "topic": "math-fractions",
+      "level": "foundation",
+      "tag": "Screenshots",
+      "zhTag": "錯題截圖",
+      "kind": "homework",
+      "title": "Decimal Scale, Fractions & Order",
+      "zh": "小數量級、分數與運算順序",
+      "detail": "Rebuild the saved choice, finish the thinking steps, and use a new problem. Review is not independent mastery.",
+      "zhDetail": "核對原選、完成逐步思考並做新題；複習完成不代表獨立熟練。",
+      "href": "isee-decimals-and-operations-2026-10.html#s04"
+    },
+    {
+      "id": "screenshot-oct-stories-20261027",
+      "topic": "math-word-problems",
+      "level": "foundation",
+      "tag": "Screenshots",
+      "zhTag": "錯題截圖",
+      "kind": "homework",
+      "title": "Stories, Ratios & Missing Spending",
+      "zh": "故事、比例與缺少的支出",
+      "detail": "Rebuild the saved choice, finish the thinking steps, and use a new problem. Review is not independent mastery.",
+      "zhDetail": "核對原選、完成逐步思考並做新題；複習完成不代表獨立熟練。",
+      "href": "isee-story-quantities-2026-10.html#s06"
+    },
+    {
+      "id": "screenshot-oct-meaning-a-20261027",
+      "topic": "isee-vocabulary",
+      "level": "foundation",
+      "tag": "Screenshots",
+      "zhTag": "錯題截圖",
+      "kind": "homework",
+      "title": "Meaning Matches · Actions & Goals",
+      "zh": "字義配對：行動與目標",
+      "detail": "Rebuild the saved choice, finish the thinking steps, and use a new problem. Review is not independent mastery.",
+      "zhDetail": "核對原選、完成逐步思考並做新題；複習完成不代表獨立熟練。",
+      "href": "isee-meaning-matches-a-2026-10.html#s07"
+    },
+    {
+      "id": "screenshot-oct-meaning-b-20261027",
+      "topic": "isee-vocabulary",
+      "level": "foundation",
+      "tag": "Screenshots",
+      "zhTag": "錯題截圖",
+      "kind": "homework",
+      "title": "Meaning Matches · Edges & Opinions",
+      "zh": "字義配對：邊緣、困境與異議",
+      "detail": "Rebuild the saved choice, finish the thinking steps, and use a new problem. Review is not independent mastery.",
+      "zhDetail": "核對原選、完成逐步思考並做新題；複習完成不代表獨立熟練。",
+      "href": "isee-meaning-matches-b-2026-10.html#s11"
+    },
+    {
+      "id": "screenshot-oct-meaning-c-20261027",
+      "topic": "isee-vocabulary",
+      "level": "foundation",
+      "tag": "Screenshots",
+      "zhTag": "錯題截圖",
+      "kind": "homework",
+      "title": "Meaning Matches · Safety & Time",
+      "zh": "字義配對：安全與時間",
+      "detail": "Rebuild the saved choice, finish the thinking steps, and use a new problem. Review is not independent mastery.",
+      "zhDetail": "核對原選、完成逐步思考並做新題；複習完成不代表獨立熟練。",
+      "href": "isee-meaning-matches-c-2026-10.html#s30"
+    },
+    {
+      "id": "screenshot-oct-sentence-20261027",
+      "topic": "isee-vocabulary",
+      "level": "foundation",
+      "tag": "Screenshots",
+      "zhTag": "錯題截圖",
+      "kind": "homework",
+      "title": "Sentence Clues · Growth, Courage & Hardship",
+      "zh": "句中線索：成長、勇氣與困境",
+      "detail": "Rebuild the saved choice, finish the thinking steps, and use a new problem. Review is not independent mastery.",
+      "zhDetail": "核對原選、完成逐步思考並做新題；複習完成不代表獨立熟練。",
+      "href": "isee-sentence-clues-2026-10.html#s13"
+    },
+    {
+      "id": "hmh-expressions-return-20261019",
+      "topic": "math-word-problems",
+      "level": "foundation",
+      "tag": "Homework",
+      "zhTag": "今日作業",
+      "kind": "homework",
+      "title": "4.2: scale, select all, distribute",
+      "zh": "4.2：合併倍率、複選、分配律",
+      "detail": "Finish Q6's comparison, find both answers in Q9, and rebuild 175 ÷ 5 with the Distributive Property. Q7 only needs the comparison sentence finished.",
+      "zhDetail": "補完 Q6 的比較、找齊 Q9 兩個答案，再用分配律重做 175 ÷ 5；Q7 只要把比較句寫完。",
+      "href": "hmh-interpret-numerical-expressions.html#scale-both-factors"
+    },
+    {
+      "id": "hmh-estimation-return-20261009",
       "topic": "math-estimation",
       "level": "foundation",
-      "tag": "Workbook",
-      "zhTag": "作業本",
-      "kind": "homework",
-      "title": "2.3: estimate with compatible numbers",
-      "zh": "2.3：用配數估算",
-      "detail": "Work through P17 #1, then write the estimate and the English answer in your workbook.",
-      "zhDetail": "完成 P17 第 1 題的逐步練習，再把估算過程與英文答案寫回作業本。",
+      "tag": "Worksheet",
+      "zhTag": "練習卷",
+      "kind": "worksheet",
+      "title": "2.3: nearby numbers for Q1 and Q3",
+      "zh": "2.3：Q1／Q3 用附近配數",
+      "detail": "Review nearby compatible numbers, then fix Q1's estimate and finish Q3's estimate. Your Q3 long division and check already work; keep them.",
+      "zhDetail": "回讀附近配數，再訂正 Q1、補完 Q3 估值。Q3 的直式與驗算已對，保留、不必重做。",
       "href": "hmh-division-show-your-work.html#lesson23"
     },
     {
-      "id": "hmh-division-working-20261009",
+      "id": "hmh-remainder-reason-return-20261009",
       "topic": "math-word-problems",
       "level": "foundation",
-      "tag": "Workbook",
-      "zhTag": "作業本",
-      "kind": "homework",
-      "title": "2.4 / 3.1 / 3.2: multiply back to check",
-      "zh": "2.4／3.1／3.2：算完乘回去",
-      "detail": "Use the page's 2.4, 3.1 and 3.2 jump buttons. Write P19 #6, P19 #4 and P23 #4 back in the workbook, then the nine extra fixes in the checklist.",
-      "zhDetail": "用頁內 2.4、3.1、3.2 直達按鈕，完成 P19 第 6 題、P19 第 4 題與 P23 第 4 題的作業本書寫，再做清單裡另外九處訂正。",
+      "tag": "Worksheet",
+      "zhTag": "練習卷",
+      "kind": "worksheet",
+      "title": "2.4: finish Q2's remainder reason",
+      "zh": "2.4：Q2 補餘數理由",
+      "detail": "Your partial quotients and check work. Keep them, fill the leftover answer, and explain why the leftover cannot make one more full packet.",
+      "zhDetail": "部分商與驗算已對，保留。補剩餘答案欄，並說明為什麼剩下的鈕扣不夠再裝一包。",
       "href": "hmh-division-show-your-work.html#lesson24"
+    },
+    {
+      "id": "hmh-shared-leftover-return-20261009",
+      "topic": "math-word-problems",
+      "level": "foundation",
+      "tag": "Worksheet",
+      "zhTag": "練習卷",
+      "kind": "worksheet",
+      "title": "3.2: share Q4's leftover length",
+      "zh": "3.2：Q4 平分剩餘長度",
+      "detail": "Your whole-number division works. Share the leftover among all equal pieces, simplify the fraction, and check the full length used.",
+      "zhDetail": "整數除法已對；把剩餘長度分給全部等長段，約成最簡分數，再驗每段合起來用完總長。",
+      "href": "hmh-division-show-your-work.html#lesson32"
     },
     {
       "id": "reflection-distance-20260920",
@@ -438,6 +581,34 @@ const MISSION_SUBJECT = "WILLIAM TODAY'S MISSION — " + TODAY_MISSIONS.date;
 /* ===== 2. Lessons — add new ones here (sorted by date automatically) =====
    thumb: "sieve" | "fraction" | "numberline" | "artifact" | "grid"  (see THUMBS below)      */
 const LESSONS = [
+  {"subject":"math","topic":"math-word-problems","date":"2026-10-27","title":"Words → Math Models","zh":"把文字翻成數學模型","desc":"Find the quantities and the unknown, translate order words, turn “times as many” into a bar model and equation, and find the hidden number before you calculate.","zhDesc":"找出數量與未知數、翻譯順序詞、把「幾倍」畫成線段圖並列式，計算前先找出隱藏數。","source":"Skill training · Grade 5 · four translation patterns, each with a fresh-numbers Prove","thumb":"words-to-model","href":"words-to-math-models.html?v=20261027-1"},
+  /* screenshot-lessons-20261027 */
+  {"subject":"isee","topic":"isee-math","date":"2026-10-25","title":"Lengths, Graphs & Shape Names","zh":"線段、函數圖與形狀名稱","desc":"Rebuild the source problem step by step, then use new numbers to test the method.","zhDesc":"逐步重建原題，再以新數字練同一方法。","source":"Online practice · screenshot dates 2026-10-18 / 2026-10-25 · actual test date not shown","fixes":4,"thumb":"oct-shapes","href":"isee-shapes-and-graphs-2026-10.html"},
+  {"subject":"isee","topic":"isee-math","date":"2026-10-25","title":"Rules & Combined Totals","zh":"規則與合計量","desc":"Rebuild the source problem step by step, then use new numbers to test the method.","zhDesc":"逐步重建原題，再以新數字練同一方法。","source":"Online practice · screenshot dates 2026-10-18 / 2026-10-25 · actual test date not shown","fixes":2,"thumb":"oct-rules","href":"isee-rules-and-totals-2026-10.html"},
+  {"subject":"isee","topic":"math-fractions","date":"2026-10-23","title":"Decimal Scale, Fractions & Order","zh":"小數量級、分數與運算順序","desc":"Rebuild the source problem step by step, then use new numbers to test the method.","zhDesc":"逐步重建原題，再以新數字練同一方法。","source":"Online practice · screenshot dates 2026-10-18 / 2026-10-23 · actual test date not shown","fixes":4,"thumb":"oct-decimals","href":"isee-decimals-and-operations-2026-10.html"},
+  {"subject":"isee","topic":"math-word-problems","date":"2026-10-25","title":"Stories, Ratios & Missing Spending","zh":"故事、比例與缺少的支出","desc":"Rebuild the source problem step by step, then use new numbers to test the method.","zhDesc":"逐步重建原題，再以新數字練同一方法。","source":"Online practice · screenshot dates 2026-10-18 / 2026-10-23 / 2026-10-25 · actual test date not shown","fixes":4,"thumb":"oct-stories","href":"isee-story-quantities-2026-10.html"},
+  {"subject":"isee","topic":"isee-vocabulary","date":"2026-10-18","title":"Meaning Matches · Actions & Goals","zh":"字義配對：行動與目標","desc":"Use the original choices, a short thinking path, and a genuinely new context.","zhDesc":"保留原選項，走短推理流程，再換真正的新語境。","source":"Online practice · screenshot dates 2026-10-18 · actual test date not shown","fixes":4,"thumb":"oct-meaning-a","href":"isee-meaning-matches-a-2026-10.html"},
+  {"subject":"isee","topic":"isee-vocabulary","date":"2026-10-24","title":"Meaning Matches · Edges & Opinions","zh":"字義配對：邊緣、困境與異議","desc":"Use the original choices, a short thinking path, and a genuinely new context.","zhDesc":"保留原選項，走短推理流程，再換真正的新語境。","source":"Online practice · screenshot dates 2026-10-18 / 2026-10-24 · actual test date not shown","fixes":3,"thumb":"oct-meaning-b","href":"isee-meaning-matches-b-2026-10.html"},
+  {"subject":"isee","topic":"isee-vocabulary","date":"2026-10-24","title":"Meaning Matches · Safety & Time","zh":"字義配對：安全與時間","desc":"Use the original choices, a short thinking path, and a genuinely new context.","zhDesc":"保留原選項，走短推理流程，再換真正的新語境。","source":"Online practice · screenshot dates 2026-10-18 / 2026-10-24 · actual test date not shown","fixes":4,"thumb":"oct-meaning-c","href":"isee-meaning-matches-c-2026-10.html"},
+  {"subject":"isee","topic":"isee-vocabulary","date":"2026-10-18","title":"Sentence Clues · Growth, Courage & Hardship","zh":"句中線索：成長、勇氣與困境","desc":"Use the original choices, a short thinking path, and a genuinely new context.","zhDesc":"保留原選項，走短推理流程，再換真正的新語境。","source":"Online practice · screenshot dates 2026-10-18 · actual test date not shown","fixes":3,"thumb":"oct-sentence","href":"isee-sentence-clues-2026-10.html"},
+  {
+    subject:"isee", topic:"isee-vocabulary", date:"2026-10-26",
+    title:"Essential 1-1 to 2-5: 100 Word Test", zh:"1-1～2-5：100 字獨立測驗",
+    desc:"Close the cards. Test 100 words with 50 meaning questions and 50 new contexts; save your answers after finishing.",
+    zhDesc:"關閉詞卡，以 50 題字義與 50 題新情境驗收 100 字；交卷後下載作答紀錄。",
+    source:"Local Essential decks 1-1 through 2-5 · Independent mastery retest · Form A",
+    thumb:"word-cards-1-3",
+    href:"isee-essential-1-1-to-2-5-test.html?v=20261026-1"
+  },
+  {
+    subject:"math", topic:"math-word-problems", date:"2026-10-19",
+    title:"4.2 · Interpret Numerical Expressions", zh:"4.2 · 理解數值算式",
+    desc:"Combine two factor changes, test every select-all option, and use the Distributive Property to divide and check.",
+    zhDesc:"合併兩個因數的倍率、逐項檢查複選題，並用分配律完成除法與驗算。",
+    source:"HMH · Module 4 · Lesson 2 · More Practice/Homework · P31–P32 · Oct 19",
+    fixes:3, thumb:"translate-math",
+    href:"hmh-interpret-numerical-expressions.html?v=20261019-1#scale-both-factors"
+  },
   {
     subject:"isee", topic:"isee-vocabulary", date:"2026-10-11",
     title:"Essential 1-3: Word Cards", zh:"Essential 1-3：ISEE 詞卡",
@@ -816,6 +987,15 @@ const LESSONS = [
 
 /* ===== 3. Thumbnails — drawn with SVG, no photo files needed ===== */
 const THUMBS = {
+"words-to-model"(){return "<svg viewBox=\"0 0 104 78\" role=\"img\" aria-label=\"words become a math model\"><rect x=\"1\" y=\"1\" width=\"102\" height=\"76\" rx=\"4\" fill=\"#F4F4F6\" stroke=\"#E3E4E8\"/><g font-family=\"Fredoka,sans-serif\" font-size=\"8\" fill=\"#6B6E76\" stroke-linecap=\"round\"><text x=\"10\" y=\"19\">3 packs of 15,</text><text x=\"10\" y=\"30\">uses 7. Left?</text><path d=\"M52 35v9m-4-4 4 4 4-4\" stroke=\"#6B6E76\" fill=\"none\"/><rect x=\"13\" y=\"49\" width=\"78\" height=\"19\" rx=\"2.5\" fill=\"#E8EEFC\" stroke=\"#3E6FD9\"/><text x=\"52\" y=\"62\" text-anchor=\"middle\" fill=\"#2B52AE\" font-weight=\"600\">s = 3 × 15 − 7</text></g></svg>";},
+"oct-shapes"(){return "<svg viewBox=\"0 0 104 78\" role=\"img\" aria-label=\"shapes mechanism\"><rect x=\"1\" y=\"1\" width=\"102\" height=\"76\" rx=\"4\" fill=\"#F4F4F6\" stroke=\"#E3E4E8\"/><g font-family=\"Fredoka,sans-serif\" font-size=\"8\" fill=\"#6B6E76\" stroke-linecap=\"round\"><path d=\"M10 36H94\" stroke=\"#6B6E76\"/><circle cx=\"20\" cy=\"36\" r=\"3\" fill=\"#3E6FD9\"/><circle cx=\"48\" cy=\"36\" r=\"3\" fill=\"#3E6FD9\"/><circle cx=\"84\" cy=\"36\" r=\"3\" fill=\"#3E6FD9\"/><path d=\"M20 48h28m0 10h36\" stroke=\"#F08A2C\" stroke-width=\"3\"/><text x=\"24\" y=\"23\">AB + BD</text></g></svg>";},
+"oct-rules"(){return "<svg viewBox=\"0 0 104 78\" role=\"img\" aria-label=\"rules mechanism\"><rect x=\"1\" y=\"1\" width=\"102\" height=\"76\" rx=\"4\" fill=\"#F4F4F6\" stroke=\"#E3E4E8\"/><g font-family=\"Fredoka,sans-serif\" font-size=\"8\" fill=\"#6B6E76\" stroke-linecap=\"round\"><rect x=\"31\" y=\"20\" width=\"42\" height=\"38\" rx=\"3\" fill=\"#E8EEFC\" stroke=\"#3E6FD9\"/><path d=\"M8 39h21m45 0h22\" stroke=\"#6B6E76\" stroke-width=\"2\"/><text x=\"39\" y=\"43\">×3−3</text><text x=\"9\" y=\"29\">2</text><text x=\"86\" y=\"29\">3</text></g></svg>";},
+"oct-decimals"(){return "<svg viewBox=\"0 0 104 78\" role=\"img\" aria-label=\"decimals mechanism\"><rect x=\"1\" y=\"1\" width=\"102\" height=\"76\" rx=\"4\" fill=\"#F4F4F6\" stroke=\"#E3E4E8\"/><g font-family=\"Fredoka,sans-serif\" font-size=\"8\" fill=\"#6B6E76\" stroke-linecap=\"round\"><text x=\"13\" y=\"28\">0.650</text><path d=\"M15 38h72m-7-5 7 5-7 5\" stroke=\"#6B6E76\" fill=\"none\"/><text x=\"17\" y=\"59\">650/1000 = 13/20</text></g></svg>";},
+"oct-stories"(){return "<svg viewBox=\"0 0 104 78\" role=\"img\" aria-label=\"stories mechanism\"><rect x=\"1\" y=\"1\" width=\"102\" height=\"76\" rx=\"4\" fill=\"#F4F4F6\" stroke=\"#E3E4E8\"/><g font-family=\"Fredoka,sans-serif\" font-size=\"8\" fill=\"#6B6E76\" stroke-linecap=\"round\"><rect x=\"12\" y=\"14\" width=\"80\" height=\"50\" rx=\"3\" fill=\"#fff\" stroke=\"#E3E4E8\"/><path d=\"M12 31h80m-80 16h80M42 14v50M66 14v50\" stroke=\"#D9DCE1\"/><text x=\"17\" y=\"26\">cost</text><text x=\"48\" y=\"43\">?</text><text x=\"71\" y=\"43\">15</text><text x=\"21\" y=\"59\">total − known</text></g></svg>";},
+"oct-meaning-a"(){return "<svg viewBox=\"0 0 104 78\" role=\"img\" aria-label=\"meaning a mechanism\"><rect x=\"1\" y=\"1\" width=\"102\" height=\"76\" rx=\"4\" fill=\"#F4F4F6\" stroke=\"#E3E4E8\"/><g font-family=\"Fredoka,sans-serif\" font-size=\"8\" fill=\"#6B6E76\" stroke-linecap=\"round\"><g transform=\"scale(.83)\"><rect x=\"10\" y=\"40\" width=\"35\" height=\"30\" rx=\"3\" fill=\"#E8EEFC\" stroke=\"#3E6FD9\" stroke-width=\"2\"/><text x=\"13\" y=\"59\" font-family=\"Fredoka,sans-serif\" font-size=\"10\" fill=\"#2E3037\">box</text><path d=\"M49 42h22m-6-5 6 5-6 5\" fill=\"none\" stroke=\"#F08A2C\" stroke-width=\"3\"/><path d=\"M80 24v32m0-25 22-5v25\" stroke=\"#3E6FD9\" fill=\"none\" stroke-width=\"3\"/><ellipse cx=\"75\" cy=\"58\" rx=\"7\" ry=\"4\" fill=\"#F08A2C\"/><ellipse cx=\"97\" cy=\"53\" rx=\"7\" ry=\"4\" fill=\"#F08A2C\"/></g></g></svg>";},
+"oct-meaning-b"(){return "<svg viewBox=\"0 0 104 78\" role=\"img\" aria-label=\"meaning b mechanism\"><rect x=\"1\" y=\"1\" width=\"102\" height=\"76\" rx=\"4\" fill=\"#F4F4F6\" stroke=\"#E3E4E8\"/><g font-family=\"Fredoka,sans-serif\" font-size=\"8\" fill=\"#6B6E76\" stroke-linecap=\"round\"><g transform=\"scale(.83)\"><rect x=\"18\" y=\"13\" width=\"84\" height=\"58\" rx=\"3\" fill=\"#E8EEFC\" stroke=\"#3E6FD9\" stroke-width=\"2\"/><path d=\"M18 13h84v58H18z\" fill=\"none\" stroke=\"#F08A2C\" stroke-width=\"5\"/><text x=\"42\" y=\"46\" font-family=\"Fredoka,sans-serif\" font-size=\"10\" fill=\"#2E3037\">field</text></g></g></svg>";},
+"oct-meaning-c"(){return "<svg viewBox=\"0 0 104 78\" role=\"img\" aria-label=\"meaning c mechanism\"><rect x=\"1\" y=\"1\" width=\"102\" height=\"76\" rx=\"4\" fill=\"#F4F4F6\" stroke=\"#E3E4E8\"/><g font-family=\"Fredoka,sans-serif\" font-size=\"8\" fill=\"#6B6E76\" stroke-linecap=\"round\"><g transform=\"scale(.83)\"><path d=\"M14 35l46-24 46 24v36H14z\" fill=\"#E8EEFC\" stroke=\"#3E6FD9\" stroke-width=\"2\"/><path d=\"M60 30l18 6v15q-2 15-18 20-16-5-18-20V36z\" fill=\"#FFF0A0\" stroke=\"#F08A2C\" stroke-width=\"2\"/></g></g></svg>";},
+"oct-sentence"(){return "<svg viewBox=\"0 0 104 78\" role=\"img\" aria-label=\"sentence mechanism\"><rect x=\"1\" y=\"1\" width=\"102\" height=\"76\" rx=\"4\" fill=\"#F4F4F6\" stroke=\"#E3E4E8\"/><g font-family=\"Fredoka,sans-serif\" font-size=\"8\" fill=\"#6B6E76\" stroke-linecap=\"round\"><g transform=\"scale(.83)\"><path d=\"M24 68V44m0 7q-18-16 0-15m0 13q17-18 0-15M86 68V22m0 16q-30-20 0-22m0 30q30-22 0-22\" stroke=\"#2FA36B\" stroke-width=\"3\" fill=\"#E6F6EE\"/><path d=\"M49 42h22m-6-5 6 5-6 5\" fill=\"none\" stroke=\"#F08A2C\" stroke-width=\"3\"/></g></g></svg>";},
   "word-cards-1-3"(){
     return `<svg viewBox="0 0 104 78" role="img" aria-label="Excruciating: a thorn hurting a foot"><rect x="1" y="1" width="102" height="76" rx="4" fill="#F4F4F6" stroke="#E3E4E8"/><g transform="translate(2 4) scale(.8333)" stroke-linecap="round" stroke-linejoin="round"><path d="M18 49v15h32q10 0 10 6H16V49" fill="#E8EEFC" stroke="#3E6FD9" stroke-width="2"/><path d="M39 63l6-17 5 18" fill="#FFE59B" stroke="#E2463B" stroke-width="2"/><path d="M62 53l8-7m-4 16h11" fill="none" stroke="#E2463B" stroke-width="2"/><circle cx="94" cy="32" r="10" fill="#FFE59B" stroke="#F0B34A" stroke-width="2"/><circle cx="91" cy="30" r="0.6" fill="#6B6E76" stroke="#6B6E76" stroke-width="2"/><circle cx="97" cy="30" r="0.6" fill="#6B6E76" stroke="#6B6E76" stroke-width="2"/><path d="M90 37q4-5 8 0" fill="none" stroke="#6B6E76" stroke-width="2"/><text x="94" y="62" text-anchor="middle" font-family="Fredoka,sans-serif" font-size="12" fill="#E2463B">OW!</text></g></svg>`;
   },
@@ -1629,7 +1809,7 @@ life: [
 ],
 };
 
-/* ---------- school facts (真相源: TAAS 2026-2027 校曆.md) ----------
+/* ---------- school facts (真相源: vault 的 2026-2027 校曆檔) ----------
    資料事實零容錯: it must never ask about Band on a day school was closed. */
 const TERM = ["2026-08-10", "2027-06-02"];
 const NO_SCHOOL = ["2026-09-25","2026-09-28","2026-10-09","2026-10-26","2026-10-27",
@@ -1638,7 +1818,7 @@ const NO_SCHOOL_RANGES = [["2026-12-21","2027-01-01"],["2027-02-04","2027-02-10"
 const HALF_DAY = ["2026-11-25","2026-12-15","2026-12-18","2027-05-25","2027-06-01","2027-06-02"];
 const SCHOOL_ON_HOLIDAY = ["2026-11-22","2027-03-07"];
 /* 句庫〈MAP 前兩週〉的標題範圍含測驗期間,但四句全是「快到了」的語氣。
-   測驗中不能說「快到了」——所以拆成 考前／考試中／考完 三段(真相源:TAAS 校曆的測驗日期)。 */
+   測驗中不能說「快到了」——所以拆成 考前／考試中／考完 三段(真相源:校曆檔的測驗日期)。 */
 const MAP_PRE = [["2026-08-10","2026-08-23"],["2026-11-16","2026-11-29"],["2027-04-05","2027-04-18"]];
 const MAP_NOW = [["2026-08-24","2026-09-04"],["2026-11-30","2026-12-04"],["2027-04-19","2027-04-23"]];
 const MAP_POST = [["2026-09-05","2026-09-08"],["2026-12-05","2026-12-08"],["2027-04-24","2027-04-27"]];
