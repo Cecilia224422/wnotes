@@ -241,6 +241,7 @@ const SUBJECTS = {
 
 /* ===== Learning evidence metadata — lesson cards are displayed individually ===== */
 const TOPICS = [
+  {"id": "math-number-sense", "subject": "math", "next": "foundation", "title": "Whole Numbers & Place Value", "zh": "整數讀寫與位值", "desc": "Read every period and explain each digit’s place and actual value.", "zhDesc": "逐群讀整數，分清每個數字的位名與實際值。", "skills": ["Period groups", "Word form", "Place and value"], "zhSkills": ["三位分群", "英文數詞", "位名與實際值"], "weekend": "Review the verified 5A writing gaps. Guided input and a checklist do not establish mastery; fresh independent work is pending.", "zhWeekend": "依已核5A讀寫缺口練習；引導輸入及勾選不算熟練，仍待換題獨立作答。"},
   {
     id:"isee-vocabulary", subject:"isee", next:"foundation",
     title:"ISEE Verbal: Words & Mistake Cards", zh:"ISEE Verbal：單字與錯題卡",
@@ -363,8 +364,47 @@ const TOPICS = [
 /* ===== Today's review queue — update after worksheet or homework-scan feedback ===== */
 const TODAY_MISSIONS = {
   "date": "2026-11-01",
-  "label": "NOV 1 · 22 PORTALS",
+  "label": "NOV 1 · 25 PORTALS",
   "tasks": [
+    {
+      "id": "mif5a-chapter-completion-20261101-1",
+      "topic": "math-number-sense",
+      "level": "foundation",
+      "tag": "Chapter learning",
+      "zhTag": "章節教學",
+      "kind": "training",
+      "title": "Numbers to 10,000,000",
+      "zh": "讀寫一千萬以內的大數",
+      "detail": "Read all three periods, name each group, and separate a digit from its actual value. Use one section, then write it on paper. Independent evidence is still pending.",
+      "zhDetail": "逐群讀完整群名，分清數字、位名與實際值。 一次做一小節，再帶回紙上；獨立證據仍待驗收。",
+      "href": "mif5a-ch1-1-numbers.html#period-groups"
+    },
+    {
+      "id": "mif5a-chapter-completion-20261101-2",
+      "topic": "math-estimation",
+      "level": "foundation",
+      "tag": "Chapter learning",
+      "zhTag": "章節教學",
+      "kind": "training",
+      "title": "Powers, Factor Sets & Equal Quotients",
+      "zh": "次方、完整因數組合與相等的商",
+      "detail": "Expand every factor of ten, find every required set, and verify both sides of an equation. Use one section, then write it on paper. Independent evidence is still pending.",
+      "zhDetail": "保留每個10的因數、補足要求的組合，逐步驗算等式兩側。 一次做一小節，再帶回紙上；獨立證據仍待驗收。",
+      "href": "mif5a-powers-and-equal-quotients.html#powers-of-ten"
+    },
+    {
+      "id": "mif5a-chapter-completion-20261101-3",
+      "topic": "math-fractions",
+      "level": "foundation",
+      "tag": "Chapter learning",
+      "zhTag": "章節教學",
+      "kind": "training",
+      "title": "Fractions, Mixed Numbers, and Division Expressions",
+      "zh": "分數、帶分數與除法式",
+      "detail": "Name one whole, explain equal sharing, finish both simplest forms, and write a complete story. Use one section, then write it on paper. Independent evidence is still pending.",
+      "zhDetail": "固定一個whole，說明平均分配，完成兩種最簡形式並寫完整應用題。 一次做一小節，再帶回紙上；獨立證據仍待驗收。",
+      "href": "mif5a-ch2-1-fractions-and-division.html#equal-sharing-explanation"
+    },
     {
       "id": "mif5a-written-1-20261101",
       "topic": "math-fractions",
@@ -659,6 +699,10 @@ const MISSION_SUBJECT = "WILLIAM TODAY'S MISSION — " + TODAY_MISSIONS.date;
 /* ===== 2. Lessons — add new ones here (sorted by date automatically) =====
    thumb: "sieve" | "fraction" | "numberline" | "artifact" | "grid"  (see THUMBS below)      */
 const LESSONS = [
+  /* mif5a-chapter-completion-20261101 */
+  {"subject": "math", "topic": "math-number-sense", "date": "2026-11-01", "title": "Numbers to 10,000,000", "zh": "讀寫一千萬以內的大數", "desc": "Read all three periods, name each group, and separate a digit from its actual value.", "zhDesc": "逐群讀完整群名，分清數字、位名與實際值。", "source": "Math in Focus 5A · Chapter 1 · Section 1: Numbers to 10,000,000 · pp.11–16", "fixes": 3, "thumb": "mif5a-chapter-1", "href": "mif5a-ch1-1-numbers.html"},
+  {"subject": "math", "topic": "math-estimation", "date": "2026-11-01", "title": "Powers, Factor Sets & Equal Quotients", "zh": "次方、完整因數組合與相等的商", "desc": "Expand every factor of ten, find every required set, and verify both sides of an equation.", "zhDesc": "保留每個10的因數、補足要求的組合，逐步驗算等式兩側。", "source": "Math in Focus 5A · Chapter 1 · Section 2 pp.19,29–30; Section 3 pp.33,36", "fixes": 3, "thumb": "mif5a-chapter-2", "href": "mif5a-powers-and-equal-quotients.html"},
+  {"subject": "math", "topic": "math-fractions", "date": "2026-11-01", "title": "Fractions, Mixed Numbers, and Division Expressions", "zh": "分數、帶分數與除法式", "desc": "Name one whole, explain equal sharing, finish both simplest forms, and write a complete story.", "zhDesc": "固定一個whole，說明平均分配，完成兩種最簡形式並寫完整應用題。", "source": "Math in Focus 5A · Chapter 2 §1 · official teaching pp.113–120; verified work p.115, p.118, p.119 Q4/Q5, p.120 Q6.", "fixes": 3, "thumb": "mif5a-chapter-3", "href": "mif5a-ch2-1-fractions-and-division.html"},
   /* mif5a-guided-writing-20261101 */
   {"subject": "math", "topic": "math-fractions", "date": "2026-10-27", "title": "Keep Every Part of the Sum", "zh": "每一步都保留完整的和", "desc": "Write equivalent fractions, keep every whole, and regroup before simplifying.", "zhDesc": "逐行寫等值分數、保留整數，滿一個整體先進位再化簡。", "source": "Math in Focus 5A, Chapter 2; verified 10/27 work on pp.132, 136–138.", "fixes": 3, "thumb": "mif5a-write-fraction", "href": "mif5a-written-fractions.html"},
   {"subject": "math", "topic": "math-estimation", "date": "2026-10-27", "title": "Write Every Benchmark", "zh": "把每一項估算寫出來", "desc": "Write one benchmark per amount, add the benchmarks, and use ≈ for the estimate.", "zhDesc": "每個數量各寫一個基準數，再相加並用≈標估算。", "source": "Math in Focus 5A · Chapter 2 · p.128 Q3; p.134 Q1/Q4; p.137 Q12/Q14 · handwritten 10/27", "fixes": 3, "thumb": "mif5a-write-benchmark", "href": "mif5a-written-benchmarks.html"},
@@ -1075,6 +1119,9 @@ const LESSONS = [
 
 /* ===== 3. Thumbnails — drawn with SVG, no photo files needed ===== */
 const THUMBS = {
+"mif5a-chapter-1"(){return "<svg viewBox=\"0 0 104 78\" role=\"img\" aria-label=\"6 | 405 | 082: millions \u00b7 thousands \u00b7 ones\"><rect x=\"1\" y=\"1\" width=\"102\" height=\"76\" rx=\"2.5\" fill=\"#F4F4F6\" stroke=\"#E3E4E8\"/><path d=\"M9 43H95\" stroke=\"#C9CBD2\"/><g font-family=\"Fredoka,sans-serif\" font-size=\"8\" fill=\"#3E6FD9\"><text x=\"10\" y=\"28\">6 | 405 | 082</text><text x=\"8\" y=\"60\" font-size=\"6.7\">millions \u00b7 thousands \u00b7 ones</text></g></svg>";},
+"mif5a-chapter-2"(){return "<svg viewBox=\"0 0 104 78\" role=\"img\" aria-label=\"10 x 10 x 10: keep BOTH factors\"><rect x=\"1\" y=\"1\" width=\"102\" height=\"76\" rx=\"2.5\" fill=\"#F4F4F6\" stroke=\"#E3E4E8\"/><path d=\"M9 43H95\" stroke=\"#C9CBD2\"/><g font-family=\"Fredoka,sans-serif\" font-size=\"8\" fill=\"#3E6FD9\"><text x=\"10\" y=\"28\">10 x 10 x 10</text><text x=\"8\" y=\"60\" font-size=\"6.7\">keep BOTH factors</text></g></svg>";},
+"mif5a-chapter-3"(){return "<svg viewBox=\"0 0 104 78\" role=\"img\" aria-label=\"3 shared by 4: 3 / 4 of ONE whole\"><rect x=\"1\" y=\"1\" width=\"102\" height=\"76\" rx=\"2.5\" fill=\"#F4F4F6\" stroke=\"#E3E4E8\"/><path d=\"M9 43H95\" stroke=\"#C9CBD2\"/><g font-family=\"Fredoka,sans-serif\" font-size=\"8\" fill=\"#3E6FD9\"><text x=\"10\" y=\"28\">3 shared by 4</text><text x=\"8\" y=\"60\" font-size=\"6.7\">3 / 4 of ONE whole</text></g></svg>";},
 "mif5a-write-fraction"(){return "<svg viewBox=\"0 0 104 78\" role=\"img\" aria-label=\"Keep the whole when a fractional sum makes a new whole\"><rect x=\"1\" y=\"1\" width=\"102\" height=\"76\" rx=\"2.5\" fill=\"#F4F4F6\" stroke=\"#E3E4E8\"/><g font-family=\"Fredoka,sans-serif\" font-size=\"8\" fill=\"#6B6E76\" stroke-linecap=\"round\"><text x=\"12\" y=\"20\">6 + 9/6</text><path d=\"M18 25v9m-3-3 3 3 3-3\" stroke=\"#6B6E76\" fill=\"none\"/><rect x=\"9\" y=\"37\" width=\"84\" height=\"16\" rx=\"2.5\" fill=\"#E8EEFC\" stroke=\"#3E6FD9\"/><text x=\"14\" y=\"49\">6 + 1 + 3/6</text><text x=\"14\" y=\"69\" fill=\"#3E6FD9\">7 1/2</text></g></svg>";},
 "mif5a-write-benchmark"(){return "<svg viewBox=\"0 0 104 78\" role=\"img\" aria-label=\"Each fraction goes to its own benchmark before adding\"><rect x=\"1\" y=\"1\" width=\"102\" height=\"76\" rx=\"2.5\" fill=\"#F4F4F6\" stroke=\"#E3E4E8\"/><g font-family=\"Fredoka,sans-serif\" font-size=\"8\" fill=\"#6B6E76\" stroke-linecap=\"round\"><text x=\"9\" y=\"18\">4/11 \u2248 1/2</text><text x=\"9\" y=\"34\">11/13 \u2248 1</text><path d=\"M8 42H94\" stroke=\"#C9CBD2\"/><text x=\"9\" y=\"57\">1/2 + 1</text><text x=\"9\" y=\"70\" fill=\"#3E6FD9\">\u2248 1 1/2</text></g></svg>";},
 "mif5a-write-columns"(){return "<svg viewBox=\"0 0 104 78\" role=\"img\" aria-label=\"Aligned partial products, then the total\"><rect x=\"1\" y=\"1\" width=\"102\" height=\"76\" rx=\"2.5\" fill=\"#F4F4F6\" stroke=\"#E3E4E8\"/><g font-family=\"Fredoka,sans-serif\" font-size=\"8\" fill=\"#6B6E76\" stroke-linecap=\"round\"><path d=\"M44 7V72M56 7V72M68 7V72M80 7V72\" stroke=\"#C9CBD2\"/><text x=\"86\" y=\"27\" text-anchor=\"end\">1267</text><text x=\"86\" y=\"38\" text-anchor=\"end\">\u00d7 43</text><path d=\"M20 42H91\" stroke=\"#6B6E76\"/><text x=\"86\" y=\"51\" text-anchor=\"end\">3801</text><text x=\"86\" y=\"61\" text-anchor=\"end\">+50680</text><path d=\"M20 65H91\" stroke=\"#3E6FD9\"/><text x=\"86\" y=\"75\" text-anchor=\"end\" fill=\"#3E6FD9\">54481</text></g></svg>";},
