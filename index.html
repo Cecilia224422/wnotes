@@ -363,7 +363,7 @@ const TOPICS = [
 /* ===== Today's review queue — update after worksheet or homework-scan feedback ===== */
 const TODAY_MISSIONS = {
   "date": "2026-11-01",
-  "label": "NOV 1 · 20 PORTALS",
+  "label": "NOV 1 · 22 PORTALS",
   "tasks": [
     {
       "id": "mif5a-written-1-20261101",
@@ -416,6 +416,32 @@ const TODAY_MISSIONS = {
       "detail": "Draw equal parts, shade a share, keep the whole unit, and write every requested equation. Use one section at a time, then write it in your workbook.",
       "zhDetail": "畫等分、塗份數、保留整體單位，並完成指定的每個等式。一次做一小節，再回作業本完成。",
       "href": "mif5a-written-models.html#draw-the-equal-pieces"
+    },
+    {
+      "id": "mif5a-teaching-5-20261101",
+      "topic": "math-word-problems",
+      "level": "foundation",
+      "tag": "Textbook learning",
+      "zhTag": "課本教學",
+      "kind": "training",
+      "title": "5 · Order of Operations",
+      "zh": "第 5 小節：運算順序",
+      "detail": "Study the textbook example, then complete a fresh guided problem. This is learning, not a recorded mastery pass.",
+      "zhDetail": "先看課本示範，再走新題引導練習；這是學習，不是已取得獨立熟練證據。",
+      "href": "mif5a-ch1-5-order-of-operations.html#add-subtract"
+    },
+    {
+      "id": "mif5a-teaching-6-20261101",
+      "topic": "math-word-problems",
+      "level": "foundation",
+      "tag": "Textbook learning",
+      "zhTag": "課本教學",
+      "kind": "training",
+      "title": "6 · Real-World Problems",
+      "zh": "第 6 小節：整數四則應用題",
+      "detail": "Study the textbook example, then complete a fresh guided problem. This is learning, not a recorded mastery pass.",
+      "zhDetail": "先看課本示範，再走新題引導練習；這是學習，不是已取得獨立熟練證據。",
+      "href": "mif5a-ch1-6-real-world-problems.html#rope-remainder"
     },
     {
       "id": "words-to-math-models-20261027",
@@ -639,6 +665,9 @@ const LESSONS = [
   {"subject": "math", "topic": "math-estimation", "date": "2026-10-24", "title": "Write the Whole Calculation", "zh": "把完整計算寫清楚", "desc": "Write every carry, partial product, subtraction, bring-down and multiplication check.", "zhDesc": "寫出進位、部分積、減法、帶下與乘回驗算。", "source": "Math in Focus 5A · Chapter 1 · p.28 Q6 · p.49 Q14 · p.61 Q20", "fixes": 3, "thumb": "mif5a-write-columns", "href": "mif5a-written-whole-numbers.html"},
   {"subject": "math", "topic": "math-fractions", "date": "2026-10-27", "title": "Draw, Label & Finish", "zh": "畫出等分、標單位、完成每項要求", "desc": "Draw equal parts, shade a share, keep the whole unit, and write every requested equation.", "zhDesc": "畫等分、塗份數、保留整體單位，並完成指定的每個等式。", "source": "Math in Focus 5A · Chapter 2 · p.116 Q2a–b; p.118 Activity 2 Q1; p.135 Q1–3", "fixes": 3, "thumb": "mif5a-write-model", "href": "mif5a-written-models.html"},
 
+  /* mif5a-textbook-teaching-20261101 */
+  {"subject": "math", "topic": "math-word-problems", "date": "2026-11-01", "title": "5 · Order of Operations", "zh": "第 5 小節：運算順序", "desc": "Read the operation ranks, keep equal ranks left to right, and group the whole sum before sharing.", "zhDesc": "辨識運算層級、同級由左至右，平分前用括號保留完整總量。", "source": "Math in Focus 5A · Chapter 1 §5 · pp.63–67 · textbook teaching · received Oct 31, built Nov 1", "thumb": "mif5a-order", "href": "mif5a-ch1-5-order-of-operations.html"},
+  {"subject": "math", "topic": "math-word-problems", "date": "2026-11-01", "title": "6 · Real-World Problems", "zh": "第 6 小節：整數四則應用題", "desc": "Interpret leftover length and extra seats, cancel a shared part in two totals, and track total and packed mass.", "zhDesc": "分辨剩料與加車、扣除兩個總量的共同部分，追蹤總重量及裝走量。", "source": "Math in Focus 5A · Chapter 1 §6 · pp.75–77 · textbook teaching · received Oct 31, built Nov 1", "thumb": "mif5a-shared", "href": "mif5a-ch1-6-real-world-problems.html"},
 
   {"subject":"math","topic":"math-word-problems","date":"2026-10-27","title":"Words → Math Models","zh":"把文字翻成數學模型","desc":"Find the quantities and the unknown, translate order words, turn “times as many” into a bar model and equation, and find the hidden number before you calculate.","zhDesc":"找出數量與未知數、翻譯順序詞、把「幾倍」畫成線段圖並列式，計算前先找出隱藏數。","source":"Skill training · Grade 5 · four translation patterns, each with a fresh-numbers Prove","thumb":"words-to-model","href":"words-to-math-models.html?v=20261027-1"},
   /* screenshot-lessons-20261027 */
@@ -1051,6 +1080,8 @@ const THUMBS = {
 "mif5a-write-columns"(){return "<svg viewBox=\"0 0 104 78\" role=\"img\" aria-label=\"Aligned partial products, then the total\"><rect x=\"1\" y=\"1\" width=\"102\" height=\"76\" rx=\"2.5\" fill=\"#F4F4F6\" stroke=\"#E3E4E8\"/><g font-family=\"Fredoka,sans-serif\" font-size=\"8\" fill=\"#6B6E76\" stroke-linecap=\"round\"><path d=\"M44 7V72M56 7V72M68 7V72M80 7V72\" stroke=\"#C9CBD2\"/><text x=\"86\" y=\"27\" text-anchor=\"end\">1267</text><text x=\"86\" y=\"38\" text-anchor=\"end\">\u00d7 43</text><path d=\"M20 42H91\" stroke=\"#6B6E76\"/><text x=\"86\" y=\"51\" text-anchor=\"end\">3801</text><text x=\"86\" y=\"61\" text-anchor=\"end\">+50680</text><path d=\"M20 65H91\" stroke=\"#3E6FD9\"/><text x=\"86\" y=\"75\" text-anchor=\"end\" fill=\"#3E6FD9\">54481</text></g></svg>";},
 "mif5a-write-model"(){return "<svg viewBox=\"0 0 104 78\" role=\"img\" aria-label=\"Ruler marks split two same-size wholes into equal parts\"><rect x=\"1\" y=\"1\" width=\"102\" height=\"76\" rx=\"2.5\" fill=\"#F4F4F6\" stroke=\"#E3E4E8\"/><g font-family=\"Fredoka,sans-serif\" font-size=\"8\" fill=\"#6B6E76\" stroke-linecap=\"round\"><rect x=\"10\" y=\"9\" width=\"84\" height=\"12\" fill=\"#E8EEFC\" stroke=\"#3E6FD9\"/><path d=\"M31 9V21M52 9V21M73 9V21\" stroke=\"#3E6FD9\"/><rect x=\"10\" y=\"31\" width=\"84\" height=\"12\" fill=\"#F4F4F6\" stroke=\"#6B6E76\"/><path d=\"M31 31V43M52 31V43M73 31V43\" stroke=\"#3E6FD9\"/><path d=\"M10 53H94M10 53v6M31 53v6M52 53v6M73 53v6M94 53v6\" stroke=\"#6B6E76\"/><text x=\"13\" y=\"72\">equal parts</text></g></svg>";},
 
+"mif5a-order"(){return "<svg viewBox=\"0 0 104 78\" role=\"img\" aria-label=\"Parentheses before multiplication before addition\"><g font-family=\"Fredoka,sans-serif\" font-size=\"8\" fill=\"#2E3037\" stroke-linecap=\"round\"><rect x=\"5\" y=\"5\" width=\"94\" height=\"20\" rx=\"2.5\" fill=\"#E8EEFC\" stroke=\"#3E6FD9\"/><text x=\"12\" y=\"19\">(12 + 8) \u00f7 4</text><path d=\"M26 29v10m-4-4 4 4 4-4\" stroke=\"#6B6E76\" fill=\"none\"/><text x=\"12\" y=\"52\">20 \u00f7 4 = 5</text><text x=\"12\" y=\"68\">group \u2192 share</text></g></svg>";},
+"mif5a-shared"(){return "<svg viewBox=\"0 0 104 78\" role=\"img\" aria-label=\"Shared bar cancels leaving three extra units\"><g font-family=\"Fredoka,sans-serif\" font-size=\"7\" stroke-linecap=\"round\"><rect x=\"6\" y=\"12\" width=\"45\" height=\"16\" fill=\"#F4F4F6\" stroke=\"#6B6E76\"/><rect x=\"6\" y=\"40\" width=\"45\" height=\"16\" fill=\"#F4F4F6\" stroke=\"#6B6E76\"/><path d=\"M9 9l38 50\" stroke=\"#E2463B\"/><text x=\"16\" y=\"23\">shared</text><text x=\"16\" y=\"51\">shared</text><rect x=\"52\" y=\"12\" width=\"10\" height=\"16\" fill=\"#E8EEFC\" stroke=\"#3E6FD9\"/><rect x=\"63\" y=\"12\" width=\"10\" height=\"16\" fill=\"#E8EEFC\" stroke=\"#3E6FD9\"/><rect x=\"74\" y=\"12\" width=\"10\" height=\"16\" fill=\"#E8EEFC\" stroke=\"#3E6FD9\"/><rect x=\"85\" y=\"12\" width=\"10\" height=\"16\" fill=\"#E8EEFC\" stroke=\"#3E6FD9\"/><rect x=\"52\" y=\"40\" width=\"10\" height=\"16\" fill=\"#E8EEFC\" stroke=\"#3E6FD9\"/><text x=\"42\" y=\"71\" fill=\"#2E3037\">4u \u2212 1u = 3u</text></g></svg>";},
 
 "words-to-model"(){return "<svg viewBox=\"0 0 104 78\" role=\"img\" aria-label=\"words become a math model\"><rect x=\"1\" y=\"1\" width=\"102\" height=\"76\" rx=\"4\" fill=\"#F4F4F6\" stroke=\"#E3E4E8\"/><g font-family=\"Fredoka,sans-serif\" font-size=\"8\" fill=\"#6B6E76\" stroke-linecap=\"round\"><text x=\"10\" y=\"19\">3 packs of 15,</text><text x=\"10\" y=\"30\">uses 7. Left?</text><path d=\"M52 35v9m-4-4 4 4 4-4\" stroke=\"#6B6E76\" fill=\"none\"/><rect x=\"13\" y=\"49\" width=\"78\" height=\"19\" rx=\"2.5\" fill=\"#E8EEFC\" stroke=\"#3E6FD9\"/><text x=\"52\" y=\"62\" text-anchor=\"middle\" fill=\"#2B52AE\" font-weight=\"600\">s = 3 × 15 − 7</text></g></svg>";},
 "oct-shapes"(){return "<svg viewBox=\"0 0 104 78\" role=\"img\" aria-label=\"shapes mechanism\"><rect x=\"1\" y=\"1\" width=\"102\" height=\"76\" rx=\"4\" fill=\"#F4F4F6\" stroke=\"#E3E4E8\"/><g font-family=\"Fredoka,sans-serif\" font-size=\"8\" fill=\"#6B6E76\" stroke-linecap=\"round\"><path d=\"M10 36H94\" stroke=\"#6B6E76\"/><circle cx=\"20\" cy=\"36\" r=\"3\" fill=\"#3E6FD9\"/><circle cx=\"48\" cy=\"36\" r=\"3\" fill=\"#3E6FD9\"/><circle cx=\"84\" cy=\"36\" r=\"3\" fill=\"#3E6FD9\"/><path d=\"M20 48h28m0 10h36\" stroke=\"#F08A2C\" stroke-width=\"3\"/><text x=\"24\" y=\"23\">AB + BD</text></g></svg>";},
