@@ -274,8 +274,8 @@ const TOPICS = [
     desc:"Compare, calculate, simplify, convert forms, and solve mixed-number stories in one place.",
     zhDesc:"把比較、計算、約分、形式轉換與帶分數應用題收在同一個主題。",
     skills:["Compare & calculate","Simplest form","Improper ↔ mixed","Word problems"], zhSkills:["比較與計算","最簡形式","假分數↔帶分數","應用題"],
-    weekend:"Keep the earlier simplest-form check pending. Add common-unit subtraction and decimal-to-fraction conversion; guided page completion is not mastery.",
-    zhWeekend:"原有最簡形式待驗收保留；新增同單位分數相減與小數轉分數，頁內引導完成不算熟練。"
+    weekend:"Keep the earlier simplest-form check pending. Add common-unit subtraction and decimal-to-fraction conversion; guided page completion is not mastery. Add the 5A written equality, regrouping, equal-part model and complete-response checks; paper review and separate no-hint retests remain pending.",
+    zhWeekend:"原有最簡形式待驗收保留；新增同單位分數相減與小數轉分數，頁內引導完成不算熟練。 新增5A等值書寫、進整數、等分模型與完整作答檢查；紙本及另卷無提示驗收仍待回收。"
   },
   {
     id:"math-estimation", subject:"math", next:"foundation",
@@ -283,8 +283,8 @@ const TOPICS = [
     desc:"Estimate before multiplying or dividing, then use it to check the exact answer.",
     zhDesc:"乘除前先估算，再用估算檢查精確答案是否合理。",
     skills:["Rounding","Estimate first","Exact answer check"], zhSkills:["四捨五入","先估算","檢查精確答案"],
-    weekend:"Keep Q1/Q3 compatible-number checks pending and preserve the correct long division. Also check decimal price scale when estimating a product; use a separate no-hint retest.",
-    zhWeekend:"原 Q1／Q3 配數與完整估值待驗收保留，已對直式不重做；新增估算乘積時的小數價格量級，仍待另卷無提示驗收。"
+    weekend:"Keep Q1/Q3 compatible-number checks pending and preserve the correct long division. Also check decimal price scale when estimating a product; use a separate no-hint retest. Add the 5A benchmark chain and aligned multiplication/division working; guided typing does not prove paper neatness or independent mastery.",
+    zhWeekend:"原 Q1／Q3 配數與完整估值待驗收保留，已對直式不重做；新增估算乘積時的小數價格量級，仍待另卷無提示驗收。 新增5A逐項benchmark與乘除直式書寫；引導輸入不等於紙本整齊或獨立熟練。"
   },
   {
     id:"math-word-problems", subject:"math", next:"foundation",
@@ -362,9 +362,61 @@ const TOPICS = [
 
 /* ===== Today's review queue — update after worksheet or homework-scan feedback ===== */
 const TODAY_MISSIONS = {
-  "date": "2026-10-27",
-  "label": "OCT 27 · 16 PORTALS",
+  "date": "2026-11-01",
+  "label": "NOV 1 · 20 PORTALS",
   "tasks": [
+    {
+      "id": "mif5a-written-1-20261101",
+      "topic": "math-fractions",
+      "level": "foundation",
+      "tag": "Guided writing",
+      "zhTag": "逐行書寫",
+      "kind": "homework",
+      "title": "Keep Every Part of the Sum",
+      "zh": "每一步都保留完整的和",
+      "detail": "Write equivalent fractions, keep every whole, and regroup before simplifying. Use one section at a time, then write it in your workbook.",
+      "zhDetail": "逐行寫等值分數、保留整數，滿一個整體先進位再化簡。一次做一小節，再回作業本完成。",
+      "href": "mif5a-written-fractions.html#same-factor"
+    },
+    {
+      "id": "mif5a-written-2-20261101",
+      "topic": "math-estimation",
+      "level": "foundation",
+      "tag": "Guided writing",
+      "zhTag": "逐行書寫",
+      "kind": "homework",
+      "title": "Write Every Benchmark",
+      "zh": "把每一項估算寫出來",
+      "detail": "Write one benchmark per amount, add the benchmarks, and use ≈ for the estimate. Use one section at a time, then write it in your workbook.",
+      "zhDetail": "每個數量各寫一個基準數，再相加並用≈標估算。一次做一小節，再回作業本完成。",
+      "href": "mif5a-written-benchmarks.html#two-benchmarks"
+    },
+    {
+      "id": "mif5a-written-3-20261101",
+      "topic": "math-estimation",
+      "level": "foundation",
+      "tag": "Guided writing",
+      "zhTag": "逐行書寫",
+      "kind": "homework",
+      "title": "Write the Whole Calculation",
+      "zh": "把完整計算寫清楚",
+      "detail": "Write every carry, partial product, subtraction, bring-down and multiplication check. Use one section at a time, then write it in your workbook.",
+      "zhDetail": "寫出進位、部分積、減法、帶下與乘回驗算。一次做一小節，再回作業本完成。",
+      "href": "mif5a-written-whole-numbers.html#place-value-zero"
+    },
+    {
+      "id": "mif5a-written-4-20261101",
+      "topic": "math-fractions",
+      "level": "foundation",
+      "tag": "Guided writing",
+      "zhTag": "逐行書寫",
+      "kind": "homework",
+      "title": "Draw, Label & Finish",
+      "zh": "畫出等分、標單位、完成每項要求",
+      "detail": "Draw equal parts, shade a share, keep the whole unit, and write every requested equation. Use one section at a time, then write it in your workbook.",
+      "zhDetail": "畫等分、塗份數、保留整體單位，並完成指定的每個等式。一次做一小節，再回作業本完成。",
+      "href": "mif5a-written-models.html#draw-the-equal-pieces"
+    },
     {
       "id": "words-to-math-models-20261027",
       "topic": "math-word-problems",
@@ -581,6 +633,13 @@ const MISSION_SUBJECT = "WILLIAM TODAY'S MISSION — " + TODAY_MISSIONS.date;
 /* ===== 2. Lessons — add new ones here (sorted by date automatically) =====
    thumb: "sieve" | "fraction" | "numberline" | "artifact" | "grid"  (see THUMBS below)      */
 const LESSONS = [
+  /* mif5a-guided-writing-20261101 */
+  {"subject": "math", "topic": "math-fractions", "date": "2026-10-27", "title": "Keep Every Part of the Sum", "zh": "每一步都保留完整的和", "desc": "Write equivalent fractions, keep every whole, and regroup before simplifying.", "zhDesc": "逐行寫等值分數、保留整數，滿一個整體先進位再化簡。", "source": "Math in Focus 5A, Chapter 2; verified 10/27 work on pp.132, 136–138.", "fixes": 3, "thumb": "mif5a-write-fraction", "href": "mif5a-written-fractions.html"},
+  {"subject": "math", "topic": "math-estimation", "date": "2026-10-27", "title": "Write Every Benchmark", "zh": "把每一項估算寫出來", "desc": "Write one benchmark per amount, add the benchmarks, and use ≈ for the estimate.", "zhDesc": "每個數量各寫一個基準數，再相加並用≈標估算。", "source": "Math in Focus 5A · Chapter 2 · p.128 Q3; p.134 Q1/Q4; p.137 Q12/Q14 · handwritten 10/27", "fixes": 3, "thumb": "mif5a-write-benchmark", "href": "mif5a-written-benchmarks.html"},
+  {"subject": "math", "topic": "math-estimation", "date": "2026-10-24", "title": "Write the Whole Calculation", "zh": "把完整計算寫清楚", "desc": "Write every carry, partial product, subtraction, bring-down and multiplication check.", "zhDesc": "寫出進位、部分積、減法、帶下與乘回驗算。", "source": "Math in Focus 5A · Chapter 1 · p.28 Q6 · p.49 Q14 · p.61 Q20", "fixes": 3, "thumb": "mif5a-write-columns", "href": "mif5a-written-whole-numbers.html"},
+  {"subject": "math", "topic": "math-fractions", "date": "2026-10-27", "title": "Draw, Label & Finish", "zh": "畫出等分、標單位、完成每項要求", "desc": "Draw equal parts, shade a share, keep the whole unit, and write every requested equation.", "zhDesc": "畫等分、塗份數、保留整體單位，並完成指定的每個等式。", "source": "Math in Focus 5A · Chapter 2 · p.116 Q2a–b; p.118 Activity 2 Q1; p.135 Q1–3", "fixes": 3, "thumb": "mif5a-write-model", "href": "mif5a-written-models.html"},
+
+
   {"subject":"math","topic":"math-word-problems","date":"2026-10-27","title":"Words → Math Models","zh":"把文字翻成數學模型","desc":"Find the quantities and the unknown, translate order words, turn “times as many” into a bar model and equation, and find the hidden number before you calculate.","zhDesc":"找出數量與未知數、翻譯順序詞、把「幾倍」畫成線段圖並列式，計算前先找出隱藏數。","source":"Skill training · Grade 5 · four translation patterns, each with a fresh-numbers Prove","thumb":"words-to-model","href":"words-to-math-models.html?v=20261027-1"},
   /* screenshot-lessons-20261027 */
   {"subject":"isee","topic":"isee-math","date":"2026-10-25","title":"Lengths, Graphs & Shape Names","zh":"線段、函數圖與形狀名稱","desc":"Rebuild the source problem step by step, then use new numbers to test the method.","zhDesc":"逐步重建原題，再以新數字練同一方法。","source":"Online practice · screenshot dates 2026-10-18 / 2026-10-25 · actual test date not shown","fixes":4,"thumb":"oct-shapes","href":"isee-shapes-and-graphs-2026-10.html"},
@@ -987,6 +1046,12 @@ const LESSONS = [
 
 /* ===== 3. Thumbnails — drawn with SVG, no photo files needed ===== */
 const THUMBS = {
+"mif5a-write-fraction"(){return "<svg viewBox=\"0 0 104 78\" role=\"img\" aria-label=\"Keep the whole when a fractional sum makes a new whole\"><rect x=\"1\" y=\"1\" width=\"102\" height=\"76\" rx=\"2.5\" fill=\"#F4F4F6\" stroke=\"#E3E4E8\"/><g font-family=\"Fredoka,sans-serif\" font-size=\"8\" fill=\"#6B6E76\" stroke-linecap=\"round\"><text x=\"12\" y=\"20\">6 + 9/6</text><path d=\"M18 25v9m-3-3 3 3 3-3\" stroke=\"#6B6E76\" fill=\"none\"/><rect x=\"9\" y=\"37\" width=\"84\" height=\"16\" rx=\"2.5\" fill=\"#E8EEFC\" stroke=\"#3E6FD9\"/><text x=\"14\" y=\"49\">6 + 1 + 3/6</text><text x=\"14\" y=\"69\" fill=\"#3E6FD9\">7 1/2</text></g></svg>";},
+"mif5a-write-benchmark"(){return "<svg viewBox=\"0 0 104 78\" role=\"img\" aria-label=\"Each fraction goes to its own benchmark before adding\"><rect x=\"1\" y=\"1\" width=\"102\" height=\"76\" rx=\"2.5\" fill=\"#F4F4F6\" stroke=\"#E3E4E8\"/><g font-family=\"Fredoka,sans-serif\" font-size=\"8\" fill=\"#6B6E76\" stroke-linecap=\"round\"><text x=\"9\" y=\"18\">4/11 \u2248 1/2</text><text x=\"9\" y=\"34\">11/13 \u2248 1</text><path d=\"M8 42H94\" stroke=\"#C9CBD2\"/><text x=\"9\" y=\"57\">1/2 + 1</text><text x=\"9\" y=\"70\" fill=\"#3E6FD9\">\u2248 1 1/2</text></g></svg>";},
+"mif5a-write-columns"(){return "<svg viewBox=\"0 0 104 78\" role=\"img\" aria-label=\"Aligned partial products, then the total\"><rect x=\"1\" y=\"1\" width=\"102\" height=\"76\" rx=\"2.5\" fill=\"#F4F4F6\" stroke=\"#E3E4E8\"/><g font-family=\"Fredoka,sans-serif\" font-size=\"8\" fill=\"#6B6E76\" stroke-linecap=\"round\"><path d=\"M44 7V72M56 7V72M68 7V72M80 7V72\" stroke=\"#C9CBD2\"/><text x=\"86\" y=\"27\" text-anchor=\"end\">1267</text><text x=\"86\" y=\"38\" text-anchor=\"end\">\u00d7 43</text><path d=\"M20 42H91\" stroke=\"#6B6E76\"/><text x=\"86\" y=\"51\" text-anchor=\"end\">3801</text><text x=\"86\" y=\"61\" text-anchor=\"end\">+50680</text><path d=\"M20 65H91\" stroke=\"#3E6FD9\"/><text x=\"86\" y=\"75\" text-anchor=\"end\" fill=\"#3E6FD9\">54481</text></g></svg>";},
+"mif5a-write-model"(){return "<svg viewBox=\"0 0 104 78\" role=\"img\" aria-label=\"Ruler marks split two same-size wholes into equal parts\"><rect x=\"1\" y=\"1\" width=\"102\" height=\"76\" rx=\"2.5\" fill=\"#F4F4F6\" stroke=\"#E3E4E8\"/><g font-family=\"Fredoka,sans-serif\" font-size=\"8\" fill=\"#6B6E76\" stroke-linecap=\"round\"><rect x=\"10\" y=\"9\" width=\"84\" height=\"12\" fill=\"#E8EEFC\" stroke=\"#3E6FD9\"/><path d=\"M31 9V21M52 9V21M73 9V21\" stroke=\"#3E6FD9\"/><rect x=\"10\" y=\"31\" width=\"84\" height=\"12\" fill=\"#F4F4F6\" stroke=\"#6B6E76\"/><path d=\"M31 31V43M52 31V43M73 31V43\" stroke=\"#3E6FD9\"/><path d=\"M10 53H94M10 53v6M31 53v6M52 53v6M73 53v6M94 53v6\" stroke=\"#6B6E76\"/><text x=\"13\" y=\"72\">equal parts</text></g></svg>";},
+
+
 "words-to-model"(){return "<svg viewBox=\"0 0 104 78\" role=\"img\" aria-label=\"words become a math model\"><rect x=\"1\" y=\"1\" width=\"102\" height=\"76\" rx=\"4\" fill=\"#F4F4F6\" stroke=\"#E3E4E8\"/><g font-family=\"Fredoka,sans-serif\" font-size=\"8\" fill=\"#6B6E76\" stroke-linecap=\"round\"><text x=\"10\" y=\"19\">3 packs of 15,</text><text x=\"10\" y=\"30\">uses 7. Left?</text><path d=\"M52 35v9m-4-4 4 4 4-4\" stroke=\"#6B6E76\" fill=\"none\"/><rect x=\"13\" y=\"49\" width=\"78\" height=\"19\" rx=\"2.5\" fill=\"#E8EEFC\" stroke=\"#3E6FD9\"/><text x=\"52\" y=\"62\" text-anchor=\"middle\" fill=\"#2B52AE\" font-weight=\"600\">s = 3 × 15 − 7</text></g></svg>";},
 "oct-shapes"(){return "<svg viewBox=\"0 0 104 78\" role=\"img\" aria-label=\"shapes mechanism\"><rect x=\"1\" y=\"1\" width=\"102\" height=\"76\" rx=\"4\" fill=\"#F4F4F6\" stroke=\"#E3E4E8\"/><g font-family=\"Fredoka,sans-serif\" font-size=\"8\" fill=\"#6B6E76\" stroke-linecap=\"round\"><path d=\"M10 36H94\" stroke=\"#6B6E76\"/><circle cx=\"20\" cy=\"36\" r=\"3\" fill=\"#3E6FD9\"/><circle cx=\"48\" cy=\"36\" r=\"3\" fill=\"#3E6FD9\"/><circle cx=\"84\" cy=\"36\" r=\"3\" fill=\"#3E6FD9\"/><path d=\"M20 48h28m0 10h36\" stroke=\"#F08A2C\" stroke-width=\"3\"/><text x=\"24\" y=\"23\">AB + BD</text></g></svg>";},
 "oct-rules"(){return "<svg viewBox=\"0 0 104 78\" role=\"img\" aria-label=\"rules mechanism\"><rect x=\"1\" y=\"1\" width=\"102\" height=\"76\" rx=\"4\" fill=\"#F4F4F6\" stroke=\"#E3E4E8\"/><g font-family=\"Fredoka,sans-serif\" font-size=\"8\" fill=\"#6B6E76\" stroke-linecap=\"round\"><rect x=\"31\" y=\"20\" width=\"42\" height=\"38\" rx=\"3\" fill=\"#E8EEFC\" stroke=\"#3E6FD9\"/><path d=\"M8 39h21m45 0h22\" stroke=\"#6B6E76\" stroke-width=\"2\"/><text x=\"39\" y=\"43\">×3−3</text><text x=\"9\" y=\"29\">2</text><text x=\"86\" y=\"29\">3</text></g></svg>";},
